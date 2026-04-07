@@ -166,6 +166,7 @@ const orbitBooks = [
   books[16],
 ]
 
+
 function Reveal({ id, className = "", children }) {
   return (
     <motion.section
@@ -188,6 +189,7 @@ export default function App() {
   const [activeOrbitIndex, setActiveOrbitIndex] = useState(0)
   const [journeyProgress, setJourneyProgress] = useState(0)
   const [activeSection, setActiveSection] = useState("about")
+  const [isMobileBooks, setIsMobileBooks] = useState(false)
   const [scene, setScene] = useState({
     mouseX: 0,
     mouseY: 0,
@@ -288,6 +290,21 @@ export default function App() {
       window.removeEventListener("resize", onResize)
     }
   }, [])
+
+  useEffect(() => {
+  const mq = window.matchMedia("(max-width: 900px)")
+
+  const updateMobileBooks = () => setIsMobileBooks(mq.matches)
+  updateMobileBooks()
+
+  if (mq.addEventListener) {
+    mq.addEventListener("change", updateMobileBooks)
+    return () => mq.removeEventListener("change", updateMobileBooks)
+  } else {
+    mq.addListener(updateMobileBooks)
+    return () => mq.removeListener(updateMobileBooks)
+  }
+}, [])
 
   const activeBook = useMemo(
     () => orbitBooks[activeOrbitIndex] ?? orbitBooks[0],
@@ -554,45 +571,88 @@ export default function App() {
             Scroll the page and the orbit turns. The active story stays highlighted.
           </p>
 
-          <div className="orbit-books-wrap">
-            <div className="book-orbit">
-              <div className="orbit-core">
-                <img src={coffeeReadsBadge} alt="Coffee Reads" className="orbit-core-badge" loading="lazy" />
-                <span className="orbit-core-text">Now in Focus</span>
-                <strong className="orbit-active-title">{activeBook.title}</strong>
-                <a
-                  href={activeBook.amazonUrl}
-                  className="orbit-amazon-btn"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View on Amazon
-                </a>
-              </div>
+          {!isMobileBooks ? (
+  <div className="orbit-books-wrap">
+    <div className="book-orbit">
+      <div className="orbit-core">
+        <img src={coffeeReadsBadge} alt="Coffee Reads" className="orbit-core-badge" />
+        <span className="orbit-core-text">Now in Focus</span>
+        <strong className="orbit-active-title">{activeBook.title}</strong>
+        <a
+          href={activeBook.amazonUrl}
+          className="orbit-amazon-btn"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View on Amazon
+        </a>
+      </div>
 
-              {orbitBooks.map((book, index) => {
-                const angle = (360 / orbitBooks.length) * index
-                const isActive = index === activeOrbitIndex
-                const transform = `rotate(${angle + orbitRotation}deg) translateY(-270px) rotate(${-angle - orbitRotation}deg) scale(${isActive ? 1.12 : 0.9})`
+      {orbitBooks.map((book, index) => {
+        const angle = (360 / orbitBooks.length) * index
+        const isActive = index === activeOrbitIndex
+        const transform = `rotate(${angle + orbitRotation}deg) translateY(-270px) rotate(${-angle - orbitRotation}deg) scale(${isActive ? 1.12 : 0.9})`
 
-                return (
-                  <div
-                    key={book.title}
-                    className={`orbit-item ${isActive ? "active" : ""}`}
-                    style={{ transform }}
-                  >
-                    <img src={book.cover} alt={book.title} loading="lazy" />
-                  </div>
-                )
-              })}
-            </div>
+        return (
+          <div
+            key={book.title}
+            className={`orbit-item ${isActive ? "active" : ""}`}
+            style={{ transform }}
+          >
+            <img
+              src={book.cover}
+              alt={book.title}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
+        )
+      })}
+    </div>
+  </div>
+) : (
+  <div className="mobile-books-shell">
+    <div className="glass-card mobile-featured-book">
+      <img src={coffeeReadsBadge} alt="Coffee Reads" className="mobile-featured-badge" />
+      <span className="orbit-core-text">Featured Book</span>
+      <strong className="mobile-featured-title">{activeBook.title}</strong>
+      <a
+        href={activeBook.amazonUrl}
+        className="orbit-amazon-btn"
+        target="_blank"
+        rel="noreferrer"
+      >
+        View on Amazon
+      </a>
+    </div>
+
+    <div className="mobile-books-rail">
+      {orbitBooks.map((book) => (
+        <a
+          key={book.title}
+          href={book.amazonUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="mobile-rail-card"
+        >
+          <img
+            src={book.cover}
+            alt={book.title}
+            loading="lazy"
+            decoding="async"
+          />
+          <span>{book.title}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+)}
 
           <div className="books-grid">
             {books.map((book) => (
               <article key={book.title} className="book-card">
                 <div className="book-cover-wrap">
-                  <img src={book.cover} alt={book.title} className="book-cover" loading="lazy" />
+                  <img src={book.cover} alt={book.title} className="book-cover" loading="lazy" decoding="async" />
                 </div>
                 <div className="book-meta">
                   <h3>{book.title}</h3>

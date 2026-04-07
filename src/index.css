@@ -194,8 +194,8 @@ img {
 
 .hero-title {
   margin: 0.5rem 0 0;
-  font-size: clamp(3.2rem, 8vw, 8rem);
-  line-height: 0.95;
+  font-size: clamp(2.9rem, 6.8vw, 6.6rem);
+  line-height: 0.96;
   letter-spacing: -0.05em;
   font-weight: 900;
   background: linear-gradient(90deg, #ebffff 0%, #8af3ea 28%, #55c7ff 58%, #9180ff 100%);
@@ -1562,4 +1562,83 @@ img {
   .site-footer-bottom {
     align-items: flex-start;
   }
+
+  .mobile-books-shell {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.mobile-featured-book {
+  padding: 22px 18px;
+  text-align: center;
+}
+
+.mobile-featured-badge {
+  width: 88px;
+  margin: 0 auto 12px;
+}
+
+.mobile-featured-title {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.18rem;
+  line-height: 1.45;
+}
+
+.mobile-books-rail {
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mobile-books-rail::-webkit-scrollbar {
+  height: 6px;
+}
+
+.mobile-books-rail::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+}
+
+.mobile-rail-card {
+  min-width: 140px;
+  max-width: 140px;
+  flex: 0 0 140px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  padding: 10px;
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.mobile-rail-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(71, 200, 255, 0.24);
+}
+
+.mobile-rail-card img {
+  width: 100%;
+  aspect-ratio: 3 / 4.5;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.mobile-rail-card span {
+  display: block;
+  margin-top: 10px;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.86);
+}
+
+@media (min-width: 901px) {
+  .mobile-books-shell {
+    display: none;
+  }
+}
 }
