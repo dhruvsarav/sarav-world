@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sarav's World favicon">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#2ed9d1"/>
+      <stop offset="55%" stop-color="#47c8ff"/>
+      <stop offset="100%" stop-color="#8a72ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="#07151f"/>
+  <circle cx="64" cy="64" r="42" fill="none" stroke="url(#g)" stroke-width="8" opacity="0.9"/>
+  <path d="M78 42c-6-5-14-7-23-4-9 4-14 12-14 20 0 19 23 17 23 28 0 4-3 8-10 8-6 0-11-2-17-7" fill="none" stroke="#f2f8ff" stroke-width="10" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="r1" cx="18%" cy="22%" r="30%">
+      <stop offset="0%" stop-color="#2ed9d1" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#2ed9d1" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="r2" cx="80%" cy="20%" r="28%">
+      <stop offset="0%" stop-color="#8a72ff" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#8a72ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="r3" cx="72%" cy="82%" r="24%">
+      <stop offset="0%" stop-color="#47c8ff" stop-opacity="0.24"/>
+      <stop offset="100%" stop-color="#47c8ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gt" x1="0" x2="1">
+      <stop offset="0%" stop-color="#ebffff"/>
+      <stop offset="35%" stop-color="#8af3ea"/>
+      <stop offset="65%" stop-color="#55c7ff"/>
+      <stop offset="100%" stop-color="#9180ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#07151f"/>
+  <rect width="1200" height="630" fill="url(#r1)"/>
+  <rect width="1200" height="630" fill="url(#r2)"/>
+  <rect width="1200" height="630" fill="url(#r3)"/>
+  <rect x="70" y="70" width="1060" height="490" rx="34" fill="rgba(10,23,34,0.75)" stroke="rgba(255,255,255,0.08)"/>
+  <text x="110" y="180" fill="#dfeeff" font-family="Inter, Arial, sans-serif" font-size="20" letter-spacing="8">SARAV'S WORLD</text>
+  <text x="110" y="290" fill="url(#gt)" font-family="Inter, Arial, sans-serif" font-size="86" font-weight="800">Books. Work. Builder.</text>
+  <text x="110" y="380" fill="url(#gt)" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="800">Stories that stay.</text>
+  <text x="110" y="455" fill="#b8c7d6" font-family="Inter, Arial, sans-serif" font-size="28">Future of Work · Writing Universe · Career Journey · Books by Sarav</text>
+</svg>
