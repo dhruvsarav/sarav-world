@@ -85,8 +85,7 @@ import bookTheFirstCall from "./assets/books/book-thefirstcall-bookcover-fc.jpg"
 // Data
 // ──────────────────────────────────────────────────────────────
 
-// TODO: replace with Sarav's actual Amazon author page URL.
-const AUTHOR_PAGE = "https://www.amazon.in/stores/Saravanakumar-Murugan/author/B07YFTYYJC";
+const AUTHOR_PAGE = "https://www.amazon.in/stores/Saravanakumar-Murugan/author/B01733TNC2";
 
 const navItems = [
   { id: "about", label: "About" },
