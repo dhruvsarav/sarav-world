@@ -46,6 +46,7 @@ import ideaShipped from "./assets/aibuilder/idea-shipped.png";
 import controlRoomBg from "./assets/aibuilder/futuristic-control-room-bg.png";
 import androidBuildSuccess from "./assets/aibuilder/android-studio-build-success.png";
 import cognizantLatestRole from "./assets/aibuilder/cognizant-latest-role.png";
+import tcsOfficiallyTcser from "./assets/timeline/tcs-officially-tcser.png";
 
 import airplaneTravelCue from "./assets/timeline/airplane-travel-cue.png";
 import covidChapterCue from "./assets/timeline/covid-chapter-cue.png";
@@ -110,6 +111,9 @@ const appCards = [
 ];
 
 const journeyCards = [
+  { year: "2026 — Present", title: "TCS · DWS Practice Head",
+    text: "Digital Workplace Services Practice Head — leading workplace transformation strategy, practice growth, and enterprise solutioning at Tata Consultancy Services.",
+    image: tcsOfficiallyTcser },
   { year: "2025 — Present", title: "Cognizant · Associate Director",
     text: "Global Offering Lead for Future of Work Solutions — shaping AI-led workplace narratives, solution strategy, demos, and enterprise storytelling.",
     image: cognizantLatestRole },
