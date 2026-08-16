@@ -118,9 +118,96 @@ section.band{padding:72px 0}
 .hero{padding:64px 0 60px}
 .books,.chars,.elem-grid{grid-template-columns:1fr}
 }
+
+/* ---------- magic: swastik glyph ---------- */
+.glyph{--gs:currentColor}
+.glyph path{stroke:url(#glyphGold);stroke-width:9;stroke-linecap:square;fill:none;filter:url(#glyphGlow)}
+.spin{animation:spin 16s linear infinite}
+.spin-slow{animation:spin 46s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulseGlow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.045)}}
+
+/* ---------- magic: intro veil ---------- */
+.veil{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse 65% 55% at 50% 42%,oklch(26% 0.08 62 / .9),oklch(4% 0.01 60) 72%);opacity:1;visibility:visible;transition:opacity 900ms ease,visibility 900ms ease}
+.veil::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 18% 24%,oklch(90% 0.1 80 / .8) 0 1px,transparent 1.4px),radial-gradient(circle at 74% 16%,oklch(90% 0.1 80 / .6) 0 1px,transparent 1.4px),radial-gradient(circle at 86% 66%,oklch(90% 0.1 80 / .7) 0 1px,transparent 1.4px),radial-gradient(circle at 30% 82%,oklch(90% 0.1 80 / .55) 0 1px,transparent 1.4px),radial-gradient(circle at 55% 70%,oklch(90% 0.1 80 / .5) 0 1px,transparent 1.4px);background-size:280px 260px;opacity:.7;animation:twinkle 5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.45}50%{opacity:.85}}
+.veil.hide{opacity:0;visibility:hidden;pointer-events:none}
+.veil-in{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px;padding:24px}
+.veil-line{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(1.05rem,2.4vw,1.5rem);color:var(--gold-soft);opacity:0;transform:translateY(10px);animation:vfade 1100ms ease forwards;animation-delay:.25s;max-width:26ch}
+.veil-glyph-wrap{position:relative;width:min(30vw,168px);aspect-ratio:1;opacity:0;transform:scale(.7);animation:vpop 1000ms cubic-bezier(.2,1.6,.4,1) forwards;animation-delay:1.05s}
+.veil-glyph-wrap svg{width:100%;height:100%;animation:spin 16s linear infinite,pulseGlow 3.2s ease-in-out infinite;animation-delay:0s,2.1s}
+.veil-ring{position:absolute;inset:-22%;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 10%,oklch(78% 0.13 78 / .5) 15%,transparent 22% 40%,oklch(78% 0.13 78 / .4) 45%,transparent 52% 72%,oklch(78% 0.13 78 / .45) 76%,transparent 84%);-webkit-mask:radial-gradient(circle,transparent 62%,#000 63%,#000 68%,transparent 69%);mask:radial-gradient(circle,transparent 62%,#000 63%,#000 68%,transparent 69%);animation:spin 10s linear infinite}
+.veil-mark{margin:0;font-family:Cinzel,serif;font-weight:800;letter-spacing:.18em;font-size:clamp(1.4rem,4vw,2.1rem);color:transparent;background:linear-gradient(180deg,oklch(96% 0.05 88),var(--gold) 55%,oklch(60% 0.12 62));-webkit-background-clip:text;background-clip:text;opacity:0;transform:translateY(8px);animation:vfade 1000ms ease forwards;animation-delay:1.9s}
+.veil-skip{margin-top:4px;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint);background:none;border:1px solid var(--line);padding:11px 22px;border-radius:2px;cursor:pointer;opacity:0;animation:vfade 800ms ease forwards;animation-delay:2.9s;transition:color 200ms ease,border-color 200ms ease}
+.veil-skip:hover{color:var(--gold-soft);border-color:var(--gold-dim)}
+@keyframes vfade{to{opacity:1;transform:none}}
+@keyframes vpop{to{opacity:1;transform:scale(1)}}
+body.veil-lock{overflow:hidden}
+
+/* ---------- magic: ambient hero glyph + embers ---------- */
+.hero-glyph{position:absolute;top:50%;right:-6%;width:min(52vw,640px);aspect-ratio:1;transform:translateY(-50%);opacity:.13;z-index:0;pointer-events:none}
+.hero-glyph svg{width:100%;height:100%}
+.embers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.ember{position:absolute;bottom:-6%;width:var(--s,4px);height:var(--s,4px);border-radius:50%;background:radial-gradient(circle,oklch(88% 0.12 78) 0%,oklch(70% 0.16 60 / .7) 55%,transparent 75%);opacity:0;animation:rise var(--dur,11s) linear infinite;animation-delay:var(--del,0s);left:var(--x,50%)}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.6)}8%{opacity:.9}92%{opacity:.6}100%{opacity:0;transform:translate(var(--drift,20px),-118vh) scale(1)}}
+
+/* ---------- magic: buy / coming-soon ---------- */
+.btn-buy{background:linear-gradient(180deg,var(--gold),oklch(60% 0.15 55));color:#160d04;border-color:transparent;font-weight:600;position:relative;overflow:hidden}
+.btn-buy::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,oklch(100% 0 0 / .55),transparent);transform:skewX(-18deg);animation:sheen 3.4s ease-in-out infinite}
+@keyframes sheen{0%{left:-60%}45%,100%{left:120%}}
+.nav-cta{font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 18px;border-radius:2px;background:linear-gradient(180deg,var(--gold),oklch(64% 0.14 62));color:#160d04!important;font-weight:600}
+.book-buy{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#160d04;background:linear-gradient(180deg,var(--gold),oklch(62% 0.14 58));padding:11px 18px;border-radius:2px;font-weight:600;position:relative;overflow:hidden}
+.book-buy::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,oklch(100% 0 0 / .55),transparent);transform:skewX(-18deg);animation:sheen 3.8s ease-in-out infinite}
+.book.soon .book-art{position:relative}
+.book.soon .book-art img{filter:grayscale(.55) brightness(.55) saturate(.8)}
+.book.soon .book-art::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,oklch(5% 0 0 / .75));z-index:1}
+.ribbon{position:absolute;top:18px;left:-34px;z-index:2;transform:rotate(-40deg);background:linear-gradient(180deg,var(--gold),oklch(58% 0.14 56));color:#160d04;font-family:Cinzel,serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 42px;box-shadow:0 4px 14px oklch(0% 0 0 / .5)}
+.soon-tag{position:absolute;left:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:7px;font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
+@media (prefers-reduced-motion:reduce){
+.veil{transition:none}
+.spin,.spin-slow,.veil-ring,.ember,.btn-buy::after,.book-buy::after,pulseGlow{animation:none!important}
+}
+@media (max-width:720px){
+.hero-glyph{width:70vw;right:-24%;opacity:.09}
+.nav-cta{padding:8px 14px}
+}
 </style>
 </head>
-<body>
+<body class="veil-lock">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<linearGradient id="glyphGold" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#fbe7b0" />
+<stop offset="55%" stop-color="#d9a441" />
+<stop offset="100%" stop-color="#8a5a1e" />
+</linearGradient>
+<filter id="glyphGlow" x="-60%" y="-60%" width="220%" height="220%">
+<feGaussianBlur stdDeviation="2.6" result="blur" />
+<feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+</filter>
+<symbol id="swastikMark" viewBox="0 0 100 100">
+<g class="glyph">
+<path d="M50,50 L50,15 L75,15" />
+<path d="M50,50 L50,15 L75,15" transform="rotate(90 50 50)" />
+<path d="M50,50 L50,15 L75,15" transform="rotate(180 50 50)" />
+<path d="M50,50 L50,15 L75,15" transform="rotate(270 50 50)" />
+</g>
+</symbol>
+</defs>
+</svg>
+
+<div class="veil" id="veil" role="dialog" aria-modal="true" aria-label="Entering Swastikastra">
+<div class="veil-in">
+<p class="veil-line">The well remembers those it calls.</p>
+<div class="veil-glyph-wrap">
+<div class="veil-ring" aria-hidden="true"></div>
+<svg viewBox="0 0 100 100" aria-hidden="true"><use href="#swastikMark"></use></svg>
+</div>
+<p class="veil-mark disp">SWASTIKASTRA</p>
+<button class="veil-skip" id="veilSkip" type="button">Enter the Gurukula ↴</button>
+</div>
+</div>
+
 <header class="bar">
 <div class="wrap bar-in">
 <a class="home" href="/">← Sarav's World</a>
@@ -130,11 +217,14 @@ section.band{padding:72px 0}
 <a href="#elements">The Elements</a>
 <a href="#author">The Author</a>
 </nav>
+<a class="nav-cta" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Get Book One</a>
 </div>
 </header>
 
 <main>
 <section class="hero" id="top">
+<div class="hero-glyph" aria-hidden="true"><svg class="spin-slow" viewBox="0 0 100 100"><use href="#swastikMark"></use></svg></div>
+<div class="embers" id="embers" aria-hidden="true"></div>
 <div class="wrap hero-in">
 <div>
 <div class="seal" aria-hidden="true">✦</div>
@@ -144,7 +234,7 @@ section.band{padding:72px 0}
 <p class="hero-lines">A boy. A temple. A voice.<br /><em>A world beyond imagination.</em><br />A destiny beyond time.</p>
 <p class="hero-note">Some journeys are written. Some are remembered. His was never forgotten.</p>
 <div class="cta-row">
-<a class="btn btn-solid" href="#books">Begin with Book One</a>
+<a class="btn btn-buy" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Get Book One — NotionPress</a>
 <a class="btn btn-ghost" href="#elements">The Ten Elements</a>
 </div>
 </div>
@@ -170,30 +260,31 @@ section.band{padding:72px 0}
 <h3>The Golden Ripe Mango</h3>
 <p>Some journeys are written. Some are remembered. His was never forgotten.</p>
 <div class="pillars">Myth · Destiny · Astra · Friendship · Sacrifice</div>
+<a class="book-buy" id="buy-book-one" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Buy on NotionPress →</a>
 </article>
-<article class="book">
-<div class="book-art"><img loading="lazy" src="art/book-2-the-hidden-ember.png" alt="Book Two: The Hidden Ember" width="1080" height="1620" /></div>
+<article class="book soon">
+<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-2-the-hidden-ember.png" alt="Book Two: The Hidden Ember" width="1080" height="1620" /></div>
 <div class="book-no"><span class="dot" style="background:var(--e2)"></span>Book Two</div>
 <h3>The Hidden Ember</h3>
 <p>Every victory leaves a mark. Every secret demands a price.</p>
 <div class="pillars">Friendship · Secrets · Trials · Choices · Sacrifice</div>
 </article>
-<article class="book">
-<div class="book-art"><img loading="lazy" src="art/book-3-the-hidden-well.png" alt="Book Three: The Hidden Well" width="1080" height="1620" /></div>
+<article class="book soon">
+<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-3-the-hidden-well.png" alt="Book Three: The Hidden Well" width="1080" height="1620" /></div>
 <div class="book-no"><span class="dot" style="background:var(--e3)"></span>Book Three</div>
 <h3>The Hidden Well</h3>
 <p>Every truth has been waiting beneath the surface.</p>
 <div class="pillars">Trials test us · Secrets shape us · Truth defines us</div>
 </article>
-<article class="book">
-<div class="book-art"><img loading="lazy" src="art/book-4-the-banyans-secret.png" alt="Book Four: The Banyan's Secret" width="1080" height="1620" /></div>
+<article class="book soon">
+<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-4-the-banyans-secret.png" alt="Book Four: The Banyan's Secret" width="1080" height="1620" /></div>
 <div class="book-no"><span class="dot" style="background:var(--e4)"></span>Book Four</div>
 <h3>The Banyan's Secret</h3>
 <p>Roots remember. Secrets awaken. Destiny chooses.</p>
 <div class="pillars">Roots · Betrayal · Element 5 · Awakening · War</div>
 </article>
-<article class="book">
-<div class="book-art"><img loading="lazy" src="art/book-5-the-red-moon.png" alt="Book Five: The Red Moon" width="1080" height="1620" /></div>
+<article class="book soon">
+<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-5-the-red-moon.png" alt="Book Five: The Red Moon" width="1080" height="1620" /></div>
 <div class="book-no"><span class="dot" style="background:var(--e5)"></span>Book Five</div>
 <h3>The Red Moon</h3>
 <p>Ten elements. One destiny. One final stand.</p>
@@ -316,6 +407,55 @@ var els=document.querySelectorAll(".reveal");
 if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
 var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
 els.forEach(function(e){io.observe(e)});
+})();
+
+/* magical intro veil */
+(function(){
+var veil=document.getElementById("veil"),skip=document.getElementById("veilSkip"),body=document.body;
+var reduced=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(!veil){return}
+if(reduced){veil.classList.add("hide");body.classList.remove("veil-lock");return}
+var closed=false;
+function dismiss(){
+if(closed){return}
+closed=true;
+veil.classList.add("hide");
+body.classList.remove("veil-lock");
+window.removeEventListener("keydown",onKey);
+}
+function onKey(e){if(e.key==="Escape"||e.key==="Enter"){dismiss()}}
+if(skip){skip.addEventListener("click",dismiss)}
+veil.addEventListener("click",function(e){if(e.target===veil){dismiss()}});
+window.addEventListener("keydown",onKey);
+window.addEventListener("wheel",dismiss,{passive:true,once:true});
+window.addEventListener("touchmove",dismiss,{passive:true,once:true});
+setTimeout(dismiss,4600);
+})();
+
+/* ambient ember particles */
+(function(){
+var host=document.getElementById("embers");
+if(!host){return}
+var reduced=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if(reduced){return}
+var count=window.innerWidth<720?12:26;
+var frag=document.createDocumentFragment();
+for(var i=0;i<count;i++){
+var e=document.createElement("span");
+e.className="ember";
+var size=(2+Math.random()*4).toFixed(1);
+var dur=(8+Math.random()*9).toFixed(1);
+var del=(Math.random()*12).toFixed(1);
+var x=(Math.random()*100).toFixed(1);
+var drift=Math.round((Math.random()*80)-40);
+e.style.setProperty("--s",size+"px");
+e.style.setProperty("--dur",dur+"s");
+e.style.setProperty("--del",del+"s");
+e.style.setProperty("--x",x+"%");
+e.style.setProperty("--drift",drift+"px");
+frag.appendChild(e);
+}
+host.appendChild(frag);
 })();
 </script>
 </body>
