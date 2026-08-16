@@ -57,8 +57,10 @@ section.band{padding:104px 0}
 .slot img{position:relative;z-index:1;width:100%}
 .slot.ratio-cover{aspect-ratio:1080/1620}
 .slot.ratio-char{aspect-ratio:1125/1406}
-.slot.ratio-map{aspect-ratio:16/10}
+.slot.ratio-map{aspect-ratio:1024/1536}
 .slot.ratio-wide{aspect-ratio:16/9}
+.slot.ratio-poster{aspect-ratio:512/742}
+.slot.ratio-poster img{height:100%;object-fit:cover;object-position:top center}
 .slot.filled::before,.slot.filled::after{display:none}
 .slot:not(.filled){border:1px dashed oklch(78% 0.08 78 / .28)}
 /* year rail */
@@ -134,6 +136,17 @@ dialog.blurb::backdrop{background:oklch(3% 0.01 60 / .84);backdrop-filter:blur(6
 .elem-legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
 .elem-legend i.on{background:var(--gold);box-shadow:0 0 12px oklch(78% 0.14 76 / .7)}
 .elem-legend i.off{border:1px solid var(--gold-dim)}
+/* scroll veils */
+.veiled{position:relative;overflow:hidden}
+.hveil{position:absolute;left:0;right:0;bottom:0;height:calc((1 - var(--p,0)) * 100%);z-index:3;pointer-events:none;will-change:height}
+.hveil.fire{background:linear-gradient(0deg,oklch(70% 0.22 42) 0%,oklch(58% 0.24 32 / .96) 32%,oklch(34% 0.17 26 / .86) 64%,oklch(20% 0.1 24 / .7) 100%),radial-gradient(60% 42% at 28% 96%,oklch(88% 0.17 74 / .85),transparent 70%),radial-gradient(52% 38% at 74% 100%,oklch(82% 0.2 48 / .8),transparent 70%);animation:flick 2.6s ease-in-out infinite}
+.hveil.fire::after{content:"";position:absolute;left:-4%;right:-4%;top:-14px;height:34px;background:radial-gradient(closest-side,oklch(92% 0.16 80 / .9),transparent 75%);filter:blur(5px)}
+@keyframes flick{0%,100%{filter:saturate(1) brightness(1)}50%{filter:saturate(1.15) brightness(1.12)}}
+.hveil.stone{background:linear-gradient(0deg,oklch(30% 0.02 220) 0%,oklch(38% 0.02 215 / .96) 45%,oklch(52% 0.02 210 / .85) 100%);clip-path:polygon(0 13%,8% 4%,16% 15%,26% 3%,36% 14%,46% 5%,56% 16%,66% 3%,76% 13%,86% 5%,94% 15%,100% 8%,100% 100%,0 100%)}
+.hveil.stone::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,transparent 60%,oklch(96% 0.01 220 / .5) 100%)}
+.hveil.bow{height:100%;background:linear-gradient(0deg,oklch(22% 0.05 140),oklch(30% 0.06 138));-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - var(--p,0) * 52%),transparent calc(50% - var(--p,0) * 52%),transparent calc(50% + var(--p,0) * 52%),#000 calc(50% + var(--p,0) * 52%),#000 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - var(--p,0) * 52%),transparent calc(50% - var(--p,0) * 52%),transparent calc(50% + var(--p,0) * 52%),#000 calc(50% + var(--p,0) * 52%),#000 100%)}
+.hveil.bow::after{content:"";position:absolute;left:50%;top:6%;bottom:6%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,oklch(84% 0.11 120 / .8),transparent);opacity:calc(1 - var(--p,0) * 1.6)}
+.mveil{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:calc(1 - var(--p,0) * 1.15);background:radial-gradient(42% 30% at 22% 18%,oklch(97% 0.01 250 / .95),transparent 70%),radial-gradient(46% 26% at 72% 12%,oklch(94% 0.01 250 / .92),transparent 72%),radial-gradient(50% 30% at 46% 44%,oklch(96% 0.01 250 / .9),transparent 72%),radial-gradient(44% 28% at 80% 58%,oklch(93% 0.01 250 / .88),transparent 72%),radial-gradient(48% 30% at 20% 72%,oklch(95% 0.01 250 / .9),transparent 72%),radial-gradient(52% 32% at 60% 92%,oklch(94% 0.01 250 / .9),transparent 72%),linear-gradient(180deg,oklch(92% 0.01 250 / .8),oklch(88% 0.01 250 / .72));filter:blur(calc(2px + var(--p,0) * 10px));transform:scale(calc(1 + var(--p,0) * .12))}
 /* map */
 .mapwrap{position:relative;margin-top:56px}
 .mapwrap .slot{border:1px solid var(--line)}
@@ -147,6 +160,7 @@ dialog.blurb::backdrop{background:oklch(3% 0.01 60 / .84);backdrop-filter:blur(6
 .map-note{margin-top:22px;font-size:.98rem;color:var(--faint)}
 /* characters */
 .chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:56px}
+.chars:not(.minor) .char:nth-child(5){grid-column:1/-1;justify-self:center;width:calc(50% - 15px)}
 .chars.minor{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:40px}
 .char{perspective:1400px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
 .card{position:relative;transform-style:preserve-3d;transition:transform 780ms cubic-bezier(.3,1,.35,1)}
@@ -219,7 +233,8 @@ dialog.blurb::backdrop{background:oklch(3% 0.01 60 / .84);backdrop-filter:blur(6
 /* vahanams */
 .vahanams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:52px}
 .vahanam{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:linear-gradient(180deg,oklch(15% 0.03 60 / .5),oklch(9% 0.015 50 / .5));display:grid;grid-template-columns:200px 1fr;align-items:stretch}
-.vahanam .slot{border-radius:0;height:100%}
+.vahanam .slot{border-radius:0;width:100%;height:100%;aspect-ratio:auto;min-height:260px}
+.vahanam .slot img{height:100%;object-fit:cover}
 .vahanam-body{padding:30px 32px}
 .vahanam-body .tag{font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
 .vahanam-body h3{margin:10px 0 0;font-family:Cinzel,serif;font-size:1.4rem;font-weight:700;letter-spacing:.05em;color:var(--gold)}
@@ -492,7 +507,7 @@ section.band{padding:72px 0}
 </div>
 <div class="houses reveal">
 <article class="house" style="--hcol:oklch(80% 0.13 130);--hglow:oklch(70% 0.14 130 / .18);--hbg:oklch(16% 0.05 140)">
-<figure class="slot ratio-wide" data-label="House Dravidians&#10;Vil Illam banner" data-file="art/house-dravidians.png"><img loading="lazy" src="art/house-dravidians.png" alt="House Dravidians — Vil Illam" /></figure>
+<figure class="slot ratio-poster veiled" data-veil data-label="House Dravidians&#10;Vil Illam banner" data-file="art/house-dravidians.png"><img loading="lazy" src="art/house-dravidians.png" alt="House Dravidians — Vil Illam" /><div class="hveil bow"></div></figure>
 <div class="house-body">
 <div class="tamil">Vil Illam · The Bow House</div>
 <h3>House Dravidians</h3>
@@ -503,7 +518,7 @@ section.band{padding:72px 0}
 </div>
 </article>
 <article class="house" style="--hcol:oklch(84% 0.04 200);--hglow:oklch(70% 0.06 210 / .18);--hbg:oklch(16% 0.02 220)">
-<figure class="slot ratio-wide" data-label="House Aryans&#10;Malai Illam banner" data-file="art/house-aryans.png"><img loading="lazy" src="art/house-aryans.png" alt="House Aryans — Malai Illam" /></figure>
+<figure class="slot ratio-poster veiled" data-veil data-label="House Aryans&#10;Malai Illam banner" data-file="art/house-aryans.png"><img loading="lazy" src="art/house-aryans.png" alt="House Aryans — Malai Illam" /><div class="hveil stone"></div></figure>
 <div class="house-body">
 <div class="tamil">Malai Illam · The Mountain House</div>
 <h3>House Aryans</h3>
@@ -514,7 +529,7 @@ section.band{padding:72px 0}
 </div>
 </article>
 <article class="house" style="--hcol:oklch(66% 0.2 28);--hglow:oklch(60% 0.22 28 / .22);--hbg:oklch(16% 0.06 30)">
-<figure class="slot ratio-wide" data-label="House Dragons&#10;Jwala Illam banner" data-file="art/house-dragons.png"><img loading="lazy" src="art/house-dragons.png" alt="House Dragons — Jwala Illam" /></figure>
+<figure class="slot ratio-poster veiled" data-veil data-label="House Dragons&#10;Jwala Illam banner" data-file="art/house-dragons.png"><img loading="lazy" src="art/house-dragons.png" alt="House Dragons — Jwala Illam" /><div class="hveil fire"></div></figure>
 <div class="house-body">
 <div class="tamil">Jwala Illam · The Flame House</div>
 <h3>House Dragons</h3>
@@ -538,7 +553,7 @@ section.band{padding:72px 0}
 <p>Except this one. Pass over a marker to see what stands there.</p>
 </div>
 <div class="mapwrap reveal">
-<figure class="slot ratio-map" data-label="Gurukula&#10;plan of the hidden academy&#10;2400px wide" data-file="art/map-gurukula-plan.png"><img loading="lazy" src="art/map-gurukula-plan.png" alt="Hand-drawn plan of the Gurukula, the hidden academy" /></figure>
+<figure class="slot ratio-map veiled" data-veil data-label="Gurukula&#10;plan of the hidden academy" data-file="art/map-gurukula-plan.png"><img loading="lazy" src="art/map-gurukula-plan.png" alt="Hand-drawn plan of the Gurukula, the hidden academy" /><div class="mveil"></div></figure>
 <button class="hot" style="left:52%;top:22%" type="button"><span><b>Main Complex</b>The academy itself. Older than anyone teaching in it, and not all of its wards are understood even by the wardens.</span></button>
 <button class="hot" style="left:18%;top:26%" type="button"><span><b>The Archery Range</b>Where every student is made. Sid arrives two years late and alone, and has to catch up in public.</span></button>
 <button class="hot" style="left:34%;top:46%" type="button"><span><b>The Mango Tree</b>It stands at the edge of the range. It has been waiting for Sid far longer than he has been alive.</span></button>
@@ -550,7 +565,7 @@ section.band{padding:72px 0}
 <button class="hot" style="left:34%;top:59%" type="button"><span><b>The Healing Hut</b>Amudhavalli's domain. In a bad year it sees more of the students than the classrooms do.</span></button>
 <button class="hot" style="left:78%;top:66%" type="button"><span><b>Vahanam Stables</b>Where a student meets the creature that will carry them for the rest of their life at the Gurukula.</span></button>
 </div>
-<p class="map-note reveal">Hotspot positions are approximate and will be re-pinned to the final map export.</p>
+<p class="map-note reveal">Scroll to clear the cloud cover. Pass over a marker to see what stands there.</p>
 </div>
 </section>
 
@@ -740,7 +755,7 @@ section.band{padding:72px 0}
 
 <script>
 var BOOKS=[
-{n:"Book One",t:"The Golden Ripe Mango",yr:"Book One · Age 13",col:"--e1",img:"art/book-1-the-golden-ripe-mango.png",back:"art/book-1-back.png",
+{n:"Book One",t:"The Golden Ripe Mango",yr:"Book One · Age 13",col:"--e1",img:"art/book-1-the-golden-ripe-mango.png",back:"art/book-1-preorder.png",
 hook:"Some boys go looking for magic. Sid never got the choice.",
 body:"A weekend temple trip. A voice no one else could hear. By the time thirteen-year-old Sid opens his eyes again, his parents' world has already begun forgetting he exists.",
 meta:["51,170 words","22 chapters","Age 13","Drafted"],
@@ -748,7 +763,7 @@ p:["A weekend temple trip. A reel his parents saw one tired evening. A voice no 
 q:["What is Sid, really — lucky, or something the Gurukula has been waiting centuries for?","What happens when the answer arrives in front of the entire school, in a single burst of gold?","And is a trophy really the biggest thing he'll win this year?"],
 tail:"Book One of an epic Tamil mythological fantasy series — a story of grief and found family, ordinary boys and impossible destinies, for readers who believe the best myths are the ones still being written."},
 
-{n:"Book Two",t:"The Hidden Ember",yr:"Book Two · Age 14–15",col:"--e2",img:"art/book-2-the-hidden-ember.png",back:"art/book-2-back.png",
+{n:"Book Two",t:"The Hidden Ember",yr:"Book Two · Age 14–15",col:"--e2",img:"art/book-2-the-hidden-ember.png",back:"art/book-2-preorder.png",
 hook:"One golden mystery down. Nine more waiting in the dark.",
 body:"Year Two brings the Elemental Trials — a hazard-strewn test that has nothing to do with precision and everything to do with survival. But it is what Sid finds off the practice field that changes everything.",
 meta:["46,228 words","20 chapters","Age 14–15","Drafted"],
@@ -756,7 +771,7 @@ p:["A year has passed since Sid's bow set a training field ringing with light no
 q:["What is Sid actually hunting for, one element at a time?","Who is the frozen figure in the forest, and why does Karna go to it alone?","And how long can Sid carry a secret this size before it starts carrying him?"],
 tail:"The myth continues — deeper into the Gurukula, deeper into danger, and one step closer to a war that's been waiting far longer than Sid has been alive."},
 
-{n:"Book Three",t:"The Hidden Well",yr:"Book Three · Age 15–16",col:"--e3",img:"art/book-3-the-hidden-well.png",back:"art/book-3-back.png",
+{n:"Book Three",t:"The Hidden Well",yr:"Book Three · Age 15–16",col:"--e3",img:"art/book-3-the-hidden-well.png",back:"art/book-3-preorder.png",
 hook:"The door he fell through to get here was never as safe as he thought.",
 body:"The astras Sid learns now don't just defend, they wound. The Duel Trials draw real blood for the first time — and the truth the Gurukula has been circling since the night he arrived finally surfaces.",
 meta:["47,335 words","22 chapters","Age 15–16","Drafted"],
@@ -764,7 +779,7 @@ p:["Year Three sharpens everything — the astras Sid learns now don't just defe
 q:["Why did DRAGON really come for Sid's family?","What does it cost a teacher to tell a student the truth about someone she once loved like her own?","And once you know your own beginning, can you ever go back to not knowing?"],
 tail:"The book where the myth stops being someone else's history — and starts being Sid's."},
 
-{n:"Book Four",t:"The Banyan's Secret",yr:"Book Four · Age 17–18",col:"--e4",img:"art/book-4-the-banyans-secret.png",back:"art/book-4-back.png",
+{n:"Book Four",t:"The Banyan's Secret",yr:"Book Four · Age 17–18",col:"--e4",img:"art/book-4-the-banyans-secret.png",back:"art/book-4-preorder.png",
 hook:"Some things you learn to fight for. Some things you learn you'd fight anyone for.",
 body:"The last golden year begins with a trophy and ends with a war neither Sid nor his house is ready for. Peace at the Gurukula was always borrowed time.",
 meta:["50,228 words","Age 17–18","Drafted"],
@@ -772,7 +787,7 @@ p:["The last golden year begins with a trophy, and ends with a war neither Sid n
 q:["What does it take to break a house from the inside?","Can four years of friendship survive one night neither Sid nor Yazhini planned for?","And when the moon finally listens to what's between them — what exactly have they started?"],
 tail:"Everything Sid has built — the friendships, the power, the love he never let himself say out loud — gets tested at once. Not all of it will survive the year."},
 
-{n:"Book Five",t:"The Red Moon",yr:"Book Five · Age 19",col:"--e5",img:"art/book-5-the-red-moon.png",back:"art/book-5-back.png",
+{n:"Book Five",t:"The Red Moon",yr:"Book Five · Age 19",col:"--e5",img:"art/book-5-the-red-moon.png",back:"art/book-5-preorder.png",
 hook:"One hundred and eighty days. One boy. One weapon only he was ever meant to carry.",
 body:"The moon has started its slow turn toward red, and there is no going back. House Dragons has become an army. Everything the last four years built comes to this.",
 meta:["63,299 words","Age 19","Drafted · Finale"],
@@ -789,12 +804,12 @@ var MAIN=[
 {k:"karna",n:"Karna",e:"Loyalty divided by blood",p:"He was taught to stand with his house. He was born carrying a truth he never chose. He goes alone into the forest at night, and nobody knows why. When blood and loyalty collide, Karna must decide who he really is."}
 ];
 var MINOR=[
+{k:"sengodan",n:"Sengodan",e:"Headmaster of the Gurukula",p:"The school answers to him. He decides who is admitted, what is taught, and which of the Gurukula's older rules are still worth keeping — and he lets a boy who arrived two years late stay."},
 {k:"paramatma",n:"Paramatma",e:"The one who knows",p:"He saw the mark on Sid's hand on the first night and said nothing. He has never once discouraged the boy's suspicions."},
 {k:"kayalvizhi",n:"Kayalvizhi",e:"Keeper of the school's histories",p:"She tells the legend of the Fallen One without ever saying his name. The name was struck from every record in the school."},
 {k:"gnanaseeli",n:"Gnanaseeli",e:"Teacher of stillness",p:"She teaches students to sit inside their own quiet rather than fight it — which is what lets one boy learn to shoot with his eyes closed."},
 {k:"vetrivelan",n:"Vetrivelan",e:"Master of the astras",p:"He teaches weapons drawn from myth to children, and he takes every injury on his field as his own fault."},
-{k:"amudhavalli",n:"Amudhavalli",e:"The healing hut",p:"Warm, brisk, and unsurprised by anything. She has seen worse, and she will see worse again before the war is done."},
-{k:"mentors",n:"The Mentors",e:"Those who came before",p:"The teachers of the Gurukula, who between them are keeping more secrets than the students have yet learned to ask about."}
+{k:"amudhavalli",n:"Amudhavalli",e:"The healing hut",p:"Warm, brisk, and unsurprised by anything. She has seen worse, and she will see worse again before the war is done."}
 ];
 
 /* named-slot fill detection */
@@ -881,7 +896,7 @@ function build(list,host,cls){
 if(!host){return}
 host.innerHTML=list.map(function(c){
 return '<button class="char" type="button" aria-pressed="false"><div class="card">'+
-'<div class="face front"><figure class="slot ratio-char" data-label="'+c.n+'" data-file="art/char-'+c.k+'.png"><img loading="lazy" src="art/char-'+c.k+'.png" alt="'+c.n+'" /></figure>'+
+'<div class="face front"><figure class="slot ratio-char" data-label="'+c.n+'" data-file="art/character-'+c.k+'.png"><img loading="lazy" src="art/character-'+c.k+'.png" alt="'+c.n+'" /></figure>'+
 '<div class="char-name" style="padding:0 18px 18px"><h3>'+c.n+'</h3><span class="flip">Turn ↻</span></div></div>'+
 '<div class="face back"><h3>'+c.n+'</h3><div class="epi">'+c.e+'</div><p>'+c.p+'</p></div>'+
 '</div></button>';
@@ -910,7 +925,7 @@ document.addEventListener("click",function(e){
 var t=e.target.closest("[data-blurb]");
 if(!t){return}
 var b=BOOKS[+t.dataset.blurb-1];
-host.innerHTML='<figure class="slot ratio-cover" data-label="'+b.n+'\nback cover" data-file="'+b.back+'"><img src="'+b.back+'" alt="'+b.t+' back cover" /></figure>'+
+host.innerHTML='<figure class="slot ratio-cover" data-label="'+b.n+'\npre-order" data-file="'+b.back+'"><img src="'+b.back+'" alt="'+b.t+' pre-order" /></figure>'+
 '<div><div class="eyebrow">'+b.yr+'</div><h3>'+b.t+'</h3><div class="blurb-body"><p class="q" style="font-size:1.2rem">'+b.hook+'</p>'+
 b.p.map(function(x){return"<p>"+x+"</p>"}).join("")+
 '<p class="q">'+b.q.join("<br />")+'</p><p class="tail">'+b.tail+'</p></div></div>';
@@ -980,6 +995,9 @@ frag.appendChild(e);
 }
 host.appendChild(frag);
 })();
+(function(){var vs=[].slice.call(document.querySelectorAll("[data-veil]"));if(!vs.length){return}
+function upd(){var vh=window.innerHeight;vs.forEach(function(el){var r=el.getBoundingClientRect();var p=(vh*0.86-r.top)/Math.max(240,Math.min(r.height,vh)*0.72);p=p<0?0:p>1?1:p;el.style.setProperty("--p",p.toFixed(3))})}
+upd();addEventListener("scroll",function(){requestAnimationFrame(upd)},{passive:true});addEventListener("resize",upd)})();
 </script>
 </body>
 </html>
