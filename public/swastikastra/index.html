@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Swastikastra · A Five-Book Epic by Saravanakumar Murugan</title>
+<meta name="description" content="Swastikastra — a five-book Indian epic fantasy by Saravanakumar Murugan. Ten elements. One destiny. Begin with Book One: The Golden Ripe Mango." />
+<meta name="theme-color" content="#0a0603" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#0a0603;--ink-2:#120b05;--ink-3:#1a1008;--gold:oklch(78% 0.13 78);--gold-soft:oklch(86% 0.08 82);--gold-dim:oklch(62% 0.09 74);--paper:oklch(94% 0.02 80);--muted:oklch(78% 0.03 78 / 0.72);--faint:oklch(78% 0.03 78 / 0.42);--e1:oklch(80% 0.14 82);--e2:oklch(66% 0.19 44);--e3:oklch(64% 0.16 250);--e4:oklch(66% 0.15 150);--e5:oklch(60% 0.21 22);--line:oklch(78% 0.06 78 / 0.16)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:var(--gold);text-decoration:none}
+a:hover{color:var(--gold-soft)}
+.wrap{width:min(1240px,calc(100% - 56px));margin:0 auto}
+.disp{font-family:Cinzel,serif;font-weight:800;letter-spacing:.02em;line-height:1.05}
+.eyebrow{font-family:Cinzel,serif;font-size:.7rem;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--faint)}
+.rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--gold-dim) 50%,var(--line) 80%,transparent);margin:0}
+/* top bar */
+.bar{position:sticky;top:0;z-index:40;background:oklch(12% 0.02 60 / .82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px}
+.home{font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.home:hover{color:var(--gold)}
+.bar-nav{display:flex;flex-wrap:wrap;gap:26px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
+.bar-nav a{color:var(--muted)}
+.bar-nav a:hover{color:var(--gold)}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:96px 0 88px;background:radial-gradient(ellipse 70% 55% at 50% 0%,oklch(32% 0.09 62 / .55),transparent 70%),radial-gradient(ellipse 50% 40% at 80% 90%,oklch(30% 0.1 40 / .35),transparent 70%),linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 60%,var(--ink) 100%)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 20% 30%,oklch(85% 0.1 80 / .5) 0 1px,transparent 1px),radial-gradient(circle at 62% 18%,oklch(85% 0.1 80 / .35) 0 1px,transparent 1px),radial-gradient(circle at 84% 62%,oklch(85% 0.1 80 / .4) 0 1px,transparent 1px),radial-gradient(circle at 38% 78%,oklch(85% 0.1 80 / .3) 0 1px,transparent 1px);background-size:340px 300px;opacity:.6}
+.hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+.seal{width:46px;height:46px;margin-bottom:22px;border-radius:50%;border:1px solid var(--gold-dim);display:grid;place-items:center;color:var(--gold);font-family:Cinzel,serif;font-size:.9rem;letter-spacing:0}
+h1.title{margin:16px 0 0;font-size:clamp(3.2rem,7.4vw,6.4rem);background:linear-gradient(180deg,oklch(96% 0.05 88) 0%,var(--gold) 45%,oklch(60% 0.12 62) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.hero-sub{margin:18px 0 0;font-family:Cinzel,serif;font-size:clamp(.82rem,1.5vw,1rem);font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+.hero-lines{margin:30px 0 0;font-size:1.32rem;line-height:1.85;color:var(--paper);max-width:30ch}
+.hero-lines em{font-style:italic;color:var(--gold-soft)}
+.hero-note{margin:22px 0 0;font-size:1.02rem;color:var(--muted);max-width:44ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;border-radius:2px;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;border:1px solid var(--gold-dim);transition:background 240ms ease,color 240ms ease,transform 240ms ease}
+.btn-solid{background:linear-gradient(180deg,var(--gold),oklch(66% 0.13 66));color:#160d04;border-color:transparent;font-weight:600}
+.btn:hover{transform:translateY(-2px)}
+.btn-solid:hover{color:#160d04}
+.btn-ghost{color:var(--gold-soft);background:oklch(80% 0.08 78 / .04)}
+.hero-cover{position:relative}
+.hero-cover img{border-radius:3px;box-shadow:0 40px 90px oklch(0% 0 0 / .7),0 0 0 1px oklch(80% 0.08 78 / .18),0 0 90px oklch(70% 0.14 70 / .22)}
+/* section shell */
+section.band{padding:104px 0}
+.band-head{max-width:62ch}
+.band-head h2{margin:14px 0 0;font-size:clamp(2rem,3.8vw,3.1rem);color:var(--paper)}
+.band-head p{margin:18px 0 0;color:var(--muted);font-size:1.14rem}
+/* books */
+.books{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;margin-top:56px}
+.book{display:flex;flex-direction:column}
+.book-art{position:relative;border-radius:3px;overflow:hidden;box-shadow:0 22px 50px oklch(0% 0 0 / .6),0 0 0 1px oklch(80% 0.08 78 / .14);transition:transform 420ms cubic-bezier(.22,1,.36,1),box-shadow 420ms ease}
+.book:hover .book-art{transform:translateY(-8px);box-shadow:0 34px 70px oklch(0% 0 0 / .7),0 0 0 1px oklch(82% 0.1 78 / .3)}
+.book-no{display:flex;align-items:center;gap:10px;margin-top:20px;font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+.dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.book h3{margin:8px 0 0;font-family:Cinzel,serif;font-size:1.06rem;font-weight:600;letter-spacing:.03em;line-height:1.3;color:var(--gold-soft)}
+.book p{margin:10px 0 0;font-size:1rem;line-height:1.7;color:var(--muted)}
+.pillars{margin:14px 0 0;font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:1.9}
+/* characters */
+.chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;margin-top:56px}
+.char{border:1px solid var(--line);background:linear-gradient(180deg,oklch(16% 0.03 60 / .6),oklch(10% 0.02 50 / .5));border-radius:4px;overflow:hidden;transition:border-color 300ms ease}
+.char:hover{border-color:oklch(78% 0.1 78 / .34)}
+.char img{width:100%}
+.char-body{padding:26px 28px 30px}
+.char-body h3{margin:0;font-family:Cinzel,serif;font-size:1.5rem;font-weight:600;letter-spacing:.06em;color:var(--gold)}
+.char-epi{margin:8px 0 0;font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+.char-body p{margin:16px 0 0;color:var(--muted);font-size:1.04rem;line-height:1.8}
+.char-traits{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.char-traits span{font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:6px 11px;border-radius:2px}
+/* series band */
+.series{padding:0;background:var(--ink)}
+.series-art{position:relative}
+.series-art img{width:100%}
+.series-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,transparent 14%,transparent 86%,var(--ink) 100%)}
+/* elements */
+.elem-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:48px}
+.elem{border-top:1px solid var(--line);padding-top:20px}
+.elem .n{font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.elem .t{margin-top:8px;font-family:Cinzel,serif;font-size:.98rem;letter-spacing:.04em;color:var(--gold-soft)}
+.elem .d{margin-top:8px;font-size:.98rem;color:var(--muted);line-height:1.65}
+/* author */
+.author{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.author p{color:var(--muted);font-size:1.1rem}
+.author p+p{margin-top:18px}
+.readbox{border:1px solid var(--line);padding:30px 32px;background:oklch(16% 0.03 60 / .4)}
+.readbox h3{margin:0 0 14px;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);font-weight:600}
+.readbox p{margin:0 0 18px;font-size:1.04rem}
+/* footer */
+footer{border-top:1px solid var(--line);padding:44px 0 40px;background:var(--ink-2)}
+.foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
+.foot-links{display:flex;flex-wrap:wrap;gap:14px 24px;font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase}
+.foot-links a{color:var(--muted)}
+.foot-links a:hover{color:var(--gold)}
+.copy{font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media (max-width:1080px){
+.hero-in{grid-template-columns:1fr;gap:48px}
+.hero-cover{max-width:400px}
+.books{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.elem-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.author{grid-template-columns:1fr;gap:36px}
+}
+@media (max-width:720px){
+body{font-size:18px}
+.wrap{width:calc(100% - 36px)}
+.bar-in{min-height:auto;padding:14px 0;flex-direction:column;align-items:flex-start;gap:10px}
+.bar-nav{gap:16px}
+section.band{padding:72px 0}
+.hero{padding:64px 0 60px}
+.books,.chars,.elem-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="bar">
+<div class="wrap bar-in">
+<a class="home" href="/">← Sarav's World</a>
+<nav class="bar-nav" aria-label="Swastikastra sections">
+<a href="#books">The Books</a>
+<a href="#characters">Characters</a>
+<a href="#elements">The Elements</a>
+<a href="#author">The Author</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="hero" id="top">
+<div class="wrap hero-in">
+<div>
+<div class="seal" aria-hidden="true">✦</div>
+<div class="eyebrow">A Five-Book Epic</div>
+<h1 class="disp title">Swastikastra</h1>
+<p class="hero-sub">Ten Elements · One Destiny</p>
+<p class="hero-lines">A boy. A temple. A voice.<br /><em>A world beyond imagination.</em><br />A destiny beyond time.</p>
+<p class="hero-note">Some journeys are written. Some are remembered. His was never forgotten.</p>
+<div class="cta-row">
+<a class="btn btn-solid" href="#books">Begin with Book One</a>
+<a class="btn btn-ghost" href="#elements">The Ten Elements</a>
+</div>
+</div>
+<div class="hero-cover">
+<img src="art/book-1-the-golden-ripe-mango.png" alt="Swastikastra Book One: The Golden Ripe Mango — cover art" width="1080" height="1620" />
+</div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="books">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">The Complete Series</div>
+<h2 class="disp">Five Books. Ten Elements. One Destiny.</h2>
+<p>From the first call to the final stand, Sid's journey awaits.</p>
+</div>
+<div class="books reveal">
+<article class="book">
+<div class="book-art"><img loading="lazy" src="art/book-1-the-golden-ripe-mango.png" alt="Book One: The Golden Ripe Mango" width="1080" height="1620" /></div>
+<div class="book-no"><span class="dot" style="background:var(--e1)"></span>Book One</div>
+<h3>The Golden Ripe Mango</h3>
+<p>Some journeys are written. Some are remembered. His was never forgotten.</p>
+<div class="pillars">Myth · Destiny · Astra · Friendship · Sacrifice</div>
+</article>
+<article class="book">
+<div class="book-art"><img loading="lazy" src="art/book-2-the-hidden-ember.png" alt="Book Two: The Hidden Ember" width="1080" height="1620" /></div>
+<div class="book-no"><span class="dot" style="background:var(--e2)"></span>Book Two</div>
+<h3>The Hidden Ember</h3>
+<p>Every victory leaves a mark. Every secret demands a price.</p>
+<div class="pillars">Friendship · Secrets · Trials · Choices · Sacrifice</div>
+</article>
+<article class="book">
+<div class="book-art"><img loading="lazy" src="art/book-3-the-hidden-well.png" alt="Book Three: The Hidden Well" width="1080" height="1620" /></div>
+<div class="book-no"><span class="dot" style="background:var(--e3)"></span>Book Three</div>
+<h3>The Hidden Well</h3>
+<p>Every truth has been waiting beneath the surface.</p>
+<div class="pillars">Trials test us · Secrets shape us · Truth defines us</div>
+</article>
+<article class="book">
+<div class="book-art"><img loading="lazy" src="art/book-4-the-banyans-secret.png" alt="Book Four: The Banyan's Secret" width="1080" height="1620" /></div>
+<div class="book-no"><span class="dot" style="background:var(--e4)"></span>Book Four</div>
+<h3>The Banyan's Secret</h3>
+<p>Roots remember. Secrets awaken. Destiny chooses.</p>
+<div class="pillars">Roots · Betrayal · Element 5 · Awakening · War</div>
+</article>
+<article class="book">
+<div class="book-art"><img loading="lazy" src="art/book-5-the-red-moon.png" alt="Book Five: The Red Moon" width="1080" height="1620" /></div>
+<div class="book-no"><span class="dot" style="background:var(--e5)"></span>Book Five</div>
+<h3>The Red Moon</h3>
+<p>Ten elements. One destiny. One final stand.</p>
+<div class="pillars">Courage · Sacrifice · Friendship · Loyalty · Destiny</div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="series">
+<div class="series-art"><img loading="lazy" src="art/series-five-books.png" alt="The complete Swastikastra series — five books and their element sigils" width="1125" height="1406" /></div>
+</section>
+
+<section class="band" id="characters">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">Character Reveals</div>
+<h2 class="disp">The ones the Gurukula remembers</h2>
+</div>
+<div class="chars reveal">
+<article class="char">
+<img loading="lazy" src="art/character-sid.png" alt="Character reveal: Sid" width="1125" height="1406" />
+<div class="char-body">
+<h3>Sid</h3>
+<div class="char-epi">The boy the Gurukula was waiting for</div>
+<p>A voice called him. A mark chose him. A destiny remembered him.</p>
+<div class="char-traits"><span>A boy</span><span>A temple</span><span>A voice</span><span>A destiny beyond time</span></div>
+</div>
+</article>
+<article class="char">
+<img loading="lazy" src="art/character-yazhini.png" alt="Character reveal: Yazhini" width="1125" height="1406" />
+<div class="char-body">
+<h3>Yazhini</h3>
+<div class="char-epi">The arrow that never misses</div>
+<p>Her aim never wavers. Her silence guards more than words. Her destiny never flies alone.</p>
+<div class="char-traits"><span>Precision</span><span>Courage</span><span>Loyalty</span><span>Destiny</span></div>
+</div>
+</article>
+<article class="char">
+<img loading="lazy" src="art/character-balan.png" alt="Character reveal: Balan" width="1125" height="1406" />
+<div class="char-body">
+<h3>Balan</h3>
+<div class="char-epi">The heart that holds the house together</div>
+<p>He may not seek the spotlight. He may not carry the loudest voice. But when his people begin to break, he is the heart that keeps them whole.</p>
+<div class="char-traits"><span>Loyalty</span><span>Heart</span><span>Friendship</span><span>Strength</span></div>
+</div>
+</article>
+<article class="char">
+<img loading="lazy" src="art/character-karna.png" alt="Character reveal: Karna" width="1125" height="1406" />
+<div class="char-body">
+<h3>Karna</h3>
+<div class="char-epi">Loyalty divided by blood</div>
+<p>He was taught to stand with his house. He was born carrying a truth he never chose. When blood and loyalty collide, Karna must decide who he really is.</p>
+<div class="char-traits"><span>Duty</span><span>Loyalty</span><span>Blood</span><span>Conflict</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="elements">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">The Elements</div>
+<h2 class="disp">Ten elements. Five books. One final stand.</h2>
+<p>Each book turns on an element and the price of claiming it. The end is written in fire. The future is forged in light.</p>
+</div>
+<div class="elem-grid reveal">
+<div class="elem"><div class="n">Element · Book One</div><div class="t">The Golden Ripe Mango</div><div class="d">The call, the mark, and the world that answers.</div></div>
+<div class="elem"><div class="n">Element · Book Two</div><div class="t">The Hidden Ember</div><div class="d">Every victory leaves a mark.</div></div>
+<div class="elem"><div class="n">Element · Book Three</div><div class="t">The Hidden Well</div><div class="d">Truth waiting beneath the surface.</div></div>
+<div class="elem"><div class="n">Element · Book Four</div><div class="t">The Banyan's Secret</div><div class="d">The remaining element. The choice that will shape all realms.</div></div>
+<div class="elem"><div class="n">Element · Book Five</div><div class="t">The Red Moon</div><div class="d">Ten elements gathered. One destiny. One final stand.</div></div>
+</div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="author">
+<div class="wrap author">
+<div class="reveal">
+<div class="eyebrow">The Author</div>
+<h2 class="disp" style="margin:14px 0 0;font-size:clamp(1.9rem,3.4vw,2.7rem)">Saravanakumar Murugan</h2>
+<p style="margin-top:20px">Saravanakumar Murugan (Sarav) writes under the pen names Someone is Special, Mr. Twister, and The Smart Head. He is the author of the bestselling romantic novel <em>Coffee Date: The Real Taste of Love</em>, the heart-warming <em>Letters to My Son</em>, and books on social causes including <em>Are You Game</em>, <em>Raneet The Gift</em> and <em>Orange Orchard</em>.</p>
+<p>He has also written the short story collection <em>Sixteen and Half</em>, the poetry collection <em>Love and Honey</em>, and the self-help book <em>The Writer's Dream: From Draft to Bestseller</em>. He is the editor of the <em>Shades of Life</em> series and a contributing author to several anthologies. He lives in Chennai.</p>
+</div>
+<div class="readbox reveal">
+<h3>The series</h3>
+<p>Swastikastra is in the works — five books, ten elements, one destiny. Release news and early chapters will be announced here first.</p>
+<div class="cta-row" style="margin-top:0">
+<a class="btn btn-solid" href="mailto:sarav@iamsaravofficial.com?subject=Swastikastra">Get in touch</a>
+<a class="btn btn-ghost" href="/#books">Sarav's other books</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="wrap foot-in">
+<div class="copy">Copyright © 2009–2026 · Sarav</div>
+<nav class="foot-links" aria-label="Footer navigation">
+<a href="/">Sarav's World</a>
+<a href="/#books">All Books</a>
+<a href="/feedback/">Feedback</a>
+<a href="/book-club/">Book Club</a>
+<a href="/copyright/">Copyright</a>
+<a href="mailto:sarav@iamsaravofficial.com">Contact</a>
+</nav>
+<a class="home" href="#top">Back to top ↑</a>
+</div>
+</footer>
+
+<script>
+(function(){
+var els=document.querySelectorAll(".reveal");
+if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
