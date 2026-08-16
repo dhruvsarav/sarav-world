@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Swastikastra · A Five-Book Epic by Saravanakumar Murugan</title>
-<meta name="description" content="Swastikastra — a five-book Indian epic fantasy by Saravanakumar Murugan. Ten elements. One destiny. Begin with Book One: The Golden Ripe Mango." />
+<meta name="description" content="Swastikastra — a five-book Tamil mythological fantasy by Saravanakumar Murugan. Ten elements. One destiny. Begin with Book One: The Golden Ripe Mango." />
 <meta name="theme-color" content="#0a0603" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,6 @@ a:hover{color:var(--gold-soft)}
 .disp{font-family:Cinzel,serif;font-weight:800;letter-spacing:.02em;line-height:1.05}
 .eyebrow{font-family:Cinzel,serif;font-size:.7rem;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--faint)}
 .rule{height:1px;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--gold-dim) 50%,var(--line) 80%,transparent);margin:0}
-/* top bar */
 .bar{position:sticky;top:0;z-index:40;background:oklch(12% 0.02 60 / .82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .bar-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:64px}
 .home{font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
@@ -30,11 +29,10 @@ a:hover{color:var(--gold-soft)}
 .bar-nav{display:flex;flex-wrap:wrap;gap:26px;font-family:Cinzel,serif;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase}
 .bar-nav a{color:var(--muted)}
 .bar-nav a:hover{color:var(--gold)}
-/* hero */
 .hero{position:relative;overflow:hidden;padding:96px 0 88px;background:radial-gradient(ellipse 70% 55% at 50% 0%,oklch(32% 0.09 62 / .55),transparent 70%),radial-gradient(ellipse 50% 40% at 80% 90%,oklch(30% 0.1 40 / .35),transparent 70%),linear-gradient(180deg,var(--ink) 0%,var(--ink-2) 60%,var(--ink) 100%)}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 20% 30%,oklch(85% 0.1 80 / .5) 0 1px,transparent 1px),radial-gradient(circle at 62% 18%,oklch(85% 0.1 80 / .35) 0 1px,transparent 1px),radial-gradient(circle at 84% 62%,oklch(85% 0.1 80 / .4) 0 1px,transparent 1px),radial-gradient(circle at 38% 78%,oklch(85% 0.1 80 / .3) 0 1px,transparent 1px);background-size:340px 300px;opacity:.6}
 .hero-in{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
-.seal{width:46px;height:46px;margin-bottom:22px;border-radius:50%;border:1px solid var(--gold-dim);display:grid;place-items:center;color:var(--gold);font-family:Cinzel,serif;font-size:.9rem;letter-spacing:0}
+.seal{width:46px;height:46px;margin-bottom:22px;border-radius:50%;border:1px solid var(--gold-dim);display:grid;place-items:center;color:var(--gold);font-family:Cinzel,serif;font-size:.9rem}
 h1.title{margin:16px 0 0;font-size:clamp(3.2rem,7.4vw,6.4rem);background:linear-gradient(180deg,oklch(96% 0.05 88) 0%,var(--gold) 45%,oklch(60% 0.12 62) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 .hero-sub{margin:18px 0 0;font-family:Cinzel,serif;font-size:clamp(.82rem,1.5vw,1rem);font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
 .hero-lines{margin:30px 0 0;font-size:1.32rem;line-height:1.85;color:var(--paper);max-width:30ch}
@@ -47,12 +45,43 @@ h1.title{margin:16px 0 0;font-size:clamp(3.2rem,7.4vw,6.4rem);background:linear-
 .btn-solid:hover{color:#160d04}
 .btn-ghost{color:var(--gold-soft);background:oklch(80% 0.08 78 / .04)}
 .hero-cover{position:relative}
-.hero-cover img{border-radius:3px;box-shadow:0 40px 90px oklch(0% 0 0 / .7),0 0 0 1px oklch(80% 0.08 78 / .18),0 0 90px oklch(70% 0.14 70 / .22)}
-/* section shell */
+.hero-cover .slot{box-shadow:0 40px 90px oklch(0% 0 0 / .7),0 0 0 1px oklch(80% 0.08 78 / .18),0 0 90px oklch(70% 0.14 70 / .22)}
 section.band{padding:104px 0}
 .band-head{max-width:62ch}
 .band-head h2{margin:14px 0 0;font-size:clamp(2rem,3.8vw,3.1rem);color:var(--paper)}
 .band-head p{margin:18px 0 0;color:var(--muted);font-size:1.14rem}
+/* named image slots */
+.slot{position:relative;margin:0;overflow:hidden;border-radius:3px;background:linear-gradient(150deg,oklch(18% 0.04 62 / .9),oklch(10% 0.02 50 / .9));min-height:40px}
+.slot::before{content:attr(data-label);position:absolute;inset:0;z-index:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:18px;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);white-space:pre-line;line-height:2.1}
+.slot::after{content:attr(data-file);position:absolute;left:0;right:0;bottom:12px;z-index:0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.56rem;letter-spacing:.04em;color:var(--faint)}
+.slot img{position:relative;z-index:1;width:100%}
+.slot.ratio-cover{aspect-ratio:1080/1620}
+.slot.ratio-char{aspect-ratio:1125/1406}
+.slot.ratio-map{aspect-ratio:16/10}
+.slot.ratio-wide{aspect-ratio:16/9}
+.slot.filled::before,.slot.filled::after{display:none}
+.slot:not(.filled){border:1px dashed oklch(78% 0.08 78 / .28)}
+/* year rail */
+.rail{margin:64px 0 0;position:relative}
+.rail-track{position:relative;height:2px;background:linear-gradient(90deg,transparent,var(--line) 8%,var(--line) 92%,transparent);margin:0 0 0}
+.rail-fill{position:absolute;left:0;top:0;height:2px;background:linear-gradient(90deg,var(--gold-dim),var(--gold));transition:width 520ms cubic-bezier(.22,1,.36,1);box-shadow:0 0 14px oklch(78% 0.13 78 / .6)}
+.rail-nodes{display:grid;grid-template-columns:repeat(5,1fr);margin-top:-9px}
+.rail-node{background:none;border:0;padding:26px 6px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:0;font-family:Cinzel,serif;color:var(--faint);text-align:center}
+.rail-node::before{content:"";position:absolute;margin-top:-26px;width:16px;height:16px;border-radius:50%;border:1px solid var(--gold-dim);background:var(--ink);transition:background 320ms ease,box-shadow 320ms ease,transform 320ms ease}
+.rail-node[aria-selected="true"]::before{background:var(--nodecol,var(--gold));box-shadow:0 0 0 4px oklch(78% 0.13 78 / .16),0 0 22px var(--nodecol,var(--gold));transform:scale(1.15)}
+.rail-node .yr{font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;margin-top:12px}
+.rail-node .age{font-size:.92rem;letter-spacing:.1em;color:var(--muted);margin-top:6px}
+.rail-node[aria-selected="true"] .yr,.rail-node[aria-selected="true"] .age{color:var(--gold-soft)}
+.rail-panel{margin-top:44px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:start;min-height:300px}
+.rail-panel .slot{box-shadow:0 26px 60px oklch(0% 0 0 / .65),0 0 0 1px oklch(80% 0.08 78 / .16)}
+.rail-copy .eyebrow{color:var(--gold-soft)}
+.rail-copy h3{margin:12px 0 0;font-family:Cinzel,serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;color:var(--paper);letter-spacing:.02em}
+.rail-copy .hook{margin:18px 0 0;font-size:1.22rem;font-style:italic;color:var(--gold-soft);max-width:44ch}
+.rail-copy .body{margin:18px 0 0;color:var(--muted);font-size:1.06rem;max-width:62ch}
+.rail-meta{margin:24px 0 0;display:flex;flex-wrap:wrap;gap:10px}
+.rail-meta span{font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:6px 11px;border-radius:2px}
+.fade-swap{animation:fadeSwap 520ms cubic-bezier(.22,1,.36,1)}
+@keyframes fadeSwap{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 /* books */
 .books{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;margin-top:56px}
 .book{display:flex;flex-direction:column}
@@ -63,71 +92,160 @@ section.band{padding:104px 0}
 .book h3{margin:8px 0 0;font-family:Cinzel,serif;font-size:1.06rem;font-weight:600;letter-spacing:.03em;line-height:1.3;color:var(--gold-soft)}
 .book p{margin:10px 0 0;font-size:1rem;line-height:1.7;color:var(--muted)}
 .pillars{margin:14px 0 0;font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);line-height:1.9}
-/* characters */
-.chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:34px;margin-top:56px}
-.char{border:1px solid var(--line);background:linear-gradient(180deg,oklch(16% 0.03 60 / .6),oklch(10% 0.02 50 / .5));border-radius:4px;overflow:hidden;transition:border-color 300ms ease}
-.char:hover{border-color:oklch(78% 0.1 78 / .34)}
-.char img{width:100%}
-.char-body{padding:26px 28px 30px}
-.char-body h3{margin:0;font-family:Cinzel,serif;font-size:1.5rem;font-weight:600;letter-spacing:.06em;color:var(--gold)}
-.char-epi{margin:8px 0 0;font-family:Cinzel,serif;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
-.char-body p{margin:16px 0 0;color:var(--muted);font-size:1.04rem;line-height:1.8}
-.char-traits{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px}
-.char-traits span{font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:6px 11px;border-radius:2px}
-/* series band */
-.series{padding:0;background:var(--ink)}
-.series-art{position:relative}
-.series-art img{width:100%}
-.series-art::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--ink) 0%,transparent 14%,transparent 86%,var(--ink) 100%)}
+.book-actions{margin-top:auto;padding-top:16px;display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+.book-buy{display:inline-flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:#160d04;background:linear-gradient(180deg,var(--gold),oklch(62% 0.14 58));padding:11px 18px;border-radius:2px;font-weight:600;position:relative;overflow:hidden}
+.book-buy::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,oklch(100% 0 0 / .55),transparent);transform:skewX(-18deg);animation:sheen 3.8s ease-in-out infinite}
+.blurb-btn{background:none;border:1px solid var(--line);color:var(--gold-soft);font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;padding:10px 15px;border-radius:2px;cursor:pointer;transition:border-color 220ms ease,color 220ms ease}
+.blurb-btn:hover{border-color:var(--gold-dim);color:var(--gold)}
+.book.soon .book-art img{filter:grayscale(.5) brightness(.62) saturate(.85)}
+.book.soon .book-art::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,oklch(5% 0 0 / .7));z-index:2}
+.ribbon{position:absolute;top:18px;left:-34px;z-index:3;transform:rotate(-40deg);background:linear-gradient(180deg,var(--gold),oklch(58% 0.14 56));color:#160d04;font-family:Cinzel,serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 42px;box-shadow:0 4px 14px oklch(0% 0 0 / .5)}
+/* blurb dialog */
+dialog.blurb{border:1px solid oklch(78% 0.08 78 / .3);background:linear-gradient(170deg,oklch(14% 0.03 60),oklch(8% 0.015 50));color:var(--paper);padding:0;max-width:min(880px,calc(100% - 40px));width:100%;border-radius:4px;box-shadow:0 50px 120px oklch(0% 0 0 / .8)}
+dialog.blurb::backdrop{background:oklch(3% 0.01 60 / .84);backdrop-filter:blur(6px)}
+.blurb-in{display:grid;grid-template-columns:220px 1fr;gap:36px;padding:40px 44px 44px}
+.blurb-in h3{margin:12px 0 0;font-family:Cinzel,serif;font-size:1.9rem;font-weight:800;color:var(--gold);letter-spacing:.02em;line-height:1.15}
+.blurb-body{max-height:62vh;overflow:auto;padding-right:8px}
+.blurb-body p{margin:16px 0 0;color:var(--muted);font-size:1.08rem;line-height:1.8}
+.blurb-body p.q{color:var(--gold-soft);font-style:italic}
+.blurb-body p.tail{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);font-size:1rem;color:var(--faint)}
+.blurb-close{position:absolute;top:16px;right:18px;background:none;border:1px solid var(--line);color:var(--muted);font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;padding:9px 15px;border-radius:2px;cursor:pointer}
+.blurb-close:hover{color:var(--gold);border-color:var(--gold-dim)}
+/* series blurb */
+.creed{padding:120px 0;background:radial-gradient(ellipse 60% 50% at 50% 50%,oklch(24% 0.07 60 / .55),transparent 72%),var(--ink)}
+.creed-in{max-width:78ch;margin:0 auto;text-align:center}
+.creed-in p{font-size:1.28rem;line-height:1.9;color:var(--muted);margin:26px 0 0}
+.creed-in p.lead{font-size:clamp(1.5rem,3vw,2rem);font-family:Cinzel,serif;font-weight:400;line-height:1.5;color:var(--paper);letter-spacing:.01em;margin:0}
+.creed-in p.q{color:var(--gold-soft);font-style:italic;font-size:1.16rem;line-height:1.8}
+.creed-in .rule{margin:44px auto;width:180px}
 /* elements */
-.elem-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:48px}
-.elem{border-top:1px solid var(--line);padding-top:20px}
-.elem .n{font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
-.elem .t{margin-top:8px;font-family:Cinzel,serif;font-size:.98rem;letter-spacing:.04em;color:var(--gold-soft)}
-.elem .d{margin-top:8px;font-size:.98rem;color:var(--muted);line-height:1.65}
+.elem-ring{margin-top:64px;display:grid;grid-template-columns:repeat(10,1fr);gap:14px}
+.medal{position:relative;aspect-ratio:1;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-family:Cinzel,serif;font-size:.9rem;letter-spacing:.02em;color:var(--faint);background:radial-gradient(circle at 50% 40%,oklch(16% 0.03 60),oklch(8% 0.015 50));transition:color 400ms ease,border-color 400ms ease,box-shadow 600ms ease,transform 400ms ease,background 500ms ease;cursor:help}
+.medal em{font-style:normal}
+.medal span{position:absolute;left:50%;bottom:calc(100% + 16px);transform:translateX(-50%);width:240px;padding:15px 17px;background:oklch(10% 0.02 55 / .97);border:1px solid oklch(78% 0.08 78 / .32);border-radius:3px;font-family:"Cormorant Garamond",serif;font-size:.98rem;line-height:1.6;letter-spacing:0;text-transform:none;color:var(--muted);opacity:0;visibility:hidden;transition:opacity 240ms ease,visibility 240ms ease;pointer-events:none;z-index:6;box-shadow:0 20px 50px oklch(0% 0 0 / .7)}
+.medal:hover span,.medal:focus-visible span{opacity:1;visibility:visible}
+.medal:not(.lit):hover,.medal:not(.lit):focus-visible{color:oklch(84% 0.1 250);border-color:oklch(64% 0.14 250 / .7);background:radial-gradient(circle at 50% 40%,oklch(24% 0.07 250),oklch(10% 0.03 250));box-shadow:0 0 26px oklch(60% 0.16 250 / .35);outline:none}
+.medal.lit{color:#1a1005;border-color:transparent;background:radial-gradient(circle at 50% 38%,oklch(92% 0.09 86),var(--gold) 52%,oklch(58% 0.13 60));box-shadow:0 0 0 1px oklch(84% 0.1 80 / .5),0 0 34px oklch(78% 0.14 76 / .5);font-weight:800}
+.medal:hover{transform:translateY(-4px)}
+.medal.lit::after{content:"";position:absolute;inset:-8%;border-radius:50%;border:1px solid oklch(80% 0.1 78 / .28);animation:halo 3.4s ease-in-out infinite}
+@keyframes halo{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.9;transform:scale(1.06)}}
+.elem-legend{margin-top:38px;display:flex;flex-wrap:wrap;gap:12px 34px;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.elem-legend b{display:inline-flex;align-items:center;gap:9px;font-weight:400}
+.elem-legend i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.elem-legend i.on{background:var(--gold);box-shadow:0 0 12px oklch(78% 0.14 76 / .7)}
+.elem-legend i.off{border:1px solid var(--gold-dim)}
+/* map */
+.mapwrap{position:relative;margin-top:56px}
+.mapwrap .slot{border:1px solid var(--line)}
+.mapwrap .slot::after{bottom:22px}
+.hot{position:absolute;z-index:3;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;border:1px solid var(--gold);background:oklch(78% 0.13 78 / .18);cursor:pointer;padding:0;transition:transform 300ms ease,background 300ms ease}
+.hot::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid oklch(80% 0.1 78 / .4);animation:halo 2.8s ease-in-out infinite}
+.hot:hover,.hot:focus-visible{background:var(--gold);transform:translate(-50%,-50%) scale(1.2);outline:none}
+.hot span{position:absolute;left:50%;bottom:calc(100% + 14px);transform:translateX(-50%);min-width:210px;max-width:260px;padding:14px 16px;background:oklch(10% 0.02 55 / .96);border:1px solid oklch(78% 0.08 78 / .3);border-radius:3px;text-align:left;font-family:"Cormorant Garamond",serif;font-size:.96rem;line-height:1.6;color:var(--muted);opacity:0;visibility:hidden;transition:opacity 260ms ease,visibility 260ms ease;pointer-events:none;box-shadow:0 20px 50px oklch(0% 0 0 / .7)}
+.hot span b{display:block;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:7px;font-weight:600}
+.hot:hover span,.hot:focus-visible span{opacity:1;visibility:visible}
+.map-note{margin-top:22px;font-size:.98rem;color:var(--faint)}
+/* characters */
+.chars{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:56px}
+.chars.minor{grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin-top:40px}
+.char{perspective:1400px;background:none;border:0;padding:0;text-align:left;cursor:pointer;font:inherit;color:inherit}
+.card{position:relative;transform-style:preserve-3d;transition:transform 780ms cubic-bezier(.3,1,.35,1)}
+.char[aria-pressed="true"] .card{transform:rotateY(180deg)}
+.face{border:1px solid var(--line);background:linear-gradient(180deg,oklch(16% 0.03 60 / .6),oklch(10% 0.02 50 / .5));border-radius:4px;overflow:hidden}
+.face.back{position:absolute;inset:0;transform:rotateY(180deg);backface-visibility:hidden;display:flex;flex-direction:column;justify-content:center;padding:34px 34px;background:linear-gradient(170deg,oklch(18% 0.045 62),oklch(9% 0.02 52))}
+.face.front{backface-visibility:hidden}
+.char:hover .face.front{border-color:oklch(78% 0.1 78 / .34)}
+.face.back h3{margin:0;font-family:Cinzel,serif;font-size:1.6rem;font-weight:800;letter-spacing:.05em;color:var(--gold)}
+.face.back .epi{margin:10px 0 0;font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-soft)}
+.face.back p{margin:20px 0 0;color:var(--muted);font-size:1.04rem;line-height:1.8}
+.char-name{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-top:16px}
+.char-name h3{margin:0;font-family:Cinzel,serif;font-size:1.18rem;font-weight:600;letter-spacing:.06em;color:var(--gold-soft)}
+.char-name .flip{font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+.chars.minor .char-name h3{font-size:.96rem}
+.chars.minor .face.back{padding:22px}
+.chars.minor .face.back h3{font-size:1.1rem}
+.chars.minor .face.back p{font-size:.96rem;margin-top:14px}
+/* circle / signup */
+.circle{border:1px solid var(--line);background:radial-gradient(ellipse 70% 90% at 20% 10%,oklch(24% 0.07 62 / .6),transparent 70%),oklch(12% 0.02 55);padding:56px;border-radius:4px;display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+.circle h2{margin:14px 0 0;font-size:clamp(1.7rem,3.2vw,2.5rem)}
+.circle p{margin:18px 0 0;color:var(--muted);font-size:1.08rem;max-width:46ch}
+.f-row{display:flex;flex-direction:column;gap:14px}
+.f-row label{font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+.f-row input,.f-row select{width:100%;background:oklch(8% 0.015 50);border:1px solid var(--line);color:var(--paper);font-family:"Cormorant Garamond",serif;font-size:1.05rem;padding:14px 16px;border-radius:2px;min-height:52px}
+.f-row input:focus,.f-row select:focus{outline:none;border-color:var(--gold-dim);box-shadow:0 0 0 3px oklch(78% 0.13 78 / .12)}
+.f-note{margin-top:14px;font-size:.94rem;color:var(--faint)}
+.f-ok{margin-top:14px;font-size:1rem;color:var(--gold-soft);display:none}
+.f-ok.on{display:block}
+/* pitch */
+.pitch{border:1px solid var(--line);background:oklch(11% 0.02 55);padding:52px;border-radius:4px}
+.pitch-grid{margin-top:36px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:44px}
+.ptable{width:100%;border-collapse:collapse;font-size:1.02rem}
+.ptable th{text-align:left;font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:600;padding:0 0 12px;border-bottom:1px solid var(--line)}
+.ptable td{padding:13px 0;border-bottom:1px solid oklch(78% 0.06 78 / .08);color:var(--muted)}
+.ptable td:first-child{color:var(--gold-soft);font-family:Cinzel,serif;font-size:.82rem;letter-spacing:.03em}
+.ptable td:last-child,.ptable th:last-child{text-align:right}
+.pfacts dt{font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-top:22px}
+.pfacts dt:first-child{margin-top:0}
+.pfacts dd{margin:8px 0 0;color:var(--muted);font-size:1.04rem;line-height:1.7}
+/* houses */
+.houses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:56px}
+.house{position:relative;border:1px solid var(--hline,var(--line));border-radius:4px;overflow:hidden;background:linear-gradient(170deg,var(--hbg,oklch(15% 0.03 60)),oklch(7% 0.015 50));display:flex;flex-direction:column;transition:border-color 400ms ease,transform 500ms cubic-bezier(.22,1,.36,1),box-shadow 500ms ease}
+.house:hover{transform:translateY(-6px);border-color:var(--hcol);box-shadow:0 30px 70px oklch(0% 0 0 / .6),0 0 40px var(--hglow,transparent)}
+.house .slot{border-radius:0}
+.house-body{padding:28px 28px 30px;display:flex;flex-direction:column;flex:1}
+.house-body .tamil{font-family:Cinzel,serif;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--faint)}
+.house-body h3{margin:10px 0 0;font-family:Cinzel,serif;font-size:1.5rem;font-weight:800;letter-spacing:.05em;color:var(--hcol)}
+.house-body .motto{margin:14px 0 0;font-size:1.06rem;font-style:italic;color:var(--gold-soft);line-height:1.6}
+.house-virtues{margin:20px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.house-virtues span{font-family:Cinzel,serif;font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:6px 10px;border-radius:2px}
+.house-facts{margin:22px 0 0;font-size:.98rem;color:var(--muted);line-height:1.8}
+.house-facts b{font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);font-weight:400;display:block;margin-top:12px}
+.house-facts b:first-child{margin-top:0}
+.house-quote{margin:22px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:1.02rem;font-style:italic;color:var(--muted)}
+.house-quote cite{display:block;margin-top:8px;font-style:normal;font-family:Cinzel,serif;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--faint)}
+/* codex */
+.astra-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:52px}
+.astra{border:1px solid var(--line);border-radius:3px;padding:26px 22px;background:linear-gradient(180deg,oklch(15% 0.03 60 / .55),oklch(9% 0.015 50 / .5));transition:border-color 340ms ease,transform 400ms ease}
+.astra:hover{border-color:oklch(78% 0.1 78 / .38);transform:translateY(-4px)}
+.astra .sig{width:34px;height:34px;border-radius:50%;border:1px solid var(--acol,var(--gold-dim));background:radial-gradient(circle at 50% 38%,var(--acol,var(--gold)),transparent 70%);opacity:.85}
+.astra h4{margin:18px 0 0;font-family:Cinzel,serif;font-size:.96rem;font-weight:600;letter-spacing:.05em;color:var(--gold-soft)}
+.astra p{margin:10px 0 0;font-size:.98rem;color:var(--muted);line-height:1.65}
+.mudras{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.mudra{border-top:1px solid var(--line);padding-top:18px}
+.mudra .t{font-family:Cinzel,serif;font-size:.8rem;letter-spacing:.06em;color:var(--gold-soft)}
+.mudra .d{margin-top:8px;font-size:.98rem;color:var(--muted);line-height:1.65}
+.codex-tease{margin-top:44px;border:1px solid var(--line);background:oklch(12% 0.02 55);padding:30px 32px;display:flex;flex-wrap:wrap;gap:20px 44px;align-items:center;justify-content:space-between}
+.codex-tease p{margin:0;color:var(--muted);font-size:1.06rem;max-width:60ch}
+/* vahanams */
+.vahanams{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:30px;margin-top:52px}
+.vahanam{border:1px solid var(--line);border-radius:4px;overflow:hidden;background:linear-gradient(180deg,oklch(15% 0.03 60 / .5),oklch(9% 0.015 50 / .5));display:grid;grid-template-columns:200px 1fr;align-items:stretch}
+.vahanam .slot{border-radius:0;height:100%}
+.vahanam-body{padding:30px 32px}
+.vahanam-body .tag{font-family:Cinzel,serif;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint)}
+.vahanam-body h3{margin:10px 0 0;font-family:Cinzel,serif;font-size:1.4rem;font-weight:700;letter-spacing:.05em;color:var(--gold)}
+.vahanam-body p{margin:16px 0 0;color:var(--muted);font-size:1.02rem;line-height:1.75}
 /* author */
 .author{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.author p{color:var(--muted);font-size:1.1rem}
+.author p{color:var(--muted);font-size:1.08rem}
 .author p+p{margin-top:18px}
 .readbox{border:1px solid var(--line);padding:30px 32px;background:oklch(16% 0.03 60 / .4)}
 .readbox h3{margin:0 0 14px;font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft);font-weight:600}
 .readbox p{margin:0 0 18px;font-size:1.04rem}
-/* footer */
 footer{border-top:1px solid var(--line);padding:44px 0 40px;background:var(--ink-2)}
 .foot-in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px}
 .foot-links{display:flex;flex-wrap:wrap;gap:14px 24px;font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.2em;text-transform:uppercase}
 .foot-links a{color:var(--muted)}
 .foot-links a:hover{color:var(--gold)}
 .copy{font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--faint)}
+.symbol-note{margin:28px auto 0;max-width:74ch;text-align:center;font-size:.96rem;line-height:1.75;color:var(--faint)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity 900ms cubic-bezier(.22,1,.36,1),transform 900ms cubic-bezier(.22,1,.36,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
-@media (max-width:1080px){
-.hero-in{grid-template-columns:1fr;gap:48px}
-.hero-cover{max-width:400px}
-.books{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
-.elem-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-.author{grid-template-columns:1fr;gap:36px}
-}
-@media (max-width:720px){
-body{font-size:18px}
-.wrap{width:calc(100% - 36px)}
-.bar-in{min-height:auto;padding:14px 0;flex-direction:column;align-items:flex-start;gap:10px}
-.bar-nav{gap:16px}
-section.band{padding:72px 0}
-.hero{padding:64px 0 60px}
-.books,.chars,.elem-grid{grid-template-columns:1fr}
-}
-
-/* ---------- magic: swastik glyph ---------- */
-.glyph{--gs:currentColor}
 .glyph path{stroke:url(#glyphGold);stroke-width:9;stroke-linecap:square;fill:none;filter:url(#glyphGlow)}
 .spin{animation:spin 16s linear infinite}
 .spin-slow{animation:spin 46s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes pulseGlow{0%,100%{opacity:.55;transform:scale(1)}50%{opacity:1;transform:scale(1.045)}}
-
-/* ---------- magic: intro veil ---------- */
 .veil{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse 65% 55% at 50% 42%,oklch(26% 0.08 62 / .9),oklch(4% 0.01 60) 72%);opacity:1;visibility:visible;transition:opacity 900ms ease,visibility 900ms ease}
 .veil::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 18% 24%,oklch(90% 0.1 80 / .8) 0 1px,transparent 1.4px),radial-gradient(circle at 74% 16%,oklch(90% 0.1 80 / .6) 0 1px,transparent 1.4px),radial-gradient(circle at 86% 66%,oklch(90% 0.1 80 / .7) 0 1px,transparent 1.4px),radial-gradient(circle at 30% 82%,oklch(90% 0.1 80 / .55) 0 1px,transparent 1.4px),radial-gradient(circle at 55% 70%,oklch(90% 0.1 80 / .5) 0 1px,transparent 1.4px);background-size:280px 260px;opacity:.7;animation:twinkle 5s ease-in-out infinite}
 @keyframes twinkle{0%,100%{opacity:.45}50%{opacity:.85}}
@@ -143,33 +261,51 @@ section.band{padding:72px 0}
 @keyframes vfade{to{opacity:1;transform:none}}
 @keyframes vpop{to{opacity:1;transform:scale(1)}}
 body.veil-lock{overflow:hidden}
-
-/* ---------- magic: ambient hero glyph + embers ---------- */
 .hero-glyph{position:absolute;top:50%;right:-6%;width:min(52vw,640px);aspect-ratio:1;transform:translateY(-50%);opacity:.13;z-index:0;pointer-events:none}
 .hero-glyph svg{width:100%;height:100%}
 .embers{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .ember{position:absolute;bottom:-6%;width:var(--s,4px);height:var(--s,4px);border-radius:50%;background:radial-gradient(circle,oklch(88% 0.12 78) 0%,oklch(70% 0.16 60 / .7) 55%,transparent 75%);opacity:0;animation:rise var(--dur,11s) linear infinite;animation-delay:var(--del,0s);left:var(--x,50%)}
 @keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.6)}8%{opacity:.9}92%{opacity:.6}100%{opacity:0;transform:translate(var(--drift,20px),-118vh) scale(1)}}
-
-/* ---------- magic: buy / coming-soon ---------- */
 .btn-buy{background:linear-gradient(180deg,var(--gold),oklch(60% 0.15 55));color:#160d04;border-color:transparent;font-weight:600;position:relative;overflow:hidden}
 .btn-buy::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,oklch(100% 0 0 / .55),transparent);transform:skewX(-18deg);animation:sheen 3.4s ease-in-out infinite}
 @keyframes sheen{0%{left:-60%}45%,100%{left:120%}}
 .nav-cta{font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;padding:10px 18px;border-radius:2px;background:linear-gradient(180deg,var(--gold),oklch(64% 0.14 62));color:#160d04!important;font-weight:600}
-.book-buy{margin-top:16px;display:inline-flex;align-items:center;gap:8px;font-family:Cinzel,serif;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:#160d04;background:linear-gradient(180deg,var(--gold),oklch(62% 0.14 58));padding:11px 18px;border-radius:2px;font-weight:600;position:relative;overflow:hidden}
-.book-buy::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg,transparent,oklch(100% 0 0 / .55),transparent);transform:skewX(-18deg);animation:sheen 3.8s ease-in-out infinite}
-.book.soon .book-art{position:relative}
-.book.soon .book-art img{filter:grayscale(.55) brightness(.55) saturate(.8)}
-.book.soon .book-art::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,oklch(5% 0 0 / .75));z-index:1}
-.ribbon{position:absolute;top:18px;left:-34px;z-index:2;transform:rotate(-40deg);background:linear-gradient(180deg,var(--gold),oklch(58% 0.14 56));color:#160d04;font-family:Cinzel,serif;font-size:.6rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:6px 42px;box-shadow:0 4px 14px oklch(0% 0 0 / .5)}
-.soon-tag{position:absolute;left:14px;bottom:14px;z-index:2;display:flex;align-items:center;gap:7px;font-family:Cinzel,serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-soft)}
-@media (prefers-reduced-motion:reduce){
-.veil{transition:none}
-.spin,.spin-slow,.veil-ring,.ember,.btn-buy::after,.book-buy::after,pulseGlow{animation:none!important}
+@media (prefers-reduced-motion:reduce){.veil{transition:none}.spin,.spin-slow,.veil-ring,.ember,.btn-buy::after,.book-buy::after,.medal.lit::after,.hot::before{animation:none!important}.card{transition:none}}
+@media (max-width:1080px){
+.hero-in{grid-template-columns:1fr;gap:48px}
+.hero-cover{max-width:400px}
+.books{grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+.author,.pitch-grid,.circle{grid-template-columns:1fr;gap:36px}
+.circle{padding:40px}
+.houses{grid-template-columns:1fr;gap:22px}
+.astra-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.mudras{grid-template-columns:repeat(2,minmax(0,1fr))}
+.vahanams{grid-template-columns:1fr}
+.chars.minor{grid-template-columns:repeat(3,minmax(0,1fr))}
+.elem-ring{grid-template-columns:repeat(5,1fr)}
+.blurb-in{grid-template-columns:1fr;gap:24px;padding:34px}
+.blurb-in .slot{max-width:180px}
 }
 @media (max-width:720px){
+body{font-size:18px}
+.wrap{width:calc(100% - 36px)}
+.bar-in{min-height:auto;padding:14px 0;flex-direction:column;align-items:flex-start;gap:10px}
+.bar-nav{gap:16px}
+section.band{padding:72px 0}
+.hero{padding:64px 0 60px}
+.books,.chars{grid-template-columns:1fr}
+.astra-grid,.mudras{grid-template-columns:1fr}
+.vahanam{grid-template-columns:1fr}
+.vahanam .slot{max-width:none;aspect-ratio:16/9}
+.medal span{width:200px}
+.chars.minor{grid-template-columns:repeat(2,minmax(0,1fr))}
+.rail-panel{grid-template-columns:1fr}
+.rail-panel .slot{max-width:200px}
+.rail-node .age{display:none}
 .hero-glyph{width:70vw;right:-24%;opacity:.09}
 .nav-cta{padding:8px 14px}
+.pitch{padding:32px 24px}
+.hot span{min-width:170px}
 }
 </style>
 </head>
@@ -213,11 +349,14 @@ body.veil-lock{overflow:hidden}
 <a class="home" href="/">← Sarav's World</a>
 <nav class="bar-nav" aria-label="Swastikastra sections">
 <a href="#books">The Books</a>
-<a href="#characters">Characters</a>
 <a href="#elements">The Elements</a>
+<a href="#houses">The Houses</a>
+<a href="#gurukula">The Gurukula</a>
+<a href="#codex">The Codex</a>
+<a href="#characters">Characters</a>
 <a href="#author">The Author</a>
 </nav>
-<a class="nav-cta" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Get Book One</a>
+<a class="nav-cta" href="#circle">Reader's Circle</a>
 </div>
 </header>
 
@@ -234,112 +373,95 @@ body.veil-lock{overflow:hidden}
 <p class="hero-lines">A boy. A temple. A voice.<br /><em>A world beyond imagination.</em><br />A destiny beyond time.</p>
 <p class="hero-note">Some journeys are written. Some are remembered. His was never forgotten.</p>
 <div class="cta-row">
-<a class="btn btn-buy" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Get Book One — NotionPress</a>
-<a class="btn btn-ghost" href="#elements">The Ten Elements</a>
+<a class="btn btn-buy" href="#books">Begin with Book One</a>
+<a class="btn btn-ghost" href="#circle">Join the Reader's Circle</a>
 </div>
 </div>
 <div class="hero-cover">
-<img src="art/book-1-the-golden-ripe-mango.png" alt="Swastikastra Book One: The Golden Ripe Mango — cover art" width="1080" height="1620" />
+<figure class="slot ratio-cover" data-label="Book One&#10;The Golden Ripe Mango&#10;front cover" data-file="art/book-1-the-golden-ripe-mango.png"><img src="art/book-1-the-golden-ripe-mango.png" alt="Swastikastra Book One: The Golden Ripe Mango — cover art" width="1080" height="1620" /></figure>
 </div>
 </div>
 </section>
 
 <div class="rule"></div>
 
+<section class="creed">
+<div class="wrap creed-in reveal">
+<div class="eyebrow">The Series</div>
+<div class="rule"></div>
+<p class="lead">Some destinies are chosen. His was carved into his skin before he ever drew his first breath.</p>
+<p>Thirteen-year-old Sid was an ordinary boy from Chennai — until a temple visit, a voice only he could hear, and a hidden well swallowed his old life whole. What waits on the other side is the Gurukula: an ancient school hidden from the mortal world, where children learn to wield astras — living weapons drawn from myth, fire, water, sound, and shadow — and where a war twelve years in the making has been quietly, patiently waiting for him to grow up.</p>
+<p>Sid doesn't know why the mark on his hand glows gold. He doesn't know why an eleven-headed thing called DRAGON once crossed into the mortal world just to find his mother. He doesn't know that across five years of friendship, rivalry, first love, and impossible power, he will become the only weapon capable of ending a war that started before he was born.</p>
+<p>All he knows is that House Dravidians needs an archer. And that the mango tree in his own school's courtyard has been waiting for him far longer than he's been alive.</p>
+<div class="rule"></div>
+<p class="q">Will Sid master the astra only he was ever meant to wield?<br />Can a boy raised on cricket scores and temple prayers really be the one prophecy pointed to?<br />And when the Red Moon finally rises — will love be strong enough to finish what a mother's protection started?</p>
+</div>
+</section>
+
 <section class="band" id="books">
 <div class="wrap">
 <div class="band-head reveal">
-<div class="eyebrow">The Complete Series</div>
-<h2 class="disp">Five Books. Ten Elements. One Destiny.</h2>
-<p>From the first call to the final stand, Sid's journey awaits.</p>
+<div class="eyebrow">Age Thirteen to Nineteen</div>
+<h2 class="disp">A boy of thirteen. A war twelve years old.</h2>
+<p>Six years at the Gurukula, across five books. Move along the years to follow him.</p>
+</div>
+<div class="rail reveal">
+<div class="rail-track"><div class="rail-fill" id="railFill" style="width:10%"></div></div>
+<div class="rail-nodes" role="tablist" aria-label="The five years">
+<button class="rail-node" role="tab" aria-selected="true" data-i="0" style="--nodecol:var(--e1)"><span class="yr">Book One</span><span class="age">Age 13</span></button>
+<button class="rail-node" role="tab" aria-selected="false" data-i="1" style="--nodecol:var(--e2)"><span class="yr">Book Two</span><span class="age">Age 14–15</span></button>
+<button class="rail-node" role="tab" aria-selected="false" data-i="2" style="--nodecol:var(--e3)"><span class="yr">Book Three</span><span class="age">Age 15–16</span></button>
+<button class="rail-node" role="tab" aria-selected="false" data-i="3" style="--nodecol:var(--e4)"><span class="yr">Book Four</span><span class="age">Age 17–18</span></button>
+<button class="rail-node" role="tab" aria-selected="false" data-i="4" style="--nodecol:var(--e5)"><span class="yr">Book Five</span><span class="age">Age 19</span></button>
+</div>
+<div class="rail-panel">
+<figure class="slot ratio-cover" id="railArt" data-label="Book cover" data-file="art/book-1-the-golden-ripe-mango.png"><img id="railImg" src="art/book-1-the-golden-ripe-mango.png" alt="" width="1080" height="1620" /></figure>
+<div class="rail-copy" id="railCopy"></div>
+</div>
 </div>
 <div class="books reveal">
 <article class="book">
-<div class="book-art"><img loading="lazy" src="art/book-1-the-golden-ripe-mango.png" alt="Book One: The Golden Ripe Mango" width="1080" height="1620" /></div>
+<div class="book-art"><figure class="slot ratio-cover" data-label="Book One&#10;front cover" data-file="art/book-1-the-golden-ripe-mango.png"><img loading="lazy" src="art/book-1-the-golden-ripe-mango.png" alt="Book One: The Golden Ripe Mango" width="1080" height="1620" /></figure></div>
 <div class="book-no"><span class="dot" style="background:var(--e1)"></span>Book One</div>
 <h3>The Golden Ripe Mango</h3>
 <p>Some journeys are written. Some are remembered. His was never forgotten.</p>
 <div class="pillars">Myth · Destiny · Astra · Friendship · Sacrifice</div>
-<a class="book-buy" id="buy-book-one" href="https://notionpress.com/read/PASTE-BOOK-ONE-LINK-HERE" target="_blank" rel="noopener">Buy on NotionPress →</a>
+<div class="book-actions">
+<button class="blurb-btn" data-blurb="1" type="button">Read the blurb</button>
+<a class="book-buy" href="#" data-buy="book-one">Where to buy →</a>
+</div>
 </article>
 <article class="book soon">
-<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-2-the-hidden-ember.png" alt="Book Two: The Hidden Ember" width="1080" height="1620" /></div>
+<div class="book-art"><span class="ribbon">Coming Soon</span><figure class="slot ratio-cover" data-label="Book Two&#10;front cover" data-file="art/book-2-the-hidden-ember.png"><img loading="lazy" src="art/book-2-the-hidden-ember.png" alt="Book Two: The Hidden Ember" width="1080" height="1620" /></figure></div>
 <div class="book-no"><span class="dot" style="background:var(--e2)"></span>Book Two</div>
 <h3>The Hidden Ember</h3>
 <p>Every victory leaves a mark. Every secret demands a price.</p>
 <div class="pillars">Friendship · Secrets · Trials · Choices · Sacrifice</div>
+<div class="book-actions"><button class="blurb-btn" data-blurb="2" type="button">Read the blurb</button></div>
 </article>
 <article class="book soon">
-<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-3-the-hidden-well.png" alt="Book Three: The Hidden Well" width="1080" height="1620" /></div>
+<div class="book-art"><span class="ribbon">Coming Soon</span><figure class="slot ratio-cover" data-label="Book Three&#10;front cover" data-file="art/book-3-the-hidden-well.png"><img loading="lazy" src="art/book-3-the-hidden-well.png" alt="Book Three: The Hidden Well" width="1080" height="1620" /></figure></div>
 <div class="book-no"><span class="dot" style="background:var(--e3)"></span>Book Three</div>
 <h3>The Hidden Well</h3>
 <p>Every truth has been waiting beneath the surface.</p>
 <div class="pillars">Trials test us · Secrets shape us · Truth defines us</div>
+<div class="book-actions"><button class="blurb-btn" data-blurb="3" type="button">Read the blurb</button></div>
 </article>
 <article class="book soon">
-<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-4-the-banyans-secret.png" alt="Book Four: The Banyan's Secret" width="1080" height="1620" /></div>
+<div class="book-art"><span class="ribbon">Coming Soon</span><figure class="slot ratio-cover" data-label="Book Four&#10;front cover" data-file="art/book-4-the-banyans-secret.png"><img loading="lazy" src="art/book-4-the-banyans-secret.png" alt="Book Four: The Banyan's Secret" width="1080" height="1620" /></figure></div>
 <div class="book-no"><span class="dot" style="background:var(--e4)"></span>Book Four</div>
 <h3>The Banyan's Secret</h3>
 <p>Roots remember. Secrets awaken. Destiny chooses.</p>
-<div class="pillars">Roots · Betrayal · Element 5 · Awakening · War</div>
+<div class="pillars">Roots · Betrayal · Awakening · Love · War</div>
+<div class="book-actions"><button class="blurb-btn" data-blurb="4" type="button">Read the blurb</button></div>
 </article>
 <article class="book soon">
-<div class="book-art"><span class="ribbon">Coming Soon</span><img loading="lazy" src="art/book-5-the-red-moon.png" alt="Book Five: The Red Moon" width="1080" height="1620" /></div>
+<div class="book-art"><span class="ribbon">Coming Soon</span><figure class="slot ratio-cover" data-label="Book Five&#10;front cover" data-file="art/book-5-the-red-moon.png"><img loading="lazy" src="art/book-5-the-red-moon.png" alt="Book Five: The Red Moon" width="1080" height="1620" /></figure></div>
 <div class="book-no"><span class="dot" style="background:var(--e5)"></span>Book Five</div>
 <h3>The Red Moon</h3>
 <p>Ten elements. One destiny. One final stand.</p>
 <div class="pillars">Courage · Sacrifice · Friendship · Loyalty · Destiny</div>
-</article>
-</div>
-</div>
-</section>
-
-<section class="series">
-<div class="series-art"><img loading="lazy" src="art/series-five-books.png" alt="The complete Swastikastra series — five books and their element sigils" width="1125" height="1406" /></div>
-</section>
-
-<section class="band" id="characters">
-<div class="wrap">
-<div class="band-head reveal">
-<div class="eyebrow">Character Reveals</div>
-<h2 class="disp">The ones the Gurukula remembers</h2>
-</div>
-<div class="chars reveal">
-<article class="char">
-<img loading="lazy" src="art/character-sid.png" alt="Character reveal: Sid" width="1125" height="1406" />
-<div class="char-body">
-<h3>Sid</h3>
-<div class="char-epi">The boy the Gurukula was waiting for</div>
-<p>A voice called him. A mark chose him. A destiny remembered him.</p>
-<div class="char-traits"><span>A boy</span><span>A temple</span><span>A voice</span><span>A destiny beyond time</span></div>
-</div>
-</article>
-<article class="char">
-<img loading="lazy" src="art/character-yazhini.png" alt="Character reveal: Yazhini" width="1125" height="1406" />
-<div class="char-body">
-<h3>Yazhini</h3>
-<div class="char-epi">The arrow that never misses</div>
-<p>Her aim never wavers. Her silence guards more than words. Her destiny never flies alone.</p>
-<div class="char-traits"><span>Precision</span><span>Courage</span><span>Loyalty</span><span>Destiny</span></div>
-</div>
-</article>
-<article class="char">
-<img loading="lazy" src="art/character-balan.png" alt="Character reveal: Balan" width="1125" height="1406" />
-<div class="char-body">
-<h3>Balan</h3>
-<div class="char-epi">The heart that holds the house together</div>
-<p>He may not seek the spotlight. He may not carry the loudest voice. But when his people begin to break, he is the heart that keeps them whole.</p>
-<div class="char-traits"><span>Loyalty</span><span>Heart</span><span>Friendship</span><span>Strength</span></div>
-</div>
-</article>
-<article class="char">
-<img loading="lazy" src="art/character-karna.png" alt="Character reveal: Karna" width="1125" height="1406" />
-<div class="char-body">
-<h3>Karna</h3>
-<div class="char-epi">Loyalty divided by blood</div>
-<p>He was taught to stand with his house. He was born carrying a truth he never chose. When blood and loyalty collide, Karna must decide who he really is.</p>
-<div class="char-traits"><span>Duty</span><span>Loyalty</span><span>Blood</span><span>Conflict</span></div>
-</div>
+<div class="book-actions"><button class="blurb-btn" data-blurb="5" type="button">Read the blurb</button></div>
 </article>
 </div>
 </div>
@@ -351,15 +473,216 @@ body.veil-lock{overflow:hidden}
 <div class="wrap">
 <div class="band-head reveal">
 <div class="eyebrow">The Elements</div>
-<h2 class="disp">Ten elements. Five books. One final stand.</h2>
-<p>Each book turns on an element and the price of claiming it. The end is written in fire. The future is forged in light.</p>
+<h2 class="disp">Ten pieces. Scattered. Waiting.</h2>
+<p>Twelve years ago something broke apart on this ground and hid ten pieces of itself where no one would think to look. Only one has been found. Pass over the others and they will tell you a little — never enough.</p>
 </div>
-<div class="elem-grid reveal">
-<div class="elem"><div class="n">Element · Book One</div><div class="t">The Golden Ripe Mango</div><div class="d">The call, the mark, and the world that answers.</div></div>
-<div class="elem"><div class="n">Element · Book Two</div><div class="t">The Hidden Ember</div><div class="d">Every victory leaves a mark.</div></div>
-<div class="elem"><div class="n">Element · Book Three</div><div class="t">The Hidden Well</div><div class="d">Truth waiting beneath the surface.</div></div>
-<div class="elem"><div class="n">Element · Book Four</div><div class="t">The Banyan's Secret</div><div class="d">The remaining element. The choice that will shape all realms.</div></div>
-<div class="elem"><div class="n">Element · Book Five</div><div class="t">The Red Moon</div><div class="d">Ten elements gathered. One destiny. One final stand.</div></div>
+<div class="elem-ring reveal" id="elemRing"></div>
+<div class="elem-legend reveal"><b><i class="on"></i>Found in Book One</b><b><i class="off"></i>Still hidden · hover for a clue</b></div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="houses">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">The Three Houses</div>
+<h2 class="disp">Precision. Endurance. Fire.</h2>
+<p>Every student at the Gurukula belongs to one of three houses, sealed behind a Kaaval Mudra only their warden and student leader can open.</p>
+</div>
+<div class="houses reveal">
+<article class="house" style="--hcol:oklch(80% 0.13 130);--hglow:oklch(70% 0.14 130 / .18);--hbg:oklch(16% 0.05 140)">
+<figure class="slot ratio-wide" data-label="House Dravidians&#10;Vil Illam banner" data-file="art/house-dravidians.png"><img loading="lazy" src="art/house-dravidians.png" alt="House Dravidians — Vil Illam" /></figure>
+<div class="house-body">
+<div class="tamil">Vil Illam · The Bow House</div>
+<h3>House Dravidians</h3>
+<p class="motto">Precision guides. Loyalty holds. Honour endures.</p>
+<div class="house-virtues"><span>Precision</span><span>Loyalty</span><span>Discipline</span><span>Focus</span><span>Honour</span></div>
+<div class="house-facts"><b>Training ground</b>The Archery Range<b>House access</b>Kaaval Mudra — warden and student leader only</div>
+<p class="house-quote">“The arrow that knows its path never fears the distance.”<cite>Paramatma</cite></p>
+</div>
+</article>
+<article class="house" style="--hcol:oklch(84% 0.04 200);--hglow:oklch(70% 0.06 210 / .18);--hbg:oklch(16% 0.02 220)">
+<figure class="slot ratio-wide" data-label="House Aryans&#10;Malai Illam banner" data-file="art/house-aryans.png"><img loading="lazy" src="art/house-aryans.png" alt="House Aryans — Malai Illam" /></figure>
+<div class="house-body">
+<div class="tamil">Malai Illam · The Mountain House</div>
+<h3>House Aryans</h3>
+<p class="motto">Stone endures. Discipline ascends. Strength stands silent.</p>
+<div class="house-virtues"><span>Resilience</span><span>Discipline</span><span>Balance</span><span>Endurance</span><span>Honour</span></div>
+<div class="house-facts"><b>Training ground</b>Parvata Maidhanam<b>House access</b>Kaaval Mudra — warden and student leader only</div>
+<p class="house-quote">“The mountain does not rush. Yet nothing can move it.”<cite>Paramatma</cite></p>
+</div>
+</article>
+<article class="house" style="--hcol:oklch(66% 0.2 28);--hglow:oklch(60% 0.22 28 / .22);--hbg:oklch(16% 0.06 30)">
+<figure class="slot ratio-wide" data-label="House Dragons&#10;Jwala Illam banner" data-file="art/house-dragons.png"><img loading="lazy" src="art/house-dragons.png" alt="House Dragons — Jwala Illam" /></figure>
+<div class="house-body">
+<div class="tamil">Jwala Illam · The Flame House</div>
+<h3>House Dragons</h3>
+<p class="motto">Fire forges. Ambition ignites. Loyalty endures.</p>
+<div class="house-virtues"><span>Ambition</span><span>Strength</span><span>Passion</span><span>Loyalty</span><span>Honour</span></div>
+<div class="house-facts"><b>Training ground</b>The Forge<b>House access</b>Kaaval Mudra — warden and student leader only</div>
+<p class="house-quote">“The flame does not fear the storm. It becomes what it is meant to be.”<cite>Paramatma</cite></p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="gurukula">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">The Grounds</div>
+<h2 class="disp">A school no map will ever show you</h2>
+<p>Except this one. Pass over a marker to see what stands there.</p>
+</div>
+<div class="mapwrap reveal">
+<figure class="slot ratio-map" data-label="Gurukula&#10;plan of the hidden academy&#10;2400px wide" data-file="art/map-gurukula-plan.png"><img loading="lazy" src="art/map-gurukula-plan.png" alt="Hand-drawn plan of the Gurukula, the hidden academy" /></figure>
+<button class="hot" style="left:52%;top:22%" type="button"><span><b>Main Complex</b>The academy itself. Older than anyone teaching in it, and not all of its wards are understood even by the wardens.</span></button>
+<button class="hot" style="left:18%;top:26%" type="button"><span><b>The Archery Range</b>Where every student is made. Sid arrives two years late and alone, and has to catch up in public.</span></button>
+<button class="hot" style="left:34%;top:46%" type="button"><span><b>The Mango Tree</b>It stands at the edge of the range. It has been waiting for Sid far longer than he has been alive.</span></button>
+<button class="hot" style="left:81%;top:44%" type="button"><span><b>Vil Illam</b>House Dravidians. Sealed by a Kaaval Mudra that answers to a bond, not a gesture.</span></button>
+<button class="hot" style="left:82%;top:30%" type="button"><span><b>Aryan Residence</b>Malai Illam. Built into the mountain, and about as easy to move.</span></button>
+<button class="hot" style="left:79%;top:55%" type="button"><span><b>Jwala Illam</b>House Dragons. Something inside it is beginning to split, and nobody outside has noticed yet.</span></button>
+<button class="hot" style="left:55%;top:60%" type="button"><span><b>The Banyan Tree</b>Older than the school. Its roots have been keeping something since before the school was built.</span></button>
+<button class="hot" style="left:52%;top:77%" type="button"><span><b>The Well Precinct</b>The only door between the mortal world and this one. Everyone who has ever crossed it went through unaware.</span></button>
+<button class="hot" style="left:34%;top:59%" type="button"><span><b>The Healing Hut</b>Amudhavalli's domain. In a bad year it sees more of the students than the classrooms do.</span></button>
+<button class="hot" style="left:78%;top:66%" type="button"><span><b>Vahanam Stables</b>Where a student meets the creature that will carry them for the rest of their life at the Gurukula.</span></button>
+</div>
+<p class="map-note reveal">Hotspot positions are approximate and will be re-pinned to the final map export.</p>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="codex">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">Astras &amp; Mudras</div>
+<h2 class="disp">Living weapons, drawn from myth</h2>
+<p>Thirty-one astras are taught at the Gurukula across five tiers. These five are the foundation — what a first-year learns before anything else.</p>
+</div>
+<div class="astra-grid reveal">
+<article class="astra" style="--acol:oklch(74% 0.11 230)"><div class="sig"></div><h4>Kavachastra</h4><p>Armour of light. The first thing you learn, because the second thing you learn will try to hurt you.</p></article>
+<article class="astra" style="--acol:oklch(72% 0.14 145)"><div class="sig"></div><h4>Vanastra</h4><p>The forest answers. Roots take an opponent's legs out from under them before they know they have moved.</p></article>
+<article class="astra" style="--acol:oklch(66% 0.13 285)"><div class="sig"></div><h4>Nidrastra</h4><p>Sleep, delivered from sixty paces. Merciful in the right hands. Not everyone has the right hands.</p></article>
+<article class="astra" style="--acol:oklch(70% 0.19 45)"><div class="sig"></div><h4>Agneyastra</h4><p>Fire. House Dragons' favourite, and the one the safety rules were written for.</p></article>
+<article class="astra" style="--acol:oklch(72% 0.12 235)"><div class="sig"></div><h4>Varunastra</h4><p>Water, and the natural answer to fire. It also douses flames that have no business still burning.</p></article>
+</div>
+<div class="mudras reveal">
+<div class="mudra"><div class="t">Idam Maatru Mudra</div><div class="d">Step out of one place and into another, anywhere inside the grounds. Not taught by anyone. One student found the map for it in a library everyone had forgotten — and the chest it sat in had no dust on the lid.</div></div>
+<div class="mudra"><div class="t">Kaaval Mudra</div><div class="d">The seal on every house door. It cannot be copied, because it does not answer to a gesture. It answers to a person.</div></div>
+<div class="mudra"><div class="t">Sarva Kaaval</div><div class="d">The override. It belongs to Paramatma alone — which makes it a serious problem when somebody else is seen using it.</div></div>
+</div>
+<div class="codex-tease reveal">
+<p>Above the foundation tier sit the elemental, combat and high tiers — and above all of them, one astra that appears on no syllabus and can be wielded by exactly one person. Twenty-six more astras, five seals, and the weapon the series is named for are catalogued in the Codex.</p>
+<a class="btn btn-ghost" href="#circle">The Codex — coming to the Reader's Circle</a>
+</div>
+<div class="band-head reveal" style="margin-top:88px">
+<div class="eyebrow">Vahanams</div>
+<h2 class="disp" style="font-size:clamp(1.7rem,3.2vw,2.4rem)">Every archer is given something to ride</h2>
+<p>Bonded once, in a forest, at thirteen. The bond does not transfer and it does not end.</p>
+</div>
+<div class="vahanams reveal">
+<article class="vahanam">
+<figure class="slot ratio-char" data-label="Mugil&#10;winged horse" data-file="art/vahanam-mugil.png"><img loading="lazy" src="art/vahanam-mugil.png" alt="Mugil, Sid's winged horse" /></figure>
+<div class="vahanam-body">
+<div class="tag">Sid's vahanam</div>
+<h3>Mugil</h3>
+<p>A winged horse who flies further than any other in his year — and does something in water that no one expects a horse to be able to do at all. There is a mark under his forelock that answers to the mark on Sid's hand.</p>
+<p style="color:var(--faint);font-size:.96rem">What he can actually do is shown properly in Book Two.</p>
+</div>
+</article>
+<article class="vahanam">
+<figure class="slot ratio-char" data-label="Mayura&#10;peacock vahanam" data-file="art/vahanam-mayura.png"><img loading="lazy" src="art/vahanam-mayura.png" alt="Mayura, Yazhini's peacock vahanam" /></figure>
+<div class="vahanam-body">
+<div class="tag">Yazhini's vahanam</div>
+<h3>Mayura</h3>
+<p>Sacred to Murugan, and the right companion for an archer who can strike a bell at sixty paces blindfolded. Sound carries differently when you are riding something that hears it first.</p>
+<p style="color:var(--faint);font-size:.96rem">What that turns out to be worth is a question the last book answers.</p>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="characters">
+<div class="wrap">
+<div class="band-head reveal">
+<div class="eyebrow">Character Reveals</div>
+<h2 class="disp">The ones the Gurukula remembers</h2>
+<p>Tap any card to turn it over.</p>
+</div>
+<div class="chars reveal" id="charsMain"></div>
+<div class="band-head reveal" style="margin-top:80px">
+<div class="eyebrow">The Mentors</div>
+</div>
+<div class="chars minor reveal" id="charsMinor"></div>
+</div>
+</section>
+
+<div class="rule"></div>
+
+<section class="band" id="circle">
+<div class="wrap">
+<div class="circle reveal">
+<div>
+<div class="eyebrow">Reader's Circle</div>
+<h2 class="disp">Be told when the well opens</h2>
+<p>Release dates, cover reveals, and the first chapters — sent to the people on this list before anywhere else. No more than a handful of emails a year.</p>
+<p class="f-note">Placeholder form. Replace <code>SWASTIKASTRA_FORM_ID</code> and the three entry IDs with the live Google Form values.</p>
+</div>
+<form class="f-row" id="circleForm" action="https://docs.google.com/forms/d/e/SWASTIKASTRA_FORM_ID/formResponse" method="POST" target="circleSink">
+<label for="cName">Your name</label>
+<input id="cName" name="entry.NAME_ID" type="text" autocomplete="name" required />
+<label for="cMail">Email</label>
+<input id="cMail" name="entry.EMAIL_ID" type="email" autocomplete="email" required />
+<label for="cBook">Which book are you waiting for</label>
+<select id="cBook" name="entry.BOOK_ID">
+<option>Book One — The Golden Ripe Mango</option>
+<option>Book Two — The Hidden Ember</option>
+<option>Book Three — The Hidden Well</option>
+<option>Book Four — The Banyan's Secret</option>
+<option>Book Five — The Red Moon</option>
+<option>All five</option>
+</select>
+<button class="btn btn-solid" type="submit" style="margin-top:8px">Join the circle</button>
+<p class="f-ok" id="circleOk">You're on the list. The well remembers those it calls.</p>
+</form>
+<iframe name="circleSink" title="form sink" style="display:none" aria-hidden="true"></iframe>
+</div>
+</div>
+</section>
+
+<section class="band" id="publishers">
+<div class="wrap">
+<div class="pitch reveal">
+<div class="eyebrow">For Publishers &amp; Agents</div>
+<h2 class="disp" style="margin:14px 0 0;font-size:clamp(1.7rem,3.2vw,2.4rem)">The series at a glance</h2>
+<div class="pitch-grid">
+<table class="ptable">
+<thead><tr><th>Book</th><th>Year</th><th>Words</th></tr></thead>
+<tbody>
+<tr><td>I · The Golden Ripe Mango</td><td>Age 13</td><td>51,170</td></tr>
+<tr><td>II · The Hidden Ember</td><td>Age 14–15</td><td>46,228</td></tr>
+<tr><td>III · The Hidden Well</td><td>Age 15–16</td><td>47,335</td></tr>
+<tr><td>IV · The Banyan's Secret</td><td>Age 17–18</td><td>50,228</td></tr>
+<tr><td>V · The Red Moon</td><td>Age 19</td><td>63,299</td></tr>
+<tr><td><strong>Complete series</strong></td><td>Age 13–19</td><td><strong>258,260</strong></td></tr>
+</tbody>
+</table>
+<dl class="pfacts">
+<dt>Status</dt><dd>All five books drafted. The complete arc is written — no open ending, no unfinished series risk.</dd>
+<dt>Category</dt><dd>Middle-grade to young-adult mythological fantasy. Ages 10 and up, and the adults who read over their shoulder.</dd>
+<dt>Setting</dt><dd>Contemporary Chennai and a hidden Gurukula in the hills of Masinagudi. Rooted in Tamil legend and the astra tradition.</dd>
+<dt>Structure</dt><dd>Roughly a year and a half per book, the protagonist aging from thirteen to nineteen. Each volume resolves its own arc while advancing the ten-element spine.</dd>
+<dt>Author</dt><dd>Nine published books, winner of more than twenty-five creative writing contests, an established readership in India.</dd>
+<dt>Enquiries</dt><dd><a href="mailto:sarav@iamsaravofficial.com?subject=Swastikastra%20%E2%80%94%20publishing%20enquiry">sarav@iamsaravofficial.com</a></dd>
+</dl>
+</div>
 </div>
 </div>
 </section>
@@ -371,23 +694,35 @@ body.veil-lock{overflow:hidden}
 <div class="reveal">
 <div class="eyebrow">The Author</div>
 <h2 class="disp" style="margin:14px 0 0;font-size:clamp(1.9rem,3.4vw,2.7rem)">Saravanakumar Murugan</h2>
-<p style="margin-top:20px">Saravanakumar Murugan (Sarav) writes under the pen names Someone is Special, Mr. Twister, and The Smart Head. He is the author of the bestselling romantic novel <em>Coffee Date: The Real Taste of Love</em>, the heart-warming <em>Letters to My Son</em>, and books on social causes including <em>Are You Game</em>, <em>Raneet The Gift</em> and <em>Orange Orchard</em>.</p>
-<p>He has also written the short story collection <em>Sixteen and Half</em>, the poetry collection <em>Love and Honey</em>, and the self-help book <em>The Writer's Dream: From Draft to Bestseller</em>. He is the editor of the <em>Shades of Life</em> series and a contributing author to several anthologies. He lives in Chennai.</p>
+<p style="margin-top:20px">Saravanakumar Murugan writes under the pen names <em>Someone is Special</em> and <em>Mr. Twister</em>. He is the author of the bestselling romantic novel <em>Coffee Date: The Real Taste of Love</em>, the heart-warming book on a father's love <em>Letters to My Son</em>, and books on social causes — <em>Are You Game</em>, <em>Raneet The Gift</em> and <em>Orange Orchard</em>.</p>
+<p>He has also written the short story collection <em>Sixteen and Half</em>, <em>Love and Honey</em> — a tiny collection of poems on lost love and painful tears — and the self-help book <em>The Writer's Dream</em>. He edits the <em>Shades of Life</em> series and has contributed to several anthologies, including <em>Uff Ye Emotions 2</em> and <em>Timeless Love</em>. Writing as Someone is Special at <em>Few Miles</em>, shortlisted among the Top 12 Creative Blogs of India in 2014, he has won more than twenty-five creative writing contests.</p>
+<p>Sarav lives in Chennai, where he heads the Digital Workplace practice for a business group at an MNC. Sixteen years in IT have taken him to customer sites in London and Hamburg.</p>
 </div>
 <div class="readbox reveal">
 <h3>The series</h3>
-<p>Swastikastra is in the works — five books, ten elements, one destiny. Release news and early chapters will be announced here first.</p>
+<p>Swastikastra is five books, ten elements, one destiny. All five are drafted. Release news, cover reveals and early chapters are announced to the Reader's Circle first.</p>
 <div class="cta-row" style="margin-top:0">
-<a class="btn btn-solid" href="mailto:sarav@iamsaravofficial.com?subject=Swastikastra">Get in touch</a>
-<a class="btn btn-ghost" href="/#books">Sarav's other books</a>
+<a class="btn btn-solid" href="#circle">Join the Reader's Circle</a>
+<a class="btn btn-ghost" href="mailto:sarav@iamsaravofficial.com?subject=Swastikastra">Get in touch</a>
+</div>
+<div class="cta-row" style="margin-top:18px">
+<a class="home" href="https://www.facebook.com/iamsaravofficial" target="_blank" rel="noopener">Facebook</a>
+<a class="home" href="https://www.instagram.com/iamsaravofficial" target="_blank" rel="noopener">Instagram</a>
+<a class="home" href="https://www.goodreads.com/iamsaravofficial" target="_blank" rel="noopener">Goodreads</a>
 </div>
 </div>
 </div>
 </section>
+
+<dialog class="blurb" id="blurbDlg">
+<button class="blurb-close" id="blurbClose" type="button">Close</button>
+<div class="blurb-in" id="blurbIn"></div>
+</dialog>
 </main>
 
 <footer>
-<div class="wrap foot-in">
+<div class="wrap">
+<div class="foot-in">
 <div class="copy">Copyright © 2009–2026 · Sarav</div>
 <nav class="foot-links" aria-label="Footer navigation">
 <a href="/">Sarav's World</a>
@@ -399,20 +734,215 @@ body.veil-lock{overflow:hidden}
 </nav>
 <a class="home" href="#top">Back to top ↑</a>
 </div>
+<p class="symbol-note">The mark used throughout this site is the swastika of Hindu and Tamil tradition — an ancient symbol of auspiciousness, from which the series takes its name. It bears no relation to, and shares no history with, the emblem appropriated in twentieth-century Europe.</p>
+</div>
 </footer>
 
 <script>
+var BOOKS=[
+{n:"Book One",t:"The Golden Ripe Mango",yr:"Book One · Age 13",col:"--e1",img:"art/book-1-the-golden-ripe-mango.png",back:"art/book-1-back.png",
+hook:"Some boys go looking for magic. Sid never got the choice.",
+body:"A weekend temple trip. A voice no one else could hear. By the time thirteen-year-old Sid opens his eyes again, his parents' world has already begun forgetting he exists.",
+meta:["51,170 words","22 chapters","Age 13","Drafted"],
+p:["A weekend temple trip. A reel his parents saw one tired evening. A voice no one else could hear, calling him toward a well hidden behind a Shiva temple in the hills of Masinagudi — and by the time thirteen-year-old Sid opens his eyes again, his parents' world has already begun forgetting he exists.","Welcome to the Gurukula: a school no map will ever show you, where bows sing with elemental power, where three rival houses compete for a trophy that means more than pride, and where a boy who arrived two years late, completely alone, with nothing but a strange gold mark on his hand, is about to become impossible to ignore.","Sid doesn't know why his bow sang once with no arrow nocked at all. He doesn't know why the old mango tree at the edge of the archery range has been pulling at him since the day he arrived. He only knows he has new friends worth fighting for, a house worth winning for, and a year of grief, discipline, and quiet wonder ahead of him before any of it makes sense."],
+q:["What is Sid, really — lucky, or something the Gurukula has been waiting centuries for?","What happens when the answer arrives in front of the entire school, in a single burst of gold?","And is a trophy really the biggest thing he'll win this year?"],
+tail:"Book One of an epic Tamil mythological fantasy series — a story of grief and found family, ordinary boys and impossible destinies, for readers who believe the best myths are the ones still being written."},
+
+{n:"Book Two",t:"The Hidden Ember",yr:"Book Two · Age 14–15",col:"--e2",img:"art/book-2-the-hidden-ember.png",back:"art/book-2-back.png",
+hook:"One golden mystery down. Nine more waiting in the dark.",
+body:"Year Two brings the Elemental Trials — a hazard-strewn test that has nothing to do with precision and everything to do with survival. But it is what Sid finds off the practice field that changes everything.",
+meta:["46,228 words","20 chapters","Age 14–15","Drafted"],
+p:["A year has passed since Sid's bow set a training field ringing with light no one could explain — and the questions have only grown louder. Now Year Two brings the Elemental Trials: a brutal, hazard-strewn test that has nothing to do with precision and everything to do with survival.","But it's what Sid finds off the practice field that changes everything. A forest he was never meant to enter. A tree that holds something — someone — that shouldn't still be there. A hidden forge where an ember burns far too long, and a lake where a pebble pulls at him the same impossible way the mango once did.","Sid isn't the only one changing. House Dragons is starting to fracture from the inside, and not everyone wearing that banner is loyal to the house — or to whatever they're supposed to be loyal to instead."],
+q:["What is Sid actually hunting for, one element at a time?","Who is the frozen figure in the forest, and why does Karna go to it alone?","And how long can Sid carry a secret this size before it starts carrying him?"],
+tail:"The myth continues — deeper into the Gurukula, deeper into danger, and one step closer to a war that's been waiting far longer than Sid has been alive."},
+
+{n:"Book Three",t:"The Hidden Well",yr:"Book Three · Age 15–16",col:"--e3",img:"art/book-3-the-hidden-well.png",back:"art/book-3-back.png",
+hook:"The door he fell through to get here was never as safe as he thought.",
+body:"The astras Sid learns now don't just defend, they wound. The Duel Trials draw real blood for the first time — and the truth the Gurukula has been circling since the night he arrived finally surfaces.",
+meta:["47,335 words","22 chapters","Age 15–16","Drafted"],
+p:["Year Three sharpens everything — the astras Sid learns now don't just defend, they wound. The Duel Trials draw real blood for the first time, and somewhere between the bruises and the victories, Sid discovers the one truth the Gurukula has been circling around since the night he arrived: the well behind the temple, the one that swallowed his old life whole, is not just his entrance to this world. It's one of the ten things he's been sent to destroy.","And with that discovery comes the story no one wanted to tell him — the truth about who DRAGON was before he became a monster, why he crossed into the mortal world twelve years ago, and why a one-year-old baby was the only thing that ever stopped him."],
+q:["Why did DRAGON really come for Sid's family?","What does it cost a teacher to tell a student the truth about someone she once loved like her own?","And once you know your own beginning, can you ever go back to not knowing?"],
+tail:"The book where the myth stops being someone else's history — and starts being Sid's."},
+
+{n:"Book Four",t:"The Banyan's Secret",yr:"Book Four · Age 17–18",col:"--e4",img:"art/book-4-the-banyans-secret.png",back:"art/book-4-back.png",
+hook:"Some things you learn to fight for. Some things you learn you'd fight anyone for.",
+body:"The last golden year begins with a trophy and ends with a war neither Sid nor his house is ready for. Peace at the Gurukula was always borrowed time.",
+meta:["50,228 words","Age 17–18","Drafted"],
+p:["The last golden year begins with a trophy, and ends with a war neither Sid nor his house is ready for. Between them: the astras only the strongest students ever master, a root hidden beneath a banyan tree older than the school itself, and a feeling Sid has been quietly, carefully not naming for four years — one Yazhini has been just as quietly not naming back.","But peace at the Gurukula was always borrowed time. When House Dragons turns against its own, and Karna's carefully guarded loyalty finally cracks under a truth involving his own mother, Sid learns that the astra fatal to him — the one weapon DRAGON has always saved for him alone — has a name. And it's coming."],
+q:["What does it take to break a house from the inside?","Can four years of friendship survive one night neither Sid nor Yazhini planned for?","And when the moon finally listens to what's between them — what exactly have they started?"],
+tail:"Everything Sid has built — the friendships, the power, the love he never let himself say out loud — gets tested at once. Not all of it will survive the year."},
+
+{n:"Book Five",t:"The Red Moon",yr:"Book Five · Age 19",col:"--e5",img:"art/book-5-the-red-moon.png",back:"art/book-5-back.png",
+hook:"One hundred and eighty days. One boy. One weapon only he was ever meant to carry.",
+body:"The moon has started its slow turn toward red, and there is no going back. House Dragons has become an army. Everything the last four years built comes to this.",
+meta:["63,299 words","Age 19","Drafted · Finale"],
+p:["The moon has started its slow turn toward red, and there is no going back now. House Dragons has become an army. The Gurukula's own grounds are hiding the last five pieces of a monster twelve years in the making, and Sid — with Yazhini beside him, and a war closing in on every side — has one countdown, one destiny, and one chance to finish what a one-year-old baby started outside a temple in Masinagudi.","Everything the last four years built comes to this: the friendships, the training, the grief he carried in silence, the love he finally let himself name. DRAGON is waking up fully for the first time in twelve years — and he is not the only one who has been waiting."],
+q:["Can House Dragons be saved from itself before it's too late to matter?","What does it really cost to wield the one astra that was written into your skin at birth?","And when the Red Moon is finally whole — what does Sid go home to?"],
+tail:"The finale — the myth completed, the war ended, and a boy's long journey home finally, fully closed."}
+];
+
+var MAIN=[
+{k:"sid",n:"Sid",e:"The boy the Gurukula was waiting for",p:"A voice called him. A mark chose him. A destiny remembered him. He arrived two years late, knowing nothing, with nothing but a strange gold mark on his hand."},
+{k:"yazhini",n:"Yazhini",e:"The arrow that never misses",p:"Her aim never wavers. Her silence guards more than words. She is the first person Sid trusts with the truth, and the one who keeps watch while he carries it."},
+{k:"balan",n:"Balan",e:"The heart that holds the house together",p:"He does not seek the spotlight and does not carry the loudest voice. But when his people begin to break, he is the heart that keeps them whole — and he has been teaching himself things no one else in the school knows."},
+{k:"villiyan",n:"Villiyan",e:"The worst liar of the four of them",p:"Quick to laugh, quicker to stand in front of a friend. He knows exactly what he is not good at, and turns it into the thing his friends need most."},
+{k:"karna",n:"Karna",e:"Loyalty divided by blood",p:"He was taught to stand with his house. He was born carrying a truth he never chose. He goes alone into the forest at night, and nobody knows why. When blood and loyalty collide, Karna must decide who he really is."}
+];
+var MINOR=[
+{k:"paramatma",n:"Paramatma",e:"The one who knows",p:"He saw the mark on Sid's hand on the first night and said nothing. He has never once discouraged the boy's suspicions."},
+{k:"kayalvizhi",n:"Kayalvizhi",e:"Keeper of the school's histories",p:"She tells the legend of the Fallen One without ever saying his name. The name was struck from every record in the school."},
+{k:"gnanaseeli",n:"Gnanaseeli",e:"Teacher of stillness",p:"She teaches students to sit inside their own quiet rather than fight it — which is what lets one boy learn to shoot with his eyes closed."},
+{k:"vetrivelan",n:"Vetrivelan",e:"Master of the astras",p:"He teaches weapons drawn from myth to children, and he takes every injury on his field as his own fault."},
+{k:"amudhavalli",n:"Amudhavalli",e:"The healing hut",p:"Warm, brisk, and unsurprised by anything. She has seen worse, and she will see worse again before the war is done."},
+{k:"mentors",n:"The Mentors",e:"Those who came before",p:"The teachers of the Gurukula, who between them are keeping more secrets than the students have yet learned to ask about."}
+];
+
+/* named-slot fill detection */
+(function(){
+function mark(img){var f=img.closest(".slot");if(f&&img.naturalWidth>0){f.classList.add("filled")}}
+function fail(img){img.style.display="none"}
+document.querySelectorAll(".slot img").forEach(function(img){
+img.addEventListener("load",function(){mark(img)});
+img.addEventListener("error",function(){fail(img)});
+if(img.complete){img.naturalWidth>0?mark(img):fail(img)}
+});
+})();
+
+/* year rail */
+(function(){
+var nodes=[].slice.call(document.querySelectorAll(".rail-node")),fill=document.getElementById("railFill"),
+copy=document.getElementById("railCopy"),art=document.getElementById("railArt"),img=document.getElementById("railImg");
+if(!nodes.length){return}
+function show(i){
+var b=BOOKS[i];
+nodes.forEach(function(n,j){n.setAttribute("aria-selected",j===i?"true":"false")});
+fill.style.width=(10+i*20)+"%";
+img.src=b.img;img.alt=b.t+" cover";img.style.display="";
+art.classList.remove("filled");
+art.setAttribute("data-label",b.n+"\ncover");
+art.setAttribute("data-file",b.img);
+copy.innerHTML='<div class="eyebrow">'+b.yr+'</div><h3 class="disp">'+b.t+'</h3><p class="hook">'+b.hook+'</p><p class="body">'+b.body+'</p><div class="rail-meta">'+b.meta.map(function(m){return"<span>"+m+"</span>"}).join("")+'</div>';
+copy.classList.remove("fade-swap");void copy.offsetWidth;copy.classList.add("fade-swap");
+}
+nodes.forEach(function(n){
+n.addEventListener("click",function(){show(+n.dataset.i)});
+n.addEventListener("keydown",function(e){
+var i=+n.dataset.i;
+if(e.key==="ArrowRight"&&i<4){nodes[i+1].focus();show(i+1)}
+if(e.key==="ArrowLeft"&&i>0){nodes[i-1].focus();show(i-1)}
+});
+});
+show(0);
+})();
+
+/* elements ring */
+(function(){
+var host=document.getElementById("elemRing");
+if(!host){return}
+var R=["I","II","III","IV","V","VI","VII","VIII","IX","X"],found=1,frag=document.createDocumentFragment();
+var CLUE=[
+"Found. It fell from a tree in front of the entire school, and nobody — least of all the boy who shot it — understood what had just happened.",
+"It has been burning far longer than any fire is able to burn.",
+"Something beneath the water is awake, and it does not want company.",
+"You have already walked past this one. Everyone has.",
+"You will never see it by daylight.",
+"You cannot find this one by looking. Only by being still enough.",
+"It was written down. The writing is guarded by a sound.",
+"High, cold, sacred, and older than the school itself.",
+"It was meant to heal. It no longer does.",
+"Something was sealed shut a long time ago. Something inside it is awake."
+];
+for(var i=0;i<10;i++){
+var d=document.createElement("div");
+d.className="medal";
+d.setAttribute("tabindex","0");
+d.innerHTML='<em>'+R[i]+'</em><span>'+CLUE[i]+'</span>';
+d.setAttribute("aria-label","Element "+R[i]+(i<found?" — found":" — still hidden")+". "+CLUE[i]);
+d.dataset.i=i;
+frag.appendChild(d);
+}
+host.appendChild(frag);
+var lit=false;
+function ignite(){
+if(lit){return}
+lit=true;
+host.querySelectorAll(".medal").forEach(function(m,i){
+if(i<found){setTimeout(function(){m.classList.add("lit")},260*i+300)}
+});
+}
+if("IntersectionObserver" in window){
+new IntersectionObserver(function(en,o){en.forEach(function(e){if(e.isIntersecting){ignite();o.disconnect()}})},{threshold:.4}).observe(host);
+}else{ignite()}
+})();
+
+/* character flip cards */
+(function(){
+function build(list,host,cls){
+if(!host){return}
+host.innerHTML=list.map(function(c){
+return '<button class="char" type="button" aria-pressed="false"><div class="card">'+
+'<div class="face front"><figure class="slot ratio-char" data-label="'+c.n+'" data-file="art/char-'+c.k+'.png"><img loading="lazy" src="art/char-'+c.k+'.png" alt="'+c.n+'" /></figure>'+
+'<div class="char-name" style="padding:0 18px 18px"><h3>'+c.n+'</h3><span class="flip">Turn ↻</span></div></div>'+
+'<div class="face back"><h3>'+c.n+'</h3><div class="epi">'+c.e+'</div><p>'+c.p+'</p></div>'+
+'</div></button>';
+}).join("");
+}
+build(MAIN,document.getElementById("charsMain"));
+build(MINOR,document.getElementById("charsMinor"));
+document.querySelectorAll(".char").forEach(function(b){
+b.addEventListener("click",function(){b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")==="true"?"false":"true")});
+var back=b.querySelector(".face.back"),front=b.querySelector(".face.front");
+requestAnimationFrame(function(){var h=front.offsetHeight;if(h){b.querySelector(".card").style.minHeight=h+"px"}});
+});
+document.querySelectorAll(".char .slot img").forEach(function(img){
+var f=img.closest(".slot");
+img.addEventListener("load",function(){if(img.naturalWidth>0){f.classList.add("filled")}});
+img.addEventListener("error",function(){img.style.display="none"});
+if(img.complete){img.naturalWidth>0?f.classList.add("filled"):img.style.display="none"}
+});
+})();
+
+/* blurb dialog */
+(function(){
+var dlg=document.getElementById("blurbDlg"),host=document.getElementById("blurbIn"),close=document.getElementById("blurbClose");
+if(!dlg){return}
+document.addEventListener("click",function(e){
+var t=e.target.closest("[data-blurb]");
+if(!t){return}
+var b=BOOKS[+t.dataset.blurb-1];
+host.innerHTML='<figure class="slot ratio-cover" data-label="'+b.n+'\nback cover" data-file="'+b.back+'"><img src="'+b.back+'" alt="'+b.t+' back cover" /></figure>'+
+'<div><div class="eyebrow">'+b.yr+'</div><h3>'+b.t+'</h3><div class="blurb-body"><p class="q" style="font-size:1.2rem">'+b.hook+'</p>'+
+b.p.map(function(x){return"<p>"+x+"</p>"}).join("")+
+'<p class="q">'+b.q.join("<br />")+'</p><p class="tail">'+b.tail+'</p></div></div>';
+var img=host.querySelector("img"),f=host.querySelector(".slot");
+img.addEventListener("load",function(){if(img.naturalWidth>0){f.classList.add("filled")}});
+img.addEventListener("error",function(){img.style.display="none"});
+if(img.complete){img.naturalWidth>0?f.classList.add("filled"):img.style.display="none"}
+dlg.showModal();
+});
+close.addEventListener("click",function(){dlg.close()});
+dlg.addEventListener("click",function(e){if(e.target===dlg){dlg.close()}});
+})();
+
+/* signup feedback */
+(function(){
+var f=document.getElementById("circleForm"),ok=document.getElementById("circleOk");
+if(!f){return}
+f.addEventListener("submit",function(){setTimeout(function(){ok.classList.add("on");f.reset()},400)});
+})();
+
+/* reveals */
 (function(){
 var els=document.querySelectorAll(".reveal");
 if(!("IntersectionObserver" in window)){els.forEach(function(e){e.classList.add("in")});return}
-var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.12,rootMargin:"0px 0px -8% 0px"});
+var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{threshold:.08,rootMargin:"0px 0px -6% 0px"});
 els.forEach(function(e){io.observe(e)});
 })();
 
-/* magical intro veil */
+/* intro veil */
 (function(){
 var veil=document.getElementById("veil"),skip=document.getElementById("veilSkip"),body=document.body;
-var reduced=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if(!veil){return}
 if(reduced){veil.classList.add("hide");body.classList.remove("veil-lock");return}
 var closed=false;
@@ -432,27 +962,20 @@ window.addEventListener("touchmove",dismiss,{passive:true,once:true});
 setTimeout(dismiss,4600);
 })();
 
-/* ambient ember particles */
+/* embers */
 (function(){
 var host=document.getElementById("embers");
 if(!host){return}
-var reduced=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if(reduced){return}
-var count=window.innerWidth<720?12:26;
-var frag=document.createDocumentFragment();
+if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches){return}
+var count=window.innerWidth<720?12:26,frag=document.createDocumentFragment();
 for(var i=0;i<count;i++){
 var e=document.createElement("span");
 e.className="ember";
-var size=(2+Math.random()*4).toFixed(1);
-var dur=(8+Math.random()*9).toFixed(1);
-var del=(Math.random()*12).toFixed(1);
-var x=(Math.random()*100).toFixed(1);
-var drift=Math.round((Math.random()*80)-40);
-e.style.setProperty("--s",size+"px");
-e.style.setProperty("--dur",dur+"s");
-e.style.setProperty("--del",del+"s");
-e.style.setProperty("--x",x+"%");
-e.style.setProperty("--drift",drift+"px");
+e.style.setProperty("--s",(2+Math.random()*4).toFixed(1)+"px");
+e.style.setProperty("--dur",(8+Math.random()*9).toFixed(1)+"s");
+e.style.setProperty("--del",(Math.random()*12).toFixed(1)+"s");
+e.style.setProperty("--x",(Math.random()*100).toFixed(1)+"%");
+e.style.setProperty("--drift",Math.round(Math.random()*80-40)+"px");
 frag.appendChild(e);
 }
 host.appendChild(frag);
