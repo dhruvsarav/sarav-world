@@ -147,6 +147,23 @@ dialog.blurb::backdrop{background:oklch(3% 0.01 60 / .84);backdrop-filter:blur(6
 .hveil.bow{height:100%;background:linear-gradient(0deg,oklch(22% 0.05 140),oklch(30% 0.06 138));-webkit-mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - var(--p,0) * 52%),transparent calc(50% - var(--p,0) * 52%),transparent calc(50% + var(--p,0) * 52%),#000 calc(50% + var(--p,0) * 52%),#000 100%);mask-image:linear-gradient(90deg,#000 0,#000 calc(50% - var(--p,0) * 52%),transparent calc(50% - var(--p,0) * 52%),transparent calc(50% + var(--p,0) * 52%),#000 calc(50% + var(--p,0) * 52%),#000 100%)}
 .hveil.bow::after{content:"";position:absolute;left:50%;top:6%;bottom:6%;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,transparent,oklch(84% 0.11 120 / .8),transparent);opacity:calc(1 - var(--p,0) * 1.6)}
 .mveil{position:absolute;inset:0;z-index:3;pointer-events:none;opacity:calc(1 - var(--p,0) * 1.15);background:radial-gradient(42% 30% at 22% 18%,oklch(97% 0.01 250 / .95),transparent 70%),radial-gradient(46% 26% at 72% 12%,oklch(94% 0.01 250 / .92),transparent 72%),radial-gradient(50% 30% at 46% 44%,oklch(96% 0.01 250 / .9),transparent 72%),radial-gradient(44% 28% at 80% 58%,oklch(93% 0.01 250 / .88),transparent 72%),radial-gradient(48% 30% at 20% 72%,oklch(95% 0.01 250 / .9),transparent 72%),radial-gradient(52% 32% at 60% 92%,oklch(94% 0.01 250 / .9),transparent 72%),linear-gradient(180deg,oklch(92% 0.01 250 / .8),oklch(88% 0.01 250 / .72));filter:blur(calc(2px + var(--p,0) * 10px));transform:scale(calc(1 + var(--p,0) * .12))}
+/* journey gate */
+.gate{padding:0 0 96px}
+.gate-in{position:relative;max-width:820px;margin:0 auto;padding:0 26px}
+.gate-art{position:relative;border:1px solid oklch(78% 0.08 78 / .3);border-radius:4px;overflow:hidden;box-shadow:0 40px 120px oklch(0% 0 0 / .8),0 0 0 1px oklch(78% 0.1 78 / .12)}
+.gate-art img{display:block;width:100%}
+.gate-art::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 62%,oklch(6% 0.01 50 / .82) 100%)}
+.gate-btn{position:absolute;left:50%;bottom:4.5%;transform:translateX(-50%);z-index:4;display:inline-flex;align-items:center;gap:14px;padding:16px 34px;border:1px solid oklch(80% 0.1 78 / .55);border-radius:2px;background:oklch(10% 0.02 55 / .5);backdrop-filter:blur(2px);font-family:Cinzel,serif;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);cursor:pointer;transition:background 320ms ease,color 320ms ease,box-shadow 420ms ease,letter-spacing 420ms ease}
+.gate-btn:hover,.gate-btn:focus-visible{background:oklch(78% 0.13 78);color:#1a1005;box-shadow:0 0 46px oklch(78% 0.14 76 / .6);letter-spacing:.4em;outline:none}
+.gate-btn i{width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor;animation:halo 2.6s ease-in-out infinite}
+.portal{position:fixed;inset:0;z-index:90;pointer-events:none;opacity:0}
+.portal.on{animation:portal 1750ms cubic-bezier(.4,0,.2,1) forwards}
+.portal b{position:absolute;left:var(--x,50%);top:var(--y,50%);width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:radial-gradient(circle,oklch(99% 0.05 90),oklch(84% 0.15 78) 40%,oklch(62% 0.19 46 / .8) 70%,transparent 72%);box-shadow:0 0 60px oklch(84% 0.15 78 / .9);animation:portalRing 1750ms cubic-bezier(.3,0,.15,1) forwards}
+.portal em{position:absolute;left:var(--x,50%);top:var(--y,50%);width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;border:1px solid oklch(88% 0.12 80 / .85);animation:portalRing2 1750ms cubic-bezier(.25,0,.2,1) forwards}
+@keyframes portal{0%{opacity:0}12%{opacity:1}72%{opacity:1}100%{opacity:0}}
+@keyframes portalRing{0%{transform:scale(1)}60%{transform:scale(220)}100%{transform:scale(320);opacity:.15}}
+@keyframes portalRing2{0%{transform:scale(1);opacity:1}70%{transform:scale(140);opacity:.5}100%{transform:scale(190);opacity:0}}
+@media (max-width:700px){.gate-btn{padding:13px 22px;font-size:.62rem;letter-spacing:.24em}}
 /* map */
 .mapwrap{position:relative;margin-top:56px}
 .mapwrap .slot{border:1px solid var(--line)}
@@ -410,6 +427,14 @@ section.band{padding:72px 0}
 <p>All he knows is that House Dravidians needs an archer. And that the mango tree in his own school's courtyard has been waiting for him far longer than he's been alive.</p>
 <div class="rule"></div>
 <p class="q">Will Sid master the astra only he was ever meant to wield?<br />Can a boy raised on cricket scores and temple prayers really be the one prophecy pointed to?<br />And when the Red Moon finally rises — will love be strong enough to finish what a mother's protection started?</p>
+</div>
+</section>
+
+<section class="gate">
+<div class="gate-in reveal">
+<figure class="gate-art"><img src="art/begin-journey.png" alt="Swastikastra — a five-book mythological fantasy epic" />
+<button class="gate-btn" id="gateBtn" type="button"><i></i>Begin the journey<i></i></button>
+</figure>
 </div>
 </section>
 
@@ -998,6 +1023,14 @@ host.appendChild(frag);
 (function(){var vs=[].slice.call(document.querySelectorAll("[data-veil]"));if(!vs.length){return}
 function upd(){var vh=window.innerHeight;vs.forEach(function(el){var r=el.getBoundingClientRect();var p=(vh*0.86-r.top)/Math.max(240,Math.min(r.height,vh)*0.72);p=p<0?0:p>1?1:p;el.style.setProperty("--p",p.toFixed(3))})}
 upd();addEventListener("scroll",function(){requestAnimationFrame(upd)},{passive:true});addEventListener("resize",upd)})();
+(function(){var b=document.getElementById("gateBtn");if(!b){return}
+b.addEventListener("click",function(){
+var r=b.getBoundingClientRect(),p=document.createElement("div");p.className="portal";p.innerHTML="<b></b><em></em>";
+p.style.setProperty("--x",(r.left+r.width/2)+"px");p.style.setProperty("--y",(r.top+r.height/2)+"px");
+document.body.appendChild(p);requestAnimationFrame(function(){p.classList.add("on")});
+setTimeout(function(){var t=document.getElementById("books");if(t){window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-70,behavior:"smooth"})}},560);
+setTimeout(function(){p.remove()},1800);
+});})();
 </script>
 </body>
 </html>
