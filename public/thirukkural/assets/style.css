@@ -189,36 +189,59 @@ h1.chapter{
 .hero-landing h1{font-family:'Noto Serif Tamil',serif; font-size:28px; color:var(--walnut); margin:0 0 8px;}
 .hero-landing p{font-family:'Lora',serif; font-size:15px; color:var(--ink-soft); max-width:480px; margin:0 auto;}
 
-.intro-block{margin:26px 0 8px; text-align:left;}
+.intro-block{margin:26px auto 8px; text-align:center; max-width:560px;}
 .intro-block p{font-family:'Lora',serif; font-size:15px; line-height:1.75; color:var(--ink); margin:0 0 14px;}
 .intro-block p:last-child{font-size:13.5px; color:var(--ink-soft); margin-bottom:0;}
 
-.paal-grid{display:grid; gap:14px; margin-top:28px;}
+.paal-grid{display:grid; gap:16px; margin-top:28px;}
 .paal-card{
-  display:block; text-decoration:none; background:#FBF6E9; border:1px solid rgba(74,46,27,.1);
-  border-radius:12px; padding:20px; transition:transform .2s ease;
+  display:block; text-decoration:none; background:#FBF6E9; border:1px solid rgba(74,46,27,.12);
+  border-radius:14px; padding:24px 22px 20px; transition:transform .2s ease, box-shadow .2s ease;
+  text-align:center;
 }
-.paal-card .pn{font-family:'Inter',sans-serif; font-size:11px; font-weight:600; color:var(--oak); letter-spacing:.1em; text-transform:uppercase;}
-.paal-card h2{font-family:'Noto Serif Tamil',serif; font-size:20px; color:var(--walnut); margin:6px 0 4px;}
-.paal-card .translit-line{font-family:'Lora',serif; font-style:italic; font-size:12.5px; color:var(--ink-soft); margin:0 0 10px;}
-.paal-card .desc{font-family:'Lora',serif; font-size:13.5px; line-height:1.6; color:var(--ink); margin:0 0 16px;}
-.paal-card .meta-row{display:flex; justify-content:space-between; align-items:center;}
+.paal-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 12px 28px -12px rgba(74,46,27,.18);
+}
+.paal-card .paal-icon-badge{
+  display:inline-flex; align-items:center; justify-content:center;
+  margin-bottom:12px;
+}
+.paal-card h2{
+  font-family:'Noto Serif Tamil',serif; font-size:22px; font-weight:700; color:var(--walnut);
+  margin:0 0 10px;
+}
+.paal-card .desc{
+  font-family:'Lora',serif; font-size:14px; line-height:1.65; color:var(--ink);
+  margin:0 0 18px; text-align:left;
+}
+.paal-card .meta-row{display:flex; justify-content:space-between; align-items:center; gap:10px;}
 .paal-card .count-pill{
-  font-family:'Inter',sans-serif; font-size:11.5px; font-weight:600; color:var(--oak);
-  background:var(--paper-deep); border-radius:20px; padding:5px 12px;
+  font-family:'Noto Serif Tamil', serif; font-size:12px; font-weight:600; color:var(--walnut);
+  background:var(--paper-deep); border:1px solid rgba(74,46,27,.15);
+  border-radius:20px; padding:6px 14px;
 }
-.paal-card .enter-cta{font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700; color:var(--maroon-deep);}
+.paal-card .enter-cta{
+  font-family:'Noto Serif Tamil', serif; font-size:12.5px; font-weight:700; color:var(--maroon-deep);
+  background:transparent; border:1px solid var(--maroon-deep);
+  border-radius:20px; padding:5px 14px; display:inline-flex; align-items:center; gap:4px;
+  transition:background .15s ease, color .15s ease;
+}
+.paal-card:hover .enter-cta{
+  background:var(--maroon-deep); color:var(--paper);
+}
 
 .chapter-group{margin-top:34px;}
 .chapter-group h3{font-family:'Noto Serif Tamil',serif; font-size:17px; color:var(--maroon-deep); margin:0 0 10px; padding-bottom:6px; border-bottom:1px solid var(--gold-line);}
 .chapter-list{display:grid; gap:8px;}
 .chapter-item{
-  display:flex; justify-content:flex-start; align-items:center; gap:12px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px;
   text-decoration:none; background:var(--paper-deep); border-radius:8px; padding:10px 14px;
   border-left:3px solid var(--rope);
 }
-.chapter-item .ct{font-family:'Lora',serif; font-size:14px; color:var(--ink); flex:1;}
 .chapter-item .cno{font-family:'Inter',sans-serif; font-size:10.5px; color:var(--oak); font-weight:700; flex-shrink:0;}
+.chapter-item .ct{font-family:'Noto Serif Tamil',serif; font-size:14.5px; color:var(--ink); flex:1;}
+.chapter-item .ce{font-family:'Inter',sans-serif; font-size:12px; color:var(--ink-soft); flex-shrink:0; text-align:right;}
 
 footer.site-footer{
   text-align:center; padding:40px 20px 20px; font-family:'Inter',sans-serif;
