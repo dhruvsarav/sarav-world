@@ -1,0 +1,802 @@
+[
+  {
+    "id": "0001",
+    "slug": "who-coined-artificial-intelligence",
+    "category": "tech",
+    "headline": "The guy who named “AI” wasn’t a computer scientist by training first — he was a mathematician chasing a hunch.",
+    "body": "John McCarthy coined the term “Artificial Intelligence” in 1955 while drafting the proposal for a 1956 Dartmouth summer workshop — the field didn’t have a name before that paper.",
+    "publish_date": "2026-01-01"
+  },
+  {
+    "id": "0002",
+    "slug": "longest-marriage-world-record",
+    "category": "love",
+    "headline": "86 years. One marriage. No divorce filings in between.",
+    "body": "Herbert and Zelmyra Fisher of North Carolina held the Guinness World Record for longest marriage — 86 years, from 1924 until Herbert’s death in 2011.",
+    "publish_date": "2026-01-08"
+  },
+  {
+    "id": "0003",
+    "slug": "shortest-war-in-history",
+    "category": "history",
+    "headline": "This war lasted less time than your lunch break.",
+    "body": "The Anglo-Zanzibar War of 1896 ran roughly 38–45 minutes — the shortest recorded war in history, ending when Zanzibar’s palace surrendered under British naval bombardment.",
+    "publish_date": "2026-01-15"
+  },
+  {
+    "id": "0004",
+    "slug": "venus-day-longer-than-year",
+    "category": "science",
+    "headline": "A day on Venus is longer than its year.",
+    "body": "Venus takes about 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun — meaning a Venusian “day” outlasts a Venusian “year.”",
+    "publish_date": "2026-01-22"
+  },
+  {
+    "id": "0005",
+    "slug": "dollar-sign-origin-spanish-peso",
+    "category": "money",
+    "headline": "The $ sign probably has nothing to do with the United States.",
+    "body": "The most widely accepted theory traces the dollar sign back to the Spanish peso — a combination of “P” and “S” for “pesos” that gradually merged into one symbol, long before the U.S. dollar existed.",
+    "publish_date": "2026-01-29"
+  },
+  {
+    "id": "0006",
+    "slug": "set-longest-dictionary-entry",
+    "category": "language",
+    "headline": "The word “set” has one of the longest entries in the entire Oxford English Dictionary.",
+    "body": "Depending on the edition, “set” has been listed with hundreds of distinct definitions as a noun, verb, and adjective — historically one of the longest single entries in the OED.",
+    "publish_date": "2026-02-05"
+  },
+  {
+    "id": "0007",
+    "slug": "brain-uses-20-percent-energy",
+    "category": "mind",
+    "headline": "Your brain burns a fifth of your daily energy just idling.",
+    "body": "The brain makes up about 2% of body weight but uses roughly 20% of the body’s total energy — most of it just keeping neurons ready to fire, not doing active thinking.",
+    "publish_date": "2026-02-12"
+  },
+  {
+    "id": "0008",
+    "slug": "carrots-were-not-always-orange",
+    "category": "food",
+    "headline": "Carrots weren’t always orange.",
+    "body": "Early cultivated carrots were commonly purple or white. Orange carrots became dominant later, popularized through selective breeding in the Netherlands starting around the 1600s.",
+    "publish_date": "2026-02-19"
+  },
+  {
+    "id": "0009",
+    "slug": "octopus-three-hearts-blue-blood",
+    "category": "wild",
+    "headline": "It has three hearts and blue blood — and it’s not an alien.",
+    "body": "Octopuses run on three hearts and copper-based blood, which is why their blood is blue instead of red like ours.",
+    "publish_date": "2026-02-26"
+  },
+  {
+    "id": "0010",
+    "slug": "first-computer-bug-moth",
+    "category": "tech",
+    "headline": "The first computer bug was an actual bug.",
+    "body": "In 1947, engineers working on Harvard’s Mark II computer found a moth trapped in a relay and taped it into the logbook — the word “debugging” stuck.",
+    "publish_date": "2026-03-05"
+  },
+  {
+    "id": "0011",
+    "slug": "diamond-engagement-ring-de-beers-campaign",
+    "category": "love",
+    "headline": "The diamond engagement ring tradition is younger than you’d think.",
+    "body": "Before a 1947 De Beers ad campaign built around the line “A Diamond is Forever,” diamond rings weren’t the default engagement gift in America — the slogan is widely credited with making them one.",
+    "publish_date": "2026-03-12"
+  },
+  {
+    "id": "0012",
+    "slug": "oxford-older-than-aztec-empire",
+    "category": "history",
+    "headline": "Oxford University is older than the Aztec Empire.",
+    "body": "Teaching is recorded at Oxford as early as 1096 — more than 300 years before the Aztec Empire was founded in 1428.",
+    "publish_date": "2026-03-19"
+  },
+  {
+    "id": "0013",
+    "slug": "honey-never-spoils-ancient-egypt",
+    "category": "science",
+    "headline": "Honey basically never spoils.",
+    "body": "Archaeologists have found pots of honey in ancient Egyptian tombs over 3,000 years old that were still edible — honey’s low water content and acidity make it nearly impossible for bacteria to survive in.",
+    "publish_date": "2026-03-26"
+  },
+  {
+    "id": "0014",
+    "slug": "coca-cola-original-formula-coca-leaf",
+    "category": "money",
+    "headline": "Coca-Cola’s early recipe had a very different kind of kick.",
+    "body": "The drink’s original 1880s formula included a small amount of coca leaf extract. The cocaine-derived component was phased out of the recipe in the early 1900s, well before modern drug laws.",
+    "publish_date": "2026-04-02"
+  },
+  {
+    "id": "0015",
+    "slug": "tittle-dot-over-i",
+    "category": "language",
+    "headline": "The dot over a lowercase “i” has its own name.",
+    "body": "That small dot is called a “tittle.” It’s one of the smallest named parts of the Latin alphabet, part of written “i” and “j” since medieval manuscripts.",
+    "publish_date": "2026-04-09"
+  },
+  {
+    "id": "0016",
+    "slug": "multitasking-is-fast-switching",
+    "category": "mind",
+    "headline": "You can’t actually multitask — your brain is just switching fast.",
+    "body": "What feels like doing two things at once is really the brain rapidly toggling attention between tasks, losing a little accuracy and speed on both with every switch.",
+    "publish_date": "2026-04-16"
+  },
+  {
+    "id": "0017",
+    "slug": "ketchup-sold-as-medicine-1830s",
+    "category": "food",
+    "headline": "Ketchup used to be sold as medicine.",
+    "body": "In the 1830s, tomato-based “ketchup” was marketed in pill form as a remedy for indigestion and other ailments — decades before it became a burger condiment.",
+    "publish_date": "2026-04-23"
+  },
+  {
+    "id": "0018",
+    "slug": "cloud-weighs-a-million-pounds",
+    "category": "wild",
+    "headline": "An average cloud weighs over a million pounds.",
+    "body": "Despite floating effortlessly overhead, a typical cumulus cloud is estimated to weigh more than a million pounds — its water droplets are just spread across such a huge volume of air that it stays buoyant.",
+    "publish_date": "2026-04-30"
+  },
+  {
+    "id": "0019",
+    "slug": "first-website-ever-cern",
+    "category": "tech",
+    "headline": "The first website ever published is still online.",
+    "body": "Tim Berners-Lee put up info.cern.ch in 1991, explaining what the World Wide Web even was — a restored copy is still viewable today.",
+    "publish_date": "2026-05-07"
+  },
+  {
+    "id": "0020",
+    "slug": "valentines-day-victorian-commercialization",
+    "category": "love",
+    "headline": "Valentine’s Day cards became a big business in the Victorian era.",
+    "body": "Mass-produced, affordable greeting cards took off in the 1800s, turning a much older saint’s day into the commercialized, card-and-chocolate holiday recognizable today.",
+    "publish_date": "2026-05-14"
+  },
+  {
+    "id": "0021",
+    "slug": "cleopatra-closer-to-moon-landing",
+    "category": "history",
+    "headline": "Cleopatra lived closer to the Moon landing than to the Great Pyramid.",
+    "body": "The Great Pyramid of Giza was already about 2,500 years old when Cleopatra was born — making her closer in time to the 1969 Moon landing than to the pyramid’s construction.",
+    "publish_date": "2026-05-21"
+  },
+  {
+    "id": "0022",
+    "slug": "bananas-are-berries-strawberries-arent",
+    "category": "science",
+    "headline": "Strawberries aren’t berries. Bananas are.",
+    "body": "Botanically, a berry needs to develop from a single flower with one ovary — which rules out strawberries (their seeds sit on the outside) but includes bananas, avocados, and even tomatoes.",
+    "publish_date": "2026-05-28"
+  },
+  {
+    "id": "0023",
+    "slug": "monopoly-original-purpose-landlords-game",
+    "category": "money",
+    "headline": "Monopoly was invented to warn people about monopolies.",
+    "body": "In 1903, Elizabeth Magie patented “The Landlord’s Game” to demonstrate how landlords accumulating property crushes everyone else economically. Decades later it became Monopoly — a game mostly remembered for celebrating the thing it was built to criticize.",
+    "publish_date": "2026-06-04"
+  },
+  {
+    "id": "0024",
+    "slug": "goodbye-etymology-god-be-with-ye",
+    "category": "language",
+    "headline": "“Goodbye” used to be a full sentence.",
+    "body": "The word started as “God be with ye,” shortened over centuries of casual use into the single word said without a thought today.",
+    "publish_date": "2026-06-11"
+  },
+  {
+    "id": "0025",
+    "slug": "ten-percent-brain-myth",
+    "category": "mind",
+    "headline": "The “we only use 10% of our brains” claim is a myth.",
+    "body": "Brain imaging shows activity across nearly every region over the course of a day — different areas just aren’t all firing at maximum for the same task simultaneously.",
+    "publish_date": "2026-06-18"
+  },
+  {
+    "id": "0026",
+    "slug": "peanuts-are-legumes-not-nuts",
+    "category": "food",
+    "headline": "Peanuts aren’t actually nuts.",
+    "body": "Botanically, peanuts are legumes — they grow underground in pods and are closer relatives to beans and lentils than to almonds or walnuts.",
+    "publish_date": "2026-06-25"
+  },
+  {
+    "id": "0027",
+    "slug": "wombat-cube-shaped-poop",
+    "category": "wild",
+    "headline": "Wombats are the only animal known to produce cube-shaped poop.",
+    "body": "Researchers found the cubes form inside the wombat’s intestine itself, not through a square-shaped exit — alternating stiff and stretchy sections of gut squeeze the waste into corners as it dries out.",
+    "publish_date": "2026-07-02"
+  },
+  {
+    "id": "0028",
+    "slug": "first-computer-mouse-wood",
+    "category": "tech",
+    "headline": "The computer mouse started out made of wood.",
+    "body": "Douglas Engelbart built the first prototype in 1964 — a wooden shell with two metal wheels underneath, years before anyone called it a “mouse.”",
+    "publish_date": "2026-07-09"
+  },
+  {
+    "id": "0029",
+    "slug": "seahorse-male-pregnancy",
+    "category": "love",
+    "headline": "In seahorse relationships, the male gets pregnant.",
+    "body": "Female seahorses transfer eggs into a pouch on the male’s body, where he fertilizes and carries them until they’re born — one of the only reversed-parenting setups in the animal kingdom.",
+    "publish_date": "2026-07-16"
+  },
+  {
+    "id": "0030",
+    "slug": "napoleon-was-not-short",
+    "category": "history",
+    "headline": "Napoleon wasn’t actually short.",
+    "body": "At around 5’7”, Napoleon was roughly average height for a Frenchman of his era — the “short” myth likely grew from British cartoons and a mix-up between French and English inch measurements.",
+    "publish_date": "2026-07-23"
+  },
+  {
+    "id": "0031",
+    "slug": "human-banana-dna-similarity",
+    "category": "science",
+    "headline": "You share more DNA with a banana than you’d guess.",
+    "body": "Humans and bananas share roughly 60% of the same DNA — a reminder that a lot of genetic code just handles basic cellular housekeeping every living thing needs.",
+    "publish_date": "2026-07-30"
+  },
+  {
+    "id": "0032",
+    "slug": "wright-brothers-bicycle-shop-funded-flight",
+    "category": "money",
+    "headline": "The Wright brothers funded the first airplane with bicycle money.",
+    "body": "Orville and Wilbur Wright ran a bicycle repair and manufacturing shop in Dayton, Ohio — profits from selling and fixing bikes helped bankroll their early flying experiments.",
+    "publish_date": "2026-08-06"
+  },
+  {
+    "id": "0033",
+    "slug": "petrichor-word-coined-1964",
+    "category": "language",
+    "headline": "The smell after rain has a scientific name — and it’s younger than the transistor.",
+    "body": "“Petrichor,” the earthy scent after rainfall, was coined by two Australian researchers in 1964. Humans smelled it for millennia before anyone gave it a word.",
+    "publish_date": "2026-08-13"
+  },
+  {
+    "id": "0034",
+    "slug": "smell-strongest-link-to-memory",
+    "category": "mind",
+    "headline": "Smell is more tightly wired to memory than any other sense.",
+    "body": "The olfactory bulb sits unusually close to the brain’s memory and emotion centers, which is why a single smell can trigger a specific memory faster and more vividly than a sound or image can.",
+    "publish_date": "2026-08-20"
+  },
+  {
+    "id": "0035",
+    "slug": "fortune-cookie-japanese-origin",
+    "category": "food",
+    "headline": "Fortune cookies aren’t originally Chinese.",
+    "body": "The fortune cookie is widely believed to have originated with Japanese immigrant bakers in early 1900s California, not in China — it’s rarely found in China at all.",
+    "publish_date": "2026-08-27"
+  },
+  {
+    "id": "0036",
+    "slug": "jiffy-real-unit-of-time",
+    "category": "wild",
+    "headline": "“Jiffy” is a real, official unit of time.",
+    "body": "In physics, a jiffy is sometimes defined as the time light takes to travel one centimeter — a genuine, if rarely used, scientific unit hiding inside a casual phrase.",
+    "publish_date": "2026-09-03"
+  },
+  {
+    "id": "0037",
+    "slug": "first-email-tomlinson-at-symbol",
+    "category": "tech",
+    "headline": "Email is older than the World Wide Web by two decades.",
+    "body": "Ray Tomlinson sent the first network email in 1971 and picked the @ symbol to separate user from machine simply because it was barely used in names — the web didn’t exist until 1991.",
+    "publish_date": "2026-09-10"
+  },
+  {
+    "id": "0038",
+    "slug": "white-wedding-dress-queen-victoria",
+    "category": "love",
+    "headline": "The white wedding dress owes a lot to one royal wedding.",
+    "body": "White wasn’t unheard of before 1840, but Queen Victoria’s choice to wear it at her wedding — mainly to show off delicate lace — helped popularize white as the default bridal color across the Western world.",
+    "publish_date": "2026-09-17"
+  },
+  {
+    "id": "0039",
+    "slug": "great-fire-of-london-death-toll",
+    "category": "history",
+    "headline": "The Great Fire of London destroyed most of the city — and barely killed anyone, officially.",
+    "body": "The 1666 blaze wiped out roughly 13,000 houses, yet official records list only a handful of confirmed deaths — though many historians suspect the real toll went uncounted.",
+    "publish_date": "2026-09-24"
+  },
+  {
+    "id": "0040",
+    "slug": "chess-more-games-than-atoms-universe",
+    "category": "science",
+    "headline": "Chess has more possible games than atoms in the universe.",
+    "body": "Mathematician Claude Shannon estimated there are around 10^120 possible chess games — a number that dwarfs the roughly 10^80 atoms estimated to exist in the observable universe.",
+    "publish_date": "2026-10-01"
+  },
+  {
+    "id": "0041",
+    "slug": "nintendo-founded-1889-playing-cards",
+    "category": "money",
+    "headline": "Nintendo is over 130 years old — and didn’t start with video games.",
+    "body": "Founded in 1889 in Kyoto, Nintendo originally made handmade Japanese playing cards called hanafuda, nearly a century before it made its first video game console.",
+    "publish_date": "2026-10-08"
+  },
+  {
+    "id": "0042",
+    "slug": "longest-word-in-english-dictionary",
+    "category": "language",
+    "headline": "English’s longest dictionary word is 45 letters — and was basically built to be long.",
+    "body": "“Pneumonoultramicroscopicsilicovolcanoconiosis,” a lung disease name, is often cited as the longest word in major English dictionaries — but it was coined specifically to claim that title, not from everyday medical use.",
+    "publish_date": "2026-10-15"
+  },
+  {
+    "id": "0043",
+    "slug": "babies-more-bones-than-adults",
+    "category": "mind",
+    "headline": "Babies are born with about 100 more bones than adults.",
+    "body": "Newborns have roughly 300 bones, many of them soft cartilage. As the body grows, a lot of these fuse together, leaving adults with the standard 206.",
+    "publish_date": "2026-10-22"
+  },
+  {
+    "id": "0044",
+    "slug": "vanilla-second-most-expensive-spice",
+    "category": "food",
+    "headline": "Vanilla is one of the most labor-intensive spices in the world.",
+    "body": "Vanilla orchids have to be hand-pollinated one flower at a time outside their native region, a major reason vanilla ranks among the most expensive spices by weight, behind saffron.",
+    "publish_date": "2026-10-29"
+  },
+  {
+    "id": "0045",
+    "slug": "cows-form-friendships-study",
+    "category": "wild",
+    "headline": "Cows form real friendships — and get stressed without them.",
+    "body": "Research has found cows paired with a preferred companion show lower stress responses, including heart rate, than when paired with an unfamiliar cow — evidence they form specific social bonds.",
+    "publish_date": "2026-11-05"
+  },
+  {
+    "id": "0046",
+    "slug": "first-gigabyte-hard-drive-weight",
+    "category": "tech",
+    "headline": "An early 1GB hard drive needed a forklift, not a pocket.",
+    "body": "IBM’s 1980 hard disk unit that stored one gigabyte weighed over 500 pounds and cost around $40,000 — today that much storage fits on a fingernail-sized chip.",
+    "publish_date": "2026-11-12"
+  },
+  {
+    "id": "0047",
+    "slug": "shared-humor-relationship-satisfaction",
+    "category": "love",
+    "headline": "Couples who laugh at the same things tend to report being happier together.",
+    "body": "Several relationship studies have linked a shared sense of humor to higher long-term satisfaction — laughing at the same jokes may be a decent proxy for being on the same wavelength generally.",
+    "publish_date": "2026-11-19"
+  },
+  {
+    "id": "0048",
+    "slug": "woolly-mammoths-outlived-pyramids",
+    "category": "history",
+    "headline": "Woolly mammoths were still alive when the pyramids were already built.",
+    "body": "The Great Pyramid of Giza was completed around 2560 BCE. A small population of woolly mammoths survived on Wrangel Island until roughly 1650 BCE — outlasting the pyramid’s construction by centuries.",
+    "publish_date": "2026-11-26"
+  },
+  {
+    "id": "0049",
+    "slug": "neutron-star-teaspoon-weight",
+    "category": "science",
+    "headline": "A teaspoon of a neutron star would outweigh a mountain.",
+    "body": "Neutron stars are so dense that a single teaspoon of their material would weigh around a billion tons on Earth — roughly the mass of Mount Everest, crushed into a spoon.",
+    "publish_date": "2026-12-03"
+  },
+  {
+    "id": "0050",
+    "slug": "first-secure-online-purchase-sting-cd",
+    "category": "money",
+    "headline": "The first thing ever sold securely online was a CD.",
+    "body": "On August 11, 1994, a Swarthmore student named Dan Kohn sold a Sting CD for $12.48 plus shipping through his site NetMarket — widely credited as the first secure, encrypted online purchase.",
+    "publish_date": "2026-12-10"
+  },
+  {
+    "id": "0051",
+    "slug": "shakespeare-invented-words",
+    "category": "language",
+    "headline": "Shakespeare is credited with putting hundreds of words into English for the first time.",
+    "body": "Words like “eyeball,” “bedroom,” and “lonely” all show up first in the written record in Shakespeare’s plays — he may not have coined every one, but he’s the earliest known writer to use them.",
+    "publish_date": "2026-12-17"
+  },
+  {
+    "id": "0052",
+    "slug": "deja-vu-common-unexplained",
+    "category": "mind",
+    "headline": "Most people experience deja vu at some point — scientists still aren’t fully sure why.",
+    "body": "Surveys suggest a majority of people report at least one deja vu episode in their life, more often when they’re younger, and researchers still debate the exact mechanism behind it.",
+    "publish_date": "2026-12-24"
+  },
+  {
+    "id": "0053",
+    "slug": "chocolate-originally-a-bitter-drink",
+    "category": "food",
+    "headline": "Chocolate started out as a bitter drink, not a sweet bar.",
+    "body": "The Aztec and Maya civilizations drank cacao bitter and spiced. Solid, sweetened chocolate as we know it wasn’t developed until 19th-century Europe.",
+    "publish_date": "2026-12-31"
+  },
+  {
+    "id": "0054",
+    "slug": "cant-hum-with-nose-closed",
+    "category": "wild",
+    "headline": "You physically cannot hum while holding your nose shut.",
+    "body": "Humming requires air to move through the nasal passage. Pinch your nose closed and the sound has nowhere to escape — try it, it just stops.",
+    "publish_date": "2027-01-07"
+  },
+  {
+    "id": "0055",
+    "slug": "first-iphone-no-app-store",
+    "category": "tech",
+    "headline": "The first iPhone launched with zero apps.",
+    "body": "When Apple released the iPhone in 2007, there was no App Store — Steve Jobs initially wanted developers to build web apps instead. The App Store didn’t arrive until 2008.",
+    "publish_date": "2027-01-14"
+  },
+  {
+    "id": "0056",
+    "slug": "handshake-origin-weapon-free-hand",
+    "category": "love",
+    "headline": "The handshake may have started as a trust gesture.",
+    "body": "One widely cited theory traces the handshake back to showing an open, weapon-free hand when meeting someone — an old way of proving you came in peace before you said a word.",
+    "publish_date": "2027-01-21"
+  },
+  {
+    "id": "0057",
+    "slug": "aristotle-tutored-alexander-the-great",
+    "category": "history",
+    "headline": "Aristotle personally tutored the future “Great.”",
+    "body": "Around 343 BCE, King Philip II of Macedon hired Aristotle to privately tutor his teenage son — who’d go on to be known as Alexander the Great.",
+    "publish_date": "2027-01-28"
+  },
+  {
+    "id": "0058",
+    "slug": "water-triple-point-boil-freeze",
+    "category": "science",
+    "headline": "Water can boil and freeze at the exact same time.",
+    "body": "At a very specific combination of temperature and pressure called the “triple point,” water exists as solid, liquid, and gas all at once — around 0.01°C under low pressure.",
+    "publish_date": "2027-02-04"
+  },
+  {
+    "id": "0059",
+    "slug": "wall-street-named-after-real-wall",
+    "category": "money",
+    "headline": "Wall Street is named after an actual wall.",
+    "body": "In the 1600s, Dutch colonists built a defensive wall along the northern edge of what’s now Lower Manhattan to mark the settlement’s boundary. The street that replaced it kept the name.",
+    "publish_date": "2027-02-11"
+  },
+  {
+    "id": "0060",
+    "slug": "nice-used-to-mean-foolish",
+    "category": "language",
+    "headline": "“Nice” used to be an insult.",
+    "body": "In Middle English, “nice” meant foolish or ignorant, borrowed from a Latin word for “not knowing.” It drifted through meanings like “fussy” and “precise” before landing on its modern, friendly sense.",
+    "publish_date": "2027-02-18"
+  },
+  {
+    "id": "0061",
+    "slug": "cant-tickle-yourself-cerebellum",
+    "category": "mind",
+    "headline": "You can’t tickle yourself — and your brain is the reason.",
+    "body": "The cerebellum predicts the sensory outcome of your own movements and cancels out the response, so a self-inflicted tickle barely registers compared to someone else doing it.",
+    "publish_date": "2027-02-25"
+  },
+  {
+    "id": "0062",
+    "slug": "pretzel-shape-prayer-tradition",
+    "category": "food",
+    "headline": "The pretzel’s twisted shape has a religious backstory.",
+    "body": "According to popular tradition, medieval European monks shaped the dough to represent arms crossed in prayer, using pretzels as a reward for children who’d memorized their prayers.",
+    "publish_date": "2027-03-04"
+  },
+  {
+    "id": "0063",
+    "slug": "immortal-jellyfish-turritopsis-dohrnii",
+    "category": "wild",
+    "headline": "One species of jellyfish can reverse its own aging.",
+    "body": "Turritopsis dohrnii can revert from a mature adult back into an earlier juvenile stage when stressed, essentially restarting its life cycle — scientists call it “biologically immortal,” though it can still be killed by predators or disease.",
+    "publish_date": "2027-03-11"
+  },
+  {
+    "id": "0064",
+    "slug": "bluetooth-named-after-king",
+    "category": "tech",
+    "headline": "Bluetooth is named after a Viking-era king.",
+    "body": "The wireless standard takes its name from Harald “Bluetooth” Gormsson, a 10th-century Danish king who united rival tribes — the Bluetooth logo combines his initials, written in runes.",
+    "publish_date": "2027-03-18"
+  },
+  {
+    "id": "0065",
+    "slug": "honeymoon-etymology-honey-wine",
+    "category": "love",
+    "headline": "“Honeymoon” might come from an old drinking custom.",
+    "body": "One theory traces the word to a European tradition of newlyweds drinking honey wine, or mead, for the first full moon cycle of their marriage — sweet at the start, waning like the moon after.",
+    "publish_date": "2027-03-25"
+  },
+  {
+    "id": "0066",
+    "slug": "hundred-years-war-actual-length",
+    "category": "history",
+    "headline": "The Hundred Years’ War didn’t actually last 100 years.",
+    "body": "The conflict between England and France ran from 1337 to 1453 — 116 years, with several long truces in between. The name was coined later, and rounded down.",
+    "publish_date": "2027-04-01"
+  },
+  {
+    "id": "0067",
+    "slug": "great-wall-not-visible-from-space",
+    "category": "science",
+    "headline": "The Great Wall of China isn’t actually visible from space with the naked eye.",
+    "body": "Despite the popular myth, astronauts have confirmed the wall is far too narrow to be seen without aid from low Earth orbit — most human structures are invisible at that distance.",
+    "publish_date": "2027-04-08"
+  },
+  {
+    "id": "0068",
+    "slug": "warren-buffett-first-stock-age-11",
+    "category": "money",
+    "headline": "Warren Buffett bought his first stock at age 11.",
+    "body": "He later said his only regret was not starting sooner — he’d been studying the stock pages for years before he ever placed a trade.",
+    "publish_date": "2027-04-15"
+  },
+  {
+    "id": "0069",
+    "slug": "ok-word-origin-oll-korrect",
+    "category": "language",
+    "headline": "“OK” might be the most recognized word on the planet.",
+    "body": "Linguists trace it back to an 1830s American newspaper joke — a deliberately misspelled abbreviation of “oll korrect” for “all correct.” The joke stuck, and two letters went global.",
+    "publish_date": "2027-04-22"
+  },
+  {
+    "id": "0070",
+    "slug": "household-dust-dead-skin-cells",
+    "category": "mind",
+    "headline": "A big chunk of household dust used to be your skin.",
+    "body": "Humans shed tens of thousands of dead skin cells every minute. Combined with fibers and other debris, shed skin makes up a large share of the dust that collects in a typical home.",
+    "publish_date": "2027-04-29"
+  },
+  {
+    "id": "0071",
+    "slug": "sushi-originally-fermented-preservation",
+    "category": "food",
+    "headline": "Sushi didn’t start out as fresh raw fish.",
+    "body": "Early sushi, called narezushi, was a preservation method — fish packed in rice and left to ferment for months. The fresh raw-fish style eaten today developed centuries later.",
+    "publish_date": "2027-05-06"
+  },
+  {
+    "id": "0072",
+    "slug": "pringles-can-inventor-buried-in-one",
+    "category": "wild",
+    "headline": "The inventor of the Pringles can was buried in one.",
+    "body": "Fredric Baur, who designed the iconic tube in the 1960s, was so proud of it that when he died in 2008, his family honored his wish and buried part of his ashes in a Pringles can.",
+    "publish_date": "2027-05-13"
+  },
+  {
+    "id": "0073",
+    "slug": "ada-lovelace-first-programmer",
+    "category": "tech",
+    "headline": "The first computer programmer never saw a computer run.",
+    "body": "Ada Lovelace wrote what’s considered the first algorithm intended for a machine in the 1840s, for Charles Babbage’s Analytical Engine — a machine that wasn’t fully built in her lifetime.",
+    "publish_date": "2027-05-20"
+  },
+  {
+    "id": "0074",
+    "slug": "penguin-pebble-courtship-gift",
+    "category": "love",
+    "headline": "Some penguins propose with a pebble.",
+    "body": "In several penguin species, males search for the smoothest, best pebble they can find and present it to a potential mate — the pebble also doubles as nest-building material.",
+    "publish_date": "2027-05-27"
+  },
+  {
+    "id": "0075",
+    "slug": "vikings-horned-helmets-myth",
+    "category": "history",
+    "headline": "Vikings never wore horned helmets.",
+    "body": "No horned Viking helmet has ever been found in a genuine Viking-age burial. The image comes from 19th-century costume design — most famously Wagner’s opera costumes for the Ring Cycle.",
+    "publish_date": "2027-06-03"
+  },
+  {
+    "id": "0076",
+    "slug": "sharks-older-than-trees",
+    "category": "science",
+    "headline": "Sharks are older than trees.",
+    "body": "Sharks have existed for over 400 million years, while the earliest tree-like plants appeared around 350 million years ago — sharks were already ancient by the time forests existed.",
+    "publish_date": "2027-06-10"
+  },
+  {
+    "id": "0077",
+    "slug": "lego-name-meaning-leg-godt",
+    "category": "money",
+    "headline": "LEGO’s name is Danish for “play well.”",
+    "body": "The company took its name from the Danish phrase “leg godt,” shortened into one word. Fans later noticed it also happens to mean “I put together” in Latin — a coincidence the company was happy to keep.",
+    "publish_date": "2027-06-17"
+  },
+  {
+    "id": "0078",
+    "slug": "alphabetical-order-recent-habit",
+    "category": "language",
+    "headline": "Alphabetizing books is a newer habit than you’d think.",
+    "body": "For most of history, reference books were organized by topic or importance, not A-to-Z. Strict alphabetical order only became standard for dictionaries and encyclopedias in the last few centuries.",
+    "publish_date": "2027-06-24"
+  },
+  {
+    "id": "0079",
+    "slug": "yawning-contagious-across-species",
+    "category": "mind",
+    "headline": "Yawns can be contagious even across species.",
+    "body": "Some studies have found dogs yawn more after watching their owners yawn, suggesting contagious yawning — usually linked to empathy — might not be limited to humans alone.",
+    "publish_date": "2027-07-01"
+  },
+  {
+    "id": "0080",
+    "slug": "instant-ramen-invented-1958",
+    "category": "food",
+    "headline": "Instant ramen is younger than most people’s grandparents.",
+    "body": "Momofuku Ando invented instant ramen in Japan in 1958, launching an entire category of food now eaten by billions of people a year.",
+    "publish_date": "2027-07-08"
+  },
+  {
+    "id": "0081",
+    "slug": "lightning-hotter-than-sun-surface",
+    "category": "wild",
+    "headline": "A bolt of lightning is hotter than the surface of the sun.",
+    "body": "Lightning can briefly reach around 30,000 Kelvin, roughly five times hotter than the sun’s surface temperature of about 5,500 Kelvin — for a fraction of a second.",
+    "publish_date": "2027-07-15"
+  },
+  {
+    "id": "0082",
+    "slug": "captcha-acronym-meaning",
+    "category": "tech",
+    "headline": "CAPTCHA is proving you’re human, but the acronym is a mouthful.",
+    "body": "CAPTCHA stands for “Completely Automated Public Turing test to tell Computers and Humans Apart” — a name built backward to spell something pronounceable.",
+    "publish_date": "2027-07-22"
+  },
+  {
+    "id": "0083",
+    "slug": "couples-heart-rates-synchronize",
+    "category": "love",
+    "headline": "Close couples’ heart rates can literally sync up.",
+    "body": "Studies on romantic partners have found their heart rates and even breathing can synchronize during physical closeness or shared stress — the body picking up on connection in ways you don’t consciously notice.",
+    "publish_date": "2027-07-29"
+  },
+  {
+    "id": "0084",
+    "slug": "louis-xix-twenty-minute-reign",
+    "category": "history",
+    "headline": "France once had a king for exactly 20 minutes.",
+    "body": "In 1830, Louis XIX became king the moment his father abdicated — and abdicated himself 20 minutes later. Guinness World Records lists it as the shortest verified reign of any monarch.",
+    "publish_date": "2027-08-05"
+  },
+  {
+    "id": "0085",
+    "slug": "flamingos-not-born-pink",
+    "category": "science",
+    "headline": "Flamingos aren’t born pink.",
+    "body": "Flamingo chicks hatch grey. Their signature pink comes entirely from pigments in the shrimp and algae they eat as adults — stop feeding them that diet and they’d fade.",
+    "publish_date": "2027-08-12"
+  },
+  {
+    "id": "0086",
+    "slug": "us-steel-first-billion-dollar-company",
+    "category": "money",
+    "headline": "The first company ever valued at over a billion dollars was a steel company.",
+    "body": "When U.S. Steel went public in 1901, it was capitalized at more than $1 billion — a staggering sum at the time, and widely cited as corporate history’s first billion-dollar company.",
+    "publish_date": "2027-08-19"
+  },
+  {
+    "id": "0087",
+    "slug": "icelandic-word-for-computer",
+    "category": "language",
+    "headline": "Icelandic invented its own word for “computer” instead of borrowing English’s.",
+    "body": "Rather than adopt “computer,” Icelandic combined tala (“number”) and völva (“prophetess”) into tölva — roughly, “number prophetess.”",
+    "publish_date": "2027-08-26"
+  },
+  {
+    "id": "0088",
+    "slug": "bone-strength-compared-to-steel",
+    "category": "mind",
+    "headline": "Bone is, ounce for ounce, comparable in strength to some steel.",
+    "body": "Estimates vary by study, but by weight, human bone can rival some grades of steel in compressive strength — while being several times lighter, thanks to its layered, porous structure.",
+    "publish_date": "2027-09-02"
+  },
+  {
+    "id": "0089",
+    "slug": "kopi-luwak-civet-coffee",
+    "category": "food",
+    "headline": "The world’s most expensive coffee comes from an animal’s digestive tract.",
+    "body": "Kopi luwak is made from coffee beans a civet cat has eaten and passed — fermentation in the animal’s gut is said to change the flavor, and collectors pay a steep premium for it.",
+    "publish_date": "2027-09-09"
+  },
+  {
+    "id": "0090",
+    "slug": "shortest-commercial-flight-scotland",
+    "category": "wild",
+    "headline": "The world’s shortest scheduled flight lasts under two minutes.",
+    "body": "Loganair’s route between the Scottish islands of Westray and Papa Westray covers under 2 miles and is timetabled around 90 seconds — the fastest recorded run came in at 53 seconds.",
+    "publish_date": "2027-09-16"
+  },
+  {
+    "id": "0091",
+    "slug": "wikipedia-started-as-nupedia-sideproject",
+    "category": "tech",
+    "headline": "Wikipedia started as a backup plan for a project that flopped.",
+    "body": "In 2001, Wikipedia launched as a side project to feed articles into Nupedia, a slower, expert-reviewed encyclopedia — the side project outlived the original idea within a year.",
+    "publish_date": "2027-09-23"
+  },
+  {
+    "id": "0092",
+    "slug": "long-distance-relationships-research",
+    "category": "love",
+    "headline": "Long-distance relationships aren’t automatically doomed.",
+    "body": "Multiple studies have found couples in long-distance relationships report similar, and sometimes higher, relationship satisfaction and communication quality compared to some geographically close couples — at least for the stretch they’re apart.",
+    "publish_date": "2027-09-30"
+  },
+  {
+    "id": "0093",
+    "slug": "statue-of-liberty-original-color",
+    "category": "history",
+    "headline": "The Statue of Liberty wasn’t always green.",
+    "body": "Lady Liberty started out the color of a shiny new penny — copper. Decades of exposure to air and rain oxidized the surface into the green patina seen today, largely complete by the early 1900s.",
+    "publish_date": "2027-10-07"
+  },
+  {
+    "id": "0094",
+    "slug": "lightning-strikes-per-day",
+    "category": "science",
+    "headline": "Lightning strikes Earth roughly 8 million times a day.",
+    "body": "Scientists estimate around 8 million lightning bolts hit the planet daily — that’s about 100 strikes happening somewhere on Earth every single second.",
+    "publish_date": "2027-10-14"
+  },
+  {
+    "id": "0095",
+    "slug": "nokia-started-as-paper-mill",
+    "category": "money",
+    "headline": "Nokia started out making paper, not phones.",
+    "body": "Founded in 1865 in Finland, Nokia began as a wood pulp and paper mill — it wouldn’t touch telecommunications for another century.",
+    "publish_date": "2027-10-21"
+  },
+  {
+    "id": "0096",
+    "slug": "www-takes-longer-to-say",
+    "category": "language",
+    "headline": "Saying “www” out loud takes three times longer than saying what it stands for.",
+    "body": "“World Wide Web” is three words. “Double-u, double-u, double-u” is nine syllables — the abbreviation is slower to say than the thing it’s abbreviating.",
+    "publish_date": "2027-10-28"
+  },
+  {
+    "id": "0097",
+    "slug": "heartbeat-electrical-signal-detectable",
+    "category": "mind",
+    "headline": "Your heartbeat is an electrical signal strong enough to detect from across a room.",
+    "body": "Every heartbeat is triggered by an electrical pulse strong enough that a sensitive sensor can pick it up several feet from the body — part of how modern contactless heart monitors work.",
+    "publish_date": "2027-11-04"
+  },
+  {
+    "id": "0098",
+    "slug": "apples-float-in-water-air-content",
+    "category": "food",
+    "headline": "Apples float in water because they’re roughly a quarter air.",
+    "body": "About 25% of an apple’s volume is air pockets inside its flesh — enough buoyancy to make a whole apple float rather than sink.",
+    "publish_date": "2027-11-11"
+  },
+  {
+    "id": "0099",
+    "slug": "first-tweet-jack-dorsey",
+    "category": "tech",
+    "headline": "Twitter’s first-ever post wasn’t exactly inspiring.",
+    "body": "On March 21, 2006, co-founder Jack Dorsey posted the platform’s first message: “just setting up my twttr” — back when the service was still missing its vowels.",
+    "publish_date": "2027-11-18"
+  },
+  {
+    "id": "0100",
+    "slug": "crows-remember-faces-grudge",
+    "category": "science",
+    "headline": "Crows can recognize your face — and hold onto it for years.",
+    "body": "Researchers in Seattle showed crows a threatening mask, then found the birds still scolded anyone wearing it years later, and had taught the grudge to other crows who’d never seen the original encounter.",
+    "publish_date": "2027-11-25"
+  }
+]

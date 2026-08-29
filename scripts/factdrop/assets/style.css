@@ -1,0 +1,178 @@
+/* Fact Drop — visual identity v1
+   Concept: each fact is a "drop ticket" — a numbered stub torn from a roll,
+   since the number genuinely means something here (it's the real week count).
+   Bold gradient spent in exactly one place (the landing hero); everything
+   else stays disciplined paper-on-ink so the ticket motif stays the signature. */
+
+:root{
+  --ink:        #14102B;
+  --ink-soft:   #8A82AE;
+  --paper:      #FBF7F2;
+  --paper-dim:  #EFE9E1;
+  --ink-text:   #1E1B2E;
+  --orange:     #FF5A36;
+  --pink:       #FF3E8E;
+  --lime:       #C6FF3D;
+  --radius:     18px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:"Inter",-apple-system,Segoe UI,Roboto,sans-serif;
+  line-height:1.55;
+}
+h1,h2,.brand,.stub-num{font-family:"Space Grotesk",sans-serif}
+.stub-num,.stub-cat,code,.mono{font-family:"IBM Plex Mono",monospace}
+
+.wrap{max-width:600px;margin:0 auto;padding:0 20px 70px}
+
+/* ---------- header / footer ---------- */
+.site-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:20px 24px;max-width:600px;margin:0 auto;
+}
+.site-header .brand{color:var(--paper);font-weight:700;font-size:21px;text-decoration:none;letter-spacing:-0.01em}
+.site-header .brand span{color:var(--orange)}
+.site-header nav a{color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:500}
+.site-footer{
+  text-align:center;padding:50px 20px 60px;color:var(--ink-soft);font-size:13px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.site-footer a{color:var(--ink-soft);text-decoration:none}
+
+/* ---------- hero (landing only — the one bold gradient moment) ---------- */
+.hero-landing{
+  position:relative;text-align:center;padding:70px 20px 50px;overflow:hidden;
+}
+.hero-landing::before{
+  content:"";position:absolute;inset:-40% -10% auto -10%;height:420px;
+  background:radial-gradient(60% 60% at 30% 30%, var(--orange) 0%, transparent 70%),
+             radial-gradient(55% 55% at 75% 55%, var(--pink) 0%, transparent 70%);
+  filter:blur(50px);opacity:0.55;z-index:0;
+}
+.hero-landing h1{position:relative;z-index:1;font-size:48px;margin:0;letter-spacing:-0.02em}
+.hero-landing p{position:relative;z-index:1;color:var(--paper);opacity:0.75;font-size:16px;margin-top:8px}
+
+/* ---------- eyebrow / breadcrumb ---------- */
+.eyebrow{color:var(--ink-soft);font-size:13px;margin:28px 0 16px;font-weight:500}
+.eyebrow a{color:var(--ink-soft);text-decoration:none}
+.eyebrow .sep{margin:0 6px;opacity:0.5}
+.eyebrow .cur{color:var(--lime)}
+
+/* ---------- the ticket (signature element) ---------- */
+.ticket{
+  background:var(--paper);color:var(--ink-text);border-radius:var(--radius);
+  overflow:hidden;box-shadow:0 20px 40px -20px rgba(0,0,0,0.5);
+}
+.ticket-stub{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px 20px;background:var(--paper-dim);
+}
+.stub-num{font-size:13px;font-weight:600;color:var(--orange);letter-spacing:0.02em}
+.stub-cat{font-size:11px;font-weight:500;color:var(--ink-text);opacity:0.55;text-transform:uppercase;letter-spacing:0.06em}
+.ticket-perf{position:relative;height:0;border-top:2px dashed var(--paper-dim);margin:0 0}
+.ticket-perf i{
+  position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:var(--ink);
+}
+.ticket-perf i:first-child{left:-9px}
+.ticket-perf i:last-child{right:-9px}
+.ticket-body{padding:26px 22px 30px}
+.headline{font-size:25px;line-height:1.3;margin:0 0 14px;letter-spacing:-0.01em}
+.fact-text{font-size:16px;margin:0;color:var(--ink-text);opacity:0.85}
+
+/* ---------- share row ---------- */
+.share-row{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 8px}
+.share-icon{
+  background:transparent;color:var(--ink-soft);border:1px solid rgba(138,130,174,0.35);
+  border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:500;
+  text-decoration:none;cursor:pointer;
+}
+.share-icon:hover{border-color:var(--orange);color:var(--paper)}
+
+/* ---------- nav row ---------- */
+.nav-row{display:flex;justify-content:space-between;margin:26px 0 10px}
+.nav-btn{color:var(--lime);text-decoration:none;font-size:14px;font-weight:500}
+.nav-btn.disabled{color:var(--ink-soft);opacity:0.5;pointer-events:none}
+
+/* ---------- section title ---------- */
+.section-title{font-size:12px;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-soft);margin:34px 0 14px;font-weight:600}
+
+/* ---------- mini / fact-card / cat-card (lists, grids) ---------- */
+.mini,.fact-card,.cat-card{
+  display:block;background:var(--paper);color:var(--ink-text);
+  border-radius:14px;padding:16px 18px;margin-bottom:10px;text-decoration:none;
+}
+.mini .n,.fact-card .n{color:var(--orange);font-size:11px;font-weight:600;display:block;margin-bottom:5px;font-family:"IBM Plex Mono",monospace}
+.mini .t,.fact-card h2{font-size:15.5px;margin:0;font-weight:500;line-height:1.35;color:var(--ink-text)}
+.fact-card h2{font-family:"Space Grotesk",sans-serif;font-weight:500}
+
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:24px 0 8px}
+.cat-card{padding:18px}
+.cat-card h2{font-size:15px;margin:0 0 6px;font-family:"Space Grotesk",sans-serif}
+.count-pill{color:var(--ink-soft);font-size:12px;font-family:"IBM Plex Mono",monospace}
+
+.muted{color:var(--ink-soft);font-size:14px}
+
+@media (max-width:420px){
+  .hero-landing h1{font-size:38px}
+  .headline{font-size:22px}
+}
+
+/* ---------- v2 additions: nav, footer, modal, like button, disclaimer prose ---------- */
+
+.site-header nav{display:flex;gap:18px}
+.site-header nav a{color:var(--ink-soft);text-decoration:none;font-size:14px;font-weight:500}
+.site-header nav a:hover{color:var(--paper)}
+
+.footer-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:16px;margin:6px 0}
+.footer-nav a,.footer-nav button{
+  color:var(--ink-soft);text-decoration:none;font-size:13px;font-family:inherit;
+  background:none;border:none;cursor:pointer;padding:0;
+}
+.footer-nav a:hover,.footer-nav button:hover{color:var(--paper)}
+
+/* ---------- about modal ---------- */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(10,8,22,0.75);
+  display:flex;align-items:center;justify-content:center;padding:20px;z-index:50;
+}
+.modal-overlay[hidden]{display:none}
+.modal-box{
+  background:var(--paper);color:var(--ink-text);border-radius:var(--radius);
+  padding:28px 24px;max-width:400px;position:relative;
+}
+.modal-box h2{margin:0 0 14px;font-size:20px}
+.modal-box p{font-size:14.5px;margin:0 0 10px;opacity:0.85}
+.modal-box a{color:var(--orange)}
+.modal-close{
+  position:absolute;top:14px;right:16px;background:none;border:none;
+  font-size:22px;line-height:1;color:var(--ink-soft);cursor:pointer;
+}
+.modal-meta{font-size:12px !important;opacity:0.5 !important;margin-top:18px !important}
+
+/* ---------- like button ---------- */
+.like-btn{
+  display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+  background:var(--paper-dim);border:none;border-radius:999px;
+  padding:9px 16px;font-size:14px;font-weight:600;color:var(--ink-text);
+  cursor:pointer;transition:transform 0.1s ease;
+}
+.like-btn:active{transform:scale(0.96)}
+.like-btn.liked{background:#FFE3DC}
+.like-icon{font-size:16px}
+.like-count{font-family:"IBM Plex Mono",monospace;font-size:13px;min-width:14px;display:inline-block}
+
+/* ---------- disclaimer prose ---------- */
+.ticket-body-plain{
+  background:var(--paper);color:var(--ink-text);border-radius:var(--radius);
+  padding:24px 22px;margin-top:6px;
+}
+.ticket-body-plain p{font-size:15px;margin:0 0 14px;opacity:0.85}
+.ticket-body-plain p:last-child{margin-bottom:0}
+.ticket-body-plain a{color:var(--orange)}
+
+/* ---------- categories page ---------- */
+.cat-grid-full{grid-template-columns:1fr;gap:12px;margin-top:20px}
+.cat-desc{font-size:13px;color:var(--ink-text);opacity:0.6;margin:0 0 8px;font-family:"Inter",sans-serif}
