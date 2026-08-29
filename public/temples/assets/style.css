@@ -1,0 +1,234 @@
+:root{
+  --paper:#F3E9D2;
+  --paper-deep:#EBDDBB;
+  --ink:#2B211B;
+  --ink-soft:#6B5D4F;
+  --verdigris:#3F5D52;
+  --verdigris-deep:#2C4038;
+  --oak:#A9713F;
+  --walnut:#4A2E1B;
+  --rope:#C1653D;
+  --gold-line:#C9A15A;
+  --amber-warn:#8A5A1E;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--paper);
+  background-image:
+    radial-gradient(circle at 20% 10%, rgba(169,113,63,0.05), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(63,93,82,0.05), transparent 45%);
+  color:var(--ink);
+  font-family:'Lora', serif;
+  font-size:18px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;}
+.wrap{max-width:800px; margin:0 auto; padding:0 24px 80px;}
+
+/* Header */
+.site-header{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; max-width:800px; margin:0 auto;}
+.site-header .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+.site-header .brand .mark{width:38px; height:38px; border-radius:50%; background:var(--verdigris-deep); display:flex; align-items:center; justify-content:center; color:var(--paper); font-family:'Noto Serif Tamil',serif; font-weight:700; font-size:18px;}
+.site-header .brand span{font-family:'Noto Serif Tamil', serif; font-weight:600; color:var(--walnut); font-size:18px;}
+.site-header nav a{font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:.05em; color:var(--verdigris-deep); text-decoration:none; margin-left:18px;}
+
+/* Breadcrumb */
+.eyebrow{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding:14px 0 8px; font-family:'Inter', sans-serif; font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-soft);}
+.eyebrow a{text-decoration:none; color:var(--ink-soft);}
+.eyebrow .sep{color:var(--gold-line);}
+.eyebrow .cur{color:var(--verdigris);}
+
+/* Cross-category / sub-shrine / caveat banners */
+.also-in-row{display:flex; flex-wrap:wrap; gap:8px; margin:8px 0;}
+.also-in-badge{
+  display:inline-block; font-family:'Inter',sans-serif; font-size:12px; font-weight:600;
+  color:var(--verdigris-deep); background:var(--paper-deep); border:1px solid rgba(63,93,82,.25);
+  border-radius:16px; padding:4px 12px; text-decoration:none;
+}
+.also-in-badge.small{padding:3px 10px; font-size:11.5px;}
+.also-in-badge.subshrine{background:#EFE0C8; border-color:var(--oak); color:var(--walnut);}
+.card-badges{display:block; margin-top:8px;}
+
+.subshrine-banner{
+  font-family:'Inter',sans-serif; font-size:14px; color:var(--walnut); background:#EFE0C8;
+  border-left:4px solid var(--oak); padding:10px 16px; border-radius:8px; margin:12px 0;
+}
+.subshrine-banner a{color:var(--verdigris-deep); font-weight:600; text-decoration:underline;}
+.pending-tag{opacity:.65; font-style:italic;}
+
+/* Sacred circuit banners & badges */
+.circuit-banner{
+  display:flex; align-items:center; flex-wrap:wrap; gap:10px;
+  background:linear-gradient(135deg, #FBF6E9 0%, #EFE5D0 100%);
+  border:1px solid var(--gold-line); border-left:4px solid var(--oak);
+  border-radius:8px; padding:10px 16px; margin:12px 0 16px;
+}
+.circuit-pill{
+  font-family:'Inter',sans-serif; font-size:12.5px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--walnut);
+  background:var(--paper-deep); border:1px solid rgba(169,113,63,0.3);
+  padding:4px 12px; border-radius:14px;
+}
+.circuit-detail{
+  font-family:'Lora',serif; font-size:15.5px; font-weight:600; color:var(--verdigris-deep);
+}
+.circuit-tag{
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:700;
+  background:var(--paper-deep); color:var(--oak); border:1px solid rgba(169,113,63,0.3);
+  padding:2px 8px; border-radius:10px; margin-left:auto;
+}
+
+.special-case-banner{
+  font-family:'Inter',sans-serif; font-size:14px; color:#5A3A0A; background:#FBEFD9;
+  border-left:4px solid var(--amber-warn); padding:10px 16px; border-radius:8px; margin:12px 0;
+}
+.contemporary-badge{
+  display:inline-block; font-family:'Inter',sans-serif; font-size:12px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; color:var(--paper); background:var(--oak);
+  padding:5px 12px; border-radius:16px; margin:8px 0;
+}
+.conf-flag{font-family:'Inter',sans-serif; font-size:12px; font-style:italic; color:var(--ink-soft);}
+
+/* Title */
+h1.chapter{font-family:'Noto Serif Tamil', serif; font-size:26px; font-weight:600; margin:4px 0 20px; color:var(--walnut); line-height:1.4;}
+h1.chapter .en{display:block; font-family:'Lora',serif; font-style:italic; font-weight:400; font-size:18px; color:var(--ink-soft); margin-top:6px;}
+
+/* Hero plaque */
+.plaque-stage{padding:8px 0 6px;}
+.plaque{
+  position:relative; border-radius:14px; overflow:hidden;
+  box-shadow:0 22px 48px -18px rgba(74,46,27,.55), 0 2px 0 rgba(0,0,0,.05);
+  aspect-ratio: 16/9;
+  background:
+    linear-gradient(180deg, rgba(44,64,56,0) 40%, rgba(28,20,8,.65) 100%),
+    linear-gradient(160deg, #C9A15A 0%, #A9713F 35%, #6B4A2E 70%, #3F5D52 100%);
+  display:flex; align-items:flex-end; justify-content:center;
+}
+.plaque .placeholder-tag{position:absolute; top:12px; right:14px; font-family:'Inter',sans-serif; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; background:rgba(43,33,27,.65); color:var(--paper); padding:5px 10px; border-radius:20px;}
+.deity-badge{position:absolute; top:14px; left:16px; font-family:'Inter',sans-serif; font-size:12.5px; font-weight:600; letter-spacing:.08em; background:var(--verdigris); color:var(--paper); padding:5px 12px; border-radius:20px;}
+.plaque-text{padding:6% 8% 8%; text-align:center;}
+.plaque-text .line{font-family:'Noto Serif Tamil', serif; font-weight:700; line-height:1.35; color:#FBF6E9; text-shadow:0 2px 10px rgba(0,0,0,.45); font-size:clamp(20px,4.5vw,32px);}
+.plaque-text .line.en{font-family:'Lora',serif; font-style:italic; font-weight:400; font-size:17px; color:#EFE6D2; margin-top:8px; display:block;}
+
+/* Cards */
+.card{background:#FBF6E9; border:1px solid rgba(74,46,27,.1); border-radius:14px; padding:22px 26px; margin-top:18px;}
+.card .label{font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--verdigris); margin-bottom:2px; display:block;}
+.card .label-ta{font-family:'Noto Serif Tamil',serif; font-size:15px; font-weight:600; color:var(--walnut); margin-bottom:10px; display:block;}
+.card p{margin:0 0 10px; font-size:18px; line-height:1.7; color:var(--ink);}
+.card p:last-child{margin-bottom:0;}
+.card .source{display:block; margin-top:6px; margin-bottom:10px; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); opacity:.85;}
+
+/* Share row */
+.share-row{display:flex; justify-content:center; align-items:center; gap:12px; margin-top:30px;}
+.share-icon{
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  width:44px; height:44px; border-radius:50%;
+  background:#FBF6E9; border:1px solid rgba(74,46,27,.15); color:var(--verdigris-deep);
+  cursor:pointer; text-decoration:none; transition:transform .15s ease, background .15s ease;
+}
+.share-icon:hover{background:var(--paper-deep); transform:translateY(-2px);}
+.share-icon.share-native{
+  width:auto; padding:0 20px; height:44px; border-radius:24px;
+  background:var(--verdigris-deep); color:var(--paper); border:none;
+  font-family:'Inter',sans-serif; font-size:14px; font-weight:600;
+}
+.share-icon.share-native:hover{background:var(--verdigris);}
+
+/* Nav row */
+.nav-row{display:flex; justify-content:space-between; align-items:center; margin-top:36px; gap:14px;}
+.nav-btn{
+  font-family:'Inter',sans-serif; font-size:14.5px; font-weight:600; color:var(--verdigris-deep);
+  text-decoration:none; display:flex; align-items:center; gap:8px; padding:12px 20px;
+  border:1px solid var(--verdigris-deep); border-radius:24px;
+}
+.nav-btn.next{background:var(--verdigris-deep); color:var(--paper);}
+.nav-btn.disabled{opacity:.3; pointer-events:none;}
+
+/* Mini card */
+.mini{
+  display:block; text-decoration:none; background:var(--paper-deep);
+  border-radius:14px; padding:18px 22px; margin-bottom:14px;
+  border-left:4px solid var(--oak); transition:transform .15s ease;
+}
+.mini:hover{transform:translateX(4px);}
+.mini .card-top-row{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:4px;}
+.mini .n{font-family:'Noto Serif Tamil',serif; font-size:17px; font-weight:700; color:var(--ink);}
+.mini .t-en{font-family:'Lora',serif; font-style:italic; font-size:16px; color:var(--ink-soft); display:block;}
+
+/* Landing paal cards */
+.hero-landing{text-align:center; padding:50px 20px 16px;}
+.hero-landing .mark-large{
+  width:72px; height:72px; border-radius:50%; background:var(--verdigris-deep);
+  display:flex; align-items:center; justify-content:center; color:var(--paper);
+  font-family:'Noto Serif Tamil',serif; font-weight:700; font-size:34px; margin:0 auto 18px;
+}
+.hero-landing h1{font-family:'Noto Serif Tamil',serif; font-size:36px; color:var(--walnut); margin:0 0 12px;}
+.hero-landing p{font-family:'Lora',serif; font-size:18px; color:var(--ink-soft); max-width:640px; margin:0 auto; line-height:1.6;}
+
+.paal-grid{display:grid; gap:20px; margin-top:36px;}
+.paal-card{
+  display:block; text-decoration:none; background:#FBF6E9; border:1px solid rgba(74,46,27,.12);
+  border-radius:16px; padding:28px 26px 24px; transition:transform .2s ease, box-shadow .2s ease;
+}
+.paal-card:hover{transform:translateY(-2px); box-shadow:0 14px 32px -12px rgba(74,46,27,.2);}
+.paal-card h2{font-family:'Noto Serif Tamil',serif; font-size:24px; font-weight:700; color:var(--walnut); margin:0 0 12px;}
+.paal-card .desc{font-family:'Lora',serif; font-size:16px; line-height:1.7; color:var(--ink); margin:0 0 20px;}
+.paal-card .meta-row{display:flex; justify-content:space-between; align-items:center; gap:12px;}
+.paal-card .count-pill{
+  font-family:'Inter',sans-serif; font-size:13.5px; font-weight:600; color:var(--walnut);
+  background:var(--paper-deep); border:1px solid rgba(74,46,27,.15);
+  border-radius:20px; padding:6px 16px;
+}
+.paal-card .enter-cta{
+  font-family:'Inter',sans-serif; font-size:14px; font-weight:700; color:var(--verdigris-deep);
+  border:1px solid var(--verdigris-deep); border-radius:20px; padding:6px 18px;
+  transition:background .15s ease, color .15s ease;
+}
+.paal-card:hover .enter-cta{background:var(--verdigris-deep); color:var(--paper);}
+
+/* Explore controls */
+.explore-controls{margin:24px 0 20px;}
+.explore-search{
+  width:100%; padding:14px 20px; font-family:'Lora',serif; font-size:17px;
+  background:#FBF6E9; border:1px solid rgba(74,46,27,.2); border-radius:12px;
+  color:var(--ink); margin-bottom:16px;
+}
+.explore-search:focus{outline:none; border-color:var(--verdigris); box-shadow:0 0 0 3px rgba(63,93,82,.15);}
+.explore-section-title{font-family:'Inter',sans-serif; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin:14px 0 8px;}
+.explore-chips{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px;}
+.chip,.chip-circuit{
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:600;
+  background:#FBF6E9; border:1px solid rgba(74,46,27,.2); border-radius:20px;
+  padding:7px 16px; cursor:pointer; color:var(--ink); transition:all .15s ease;
+}
+.chip:hover,.chip-circuit:hover{border-color:var(--verdigris); color:var(--verdigris-deep);}
+.chip.active{background:var(--verdigris-deep); color:var(--paper); border-color:var(--verdigris-deep);}
+.chip-circuit.active{background:var(--oak); color:var(--paper); border-color:var(--oak);}
+.explore-count{font-family:'Inter',sans-serif; font-size:14px; font-weight:600; color:var(--ink-soft); margin:16px 0 12px;}
+.explore-empty{font-family:'Lora',serif; font-style:italic; font-size:16px; color:var(--ink-soft); text-align:center; padding:30px 0;}
+
+/* Modals & footer */
+footer.site-footer{text-align:center; padding:54px 24px 24px; font-family:'Inter',sans-serif; font-size:14px; color:var(--ink-soft);}
+footer.site-footer a{color:var(--verdigris-deep); text-decoration:none;}
+.legal-nav{display:flex; justify-content:center; gap:20px; margin:16px 0;}
+.legal-nav a{font-size:14px; font-weight:600; color:var(--ink-soft); text-decoration:underline; text-underline-offset:2px;}
+.legal-nav a:hover{color:var(--verdigris-deep);}
+
+.modal-overlay{display:none; position:fixed; inset:0; z-index:100; background:rgba(43,33,27,.6); align-items:center; justify-content:center; padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal{position:relative; background:var(--paper); border-radius:16px; max-width:600px; width:100%; max-height:80vh; overflow-y:auto; padding:36px 30px 30px; box-shadow:0 30px 60px -20px rgba(0,0,0,.5);}
+.modal-close{position:absolute; top:14px; right:16px; background:none; border:none; font-size:28px; line-height:1; color:var(--ink-soft); cursor:pointer; padding:4px 8px;}
+.modal-body h2{font-family:'Noto Serif Tamil',serif; font-size:24px; color:var(--walnut); margin:0 0 18px;}
+.modal-body p{font-family:'Lora',serif; font-size:16.5px; line-height:1.75; color:var(--ink); margin:0 0 16px;}
+.modal-date{display:block; font-family:'Inter',sans-serif; font-size:13px; color:var(--ink-soft); margin-top:10px;}
+
+@media (max-width:480px){
+  .wrap{padding:0 16px 60px;}
+  .card{padding:18px 18px;}
+  .card p{font-size:17px;}
+  .hero-landing h1{font-size:28px;}
+  .plaque-text .line{font-size:22px;}
+}
