@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iamsaravofficial.com/thirukkural/sitemap.xml
+Sitemap: https://iamsaravofficial.com/factdrop/sitemap.xml
