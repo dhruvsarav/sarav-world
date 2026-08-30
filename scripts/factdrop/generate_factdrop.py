@@ -28,11 +28,22 @@ import json, os, sys, html, argparse, shutil
 from datetime import datetime, timedelta, timezone
 
 # ---------------------------------------------------------------------
-# Config
+# Config & Path Resolution (Cross-Platform / GitHub Actions compatible)
 # ---------------------------------------------------------------------
-SITE_ROOT = "factdrop"                                   # writes to ./factdrop/...
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_FILE = os.path.join(SCRIPT_DIR, "factdrop_facts.json")
+ASSETS_DIR = os.path.join(SCRIPT_DIR, "assets")
+SITE_ROOT = os.path.join(SCRIPT_DIR, "build_factdrop")
 BASE_URL = "https://iamsaravofficial.com/factdrop"
-DATA_FILE = "factdrop_facts.json"
+
+# Auto-detect target repository public directory
+REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
+if os.path.exists(os.path.join(REPO_ROOT, "public")):
+    PUBLIC_FACTDROP_DIR = os.path.join(REPO_ROOT, "public", "factdrop")
+elif os.path.exists(r"D:\Websites\SaravsWorld\public\factdrop"):
+    PUBLIC_FACTDROP_DIR = r"D:\Websites\SaravsWorld\public\factdrop"
+else:
+    PUBLIC_FACTDROP_DIR = os.path.join(SCRIPT_DIR, "public", "factdrop")
 
 IST = timezone(timedelta(hours=5, minutes=30))
 EPOCH = datetime(2026, 1, 1, 11, 11, tzinfo=IST)          # Post #1's exact publish moment
@@ -181,10 +192,10 @@ print(f"[OK] Schedule integrity — {len(facts)} facts, ids/slugs unique, "
 # this by actually screenshotting a page, not by trusting the script's
 # own exit code — screenshot every real visual change, not just once.
 # ---------------------------------------------------------------------
-if not os.path.isdir("assets"):
-    fail("./assets/ (style.css, script.js) not found next to this script.")
-shutil.copytree("assets", f"{SITE_ROOT}/assets", dirs_exist_ok=True)
-print(f"[OK] Copied assets/ -> {SITE_ROOT}/assets/")
+if not os.path.isdir(ASSETS_DIR):
+    fail(f"{ASSETS_DIR} (style.css, script.js, logos, favicons) not found next to this script.")
+shutil.copytree(ASSETS_DIR, os.path.join(SITE_ROOT, "assets"), dirs_exist_ok=True)
+print(f"[OK] Copied {ASSETS_DIR} -> {SITE_ROOT}/assets/")
 
 # ---------------------------------------------------------------------
 # STEP 2 — how many are due, computed TWO independent ways.
@@ -493,8 +504,7 @@ print(f"\n[VERIFIED] {written_fact_files} fact pages == due list == calendar for
 # ---------------------------------------------------------------------
 # Auto deploy build output to public/factdrop
 # ---------------------------------------------------------------------
-PUBLIC_FACTDROP_DIR = r"D:\Websites\SaravsWorld\public\factdrop"
-if os.path.exists(os.path.dirname(PUBLIC_FACTDROP_DIR)):
+if PUBLIC_FACTDROP_DIR:
     os.makedirs(PUBLIC_FACTDROP_DIR, exist_ok=True)
     for root, dirs, files in os.walk(SITE_ROOT):
         rel_path = os.path.relpath(root, SITE_ROOT)
@@ -502,12 +512,13 @@ if os.path.exists(os.path.dirname(PUBLIC_FACTDROP_DIR)):
         os.makedirs(dest_dir, exist_ok=True)
         for f in files:
             shutil.copy2(os.path.join(root, f), os.path.join(dest_dir, f))
-    if os.path.exists("assets"):
+    if os.path.exists(ASSETS_DIR):
         dest_assets = os.path.join(PUBLIC_FACTDROP_DIR, "assets")
         os.makedirs(dest_assets, exist_ok=True)
-        for f in os.listdir("assets"):
-            src_f = os.path.join("assets", f)
+        for f in os.listdir(ASSETS_DIR):
+            src_f = os.path.join(ASSETS_DIR, f)
             if os.path.isfile(src_f):
                 shutil.copy2(src_f, os.path.join(dest_assets, f))
+    shutil.rmtree(SITE_ROOT, ignore_errors=True)
     print(f"\n[OK] Automatically deployed FactDrop build output & assets to {PUBLIC_FACTDROP_DIR}")
 
