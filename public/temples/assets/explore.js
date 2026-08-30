@@ -54,7 +54,9 @@ document.addEventListener('DOMContentLoaded', function () {
     emptyEl.hidden = filtered.length !== 0;
   }
 
-  searchInput.addEventListener('input', render);
+  if (searchInput) {
+    searchInput.addEventListener('input', render);
+  }
 
   if (chipsWrap) {
     chipsWrap.addEventListener('click', function (e) {

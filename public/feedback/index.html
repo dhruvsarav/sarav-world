@@ -1,258 +1,128 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Feedback · Sarav's World</title>
-<meta name="theme-color" content="#07151f" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="stylesheet" href="/legal.css" />
-<style>
-.wall-controls{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 4px}
-.wall-filter{display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.025);color:rgba(232,241,255,.86);font:inherit;font-size:.9rem;cursor:pointer;transition:transform 200ms ease,border-color 200ms ease,background 200ms ease,color 200ms ease}
-.wall-filter:hover{transform:translateY(-2px);border-color:rgba(71,200,255,.32)}
-.wall-filter .count{color:var(--soft);font-size:.78rem}
-.wall-filter[aria-pressed="true"]{border-color:rgba(71,200,255,.5);background:rgba(71,200,255,.09);color:#f6fcff}
-.wall-filter[aria-pressed="true"] .count{color:rgba(232,241,255,.6)}
-.wall-meta{margin:16px 0 0;color:var(--soft);font-size:.86rem;letter-spacing:.02em}
-.wall{columns:3;column-gap:16px;margin-top:20px}
-.tcard{break-inside:avoid;margin:0 0 16px;padding:20px 20px 18px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.025);transition:transform 240ms ease,border-color 240ms ease,background 240ms ease}
-.tcard:hover{transform:translateY(-3px);border-color:rgba(71,200,255,.28);background:rgba(71,200,255,.05)}
-.tcard-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.stars{color:var(--gold);font-size:.9rem;letter-spacing:.14em;white-space:nowrap}
-.tcard-book{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);text-align:right}
-.tcard-title{margin:14px 0 8px;font-size:1.02rem;line-height:1.4;letter-spacing:-.02em;color:var(--text)}
-.tcard-quote{margin:0;color:var(--muted);line-height:1.8;font-size:.95rem}
-.tcard-foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
-.tcard-name{font-size:.94rem;color:rgba(244,248,255,.9)}
-.tcard-where{font-size:.8rem;color:var(--soft)}
-.wall-empty{margin-top:24px;color:var(--muted)}
-.wall-more{display:flex;justify-content:center;margin-top:6px}
-.wall-more button{min-height:44px;padding:0 22px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:rgba(244,248,255,.9);font:inherit;font-size:.95rem;cursor:pointer;transition:transform 200ms ease,border-color 200ms ease}
-.wall-more button:hover{transform:translateY(-2px);border-color:rgba(71,200,255,.3)}
-@media (max-width:980px){.wall{columns:2}}
-@media (max-width:640px){.wall{columns:1}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feedback · Sarav's World</title>
+  <meta name="theme-color" content="#07151f" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/legal.css" />
 </head>
 <body>
-<header class="site-strip" id="top">
-<div class="site-strip-inner">
-<a class="site-brand" href="/">Sarav's World</a>
-<nav class="site-nav" aria-label="Primary">
-<a href="/#about">About</a>
-<a href="/#work">What I Do</a>
-<a href="/#journey">Journey</a>
-<a href="/#apps">Builder</a>
-<a href="/#books">Books</a>
-<a href="/#writing">Writing</a>
-<a href="/#contact">Contact</a>
-</nav>
-</div>
-</header>
-<main class="page-shell">
-<div class="page-inner">
-<section class="content-card fade-load">
-<div class="kicker">Reader Voices</div>
-<h1 class="page-title">Feedback &amp; Testimonials</h1>
-<p class="page-intro">
-Reader reviews from Amazon, blogs, and inboxes — collected across the books. Filter by title and read what people said, in their own words.
-</p>
-<div class="rule"></div>
-<div class="wall-controls" id="wall-controls" role="group" aria-label="Filter testimonials by book"></div>
-<p class="wall-meta" id="wall-meta"></p>
-<div class="wall" id="wall"></div>
-<div class="wall-more" id="wall-more"></div>
-</section>
-<section class="content-card reveal">
-<h2 style="margin:0 0 12px;font-size:1.34rem;letter-spacing:-.03em">Add your voice</h2>
-<p style="margin:0;color:var(--muted);line-height:1.86">If a book, a chapter, a poem, or a page of <em>Sarav's World</em> stayed with you — drop a note. Reader letters are how stories grow.</p>
-<div class="note-row">
-<a class="note-chip" href="mailto:sarav@iamsaravofficial.com?subject=Reader%20feedback">Share your feedback</a>
-<a class="note-chip" href="/book-club/">Join the Book Club</a>
-</div>
-</section>
-<section class="thankyou-card reveal">
-<div class="thankyou-icon">🙏</div>
-<div class="thankyou-label">Thank You</div>
-<h2 class="thankyou-title">Thank you for visiting Sarav's World.</h2>
-<p class="thankyou-copy">
-I hope something here stayed with you — a book, a thought, a memory, or an idea.
-Thoughtful feedback and sincere encouragement both help a writer grow. If a story
-spoke to you, I would be grateful if you shared a note, a reflection, or a testimonial.
-Thank you for reading, and for being part of this journey.
-</p>
-<div class="meta-line">
-<a href="mailto:sarav@iamsaravofficial.com">sarav@iamsaravofficial.com</a>
-<span>Chennai, India</span>
-</div>
-</section>
-</div>
-</main>
-<footer class="site-footer">
-<div class="site-footer-inner" id="footer-nav">
-<div class="footer-story-row">
-<div>
-<h3 class="footer-block-title">Sarav's World</h3>
-<p class="footer-copy">Stories, systems, books, products, and reflections — built across years, roles, and quiet obsessions.</p>
-</div>
-<div>
-<div class="footer-overline">Until the next page</div>
-<p class="footer-right-copy">Thank you for visiting. Hope you enjoyed the books, the stories, and the world behind them.</p>
-</div>
-</div>
-<div class="footer-divider"></div>
-<div class="footer-bottom-row">
-<div class="copyright-line">Copyright © 2009–2026 · Sarav</div>
-<nav class="footer-links" aria-label="Footer navigation">
-<a href="/copyright/">Copyright</a>
-<a href="/privacy-policy/">Privacy</a>
-<a href="/terms/">Terms</a>
-<a href="/fact-sheet/">Fact Sheet</a>
-<a href="/book-club/">Book Club</a>
-<a href="/feedback/" class="current">Feedback</a>
-<a href="/social/">Social</a>
-<a href="mailto:sarav@iamsaravofficial.com">Contact</a>
-</nav>
-<a class="back-top" href="#top">Back to top ↑</a>
-</div>
-</div>
-</footer>
-<script>
-var TESTIMONIALS = [
-{b:"Coffee Date",r:5,n:"Bhavna Gupta",w:"India · 2018",t:"Worth reading",q:"Writing skill and narration of Mr. Saravana is completely admirable. He has all the skills to make you smile and cry. Amazing twists. Book has a perfect pace."},
-{b:"Coffee Date",r:4,n:"Pretty Little Bibliophile",w:"India · 2018",t:"Read and cherish this tale of love",q:"The plot is very compelling and overall hooks the reader until the very end. I admit that I myself completed this in one seating. The themes of friendship, love, and jealousy etc., are very well explored."},
-{b:"Coffee Date",r:5,n:"Simran sardana",w:"India · 2018",t:"A great book",q:"Whenever I read his books I feel like there's a movie being played in front of me. This time, I read COFFEE DATE. The way he writes it, the way he explains each and every moment spent between the couple."},
-{b:"Coffee Date",r:5,n:"Jayanta Kumar Sarkar",w:"India · 2017",t:"An amazing read",q:"The narrative renders a good feeling for its free flowing mood and yes, the romance is electric. The conversations between Isha and Sid were charming and unexpected, and the chemistry reminded me of Erich Segal's Love story."},
-{b:"Coffee Date",r:5,n:"Amazon Customer",w:"India · 2017",t:"Feel good, super breezy read",q:"The mesmerizing narrative will help you visualize the happenings and the simple English will not make you run for a dictionary. You could easily finish this book within a couple of days."},
-{b:"Coffee Date",r:4,n:"Sidharth",w:"India · 2018",t:"Short crisp read",q:"This book got a very good plot. The twist at the end of the book was amazing. Characters were developed very beautifully. Pace of the book was perfect not too slow and not too fast."},
-{b:"Coffee Date",r:4,n:"Ayush Bose",w:"India · 2017",t:"Addictive story line",q:"The plot has a balanced mix of thriller, surprise and shock elements which surely would keep you in an awe as you read page after page. The author has creatively begin each chapter with a quote-like phrase which instill excitement."},
-{b:"Coffee Date",r:4,n:"Vidhya thakkar",w:"India · 2018",t:"As addictive as the title is",q:"The author has beautifully plotted each and every character. I loved the conversations between Isha and Sid. It was like living your dream Love story. I also loved the poems that Sid recited for Isha."},
-{b:"Coffee Date",r:5,n:"Jeenia Nanda",w:"India · 2018",t:"As addictive as coffee",q:"The thing i liked the most is 'the short chapters' that too ending with a suspense forcing me to read the next one. The flow of the story is good, language is easy to understand."},
-{b:"Coffee Date",r:4,n:"Mythri Gaurav",w:"India · 2018",t:"A lot can happen over a coffee",q:"Characters are very good. Plot is simple with an unexpected twist at the end is amazing. A must read book which is so much interesting."},
-{b:"Coffee Date",r:5,n:"SAIKRISHNA G.",w:"India · 2017",t:"More caffeine to your love life",q:"Worth the buy. Good book. In fact it tingled the old lover boy in me. I had never read a book sooooooo fast. It was like a movie, very interesting."},
-{b:"Coffee Date",r:4,n:"Krishna",w:"India · 2017",t:"For all coffee lovers and everyone else",q:"Every chapter is very light and fresh. The author has kept the language simple. So everything just flows and you will be hooked till the last page and even more."},
-{b:"Coffee Date",r:5,n:"Rain",w:"United States · 2018",t:"I loved his writing style always",q:"I must say he has matured his writing skills so much in this book. His narration of romance is eclectic and he has made the characters come alive."},
-{b:"Coffee Date",r:5,n:"Swati S",w:"India · 2018",t:"Amazing read",q:"The narration is engaging and happy endings are simply treats to mind. The length of individual chapters has been kept short and that's what make it interesting."},
-{b:"Coffee Date",r:5,n:"AverageOnlineBuyer",w:"Germany · 2017",t:"Enjoyable coffee time read",q:"I m not a big fan of Romance plots, but still this book was a page turner for me. All the characters are well defined."},
-{b:"Coffee Date",r:3,n:"Ankita Arora",w:"India · 2018",t:"This one is for romance lovers",q:"The love-story of Sid and Isha is not unique, but its simple, understated and realistic, and, sometimes that's all you need!"},
-{b:"Letters to My Son",r:5,n:"Team ARL",w:"India · 2018",t:"Must read",q:"Something very magical can happen when you read a good book. I felt that magic in me after reading this book. It makes me realize what true love is, as it demands nothing but just to be expressed."},
-{b:"Letters to My Son",r:5,n:"Ronita Banerjee",w:"India · 2018",t:"A perfect blend of love and emotions",q:"The story though short captures brilliantly a fathers' complete devotion to his son. This is a must read story for everyone, mind it everyone."},
-{b:"Letters to My Son",r:5,n:"Ayush Bose",w:"India · 2018",t:"Connects straight to reader's heart",q:"It's a plain simple story but the one that connects straight to reader's heart. The beautiful bonding depicted between the father and son in Letters to My Son can not be better than this."},
-{b:"Letters to My Son",r:5,n:"Nikesh Jain",w:"India · 2018",t:"It touched my soul",q:"Every poem. Every letter are so heart touching and was so nicely written that I felt this is really going on in front of me. For the time I was reading I forgot I was reading a story."},
-{b:"Letters to My Son",r:5,n:"Amazon Customer",w:"India · 2019",t:"No words",q:"This book has a bundle of emotions. In some places you will cry, you will laugh, you will feel loved, you will feel loneliness etc. The author poured straight from his heart."},
-{b:"Letters to My Son",r:5,n:"Nandhini Srinivasan",w:"India · 2025",t:"Beautifully penned",q:"Letters to My Son gently reminds us of the deep love and sacrifices our parents make. Sarav captures this emotional bond so well—it's relatable, heartfelt, and stays with you."},
-{b:"Letters to My Son",r:5,n:"Amazon Customer",w:"India · 2025",t:"Great read",q:"The author beautifully portrays the deep connection between a father and son. Their relationship, as it evolves, is crafted with genuine emotion. It's a touching story about love and change, simply and powerfully told."},
-{b:"Letters to My Son",r:5,n:"Fadila Zainaba Kurickal",w:"India · 2018",t:"Short yet strong read",q:"The story holds a suspense at the end. It was a good and short read. This book is a must read for everyone."},
-{b:"Letters to My Son",r:4,n:"Mani",w:"India · 2018",t:"I am so glad that I found it",q:"This is such a heart warming read. I finished reading it in one go since the book is really small. Nothing extra was written which I like. A great read that I will cherish."},
-{b:"Letters to My Son",r:4,n:"Pari",w:"India · 2018",t:"Short but sweet",q:"With realistic characters and a swift narration, this book was a quick read that ended with a dramatic twist! The author, through the use of the letters, makes the readers realize the prize of parenthood."},
-{b:"Letters to My Son",r:4,n:"Palvi",w:"India · 2018",t:"Light, heartwarming and beautiful read",q:"The storyline of book is very unique and refreshing. The love relationships between Nirav and Mirnalini is described beautifully."},
-{b:"Letters to My Son",r:5,n:"shivani.rohella",w:"India · 2018",t:"An emotional masterpiece",q:"The author has penned down a compassionate and heart warming story. Each instance is filled with emotions and you will feel the happiness and pain of the characters."},
-{b:"Letters to My Son",r:4,n:"Monisha Vishwanath",w:"India · 2018",t:"Happy reading",q:"How beautifully explained is the pain of parenthood, definitely to read and comprehend and relate. Every letter is a pleasure to read as it comes with a bundle of surprises and sweet memories and more insight, wisdom and emotional intelligence."},
-{b:"Letters to My Son",r:5,n:"Swati Sarangi",w:"India · 2018",t:"Different shades of emotion",q:"This one is as engaging as other ones written by the author. I enjoyed reading it and was fascinated by the way subtle emotions between a single father and son have been brought out."},
-{b:"Letters to My Son",r:4,n:"Pretty Little Bibliophile",w:"India · 2018",t:"A review of Letters to my son",q:"It is a beautiful piece of literature that has portrayed how love heals all wounds and how, in our everyday life with its busy and hectic overtures, love is the one thing that binds us all to the people in our lives."},
-{b:"Letters to My Son",r:5,n:"Aishik birbanshi",w:"India · 2018",t:"I really enjoyed reading it",q:"The climax of the story will surprise everyone, which will represent the blooming of a rose with thorns. The love of a Dad for his son, the untold emotion of a parent has finally come to words."},
-{b:"Are You Game?",r:5,n:"Simran sardana",w:"India · 2019",t:"A must read",q:"This one's an interesting read because I've read about such a concept for the first time. This book is about self-realization, friendship, love for the people around us and self-love."},
-{b:"Are You Game?",r:5,n:"Santa",w:"India · 2019",t:"A monumental work with a greater destiny",q:"Are You Game explores masculinity and femininity in a modern language with classical philosophy hidden underneath. Pure innovation and a masterpiece."},
-{b:"Are You Game?",r:4,n:"Jeenia Nanda",w:"India · 2019",t:"Short, simple and enlightening",q:"I loved the book as it holds a beautiful message to the world. It is enlightening in a way as it is about eradicating the negatives leaving a positive inpact on people and their lives."},
-{b:"Are You Game?",r:5,n:"Revathy Rao",w:"India · 2019",t:"Highly recommended",q:"Short and bold subject. Interestingly narrated. Woman. Love. Respect. Protect. It reflects the mindset of the author and what a great soul you are!"},
-{b:"Are You Game?",r:4,n:"Pretty Little Bibliophile",w:"India · 2019",t:"A 4-star read for sure",q:"Are you Game? Was a brilliant concept of a novel. In a lot of ways, this book teaches us the perils with the various bad habits we humans cultivate, without thinking of our actions."},
-{b:"Are You Game?",r:4,n:"Anusha",w:"India · 2019",t:"Strong social message",q:"A simple and a thoughtful story that will make you rethink the kind of mindset we have, sending out a strong social message."},
-{b:"Orange Orchard",r:5,n:"Dinesh Kumar",w:"India · 2019",t:"Another good book by an author",q:"The cover of the book is nice with Beautifully designed background. The narration was very nice. Author has written book in such a way that we can understand feel the thriller throughout the story."},
-{b:"Are You Game?",r:5,n:"Vidhya Saravanakumar",w:"India · 2019",t:"A sensational book on a reality show",q:"The book addresses some of the real issues that women face in today's world and men struggles to overcome. I really loved Simi and Nirav's love story. Kudos to you for penning this wonderful masterpiece."},
-{b:"Are You Game?",r:4,n:"Kanwarpal Singh",w:"India · 2019",t:"Say no to body shaming",q:"Author show various aspects of life that people feel in the game and the one who quits. This is unique coffee table book and i suggest tobacco abusers to try this book for your betterment."},
-{b:"Are You Game?",r:3,n:"Animesh Ganguly",w:"India · 2019",t:"Crisp, fast and engaging",q:"The ideas it tries to bring out are extremely relevant and necessary, particularly the idea about objectifying women's sexuality. Overall, I like reading your stories. They are fast, simple and lucid in nature, so it helps more and more people read which is great for a writer."},
-{b:"Are You Game?",r:4,n:"Vinay Leo (artofleo)",w:"India · 2019",t:"Interesting change of genre",q:"There's a sense of thrill because of the game show and the challenges involved, there's a sense of romance going on in two threads and even a different angle with the backstory to the challenge itself. As always, Sarav keeps the language simple."},
-{b:"Are You Game?",r:5,n:"Sweetlin Peter",w:"India · 2019",t:"A strong message",q:"The author wrote it in simple language so anyone can read easily. He conveyed a STRONG MESSAGE through this book. Just read it. It will create some impact on you."},
-{b:"Are You Game?",r:4,n:"Rohini Vijayakumar",w:"India · 2019",t:"A different game story with a good motive",q:"Even though it looks like an easy task when many people left the show, I realized that every task that seems to be easy is also difficult. The end was quite awesome."},
-{b:"Are You Game?",r:5,n:"Revathi S",w:"India · 2019",t:"Sema bold topic",q:"Seriously, I dint expect this subject from you. hats off da. Sooperb story. Sema bold topic. I hope everyone looks at woman the way you see them. Really felt happy that you are so broad minded."},
-{b:"Are You Game?",r:4,n:"Anusha Sridharan",w:"India · 2019",t:"A social message like Sarav's other books",q:"Towards the end I understood the whole point. This story too had a social message like Sarav's other books! Wish him well and keep writing with more interesting and put your thoughtful messages across."},
-{b:"Raneet The Gift",r:5,n:"Bommaraju Mahathi Sharma",w:"India · 2019",t:"An inspirational story",q:"It's truly like a mirror to show how a society can be a great support to those victims. Cheers to the author Mr. Sarav."},
-{b:"Raneet The Gift",r:5,n:"Jayanta Kumar Sarkar",w:"India · 2019",t:"Wonderful read",q:"Raneet the Gift is a beautiful short read for absolutely anyone planning to Rise above struggles. It's not what happens to us that makes us, but what we make out of it! Truly inspiring!"},
-{b:"Raneet The Gift",r:5,n:"AverageOnlineBuyer",w:"India · 2019",t:"Inspirational read",q:"Great read for ppl in a hurry. I liked the part where the author narrated how social media take a 180° turn in public and private chat — very true! The story was inspiring!"},
-{b:"Raneet The Gift",r:5,n:"Shweta Sinha",w:"India · 2019",t:"Inspiring",q:"Amazing and gripping read! Very inspiring!"},
-{b:"The First Call",r:5,n:"Dhivya Balaji",w:"India · 2020",t:"Intrigue and love in a thrilling tale",q:"An interesting tale interwoven with all the elements of a page-turner, this book might just be what you need in times such as these! As usual, Sarav captures the essence of the story and knows the pulse of his readers."},
-{b:"The First Call",r:5,n:"Bommaraju Mahathi Sharma",w:"India · 2020",t:"Celebrating true love",q:"This book makes u feel relieving of ur memories with ur loved ones. It makes u see the positive side of this pandemic situation."},
-{b:"The First Call",r:4,n:"Anusha",w:"India · 2020",t:"Love story",q:"I like the way author justified of how this story isn't really about the pandemic but the love Ram and Leela had for each other and the strong bond that they shared."},
-{b:"Sixteen & Half",r:5,n:"Nikesh Jain",w:"India · 2018",t:"Best collection of stories",q:"Every story was so well written and narrated that i couldn't come out of it. It feels like this are the memories I had."},
-{b:"Sixteen & Half",r:5,n:"indiauthor.in",w:"India · 2018",t:"An engaging collection of short stories",q:"Author gave life to paper with the help of the imaginary character, Sid. If you love reading stories of different genre and keep you glued to the seat, this is the book for you."},
-{b:"Sixteen & Half",r:5,n:"Balaji Mohan",w:"United States · 2017",t:"16 & half different emotions in less than 4hrs",q:"This book is perfect for people who wants to make reading as a habit. All the stories are short and sweet and it provides you the feelings what author promised."},
-{b:"Love and Honey",r:5,n:"Simran sardana",w:"India · 2018",t:"One of his best books",q:"This one is basically a collection of short poems, based on love and honey and its experiences. It is short but cute. I call it my coffee read."},
-{b:"Love and Honey",r:5,n:"indiauthor.in",w:"India · 2018",t:"A perfect poetic treat",q:"love and honey, is a perfect poetry treat! Author has put his heart and soul in penning down a poetry treat."},
-{b:"Love and Honey",r:5,n:"Nikesh Jain",w:"India · 2018",t:"Poems one can love",q:"These are beautiful collection of poem which makes one to fall for poetry and to fall in love again. Must read."},
-{b:"Love and Honey",r:3,n:"Mani",w:"India · 2018",t:"Simple and beautiful",q:"The poems in this book are simple and beautiful. The language is pretty simple which helps the readers to understand the poems better."},
-{b:"Orange Orchard",r:5,n:"indiauthor.in",w:"India · 2019",t:"He proves his versatility yet again",q:"Sarav is a beautiful soul and a lovely author. He proves his versatility yet again with a different story. I admire the way he narrated the story holding the attention to the last minute. Highly recommended to all book lovers."},
-{b:"Orange Orchard",r:5,n:"Vidhya Saravanakumar",w:"India · 2019",t:"Strong messages to the society",q:"Through Orange Orchard Sarav conveys strong messages to the society, especially for Bikers and Bypass Riders. Truly admire your writing style. Keep writing!"},
-{b:"Orange Orchard",r:4,n:"Anusha Sridharan",w:"India · 2019",t:"A quick read with a social message",q:"Sarav has a special talent of weaving his stories and books together with his characters. A quick read, with a social message, carefully putting the point across."},
-{b:"Orange Orchard",r:5,n:"Rohini Vijayakumar",w:"India · 2019",t:"Recommended short read",q:"A simple short and beautiful read. It was quite like a thriller story but ended up beautifully. The written style is easy and not hard to comprehend. I liked it."},
-{b:"Orange Orchard",r:4,n:"Kanwarpal Singh",w:"India · 2019",t:"Revenge, redemption, love",q:"This is story of revenge, redemption, love, guarded angels and mysterious accidents that are happening in the city. And story is full of emotions."},
-{b:"Orange Orchard",r:5,n:"Sathyavathy",w:"India · 2019",t:"Crisp and clear",q:"The concept was crisp and clear. The social message was properly conveyed. And the interrelated storyline with the author's another work coming in between this story was good and worked well!"},
-{b:"A Wild Wish",r:4,n:"Tanu Sharma",w:"India · 2019",t:"An exciting read",q:"It was an exciting read. The story kept me glued till the end. Both the characters are crafted well. Waiting for the next release."},
-{b:"Coffee Date",r:3,n:"Tanu Sharma",w:"India · 2019",t:"Amazingly beautiful",q:"The story is amazingly beautiful. I loved it and would recommend to all. I am waiting for the next series."},
-{b:"Coffee Date",r:3,n:"Swapna Peri",w:"India · 2019",t:"Unique storyline",q:"Unique storyline with some interesting narration."},
-{b:"Coffee Date",r:5,n:"Monika Gupta",w:"India · reader interview",t:"Uniquely wonderful",q:"Love is that special feeling that makes you cry and smile at the same time. I can't express that feeling in words and i guess nobody can! But love makes you feel special."},
-{b:"Coffee Date",r:5,n:"Prasanna Reddy Dosala",w:"India · 2018",t:"Silent pleasure from inside",q:"jst completed coffe date.. loved it. first book from u that i read it. having some silent pleasure from inside after so many days."},
-{b:"Letters to My Son",r:4,n:"Tanu Sharma",w:"India · 2019",t:"A good read for me",q:"This story is purely based on a Son and Father's relationship. The emotional support and bond is superbly mentioned."},
-{b:"Letters to My Son",r:5,n:"Anusha Sridharan",w:"India · 2019",t:"A warm read",q:"A warm read. Would definitely bring smile to your face. Last letter was particularly was very touching! Keep Writing Sarav."},
-{b:"Letters to My Son",r:4,n:"Sidharth",w:"India · 2018",t:"Sweet plot line",q:"I really loved the way how the author showed the bond of a father and son which was very rare these days. This book is a very short read, fast paced, it has a very adorable plot line and is a must read."},
-{b:"Letters to My Son",r:3,n:"Sushma Rani",w:"India · 2018",t:"A pleasing good read",q:"The book highlights on the father-son bonding. And more than a story, because is about feelings, suffering, and love! Its a quick read too!"},
-{b:"Reader Notes",r:5,n:"Parvathy Satheesh",w:"Facebook message",t:"You are like an inspiration",q:"I just love your writings. I mean I too wish some day I can be a writer like you. You are like an inspiration."},
-{b:"Reader Notes",r:5,n:"Surabhi",w:"Instagram · book launch",t:"You inspire us",q:"You inspire us that we can dream and achieve those dreams, no excuses whatsoever can come in the way! Blessed to have seniors like you!"},
-{b:"Reader Notes",r:5,n:"A reader",w:"Instagram message",t:"That's the reason I smile all day",q:"And I kind off pass my days reading your books. And they make me fall in love with your writing. And that's the reason I smile all day."},
-{b:"Reader Notes",r:5,n:"A reader",w:"Instagram message",t:"The undisputed king of romance",q:"seriously, the book drove me crazy too. I was constantly sitting on my chair where i read my books and didn't get up until it got completed. I really loved it. You seriously are the undisputed king of romance on the blog-o-sphere."},
-{b:"Coffee Date",r:4,n:"Monika Gupta",w:"India · 2018",t:"You smile, I smile — love",q:"it is an amazingly written short love story by saravana kumar murugan. It is based on true love and loyalty. I know u will write so many good books and my best wishes are always with you."},
-{b:"Orange Orchard",r:5,n:"Dipak",w:"WhatsApp · 2019",t:"Simple words which anyone can understand",q:"i read this book.. this is really awesome, simple words which anyone can understand. I would love to read your more books."},
-{b:"Orange Orchard",r:4,n:"A reader",w:"WhatsApp · 2019",t:"Improving by the day",q:"I read orange orchid yesterday on my return flight.. your writing style is improving by day. It was very good. It was regrettably short. I wish it was little more longer."},
-{b:"Orange Orchard",r:5,n:"A reader",w:"WhatsApp · 2019",t:"As if we are right there",q:"I have read many of your writings and all unique in its own way. Orange orchard too is unique that make us picturize the whole story as if we r right there. Story is awsm and message is gud.. I luved it."},
-{b:"Orange Orchard",r:5,n:"A reader",w:"WhatsApp · 2019",t:"Amazing work",q:"I loved the pure unconditional love between simi and Nirav. Amazing work sir. I wish you to do write such confounding stories more and more, and also thanks for giving me this opportunity to read this amazing work."},
-{b:"Raneet The Gift",r:5,n:"Anusha Sridharan",w:"WhatsApp · 2019",t:"Beautiful and inspiring",q:"Raneet The Gift!!! This was book was Awesome. Beautiful & inspiring story, I liked it very much. Good message and Happy Ending!! Thanks Boss for giving us such a great book!!"},
-{b:"Letters to My Son",r:5,n:"A reader",w:"WhatsApp",t:"A roller coaster of emotions",q:"it's like roller coaster of emotions. the unconditional love between father and son is amazing. in short I loved it and thanks to you for giving me a chance to read this. I wish u to do even more great works ahead."},
-{b:"Letters to My Son",r:5,n:"Gayathri (Uniquewr_iter)",w:"Wattpad · serialised",t:"One of the best stories I've ever read",q:"each words and each lines u are writing in the story gives me heart touched feeling. This story will always be in my heart. It was such a rollercoaster ride with full of different emotions. I read it in one go."},
-{b:"Kadavul Setting",r:5,n:"Suhashini",w:"India · 2021",t:"Believe in the universe",q:"But as usual Mr. Twister, being true to his name, took it through a different route. An example of proper Kadavul Setting and a simple way of saying belive in universe!!! Kudos to our very own Authoreyyyyy."},
-{b:"Kadavul Setting",r:5,n:"Shivani",w:"Instagram message",t:"You just killed it",q:"After reading each chapters you are putting some bombs in readers mind. Generating that curiosity in readers was the success of an author. You are an excellent writer and the flow too was excellent as the author. Like your name, I believe in twists."},
-{b:"Kadavul Setting",r:5,n:"Iniya Meenakshi",w:"Wattpad",t:"To the core",q:"When I read the first chapter I liked it..and when I proceeded to the further chapters I just really loved it ...TO THE CORE!!!! I literally fell im luv with ur words and story line."},
-{b:"Kadavul Setting",r:5,n:"Suha Balasubramaniam",w:"Instagram message",t:"Twister for a reason",q:"Twister for a reason and trust me when I say this... I have never been this much into any one particular writer to follow all their works."},
-{b:"Kadavul Setting",r:5,n:"Vidhya Saravanakumar",w:"Wattpad",t:"Held to the last word",q:"You made sure to hold the readers attention till the very last word you wrote! And I'm super glad that you said the magical thread becomes magical with love!"},
-{b:"Kadavul Setting",r:5,n:"Richa Jain",w:"Wattpad",t:"Step by step their bond grows",q:"And the chemistry you are creating between ashwin and sivaangi is so amazing.. Step by step their bond becoming more stronger.. I m so happy with that flow."},
-{b:"Kadavul Setting",r:5,n:"A reader (techy.organism)",w:"Instagram message",t:"A brilliant writer",q:"It's getting interesting day by day. loved it and the flow was too good! My curiosity level too increasing. Your a brilliant writer!"},
-{b:"Kadavul Setting",r:5,n:"Mubashi",w:"Instagram message",t:"Loved the story in whole",q:"Following your books since #ASHAANGI = Ashok and Tangi. Love your books bro. I recently completed your book \"Kadavul Setting\". I really loved the story in whole. I liked the plot of that story."},
-{b:"Ashaangi",r:5,n:"Zahidha",w:"Instagram story",t:"Just an amazing story",q:"I was thoroughly enjoyed the chapters. It is really admirable.. thoughts and ideas are simple, clear language that's quickly and easily understood by others. Eagerly waiting for your next chapters."},
-{b:"Ashaangi",r:5,n:"A reader (maaya.nathi.fiction)",w:"Instagram comment",t:"A spine chilling experience",q:"Its exactly a spine chilling experience... A roller coaster of emotions. A start can't be better than this."},
-{b:"Ashaangi",r:5,n:"A reader (mprabahar2490)",w:"Instagram comment",t:"The best start for a thriller",q:"This is the best start for a thriller, it is mind blowing, the narration is pppaaaaah vera level, waiting for next."},
-{b:"Ashaangi",r:5,n:"A reader (shalini_2903)",w:"Instagram comment",t:"Like a mysterious thriller movie",q:"it's very interesting like watching a mysterious thriller movie, eagerly waiting for Friday 7 pm."},
-{b:"Ashaangi",r:5,n:"A reader",w:"Instagram message",t:"Worth a web series",q:"Story is really thrilling and amazing. billion dollars worth for web series. And so much twists makes to sit at the edges of the seat. Tangi's emotional and love is so blissful."},
-{b:"Ashaangi",r:5,n:"A reader",w:"Instagram message",t:"Her strength to never give up",q:"Wonderful writing!! The intro for female lead \"Tangi\" and the female antagonist as per the plot was really interesting! Really liked how the negative character is also shaping up!"}
-];
-(function(){
-var wall=document.getElementById("wall"),controls=document.getElementById("wall-controls"),meta=document.getElementById("wall-meta"),more=document.getElementById("wall-more");
-var books=[];TESTIMONIALS.forEach(function(t){if(books.indexOf(t.b)<0)books.push(t.b)});
-var active="All",step=15,shown=step;
-function stars(n){return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
-function counts(b){return b==="All"?TESTIMONIALS.length:TESTIMONIALS.filter(function(t){return t.b===b}).length}
-function renderControls(){
-  controls.innerHTML=["All"].concat(books).map(function(b){
-    return '<button class="wall-filter" type="button" data-book="'+b+'" aria-pressed="'+(b===active)+'">'+b+' <span class="count">'+counts(b)+'</span></button>';
-  }).join("");
-  controls.querySelectorAll(".wall-filter").forEach(function(btn){
-    btn.addEventListener("click",function(){active=btn.dataset.book;shown=step;renderControls();render()});
-  });
-}
-function render(){
-  var list=active==="All"?TESTIMONIALS:TESTIMONIALS.filter(function(t){return t.b===active});
-  var slice=list.slice(0,shown);
-  wall.innerHTML=slice.map(function(t){
-    return '<article class="tcard"><div class="tcard-top"><div class="stars" aria-label="'+t.r+' out of 5">'+stars(t.r)+'</div><div class="tcard-book">'+t.b+'</div></div>'+
-    '<h3 class="tcard-title">'+t.t+'</h3><p class="tcard-quote">'+t.q+'</p>'+
-    '<div class="tcard-foot"><span class="tcard-name">'+t.n+'</span><span class="tcard-where">'+t.w+'</span></div></article>';
-  }).join("");
-  meta.textContent="Showing "+slice.length+" of "+list.length+(active==="All"?" reader notes":" notes for "+active);
-  more.innerHTML=list.length>shown?'<button type="button">Show more notes</button>':"";
-  if(list.length>shown)more.querySelector("button").addEventListener("click",function(){shown+=step;render()});
-}
-renderControls();render();
-if(!("IntersectionObserver" in window)){document.querySelectorAll(".reveal").forEach(function(el){el.classList.add("is-visible")});return}
-var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("is-visible");io.unobserve(e.target)}})},{threshold:.18,rootMargin:"0px 0px -10% 0px"});
-document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});
-})();
-</script>
+  <header class="site-strip" id="top">
+    <div class="site-strip-inner">
+      <a class="site-brand" href="/">Sarav's World</a>
+      <nav class="site-nav" aria-label="Primary">
+        <a href="/#about">About</a>
+        <a href="/#work">What I Do</a>
+        <a href="/#journey">Journey</a>
+        <a href="/#apps">Builder</a>
+        <a href="/#books">Books</a>
+        <a href="/#writing">Writing</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell">
+    <div class="page-inner">
+      <section class="content-card fade-load">
+        <div class="kicker">Reader Voices</div>
+        <h1 class="page-title">Feedback &amp; Testimonials</h1>
+        <p class="page-intro">
+          Every kind note, screenshot, and reader reflection from the last decade is being
+          gathered into one place. The wall of voices below is still being assembled — the
+          best ones, the funny ones, the ones that made an author keep going.
+        </p>
+        <div class="rule"></div>
+
+        <section class="legal-section reveal">
+          <h2>While the wall is being built</h2>
+          <p>
+            If a book, a chapter, a poem, or a page of <em>Sarav's World</em> stayed with you —
+            drop a note. Reader letters are how stories grow.
+          </p>
+          <div class="note-row">
+            <a class="note-chip" href="mailto:sarav@iamsaravofficial.com?subject=Reader%20feedback">Share your feedback</a>
+            <a class="note-chip" href="/book-club/">Join the Book Club</a>
+          </div>
+        </section>
+
+        <section class="legal-section reveal">
+          <h2>What's coming here</h2>
+          <ul>
+            <li>A scrollable wall of real reader screenshots, notes, and testimonies.</li>
+            <li>Filters by book — pick a title, read what people said.</li>
+            <li>A way to send your own note that goes straight to Sarav.</li>
+          </ul>
+          <div class="note-row">
+            <span class="note-chip">Coming soon</span>
+            <span class="note-chip">100+ reader notes being curated</span>
+          </div>
+        </section>
+      </section>
+      <section class="thankyou-card reveal">
+        <div class="thankyou-icon">🙏</div>
+        <div class="thankyou-label">Thank You</div>
+        <h2 class="thankyou-title">Thank you for visiting Sarav's World.</h2>
+        <p class="thankyou-copy">
+          I hope something here stayed with you — a book, a thought, a memory, or an idea.
+          Thoughtful feedback and sincere encouragement both help a writer grow. If a story
+          spoke to you, I would be grateful if you shared a note, a reflection, or a testimonial.
+          Thank you for reading, and for being part of this journey.
+        </p>
+        <div class="meta-line">
+          <a href="mailto:sarav@iamsaravofficial.com">sarav@iamsaravofficial.com</a>
+          <span>Chennai, India</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-inner" id="footer-nav">
+      <div class="footer-story-row">
+        <div>
+          <h3 class="footer-block-title">Sarav's World</h3>
+          <p class="footer-copy">Stories, systems, books, products, and reflections — built across years, roles, and quiet obsessions.</p>
+        </div>
+        <div>
+          <div class="footer-overline">Until the next page</div>
+          <p class="footer-right-copy">Thank you for visiting. Hope you enjoyed the books, the stories, and the world behind them.</p>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom-row">
+        <div class="copyright-line">Copyright © 2009–2026 · Sarav</div>
+        <nav class="footer-links" aria-label="Footer navigation">
+        <a href="/copyright/">Copyright</a>
+        <a href="/privacy-policy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+        <a href="/fact-sheet/">Fact Sheet</a>
+        <a href="/book-club/">Book Club</a>
+        <a href="/feedback/" class="current">Feedback</a>
+        <a href="/social/">Social</a>
+          <a href="mailto:sarav@iamsaravofficial.com">Contact</a>
+        </nav>
+        <a class="back-top" href="#top">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    (function () {
+      if (!("IntersectionObserver" in window)) {
+        document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-visible"));
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.18, rootMargin: "0px 0px -10% 0px" });
+      document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    })();
+  </script>
 </body>
 </html>
