@@ -1,23 +1,62 @@
 (function () {
-  // ---- native share + copy link (existing) ----
+  // ---- Clipboard Helper (handles secure & non-secure / file:// contexts) ----
+  function copyToClipboard(text, onSuccess) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(onSuccess).catch(function () {
+        fallbackCopy(text, onSuccess);
+      });
+    } else {
+      fallbackCopy(text, onSuccess);
+    }
+  }
+
+  function fallbackCopy(text, onSuccess) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    ta.style.top = "-9999px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    try {
+      var ok = document.execCommand("copy");
+      if (ok && onSuccess) onSuccess();
+    } catch (e) {
+      console.warn("Fallback copy failed", e);
+    }
+    document.body.removeChild(ta);
+  }
+
+  // ---- native share + copy link ----
   var nativeBtn = document.getElementById("share-native");
   if (nativeBtn && navigator.share) {
     nativeBtn.hidden = false;
     nativeBtn.addEventListener("click", function () {
       navigator.share({
         title: "Fact Drop",
-        text: nativeBtn.dataset.text,
-        url: nativeBtn.dataset.url
+        text: nativeBtn.dataset.text || document.title,
+        url: nativeBtn.dataset.url || window.location.href
       }).catch(function () {});
     });
   }
+
   var copyBtn = document.getElementById("share-copy");
   if (copyBtn) {
     copyBtn.addEventListener("click", function () {
-      navigator.clipboard.writeText(copyBtn.dataset.url).then(function () {
-        var original = copyBtn.textContent;
-        copyBtn.textContent = "Copied!";
-        setTimeout(function () { copyBtn.textContent = original; }, 1500);
+      var url = copyBtn.dataset.url || window.location.href;
+      copyToClipboard(url, function () {
+        copyBtn.classList.add("copied");
+        var labelEl = copyBtn.querySelector(".btn-label");
+        var original = labelEl ? labelEl.textContent : copyBtn.textContent;
+        if (labelEl) labelEl.textContent = "Copied!";
+        else copyBtn.textContent = "Copied!";
+        setTimeout(function () {
+          copyBtn.classList.remove("copied");
+          if (labelEl) labelEl.textContent = original;
+          else copyBtn.textContent = original;
+        }, 1500);
       });
     });
   }

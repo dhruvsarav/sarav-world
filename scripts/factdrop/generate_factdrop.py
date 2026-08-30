@@ -1,27 +1,38 @@
 """
 generate_factdrop.py — builds iamsaravofficial.com/factdrop
 
-Can be run locally:
-    python scripts/factdrop/generate_factdrop.py
-Or automatically via GitHub Actions every Thursday.
+Run offline, on your machine:
+    python3 generate_factdrop.py
+    git add public/factdrop
+    git commit -m "Fact Drop: weekly build"
+    git push
+Cloudflare Pages is git-connected to this repo — push = live. No GitHub
+Action, no API tokens, nothing else to configure.
 
 Preview a future week without publishing anything (dry run):
-    python scripts/factdrop/generate_factdrop.py --as-of 2026-09-10
+    python3 generate_factdrop.py --as-of 2026-09-10
+
+Design note — the one thing this script does that generate_site.py (Thirukkural)
+never had to: Thirukkural is a fixed 1330-item corpus, no publish dates, so a
+count mismatch there could only come from a generation bug. FactDrop adds a
+whole new failure class — the schedule itself can drift from the calendar.
+The fix isn't "check the count matches" bolted on after the fact — it's that
+publish_date is DERIVED from each fact's position in the list (post N is
+always exactly N-1 weeks after post 1), not hand-typed and trusted. The JSON
+still carries a human-readable publish_date field so you can eyeball it while
+writing, but this script verifies it against the formula and refuses to build
+if it's wrong, rather than silently shipping a mis-scheduled site.
 """
 
 import json, os, sys, html, argparse, shutil
 from datetime import datetime, timedelta, timezone
 
 # ---------------------------------------------------------------------
-# Config & Path Resolution
+# Config
 # ---------------------------------------------------------------------
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-REPO_ROOT = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
-
-SITE_ROOT = os.path.join(REPO_ROOT, "public", "factdrop")
+SITE_ROOT = "factdrop"                                   # writes to ./factdrop/...
 BASE_URL = "https://iamsaravofficial.com/factdrop"
-DATA_FILE = os.path.join(SCRIPT_DIR, "factdrop_facts.json")
-ASSETS_DIR = os.path.join(SCRIPT_DIR, "assets")
+DATA_FILE = "factdrop_facts.json"
 
 IST = timezone(timedelta(hours=5, minutes=30))
 EPOCH = datetime(2026, 1, 1, 11, 11, tzinfo=IST)          # Post #1's exact publish moment
@@ -51,6 +62,11 @@ CATEGORY_DESC = {
     "wild":     "Doesn't fit anywhere else. Still true.",
 }
 
+# Bump this only when the wording of PRIVACY_HTML / TERMS_HTML actually
+# changes — not on every weekly build. A "last updated" date that moves
+# every time the script runs (regardless of whether the policy text
+# changed) would misrepresent what it's claiming, same standard as
+# Thirukkural's own policy popups.
 POLICY_LAST_UPDATED = "28 Aug 2026"
 
 PRIVACY_HTML = f"""<h2>Privacy Policy</h2>
@@ -122,7 +138,7 @@ else:
 # STEP 1 — load + validate schedule integrity
 # ---------------------------------------------------------------------
 if not os.path.exists(DATA_FILE):
-    fail(f"{DATA_FILE} not found at {DATA_FILE}")
+    fail(f"{DATA_FILE} not found. Put it next to this script.")
 
 facts = json.load(open(DATA_FILE, encoding="utf-8"))
 if not facts:
@@ -157,15 +173,23 @@ print(f"[OK] Schedule integrity — {len(facts)} facts, ids/slugs unique, "
       f"every publish_date exactly matches its week position from {EPOCH.date()}")
 
 # ---------------------------------------------------------------------
-# Copy static assets (style.css, script.js) into output tree
+# Copy static assets (style.css, script.js) into the output tree.
+# This must happen BEFORE any page references them — a page linking to
+# assets/style.css that were never copied is a broken build that still
+# "succeeds" (every HTML file writes fine, the count checks still pass),
+# so this has no test coverage from the count assertions below. Caught
+# this by actually screenshotting a page, not by trusting the script's
+# own exit code — screenshot every real visual change, not just once.
 # ---------------------------------------------------------------------
-if not os.path.isdir(ASSETS_DIR):
-    fail(f"{ASSETS_DIR} not found at {ASSETS_DIR}")
-shutil.copytree(ASSETS_DIR, os.path.join(SITE_ROOT, "assets"), dirs_exist_ok=True)
-print(f"[OK] Copied assets -> {SITE_ROOT}/assets/")
+if not os.path.isdir("assets"):
+    fail("./assets/ (style.css, script.js) not found next to this script.")
+shutil.copytree("assets", f"{SITE_ROOT}/assets", dirs_exist_ok=True)
+print(f"[OK] Copied assets/ -> {SITE_ROOT}/assets/")
 
 # ---------------------------------------------------------------------
-# STEP 2 — how many are due
+# STEP 2 — how many are due, computed TWO independent ways.
+# They must agree or the build stops. This is the actual safety net —
+# not a print statement you have to remember to read.
 # ---------------------------------------------------------------------
 due = [f for f in facts if publish_dt(f["publish_date"]) <= now_ist]
 
@@ -177,7 +201,8 @@ if len(due) != due_by_formula:
         f"COUNT MISMATCH as of {now_ist.isoformat()}:\n"
         f"  facts.json filter says {len(due)} due\n"
         f"  calendar formula says  {due_by_formula} due\n"
-        f"  These must always agree."
+        f"  These must always agree — if they don't, a publish_date doesn't line up\n"
+        f"  with the real week number. Not building until this is fixed."
     )
 
 print(f"[OK] Due as of {now_ist.strftime('%a %d %b %Y, %H:%M IST')}: "
@@ -192,9 +217,14 @@ for f in due:
     due_by_category.setdefault(f["category"], []).append(f)
 
 # ---------------------------------------------------------------------
-# Templates
+# Templates — PLACEHOLDER visual design. Structure only (matches the
+# signed-off layout: breadcrumb, category tag, fact badge, headline,
+# body, share row, related facts). Real palette/type/signature still
+# needs the one-sample-screenshot sign-off per the original brief —
+# do that before running this for real.
 # ---------------------------------------------------------------------
 def head(title, description, canonical_path, asset_prefix):
+    og_img = f"{BASE_URL}/assets/logo-512.png"
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -203,8 +233,13 @@ def head(title, description, canonical_path, asset_prefix):
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(description)}">
 <link rel="canonical" href="{BASE_URL}{canonical_path}">
+<link rel="icon" type="image/png" sizes="32x32" href="{asset_prefix}assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="{asset_prefix}assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="{asset_prefix}assets/apple-touch-icon.png">
+<link rel="manifest" href="{asset_prefix}assets/site.webmanifest">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(description)}">
+<meta property="og:image" content="{og_img}">
 <meta property="og:type" content="article">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -212,7 +247,10 @@ def head(title, description, canonical_path, asset_prefix):
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="{asset_prefix}">Fact <span>Drop</span></a>
+  <a class="brand" href="{asset_prefix}">
+    <img src="{asset_prefix}assets/logo.png" alt="Fact Drop" class="site-logo">
+    <span>Fact Drop</span>
+  </a>
   <nav>
     <a href="{asset_prefix}">All facts</a>
     <a href="{asset_prefix}categories/">Categories</a>
@@ -255,16 +293,31 @@ def share_block(f, url):
     xt = quote(text)
     eu = quote(url)
     return f"""<div class="share-row">
-  <button class="share-icon share-native" id="share-native" data-url="{esc(url)}" data-text="{esc(text)}" hidden aria-label="Share">Share</button>
-  <a class="share-icon" href="https://wa.me/?text={wa}" target="_blank" rel="noopener" aria-label="Share on WhatsApp">WhatsApp</a>
-  <a class="share-icon" href="https://twitter.com/intent/tweet?text={xt}&url={eu}" target="_blank" rel="noopener" aria-label="Share on X">X</a>
-  <a class="share-icon" href="https://www.facebook.com/sharer/sharer.php?u={eu}" target="_blank" rel="noopener" aria-label="Share on Facebook">Facebook</a>
-  <button class="share-icon share-copy" id="share-copy" data-url="{esc(url)}" aria-label="Copy link">Copy link</button>
+  <button class="share-icon share-native" id="share-native" data-url="{esc(url)}" data-text="{esc(text)}" hidden aria-label="Share">
+    <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+    <span class="btn-label">Share</span>
+  </button>
+  <a class="share-icon" href="https://wa.me/?text={wa}" target="_blank" rel="noopener" aria-label="Share on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="share-icon" href="https://twitter.com/intent/tweet?text={xt}&url={eu}" target="_blank" rel="noopener" aria-label="Share on X">
+    <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    <span>X</span>
+  </a>
+  <a class="share-icon" href="https://www.facebook.com/sharer/sharer.php?u={eu}" target="_blank" rel="noopener" aria-label="Share on Facebook">
+    <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    <span>Facebook</span>
+  </a>
+  <button class="share-icon share-copy" id="share-copy" data-url="{esc(url)}" aria-label="Copy link">
+    <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+    <span class="btn-label">Copy link</span>
+  </button>
 </div>
 """
 
 # ---------------------------------------------------------------------
-# Fact pages: /factdrop/fact/<slug>/
+# Fact pages: /factdrop/fact/NNNN-slug/  (depth 2 -> ../../)
 # ---------------------------------------------------------------------
 count_fact_pages = 0
 for idx, f in enumerate(due):
@@ -311,13 +364,14 @@ for idx, f in enumerate(due):
 </div>
 """
     page = head(f"{f['headline']} — Fact Drop", f['body'][:155], f"/fact/{f['slug']}/", ap) + body + foot(ap)
-    write(os.path.join(SITE_ROOT, "fact", f["slug"], "index.html"), page)
+    write(f"{SITE_ROOT}/fact/{f['slug']}/index.html", page)
     count_fact_pages += 1
 
 print(f"[OK] Fact pages written: {count_fact_pages}")
 
 # ---------------------------------------------------------------------
-# Category hub pages
+# Category hub pages — only for categories with >=1 due fact
+# (real gating extends here too: an empty category has no folder at all)
 # ---------------------------------------------------------------------
 count_hub_pages = 0
 for cat_key, cat_facts in due_by_category.items():
@@ -334,13 +388,14 @@ for cat_key, cat_facts in due_by_category.items():
 </div>
 """
     page = head(f"{CATEGORIES[cat_key]} — Fact Drop", f"All Fact Drop posts in {CATEGORIES[cat_key]}.", f"/category/{cat_key}/", ap) + body + foot(ap)
-    write(os.path.join(SITE_ROOT, "category", cat_key, "index.html"), page)
+    write(f"{SITE_ROOT}/category/{cat_key}/index.html", page)
     count_hub_pages += 1
 
-print(f"[OK] Category hub pages written: {count_hub_pages}")
+print(f"[OK] Category hub pages written: {count_hub_pages} (of {len(CATEGORIES)} total categories — "
+      f"rest have zero due facts, no folder yet)")
 
 # ---------------------------------------------------------------------
-# Landing page
+# Landing page: /factdrop/index.html
 # ---------------------------------------------------------------------
 ap = ""
 recent = sorted(due, key=lambda x: -int(x["id"]))[:12]
@@ -354,6 +409,7 @@ cat_html = "\n".join(
     for k, v in CATEGORIES.items() if k in due_by_category
 )
 body = f"""<div class="hero-landing">
+  <img src="{ap}assets/logo.png" alt="Fact Drop" class="hero-logo">
   <h1>Fact Drop</h1>
   <p>One fact a week. Every Thursday.</p>
 </div>
@@ -364,11 +420,13 @@ body = f"""<div class="hero-landing">
 </div>
 """
 page = head("Fact Drop — a new fact every Thursday", "Fact Drop: bite-sized, verified facts across love, tech, history, science and more. New drop every Thursday.", "/", ap) + body + foot(ap)
-write(os.path.join(SITE_ROOT, "index.html"), page)
+write(f"{SITE_ROOT}/index.html", page)
 print("[OK] Landing page written")
 
 # ---------------------------------------------------------------------
-# All-categories page
+# All-categories page: /factdrop/categories/  (depth 1 -> ../)
+# Only lists categories that currently have >=1 due fact — same real-
+# gating rule as everything else, not a preview of unpublished sections.
 # ---------------------------------------------------------------------
 ap = "../"
 cat_cards_full = "\n".join(
@@ -384,11 +442,20 @@ body = f"""<div class="wrap">
 </div>
 """
 page = head("Categories — Fact Drop", "Every Fact Drop category, all in one place.", "/categories/", ap) + body + foot(ap)
-write(os.path.join(SITE_ROOT, "categories", "index.html"), page)
+write(f"{SITE_ROOT}/categories/index.html", page)
 print(f"[OK] All-categories page written ({len(due_by_category)} categories)")
 
 # ---------------------------------------------------------------------
-# sitemap.xml
+# Privacy / Terms / Disclaimer / About are popups (MODALS dict, rendered
+# by foot() on every page) — matching Thirukkural's own footer pattern
+# exactly, not separate pages. No dedicated page/URL/sitemap entry for
+# any of them, same as Thirukkural has none either.
+# ---------------------------------------------------------------------
+
+# ---------------------------------------------------------------------
+# sitemap.xml — lives inside public/factdrop/, same as Thirukkural's does.
+# NOTE: this only takes effect site-wide once referenced from a ROOT
+# public/robots.txt — see note printed at the end.
 # ---------------------------------------------------------------------
 urls = [f"{BASE_URL}/", f"{BASE_URL}/categories/"]
 urls += [f"{BASE_URL}/category/{k}/" for k in due_by_category]
@@ -398,27 +465,49 @@ sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.
 for u in urls:
     sitemap.append(f"  <url><loc>{u}</loc></url>")
 sitemap.append("</urlset>")
-write(os.path.join(SITE_ROOT, "sitemap.xml"), "\n".join(sitemap))
+write(f"{SITE_ROOT}/sitemap.xml", "\n".join(sitemap))
 print(f"[OK] sitemap.xml written with {len(urls)} urls")
 
 # ---------------------------------------------------------------------
-# FINAL CROSS-CHECK
+# FINAL CROSS-CHECK — the assertion that actually matters: what got
+# written to disk must match what was supposed to be due. Not a print
+# statement to eyeball — a hard failure if it's ever wrong.
 # ---------------------------------------------------------------------
-fact_dir = os.path.join(SITE_ROOT, "fact")
 written_fact_files = sum(
-    1 for root, _, fs in os.walk(fact_dir) for name in fs if name == "index.html"
+    1 for root, _, fs in os.walk(f"{SITE_ROOT}/fact") for name in fs if name == "index.html"
 )
 sitemap_fact_urls = sum(1 for u in urls if "/fact/" in u)
 
 if not (written_fact_files == len(due) == due_by_formula == sitemap_fact_urls):
     fail(
-        f"POST-BUILD COUNT MISMATCH:\n"
+        f"POST-BUILD COUNT MISMATCH — the exact bug class this script exists to prevent:\n"
         f"  files on disk      : {written_fact_files}\n"
         f"  due list length    : {len(due)}\n"
         f"  calendar formula   : {due_by_formula}\n"
         f"  sitemap fact urls  : {sitemap_fact_urls}\n"
-        f"  All four must be equal."
+        f"  All four must be equal. Site NOT safe to deploy as-is."
     )
 
 print(f"\n[VERIFIED] {written_fact_files} fact pages == due list == calendar formula (week {due_by_formula}) == sitemap. All four agree.")
-print(f"DONE.")
+
+# ---------------------------------------------------------------------
+# Auto deploy build output to public/factdrop
+# ---------------------------------------------------------------------
+PUBLIC_FACTDROP_DIR = r"D:\Websites\SaravsWorld\public\factdrop"
+if os.path.exists(os.path.dirname(PUBLIC_FACTDROP_DIR)):
+    os.makedirs(PUBLIC_FACTDROP_DIR, exist_ok=True)
+    for root, dirs, files in os.walk(SITE_ROOT):
+        rel_path = os.path.relpath(root, SITE_ROOT)
+        dest_dir = os.path.join(PUBLIC_FACTDROP_DIR, rel_path) if rel_path != "." else PUBLIC_FACTDROP_DIR
+        os.makedirs(dest_dir, exist_ok=True)
+        for f in files:
+            shutil.copy2(os.path.join(root, f), os.path.join(dest_dir, f))
+    if os.path.exists("assets"):
+        dest_assets = os.path.join(PUBLIC_FACTDROP_DIR, "assets")
+        os.makedirs(dest_assets, exist_ok=True)
+        for f in os.listdir("assets"):
+            src_f = os.path.join("assets", f)
+            if os.path.isfile(src_f):
+                shutil.copy2(src_f, os.path.join(dest_assets, f))
+    print(f"\n[OK] Automatically deployed FactDrop build output & assets to {PUBLIC_FACTDROP_DIR}")
+
