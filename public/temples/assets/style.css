@@ -31,6 +31,8 @@ a{color:inherit;}
 /* Header */
 .site-header{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; max-width:800px; margin:0 auto;}
 .site-header .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+.site-header .brand .brand-logo,
+.site-header .brand img{width:38px; height:38px; object-fit:contain; border-radius:6px;}
 .site-header .brand .mark{width:38px; height:38px; border-radius:50%; background:var(--verdigris-deep); display:flex; align-items:center; justify-content:center; color:var(--paper); font-family:'Noto Serif Tamil',serif; font-weight:700; font-size:18px;}
 .site-header .brand span{font-family:'Noto Serif Tamil', serif; font-weight:600; color:var(--walnut); font-size:18px;}
 .site-header nav a{font-family:'Inter',sans-serif; font-size:14px; font-weight:600; letter-spacing:.05em; color:var(--verdigris-deep); text-decoration:none; margin-left:18px;}
@@ -176,6 +178,11 @@ h1.chapter .en{display:block; font-family:'Lora',serif; font-style:italic; font-
 
 /* Landing paal cards */
 .hero-landing{text-align:center; padding:50px 20px 16px;}
+.hero-landing .hero-logo,
+.hero-landing img{
+  width:96px; height:96px; object-fit:contain; margin:0 auto 18px; display:block;
+  filter:drop-shadow(0 8px 18px rgba(43,33,27,0.18));
+}
 .hero-landing .mark-large{
   width:72px; height:72px; border-radius:50%; background:var(--verdigris-deep);
   display:flex; align-items:center; justify-content:center; color:var(--paper);
