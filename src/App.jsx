@@ -111,10 +111,10 @@ const appCards = [
 ];
 
 const journeyCards = [
-  { year: "2026 — Present", title: "TCS · DWS Practice Head",
-    text: "Digital Workplace Services Practice Head — leading workplace transformation strategy, practice growth, and enterprise solutioning at Tata Consultancy Services.",
+  { year: "2026 — Present", title: "TCS · Digital Workplace Technology Head",
+    text: "Digital Workplace Technology Head — leading workplace transformation strategy, practice growth, and enterprise solutioning at Tata Consultancy Services.",
     image: tcsOfficiallyTcser },
-  { year: "2025 — Present", title: "Cognizant · Associate Director",
+  { year: "2022 — 2026", title: "Cognizant · Associate Director",
     text: "Global Offering Lead for Future of Work Solutions — shaping AI-led workplace narratives, solution strategy, demos, and enterprise storytelling.",
     image: cognizantLatestRole },
   { year: "2022 — 2025", title: "Cognizant · Senior Manager",
@@ -285,7 +285,7 @@ function Hero() {
         <motion.p className="hero-kicker"
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}>
-          Associate Director · Author · Builder of Future Work
+          Digital Workplace Technology Head @ Tata Consultancy Services · Author · Builder
         </motion.p>
 
         <motion.h1 className="hero-title"
@@ -818,6 +818,117 @@ function Books() {
 }
 
 // ──────────────────────────────────────────────────────────────
+// Swastikastra — Kids Fantasy Book Series
+// ──────────────────────────────────────────────────────────────
+
+const swastikastraBooks = [
+  { id: 1, title: "Book One", subtitle: "The Golden Ripe Mango", badge: "Available Now", cover: "/swastikastra/art/book-1-the-golden-ripe-mango.png" },
+  { id: 2, title: "Book Two", subtitle: "The Hidden Ember", badge: "Coming Soon", cover: "/swastikastra/art/book-2-the-hidden-ember.png" },
+  { id: 3, title: "Book Three", subtitle: "The Hidden Well", badge: "Coming Soon", cover: "/swastikastra/art/book-3-the-hidden-well.png" },
+  { id: 4, title: "Book Four", subtitle: "The Banyan's Secret", badge: "Coming Soon", cover: "/swastikastra/art/book-4-the-banyans-secret.png" },
+  { id: 5, title: "Book Five", subtitle: "The Red Moon", badge: "Coming Soon", cover: "/swastikastra/art/book-5-the-red-moon.png" },
+];
+
+function Swastikastra() {
+  return (
+    <section className="section swastikastra-section" id="swastikastra">
+      <motion.p className="section-kicker center-copy"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+      >Kids Fantasy Book Series</motion.p>
+      <SectionTitle text="Swastikastra: A Five-Book Mythological Epic" />
+      <motion.p className="section-text center-copy swastikastra-intro"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Ten elements. One destiny. A grand Tamil mythological fantasy saga by Saravanakumar Murugan —
+        follow young Balan, Sengodan, and Yazhini through ancient Gurukula houses, elemental Astras,
+        and legendary vahanams.
+      </motion.p>
+
+      <motion.div className="glass-card swastikastra-card"
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.85, ease }}
+      >
+        <div className="swastikastra-hero-grid">
+          <div className="swastikastra-banner-wrap">
+            <img
+              src="/swastikastra/art/series-five-books.png"
+              alt="Swastikastra: The Five-Book Series"
+              className="swastikastra-banner-img"
+              loading="lazy"
+            />
+            <div className="swastikastra-glow" />
+          </div>
+          <div className="swastikastra-lead-copy">
+            <span className="swastikastra-pill">Epic Fantasy Universe</span>
+            <h3>Begin the Journey with Book One: The Golden Ripe Mango</h3>
+            <p>
+              When an ancient mystery awakens in the sacred hills, three young initiates are summoned
+              to uncover the lost knowledge of the Astras. What begins at the Gurukula becomes an unforgettable
+              five-book adventure across mythic Tamil history and magical realms.
+            </p>
+            <div className="swastikastra-tags">
+              <span>✦ 10 Elemental Astras</span>
+              <span>✦ 3 Gurukula Houses</span>
+              <span>✦ Mythological Fantasy</span>
+            </div>
+            <div className="swastikastra-cta-group">
+              <motion.a
+                href="/swastikastra/"
+                className="btn btn-primary"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 320, damping: 22 }}
+              >
+                Enter Swastikastra Universe →
+              </motion.a>
+              <motion.a
+                href="/swastikastra/#books"
+                className="btn btn-secondary"
+                whileHover={{ y: -2, scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 320, damping: 22 }}
+              >
+                Explore the 5 Books
+              </motion.a>
+            </div>
+          </div>
+        </div>
+
+        <div className="swastikastra-shelf">
+          <div className="swastikastra-shelf-title">
+            <span className="eyebrow">The Five Books</span>
+            <h4>The Complete Series Timeline</h4>
+          </div>
+          <div className="swastikastra-books-row">
+            {swastikastraBooks.map((b) => (
+              <a key={b.id} href={`/swastikastra/#book-${b.id}`} className="swastikastra-book-tile">
+                <div className="swastikastra-tile-cover">
+                  <img src={b.cover} alt={`${b.title}: ${b.subtitle}`} loading="lazy" />
+                  <span className={`swastikastra-tile-badge ${b.id === 1 ? 'live' : 'soon'}`}>
+                    {b.badge}
+                  </span>
+                </div>
+                <div className="swastikastra-tile-meta">
+                  <span className="tile-vol">{b.title}</span>
+                  <strong className="tile-sub">{b.subtitle}</strong>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
+
+// ──────────────────────────────────────────────────────────────
 // Writing
 // ──────────────────────────────────────────────────────────────
 
@@ -1079,6 +1190,7 @@ export default function App() {
           <Journey />
           <Builder />
           <Books />
+          <Swastikastra />
           <Writing mouseX={smoothX} mouseY={smoothY} />
           <Contact />
         </main>

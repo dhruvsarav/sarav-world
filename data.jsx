@@ -37,8 +37,8 @@ const APP_CARDS = [
 const JOURNEY_CARDS = [
   {
     year: "2026 — Present",
-    title: "TCS · DWS Practice Head",
-    text: "Digital Workplace Services Practice Head — leading workplace transformation strategy, practice growth, and enterprise solutioning at Tata Consultancy Services.",
+    title: "TCS · Digital Workplace Technology Head",
+    text: "Digital Workplace Technology Head — leading workplace transformation strategy, practice growth, and enterprise solutioning at Tata Consultancy Services.",
     image: `production/tcs-officially-tcser.png`,
   },
   {

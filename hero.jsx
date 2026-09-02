@@ -42,7 +42,7 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          Associate Director · Author · Builder of Future Work
+          Digital Workplace Technology Head @ Tata Consultancy Services · Author · Builder
         </motion.p>
 
         {/* Word-by-word title reveal — Tier 3 #10 */}
