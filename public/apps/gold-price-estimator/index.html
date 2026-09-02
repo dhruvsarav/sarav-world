@@ -4,7 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Metal Price Estimator | Precision Jewellery Valuation</title>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<meta name="description" content="Estimate gold, silver and platinum jewellery cost with wastage, buy vs market rate, GST and gain % - the way jewellers actually bill it, not the oversimplified version.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/gold-price-estimator/">
+<meta name="theme-color" content="#F0B429">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Metal Price Estimator | Precision Jewellery Valuation">
+<meta property="og:description" content="Estimate gold, silver and platinum jewellery cost with wastage, buy vs market rate, GST and gain % - the way jewellers actually bill it.">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/gold-price-estimator/">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/gold-price-estimator/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Metal Price Estimator | Precision Jewellery Valuation">
+<meta name="twitter:description" content="Estimate gold, silver and platinum jewellery cost with wastage, buy vs market rate, GST and gain %.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/gold-price-estimator/og-image.png">
 <style>
   :root{
     --gold-primary:#C1810A;
@@ -324,7 +340,7 @@
       <div class="field"><input id="purchaseDate" type="date"></div>
 
       <div class="edit-banner" id="editBanner" style="display:none;">
-        <span>Editing entry — Save will update it.</span>
+        <span>Editing entry - Save will update it.</span>
         <button onclick="cancelEdit()">Cancel</button>
       </div>
 
@@ -372,10 +388,10 @@
           <button type="button" class="qchip" onclick="applyVaPct(18)">18%</button>
         </div>
 
-        <label>Buy Price (per gram) <span class="req">*</span> <span style="font-weight:400;">— what you paid</span></label>
+        <label>Buy Price (per gram) <span class="req">*</span> <span style="font-weight:400;">- what you paid</span></label>
         <div class="field"><span class="prefix">₹</span><input id="buyPrice" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
 
-        <label>Market Rate (per gram) <span class="req">*</span> <span style="font-weight:400;">— today's price</span></label>
+        <label>Market Rate (per gram) <span class="req">*</span> <span style="font-weight:400;">- today's price</span></label>
         <div class="field"><span class="prefix">₹</span><input id="marketRate" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
 
         <label>GST (%) <span class="req">*</span></label>
@@ -807,7 +823,7 @@
     const oldExRow = document.getElementById('r-oldex-row');
     if(oldExchangeValue > 0){
       oldExRow.style.display = 'flex';
-      document.getElementById('r-oldex').textContent = '− ₹ ' + oldExchangeValue.toFixed(2);
+      document.getElementById('r-oldex').textContent = '- ₹ ' + oldExchangeValue.toFixed(2);
     } else {
       oldExRow.style.display = 'none';
     }
@@ -830,7 +846,7 @@
     const pavanText = fmtPavan(r.weight);
     const lines = [
       '🪙 Metal Price Estimator Quote',
-      '━━━━━━━━━━━━━━━━━━━━',
+      '----------------------------------------',
       `Metal: ${r.metalType}`,
       r.description ? `Item: ${r.description}` : '',
       r.avenue ? `Shop: ${r.avenue}` : '',
@@ -841,12 +857,14 @@
       `Base Price: ₹${r.baseAmount.toFixed(2)}`,
       `GST (${r.gst}%): ₹${r.gstAmount.toFixed(2)}`,
       r.oldExchangeValue > 0 ? `Old Exchange: -₹${r.oldExchangeValue.toFixed(2)}` : '',
-      '------------------------------------',
+      '----------------------------------------',
       `Total Payable: ₹${r.total.toFixed(2)}`,
+      `Market Rate: ₹${r.marketRate.toFixed(2)}/gm`,
       `Current Valuation: ₹${r.currentValue.toFixed(2)}`,
       `Gain: ${r.appreciationPercent >= 0 ? '+' : ''}${r.appreciationPercent.toFixed(2)}%`,
-      '━━━━━━━━━━━━━━━━━━━━',
-      `Est. on ${r.purchaseDate || new Date().toISOString().slice(0,10)} via iamsaravofficial.com/Gold-Price-Estimator/`
+      '----------------------------------------',
+      'Estimate only, not a formal valuation.',
+      `Est. on ${r.purchaseDate || new Date().toISOString().slice(0,10)} via https://iamsaravofficial.com/apps/gold-price-estimator/`
     ].filter(Boolean).join('\n');
 
     if(navigator.share){
