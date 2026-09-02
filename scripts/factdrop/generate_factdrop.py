@@ -78,7 +78,7 @@ CATEGORY_DESC = {
 # every time the script runs (regardless of whether the policy text
 # changed) would misrepresent what it's claiming, same standard as
 # Thirukkural's own policy popups.
-POLICY_LAST_UPDATED = "28 Aug 2026"
+POLICY_LAST_UPDATED = "05 September 2026"
 
 PRIVACY_HTML = f"""<h2>Privacy Policy</h2>
 <p>This section (iamsaravofficial.com/factdrop) does not collect any personal information from visitors. No sign-up, no forms, no tracking cookies are currently used.</p>
