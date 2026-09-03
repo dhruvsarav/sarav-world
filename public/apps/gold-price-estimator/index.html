@@ -544,19 +544,26 @@
 <!-- Calculation Result Modal (pops up right after tapping Calculate) -->
 <div class="modal-overlay" id="resultModal">
   <div class="modal" style="max-width:360px;">
-    <h3 style="color:var(--gold-primary-dark);">Result</h3>
-    <div class="result-row"><span class="label">Weight</span><span id="r-weight"></span></div>
-    <div class="result-row"><span class="label">Wastage</span><span id="r-wastage"></span></div>
-    <div class="result-row"><span class="label">Wastage %</span><span id="r-wastagepct"></span></div>
+    <h3 style="color:var(--gold-primary-dark); margin-bottom:14px;">🪙 Valuation Estimate</h3>
+    <div class="result-row"><span class="label">Metal</span><span id="r-metal" style="font-weight:700;"></span></div>
+    <div class="result-row" id="r-desc-row" style="display:none;"><span class="label">Item</span><span id="r-desc"></span></div>
+    <div class="result-row" id="r-avenue-row" style="display:none;"><span class="label">Shop</span><span id="r-avenue"></span></div>
+    <div class="result-row"><span class="label">Net Weight</span><span id="r-weight"></span></div>
+    <div class="result-row"><span class="label">Wastage (VA)</span><span id="r-wastage"></span></div>
     <div class="result-row"><span class="label">Effective Weight</span><span id="r-effective"></span></div>
     <hr class="divider">
-    <div class="result-row"><span class="label">Buy Base Amount</span><span id="r-base"></span></div>
+    <div class="result-row"><span class="label">Buy Rate</span><span id="r-buyrate"></span></div>
+    <div class="result-row"><span class="label">Base Price</span><span id="r-base"></span></div>
     <div class="result-row"><span class="label">GST Amount</span><span id="r-gst"></span></div>
     <div class="result-row" id="r-oldex-row" style="display:none;"><span class="label">Old Exchange</span><span id="r-oldex"></span></div>
-    <div class="total-row"><span>Total Price (cost)</span><span class="val" id="r-total"></span></div>
+    <div class="total-row"><span>Total Payable (Cost)</span><span class="val" id="r-total"></span></div>
     <hr class="divider">
-    <div class="result-row"><span class="label">Current Value</span><span id="r-current"></span></div>
-    <div class="total-row"><span>Appreciation</span><span class="val" id="r-appreciation"></span></div>
+    <div class="result-row"><span class="label">Market Rate</span><span id="r-market-rate"></span></div>
+    <div class="result-row"><span class="label">Current Valuation</span><span id="r-current"></span></div>
+    <div class="total-row"><span id="r-appr-label">Total Appreciation</span><span class="val" id="r-appreciation"></span></div>
+    <div style="font-size:11.5px; color:var(--text-muted); text-align:center; margin-top:12px; font-style:italic;">
+      * Estimate only, not a formal valuation.
+    </div>
     <button class="btn-primary" style="margin-top:14px; background:#128C7E;" onclick="shareQuote()">📱 Share Quote (WhatsApp)</button>
     <button class="btn-outline" onclick="saveToHistory()">💾 Save to History</button>
     <button class="btn-plain" onclick="closeResultModal()">Close</button>
@@ -587,6 +594,10 @@
   function fmtPavan(g){
     const p = toPavan(g);
     return p.toFixed(2) + (Math.abs(p - 1.0) < 0.001 ? ' Pavan' : ' Pavans');
+  }
+  function fmtMoney(n){
+    if(isNaN(n)) return '₹ 0.00';
+    return '₹ ' + Number(n).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2});
   }
 
   let history = [];
@@ -802,6 +813,7 @@
 
     const currentValue = effectiveWeight * marketRate;
     const appreciationPercent = currentValue > 0 ? ((currentValue - total) / currentValue) * 100 : 0;
+    const gainDiff = currentValue - total;
 
     lastResult = {
       metalType: document.getElementById('metalType').value,
@@ -811,27 +823,53 @@
       weight, wastageWeight, wastagePercent, effectiveWeight,
       buyPrice, marketRate, gst, additional, discount,
       oldExWeight, oldExRate, oldExchangeValue,
-      baseAmount, gstAmount, total, currentValue, appreciationPercent
+      baseAmount, gstAmount, total, currentValue, appreciationPercent, gainDiff
     };
 
+    document.getElementById('r-metal').textContent = lastResult.metalType;
+    const descEl = document.getElementById('r-desc-row');
+    if(lastResult.description){
+      descEl.style.display = 'flex';
+      document.getElementById('r-desc').textContent = lastResult.description;
+    } else {
+      descEl.style.display = 'none';
+    }
+    const aveEl = document.getElementById('r-avenue-row');
+    if(lastResult.avenue){
+      aveEl.style.display = 'flex';
+      document.getElementById('r-avenue').textContent = lastResult.avenue;
+    } else {
+      aveEl.style.display = 'none';
+    }
+
     document.getElementById('r-weight').textContent = weight.toFixed(3) + ' gm (' + fmtPavan(weight) + ')';
-    document.getElementById('r-wastage').textContent = wastageWeight.toFixed(3) + ' gm';
-    document.getElementById('r-wastagepct').textContent = wastagePercent.toFixed(2) + ' %';
+    document.getElementById('r-wastage').textContent = wastageWeight.toFixed(3) + ' gm (' + wastagePercent.toFixed(2) + '%)';
     document.getElementById('r-effective').textContent = effectiveWeight.toFixed(3) + ' gm';
-    document.getElementById('r-base').textContent = '₹ ' + baseAmount.toFixed(2);
-    document.getElementById('r-gst').textContent = '₹ ' + gstAmount.toFixed(2);
+    document.getElementById('r-buyrate').textContent = fmtMoney(buyPrice) + ' /gm';
+    document.getElementById('r-base').textContent = fmtMoney(baseAmount);
+    document.getElementById('r-gst').textContent = '(' + gst.toFixed(1) + '%) ' + fmtMoney(gstAmount);
     const oldExRow = document.getElementById('r-oldex-row');
     if(oldExchangeValue > 0){
       oldExRow.style.display = 'flex';
-      document.getElementById('r-oldex').textContent = '- ₹ ' + oldExchangeValue.toFixed(2);
+      document.getElementById('r-oldex').textContent = '- ' + fmtMoney(oldExchangeValue);
     } else {
       oldExRow.style.display = 'none';
     }
-    document.getElementById('r-total').textContent = '₹ ' + total.toFixed(2);
-    document.getElementById('r-current').textContent = '₹ ' + currentValue.toFixed(2);
+    document.getElementById('r-total').textContent = fmtMoney(total);
+    document.getElementById('r-market-rate').textContent = fmtMoney(marketRate) + ' /gm';
+    document.getElementById('r-current').textContent = fmtMoney(currentValue);
+
+    const apprLabel = document.getElementById('r-appr-label');
     const apprEl = document.getElementById('r-appreciation');
-    apprEl.textContent = (appreciationPercent >= 0 ? '+' : '') + appreciationPercent.toFixed(2) + ' %';
-    apprEl.style.color = appreciationPercent >= 0 ? 'var(--pos-green)' : 'var(--error-red)';
+    if(gainDiff >= 0){
+      apprLabel.textContent = 'Total Appreciation';
+      apprEl.textContent = '+' + fmtMoney(gainDiff) + ' (+' + appreciationPercent.toFixed(2) + '%)';
+      apprEl.style.color = 'var(--pos-green)';
+    } else {
+      apprLabel.textContent = 'Depreciation';
+      apprEl.textContent = '- ' + fmtMoney(Math.abs(gainDiff)) + ' (' + appreciationPercent.toFixed(2) + '%)';
+      apprEl.style.color = 'var(--error-red)';
+    }
 
     document.getElementById('resultModal').classList.add('active');
   }
@@ -844,6 +882,11 @@
     if(!lastResult) return;
     const r = lastResult;
     const pavanText = fmtPavan(r.weight);
+    const isGain = (r.gainDiff >= 0);
+    const apprName = isGain ? 'Total Appreciation' : 'Depreciation';
+    const apprSign = isGain ? '+' : '-';
+    const apprValue = `${apprSign}₹${Math.abs(r.gainDiff).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})} (${isGain ? '+' : ''}${r.appreciationPercent.toFixed(2)}%)`;
+
     const lines = [
       '🪙 Metal Price Estimator Quote',
       '----------------------------------------',
@@ -851,19 +894,19 @@
       r.description ? `Item: ${r.description}` : '',
       r.avenue ? `Shop: ${r.avenue}` : '',
       `Net Wt: ${r.weight.toFixed(3)} gm (${pavanText})`,
-      r.wastageWeight > 0 ? `Wastage (VA): ${r.wastageWeight.toFixed(3)} gm (${r.wastagePercent.toFixed(1)}%)` : '',
+      r.wastageWeight > 0 ? `Wastage (VA): ${r.wastageWeight.toFixed(3)} gm (${r.wastagePercent.toFixed(2)}%)` : '',
       `Effective Wt: ${r.effectiveWeight.toFixed(3)} gm`,
-      `Buy Rate: ₹${r.buyPrice.toFixed(2)}/gm`,
-      `Base Price: ₹${r.baseAmount.toFixed(2)}`,
-      `GST (${r.gst}%): ₹${r.gstAmount.toFixed(2)}`,
-      r.oldExchangeValue > 0 ? `Old Exchange: -₹${r.oldExchangeValue.toFixed(2)}` : '',
+      `Buy Rate: ₹${r.buyPrice.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}/gm`,
+      `Base Price: ₹${r.baseAmount.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `GST (${r.gst}%): ₹${r.gstAmount.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      r.oldExchangeValue > 0 ? `Old Exchange: -₹${r.oldExchangeValue.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}` : '',
       '----------------------------------------',
-      `Total Payable: ₹${r.total.toFixed(2)}`,
-      `Market Rate: ₹${r.marketRate.toFixed(2)}/gm`,
-      `Current Valuation: ₹${r.currentValue.toFixed(2)}`,
-      `Gain: ${r.appreciationPercent >= 0 ? '+' : ''}${r.appreciationPercent.toFixed(2)}%`,
+      `Total Payable (Cost): ₹${r.total.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `Market Rate: ₹${r.marketRate.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}/gm`,
+      `Current Valuation: ₹${r.currentValue.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `${apprName}: ${apprValue}`,
       '----------------------------------------',
-      'Estimate only, not a formal valuation.',
+      '* Estimate only, not a formal valuation.',
       `Est. on ${r.purchaseDate || new Date().toISOString().slice(0,10)} via https://iamsaravofficial.com/apps/gold-price-estimator/`
     ].filter(Boolean).join('\n');
 
