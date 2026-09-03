@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Gold Loan Calculator | Accurate LTV, EMI &amp; Repayment Estimator</title>
+<meta name="description" content="Estimate your gold loan eligibility, loan per gram, and repayment obligations according to RBI guidelines (75% statutory LTV cap, lower of today's and 30-day average rate, and bullet/interest-only schemes).">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/gold-loan-calculator/">
+<meta name="theme-color" content="#F0B429">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gold Loan Calculator | Accurate LTV &amp; Repayment Estimator">
+<meta property="og:description" content="Estimate gold loan eligibility, loan per gram, and repayment obligations according to RBI guidelines (75% statutory LTV, bullet/interest-only schemes).">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/gold-loan-calculator/">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/gold-loan-calculator/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gold Loan Calculator | Accurate LTV &amp; Repayment Estimator">
+<meta name="twitter:description" content="Estimate gold loan eligibility, loan per gram, and repayment obligations according to RBI guidelines.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/gold-loan-calculator/og-image.png">
+<style>
+  :root{
+    --gold-primary:#C1810A;
+    --gold-primary-dark:#8B5E00;
+    --gold-header-start:#F9D77E;
+    --gold-header-end:#F0B429;
+    --gold-bg:#FFFBF0;
+    --card-white:#FFFFFF;
+    --text-dark:#3D2B00;
+    --text-muted:#8A7554;
+    --border-gold:#E0B84B;
+    --error-red:#D32F2F;
+    --pos-green:#1B8A3D;
+    --chip-bg:#F6E3B0;
+    --chip-border:#E0B84B;
+    --nav-bg:#FFFFFF;
+    --body-bg:#E6DFD5;
+  }
+  [data-theme="dark"]{
+    --gold-primary:#E5A93C;
+    --gold-primary-dark:#FFC04D;
+    --gold-header-start:#38290E;
+    --gold-header-end:#251A07;
+    --gold-bg:#12100C;
+    --card-white:#1D1913;
+    --text-dark:#F7F2E8;
+    --text-muted:#B0A28E;
+    --border-gold:#52411E;
+    --error-red:#EF5350;
+    --pos-green:#4CAF50;
+    --chip-bg:#2E2412;
+    --chip-border:#52411E;
+    --nav-bg:#1A1712;
+    --body-bg:#0A0907;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    background:var(--body-bg);
+    display:flex;
+    justify-content:center;
+    transition:background 0.3s;
+  }
+  .phone{
+    width:100%;
+    max-width:440px;
+    min-height:100vh;
+    background:var(--gold-bg);
+    display:flex;
+    flex-direction:column;
+    position:relative;
+  }
+  .header{
+    background:linear-gradient(180deg, var(--gold-header-start), var(--gold-header-end));
+    padding:22px 18px 16px;
+  }
+  .header h1{margin:0; font-size:22px; color:var(--gold-primary-dark);}
+  .header p{margin:4px 0 0; font-size:13px; color:var(--text-dark);}
+
+  .theme-selector{display:flex; gap:8px; margin:12px 16px 0;}
+  .theme-btn{
+    flex:1; padding:8px 12px; border-radius:10px; border:1px solid var(--border-gold);
+    background:var(--card-white); color:var(--text-dark); font-size:12.5px; font-weight:600;
+    cursor:pointer; text-align:center;
+  }
+  .theme-btn.active{background:var(--gold-primary); color:#fff; border-color:var(--gold-primary);}
+
+  .content{padding:16px;}
+
+  .card{
+    background:var(--card-white);
+    border:1px solid var(--border-gold);
+    border-radius:16px;
+    padding:16px;
+    margin-bottom:16px;
+  }
+  .card-title{
+    display:flex; align-items:center; gap:8px;
+    font-weight:700; font-size:15px; margin-bottom:12px; color:var(--text-dark);
+  }
+  .info-row{display:flex; gap:12px;}
+  .info-row .icon{font-size:22px; line-height:1;}
+  .info-row h3{margin:0 0 4px; font-size:14px; color:var(--text-dark);}
+  .info-row p{margin:0; font-size:12.5px; color:var(--text-muted); line-height:1.4;}
+
+  label{display:block; font-size:12.5px; color:var(--text-muted); margin:12px 0 6px;}
+  label:first-child{margin-top:0;}
+  .req{color:var(--error-red);}
+  .hint{font-size:11.5px; color:var(--text-muted); margin:4px 0 0; line-height:1.4;}
+
+  .field{
+    display:flex; align-items:center;
+    border:1px solid var(--border-gold);
+    border-radius:10px;
+    background:var(--gold-bg);
+    padding:0 12px;
+  }
+  .field .prefix{color:var(--gold-primary); font-weight:700; margin-right:6px;}
+  .field .suffix{color:var(--text-muted); margin-left:6px; font-size:13px; white-space:nowrap;}
+  .field .suffix.pct{color:var(--gold-primary); font-weight:700;}
+  .field input, .field select{
+    flex:1; border:none; background:transparent; outline:none;
+    padding:12px 0; font-size:15px; color:var(--text-dark); width:100%;
+    appearance:none; -webkit-appearance:none;
+  }
+  .field:focus-within{border-color:var(--gold-primary); box-shadow:0 0 0 2px rgba(193,129,10,0.15);}
+
+  .quick-chips{display:flex; gap:6px; overflow-x:auto; margin-top:8px; padding-bottom:2px;}
+  .qchip{
+    padding:5px 10px; border-radius:12px; border:1px solid var(--border-gold);
+    background:var(--card-white); font-size:11.5px; color:var(--text-dark);
+    cursor:pointer; white-space:nowrap; font-weight:600;
+  }
+  .qchip:hover{background:var(--chip-bg);}
+  .qchip.active{background:var(--gold-primary); color:#fff; border-color:var(--gold-primary);}
+
+  .toggle-row{
+    display:flex; align-items:center; gap:4px;
+    color:var(--gold-primary); font-weight:700; font-size:13px;
+    padding:10px 0 4px; cursor:pointer; user-select:none;
+  }
+
+  .btn-primary{
+    width:100%; padding:15px; margin-top:16px;
+    background:var(--gold-primary); color:#fff; border:none;
+    border-radius:28px; font-size:16px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+  }
+  .btn-outline{
+    width:100%; padding:13px; margin-top:10px;
+    background:transparent; color:var(--gold-primary);
+    border:1.5px solid var(--gold-primary); border-radius:28px;
+    font-size:15px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+  }
+  .btn-plain{
+    width:100%; padding:13px; margin-top:10px;
+    background:var(--chip-bg); color:var(--text-dark); border:1px solid var(--chip-border);
+    border-radius:28px; font-size:15px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+  }
+  .error-text{color:var(--error-red); font-size:13px; margin-top:8px;}
+
+  /* Key metric card */
+  .metric-banner{
+    background:linear-gradient(135deg, var(--gold-header-start), var(--gold-header-end));
+    border-radius:14px; padding:14px 16px; margin-bottom:14px; text-align:center;
+    box-shadow:0 4px 12px rgba(193,129,10,0.15);
+  }
+  .metric-banner .title{font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:var(--gold-primary-dark);}
+  .metric-banner .amount{font-size:26px; font-weight:800; color:#3D2B00; margin:4px 0;}
+  .metric-banner .sub{font-size:12px; color:var(--text-dark);}
+
+  .result-row{display:flex; justify-content:space-between; padding:4px 0; font-size:13.5px; gap:12px;}
+  .result-row .label{color:var(--text-muted);}
+  .result-row .val{text-align:right; font-weight:600;}
+  .divider{border:none; border-top:1px solid var(--border-gold); margin:10px 0;}
+  .total-row{display:flex; justify-content:space-between; font-weight:700; font-size:16px;}
+  .total-row .val{color:var(--gold-primary-dark);}
+
+  .ltv-badge{
+    display:inline-block; background:var(--chip-bg); color:var(--gold-primary-dark);
+    font-size:11px; font-weight:700; padding:3px 8px; border-radius:10px;
+    border:1px solid var(--chip-border); margin-left:6px;
+  }
+  .rate-used{
+    background:var(--chip-bg); border:1px solid var(--chip-border); border-radius:10px;
+    padding:10px 12px; font-size:12.5px; color:var(--text-dark); margin-bottom:12px; line-height:1.45;
+  }
+  .rate-used b{color:var(--gold-primary-dark);}
+
+  .risk-note{
+    background:rgba(211,47,47,0.08); border:1px solid var(--error-red); border-radius:10px;
+    padding:10px 12px; font-size:12px; color:var(--text-dark); line-height:1.5; margin-top:12px;
+  }
+  .risk-note b{color:var(--error-red);}
+
+  .disclaimer{font-size:11px; color:var(--text-muted); line-height:1.5; margin-top:16px; text-align:center;}
+
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,0.5);
+    display:none; align-items:center; justify-content:center; z-index:50; padding:16px;
+  }
+  .modal-overlay.active{display:flex;}
+  .modal{
+    background:var(--card-white); border:1px solid var(--border-gold); border-radius:16px; padding:20px; width:100%; max-width:380px;
+    max-height:90vh; overflow-y:auto; color:var(--text-dark);
+  }
+  .modal h3{margin:0 0 10px; font-size:18px; color:var(--gold-primary-dark);}
+
+  footer{text-align:center; padding:20px 16px 32px; font-size:11.5px; color:var(--text-muted);}
+  footer a{color:var(--gold-primary-dark); text-decoration:none; font-weight:600;}
+</style>
+</head>
+<body>
+
+<div class="phone">
+
+  <div class="header">
+    <h1>Gold Loan Calculator</h1>
+    <p>Eligibility, Loan/Gram &amp; Repayments (RBI 75% LTV Standard)</p>
+  </div>
+
+  <div class="theme-selector">
+    <button type="button" class="theme-btn" id="theme-system" onclick="setTheme('system')">Auto</button>
+    <button type="button" class="theme-btn" id="theme-light" onclick="setTheme('light')">☀️ Light</button>
+    <button type="button" class="theme-btn" id="theme-dark" onclick="setTheme('dark')">🌙 Dark</button>
+  </div>
+
+  <div class="content">
+
+    <!-- Card 1: RBI Regulation Explainer -->
+    <div class="card">
+      <div class="info-row">
+        <div class="icon">🏛️</div>
+        <div>
+          <h3>RBI Statutory Standards &amp; Valuation Rules</h3>
+          <p>Under RBI Master Directions, maximum LTV on gold loans is <b>capped at 75%</b>. Gold valuation is based on the <b>lower of today's rate vs the 30-day average</b> (24K reference). Only pure gold content is eligible—stones, enamel, and beads are strictly deducted.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Your Gold Collateral -->
+    <div class="card">
+      <div class="card-title">⚖️ Your Gold Collateral</div>
+
+      <label>Purity of Gold <span class="req">*</span></label>
+      <div class="field">
+        <select id="purity" onchange="onPurityChange()">
+          <option value="1.000">24K (999) - Pure Gold</option>
+          <option value="0.916" selected>22K (916) - Standard Jewellery (91.6%)</option>
+          <option value="0.875">21K (875) - 87.5%</option>
+          <option value="0.833">20K (833) - 83.3%</option>
+          <option value="0.750">18K (750) - 75.0%</option>
+          <option value="custom">Custom purity %</option>
+        </select>
+      </div>
+      <div id="customPurityWrap" style="display:none;">
+        <div class="field" style="margin-top:8px;">
+          <input id="customPurity" type="text" inputmode="decimal" placeholder="e.g. 91.6" oninput="recalc()">
+          <span class="suffix pct">%</span>
+        </div>
+      </div>
+
+      <!-- Stone Deduction -->
+      <div class="toggle-row" onclick="toggleStoneWrap()">
+        <span id="stoneToggleIcon">+</span> Deduct Stones / Beads / Non-Gold Weight
+      </div>
+      <div id="stoneWrap" style="display:none; background:var(--gold-bg); border:1px solid var(--border-gold); border-radius:12px; padding:12px; margin-bottom:12px;">
+        <label style="margin-top:0;">Gross Weight (Total on scale)</label>
+        <div class="field"><span class="prefix">⚖</span><input id="grossWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
+        <label>Stone / Beads / Enamel Weight</label>
+        <div class="field"><span class="prefix">💎</span><input id="stoneWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
+        <div id="netWeightPreview" style="font-size:12px; font-weight:700; color:var(--pos-green); margin-top:6px; display:none;"></div>
+      </div>
+
+      <label>Net Gold Weight <span class="req">*</span></label>
+      <div class="field"><span class="prefix">⚖</span><input id="weight" type="text" inputmode="decimal" placeholder="0.000" oninput="onWeightInput()"><span class="suffix">gm</span></div>
+      <div id="unitEquiv" style="font-size:12px; color:var(--gold-primary-dark); font-weight:600; margin:4px 0 6px; display:none;"></div>
+      <div class="quick-chips">
+        <span style="font-size:11px; color:var(--text-muted); align-self:center;">Quick:</span>
+        <button type="button" class="qchip" onclick="addWeight(1)">+1g</button>
+        <button type="button" class="qchip" onclick="addWeight(8)">+8g (1 Pavan)</button>
+        <button type="button" class="qchip" onclick="addWeight(10)">+10g</button>
+        <button type="button" class="qchip" onclick="addWeight(11.6638)">+1 Tola</button>
+      </div>
+    </div>
+
+    <!-- Card 3: Reference Gold Rate -->
+    <div class="card">
+      <div class="card-title">💰 Reference Gold Rate (24K, per gram)</div>
+      <p class="hint" style="margin-bottom:8px;">Enter today's rate and 30-day average. The lower rate is automatically applied per RBI conservative guidelines.</p>
+
+      <label>Today's 24K Rate <span class="req">*</span></label>
+      <div class="field"><span class="prefix">₹</span><input id="todayRate" type="text" inputmode="decimal" placeholder="e.g. 7500.00"><span class="suffix">/gm</span></div>
+
+      <label>30-Day Average 24K Rate <span class="req">*</span></label>
+      <div class="field"><span class="prefix">₹</span><input id="avgRate" type="text" inputmode="decimal" placeholder="e.g. 7350.00"><span class="suffix">/gm</span></div>
+    </div>
+
+    <!-- Card 4: Lender & Repayment Scheme -->
+    <div class="card">
+      <div class="card-title">📋 Lender &amp; Repayment Scheme</div>
+
+      <label>Quick Lender Presets</label>
+      <div class="quick-chips">
+        <button type="button" class="qchip" onclick="applyPreset('psu')">🏛️ PSU Bank (8.75% · 70% LTV)</button>
+        <button type="button" class="qchip" onclick="applyPreset('private')">🏦 Private Bank (10.0% · 75% LTV)</button>
+        <button type="button" class="qchip" onclick="applyPreset('nbfc')">⚡ NBFC (12.5% · 75% LTV)</button>
+      </div>
+
+      <label>Repayment Scheme <span class="req">*</span></label>
+      <div class="field">
+        <select id="scheme" onchange="onSchemeChange()">
+          <option value="interest_only" selected>Monthly Interest Only (Principal at End)</option>
+          <option value="bullet">Bullet Repayment (Principal + Interest at End - max 12 mo)</option>
+          <option value="emi">Regular Monthly EMI (Principal + Interest Amortized)</option>
+        </select>
+      </div>
+      <p class="hint" id="schemeHint">Pay only monthly interest; full principal repaid at maturity. Most popular in India.</p>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; margin-bottom:6px;">
+        <label style="margin:0;">Loan-to-Value (LTV %) <span class="req">*</span></label>
+        <span class="ltv-badge" id="ltvCapBadge">RBI Max: 75%</span>
+      </div>
+      <div class="field"><input id="ltvPct" type="text" inputmode="decimal" value="75"><span class="suffix pct">%</span></div>
+      <div id="ltvWarning" class="error-text" style="display:none; font-size:11.5px; margin-top:4px;"></div>
+
+      <label>Desired Loan Amount <span style="font-weight:400;">(optional, leave blank for max eligible)</span></label>
+      <div class="field"><span class="prefix">₹</span><input id="desiredLoan" type="text" inputmode="decimal" placeholder="Max eligible if blank"></div>
+
+      <label>Interest Rate (% p.a.) <span class="req">*</span></label>
+      <div class="field"><input id="interestRate" type="text" inputmode="decimal" placeholder="e.g. 10.0"><span class="suffix pct">%</span></div>
+
+      <label>Tenure <span class="req">*</span></label>
+      <div class="field">
+        <select id="tenure" onchange="onTenureChange()">
+          <option value="3">3 months</option>
+          <option value="6" selected>6 months</option>
+          <option value="12">12 months</option>
+          <option value="24">24 months</option>
+          <option value="36">36 months</option>
+        </select>
+      </div>
+
+      <!-- Fees -->
+      <div class="toggle-row" onclick="toggleWrap('feesWrap','feesToggle')">
+        <span id="feesToggle">+</span> Processing &amp; Valuation Fees
+      </div>
+      <div id="feesWrap" style="display:none; background:var(--gold-bg); border:1px solid var(--border-gold); border-radius:12px; padding:12px; margin-top:8px;">
+        <label style="margin-top:0;">Processing Fee (%)</label>
+        <div class="field"><input id="processingFee" type="text" inputmode="decimal" value="0.5"><span class="suffix pct">%</span></div>
+        <label>Valuation / Appraisal Fee</label>
+        <div class="field"><span class="prefix">₹</span><input id="valuationFee" type="text" inputmode="decimal" value="0"></div>
+      </div>
+
+      <button class="btn-primary" onclick="calculate()">🧮 Calculate Gold Loan</button>
+      <div id="errorMsg" class="error-text" style="display:none;"></div>
+    </div>
+
+    <p class="disclaimer">
+      * For financial planning only, not a loan sanction. Final amount depends on your lender's in-branch assay, internal credit policy, and exact gold spot rate on the date of pledge.
+    </p>
+
+  </div>
+
+  <footer>Part of the financial suite at <a href="https://iamsaravofficial.com/apps/">iamsaravofficial.com/apps</a></footer>
+
+</div>
+
+<!-- Calculation Result Modal -->
+<div class="modal-overlay" id="resultModal">
+  <div class="modal">
+    <h3>🪙 Gold Loan Estimate</h3>
+
+    <!-- Metric Banner: Loan per gram -->
+    <div class="metric-banner">
+      <div class="title">Loan Amount Per Gram</div>
+      <div class="amount" id="r-loan-per-gram">₹ 0 / gm</div>
+      <div class="sub" id="r-loan-per-gram-sub">Based on net gold weight</div>
+    </div>
+
+    <div class="rate-used" id="rateUsedNote"></div>
+
+    <div class="result-row"><span class="label">Net Gold Weight</span><span class="val" id="r-netweight"></span></div>
+    <div class="result-row"><span class="label">Purity</span><span class="val" id="r-purity"></span></div>
+    <div class="result-row"><span class="label">Appraised Gold Value</span><span class="val" id="r-goldvalue"></span></div>
+    <div class="result-row"><span class="label">LTV Applied</span><span class="val" id="r-ltv"></span></div>
+    <div class="result-row"><span class="label">Max Eligible Loan</span><span class="val" id="r-maxeligible"></span></div>
+    <div id="capWarning" class="error-text" style="display:none; margin-top:4px;"></div>
+
+    <hr class="divider">
+    <div class="result-row"><span class="label">Sanctioned Loan</span><span class="val" id="r-loanamount"></span></div>
+    <div class="result-row"><span class="label">Deductions (Fees)</span><span class="val" id="r-fees"></span></div>
+    <div class="total-row"><span>Net Cash Disbursed</span><span class="val" id="r-disbursal"></span></div>
+
+    <hr class="divider">
+    <div class="result-row"><span class="label">Repayment Scheme</span><span class="val" id="r-schemename"></span></div>
+    <div class="total-row"><span id="r-monthly-label">Monthly Payment</span><span class="val" id="r-monthly-val"></span></div>
+    <div class="result-row" id="r-principal-end-row" style="margin-top:6px;"><span class="label">Principal at Maturity</span><span class="val" id="r-principal-end"></span></div>
+    <div class="result-row"><span class="label">Total Interest</span><span class="val" id="r-interest"></span></div>
+    <div class="result-row"><span class="label">Total Amount Repaid</span><span class="val" id="r-repayment"></span></div>
+
+    <!-- Sensitivity Simulator -->
+    <div class="risk-note" id="riskNote"></div>
+
+    <button class="btn-primary" style="margin-top:14px; background:#128C7E;" onclick="shareQuote()">📱 Share Loan Quote (WhatsApp)</button>
+    <button class="btn-plain" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+  const GRAMS_PER_PAVAN = 8.0;
+  const GRAMS_PER_TOLA = 11.6638;
+
+  function toPavan(g){ return g / GRAMS_PER_PAVAN; }
+  function toTola(g){ return g / GRAMS_PER_TOLA; }
+  function fmtPavan(g){
+    const p = toPavan(g);
+    return p.toFixed(2) + (Math.abs(p - 1.0) < 0.001 ? ' Pavan' : ' Pavans');
+  }
+
+  function fmtMoney(v){
+    if(isNaN(v)) return '₹ 0';
+    return '₹ ' + Math.round(v).toLocaleString('en-IN');
+  }
+  function fmtMoney2(v){
+    if(isNaN(v)) return '₹ 0.00';
+    return '₹ ' + Number(v).toLocaleString('en-IN', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  function toggleWrap(wrapId, toggleId){
+    const wrap = document.getElementById(wrapId);
+    const toggle = document.getElementById(toggleId);
+    const isOpen = wrap.style.display === 'block';
+    wrap.style.display = isOpen ? 'none' : 'block';
+    toggle.textContent = isOpen ? '+' : '-';
+  }
+
+  function toggleStoneWrap(){
+    const wrap = document.getElementById('stoneWrap');
+    const icon = document.getElementById('stoneToggleIcon');
+    const isOpen = wrap.style.display === 'block';
+    wrap.style.display = isOpen ? 'none' : 'block';
+    icon.textContent = isOpen ? '+' : '-';
+  }
+
+  function recalcNetWeight(){
+    const gross = parseFloat(document.getElementById('grossWeight').value) || 0;
+    const stone = parseFloat(document.getElementById('stoneWeight').value) || 0;
+    const net = Math.max(0, gross - stone);
+    const preview = document.getElementById('netWeightPreview');
+    if(gross > 0){
+      preview.style.display = 'block';
+      preview.textContent = 'Net Gold: ' + net.toFixed(3) + ' gm (' + fmtPavan(net) + ')';
+      document.getElementById('weight').value = net.toFixed(3);
+      onWeightInput();
+    } else {
+      preview.style.display = 'none';
+    }
+  }
+
+  function onWeightInput(){
+    const g = parseFloat(document.getElementById('weight').value) || 0;
+    const el = document.getElementById('unitEquiv');
+    if(g > 0){
+      el.style.display = 'block';
+      el.textContent = g.toFixed(3) + ' gm = ' + toPavan(g).toFixed(3) + ' Pavans | ' + toTola(g).toFixed(3) + ' Tolas';
+    } else {
+      el.style.display = 'none';
+    }
+  }
+
+  function addWeight(delta){
+    const cur = parseFloat(document.getElementById('weight').value) || 0;
+    const next = (cur + delta).toFixed(3);
+    document.getElementById('weight').value = next;
+    onWeightInput();
+  }
+
+  function onPurityChange(){
+    const val = document.getElementById('purity').value;
+    document.getElementById('customPurityWrap').style.display = (val === 'custom') ? 'block' : 'none';
+  }
+
+  function onSchemeChange(){
+    const scheme = document.getElementById('scheme').value;
+    const hint = document.getElementById('schemeHint');
+    const tenureSelect = document.getElementById('tenure');
+    if(scheme === 'interest_only'){
+      hint.textContent = 'Pay only monthly interest; full principal repaid at maturity. Most popular in India.';
+    } else if(scheme === 'bullet'){
+      hint.textContent = 'Zero monthly payment. Full Principal + Interest paid in single lump sum at maturity (RBI allows up to 12 months / ₹4 Lakhs).';
+      if(parseInt(tenureSelect.value, 10) > 12){
+        tenureSelect.value = '12';
+      }
+    } else {
+      hint.textContent = 'Regular amortized monthly installment of Principal + Interest.';
+    }
+  }
+
+  function onTenureChange(){
+    const scheme = document.getElementById('scheme').value;
+    const tenure = parseInt(document.getElementById('tenure').value, 10);
+    if(scheme === 'bullet' && tenure > 12){
+      alert('RBI regulations restrict Bullet Repayment gold loans to a maximum tenure of 12 months.');
+      document.getElementById('tenure').value = '12';
+    }
+  }
+
+  function applyPreset(type){
+    if(type === 'psu'){
+      document.getElementById('interestRate').value = '8.75';
+      document.getElementById('ltvPct').value = '70';
+      document.getElementById('processingFee').value = '0.5';
+      document.getElementById('valuationFee').value = '150';
+    } else if(type === 'private'){
+      document.getElementById('interestRate').value = '10.0';
+      document.getElementById('ltvPct').value = '75';
+      document.getElementById('processingFee').value = '0.5';
+      document.getElementById('valuationFee').value = '250';
+    } else if(type === 'nbfc'){
+      document.getElementById('interestRate').value = '12.5';
+      document.getElementById('ltvPct').value = '75';
+      document.getElementById('processingFee').value = '1.0';
+      document.getElementById('valuationFee').value = '0';
+    }
+  }
+
+  let lastLoanResult = null;
+
+  function calculate(){
+    const errEl = document.getElementById('errorMsg');
+    const purityRaw = document.getElementById('purity').value;
+    let purityFactor = 0.916;
+    let purityLabel = '22K (916)';
+    if(purityRaw === 'custom'){
+      const cp = parseFloat(document.getElementById('customPurity').value) || 0;
+      purityFactor = cp / 100;
+      purityLabel = 'Custom (' + cp.toFixed(1) + '%)';
+    } else {
+      purityFactor = parseFloat(purityRaw);
+      const sel = document.getElementById('purity');
+      purityLabel = sel.options[sel.selectedIndex].text.split(' - ')[0];
+    }
+
+    const netWeight = parseFloat(document.getElementById('weight').value) || 0;
+    const todayRate = parseFloat(document.getElementById('todayRate').value) || 0;
+    const avgRate = parseFloat(document.getElementById('avgRate').value) || 0;
+    let ltvPct = parseFloat(document.getElementById('ltvPct').value) || 75;
+    const interestRate = parseFloat(document.getElementById('interestRate').value);
+    const tenure = parseInt(document.getElementById('tenure').value, 10);
+    const scheme = document.getElementById('scheme').value;
+    const processingFeePct = parseFloat(document.getElementById('processingFee').value) || 0;
+    const valuationFee = parseFloat(document.getElementById('valuationFee').value) || 0;
+
+    const missing = [];
+    if(!(netWeight > 0)) missing.push('net gold weight');
+    if(!(todayRate > 0)) missing.push("today's 24K rate");
+    if(!(avgRate > 0)) missing.push('30-day average 24K rate');
+    if(!(interestRate >= 0)) missing.push('interest rate');
+    if(!(purityFactor > 0)) missing.push('valid purity');
+
+    if(missing.length){
+      errEl.textContent = 'Please enter: ' + missing.join(', ') + '.';
+      errEl.style.display = 'block';
+      return;
+    }
+    errEl.style.display = 'none';
+
+    // RBI LTV validation warning
+    const ltvWarn = document.getElementById('ltvWarning');
+    if(ltvPct > 75){
+      ltvWarn.textContent = 'Note: ' + ltvPct + '% exceeds the RBI statutory ceiling of 75% for regular gold loans.';
+      ltvWarn.style.display = 'block';
+    } else {
+      ltvWarn.style.display = 'none';
+    }
+
+    // Conservative valuation rate: lower of today's and 30-day avg
+    const effective24kRate = Math.min(todayRate, avgRate);
+    const rateSourceLabel = todayRate <= avgRate ? "Today's Rate" : "30-Day Average";
+    const goldValue = netWeight * purityFactor * effective24kRate;
+    const maxEligible = goldValue * (ltvPct / 100);
+
+    const desiredInput = parseFloat(document.getElementById('desiredLoan').value);
+    let loanAmount = (desiredInput > 0) ? desiredInput : maxEligible;
+    const capWarning = document.getElementById('capWarning');
+    if(loanAmount > maxEligible){
+      loanAmount = maxEligible;
+      capWarning.textContent = 'Requested amount exceeds max eligible - capped to ' + fmtMoney(maxEligible) + '.';
+      capWarning.style.display = 'block';
+    } else {
+      capWarning.style.display = 'none';
+    }
+
+    const loanPerGram = loanAmount / netWeight;
+    const processingFeeAmt = loanAmount * (processingFeePct / 100);
+    const totalFees = processingFeeAmt + valuationFee;
+    const netDisbursal = loanAmount - totalFees;
+
+    // Repayment calculations based on scheme
+    const r = interestRate / 12 / 100;
+    const n = tenure;
+    let monthlyLabel = 'Monthly Payment';
+    let monthlyVal = 0;
+    let principalAtEnd = 0;
+    let totalInterest = 0;
+    let totalRepayment = 0;
+    let schemeName = '';
+
+    if(scheme === 'interest_only'){
+      schemeName = 'Monthly Interest Only';
+      monthlyLabel = 'Monthly Interest';
+      monthlyVal = loanAmount * r;
+      principalAtEnd = loanAmount;
+      totalInterest = monthlyVal * n;
+      totalRepayment = loanAmount + totalInterest;
+    } else if(scheme === 'bullet'){
+      schemeName = 'Bullet Repayment';
+      monthlyLabel = 'Monthly Payment';
+      monthlyVal = 0;
+      // Compound monthly or simple interest
+      totalInterest = loanAmount * (interestRate / 100) * (n / 12);
+      principalAtEnd = loanAmount + totalInterest;
+      totalRepayment = principalAtEnd;
+    } else {
+      schemeName = 'Regular Monthly EMI';
+      monthlyLabel = 'Monthly EMI';
+      monthlyVal = r === 0 ? loanAmount / n : loanAmount * r * Math.pow(1 + r, n) / (Math.pow(1 + r, n) - 1);
+      principalAtEnd = 0;
+      totalRepayment = monthlyVal * n;
+      totalInterest = totalRepayment - loanAmount;
+    }
+
+    // Margin Call Sensitivity: if gold price drops
+    // At what gold value does loanAmount / newValue = 85%?
+    const dropToTrigger85 = Math.max(0, (1 - (loanAmount / 0.85) / goldValue) * 100);
+    const dropPrice24k = effective24kRate * (1 - dropToTrigger85 / 100);
+
+    lastLoanResult = {
+      purityLabel, netWeight, purityFactor, todayRate, avgRate,
+      effective24kRate, rateSourceLabel, goldValue, ltvPct, maxEligible,
+      loanAmount, loanPerGram, totalFees, netDisbursal, scheme, schemeName,
+      monthlyLabel, monthlyVal, principalAtEnd, totalInterest, totalRepayment,
+      tenure, interestRate, dropToTrigger85, dropPrice24k
+    };
+
+    // Populate Modal
+    document.getElementById('r-loan-per-gram').textContent = fmtMoney(loanPerGram) + ' / gm';
+    document.getElementById('r-loan-per-gram-sub').textContent = 'For ' + purityLabel + ' gold collateral';
+
+    document.getElementById('rateUsedNote').innerHTML =
+      '<b>Valuation Rate Applied: ' + rateSourceLabel + '</b> (₹' + effective24kRate.toLocaleString('en-IN') + '/gm 24K) - the lower of your two inputs per RBI conservative norms.' +
+      '<span class="ltv-badge">LTV ' + ltvPct + '%</span>';
+
+    document.getElementById('r-netweight').textContent = netWeight.toFixed(3) + ' gm (' + fmtPavan(netWeight) + ')';
+    document.getElementById('r-purity').textContent = purityLabel;
+    document.getElementById('r-goldvalue').textContent = fmtMoney2(goldValue);
+    document.getElementById('r-ltv').textContent = ltvPct + '%';
+    document.getElementById('r-maxeligible').textContent = fmtMoney(maxEligible);
+    document.getElementById('r-loanamount').textContent = fmtMoney(loanAmount);
+    document.getElementById('r-fees').textContent = '- ' + fmtMoney2(totalFees);
+    document.getElementById('r-disbursal').textContent = fmtMoney2(netDisbursal);
+
+    document.getElementById('r-schemename').textContent = schemeName;
+    document.getElementById('r-monthly-label').textContent = monthlyLabel;
+    document.getElementById('r-monthly-val').textContent = fmtMoney2(monthlyVal);
+
+    const princEndRow = document.getElementById('r-principal-end-row');
+    if(scheme === 'interest_only'){
+      princEndRow.style.display = 'flex';
+      document.getElementById('r-principal-end').textContent = fmtMoney(principalAtEnd);
+    } else if(scheme === 'bullet'){
+      princEndRow.style.display = 'flex';
+      princEndRow.querySelector('.label').textContent = 'Bullet Repayment at Maturity';
+      document.getElementById('r-principal-end').textContent = fmtMoney2(principalAtEnd);
+    } else {
+      princEndRow.style.display = 'none';
+    }
+
+    document.getElementById('r-interest').textContent = fmtMoney2(totalInterest);
+    document.getElementById('r-repayment').textContent = fmtMoney2(totalRepayment);
+
+    // Risk Note
+    document.getElementById('riskNote').innerHTML =
+      '<b>Collateral Buffer Alert:</b> If 24K gold rate drops by <b>' + dropToTrigger85.toFixed(1) + '%</b> (to ₹' + Math.round(dropPrice24k).toLocaleString('en-IN') + '/gm), your LTV will exceed 85%, triggering a lender margin call (demanding immediate part-prepayment). Borrow with a safety buffer.';
+
+    document.getElementById('resultModal').classList.add('active');
+  }
+
+  function closeModal(){
+    document.getElementById('resultModal').classList.remove('active');
+  }
+
+  function shareQuote(){
+    if(!lastLoanResult) return;
+    const r = lastLoanResult;
+    const pavanText = fmtPavan(r.netWeight);
+    const lines = [
+      '🪙 Gold Loan Eligibility Quote',
+      '----------------------------------------',
+      `Collateral: ${r.purityLabel}`,
+      `Net Weight: ${r.netWeight.toFixed(3)} gm (${pavanText})`,
+      `Valuation Rate: ₹${r.effective24kRate.toLocaleString('en-IN')}/gm (24K ${r.rateSourceLabel})`,
+      `Appraised Gold Value: ₹${Math.round(r.goldValue).toLocaleString('en-IN')}`,
+      `LTV Applied: ${r.ltvPct}% (Max RBI Cap: 75%)`,
+      '----------------------------------------',
+      `Loan Per Gram: ₹${Math.round(r.loanPerGram).toLocaleString('en-IN')}/gm`,
+      `Sanctioned Loan: ₹${Math.round(r.loanAmount).toLocaleString('en-IN')}`,
+      `Upfront Fees: -₹${Math.round(r.totalFees).toLocaleString('en-IN')}`,
+      `Net Cash Disbursal: ₹${Math.round(r.netDisbursal).toLocaleString('en-IN')}`,
+      '----------------------------------------',
+      `Scheme: ${r.schemeName}`,
+      `Interest Rate: ${r.interestRate}% p.a. (${r.tenure} months)`,
+      `${r.monthlyLabel}: ₹${Math.round(r.monthlyVal).toLocaleString('en-IN')}`,
+      r.scheme === 'interest_only' ? `Principal at Maturity: ₹${Math.round(r.principalAtEnd).toLocaleString('en-IN')}` : '',
+      r.scheme === 'bullet' ? `Bullet Payment at Maturity: ₹${Math.round(r.principalAtEnd).toLocaleString('en-IN')}` : '',
+      `Total Interest: ₹${Math.round(r.totalInterest).toLocaleString('en-IN')}`,
+      `Total Amount Repaid: ₹${Math.round(r.totalRepayment).toLocaleString('en-IN')}`,
+      '----------------------------------------',
+      '* Estimate only, not a formal loan sanction.',
+      `Calculated via https://iamsaravofficial.com/apps/gold-loan-calculator/`
+    ].filter(Boolean).join('
+');
+
+    if(navigator.share){
+      navigator.share({ title: 'Gold Loan Estimate', text: lines }).catch(()=>{});
+    } else {
+      const waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(lines);
+      window.open(waUrl, '_blank');
+    }
+  }
+
+  // Theme Engine
+  function setTheme(theme){
+    localStorage.setItem('glc_theme', theme);
+    ['system', 'light', 'dark'].forEach(t => {
+      const btn = document.getElementById('theme-' + t);
+      if(btn) btn.classList.toggle('active', t === theme);
+    });
+    if(theme === 'system'){
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+  }
+
+  const savedTheme = localStorage.getItem('glc_theme') || 'system';
+  setTheme(savedTheme);
+  if(window.matchMedia){
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if(localStorage.getItem('glc_theme') === 'system') setTheme('system');
+    });
+  }
+</script>
+
+</body>
+</html>
