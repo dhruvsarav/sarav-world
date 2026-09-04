@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -35,6 +38,6 @@ jobs:
             echo "No new facts due or changes detected. Repository is already up to date."
           else
             git commit -m "Fact Drop: Auto-publish latest weekly drop [skip ci]"
-            git push origin main
+            git push origin HEAD:main
             echo "Successfully published and pushed new fact drop!"
           fi
