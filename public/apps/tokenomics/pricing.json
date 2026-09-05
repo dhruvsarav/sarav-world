@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "version": "2026.09",
+    "last_refreshed": "2026-09-05",
+    "refresh_cadence": "Quarterly — manual. No live pricing APIs are called by this tool.",
+    "currency": "USD",
+    "unit": "per 1,000,000 tokens unless noted",
+    "source_note": "Public list pricing compiled from official provider documentation (Anthropic, OpenAI, Google Cloud, AWS, DeepSeek). Rates are editable in Section 08."
+  },
+  "llm_providers": {
+    "anthropic": {
+      "label": "Anthropic Claude — Direct API",
+      "models": [
+        { "id": "claude-3-7-sonnet",  "label": "Claude 3.7 Sonnet (Hybrid Reasoning)", "input": 3.00,  "output": 15.00, "cached_input": 0.30, "audio_native": false },
+        { "id": "claude-3-5-sonnet",  "label": "Claude 3.5 Sonnet",                    "input": 3.00,  "output": 15.00, "cached_input": 0.30, "audio_native": false },
+        { "id": "claude-3-5-haiku",   "label": "Claude 3.5 Haiku",                     "input": 0.80,  "output": 4.00,  "cached_input": 0.08, "audio_native": false },
+        { "id": "claude-3-opus",      "label": "Claude 3 Opus",                        "input": 15.00, "output": 75.00, "cached_input": 1.50, "audio_native": false }
+      ]
+    },
+    "azure_openai": {
+      "label": "Azure OpenAI Service",
+      "models": [
+        { "id": "gpt-4o-mini",        "label": "GPT-4o mini",                          "input": 0.15,  "output": 0.60,  "cached_input": 0.075, "audio_native": false },
+        { "id": "gpt-4o",             "label": "GPT-4o",                               "input": 2.50,  "output": 10.00, "cached_input": 1.25,  "audio_native": false },
+        { "id": "o3-mini",            "label": "o3-mini (High-speed Reasoning)",        "input": 1.10,  "output": 4.40,  "cached_input": 0.55,  "audio_native": false },
+        { "id": "o1",                 "label": "o1 (Deep Reasoning)",                  "input": 15.00, "output": 60.00, "cached_input": 7.50,  "audio_native": false },
+        { "id": "gpt-4o-realtime",    "label": "GPT-4o Realtime (Audio-native)",       "input": 5.00,  "output": 20.00, "cached_input": 2.50,  "audio_native": true }
+      ],
+      "note": "Global Standard PAYG rates. Actual enterprise invoice commonly adds 15–30% (support plan, PTU reservation, data egress)."
+    },
+    "deepseek": {
+      "label": "DeepSeek API",
+      "models": [
+        { "id": "deepseek-v3",        "label": "DeepSeek-V3",                          "input": 0.14,  "output": 0.28,  "cached_input": 0.014, "audio_native": false },
+        { "id": "deepseek-r1",        "label": "DeepSeek-R1 (Open Reasoning)",         "input": 0.55,  "output": 2.19,  "cached_input": 0.14,  "audio_native": false }
+      ],
+      "note": "Frontier cost-disruption tier. Cached reads offer up to 90% savings."
+    },
+    "google_gemini": {
+      "label": "Google Gemini API",
+      "models": [
+        { "id": "gemini-2-0-flash",   "label": "Gemini 2.0 Flash",                     "input": 0.10,  "output": 0.40,  "cached_input": 0.025, "audio_native": false },
+        { "id": "gemini-2-0-pro",     "label": "Gemini 2.0 Pro (Experimental)",        "input": 1.25,  "output": 5.00,  "cached_input": 0.30,  "audio_native": false },
+        { "id": "gemini-1-5-flash",   "label": "Gemini 1.5 Flash",                     "input": 0.075, "output": 0.30,  "cached_input": 0.018, "audio_native": false },
+        { "id": "gemini-1-5-pro",     "label": "Gemini 1.5 Pro (≤128K ctx)",           "input": 1.25,  "output": 5.00,  "cached_input": 0.31,  "audio_native": false },
+        { "id": "gemini-live",        "label": "Gemini Live (Multimodal Audio-native)","input": 2.00,  "output": 8.00,  "cached_input": 0.50,  "audio_native": true }
+      ]
+    },
+    "aws_bedrock": {
+      "label": "AWS Bedrock",
+      "models": [
+        { "id": "bedrock-claude-3-7", "label": "Claude 3.7 Sonnet (Bedrock)",          "input": 3.00,  "output": 15.00, "cached_input": 0.30, "audio_native": false },
+        { "id": "bedrock-claude-3-5", "label": "Claude 3.5 Sonnet (Bedrock)",          "input": 3.00,  "output": 15.00, "cached_input": 0.30, "audio_native": false },
+        { "id": "amazon-nova-micro",  "label": "Amazon Nova Micro",                    "input": 0.035, "output": 0.14,  "cached_input": 0.009, "audio_native": false },
+        { "id": "amazon-nova-lite",   "label": "Amazon Nova Lite",                     "input": 0.06,  "output": 0.24,  "cached_input": 0.015, "audio_native": false },
+        { "id": "amazon-nova-pro",    "label": "Amazon Nova Pro",                      "input": 0.80,  "output": 3.20,  "cached_input": 0.20,  "audio_native": false }
+      ],
+      "note": "Cross-Region inference routing may add +10%."
+    },
+    "ccaas_native": {
+      "label": "CCaaS-native AI (Contact Center Platform Bundled)",
+      "models": [
+        { "id": "genesys-ai",         "label": "Genesys AI Experience Bot",            "input": 1.50,  "output": 4.50,  "cached_input": 0.50,  "audio_native": true },
+        { "id": "webex-ai",           "label": "Webex AI Agent",                       "input": 1.20,  "output": 4.00,  "cached_input": 0.40,  "audio_native": true },
+        { "id": "amazon-connect-ai",  "label": "Amazon Connect Contact Lens AI",       "input": 1.00,  "output": 3.50,  "cached_input": 0.30,  "audio_native": true }
+      ],
+      "note": "Estimated blend. Review agreement schedule for committed tier discounts."
+    },
+    "local_llm": {
+      "label": "Local / Self-Hosted (On-Prem GPU / Private Cloud)",
+      "models": [
+        { "id": "local-custom",       "label": "Self-hosted Llama / Mistral (Amortized $/1M)", "input": 0.08, "output": 0.16, "cached_input": 0.02, "audio_native": false, "note": "Reflects amortized H100/L40S infrastructure and electricity costs." }
+      ]
+    }
+  },
+  "speech": {
+    "azure": { "label": "Azure AI Speech", "stt_usd_per_hour": 1.00, "tts_neural_usd_per_million_chars": 16.00 },
+    "google": { "label": "Google Cloud Speech", "stt_usd_per_hour": 1.44, "tts_neural_usd_per_million_chars": 16.00 },
+    "aws": { "label": "AWS Transcribe / Polly", "stt_usd_per_hour": 1.44, "tts_neural_usd_per_million_chars": 16.00 },
+    "openai": { "label": "OpenAI Whisper / Audio", "stt_usd_per_hour": 0.36, "tts_neural_usd_per_million_chars": 15.00 },
+    "note": "Only used when a Voice offering runs on a non audio-native LLM."
+  },
+  "ccaas_ai_session_fee": {
+    "genesys": { "label": "Genesys Cloud CX", "usd_per_ai_session": 0.015, "note": "Orchestration & conversational turn surcharge." },
+    "aws_connect": { "label": "AWS Connect", "usd_per_ai_session": 0.005 },
+    "webex": { "label": "Cisco Webex Contact Center", "usd_per_ai_session": 0.010 },
+    "acs": { "label": "Azure Communication Services", "usd_per_ai_session": 0.004 },
+    "other": { "label": "Other / Custom", "usd_per_ai_session": 0.000 }
+  },
+  "automation_curve_recommended": {
+    "note": "Standard 5-year Digital Workplace AI automation ramp for enterprise Managed Services.",
+    "years": [
+      { "year": 1, "range_low": 10, "range_high": 20, "recommended": 15 },
+      { "year": 2, "range_low": 20, "range_high": 35, "recommended": 28 },
+      { "year": 3, "range_low": 35, "range_high": 48, "recommended": 42 },
+      { "year": 4, "range_low": 45, "range_high": 55, "recommended": 50 },
+      { "year": 5, "range_low": 50, "range_high": 65, "recommended": 58 }
+    ]
+  }
+}

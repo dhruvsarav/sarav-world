@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Tokenomics — Right-Size Your Enterprise AI Spend | Sarav's World</title>
+<meta name="description" content="Enterprise AI token consumption and ROI financial modeling suite across Digital Workplace, IT Service Desk, Deskside, DEX Ops, and Cloud infrastructure.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/tokenomics/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/tokenomics/">
+<meta property="og:title" content="Tokenomics — Right-Size Your Enterprise AI Spend">
+<meta property="og:description" content="Simulate enterprise LLM token spend, prompt caching, human labor arbitrage, and 5-year digital workplace ROI.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/tokenomics/icons/brain-full.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tokenomics — Right-Size Your Enterprise AI Spend">
+<meta name="twitter:description" content="Simulate enterprise LLM token spend, prompt caching, human labor arbitrage, and 5-year digital workplace ROI.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/tokenomics/icons/brain-full.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12px; color: var(--text-dim);
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 14px; }
+  .ecosystem-links a { color: var(--text-dim); font-weight: 500; }
+  .ecosystem-links a:hover { color: var(--accent); text-decoration: none; }
+
+  /* Header */
+  header.topbar {
+    position: sticky; top: 0; z-index: 50; background: rgba(12, 15, 20, 0.94);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.94); }
+  .topbar-inner { display: flex; align-items: center; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  nav.jumpnav { display: flex; gap: 2px; overflow-x: auto; flex: 1; padding: 2px 0; }
+  nav.jumpnav a {
+    white-space: nowrap; font-size: 12px; color: var(--text-dim); text-decoration: none;
+    padding: 5px 9px; border-radius: 6px; font-weight: 500;
+  }
+  nav.jumpnav a:hover { background: var(--surface-2); color: var(--text); }
+  .topbar-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+
+  @media print {
+    header.topbar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sub-header: Sarav's World Ecosystem -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/">← Sarav's World</a>
+      <span>·</span>
+      <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+      <span>·</span>
+      <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+      <span>·</span>
+      <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+      <span>·</span>
+      <a href="https://iamsaravofficial.com/feedback/">Reviews</a>
+    </div>
+    <div>
+      <span>AI Architect &amp; Digital Workplace Suite · Version 2026.09</span>
+    </div>
+  </div>
+</div>
+
+<!-- Main Topbar -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="mark">
+        <img src="icons/favicon-192.png" alt="Tokenomics Logo">
+      </div>
+      <div>
+        <h1>Tokenomics <span class="badge gold">DWP Suite</span></h1>
+        <span class="tagline">Right-Size Your Enterprise AI Spend &amp; Digital Workplace ROI</span>
+      </div>
+    </div>
+    <nav class="jumpnav">
+      <a href="#profile">Profile</a>
+      <a href="#volume">Volume</a>
+      <a href="#scope">Scope</a>
+      <a href="#sla">SLA</a>
+      <a href="#stack">Stack</a>
+      <a href="#offerings">Offerings</a>
+      <a href="#automation">Automation</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#report">Report &amp; ROI</a>
+    </nav>
+    <div class="topbar-controls">
+      <div class="currency-toggle" id="currencyToggle">
+        <button data-curr="USD" class="active">USD ($)</button>
+        <button data-curr="INR">INR (₹)</button>
+        <button data-curr="EUR">EUR (€)</button>
+        <button data-curr="GBP">GBP (£)</button>
+      </div>
+      <div class="live-total-pill">Month 1: <b id="liveTotal" class="mono">$0</b></div>
+      <div class="theme-toggle" id="themeToggle">
+        <button data-theme-choice="auto">Auto</button>
+        <button data-theme-choice="light">Light</button>
+        <button data-theme-choice="dark" class="active">Dark</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- One-Click Enterprise Presets Bar -->
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="midmarket">🏢 Mid-Market Enterprise (5,000 users)</button>
+    <button class="preset-btn active" data-preset="global">🌐 Global Enterprise (30,000 users)</button>
+    <button class="preset-btn" data-preset="fortune500">🚀 Fortune 500 GCC (100,000 users)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. Organization Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Organization Profile</h2></div>
+    <p class="sec-desc">Estate sizing benchmarks across workforce, physical device endpoints, and AI-enabled hardware.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="org_users">Total users (Knowledge Workers / Employees)</label><input id="org_users" type="number" min="0" value="30000"></div>
+        <div class="field"><label for="org_devices">Total managed devices (Laptops / Desktops / Mobile)</label><input id="org_devices" type="number" min="0" value="34000"></div>
+        <div class="field"><label for="org_aipcs">Total AI PCs (NPU-enabled Copilot+ PCs)</label><input id="org_aipcs" type="number" min="0" value="5100"></div>
+      </div>
+      <p class="hint" id="org_hint"></p>
+    </div>
+  </section>
+
+  <!-- 2. Volume & Channel Mix -->
+  <section class="block" id="volume">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Volume &amp; Channel Mix</h2></div>
+    <p class="sec-desc">Monthly interaction volumes and omnichannel distribution across Service Desk, Self-Service, and Enterprise Collaboration.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="vol_contacts">Avg. monthly total contacts</label><input id="vol_contacts" type="number" min="0" value="25000"></div>
+        <div class="field"><label for="vol_incidents">Avg. monthly incidents (Break-fix)</label><input id="vol_incidents" type="number" min="0" value="14000"></div>
+        <div class="field"><label for="vol_requests">Avg. monthly service requests (MACD)</label><input id="vol_requests" type="number" min="0" value="11000"></div>
+      </div>
+      <p class="hint" id="vol_reconcile"></p>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin: 18px 0 10px;">
+        <span style="font-size: 12.5px; font-weight: 600; color: var(--text-dim); text-transform: uppercase;">Channel Distribution</span>
+        <div class="pillrow" id="splitModeToggle">
+          <div class="pill on" data-mode="percent">% of Total Contacts</div>
+          <div class="pill" data-mode="actual">Exact Interaction Count</div>
+        </div>
+      </div>
+
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th>Channel</th>
+              <th style="width:160px;">Share / Value</th>
+              <th style="width:200px;">Computed Monthly Volume</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Voice / Telephony Channel (Inbound Call Center)</td>
+              <td><input id="vol_voice" type="number" min="0" value="30"></td>
+              <td class="num-cell mono" id="vol_voice_computed">—</td>
+            </tr>
+            <tr>
+              <td>MS Teams &amp; Slack Bot (Enterprise Collaboration Channel)</td>
+              <td><input id="vol_teams" type="number" min="0" value="35"></td>
+              <td class="num-cell mono" id="vol_teams_computed">—</td>
+            </tr>
+            <tr>
+              <td>Web Portal &amp; Self-Service Catalog</td>
+              <td><input id="vol_web" type="number" min="0" value="20"></td>
+              <td class="num-cell mono" id="vol_web_computed">—</td>
+            </tr>
+            <tr>
+              <td>Live Chat Widget (In-Browser)</td>
+              <td><input id="vol_chat" type="number" min="0" value="10"></td>
+              <td class="num-cell mono" id="vol_chat_computed">—</td>
+            </tr>
+            <tr>
+              <td>Email Inbound (Shared Mailbox / Dispatch)</td>
+              <td><input id="vol_email" type="number" min="0" value="5"></td>
+              <td class="num-cell mono" id="vol_email_computed">—</td>
+            </tr>
+            <tr>
+              <td style="color:var(--text-dim); font-weight:600;">Digital Total (Teams + Web + Chat + Email)</td>
+              <td class="num-cell mono" id="vol_digital_derived" style="font-weight:600;">—</td>
+              <td class="num-cell mono" id="vol_digital_contacts" style="font-weight:600;">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint" id="vol_split_status"></p>
+    </div>
+  </section>
+
+  <!-- 3. Scope, Staffing & Human Baseline -->
+  <section class="block" id="scope">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Scope &amp; Human Cost Baseline</h2></div>
+    <p class="sec-desc">Human agent headcount and fully loaded cost benchmarks used to calculate labor arbitrage and net commercial ROI.</p>
+
+    <div class="panel">
+      <h3>Services in Scope</h3>
+      <div class="pillrow" id="servicesInScope">
+        <div class="pill on" data-svc="Service Desk (L1)">Service Desk (L1)</div>
+        <div class="pill on" data-svc="Deskside / Field Support">Deskside / Field Support</div>
+        <div class="pill on" data-svc="DEX Ops">DEX Ops</div>
+        <div class="pill on" data-svc="Modern Workplace">Modern Workplace (Intune · M365)</div>
+        <div class="pill" data-svc="Cloud Infrastructure Ops">Cloud Infrastructure Ops</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Human Service Desk (L1) Headcount &amp; Cost Arbitrage</h3>
+      <div class="grid grid-3">
+        <div class="field">
+          <label for="scope_sd_oncall">Human agents taking calls/chats</label>
+          <input id="scope_sd_oncall" type="number" min="0" value="38">
+        </div>
+        <div class="field">
+          <label for="scope_sd_total">Total L1 staff (incl. leads, QA, SDM)</label>
+          <input id="scope_sd_total" type="number" min="0" value="48">
+        </div>
+        <div class="field">
+          <label for="human_cost_per_ticket">Fully-loaded human cost per ticket (<span class="curr-symbol">$</span>)</label>
+          <input id="human_cost_per_ticket" type="number" step="0.5" min="1" value="18">
+          <span class="hint">Global blended L1 benchmark: $15–$24 / £12–£18 / ₹1,200–₹1,800</span>
+        </div>
+      </div>
+      <p class="hint" id="sd_nesting"></p>
+    </div>
+
+    <div class="panel">
+      <h3>Deskside &amp; DEX Ops Teams</h3>
+      <div class="grid grid-3">
+        <div class="field"><label for="scope_desk_agents">Deskside human technicians</label><input id="scope_desk_agents" type="number" min="0" value="22"></div>
+        <div class="field"><label for="scope_dexops_agents">DEX Ops L1 / L2 engineers</label><input id="scope_dexops_agents" type="number" min="0" value="6"></div>
+        <div class="field"><label for="scope_lang">Languages supported</label><input id="scope_lang" type="number" min="1" value="4"></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Knowledge Base &amp; Visual AR Readiness</h3>
+      <div class="grid grid-3">
+        <div class="field"><label for="scope_kbavail">Total available KB articles</label><input id="scope_kbavail" type="number" min="0" value="2400"></div>
+        <div class="field"><label for="scope_kbplanned">KB articles curated for AI/RAG</label><input id="scope_kbplanned" type="number" min="0" value="1800"></div>
+        <div class="field"><label for="scope_kbvisual">Visual (AR-enabled) procedures</label><input id="scope_kbvisual" type="number" min="0" value="140"></div>
+      </div>
+      <p class="hint" id="kb_hint"></p>
+    </div>
+  </section>
+
+  <!-- 4. Service Levels -->
+  <section class="block" id="sla">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Service Levels &amp; Benchmarks</h2></div>
+    <p class="sec-desc">Baseline handling metrics used for STT duration modeling and human productivity equivalents.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="sla_ahtvoice">AHT — Voice (minutes)</label><input id="sla_ahtvoice" type="number" min="0" value="6.5"></div>
+        <div class="field"><label for="sla_ahtchat">AHT — Chat / Teams (minutes)</label><input id="sla_ahtchat" type="number" min="0" value="9.0"></div>
+        <div class="field"><label for="sla_convlen">Avg. conversational turns</label><input id="sla_convlen" type="number" min="1" value="5"></div>
+        <div class="field"><label for="sla_art">Avg. Resolution Time — Requests (hrs)</label><input id="sla_art" type="number" min="0" value="8.0"></div>
+        <div class="field"><label for="sla_mttr">Mean Time to Resolve — Incidents (hrs)</label><input id="sla_mttr" type="number" min="0" value="3.5"></div>
+        <div class="field">
+          <label for="sla_shift">Shift coverage model</label>
+          <select id="sla_shift">
+            <option>24x7 Follow-the-Sun</option>
+            <option>16x5 Multi-Shift</option>
+            <option>12x5 Business Hours</option>
+          </select>
+        </div>
+      </div>
+      <p class="hint">Voice AHT directly drives the Speech-to-Text (STT) and Text-to-Speech (TTS) minute calculations when non audio-native LLMs are deployed.</p>
+    </div>
+  </section>
+
+  <!-- 5. Technology Stack -->
+  <section class="block" id="stack">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Enterprise Technology Stack</h2></div>
+    <p class="sec-desc">Configures the underlying cloud host, global default LLM, and enterprise IT management platforms.</p>
+    <div class="panel">
+      <div class="grid grid-3" id="stackGrid"></div>
+    </div>
+  </section>
+
+  <!-- 6. AI Offerings & Token Catalog -->
+  <section class="block" id="offerings">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>AI Offerings &amp; Token Tuning</h2></div>
+    <p class="sec-desc">Model catalog across Service Desk, Auto-Triage, and Proactive Automation. Tune Prompt Caching and Headroom buffers for commercial precision.</p>
+
+    <!-- Token Architecture Tuning Controls -->
+    <div class="panel" style="margin-bottom: 14px; background: var(--surface-2);">
+      <h3>Architectural Tuning &amp; Prompt Caching</h3>
+      <div class="grid grid-2">
+        <div>
+          <label for="cache_hit_slider">Prompt Cache Hit Ratio: <span class="badge info" id="cache_hit_label">70%</span></label>
+          <div class="slider-control">
+            <input type="range" id="cache_hit_slider" min="0" max="95" step="5" value="70">
+            <span class="slider-val" id="cache_hit_val">70%</span>
+          </div>
+          <span class="hint">Models discounted cached read pricing (up to 90% cheaper on Claude, DeepSeek &amp; Gemini).</span>
+        </div>
+        <div>
+          <label for="headroom_slider">Token Contingency / Headroom Buffer: <span class="badge gold" id="headroom_label">15%</span></label>
+          <div class="slider-control">
+            <input type="range" id="headroom_slider" min="0" max="40" step="5" value="15">
+            <span class="slider-val" id="headroom_val">+15%</span>
+          </div>
+          <span class="hint">Enterprise safety buffer covering prompt drift, tool retries, and edge cases.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:200px;">Offering Name</th>
+              <th style="width:130px;">Channel</th>
+              <th style="width:180px;">Model Selection</th>
+              <th style="width:115px;">Input Tokens</th>
+              <th style="width:115px;">Output Tokens</th>
+              <th style="width:125px;">CCaaS Fee?</th>
+              <th class="row-actions"></th>
+            </tr>
+          </thead>
+          <tbody id="offeringsBody"></tbody>
+        </table>
+      </div>
+      <div class="actionbar" style="justify-content:flex-start; margin-top:12px;">
+        <button class="small ghost" id="offeringsAdd">+ Add Custom Offering</button>
+        <span class="hint" id="offeringsCount" style="align-self:center; margin-left:10px;"></span>
+      </div>
+      <p class="footnote">
+        <b>Channel Volume Mapping:</b> Offerings mapped to <code>Teams</code>, <code>Voice</code>, <code>Web</code>, <code>Chat</code>, or <code>Email</code> take that channel's volume. Offerings mapped to <code>Backend</code> take <b>Total Ticket Volume (Incidents + Requests)</b> for comprehensive triage and summarization modeling.
+      </p>
+    </div>
+  </section>
+
+  <!-- 7. Automation Arena -->
+  <section class="block" id="automation">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Automation Arena (5-Year Ramp)</h2></div>
+    <p class="sec-desc">Five-year progressive deflection and agentic resolution ramp for commercial Managed Services agreements.</p>
+    <div class="panel">
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th>Contract Year</th>
+              <th style="width:220px;">Industry Benchmark Range</th>
+              <th style="width:180px;">Target Automation %</th>
+            </tr>
+          </thead>
+          <tbody id="automationBody"></tbody>
+        </table>
+      </div>
+      <p class="footnote">The Target Automation % scales the monthly interaction volume processed by each AI offering, directly driving token growth and human labor deflection across Years 1 to 5.</p>
+    </div>
+  </section>
+
+  <!-- 8. Pricing Sheet -->
+  <section class="block" id="pricing">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Pricing Sheet (Editable In-Place)</h2></div>
+    <p class="sec-desc">Frontier LLMs, Speech APIs (STT/TTS), and CCaaS orchestration rates loaded from <code class="mono">pricing.json</code>. Edit any rate in real-time.</p>
+    <div class="panel">
+      <p class="hint" id="pricingMeta"></p>
+      <div id="pricingTables"></div>
+    </div>
+  </section>
+
+  <!-- 9. Report & ROI -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Commercial ROI</h2></div>
+    <p class="sec-desc">Comprehensive Month 1 baseline, labor arbitrage savings, and 5-year commercial TCO projection.</p>
+
+    <!-- KPI Row 1: AI Spend -->
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="label">Month 1 AI Run Cost</div>
+        <div class="value mono" id="kpi_monthcost">$0</div>
+        <div class="sub" id="kpi_monthcost_sub">Includes LLM, Speech &amp; CCaaS</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">Month 1 Tokens (In + Out)</div>
+        <div class="value mono" id="kpi_monthtokens">0</div>
+        <div class="sub" id="kpi_monthtokens_sub">Effective tokens after cache hit</div>
+      </div>
+      <div class="kpi">
+        <div class="label">AI Cost Per Interaction</div>
+        <div class="value mono" id="kpi_perconvo">$0.00</div>
+        <div class="sub">Per automated contact</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">AI Spend Per User / Mo</div>
+        <div class="value mono" id="kpi_peruser">$0.00</div>
+        <div class="sub" id="kpi_peruser_sub">Across estate user base</div>
+      </div>
+    </div>
+
+    <!-- KPI Row 2: Human Labor Arbitrage & ROI -->
+    <div class="kpi-row">
+      <div class="kpi success">
+        <div class="label">Gross Human Labor Saved / Mo</div>
+        <div class="value mono" id="kpi_gross_savings">$0</div>
+        <div class="sub" id="kpi_gross_savings_sub">Based on human ticket baseline</div>
+      </div>
+      <div class="kpi success">
+        <div class="label">Net Monthly Cost Savings</div>
+        <div class="value mono" id="kpi_net_savings">$0</div>
+        <div class="sub">Gross Savings minus AI Spend</div>
+      </div>
+      <div class="kpi success">
+        <div class="label">Net ROI On AI Spend</div>
+        <div class="value mono" id="kpi_roi_pct">0%</div>
+        <div class="sub">Annual net savings multiple</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">FTE Capacity Unlocked</div>
+        <div class="value mono" id="kpi_fte_saved">0 FTE</div>
+        <div class="sub" id="kpi_fte_saved_sub">Human workload deflected</div>
+      </div>
+    </div>
+
+    <!-- Offering Breakdown Table -->
+    <div class="panel">
+      <h3>Month 1 Breakdown by Offering</h3>
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th>Offering</th>
+              <th>Channel</th>
+              <th class="num-cell">Monthly Volume</th>
+              <th class="num-cell">Total Tokens</th>
+              <th class="num-cell">LLM Spend</th>
+              <th class="num-cell">Speech (STT/TTS)</th>
+              <th class="num-cell">CCaaS Fee</th>
+              <th class="num-cell" style="font-weight:600;">Total Spend</th>
+            </tr>
+          </thead>
+          <tbody id="reportOfferingsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5-Year Projection Table -->
+    <div class="panel">
+      <h3>5-Year Commercial Projection &amp; Net Labor Savings</h3>
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th class="num-cell">Automation %</th>
+              <th class="num-cell">Automated Volume / Mo</th>
+              <th class="num-cell">Monthly Tokens</th>
+              <th class="num-cell">Annual AI Spend</th>
+              <th class="num-cell">Annual Gross Savings</th>
+              <th class="num-cell" style="color:var(--success); font-weight:700;">Annual Net Savings</th>
+            </tr>
+          </thead>
+          <tbody id="reportYearsBody"></tbody>
+        </table>
+      </div>
+      <p class="footnote">Assumes unit model pricing remains constant as conservative baseline; LLM price deflation in reality further widens the net savings margin.</p>
+    </div>
+
+    <!-- Estate Diagnostic Summary Grid -->
+    <div class="panel">
+      <h3>Estate Diagnostic Summary</h3>
+      <div class="grid grid-4" id="kpiGrid"></div>
+    </div>
+
+    <!-- Export & Share Action Bar -->
+    <div class="actionbar">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p><b>Tokenomics</b> · Digital Workplace AI Spend &amp; Labor Arbitrage Calculator</p>
+    <p>Architected for Digital Workplace Heads, CIOs, and Commercial Bid Leads · Pricing updated September 2026</p>
+    <p style="margin-top: 10px;">
+      Part of <a href="https://iamsaravofficial.com">Sarav's World</a> by <b>Saravanakumar Murugan</b> (Digital Workplace Technology Head @ TCS)
+    </p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// TOKENOMICS ENGINE — Multi-Currency, Prompt-Caching Aware, DWP Labor Arbitrage Calculator
+// ============================================================================================
+
+const CURRENCIES = {
+  USD: { symbol: '$', rate: 1.00, locale: 'en-US', decimals: 2 },
+  INR: { symbol: '₹', rate: 85.00, locale: 'en-IN', decimals: 0 },
+  EUR: { symbol: '€', rate: 0.92, locale: 'de-DE', decimals: 2 },
+  GBP: { symbol: '£', rate: 0.78, locale: 'en-GB', decimals: 2 }
+};
+
+let currentCurrency = 'USD';
+
+// Fallback pricing dataset
+const FALLBACK_PRICING = {
+  meta: { version: "2026.09", last_refreshed: "2026-09-05", currency: "USD", unit: "per 1,000,000 tokens" },
+  llm_providers: {
+    anthropic: {
+      label: "Anthropic Claude — Direct API",
+      models: [
+        { id: "claude-3-7-sonnet", label: "Claude 3.7 Sonnet (Hybrid Reasoning)", input: 3.00, output: 15.00, cached_input: 0.30, audio_native: false },
+        { id: "claude-3-5-sonnet", label: "Claude 3.5 Sonnet", input: 3.00, output: 15.00, cached_input: 0.30, audio_native: false },
+        { id: "claude-3-5-haiku", label: "Claude 3.5 Haiku", input: 0.80, output: 4.00, cached_input: 0.08, audio_native: false },
+        { id: "claude-3-opus", label: "Claude 3 Opus", input: 15.00, output: 75.00, cached_input: 1.50, audio_native: false }
+      ]
+    },
+    azure_openai: {
+      label: "Azure OpenAI Service",
+      models: [
+        { id: "gpt-4o-mini", label: "GPT-4o mini", input: 0.15, output: 0.60, cached_input: 0.075, audio_native: false },
+        { id: "gpt-4o", label: "GPT-4o", input: 2.50, output: 10.00, cached_input: 1.25, audio_native: false },
+        { id: "o3-mini", label: "o3-mini (High-speed Reasoning)", input: 1.10, output: 4.40, cached_input: 0.55, audio_native: false },
+        { id: "o1", label: "o1 (Deep Reasoning)", input: 15.00, output: 60.00, cached_input: 7.50, audio_native: false },
+        { id: "gpt-4o-realtime", label: "GPT-4o Realtime (Audio-native)", input: 5.00, output: 20.00, cached_input: 2.50, audio_native: true }
+      ]
+    },
+    deepseek: {
+      label: "DeepSeek API",
+      models: [
+        { id: "deepseek-v3", label: "DeepSeek-V3", input: 0.14, output: 0.28, cached_input: 0.014, audio_native: false },
+        { id: "deepseek-r1", label: "DeepSeek-R1 (Open Reasoning)", input: 0.55, output: 2.19, cached_input: 0.14, audio_native: false }
+      ]
+    },
+    google_gemini: {
+      label: "Google Gemini API",
+      models: [
+        { id: "gemini-2-0-flash", label: "Gemini 2.0 Flash", input: 0.10, output: 0.40, cached_input: 0.025, audio_native: false },
+        { id: "gemini-2-0-pro", label: "Gemini 2.0 Pro", input: 1.25, output: 5.00, cached_input: 0.30, audio_native: false },
+        { id: "gemini-1-5-flash", label: "Gemini 1.5 Flash", input: 0.075, output: 0.30, cached_input: 0.018, audio_native: false },
+        { id: "gemini-live", label: "Gemini Live (Audio-native)", input: 2.00, output: 8.00, cached_input: 0.50, audio_native: true }
+      ]
+    },
+    aws_bedrock: {
+      label: "AWS Bedrock",
+      models: [
+        { id: "bedrock-claude-3-7", label: "Claude 3.7 Sonnet (Bedrock)", input: 3.00, output: 15.00, cached_input: 0.30, audio_native: false },
+        { id: "amazon-nova-micro", label: "Amazon Nova Micro", input: 0.035, output: 0.14, cached_input: 0.009, audio_native: false },
+        { id: "amazon-nova-pro", label: "Amazon Nova Pro", input: 0.80, output: 3.20, cached_input: 0.20, audio_native: false }
+      ]
+    },
+    ccaas_native: {
+      label: "CCaaS-native AI (Platform Bundled)",
+      models: [
+        { id: "genesys-ai", label: "Genesys AI Experience", input: 1.50, output: 4.50, cached_input: 0.50, audio_native: true },
+        { id: "webex-ai", label: "Webex AI Agent", input: 1.20, output: 4.00, cached_input: 0.40, audio_native: true },
+        { id: "amazon-connect-ai", label: "Amazon Connect Contact Lens AI", input: 1.00, output: 3.50, cached_input: 0.30, audio_native: true }
+      ]
+    },
+    local_llm: {
+      label: "Local / Self-Hosted (On-Prem GPU)",
+      models: [
+        { id: "local-custom", label: "Self-hosted Llama / Mistral", input: 0.08, output: 0.16, cached_input: 0.02, audio_native: false }
+      ]
+    }
+  },
+  speech: {
+    azure: { label: "Azure AI Speech", stt_usd_per_hour: 1.00, tts_neural_usd_per_million_chars: 16.00 },
+    google: { label: "Google Cloud Speech", stt_usd_per_hour: 1.44, tts_neural_usd_per_million_chars: 16.00 },
+    aws: { label: "AWS Transcribe / Polly", stt_usd_per_hour: 1.44, tts_neural_usd_per_million_chars: 16.00 },
+    openai: { label: "OpenAI Whisper / Audio", stt_usd_per_hour: 0.36, tts_neural_usd_per_million_chars: 15.00 }
+  },
+  ccaas_ai_session_fee: {
+    genesys: { label: "Genesys Cloud CX", usd_per_ai_session: 0.015 },
+    aws_connect: { label: "AWS Connect", usd_per_ai_session: 0.005 },
+    webex: { label: "Cisco Webex Contact Center", usd_per_ai_session: 0.010 },
+    acs: { label: "Azure Communication Services", usd_per_ai_session: 0.004 },
+    other: { label: "Other / Custom", usd_per_ai_session: 0.000 }
+  },
+  automation_curve_recommended: {
+    years: [
+      { year: 1, range_low: 10, range_high: 20, recommended: 15 },
+      { year: 2, range_low: 20, range_high: 35, recommended: 28 },
+      { year: 3, range_low: 35, range_high: 48, recommended: 42 },
+      { year: 4, range_low: 45, range_high: 55, recommended: 50 },
+      { year: 5, range_low: 50, range_high: 65, recommended: 58 }
+    ]
+  }
+};
+
+let PRICING = null;
+
+const state = {
+  themeChoice: 'dark',
+  cacheHitRatio: 0.70,
+  headroomBuffer: 0.15,
+  offerings: [
+    { name: 'MS Teams IT Virtual Assistant', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 2800, outputTok: 650, ccaasFee: false },
+    { name: 'Voice Telephony AI Bot', channel: 'voice', modelSource: 'global', provider: '', model: '', inputTok: 3500, outputTok: 800, ccaasFee: true },
+    { name: 'Service Portal RAG Copilot', channel: 'web', modelSource: 'global', provider: '', model: '', inputTok: 2200, outputTok: 450, ccaasFee: false },
+    { name: 'Auto-Ticket Triage & Routing', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 1600, outputTok: 250, ccaasFee: false },
+    { name: 'Incident Summarization & Post-Mortem', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 4200, outputTok: 900, ccaasFee: false }
+  ],
+  automation: []
+};
+
+// Preset Archetypes
+const PRESETS = {
+  midmarket: {
+    users: 5000, devices: 5500, aipcs: 750,
+    contacts: 4500, incidents: 2500, requests: 2000,
+    voice: 35, teams: 30, web: 20, chat: 10, email: 5,
+    sdOncall: 8, sdTotal: 10, deskAgents: 4, dexOps: 1,
+    costPerTicket: 16.0,
+    offerings: [
+      { name: 'Teams IT Bot', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 2400, outputTok: 500, ccaasFee: false },
+      { name: 'Voice Bot', channel: 'voice', modelSource: 'global', provider: '', model: '', inputTok: 3000, outputTok: 650, ccaasFee: true },
+      { name: 'Auto-Triage', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 1400, outputTok: 200, ccaasFee: false }
+    ]
+  },
+  global: {
+    users: 30000, devices: 34000, aipcs: 5100,
+    contacts: 25000, incidents: 14000, requests: 11000,
+    voice: 30, teams: 35, web: 20, chat: 10, email: 5,
+    sdOncall: 38, sdTotal: 48, deskAgents: 22, dexOps: 6,
+    costPerTicket: 18.0,
+    offerings: [
+      { name: 'MS Teams IT Virtual Assistant', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 2800, outputTok: 650, ccaasFee: false },
+      { name: 'Voice Telephony AI Bot', channel: 'voice', modelSource: 'global', provider: '', model: '', inputTok: 3500, outputTok: 800, ccaasFee: true },
+      { name: 'Service Portal RAG Copilot', channel: 'web', modelSource: 'global', provider: '', model: '', inputTok: 2200, outputTok: 450, ccaasFee: false },
+      { name: 'Auto-Ticket Triage & Routing', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 1600, outputTok: 250, ccaasFee: false },
+      { name: 'Incident Summarization & Post-Mortem', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 4200, outputTok: 900, ccaasFee: false }
+    ]
+  },
+  fortune500: {
+    users: 100000, devices: 118000, aipcs: 22000,
+    contacts: 85000, incidents: 48000, requests: 37000,
+    voice: 25, teams: 45, web: 15, chat: 10, email: 5,
+    sdOncall: 120, sdTotal: 155, deskAgents: 75, dexOps: 18,
+    costPerTicket: 20.0,
+    offerings: [
+      { name: 'Global Teams Agentic Copilot', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 3200, outputTok: 800, ccaasFee: false },
+      { name: 'Voice Conversational AI', channel: 'voice', modelSource: 'global', provider: '', model: '', inputTok: 4000, outputTok: 950, ccaasFee: true },
+      { name: 'Smart Portal & Knowledge RAG', channel: 'web', modelSource: 'global', provider: '', model: '', inputTok: 2500, outputTok: 550, ccaasFee: false },
+      { name: 'Autonomous Ticket Resolution', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 4800, outputTok: 1100, ccaasFee: false },
+      { name: 'Auto-Triage, Enrichment & Routing', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 1800, outputTok: 300, ccaasFee: false },
+      { name: 'Proactive DEX Remediation Generator', channel: 'backend', modelSource: 'global', provider: '', model: '', inputTok: 5500, outputTok: 1400, ccaasFee: false }
+    ]
+  },
+  reset: {
+    users: 0, devices: 0, aipcs: 0,
+    contacts: 0, incidents: 0, requests: 0,
+    voice: 0, teams: 0, web: 0, chat: 0, email: 0,
+    sdOncall: 0, sdTotal: 0, deskAgents: 0, dexOps: 0,
+    costPerTicket: 18.0,
+    offerings: [
+      { name: 'IT Helpdesk Bot', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 2500, outputTok: 500, ccaasFee: false }
+    ]
+  }
+};
+
+// Helpers
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+function fmtMoney(usdVal) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = (usdVal || 0) * c.rate;
+  return c.symbol + converted.toLocaleString(c.locale, {
+    minimumFractionDigits: c.decimals,
+    maximumFractionDigits: c.decimals
+  });
+}
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+const clampPct = (v) => Math.max(0, Math.min(100, v));
+
+function providerModelList(providerKey) {
+  const p = PRICING.llm_providers[providerKey];
+  return p ? p.models : [];
+}
+function findModel(providerKey, modelId) {
+  const list = providerModelList(providerKey);
+  return list.find(m => m.id === modelId) || null;
+}
+function providerOptions(selected) {
+  return Object.keys(PRICING.llm_providers).map(key =>
+    `<option value="${key}" ${key===selected?'selected':''}>${PRICING.llm_providers[key].label}</option>`
+  ).join('');
+}
+function modelOptions(providerKey, selected) {
+  return providerModelList(providerKey).map(m =>
+    `<option value="${m.id}" ${m.id===selected?'selected':''}>${m.label}${m.audio_native?' [audio-native]':''}</option>`
+  ).join('');
+}
+
+// Currency Switcher
+document.querySelectorAll('#currencyToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCurrency = btn.dataset.curr;
+    document.querySelectorAll('.curr-symbol').forEach(el => el.textContent = CURRENCIES[currentCurrency].symbol);
+    recalcAll();
+  });
+});
+
+// Theme Switcher
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') {
+    effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('tokenomics_theme', choice); } catch(e){}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Architectural Tuning Sliders
+$('cache_hit_slider').addEventListener('input', (e) => {
+  const val = parseInt(e.target.value, 10);
+  state.cacheHitRatio = val / 100;
+  $('cache_hit_val').textContent = val + '%';
+  $('cache_hit_label').textContent = val + '%';
+  recalcAll();
+});
+$('headroom_slider').addEventListener('input', (e) => {
+  const val = parseInt(e.target.value, 10);
+  state.headroomBuffer = val / 100;
+  $('headroom_val').textContent = '+' + val + '%';
+  $('headroom_label').textContent = val + '%';
+  recalcAll();
+});
+
+// Presets Loader
+function loadPreset(key) {
+  const p = PRESETS[key];
+  if (!p) return;
+  document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b.dataset.preset === key));
+  $('org_users').value = p.users;
+  $('org_devices').value = p.devices;
+  $('org_aipcs').value = p.aipcs;
+  $('vol_contacts').value = p.contacts;
+  $('vol_incidents').value = p.incidents;
+  $('vol_requests').value = p.requests;
+  $('vol_voice').value = p.voice;
+  $('vol_teams').value = p.teams;
+  $('vol_web').value = p.web;
+  $('vol_chat').value = p.chat;
+  $('vol_email').value = p.email;
+  $('scope_sd_oncall').value = p.sdOncall;
+  $('scope_sd_total').value = p.sdTotal;
+  $('scope_desk_agents').value = p.deskAgents;
+  $('scope_dexops_agents').value = p.dexOps;
+  $('human_cost_per_ticket').value = p.costPerTicket;
+  state.offerings = JSON.parse(JSON.stringify(p.offerings));
+  renderOfferings();
+  recalcAll();
+}
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => loadPreset(btn.dataset.preset));
+});
+
+// Render Org & Volume
+function renderOrgVolume() {
+  const devices = num('org_devices'), aipcs = num('org_aipcs'), users = num('org_users');
+  const d2u = users > 0 ? (devices / users).toFixed(2) : '0';
+  const aipcPct = devices > 0 ? ((aipcs / devices) * 100).toFixed(1) + '%' : '0%';
+  $('org_hint').textContent = aipcs > devices
+    ? '⚠️ AI PCs exceeds total managed devices — please check the count.'
+    : `Device-to-User Ratio: ${d2u} devices/user · AI PC Fleet Penetration: ${aipcPct}`;
+  $('org_hint').style.color = aipcs > devices ? 'var(--danger)' : 'var(--text-faint)';
+
+  const contacts = num('vol_contacts'), incidents = num('vol_incidents'), requests = num('vol_requests');
+  const sumTickets = incidents + requests;
+  if (contacts > 0) {
+    const diff = Math.abs(sumTickets - contacts);
+    $('vol_reconcile').textContent = diff > 0
+      ? `Note: Incidents + Requests = ${fmtInt(sumTickets)} vs Contacts = ${fmtInt(contacts)} (${fmtInt(diff)} variance).`
+      : `✓ Incidents + Requests perfectly reconciles with Total Contacts (${fmtInt(contacts)}).`;
+    $('vol_reconcile').style.color = diff > 0 ? 'var(--accent)' : 'var(--success)';
+  } else {
+    $('vol_reconcile').textContent = '';
+  }
+
+  const mode = document.querySelector('#splitModeToggle .pill.on').dataset.mode;
+  const voice = num('vol_voice'), teams = num('vol_teams'), web = num('vol_web'), chat = num('vol_chat'), email = num('vol_email');
+  let vC, tC, wC, cC, eC, digC, digitalPct;
+
+  if (mode === 'percent') {
+    vC = Math.round(contacts * voice / 100);
+    tC = Math.round(contacts * teams / 100);
+    wC = Math.round(contacts * web / 100);
+    cC = Math.round(contacts * chat / 100);
+    eC = Math.round(contacts * email / 100);
+    digC = tC + wC + cC + eC;
+    digitalPct = teams + web + chat + email;
+
+    $('vol_voice_computed').textContent = fmtInt(vC) + ' contacts';
+    $('vol_teams_computed').textContent = fmtInt(tC) + ' contacts';
+    $('vol_web_computed').textContent = fmtInt(wC) + ' contacts';
+    $('vol_chat_computed').textContent = fmtInt(cC) + ' contacts';
+    $('vol_email_computed').textContent = fmtInt(eC) + ' contacts';
+    $('vol_digital_derived').textContent = digitalPct.toFixed(1) + '%';
+    $('vol_digital_contacts').textContent = fmtInt(digC) + ' contacts';
+
+    const total = voice + teams + web + chat + email;
+    const ok = Math.abs(total - 100) < 0.1;
+    $('vol_split_status').innerHTML = ok
+      ? `<span class="badge ok">✓ Channel split balances to 100%</span>`
+      : `<span class="badge warn">⚠️ Channel split sums to ${total.toFixed(1)}% (Target: 100%)</span>`;
+  } else {
+    vC = voice; tC = teams; wC = web; cC = chat; eC = email;
+    digC = tC + wC + cC + eC;
+    const pct = (v) => contacts > 0 ? ((v / contacts) * 100).toFixed(1) + '%' : '—';
+
+    $('vol_voice_computed').textContent = pct(voice);
+    $('vol_teams_computed').textContent = pct(teams);
+    $('vol_web_computed').textContent = pct(web);
+    $('vol_chat_computed').textContent = pct(chat);
+    $('vol_email_computed').textContent = pct(email);
+    $('vol_digital_derived').textContent = pct(digC);
+    $('vol_digital_contacts').textContent = fmtInt(digC) + ' contacts';
+
+    const total = voice + teams + web + chat + email;
+    const ok = contacts > 0 && Math.abs(total - contacts) < 1;
+    $('vol_split_status').innerHTML = contacts === 0 ? ''
+      : (ok ? `<span class="badge ok">✓ Counts sum to total contacts</span>`
+            : `<span class="badge warn">⚠️ Channel counts sum to ${fmtInt(total)} vs ${fmtInt(contacts)} contacts</span>`);
+  }
+
+  return { contacts, voiceCount: vC, teamsCount: tC, webCount: wC, chatCount: cC, emailCount: eC, totalTickets: (sumTickets > 0 ? sumTickets : contacts) };
+}
+
+document.querySelectorAll('#splitModeToggle .pill').forEach(p => {
+  p.addEventListener('click', () => {
+    document.querySelectorAll('#splitModeToggle .pill').forEach(x => x.classList.remove('on'));
+    p.classList.add('on');
+    recalcAll();
+  });
+});
+document.querySelectorAll('#servicesInScope .pill').forEach(p => p.addEventListener('click', () => p.classList.toggle('on')));
+
+// Render Stack
+const STACK_FIELDS = [
+  { id: 'stack_cloud', label: 'Primary Cloud Infrastructure', opts: ['Microsoft Azure', 'AWS', 'Google Cloud'] },
+  { id: 'stack_llmprovider', label: 'Global Default LLM Provider', dynamic: 'provider' },
+  { id: 'stack_llmmodel', label: 'Global Default Frontier Model', dynamic: 'model' },
+  { id: 'stack_ccaas', label: 'Contact Center Platform (CCaaS)', opts: ['Genesys', 'AWS Connect', 'Cisco Webex', 'Avaya', 'Azure Communication Services'] },
+  { id: 'stack_itsm', label: 'ITSM Core Platform', opts: ['ServiceNow', 'Jira Service Management', 'Freshservice', 'BMC Helix', 'ManageEngine'] },
+  { id: 'stack_dex', label: 'DEX / Telemetry Platform', opts: ['Nexthink', 'Lakeside SysTrack', 'ControlUp', '1E Tachyon'] },
+  { id: 'stack_endpoint', label: 'Unified Endpoint Management (UEM)', opts: ['Microsoft Intune', 'SCCM / Co-Managed', 'Omnissa Workspace ONE', 'Tanium'] },
+  { id: 'stack_copilot', label: 'Enterprise AI / Agentic Layer', opts: ['Microsoft Copilot Studio', 'ServiceNow Now Assist', 'Moveworks', 'Direct API Custom Orchestration'] },
+  { id: 'stack_remote', label: 'Remote Assist Platform', opts: ['BeyondTrust (Bomgar)', 'GoTo Resolve', 'LogMeIn Rescue'] }
+];
+
+function renderStack() {
+  $('stackGrid').innerHTML = STACK_FIELDS.map(f => {
+    if (f.dynamic === 'provider') return `<div class="field"><label>${f.label}</label><select id="${f.id}">${providerOptions('anthropic')}</select></div>`;
+    if (f.dynamic === 'model') return `<div class="field"><label>${f.label}</label><select id="${f.id}"></select></div>`;
+    return `<div class="field"><label>${f.label}</label><select id="${f.id}">${f.opts.map(o=>`<option>${o}</option>`).join('')}<option value="__other__">Other / Custom</option></select><input id="${f.id}_other" placeholder="Custom platform" style="display:none; margin-top:6px;"></div>`;
+  }).join('');
+
+  STACK_FIELDS.forEach(f => {
+    if (f.dynamic) return;
+    const sel = $(f.id);
+    const other = $(f.id + '_other');
+    sel.addEventListener('change', () => {
+      other.style.display = sel.value === '__other__' ? 'block' : 'none';
+      recalcAll();
+    });
+  });
+  $('stack_llmprovider').addEventListener('change', () => { populateModelDropdown(); recalcAll(); });
+  $('stack_llmmodel').addEventListener('change', recalcAll);
+  populateModelDropdown();
+}
+function populateModelDropdown() {
+  const providerKey = $('stack_llmprovider').value;
+  $('stack_llmmodel').innerHTML = modelOptions(providerKey, null);
+}
+
+// Offerings Catalog
+const OFFERING_SUGGESTIONS = [
+  'MS Teams IT Virtual Assistant', 'Voice Telephony AI Bot', 'Service Portal RAG Copilot',
+  'Auto-Ticket Triage & Routing', 'Incident Summarization & Post-Mortem', 'Sentiment & CSAT Analysis',
+  'Proactive Remediation Script Gen', 'Live Agent-Assist Copilot', 'Knowledge Base Auto-Drafting',
+  'Visual / AR Remote Guidance', 'Identity & Access Self-Service'
+];
+
+function ensureOfferingDefaults(o) {
+  if (o.modelSource !== 'override') return;
+  const providerKeys = Object.keys(PRICING.llm_providers);
+  if (!o.provider || !PRICING.llm_providers[o.provider]) o.provider = providerKeys[0];
+  const list = providerModelList(o.provider);
+  const valid = list.some(m => m.id === o.model);
+  if (!valid) o.model = list.length ? list[0].id : '';
+}
+
+function renderOfferings() {
+  state.offerings.forEach(ensureOfferingDefaults);
+  $('offeringsBody').innerHTML = state.offerings.map((o, i) => {
+    const provider = o.modelSource === 'global' ? $('stack_llmprovider').value : (o.provider || Object.keys(PRICING.llm_providers)[0]);
+    return `
+    <tr>
+      <td><input list="offeringNamesList" data-of="${i}" data-field="name" value="${o.name}"></td>
+      <td>
+        <select data-of="${i}" data-field="channel">
+          ${[
+            ['teams', 'MS Teams / Collab'],
+            ['voice', 'Voice / Telephony'],
+            ['web', 'Web Portal'],
+            ['chat', 'Live Chat'],
+            ['email', 'Email'],
+            ['backend', 'Backend (All Tickets)']
+          ].map(([val, lbl]) => `<option value="${val}" ${val===o.channel?'selected':''}>${lbl}</option>`).join('')}
+        </select>
+      </td>
+      <td>
+        <select data-of="${i}" data-field="modelSource" class="of-modelsource">
+          <option value="global" ${o.modelSource==='global'?'selected':''}>Global default</option>
+          <option value="override" ${o.modelSource==='override'?'selected':''}>Override model</option>
+        </select>
+        <div data-of-override="${i}" style="margin-top:6px; ${o.modelSource==='override'?'':'display:none;'}">
+          <select data-of="${i}" data-field="provider">${providerOptions(provider)}</select>
+          <select data-of="${i}" data-field="model" style="margin-top:4px;">${modelOptions(provider, o.model)}</select>
+        </div>
+      </td>
+      <td><input type="number" min="0" step="100" data-of="${i}" data-field="inputTok" value="${o.inputTok}"></td>
+      <td><input type="number" min="0" step="50" data-of="${i}" data-field="outputTok" value="${o.outputTok}"></td>
+      <td><label class="checkline"><input type="checkbox" data-of="${i}" data-field="ccaasFee" ${o.ccaasFee?'checked':''}> applies</label></td>
+      <td class="row-actions"><button class="small ghost" data-of-remove="${i}">×</button></td>
+    </tr>`;
+  }).join('');
+
+  if (!$('offeringNamesList')) {
+    const dl = document.createElement('datalist'); dl.id = 'offeringNamesList';
+    dl.innerHTML = OFFERING_SUGGESTIONS.map(n => `<option value="${n}">`).join('');
+    document.body.appendChild(dl);
+  }
+  $('offeringsCount').textContent = `${state.offerings.length} / 15 active offerings`;
+
+  $('offeringsBody').querySelectorAll('[data-of]').forEach(el => {
+    const evt = el.tagName === 'SELECT' || el.type === 'checkbox' ? 'change' : 'input';
+    el.addEventListener(evt, (e) => {
+      const i = +e.target.dataset.of, field = e.target.dataset.field;
+      let val = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+      if (['inputTok','outputTok'].includes(field)) val = parseFloat(val) || 0;
+      state.offerings[i][field] = val;
+      if (field === 'provider') state.offerings[i].model = '';
+      if (field === 'modelSource' || field === 'provider') { renderOfferings(); recalcAll(); return; }
+      recalcAll();
+    });
+  });
+
+  $('offeringsBody').querySelectorAll('[data-of-remove]').forEach(el => el.addEventListener('click', (e) => {
+    state.offerings.splice(+e.target.dataset.ofRemove, 1);
+    renderOfferings(); recalcAll();
+  }));
+}
+
+$('offeringsAdd').addEventListener('click', () => {
+  if (state.offerings.length >= 15) return;
+  state.offerings.push({ name: '', channel: 'teams', modelSource: 'global', provider: '', model: '', inputTok: 2500, outputTok: 500, ccaasFee: false });
+  renderOfferings(); recalcAll();
+});
+
+// Render Automation Arena
+function renderAutomation() {
+  if (state.automation.length === 0) {
+    state.automation = PRICING.automation_curve_recommended.years.map(y => ({
+      year: y.year, low: y.range_low, high: y.range_high, target: y.recommended
+    }));
+  }
+  $('automationBody').innerHTML = state.automation.map((y, i) => `
+    <tr>
+      <td><b>Year ${y.year}</b></td>
+      <td class="hint">${y.low}% – ${y.high}%</td>
+      <td><input type="number" min="0" max="100" data-auto="${i}" value="${y.target}"></td>
+    </tr>
+  `).join('');
+
+  $('automationBody').querySelectorAll('[data-auto]').forEach(el => el.addEventListener('input', (e) => {
+    state.automation[+e.target.dataset.auto].target = clampPct(parseFloat(e.target.value) || 0);
+    recalcAll();
+  }));
+}
+
+// Render Pricing Sheet
+function renderPricingSheet() {
+  $('pricingMeta').textContent = `Version ${PRICING.meta.version} · last refreshed ${PRICING.meta.last_refreshed} · ${PRICING.meta.currency}, ${PRICING.meta.unit}`;
+  let html = '';
+  Object.keys(PRICING.llm_providers).forEach(key => {
+    const p = PRICING.llm_providers[key];
+    html += `<div style="font-size:12px; font-weight:600; color:var(--text-dim); margin:18px 0 6px;">${p.label}</div>
+    <div class="overflow-x"><table><thead><tr><th>Model</th><th class="num-cell">Input $/1M</th><th class="num-cell">Cached Input $/1M</th><th class="num-cell">Output $/1M</th></tr></thead><tbody>`;
+    p.models.forEach((m, mi) => {
+      html += `<tr><td>${m.label}${m.audio_native?' <span class="badge info">audio-native</span>':''}</td>
+        <td class="num-cell"><input type="number" step="0.01" data-price-provider="${key}" data-price-model="${mi}" data-price-field="input" value="${m.input===null?'':m.input}"></td>
+        <td class="num-cell"><input type="number" step="0.01" data-price-provider="${key}" data-price-model="${mi}" data-price-field="cached_input" value="${m.cached_input===null?'':m.cached_input}"></td>
+        <td class="num-cell"><input type="number" step="0.01" data-price-provider="${key}" data-price-model="${mi}" data-price-field="output" value="${m.output===null?'':m.output}"></td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+  });
+
+  html += `<div style="font-size:12px; font-weight:600; color:var(--text-dim); margin:18px 0 6px;">Speech (STT / TTS) — For non audio-native Voice models</div>
+  <div class="overflow-x"><table><thead><tr><th>Provider</th><th class="num-cell">STT $/hour</th><th class="num-cell">TTS $/1M chars</th></tr></thead><tbody>`;
+  Object.keys(PRICING.speech).forEach(key => {
+    const s = PRICING.speech[key];
+    html += `<tr><td>${s.label}</td>
+      <td class="num-cell"><input type="number" step="0.01" data-speech="${key}" data-speech-field="stt_usd_per_hour" value="${s.stt_usd_per_hour===null?'':s.stt_usd_per_hour}"></td>
+      <td class="num-cell"><input type="number" step="0.01" data-speech="${key}" data-speech-field="tts_neural_usd_per_million_chars" value="${s.tts_neural_usd_per_million_chars===null?'':s.tts_neural_usd_per_million_chars}"></td></tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  html += `<div style="font-size:12px; font-weight:600; color:var(--text-dim); margin:18px 0 6px;">CCaaS Platform AI Session Fee</div>
+  <div class="overflow-x"><table><thead><tr><th>Platform</th><th class="num-cell">$ / AI Session</th></tr></thead><tbody>`;
+  Object.keys(PRICING.ccaas_ai_session_fee).forEach(key => {
+    const c = PRICING.ccaas_ai_session_fee[key];
+    html += `<tr><td>${c.label}</td><td class="num-cell"><input type="number" step="0.001" data-ccaasfee="${key}" value="${c.usd_per_ai_session}"></td></tr>`;
+  });
+  html += `</tbody></table></div>`;
+
+  $('pricingTables').innerHTML = html;
+
+  $('pricingTables').querySelectorAll('[data-price-provider]').forEach(el => el.addEventListener('input', (e) => {
+    const { priceProvider, priceModel, priceField } = e.target.dataset;
+    PRICING.llm_providers[priceProvider].models[+priceModel][priceField] = e.target.value === '' ? null : parseFloat(e.target.value);
+    recalcAll();
+  }));
+  $('pricingTables').querySelectorAll('[data-speech]').forEach(el => el.addEventListener('input', (e) => {
+    PRICING.speech[e.target.dataset.speech][e.target.dataset.speechField] = e.target.value === '' ? null : parseFloat(e.target.value);
+    recalcAll();
+  }));
+  $('pricingTables').querySelectorAll('[data-ccaasfee]').forEach(el => el.addEventListener('input', (e) => {
+    PRICING.ccaas_ai_session_fee[e.target.dataset.ccaasfee].usd_per_ai_session = parseFloat(e.target.value) || 0;
+    recalcAll();
+  }));
+}
+
+// Speech & CCaaS helpers
+function speechProviderForCloud() {
+  const cloud = $('stack_cloud') ? $('stack_cloud').value : 'Microsoft Azure';
+  if (cloud.includes('Azure')) return 'azure';
+  if (cloud.includes('AWS')) return 'aws';
+  if (cloud.includes('Google')) return 'google';
+  return 'azure';
+}
+function ccaasFeeKey() {
+  const v = $('stack_ccaas') ? $('stack_ccaas').value : 'Genesys';
+  if (v === 'Genesys') return 'genesys';
+  if (v === 'AWS Connect') return 'aws_connect';
+  if (v === 'Cisco Webex') return 'webex';
+  if (v === 'Azure Communication Services') return 'acs';
+  return 'other';
+}
+
+// Offering Cost Calculation Engine with Prompt Caching & Headroom
+function computeOfferingCost(o, monthlyConversations) {
+  const provider = o.modelSource === 'global' ? $('stack_llmprovider').value : (o.provider || $('stack_llmprovider').value);
+  const modelId = o.modelSource === 'global' ? $('stack_llmmodel').value : (o.model || $('stack_llmmodel').value);
+  const model = findModel(provider, modelId) || (providerModelList(provider)[0] || null);
+
+  // Apply headroom buffer
+  const buffer = 1 + (state.headroomBuffer || 0);
+  const tokensIn = Math.round(monthlyConversations * (o.inputTok || 0) * buffer);
+  const tokensOut = Math.round(monthlyConversations * (o.outputTok || 0) * buffer);
+
+  let llmCost = 0, missingRate = false;
+  if (model) {
+    if (model.input === null || model.output === null) missingRate = true;
+
+    // Prompt caching mathematics
+    const fullInputRate = model.input || 0;
+    const cachedInputRate = model.cached_input !== undefined && model.cached_input !== null ? model.cached_input : fullInputRate;
+    const cacheHit = state.cacheHitRatio || 0;
+    const effectiveInputRate = (1 - cacheHit) * fullInputRate + cacheHit * cachedInputRate;
+
+    const inCost = (tokensIn / 1e6) * effectiveInputRate;
+    const outCost = (tokensOut / 1e6) * (model.output || 0);
+    llmCost = inCost + outCost;
+  }
+
+  // Voice speech synthesis & recognition (only if non audio-native)
+  let speechCost = 0;
+  if (o.channel === 'voice' && model && !model.audio_native) {
+    const sp = PRICING.speech[speechProviderForCloud()] || PRICING.speech.azure;
+    const ahtHrs = num('sla_ahtvoice') / 60;
+    const sttHrs = monthlyConversations * ahtHrs;
+    if (sp && sp.stt_usd_per_hour) speechCost += sttHrs * sp.stt_usd_per_hour;
+    const chars = tokensOut * 4;
+    if (sp && sp.tts_neural_usd_per_million_chars) speechCost += (chars / 1e6) * sp.tts_neural_usd_per_million_chars;
+  }
+
+  // CCaaS Session Fee
+  let ccaasFee = 0;
+  if (o.ccaasFee) {
+    const fee = PRICING.ccaas_ai_session_fee[ccaasFeeKey()];
+    ccaasFee = monthlyConversations * (fee ? fee.usd_per_ai_session : 0);
+  }
+
+  return {
+    tokensIn, tokensOut, totalTokens: tokensIn + tokensOut,
+    llmCost, speechCost, ccaasFee,
+    total: llmCost + speechCost + ccaasFee,
+    missingRate, modelLabel: model ? model.label : '—'
+  };
+}
+
+// Channel volume resolver (FIXED: backend now maps to totalTickets)
+function channelCount(channel, counts) {
+  if (channel === 'voice') return counts.voiceCount;
+  if (channel === 'teams') return counts.teamsCount;
+  if (channel === 'web') return counts.webCount;
+  if (channel === 'chat') return counts.chatCount;
+  if (channel === 'email') return counts.emailCount;
+  if (channel === 'backend') return counts.totalTickets;
+  return 0;
+}
+
+// Main Recalculate Engine
+function recalcAll() {
+  if (!PRICING) return;
+  const counts = renderOrgVolume();
+
+  // Section 03 hints
+  const sdOn = num('scope_sd_oncall'), sdTot = num('scope_sd_total');
+  $('sd_nesting').textContent = sdTot > 0
+    ? `Nesting Ratio: ${((sdOn/sdTot)*100).toFixed(0)}% frontline agents taking interactions; ${((1-sdOn/sdTot)*100).toFixed(0)}% supervisory/leads/QA.`
+    : '';
+  const kbA = num('scope_kbavail'), kbP = num('scope_kbplanned'), kbV = num('scope_kbvisual');
+  $('kb_hint').textContent = kbA > 0
+    ? `KB AI Coverage: ${((kbP/kbA)*100).toFixed(0)}% curated for RAG embeddings · Visual AR: ${((kbV/kbA)*100).toFixed(0)}% of catalog.`
+    : '';
+
+  // Month 1 calculations (Year 1 ramp)
+  const y1 = state.automation[0] ? state.automation[0].target : 15;
+  let monthTotalCost = 0, monthTotalTokens = 0, monthTotalAutomatedConvos = 0;
+
+  const offeringRows = state.offerings.map(o => {
+    const base = channelCount(o.channel, counts);
+    const monthlyConversations = Math.round(base * (y1 / 100));
+    const r = computeOfferingCost(o, monthlyConversations);
+    monthTotalCost += r.total;
+    monthTotalTokens += r.totalTokens;
+    monthTotalAutomatedConvos += monthlyConversations;
+    return { o, monthlyConversations, r };
+  });
+
+  // Render Month 1 Offerings Table
+  $('reportOfferingsBody').innerHTML = offeringRows.map(({o, monthlyConversations, r}) => `
+    <tr>
+      <td><b>${o.name || '(unnamed)'}</b> ${r.missingRate?'<span class="badge warn">rate not set</span>':''}</td>
+      <td><span class="badge">${o.channel}</span></td>
+      <td class="num-cell mono">${fmtInt(monthlyConversations)}</td>
+      <td class="num-cell mono">${fmtInt(r.totalTokens)}</td>
+      <td class="num-cell mono">${fmtMoney(r.llmCost)}</td>
+      <td class="num-cell mono">${r.speechCost ? fmtMoney(r.speechCost) : '—'}</td>
+      <td class="num-cell mono">${r.ccaasFee ? fmtMoney(r.ccaasFee) : '—'}</td>
+      <td class="num-cell mono" style="font-weight:600; color:var(--accent);">${fmtMoney(r.total)}</td>
+    </tr>
+  `).join('');
+
+  // Human Labor Arbitrage & ROI
+  const humanCostPerTicket = num('human_cost_per_ticket') || 18.0;
+  const monthGrossSavings = monthTotalAutomatedConvos * humanCostPerTicket;
+  const monthNetSavings = Math.max(0, monthGrossSavings - monthTotalCost);
+  const netROI = monthTotalCost > 0 ? ((monthNetSavings / monthTotalCost) * 100).toFixed(0) + '%' : '—';
+  const fteSaved = (monthTotalAutomatedConvos * (num('sla_ahtchat') || 8.0) / (60 * 160)).toFixed(1);
+
+  // Update Topbar and Month 1 KPIs
+  $('liveTotal').textContent = fmtMoney(monthTotalCost);
+  $('kpi_monthcost').textContent = fmtMoney(monthTotalCost);
+  $('kpi_monthcost_sub').textContent = `Year 1 automation: ${y1}% (${fmtInt(monthTotalAutomatedConvos)} interactions)`;
+  $('kpi_monthtokens').textContent = fmtInt(monthTotalTokens);
+  $('kpi_monthtokens_sub').textContent = `Prompt cache hit: ${(state.cacheHitRatio*100).toFixed(0)}% · Headroom: +${(state.headroomBuffer*100).toFixed(0)}%`;
+  $('kpi_perconvo').textContent = monthTotalAutomatedConvos > 0 ? fmtMoney(monthTotalCost / monthTotalAutomatedConvos) : '$0.00';
+  const users = num('org_users');
+  $('kpi_peruser').textContent = users > 0 ? fmtMoney(monthTotalCost / users) : '$0.00';
+  $('kpi_peruser_sub').textContent = `Across ${fmtInt(users)} estate users`;
+
+  // Update ROI KPIs
+  $('kpi_gross_savings').textContent = fmtMoney(monthGrossSavings);
+  $('kpi_gross_savings_sub').textContent = `${fmtInt(monthTotalAutomatedConvos)} tickets @ ${fmtMoney(humanCostPerTicket)}/ticket`;
+  $('kpi_net_savings').textContent = fmtMoney(monthNetSavings);
+  $('kpi_roi_pct').textContent = netROI;
+  $('kpi_fte_saved').textContent = `${fteSaved} FTE`;
+  $('kpi_fte_saved_sub').textContent = `Productive workload capacity unlocked`;
+
+  // 5-Year Projection Table
+  let yearsHtml = '';
+  state.automation.forEach(y => {
+    let yTokens = 0, yCost = 0, yConvos = 0;
+    state.offerings.forEach(o => {
+      const base = channelCount(o.channel, counts);
+      const mc = Math.round(base * (y.target / 100));
+      const r = computeOfferingCost(o, mc);
+      yTokens += r.totalTokens;
+      yCost += r.total;
+      yConvos += mc;
+    });
+    const annualAiCost = yCost * 12;
+    const annualGrossSavings = yConvos * humanCostPerTicket * 12;
+    const annualNetSavings = Math.max(0, annualGrossSavings - annualAiCost);
+
+    yearsHtml += `<tr>
+      <td><b>Year ${y.year}</b></td>
+      <td class="num-cell mono">${y.target}%</td>
+      <td class="num-cell mono">${fmtInt(yConvos)}</td>
+      <td class="num-cell mono">${fmtInt(yTokens)}</td>
+      <td class="num-cell mono">${fmtMoney(annualAiCost)}</td>
+      <td class="num-cell mono">${fmtMoney(annualGrossSavings)}</td>
+      <td class="num-cell mono" style="color:var(--success); font-weight:700;">${fmtMoney(annualNetSavings)}</td>
+    </tr>`;
+  });
+  $('reportYearsBody').innerHTML = yearsHtml;
+
+  // Estate KPIs Diagnostic Grid
+  const kpis = [
+    ['Managed User Base', fmtInt(num('org_users')) + ' employees'],
+    ['AI PC Penetration', num('org_devices') > 0 ? ((num('org_aipcs')/num('org_devices'))*100).toFixed(1)+'%' : '—'],
+    ['Digital vs Voice Split', counts.contacts > 0 ? (( (counts.contacts - counts.voiceCount)/counts.contacts )*100).toFixed(0)+'% Digital' : '—'],
+    ['Human L1 Staffing', `${fmtInt(sdTot)} FTEs (${fmtInt(sdOn)} frontline)`],
+    ['Languages Supported', fmtInt(num('scope_lang')) + ' languages'],
+    ['KB RAG Readiness', `${fmtInt(kbP)} / ${fmtInt(kbA)} articles`],
+    ['Shift Coverage Model', $('sla_shift') ? $('sla_shift').value : '24x7'],
+    ['5-Yr Cumulative Automation', (state.automation[4] ? state.automation[4].target : 58) + '% Target']
+  ];
+  $('kpiGrid').innerHTML = kpis.map(([l,v]) => `<div class="kpi"><div class="label">${l}</div><div class="value mono" style="font-size:16px;">${v}</div></div>`).join('');
+}
+
+// Wire inputs to auto-recalc
+[
+  'org_users','org_devices','org_aipcs','vol_contacts','vol_incidents','vol_requests',
+  'vol_voice','vol_teams','vol_web','vol_chat','vol_email',
+  'scope_sd_oncall','scope_sd_total','scope_desk_agents','scope_dexops_agents','scope_lang',
+  'scope_kbavail','scope_kbplanned','scope_kbvisual','human_cost_per_ticket',
+  'sla_ahtvoice','sla_ahtchat','sla_convlen','sla_art','sla_mttr','sla_shift'
+].forEach(id => {
+  const el = $(id);
+  if (el) {
+    el.addEventListener('input', recalcAll);
+    if (el.tagName === 'SELECT') el.addEventListener('change', recalcAll);
+  }
+});
+
+// CSV Export
+$('btnExportCSV').addEventListener('click', () => {
+  const counts = renderOrgVolume();
+  const y1 = state.automation[0] ? state.automation[0].target : 15;
+  let csv = 'TOKENOMICS ENTERPRISE FINANCIAL MODEL EXPORT\n';
+  csv += `Currency,${currentCurrency}\n`;
+  csv += `Prompt Cache Hit Ratio,${(state.cacheHitRatio*100)}%\n`;
+  csv += `Token Headroom Buffer,${(state.headroomBuffer*100)}%\n\n`;
+  csv += 'OFFERING BREAKDOWN (MONTH 1)\n';
+  csv += 'Offering,Channel,Monthly Volume,Tokens In,Tokens Out,Total Tokens,LLM Cost,Speech Cost,CCaaS Fee,Total Cost\n';
+  state.offerings.forEach(o => {
+    const base = channelCount(o.channel, counts);
+    const mc = Math.round(base * (y1 / 100));
+    const r = computeOfferingCost(o, mc);
+    csv += `"${o.name}",${o.channel},${mc},${r.tokensIn},${r.tokensOut},${r.totalTokens},${r.llmCost.toFixed(2)},${r.speechCost.toFixed(2)},${r.ccaasFee.toFixed(2)},${r.total.toFixed(2)}\n`;
+  });
+  csv += '\n5-YEAR COMMERCIAL PROJECTION\n';
+  csv += 'Year,Automation Pct,Handled Volume Mo,Monthly Tokens,Annual AI Spend,Annual Gross Human Savings,Annual Net Savings\n';
+  const humanCost = num('human_cost_per_ticket') || 18.0;
+  state.automation.forEach(y => {
+    let yTokens = 0, yCost = 0, yConvos = 0;
+    state.offerings.forEach(o => {
+      const base = channelCount(o.channel, counts);
+      const mc = Math.round(base * (y.target / 100));
+      const r = computeOfferingCost(o, mc);
+      yTokens += r.totalTokens; yCost += r.total; yConvos += mc;
+    });
+    const annualAi = yCost * 12;
+    const annualGross = yConvos * humanCost * 12;
+    const annualNet = Math.max(0, annualGross - annualAi);
+    csv += `Year ${y.year},${y.target}%,${yConvos},${yTokens},${annualAi.toFixed(2)},${annualGross.toFixed(2)},${annualNet.toFixed(2)}\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `Tokenomics_Financial_Model_${new Date().toISOString().slice(0,10)}.csv`;
+  link.click();
+});
+
+// Markdown Executive Briefing Copy
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 🧠 Tokenomics Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/tokenomics/
+**Currency:** ${currentCurrency} | **Cache Hit Ratio:** ${(state.cacheHitRatio*100)}% | **Headroom:** +${(state.headroomBuffer*100)}%
+
+### Month 1 AI Run-Rate & Business Case
+- **Total AI Run Cost:** ${$('kpi_monthcost').textContent}
+- **Monthly Tokens:** ${$('kpi_monthtokens').textContent}
+- **Cost Per Contact:** ${$('kpi_perconvo').textContent}
+- **Cost Per User / Month:** ${$('kpi_peruser').textContent}
+- **Gross Human Labor Saved:** ${$('kpi_gross_savings').textContent}
+- **Net Cost Savings:** ${$('kpi_net_savings').textContent}
+- **Net ROI Multiple:** ${$('kpi_roi_pct').textContent}
+- **Capacity Freed:** ${$('kpi_fte_saved').textContent}
+- **5-Year Automation Target:** ${(state.automation[4] ? state.automation[4].target : 58)}%`;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch(e) {
+    alert('Clipboard copy failed. Please grant permission.');
+  }
+});
+
+// Save / Load JSON Scenario
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    version: '2026.09',
+    timestamp: new Date().toISOString(),
+    currency: currentCurrency,
+    cacheHitRatio: state.cacheHitRatio,
+    headroomBuffer: state.headroomBuffer,
+    inputs: {},
+    offerings: state.offerings,
+    automation: state.automation
+  };
+  ['org_users','org_devices','org_aipcs','vol_contacts','vol_incidents','vol_requests',
+   'vol_voice','vol_teams','vol_web','vol_chat','vol_email',
+   'scope_sd_oncall','scope_sd_total','scope_desk_agents','scope_dexops_agents','human_cost_per_ticket'
+  ].forEach(id => { scenario.inputs[id] = num(id); });
+
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `tokenomics_scenario_${new Date().toISOString().slice(0,10)}.json`;
+  link.click();
+});
+
+// Print
+$('btnPrint').addEventListener('click', () => window.print());
+
+// Boot
+async function loadPricing() {
+  try {
+    const res = await fetch('pricing.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('Failed to fetch pricing.json');
+    PRICING = await res.json();
+  } catch(e) {
+    console.warn('Using embedded fallback pricing.', e);
+    PRICING = JSON.parse(JSON.stringify(FALLBACK_PRICING));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('tokenomics_theme') || 'dark'; } catch(e){}
+  applyTheme(savedTheme);
+
+  await loadPricing();
+  renderStack();
+  renderOfferings();
+  renderAutomation();
+  renderPricingSheet();
+  recalcAll();
+})();
+</script>
+</body>
+</html>
