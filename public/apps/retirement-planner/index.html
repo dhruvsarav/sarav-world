@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>NPS + EPF Retirement Planner — Liquid vs Locked Wealth at 60 | Sarav's World</title>
+<meta name="description" content="Comprehensive Indian retirement planning calculator for EPF, EPS, NPS, VPF, and Gratuity. Accurately calculates spendable liquid cash vs locked taxable annuity with salary step-up and inflation adjustments.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/retirement-planner/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/retirement-planner/">
+<meta property="og:title" content="NPS + EPF Retirement Planner — Liquid vs Locked Wealth at 60">
+<meta property="og:description" content="Most calculators show one number. This breaks down EPF, NPS, EPS, and Gratuity into what is spendable cash vs locked in a monthly annuity, adjusted for salary step-up and inflation.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/retirement-planner/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NPS + EPF Retirement Planner — Liquid vs Locked Wealth at 60">
+<meta name="twitter:description" content="Calculate your true retirement wealth: spendable liquid lump-sum vs locked annuity pension, with salary increments and tax rules.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/retirement-planner/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --moss: #4E9A68;
+    --moss-soft: rgba(78, 154, 104, 0.16);
+    --rust: #D96E43;
+    --rust-soft: rgba(217, 110, 67, 0.16);
+    --teal: #4FB0A8;
+    --teal-soft: rgba(79, 176, 168, 0.16);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --moss: #2E7F46;
+    --moss-soft: rgba(46, 127, 70, 0.12);
+    --rust: #B85028;
+    --rust-soft: rgba(184, 80, 40, 0.12);
+    --teal: #287C75;
+    --teal-soft: rgba(40, 124, 117, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .serif { font-family: 'Newsreader', serif; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+
+  /* Form Elements */
+  input, select, button { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 9px 12px; width: 100%; outline: none; transition: all 0.15s ease;
+  }
+  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="range"] { accent-color: var(--accent); padding: 0; cursor: pointer; }
+  input[type="checkbox"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+
+  /* Badges & Chips */
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .badge.epf { color: var(--moss); background: var(--moss-soft); border: 1px solid var(--moss); }
+  .badge.nps { color: var(--rust); background: var(--rust-soft); border: 1px solid var(--rust); }
+  .badge.gold { color: var(--accent); background: var(--accent-soft); border: 1px solid var(--accent); }
+  .badge.teal { color: var(--teal); background: var(--teal-soft); border: 1px solid var(--teal); }
+
+  /* Ecosystem Bar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12px; color: var(--text-dim);
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .ecosystem-links a { color: var(--text-dim); font-weight: 500; transition: color 0.15s ease; }
+  .ecosystem-links a:hover { color: var(--accent); text-decoration: none; }
+  .eco-brand { font-weight: 600 !important; color: var(--text) !important; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+  .eco-label { font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-right: 2px; }
+  .eco-dot { color: var(--text-faint); margin: 0 2px; user-select: none; }
+
+  /* Header */
+  header.topbar {
+    position: sticky; top: 0; z-index: 50; background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 12px 20px; max-width: 1240px; margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-icon {
+    width: 36px; height: 36px; border-radius: 8px; background: linear-gradient(135deg, var(--moss), var(--wheat, #C9A227));
+    display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; color: #fff;
+  }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; }
+  .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .theme-toggle button { border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; }
+  .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 9px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Layout Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }
+  .dashboard-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; align-items: start;
+  }
+  @media(max-width: 960px) { .dashboard-grid { grid-template-columns: 1fr; } }
+
+  /* Panels & Cards */
+  .panel {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 22px; margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;
+  }
+  .panel-header h2 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .field { margin-bottom: 14px; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media(max-width: 540px) { .grid-2 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+
+  /* Hero Display Card */
+  .hero-card {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--border); border-radius: 14px; padding: 24px; position: sticky; top: 76px;
+  }
+  .hero-eyebrow { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--moss); font-weight: 700; margin-bottom: 4px; }
+  .hero-liquid { font-family: 'Newsreader', serif; font-size: 46px; font-weight: 600; color: var(--text); line-height: 1.05; letter-spacing: -0.02em; }
+  .hero-sub { font-size: 13px; color: var(--text-dim); margin-top: 6px; margin-bottom: 18px; }
+  
+  /* Split Bar */
+  .splitbar-wrapper { margin-bottom: 18px; }
+  .splitbar {
+    display: flex; height: 14px; border-radius: 8px; overflow: hidden; background: var(--surface-3);
+    margin-bottom: 12px; border: 1px solid var(--border);
+  }
+  .split-seg { height: 100%; transition: width 0.3s ease; position: relative; }
+  .split-seg.epf { background: var(--moss); }
+  .split-seg.nps-lump { background: var(--accent); }
+  .split-seg.gratuity { background: var(--teal); }
+  .split-seg.nps-annuity { background: var(--rust); }
+
+  .split-legend { display: flex; flex-direction: column; gap: 8px; }
+  .legend-item { display: flex; align-items: center; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid var(--border-soft); }
+  .legend-item:last-child { border-bottom: none; }
+  .legend-name { display: flex; align-items: center; gap: 8px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+  .legend-val { font-family: 'IBM Plex Mono'; font-weight: 600; }
+
+  /* Monthly Retirement Cash Flow Card */
+  .cashflow-box {
+    background: var(--surface-3); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-top: 18px;
+  }
+  .cf-title { font-size: 12.5px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; margin-bottom: 10px; }
+  .cf-val { font-family: 'IBM Plex Mono'; font-size: 26px; font-weight: 700; color: var(--accent); }
+  .cf-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-dim); margin-top: 6px; }
+
+  /* Inflation Callout */
+  .inflation-banner {
+    background: var(--surface-2); border-left: 3px solid var(--accent); border-radius: 6px; padding: 10px 14px;
+    margin-top: 16px; font-size: 12px; color: var(--text-dim); line-height: 1.4;
+  }
+
+  /* Sliders control */
+  .range-row { display: flex; align-items: center; gap: 10px; }
+  .range-row input[type="range"] { flex: 1; }
+  .range-val { font-family: 'IBM Plex Mono'; font-size: 12.5px; font-weight: 600; min-width: 44px; text-align: right; color: var(--accent); }
+
+  /* Milestone Table */
+  .table-box { overflow-x: auto; margin-top: 18px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { text-align: left; font-size: 11.5px; color: var(--text-faint); padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; }
+  td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); }
+  .num { text-align: right; font-family: 'IBM Plex Mono'; }
+
+  /* Actions */
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; flex-wrap: wrap; }
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+
+  @media print {
+    header.topbar, .ecosystem-bar, .presets-bar, .actionbar { display: none !important; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .hero-card { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .num, .hero-liquid, .cf-val { color: #111 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sub-header: Sarav's World Ecosystem -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Apps:</span>
+      <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/retirement-planner/" style="color:var(--accent); font-weight:600;">Retirement Planner</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Projects:</span>
+      <a href="https://iamsaravofficial.com/temples/">Temples</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" style="color:var(--text-dim); font-weight:500;">Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<!-- Main Topbar -->
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-icon">₹</div>
+      <div>
+        <h1>Retirement Planner <span class="badge gold">NPS · EPF · Gratuity</span></h1>
+        <span class="tagline">True Spendable Liquid Cash vs Locked Annuity Wealth at 60</span>
+      </div>
+    </div>
+    <div class="topbar-controls">
+      <div class="theme-toggle" id="themeToggle">
+        <button data-theme-choice="auto">Auto</button>
+        <button data-theme-choice="light">Light</button>
+        <button data-theme-choice="dark" class="active">Dark</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- One-Click Archetype Presets Bar -->
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Profiles:</span>
+    <button class="preset-btn" data-preset="early">🧑‍💻 Early Career (Age 25)</button>
+    <button class="preset-btn active" data-preset="mid">💼 Mid Career (Age 38)</button>
+    <button class="preset-btn" data-preset="senior">👔 Senior Leader (Age 48)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Baseline</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="dashboard-grid">
+
+    <!-- LEFT COLUMN: INPUTS -->
+    <div class="inputs-col">
+
+      <!-- 1. Timeline & Career Sizing -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>1. Career Horizon &amp; Salary Escalation</h2>
+          <span class="badge gold">Compounding</span>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="age">Current Age: <b class="mono" id="lblAge">38 yrs</b></label>
+            <div class="range-row">
+              <input type="range" id="age" min="18" max="59" value="38">
+              <span class="range-val" id="valAge">38</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="retireAge">Retirement Age: <b class="mono" id="lblRetire">60 yrs</b></label>
+            <div class="range-row">
+              <input type="range" id="retireAge" min="45" max="70" value="60">
+              <span class="range-val" id="valRetire">60</span>
+            </div>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="basic">Current Monthly Basic + DA (₹)</label>
+            <input type="number" id="basic" value="95000" step="5000">
+            <span class="hint">Base salary driving EPF and Gratuity calculations.</span>
+          </div>
+          <div class="field">
+            <label for="salaryStepup">Annual Salary Increment (%): <b class="mono" id="lblStepup">7%</b></label>
+            <div class="range-row">
+              <input type="range" id="salaryStepup" min="0" max="15" step="0.5" value="7">
+              <span class="range-val" id="valStepup">7%</span>
+            </div>
+            <span class="hint">Realistic salary growth over the remaining years.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="inflation">Expected Long-Term Inflation (%): <b class="mono" id="lblInf">6%</b></label>
+          <div class="range-row">
+            <input type="range" id="inflation" min="3" max="10" step="0.5" value="6">
+            <span class="range-val" id="valInf">6%</span>
+          </div>
+          <span class="hint">Used to calculate today's real purchasing power at retirement.</span>
+        </div>
+      </div>
+
+      <!-- 2. EPF & EPS -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>2. Employees' Provident Fund (EPF &amp; EPS)</h2>
+          <span class="badge epf">Guaranteed 8.25%</span>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="epfBal">Current EPF Balance (₹)</label>
+            <input type="number" id="epfBal" value="2200000" step="50000">
+          </div>
+          <div class="field">
+            <label for="epfRate">EPF Interest Rate (% p.a.)</label>
+            <input type="number" id="epfRate" value="8.25" step="0.05">
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="empeePct">Employee EPF % (incl. VPF)</label>
+            <input type="number" id="empeePct" value="12" step="1">
+            <span class="hint">Statutory 12% + Voluntary PF (VPF) up to 100%.</span>
+          </div>
+          <div class="field">
+            <label for="epsService">Total EPS Service Years (Past + Future)</label>
+            <input type="number" id="epsService" value="30" max="35">
+            <span class="hint">Capped at 35 yrs. Employer 8.33% up to ₹15,000 wage goes to EPS.</span>
+          </div>
+        </div>
+        <div class="hint" id="epfTaxHint" style="margin-top:6px;">
+          ✓ Section 10(11) &amp; Rule 9D: Employee contribution above ₹2,50,000/year tracked.
+        </div>
+      </div>
+
+      <!-- 3. NPS -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>3. National Pension System (NPS)</h2>
+          <span class="badge nps">Market-Linked</span>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="npsBal">Current NPS Balance (₹)</label>
+            <input type="number" id="npsBal" value="650000" step="25000">
+          </div>
+          <div class="field">
+            <label for="npsMonthly">Personal Monthly Contribution (₹)</label>
+            <input type="number" id="npsMonthly" value="10000" step="1000">
+            <span class="hint">Eligible for Sec 80CCD(1B) additional ₹50,000 deduction.</span>
+          </div>
+        </div>
+        <div class="field" style="background:var(--surface-2); padding:10px 14px; border-radius:8px;">
+          <label class="checkline" style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+            <input type="checkbox" id="corpNps" checked>
+            <span><b>Enable Corporate Employer NPS (Section 80CCD(2))</b> — 10% of Basic</span>
+          </label>
+          <span class="hint" style="display:block; margin-top:4px;">
+            100% tax-free under both Old and New Tax Regimes! Added on top of personal contribution.
+          </span>
+        </div>
+        <div class="grid-2" style="margin-top:10px;">
+          <div class="field">
+            <label for="npsCagr">Expected NPS CAGR (%): <b class="mono" id="lblCagr">10%</b></label>
+            <div class="range-row">
+              <input type="range" id="npsCagr" min="7" max="14" step="0.5" value="10">
+              <span class="range-val" id="valCagr">10%</span>
+            </div>
+            <span class="hint">Equity (E) + Corp Debt (C) + Govt Bond (G) blend.</span>
+          </div>
+          <div class="field">
+            <label for="annuityPct">Mandatory Annuity Ratio (%): <b class="mono" id="lblAnnuity">40%</b></label>
+            <div class="range-row">
+              <input type="range" id="annuityPct" min="40" max="100" step="5" value="40">
+              <span class="range-val" id="valAnnuity">40%</span>
+            </div>
+            <span class="hint">Min 40% locked into lifetime pension; remaining is tax-free liquid lump sum.</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="annuityRate">Expected Life Annuity Yield (% p.a.)</label>
+          <input type="number" id="annuityRate" value="6.5" step="0.1">
+          <span class="hint">Typical LIC / HDFC / ICICI annuity payout rate on locked corpus.</span>
+        </div>
+      </div>
+
+      <!-- 4. Statutory Gratuity -->
+      <div class="panel">
+        <div class="panel-header">
+          <h2>4. Statutory Gratuity</h2>
+          <span class="badge teal">Sec 10(10)</span>
+        </div>
+        <div class="grid-2">
+          <div class="field">
+            <label for="gratuityYears">Total Continuous Service at Retirement (Years)</label>
+            <input type="number" id="gratuityYears" value="25" min="5" max="45">
+          </div>
+          <div class="field">
+            <label>Estimated Gratuity Benefit</label>
+            <div class="mono" id="outGratuity" style="font-size:18px; font-weight:700; color:var(--teal); padding:8px 0;">₹0</div>
+          </div>
+        </div>
+        <span class="hint">Formula: (15 × Last Basic × Service Yrs) / 26. Tax-free up to ₹20,00,000 under Section 10(10).</span>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: HERO & PROJECTIONS -->
+    <div class="results-col">
+
+      <div class="hero-card">
+        <div class="hero-eyebrow">At Age <span id="heroAge">60</span> Breakdown</div>
+        <div class="hero-liquid" id="heroLiquidAmt">₹0</div>
+        <div class="hero-sub">Liquid &amp; Spendable Cash (EPF + 60% NPS + Gratuity)</div>
+
+        <!-- Split Bar -->
+        <div class="splitbar-wrapper">
+          <div class="splitbar">
+            <div class="split-seg epf" id="barEpf" style="width:50%" title="EPF Corpus"></div>
+            <div class="split-seg nps-lump" id="barNpsLump" style="width:25%" title="NPS Lump Sum"></div>
+            <div class="split-seg gratuity" id="barGratuity" style="width:5%" title="Gratuity"></div>
+            <div class="split-seg nps-annuity" id="barAnnuity" style="width:20%" title="Locked Annuity"></div>
+          </div>
+          <div class="split-legend">
+            <div class="legend-item">
+              <span class="legend-name"><span class="legend-dot" style="background:var(--moss);"></span>Liquid: EPF Corpus (Tax-Free)</span>
+              <span class="legend-val mono" id="legEpf">₹0</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-name"><span class="legend-dot" style="background:var(--accent);"></span>Liquid: NPS Lump Sum (<span id="lblLumpPct">60</span>%, Tax-Free)</span>
+              <span class="legend-val mono" id="legNpsLump">₹0</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-name"><span class="legend-dot" style="background:var(--teal);"></span>Liquid: Gratuity (Tax-Free up to ₹20L)</span>
+              <span class="legend-val mono" id="legGratuity">₹0</span>
+            </div>
+            <div class="legend-item" style="border-top: 1px solid var(--border); padding-top:8px;">
+              <span class="legend-name"><span class="legend-dot" style="background:var(--rust);"></span><b>Locked: NPS Annuity (<span id="lblAnnPct">40</span>%)</b></span>
+              <span class="legend-val mono" id="legAnnuity" style="color:var(--rust);">₹0</span>
+            </div>
+            <div class="legend-item" style="font-weight:700; font-size:14px;">
+              <span>Total Combined Retirement Corpus</span>
+              <span class="legend-val mono" id="legTotalCorpus">₹0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inflation Reality Banner -->
+        <div class="inflation-banner">
+          <b>💡 Inflation Reality (<span id="infRateTxt">6%</span> p.a.):</b><br>
+          Your total corpus of <b id="infNominal">₹0</b> at retirement will have the equivalent purchasing power of <b id="infReal" style="color:var(--accent);">₹0</b> in today's money.
+        </div>
+
+        <!-- Monthly Retirement Cash Flow -->
+        <div class="cashflow-box">
+          <div class="cf-title">Estimated Monthly Inflow at 60</div>
+          <div class="cf-val" id="totalMonthlyPension">₹0 / mo</div>
+          <div class="cf-row">
+            <span>• NPS Monthly Annuity Pension:</span>
+            <span class="mono" id="cfNpsPension">₹0/mo</span>
+          </div>
+          <div class="cf-row">
+            <span>• EPS-95 Monthly Pension:</span>
+            <span class="mono" id="cfEpsPension">₹0/mo</span>
+          </div>
+          <div class="cf-row" style="border-top:1px dashed var(--border); padding-top:6px; margin-top:6px;">
+            <span>• Optional 4% SWP from Liquid Cash:</span>
+            <span class="mono" id="cfSwp">₹0/mo</span>
+          </div>
+          <div class="hint" style="margin-top:8px;">
+            Annuity &amp; EPS pensions are taxable as regular income. SWP from liquid corpus can be optimized for zero/low capital gains.
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actionbar">
+          <button id="btnWhatsApp" class="ghost">📱 WhatsApp Summary</button>
+          <button id="btnCopyReport" class="ghost">📋 Copy Brief</button>
+          <button id="btnPrint" class="primary">🖨️ Print Plan</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- FULL MILESTONE TABLE -->
+  <div class="panel" style="margin-top: 24px;">
+    <div class="panel-header">
+      <h2>Wealth Milestone Trajectory (Age-by-Age Projection)</h2>
+      <span class="badge gold">Milestones</span>
+    </div>
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr>
+            <th>Milestone Age</th>
+            <th class="num">Monthly Basic</th>
+            <th class="num">EPF Corpus</th>
+            <th class="num">NPS Corpus</th>
+            <th class="num">Gratuity</th>
+            <th class="num">Liquid Spendable</th>
+            <th class="num" style="color:var(--accent); font-weight:700;">Total Net Worth</th>
+          </tr>
+        </thead>
+        <tbody id="milestonesBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="container" style="padding-bottom:0;">
+    <p><b>Retirement Planner</b> · EPF, EPS, NPS &amp; Gratuity Wealth Simulator</p>
+    <p>Incorporates Section 80CCD(2) Corporate NPS, Section 10(11) Rule 9D, Section 10(10) Gratuity, and Annual Step-up Compounding</p>
+    <p style="margin-top: 10px;">
+      Part of <a href="https://iamsaravofficial.com">Sarav's World</a> by <b>Saravanakumar Murugan</b>
+    </p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// RETIREMENT PLANNER ENGINE — Compound Step-Up, Tax-Aware EPF & NPS Simulator
+// ============================================================================================
+
+const PRESETS = {
+  early: {
+    age: 25, retireAge: 60, basic: 35000, stepup: 8, inflation: 6,
+    epfBal: 100000, epfRate: 8.25, empeePct: 12, epsService: 35,
+    npsBal: 50000, npsMonthly: 3000, corpNps: true, npsCagr: 11, annuityPct: 40, annuityRate: 6.5,
+    gratuityYears: 35
+  },
+  mid: {
+    age: 38, retireAge: 60, basic: 95000, stepup: 7, inflation: 6,
+    epfBal: 2200000, epfRate: 8.25, empeePct: 12, epsService: 30,
+    npsBal: 650000, npsMonthly: 10000, corpNps: true, npsCagr: 10, annuityPct: 40, annuityRate: 6.5,
+    gratuityYears: 25
+  },
+  senior: {
+    age: 48, retireAge: 60, basic: 220000, stepup: 6, inflation: 6,
+    epfBal: 7500000, epfRate: 8.25, empeePct: 12, epsService: 28,
+    npsBal: 2400000, npsMonthly: 25000, corpNps: true, npsCagr: 9.5, annuityPct: 40, annuityRate: 6.5,
+    gratuityYears: 20
+  },
+  reset: {
+    age: 30, retireAge: 60, basic: 50000, stepup: 5, inflation: 6,
+    epfBal: 500000, epfRate: 8.25, empeePct: 12, epsService: 30,
+    npsBal: 200000, npsMonthly: 5000, corpNps: false, npsCagr: 10, annuityPct: 40, annuityRate: 6.5,
+    gratuityYears: 25
+  }
+};
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); return el ? (parseFloat(el.value) || 0) : 0; };
+
+function fmtCr(n) {
+  if (isNaN(n) || n === 0) return '₹0';
+  if (n >= 10000000) return '₹' + (n / 10000000).toFixed(2) + ' Cr';
+  if (n >= 100000) return '₹' + (n / 100000).toFixed(2) + ' L';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+function fmtMoney(n) {
+  return '₹' + Math.round(n || 0).toLocaleString('en-IN');
+}
+
+// Sliders sync helper
+function syncSlider(sliderId, valId, lblId, suffix = '') {
+  const s = $(sliderId);
+  if (!s) return;
+  s.addEventListener('input', () => {
+    if ($(valId)) $(valId).textContent = s.value + suffix;
+    if ($(lblId)) $(lblId).textContent = s.value + suffix;
+    calc();
+  });
+}
+syncSlider('age', 'valAge', 'lblAge', ' yrs');
+syncSlider('retireAge', 'valRetire', 'lblRetire', ' yrs');
+syncSlider('salaryStepup', 'valStepup', 'lblStepup', '%');
+syncSlider('inflation', 'valInf', 'lblInf', '%');
+syncSlider('npsCagr', 'valCagr', 'lblCagr', '%');
+syncSlider('annuityPct', 'valAnnuity', 'lblAnnuity', '%');
+
+// Presets
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const key = btn.dataset.preset;
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.toggle('active', b === btn));
+    const p = PRESETS[key];
+    if (!p) return;
+    $('age').value = p.age; $('valAge').textContent = p.age; $('lblAge').textContent = p.age + ' yrs';
+    $('retireAge').value = p.retireAge; $('valRetire').textContent = p.retireAge; $('lblRetire').textContent = p.retireAge + ' yrs';
+    $('basic').value = p.basic;
+    $('salaryStepup').value = p.stepup; $('valStepup').textContent = p.stepup + '%'; $('lblStepup').textContent = p.stepup + '%';
+    $('inflation').value = p.inflation; $('valInf').textContent = p.inflation + '%'; $('lblInf').textContent = p.inflation + '%';
+    $('epfBal').value = p.epfBal;
+    $('epfRate').value = p.epfRate;
+    $('empeePct').value = p.empeePct;
+    $('epsService').value = p.epsService;
+    $('npsBal').value = p.npsBal;
+    $('npsMonthly').value = p.npsMonthly;
+    $('corpNps').checked = p.corpNps;
+    $('npsCagr').value = p.npsCagr; $('valCagr').textContent = p.npsCagr + '%'; $('lblCagr').textContent = p.npsCagr + '%';
+    $('annuityPct').value = p.annuityPct; $('valAnnuity').textContent = p.annuityPct + '%'; $('lblAnnuity').textContent = p.annuityPct + '%';
+    $('annuityRate').value = p.annuityRate;
+    $('gratuityYears').value = p.gratuityYears;
+    calc();
+  });
+});
+
+// Simulation Core Engine with Annual Step-up Compounding
+function runSimulation() {
+  const currentAge = num('age');
+  const retireAge = Math.max(currentAge + 1, num('retireAge'));
+  const yearsToRetire = retireAge - currentAge;
+
+  let basicMonthly = num('basic');
+  const stepupRate = num('salaryStepup') / 100;
+  const inflationRate = num('inflation') / 100;
+
+  let epfBalance = num('epfBal');
+  const epfAnnualRate = num('epfRate') / 100;
+  const empeePct = num('empeePct') / 100;
+  const emprPct = 0.12; // Statutory employer 12%
+
+  let npsBalance = num('npsBal');
+  const personalNpsMonthly = num('npsMonthly');
+  const corpNpsEnabled = $('corpNps').checked;
+  const npsAnnualCagr = num('npsCagr') / 100;
+  const annuityRatio = num('annuityPct') / 100;
+  const annuityYield = num('annuityRate') / 100;
+
+  const epsService = Math.min(num('epsService'), 35);
+  const epsWageCap = 15000;
+
+  const trajectory = [];
+
+  let lastBasic = basicMonthly;
+
+  // Month-by-month compounding
+  for (let y = 0; y < yearsToRetire; y++) {
+    const ageAtStartOfYear = currentAge + y;
+
+    // Monthly loop for year y
+    for (let m = 0; m < 12; m++) {
+      // 1. EPF & EPS
+      const epsMonthly = 0.0833 * Math.min(basicMonthly, epsWageCap);
+      const employerToEpfMonthly = Math.max(0, (emprPct * basicMonthly) - epsMonthly);
+      const employeeToEpfMonthly = empeePct * basicMonthly;
+      const totalEpfMonthly = employeeToEpfMonthly + employerToEpfMonthly;
+
+      // Monthly interest compounding
+      epfBalance = (epfBalance + totalEpfMonthly) * (1 + epfAnnualRate / 12);
+
+      // 2. NPS
+      const corpNpsMonthly = corpNpsEnabled ? (0.10 * basicMonthly) : 0;
+      const totalNpsMonthly = personalNpsMonthly + corpNpsMonthly;
+
+      npsBalance = (npsBalance + totalNpsMonthly) * (1 + npsAnnualCagr / 12);
+    }
+
+    lastBasic = basicMonthly;
+
+    // Record milestone at specific ages
+    const ageAtEndOfYear = currentAge + y + 1;
+    if (ageAtEndOfYear % 5 === 0 || ageAtEndOfYear === retireAge || y === 0) {
+      const gYears = Math.min(num('gratuityYears'), ageAtEndOfYear - (currentAge - (num('gratuityYears') - yearsToRetire)));
+      const interimGratuity = Math.min(2000000, (15 * lastBasic * Math.max(5, gYears)) / 26);
+      const interimLumpNps = npsBalance * (1 - annuityRatio);
+      trajectory.push({
+        age: ageAtEndOfYear,
+        basic: lastBasic,
+        epf: epfBalance,
+        nps: npsBalance,
+        gratuity: interimGratuity,
+        liquid: epfBalance + interimLumpNps + interimGratuity,
+        total: epfBalance + npsBalance + interimGratuity
+      });
+    }
+
+    // Step-up basic for next year
+    basicMonthly = basicMonthly * (1 + stepupRate);
+  }
+
+  // Gratuity at retirement
+  const gratuityYrs = num('gratuityYears');
+  const gratuityCorpus = Math.min(2000000, (15 * lastBasic * gratuityYrs) / 26);
+
+  // NPS Splits
+  const npsLumpSum = npsBalance * (1 - annuityRatio);
+  const npsAnnuity = npsBalance * annuityRatio;
+  const monthlyNpsPension = (npsAnnuity * annuityYield) / 12;
+
+  // EPS Pension at 58/60: (Pensionable Salary * Service) / 70
+  const monthlyEpsPension = (Math.min(lastBasic, epsWageCap) * epsService) / 70;
+
+  // Liquid vs Locked
+  const liquidCorpus = epfBalance + npsLumpSum + gratuityCorpus;
+  const lockedCorpus = npsAnnuity;
+  const totalCorpus = liquidCorpus + lockedCorpus;
+
+  // SWP 4% Rule from Liquid Corpus
+  const monthlySwp = (liquidCorpus * 0.04) / 12;
+  const totalMonthlyRetirementInflow = monthlyNpsPension + monthlyEpsPension + monthlySwp;
+
+  // Inflation Discounting: Present Value = Future Value / (1 + i)^n
+  const inflationDiscountFactor = Math.pow(1 + inflationRate, yearsToRetire);
+  const realLiquidPurchasingPower = liquidCorpus / inflationDiscountFactor;
+  const realTotalPurchasingPower = totalCorpus / inflationDiscountFactor;
+
+  return {
+    currentAge, retireAge, yearsToRetire, lastBasic,
+    epfBalance, gratuityCorpus, npsBalance, npsLumpSum, npsAnnuity,
+    liquidCorpus, lockedCorpus, totalCorpus,
+    monthlyNpsPension, monthlyEpsPension, monthlySwp, totalMonthlyRetirementInflow,
+    realLiquidPurchasingPower, realTotalPurchasingPower, inflationRate,
+    annuityRatio, trajectory
+  };
+}
+
+function calc() {
+  const r = runSimulation();
+
+  $('heroAge').textContent = r.retireAge;
+  $('heroLiquidAmt').textContent = fmtCr(r.liquidCorpus);
+
+  // Split bar widths
+  const epfPct = r.totalCorpus > 0 ? (r.epfBalance / r.totalCorpus) * 100 : 45;
+  const npsLumpPct = r.totalCorpus > 0 ? (r.npsLumpSum / r.totalCorpus) * 100 : 25;
+  const gratPct = r.totalCorpus > 0 ? (r.gratuityCorpus / r.totalCorpus) * 100 : 5;
+  const annPct = r.totalCorpus > 0 ? (r.lockedCorpus / r.totalCorpus) * 100 : 25;
+
+  $('barEpf').style.width = epfPct + '%';
+  $('barNpsLump').style.width = npsLumpPct + '%';
+  $('barGratuity').style.width = gratPct + '%';
+  $('barAnnuity').style.width = annPct + '%';
+
+  $('lblLumpPct').textContent = Math.round((1 - r.annuityRatio) * 100);
+  $('lblAnnPct').textContent = Math.round(r.annuityRatio * 100);
+
+  // Legend details
+  $('legEpf').textContent = fmtCr(r.epfBalance);
+  $('legNpsLump').textContent = fmtCr(r.npsLumpSum);
+  $('legGratuity').textContent = fmtCr(r.gratuityCorpus);
+  $('legAnnuity').textContent = fmtCr(r.lockedCorpus);
+  $('legTotalCorpus').textContent = fmtCr(r.totalCorpus);
+  $('outGratuity').textContent = fmtCr(r.gratuityCorpus);
+
+  // Inflation callout
+  $('infRateTxt').textContent = (r.inflationRate * 100).toFixed(1) + '%';
+  $('infNominal').textContent = fmtCr(r.totalCorpus);
+  $('infReal').textContent = fmtCr(r.realTotalPurchasingPower);
+
+  // Cash flow simulator
+  $('totalMonthlyPension').textContent = fmtMoney(r.totalMonthlyRetirementInflow) + ' / mo';
+  $('cfNpsPension').textContent = fmtMoney(r.monthlyNpsPension) + ' / mo';
+  $('cfEpsPension').textContent = fmtMoney(r.monthlyEpsPension) + ' / mo';
+  $('cfSwp').textContent = fmtMoney(r.monthlySwp) + ' / mo';
+
+  // Render Milestones Table
+  $('milestonesBody').innerHTML = r.trajectory.map(m => `
+    <tr>
+      <td><b>Age ${m.age}</b></td>
+      <td class="num">${fmtCr(m.basic)}</td>
+      <td class="num" style="color:var(--moss);">${fmtCr(m.epf)}</td>
+      <td class="num" style="color:var(--rust);">${fmtCr(m.nps)}</td>
+      <td class="num" style="color:var(--teal);">${fmtCr(m.gratuity)}</td>
+      <td class="num" style="font-weight:600;">${fmtCr(m.liquid)}</td>
+      <td class="num" style="color:var(--accent); font-weight:700;">${fmtCr(m.total)}</td>
+    </tr>
+  `).join('');
+}
+
+// WhatsApp Share
+$('btnWhatsApp').addEventListener('click', () => {
+  const r = runSimulation();
+  const text = `📊 *My Retirement Plan at Age ${r.retireAge}* (via Sarav's World)
+💰 *Liquid Spendable Cash:* ${fmtCr(r.liquidCorpus)}
+🔒 *Locked NPS Annuity:* ${fmtCr(r.lockedCorpus)}
+🌟 *Total Retirement Wealth:* ${fmtCr(r.totalCorpus)}
+🛒 *Today's Real Purchasing Power:* ${fmtCr(r.realTotalPurchasingPower)}
+💵 *Est. Monthly Retirement Inflow:* ${fmtMoney(r.totalMonthlyRetirementInflow)}/month
+
+Calculate your true liquid vs locked retirement split:
+https://iamsaravofficial.com/apps/retirement-planner/`;
+
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+});
+
+// Markdown Briefing Copy
+$('btnCopyReport').addEventListener('click', async () => {
+  const r = runSimulation();
+  const text = `# 📊 Retirement Wealth Briefing (Age ${r.currentAge} → ${r.retireAge})
+- **Liquid Spendable Corpus:** ${fmtCr(r.liquidCorpus)} (EPF: ${fmtCr(r.epfBalance)} + NPS Lump: ${fmtCr(r.npsLumpSum)} + Gratuity: ${fmtCr(r.gratuityCorpus)})
+- **Locked Annuity Corpus:** ${fmtCr(r.lockedCorpus)} (${Math.round(r.annuityRatio*100)}% NPS)
+- **Total Combined Wealth:** ${fmtCr(r.totalCorpus)}
+- **Inflation-Adjusted Value:** ${fmtCr(r.realTotalPurchasingPower)} (at ${(r.inflationRate*100)}% inflation)
+- **Monthly Retirement Inflow:** ${fmtMoney(r.totalMonthlyRetirementInflow)}/mo (Annuity: ${fmtMoney(r.monthlyNpsPension)} + EPS: ${fmtMoney(r.monthlyEpsPension)} + 4% SWP: ${fmtMoney(r.monthlySwp)})
+
+*Modeled via https://iamsaravofficial.com/apps/retirement-planner/*`;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyReport').textContent = '✓ Copied';
+    setTimeout(() => $('btnCopyReport').textContent = '📋 Copy Brief', 1500);
+  } catch (e) {
+    alert('Clipboard copy failed.');
+  }
+});
+
+// Print
+$('btnPrint').addEventListener('click', () => window.print());
+
+// Theme
+function applyTheme(choice) {
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('retire_theme', choice); } catch(e){}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Wire all inputs
+document.querySelectorAll('input, select').forEach(el => {
+  el.addEventListener('input', calc);
+  if (el.type === 'checkbox') el.addEventListener('change', calc);
+});
+
+// Boot
+(function init() {
+  let saved = 'dark';
+  try { saved = localStorage.getItem('retire_theme') || 'dark'; } catch(e){}
+  applyTheme(saved);
+  calc();
+})();
+</script>
+</body>
+</html>
