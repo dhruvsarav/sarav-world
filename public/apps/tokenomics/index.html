@@ -120,14 +120,22 @@
   /* Subheader / Ecosystem banner */
   .ecosystem-bar {
     background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
-    padding: 6px 20px; font-size: 12px; color: var(--text-dim);
+    padding: 7px 20px; font-size: 12px; color: var(--text-dim);
   }
   .ecosystem-inner {
     max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
   }
-  .ecosystem-links { display: flex; align-items: center; gap: 14px; }
-  .ecosystem-links a { color: var(--text-dim); font-weight: 500; }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .ecosystem-links a { color: var(--text-dim); font-weight: 500; transition: color 0.15s ease; }
   .ecosystem-links a:hover { color: var(--accent); text-decoration: none; }
+  .eco-brand { font-weight: 600 !important; color: var(--text) !important; }
+  .eco-brand:hover { color: var(--accent) !important; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+  .eco-label {
+    font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--accent); margin-right: 2px;
+  }
+  .eco-dot { color: var(--text-faint); margin: 0 2px; user-select: none; }
 
   /* Sticky Header Wrapper */
   .sticky-header-wrapper {
@@ -283,12 +291,16 @@
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
-      <a href="https://iamsaravofficial.com/">← Sarav's World</a>
-      <span>·</span>
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Apps:</span>
       <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
-      <span>·</span>
+      <span class="eco-dot">·</span>
       <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
-      <span>·</span>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Projects:</span>
+      <a href="https://iamsaravofficial.com/temples/">Temples</a>
+      <span class="eco-dot">·</span>
       <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
     </div>
     <div>
