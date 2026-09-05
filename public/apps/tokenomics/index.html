@@ -129,25 +129,28 @@
   .ecosystem-links a { color: var(--text-dim); font-weight: 500; }
   .ecosystem-links a:hover { color: var(--accent); text-decoration: none; }
 
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
   /* Header */
   header.topbar {
-    position: sticky; top: 0; z-index: 50; background: rgba(12, 15, 20, 0.94);
+    background: rgba(12, 15, 20, 0.96);
     backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
   }
-  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.94); }
-  .topbar-inner { display: flex; align-items: center; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
   .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
   .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
   .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
-  nav.jumpnav { display: flex; gap: 2px; overflow-x: auto; flex: 1; padding: 2px 0; }
-  nav.jumpnav a {
-    white-space: nowrap; font-size: 12px; color: var(--text-dim); text-decoration: none;
-    padding: 5px 9px; border-radius: 6px; font-weight: 500;
-  }
-  nav.jumpnav a:hover { background: var(--surface-2); color: var(--text); }
-  .topbar-controls { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
   .currency-toggle button, .theme-toggle button {
     border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
@@ -158,6 +161,36 @@
     border-radius: 6px; padding: 5px 10px; white-space: nowrap;
   }
   .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
 
   /* Presets Bar */
   .presets-bar {
@@ -236,7 +269,7 @@
   .overflow-x { overflow-x: auto; }
 
   @media print {
-    header.topbar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
     section.block { padding: 12px 0; break-inside: avoid; border: none; }
     body { background: #fff !important; color: #111 !important; }
     .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
@@ -246,7 +279,7 @@
 </head>
 <body>
 
-<!-- Sub-header: Sarav's World Ecosystem -->
+<!-- Sub-header: Sarav's World Ecosystem (Reviews removed) -->
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
@@ -257,8 +290,6 @@
       <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
       <span>·</span>
       <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
-      <span>·</span>
-      <a href="https://iamsaravofficial.com/feedback/">Reviews</a>
     </div>
     <div>
       <span>AI Architect &amp; Digital Workplace Suite · Version 2026.09</span>
@@ -266,45 +297,51 @@
   </div>
 </div>
 
-<!-- Main Topbar -->
-<header class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">
-      <div class="mark">
-        <img src="icons/favicon-192.png" alt="Tokenomics Logo">
+<!-- Sticky Header Wrapper: Topbar Header + Option 1 Dedicated Section Navigation Bar -->
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark">
+          <img src="icons/favicon-192.png" alt="Tokenomics Logo">
+        </div>
+        <div>
+          <h1>Tokenomics <span class="badge gold">DWP Suite</span></h1>
+          <span class="tagline">Right-Size Your Enterprise AI Spend &amp; Digital Workplace ROI</span>
+        </div>
       </div>
-      <div>
-        <h1>Tokenomics <span class="badge gold">DWP Suite</span></h1>
-        <span class="tagline">Right-Size Your Enterprise AI Spend &amp; Digital Workplace ROI</span>
-      </div>
-    </div>
-    <nav class="jumpnav">
-      <a href="#profile">Profile</a>
-      <a href="#volume">Volume</a>
-      <a href="#scope">Scope</a>
-      <a href="#sla">SLA</a>
-      <a href="#stack">Stack</a>
-      <a href="#offerings">Offerings</a>
-      <a href="#automation">Automation</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#report">Report &amp; ROI</a>
-    </nav>
-    <div class="topbar-controls">
-      <div class="currency-toggle" id="currencyToggle">
-        <button data-curr="USD" class="active">USD ($)</button>
-        <button data-curr="INR">INR (₹)</button>
-        <button data-curr="EUR">EUR (€)</button>
-        <button data-curr="GBP">GBP (£)</button>
-      </div>
-      <div class="live-total-pill">Month 1: <b id="liveTotal" class="mono">$0</b></div>
-      <div class="theme-toggle" id="themeToggle">
-        <button data-theme-choice="auto">Auto</button>
-        <button data-theme-choice="light">Light</button>
-        <button data-theme-choice="dark" class="active">Dark</button>
+      <div class="topbar-controls">
+        <div class="currency-toggle" id="currencyToggle">
+          <button data-curr="USD" class="active">USD ($)</button>
+          <button data-curr="INR">INR (₹)</button>
+          <button data-curr="EUR">EUR (€)</button>
+          <button data-curr="GBP">GBP (£)</button>
+        </div>
+        <div class="live-total-pill">Month 1: <b id="liveTotal" class="mono">$0</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
       </div>
     </div>
-  </div>
-</header>
+  </header>
+
+  <!-- Option 1: Dedicated Section Bar Under Logo & Controls, Above Presets -->
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Profile</a>
+      <a href="#volume" class="sec-nav-link"><span class="sn-num">02</span> Volume</a>
+      <a href="#scope" class="sec-nav-link"><span class="sn-num">03</span> Scope</a>
+      <a href="#sla" class="sec-nav-link"><span class="sn-num">04</span> SLA</a>
+      <a href="#stack" class="sec-nav-link"><span class="sn-num">05</span> Stack</a>
+      <a href="#offerings" class="sec-nav-link"><span class="sn-num">06</span> Offerings</a>
+      <a href="#automation" class="sec-nav-link"><span class="sn-num">07</span> Automation</a>
+      <a href="#pricing" class="sec-nav-link"><span class="sn-num">08</span> Pricing</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; ROI</a>
+    </div>
+  </nav>
+</div>
 
 <!-- One-Click Enterprise Presets Bar -->
 <div class="presets-bar">
@@ -1561,6 +1598,21 @@ async function loadPricing() {
     PRICING = JSON.parse(JSON.stringify(FALLBACK_PRICING));
   }
 }
+
+// Section Nav Active Scrollspy & Smooth Click
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(link => {
+        const isMatch = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('active', isMatch);
+      });
+    }
+  });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
 
 (async function init() {
   let savedTheme = 'dark';
