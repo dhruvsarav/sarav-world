@@ -117,25 +117,61 @@
   .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
   .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
 
-  /* Subheader / Ecosystem banner */
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
   .ecosystem-bar {
     background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
-    padding: 7px 20px; font-size: 12px; color: var(--text-dim);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
   }
   .ecosystem-inner {
-    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
-  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .ecosystem-links a { color: var(--text-dim); font-weight: 500; transition: color 0.15s ease; }
-  .ecosystem-links a:hover { color: var(--accent); text-decoration: none; }
-  .eco-brand { font-weight: 600 !important; color: var(--text) !important; }
-  .eco-brand:hover { color: var(--accent) !important; }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
   .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
-  .eco-label {
-    font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
-    color: var(--accent); margin-right: 2px;
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
   }
-  .eco-dot { color: var(--text-faint); margin: 0 2px; user-select: none; }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    margin-top: 4px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    padding: 6px; z-index: 2000; backdrop-filter: blur(12px);
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
 
   /* Sticky Header Wrapper */
   .sticky-header-wrapper {
@@ -293,26 +329,34 @@
     <div class="ecosystem-links">
       <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
       <span class="eco-divider">│</span>
-      <span class="eco-label">Apps:</span>
-      <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+        </div>
+      </div>
+
       <span class="eco-divider">│</span>
-      <span class="eco-label">Projects:</span>
-      <a href="https://iamsaravofficial.com/temples/">Temples</a>
-      <span class="eco-dot">·</span>
-      <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
     </div>
     <div>
-      <span>Enterprise AI Economics · Version 2026.09</span>
+      <span class="eco-tokenomics">Enterprise AI Economics · Version 2026.09</span>
     </div>
   </div>
 </div>
