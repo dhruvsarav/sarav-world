@@ -21,6 +21,9 @@
 <meta name="twitter:title" content="Metal Price Estimator | Precision Jewellery Valuation">
 <meta name="twitter:description" content="Estimate gold, silver and platinum jewellery cost with wastage, buy vs market rate, GST and gain %.">
 <meta name="twitter:image" content="https://iamsaravofficial.com/apps/gold-price-estimator/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --gold-primary:#C1810A;
@@ -61,14 +64,247 @@
     margin:0;
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     background:var(--body-bg);
-    display:flex;
-    justify-content:center;
+    color:var(--text-dark);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
     transition:background 0.3s;
   }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  a { color: var(--gold-primary); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Ecosystem Bar with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 6px 20px;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    position: relative;
+    z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .ecosystem-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .eco-brand {
+    font-weight: 700 !important;
+    color: var(--text-dark) !important;
+    text-decoration: none;
+    transition: color 0.15s ease;
+  }
+  .eco-brand:hover {
+    color: var(--gold-primary) !important;
+    text-decoration: none;
+  }
+  .eco-divider {
+    color: var(--border-gold);
+    font-weight: 300;
+    margin: 0 4px;
+    user-select: none;
+  }
+
+  /* Dropdown Styles */
+  .eco-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .eco-dropbtn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--gold-primary-dark);
+    background: var(--chip-bg);
+  }
+  .eco-caret {
+    font-size: 9px;
+    transition: transform 0.2s ease;
+  }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret {
+    transform: rotate(180deg);
+  }
+  .eco-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 6px;
+    min-width: 210px;
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap */
+  .eco-menu::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block;
+    animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block;
+    color: var(--text-dark);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    font-weight: 500;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--chip-bg);
+    color: var(--gold-primary-dark);
+    text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--gold-primary) !important;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 12px;
+  }
+  .eco-tokenomics:hover {
+    text-decoration: underline;
+  }
+
+  /* Yellow/Gold Header Banner */
+  .gold-header-banner {
+    background: linear-gradient(180deg, var(--gold-header-start), var(--gold-header-end));
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border-gold);
+  }
+  .banner-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .banner-text { flex: 1; min-width: 300px; }
+  .banner-eyebrow {
+    font-size: 12px;
+    color: var(--gold-primary-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .gold-header-banner h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-primary-dark);
+    margin: 0 0 6px;
+    line-height: 1.25;
+  }
+  .gold-header-banner .sub {
+    font-size: 13.5px;
+    color: var(--text-dark);
+    margin: 0;
+    max-width: 820px;
+    line-height: 1.5;
+  }
+
+  .desktop-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  @media (max-width: 768px) {
+    .desktop-tabs { display: none; }
+  }
+  .dtab-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border-gold);
+    background: var(--card-white);
+    color: var(--text-dark);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .dtab-btn:hover {
+    background: var(--chip-bg);
+    border-color: var(--gold-primary);
+  }
+  .dtab-btn.active {
+    background: var(--gold-primary);
+    color: #fff;
+    border-color: var(--gold-primary);
+  }
+
+  .theme-selector {
+    display: flex;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border-gold);
+  }
+  .theme-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  .theme-btn.active {
+    background: var(--card-white);
+    color: var(--gold-primary-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main Phone/Container max-width 1240px */
   .phone{
     width:100%;
-    max-width:420px;
+    max-width:1240px;
     min-height:100vh;
+    margin: 0 auto;
     background:var(--gold-bg);
     display:flex;
     flex-direction:column;
@@ -77,21 +313,26 @@
   .tab-panel{display:none; flex:1; padding-bottom:76px;}
   .tab-panel.active{display:block;}
 
-  .header{
-    background:linear-gradient(180deg, var(--gold-header-start), var(--gold-header-end));
-    padding:22px 18px;
-  }
-  .header h1{margin:0; font-size:22px; color:var(--gold-primary-dark);}
-  .header p{margin:4px 0 0; font-size:13px; color:var(--text-dark);}
+  .content{padding: 24px 20px;}
 
-  .content{padding:16px;}
+  /* 2-Column Desktop Grid for Calculator */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  @media (max-width: 960px) {
+    .calc-grid { grid-template-columns: 1fr; }
+  }
 
   .card{
     background:var(--card-white);
     border:1px solid var(--border-gold);
     border-radius:16px;
-    padding:16px;
-    margin-bottom:16px;
+    padding:20px;
+    margin-bottom:18px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   }
   .card-title{
     display:flex; align-items:center; gap:8px;
@@ -99,10 +340,10 @@
   }
   .info-row{display:flex; gap:12px;}
   .info-row .icon{font-size:22px; line-height:1;}
-  .info-row h3{margin:0 0 4px; font-size:14px;}
+  .info-row h3{margin:0 0 4px; font-size:14px; color:var(--text-dark);}
   .info-row p{margin:0; font-size:12.5px; color:var(--text-muted); line-height:1.4;}
 
-  label{display:block; font-size:12.5px; color:var(--text-muted); margin:12px 0 6px;}
+  label{display:block; font-size:12.5px; color:var(--text-muted); margin:12px 0 6px; font-weight:600;}
   label:first-child{margin-top:0;}
   .req{color:var(--error-red);}
 
@@ -112,64 +353,149 @@
     border-radius:10px;
     background:var(--gold-bg);
     padding:0 12px;
+    transition: all 0.15s ease;
   }
-  .field .prefix{color:var(--gold-primary); font-weight:700; margin-right:6px;}
-  .field .suffix{color:var(--text-muted); margin-left:6px; font-size:13px; white-space:nowrap;}
+  .field .prefix{color:var(--gold-primary); font-weight:700; margin-right:6px; font-family:'IBM Plex Mono',monospace;}
+  .field .suffix{color:var(--text-muted); margin-left:6px; font-size:13px; white-space:nowrap; font-family:'IBM Plex Mono',monospace;}
   .field .suffix.pct{color:var(--gold-primary); font-weight:700;}
   .field input, .field select{
     flex:1; border:none; background:transparent; outline:none;
-    padding:12px 0; font-size:15px; color:var(--text-dark); width:100%;
-    appearance:none; -webkit-appearance:none;
+    padding:11px 0; font-size:14.5px; color:var(--text-dark); width:100%;
+    font-family:'IBM Plex Mono',monospace; font-weight:600;
   }
   .field:focus-within{border-color:var(--gold-primary); box-shadow:0 0 0 2px rgba(193,129,10,0.15);}
   .field-error{border-color:var(--error-red) !important; background:#FFF3F3;}
 
   .toggle-row{
     display:flex; align-items:center; gap:4px;
-    color:var(--gold-primary); font-weight:700; font-size:14px;
-    padding:10px 0; cursor:pointer; user-select:none;
+    color:var(--gold-primary); font-weight:700; font-size:13.5px;
+    padding:10px 0 4px; cursor:pointer; user-select:none;
   }
 
   .btn-primary{
-    width:100%; padding:15px; margin-top:16px;
+    width:100%; padding:13px; margin-top:16px;
     background:var(--gold-primary); color:#fff; border:none;
-    border-radius:28px; font-size:16px; font-weight:700;
-    display:flex; align-items:center; justify-content:center; gap:8px;
+    border-radius:12px; font-size:15px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
+    transition: filter 0.15s;
   }
+  .btn-primary:hover{filter:brightness(1.1);}
+
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    color: var(--text-dark);
+    padding: 11px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .btn:hover {
+    background: var(--chip-bg);
+    border-color: var(--gold-primary);
+    color: var(--gold-primary-dark);
+  }
+  .btn.primary {
+    background: var(--gold-primary);
+    color: #FFFFFF;
+    border-color: var(--gold-primary);
+  }
+  .btn.primary:hover { filter: brightness(1.1); }
+  .actionbar { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+
   .btn-outline{
-    width:100%; padding:13px; margin-top:12px;
+    width:100%; padding:12px; margin-top:10px;
     background:transparent; color:var(--gold-primary);
-    border:1.5px solid var(--gold-primary); border-radius:28px;
-    font-size:15px; font-weight:700;
-    display:flex; align-items:center; justify-content:center; gap:8px;
+    border:1.5px solid var(--gold-primary); border-radius:10px;
+    font-size:14px; font-weight:700;
+    display:flex; align-items:center; justify-content:center; gap:8px; cursor:pointer;
   }
   .btn-danger-outline{
-    width:100%; padding:13px;
+    width:100%; padding:12px;
     background:transparent; color:var(--error-red);
-    border:1.5px solid var(--error-red); border-radius:28px;
-    font-size:15px; font-weight:700;
+    border:1.5px solid var(--error-red); border-radius:10px;
+    font-size:14px; font-weight:700; cursor:pointer;
     display:flex; align-items:center; justify-content:center; gap:8px;
   }
   .btn-plain{
-    width:100%; padding:13px; margin-top:10px;
+    width:100%; padding:12px; margin-top:10px;
     background:var(--chip-bg); color:var(--text-dark); border:1px solid var(--chip-border);
-    border-radius:28px; font-size:15px; font-weight:700;
+    border-radius:10px; font-size:14px; font-weight:700;
     display:flex; align-items:center; justify-content:center; gap:8px;
     cursor:pointer;
   }
   .error-text{color:var(--error-red); font-size:13px; margin-top:8px;}
 
-  .result-row{display:flex; justify-content:space-between; padding:4px 0; font-size:14px;}
-  .result-row .label{color:var(--text-muted);}
+  /* Output Hero Card */
+  .hero-card {
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+  .hero-figure {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 1.1;
+    color: var(--gold-primary-dark);
+  }
+  .hero-label {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+  }
+
+  .metric-banner {
+    background: linear-gradient(135deg, var(--gold-header-start), var(--gold-header-end));
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(193, 129, 10, 0.15);
+  }
+  .metric-banner .title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gold-primary-dark); }
+  .metric-banner .amount { font-size: 24px; font-weight: 800; color: #3D2B00; font-family: 'IBM Plex Mono', monospace; }
+  .metric-banner .sub { font-size: 11.5px; color: var(--text-dark); }
+
+  .result-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:8px 0; font-size:13.5px; border-bottom:1px solid var(--chip-border);
+  }
+  .result-row:last-child{border-bottom:none;}
+  .result-row .label{color:var(--text-dark); font-weight:600;}
+  .result-row .val{text-align:right; font-weight:700; font-family:'IBM Plex Mono',monospace; color:var(--text-dark);}
+  .result-row .sub{font-size:11.5px; color:var(--text-muted); margin-top:2px;}
   .divider{border:none; border-top:1px solid var(--border-gold); margin:10px 0;}
-  .total-row{display:flex; justify-content:space-between; font-weight:700; font-size:18px;}
-  .total-row .val{color:var(--gold-primary-dark);}
+  .total-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-weight:700; font-size:16px; padding:10px 0 6px; border-top:2px solid var(--border-gold); margin-top:6px;
+  }
+  .total-row .val{color:var(--gold-primary-dark); font-family:'IBM Plex Mono',monospace; font-size:18px;}
 
   .bottom-nav{
     position:fixed; bottom:0; left:50%; transform:translateX(-50%);
-    width:100%; max-width:420px;
+    width:100%; max-width:1240px;
     background:var(--nav-bg); border-top:1px solid var(--border-gold);
-    display:flex;
+    display:none;
+    z-index: 100;
+  }
+  @media (max-width: 768px) {
+    .bottom-nav { display: flex; }
   }
   .nav-item{
     flex:1; text-align:center; padding:10px 0 8px;
@@ -177,6 +503,30 @@
   }
   .nav-item .ic{display:block; font-size:20px; margin-bottom:2px;}
   .nav-item.active{color:var(--gold-primary);}
+
+  /* History header & portfolio */
+  .history-header {
+    background: linear-gradient(180deg, var(--gold-header-start), var(--gold-header-end));
+    padding: 20px;
+    border-bottom: 1px solid var(--border-gold);
+  }
+  .history-header h2 { margin: 0; font-size: 22px; color: var(--gold-primary-dark); }
+  .history-header p { margin: 4px 0 0; font-size: 13px; color: var(--text-dark); }
+
+  footer {
+    padding: 36px 0 10px;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border-gold);
+    margin-top: 40px;
+  }
+  footer a { color: var(--gold-primary); }
+
+  @media print {
+    .ecosystem-bar, .gold-header-banner .theme-selector, .desktop-tabs, .bottom-nav, .actionbar, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+  }
 
   .history-header{background:var(--gold-header-end); padding:20px 16px;}
   .history-header h2{margin:0; font-size:20px; color:var(--gold-primary-dark);}
@@ -302,127 +652,247 @@
 </head>
 <body>
 
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">│</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
 <div class="phone">
+
+  <!-- Yellow/Gold Header Banner -->
+  <div class="gold-header-banner">
+    <div class="banner-inner">
+      <div class="banner-text">
+        <div class="banner-eyebrow">Precious Metals Suite</div>
+        <h1>Metal Price Estimator</h1>
+        <p class="sub">Precision jewellery billing, wastage (VA), GST breakdown, real-time valuation, and portfolio tracking.</p>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        <div class="theme-selector">
+          <button type="button" class="theme-btn active" id="theme-system" onclick="setTheme('system')">Auto</button>
+          <button type="button" class="theme-btn" id="theme-light" onclick="setTheme('light')">☀️ Light</button>
+          <button type="button" class="theme-btn" id="theme-dark" onclick="setTheme('dark')">🌙 Dark</button>
+        </div>
+        <!-- Desktop Tab Navigation -->
+        <div class="desktop-tabs">
+          <button type="button" class="dtab-btn active" id="dtab-calculator" onclick="switchTab('calculator')">🧮 Calculator</button>
+          <button type="button" class="dtab-btn" id="dtab-history" onclick="switchTab('history')">📜 History &amp; Portfolio</button>
+          <button type="button" class="dtab-btn" id="dtab-settings" onclick="switchTab('settings')">⚙️ Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- CALCULATOR TAB -->
   <div id="tab-calculator" class="tab-panel active">
-    <div class="header">
-      <h1>Metal Price Estimator</h1>
-      <p>Calculate precious metal costs with ease</p>
-    </div>
     <div class="content">
 
-      <div class="card">
-        <div class="info-row">
-          <div class="icon">⚖️</div>
-          <div>
-            <h3>Calculate your precious metal jewellery cost</h3>
-            <p>Add metal type, weight, wastage, buy price, market rate and GST to get total cost, current value and appreciation.</p>
+      <div class="calc-grid">
+        <!-- LEFT COLUMN: INPUTS -->
+        <div class="col-inputs">
+          <div class="card">
+            <div class="info-row">
+              <div class="icon">⚖️</div>
+              <div>
+                <h3>Calculate your precious metal jewellery cost</h3>
+                <p>Add metal type, weight, wastage, buy price, market rate and GST to get total cost, current value and appreciation.</p>
+              </div>
+            </div>
+          </div>
+
+          <label>Metal Type <span class="req">*</span></label>
+          <div class="field">
+            <select id="metalType" onchange="handleMetalTypeChange()">
+              <option>Gold 24K</option>
+              <option selected>Gold 22K</option>
+              <option>Silver</option>
+              <option>Platinum</option>
+              <option value="__custom__">+ Add Custom Metal…</option>
+            </select>
+          </div>
+
+          <label>Avenue <span style="font-weight:400;">(vendor/shop, optional)</span></label>
+          <div class="field"><input id="avenue" type="text" placeholder="e.g. SSL"></div>
+
+          <label>Purchase Date</label>
+          <div class="field"><input id="purchaseDate" type="date"></div>
+
+          <div class="edit-banner" id="editBanner" style="display:none;">
+            <span>Editing entry - Save will update it.</span>
+            <button onclick="cancelEdit()">Cancel</button>
+          </div>
+
+          <div class="card" style="margin-top:14px;">
+            <div class="card-title">💰 Metal Details &amp; Pricing</div>
+
+            <label>Description (optional)</label>
+            <div class="field"><input id="description" type="text" placeholder="e.g. Gold Chain / Bangle"></div>
+
+            <!-- Stone Deduction -->
+            <div class="toggle-row" onclick="toggleStoneDeduction()" id="stoneToggleRow" style="font-size:13px;">
+              <span id="stoneToggleIcon">+</span> Deduct Stone / Studded Weight
+            </div>
+            <div id="stoneWrap" style="display:none; background:var(--gold-bg); border:1px solid var(--border-gold); border-radius:12px; padding:12px; margin-bottom:12px;">
+              <label style="margin-top:0;">Gross Weight (Total on scale)</label>
+              <div class="field"><span class="prefix">⚖</span><input id="grossWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
+              <label>Stone / Beads / Enamel Weight</label>
+              <div class="field"><span class="prefix">💎</span><input id="stoneWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
+              <div id="netWeightPreview" style="font-size:12px; font-weight:700; color:var(--pos-green); margin-top:6px; display:none;"></div>
+            </div>
+
+            <label>Net Weight of Metal <span class="req">*</span></label>
+            <div class="field"><span class="prefix">⚖</span><input id="weight" type="text" inputmode="decimal" value="16.000" placeholder="0.000" oninput="onWeightInput()"><span class="suffix">gm</span></div>
+            <div id="unitEquiv" style="font-size:12px; color:var(--gold-primary-dark); font-weight:600; margin:4px 0 6px; display:none;"></div>
+            <div class="quick-chips">
+              <span style="font-size:11px; color:var(--text-muted); align-self:center;">Quick:</span>
+              <button type="button" class="qchip" onclick="addWeight(1)">+1g</button>
+              <button type="button" class="qchip" onclick="addWeight(8)">+8g (1 Pavan)</button>
+              <button type="button" class="qchip" onclick="addWeight(10)">+10g</button>
+              <button type="button" class="qchip" onclick="addWeight(11.6638)">+1 Tola</button>
+            </div>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; margin-bottom:6px;">
+              <label style="margin:0;">Wastage / VA (in grams) <span style="font-weight:400;">(or pick % below)</span></label>
+              <span id="vaPctBadge" class="va-badge" style="display:none;"></span>
+            </div>
+            <div class="field"><span class="prefix">🔧</span><input id="wastageGm" type="text" inputmode="decimal" value="1.600" placeholder="0.000" oninput="onWastageInput()"><span class="suffix">gm</span></div>
+            <div class="quick-chips" style="margin-top:6px;">
+              <span style="font-size:11px; color:var(--text-muted); align-self:center;">VA %:</span>
+              <button type="button" class="qchip" onclick="applyVaPct(8)">8%</button>
+              <button type="button" class="qchip" onclick="applyVaPct(10)">10%</button>
+              <button type="button" class="qchip" onclick="applyVaPct(12)">12%</button>
+              <button type="button" class="qchip" onclick="applyVaPct(14)">14%</button>
+              <button type="button" class="qchip" onclick="applyVaPct(16)">16%</button>
+              <button type="button" class="qchip" onclick="applyVaPct(18)">18%</button>
+            </div>
+
+            <label>Buy Price (per gram) <span class="req">*</span> <span style="font-weight:400;">- what you paid</span></label>
+            <div class="field"><span class="prefix">₹</span><input id="buyPrice" type="text" inputmode="decimal" value="7200.00" placeholder="0.00"><span class="suffix">/gm</span></div>
+
+            <label>Market Rate (per gram) <span class="req">*</span> <span style="font-weight:400;">- today's price</span></label>
+            <div class="field"><span class="prefix">₹</span><input id="marketRate" type="text" inputmode="decimal" value="7850.00" placeholder="0.00"><span class="suffix">/gm</span></div>
+
+            <label>GST (%) <span class="req">*</span></label>
+            <div class="field"><span class="prefix">🧾</span><input id="gst" type="text" inputmode="decimal" value="3.0"><span class="suffix pct">%</span></div>
+
+            <div class="toggle-row" onclick="toggleField('additionalWrap','additionalToggle')">
+              <span id="additionalToggle">+</span> Additional / Making Charges
+            </div>
+            <div id="additionalWrap" style="display:none;">
+              <div class="field"><input id="additional" type="text" inputmode="decimal" placeholder="Flat amount, e.g. making charge"></div>
+            </div>
+
+            <div class="toggle-row" onclick="toggleField('discountWrap','discountToggle')">
+              <span id="discountToggle">+</span> Discount
+            </div>
+            <div id="discountWrap" style="display:none;">
+              <div class="field"><input id="discount" type="text" inputmode="decimal" placeholder="Flat amount"></div>
+            </div>
+
+            <div class="toggle-row" onclick="toggleField('oldExchangeWrap','oldExchangeToggle')">
+              <span id="oldExchangeToggle">+</span> Old Exchange (trade-in)
+            </div>
+            <div id="oldExchangeWrap" style="display:none;">
+              <label>Old Exchange Weight</label>
+              <div class="field"><input id="oldExchangeWeight" type="text" inputmode="decimal" placeholder="0.000"><span class="suffix">gm</span></div>
+              <label>Old Exchange Rate (per gram)</label>
+              <div class="field"><span class="prefix">₹</span><input id="oldExchangeRate" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
+            </div>
+
+            <div style="display:flex; gap:12px; margin-top:16px;">
+              <button class="btn primary" onclick="calculate(true)">🧮 Calculate &amp; View</button>
+              <button class="btn" onclick="saveToHistory()">💾 Save to History</button>
+            </div>
+            <div id="errorMsg" class="error-text" style="display:none;"></div>
           </div>
         </div>
-      </div>
 
-      <label>Metal Type <span class="req">*</span></label>
-      <div class="field">
-        <select id="metalType" onchange="handleMetalTypeChange()">
-          <option>Gold 24K</option>
-          <option>Gold 22K</option>
-          <option>Silver</option>
-          <option>Platinum</option>
-          <option value="__custom__">+ Add Custom Metal…</option>
-        </select>
-      </div>
+        <!-- RIGHT COLUMN: RESULTS DASHBOARD -->
+        <div class="col-outputs">
+          <!-- HERO VALUATION CARD -->
+          <div class="hero-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span class="va-badge" id="r-live-metal">Gold 22K</span>
+              <span id="r-live-appr-badge" class="va-badge" style="color:var(--pos-green);">Appreciation</span>
+            </div>
+            <div class="hero-figure" id="r-live-current">₹0</div>
+            <div class="hero-label">estimated current market valuation</div>
 
-      <label>Avenue <span style="font-weight:400;">(vendor/shop, optional)</span></label>
-      <div class="field"><input id="avenue" type="text" placeholder="e.g. SSL"></div>
+            <div class="metric-banner" style="margin-bottom:12px;">
+              <div>
+                <div class="title">Total Billed Cost</div>
+                <div class="sub">including wastage &amp; GST</div>
+              </div>
+              <div class="amount" id="r-live-total">₹0</div>
+            </div>
 
-      <label>Purchase Date</label>
-      <div class="field"><input id="purchaseDate" type="date"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; background:var(--gold-bg); padding:10px 14px; border-radius:10px; border:1px solid var(--border-gold);">
+              <span style="font-size:13px; font-weight:600; color:var(--text-dark);" id="r-live-appr-label">Total Gain:</span>
+              <span style="font-family:'IBM Plex Mono',monospace; font-size:15px; font-weight:700;" id="r-live-gain-val">+₹0 (+0.0%)</span>
+            </div>
+          </div>
 
-      <div class="edit-banner" id="editBanner" style="display:none;">
-        <span>Editing entry - Save will update it.</span>
-        <button onclick="cancelEdit()">Cancel</button>
-      </div>
+          <!-- COMPREHENSIVE BREAKDOWN CARD -->
+          <div class="card">
+            <div class="card-title">🧾 Detailed Bill Breakdown</div>
+            <div class="result-row"><div><span class="label">Net Weight</span></div><div class="val mono" id="r-live-weight">0.000 gm</div></div>
+            <div class="result-row"><div><span class="label">Wastage / Value Addition (VA)</span></div><div class="val mono" id="r-live-wastage">0.000 gm (0.00%)</div></div>
+            <div class="result-row"><div><span class="label">Effective Billed Weight</span><div class="sub">net weight + wastage</div></div><div class="val mono" id="r-live-effective">0.000 gm</div></div>
+            <hr class="divider">
+            <div class="result-row"><div><span class="label">Buy Rate (Cost basis)</span></div><div class="val mono" id="r-live-buyrate">₹0 /gm</div></div>
+            <div class="result-row"><div><span class="label">Base Metal &amp; Making Cost</span></div><div class="val mono" id="r-live-base">₹0</div></div>
+            <div class="result-row"><div><span class="label">GST Amount</span></div><div class="val mono" id="r-live-gst">(3.0%) ₹0</div></div>
+            <div class="result-row" id="r-live-oldex-row" style="display:none;"><div><span class="label">Old Exchange Trade-In</span></div><div class="val mono" id="r-live-oldex" style="color:var(--pos-green);">- ₹0</div></div>
+            <div class="total-row"><div><span>Total Purchase Cost</span></div><div class="val mono" id="r-live-total-cost">₹0</div></div>
+            <hr class="divider">
+            <div class="result-row"><div><span class="label">Today's Market Rate</span></div><div class="val mono" id="r-live-market-rate">₹0 /gm</div></div>
+            <div class="result-row"><div><span class="label">Current Market Valuation</span></div><div class="val mono" id="r-live-current-val">₹0</div></div>
+          </div>
 
-      <div class="card" style="margin-top:4px;">
-        <div class="card-title">💰 Metal Details</div>
+          <!-- ACTION BUTTONS -->
+          <div class="actionbar">
+            <button class="btn primary" onclick="shareQuote()">📱 Share on WhatsApp</button>
+            <button class="btn" onclick="copyEstimatorSummary()">📋 Copy Summary</button>
+            <button class="btn" onclick="saveToHistory()">💾 Save to History</button>
+          </div>
 
-        <label>Description (optional)</label>
-        <div class="field"><input id="description" type="text" placeholder="e.g. SDV Ring"></div>
-
-        <!-- Stone Deduction -->
-        <div class="toggle-row" onclick="toggleStoneDeduction()" id="stoneToggleRow" style="font-size:13px;">
-          <span id="stoneToggleIcon">+</span> Deduct Stone / Studded Weight
+          <div style="font-size:11.5px; color:var(--text-muted); text-align:center; margin-top:14px; line-height:1.5;">
+            * Invoicing conforms to standard Indian retail jewellery billing: Wastage (VA) added to net metal weight, 3% GST applied to post-making sum, trade-in adjusted at market rate.
+          </div>
         </div>
-        <div id="stoneWrap" style="display:none; background:var(--gold-bg); border:1px solid var(--border-gold); border-radius:12px; padding:12px; margin-bottom:12px;">
-          <label style="margin-top:0;">Gross Weight (Total on scale)</label>
-          <div class="field"><span class="prefix">⚖</span><input id="grossWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
-          <label>Stone / Beads / Enamel Weight</label>
-          <div class="field"><span class="prefix">💎</span><input id="stoneWeight" type="text" inputmode="decimal" placeholder="0.000" oninput="recalcNetWeight()"><span class="suffix">gm</span></div>
-          <div id="netWeightPreview" style="font-size:12px; font-weight:700; color:var(--pos-green); margin-top:6px; display:none;"></div>
-        </div>
-
-        <label>Net Weight of Metal <span class="req">*</span></label>
-        <div class="field"><span class="prefix">⚖</span><input id="weight" type="text" inputmode="decimal" placeholder="0.000" oninput="onWeightInput()"><span class="suffix">gm</span></div>
-        <div id="unitEquiv" style="font-size:12px; color:var(--gold-primary-dark); font-weight:600; margin:4px 0 6px; display:none;"></div>
-        <div class="quick-chips">
-          <span style="font-size:11px; color:var(--text-muted); align-self:center;">Quick:</span>
-          <button type="button" class="qchip" onclick="addWeight(1)">+1g</button>
-          <button type="button" class="qchip" onclick="addWeight(8)">+8g (1 Pavan)</button>
-          <button type="button" class="qchip" onclick="addWeight(10)">+10g</button>
-          <button type="button" class="qchip" onclick="addWeight(11.6638)">+1 Tola</button>
-        </div>
-
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px; margin-bottom:6px;">
-          <label style="margin:0;">Wastage / VA (in grams) <span style="font-weight:400;">(or pick % below)</span></label>
-          <span id="vaPctBadge" class="va-badge" style="display:none;"></span>
-        </div>
-        <div class="field"><span class="prefix">🔧</span><input id="wastageGm" type="text" inputmode="decimal" placeholder="0.000 (e.g. 0.100 or 40.0)" oninput="onWastageInput()"><span class="suffix">gm</span></div>
-        <div class="quick-chips" style="margin-top:6px;">
-          <span style="font-size:11px; color:var(--text-muted); align-self:center;">VA %:</span>
-          <button type="button" class="qchip" onclick="applyVaPct(8)">8%</button>
-          <button type="button" class="qchip" onclick="applyVaPct(10)">10%</button>
-          <button type="button" class="qchip" onclick="applyVaPct(12)">12%</button>
-          <button type="button" class="qchip" onclick="applyVaPct(14)">14%</button>
-          <button type="button" class="qchip" onclick="applyVaPct(16)">16%</button>
-          <button type="button" class="qchip" onclick="applyVaPct(18)">18%</button>
-        </div>
-
-        <label>Buy Price (per gram) <span class="req">*</span> <span style="font-weight:400;">- what you paid</span></label>
-        <div class="field"><span class="prefix">₹</span><input id="buyPrice" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
-
-        <label>Market Rate (per gram) <span class="req">*</span> <span style="font-weight:400;">- today's price</span></label>
-        <div class="field"><span class="prefix">₹</span><input id="marketRate" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
-
-        <label>GST (%) <span class="req">*</span></label>
-        <div class="field"><span class="prefix">🧾</span><input id="gst" type="text" inputmode="decimal" value="3.0"><span class="suffix pct">%</span></div>
-
-        <div class="toggle-row" onclick="toggleField('additionalWrap','additionalToggle')">
-          <span id="additionalToggle">+</span> Additional
-        </div>
-        <div id="additionalWrap" style="display:none;">
-          <div class="field"><input id="additional" type="text" inputmode="decimal" placeholder="Flat amount, e.g. making charge"></div>
-        </div>
-
-        <div class="toggle-row" onclick="toggleField('discountWrap','discountToggle')">
-          <span id="discountToggle">+</span> Discount
-        </div>
-        <div id="discountWrap" style="display:none;">
-          <div class="field"><input id="discount" type="text" inputmode="decimal" placeholder="Flat amount"></div>
-        </div>
-
-        <div class="toggle-row" onclick="toggleField('oldExchangeWrap','oldExchangeToggle')">
-          <span id="oldExchangeToggle">+</span> Old Exchange (trade-in)
-        </div>
-        <div id="oldExchangeWrap" style="display:none;">
-          <label>Old Exchange Weight</label>
-          <div class="field"><input id="oldExchangeWeight" type="text" inputmode="decimal" placeholder="0.000"><span class="suffix">gm</span></div>
-          <label>Old Exchange Rate (per gram)</label>
-          <div class="field"><span class="prefix">₹</span><input id="oldExchangeRate" type="text" inputmode="decimal" placeholder="0.00"><span class="suffix">/gm</span></div>
-        </div>
-
-        <button class="btn-primary" onclick="calculate()">🧮 Calculate</button>
-        <div id="errorMsg" class="error-text" style="display:none;"></div>
       </div>
 
     </div>
@@ -777,7 +1247,7 @@
   // Buy Price = cost basis (Total Price). Market Rate = today's price (Current Value + Appreciation%).
   // Old Exchange deducted AFTER GST, at market settlement, standard jewellery practice.
   // Appreciation% verified against excel: (currentValue - totalPrice) / currentValue * 100
-  function calculate(){
+  function calculate(manualClick = false){
     clearFieldErrors();
     const weight = parseFloat(document.getElementById('weight').value);
     const wastageGm = parseFloat(document.getElementById('wastageGm').value) || 0;
@@ -791,13 +1261,15 @@
 
     const errEl = document.getElementById('errorMsg');
     const missing = [];
-    if(!(weight > 0)){ missing.push('weight'); markError('weight'); }
-    if(!(buyPrice > 0)){ missing.push('buy price'); markError('buyPrice'); }
-    if(!(marketRate > 0)){ missing.push('market rate'); markError('marketRate'); }
-    if(isNaN(gst)){ missing.push('GST %'); markError('gst'); }
+    if(!(weight > 0)){ missing.push('weight'); if(manualClick) markError('weight'); }
+    if(!(buyPrice > 0)){ missing.push('buy price'); if(manualClick) markError('buyPrice'); }
+    if(!(marketRate > 0)){ missing.push('market rate'); if(manualClick) markError('marketRate'); }
+    if(isNaN(gst)){ missing.push('GST %'); if(manualClick) markError('gst'); }
     if(missing.length){
-      errEl.textContent = 'Check: ' + missing.join(', ') + '.';
-      errEl.style.display = 'block';
+      if(manualClick){
+        errEl.textContent = 'Check: ' + missing.join(', ') + '.';
+        errEl.style.display = 'block';
+      }
       return;
     }
     errEl.style.display = 'none';
@@ -871,7 +1343,68 @@
       apprEl.style.color = 'var(--error-red)';
     }
 
-    document.getElementById('resultModal').classList.add('active');
+    // Populate on-page live dashboard
+    const liveMetal = document.getElementById('r-live-metal');
+    if(liveMetal) liveMetal.textContent = lastResult.metalType;
+    const liveCurrent = document.getElementById('r-live-current');
+    if(liveCurrent) liveCurrent.textContent = fmtMoney(currentValue);
+    const liveTotal = document.getElementById('r-live-total');
+    if(liveTotal) liveTotal.textContent = fmtMoney(total);
+    const liveApprLabel = document.getElementById('r-live-appr-label');
+    const liveGainVal = document.getElementById('r-live-gain-val');
+    const liveApprBadge = document.getElementById('r-live-appr-badge');
+    if(gainDiff >= 0){
+      if(liveApprLabel) liveApprLabel.textContent = 'Total Gain:';
+      if(liveGainVal) {
+        liveGainVal.textContent = '+' + fmtMoney(gainDiff) + ' (+' + appreciationPercent.toFixed(2) + '%)';
+        liveGainVal.style.color = 'var(--pos-green)';
+      }
+      if(liveApprBadge) {
+        liveApprBadge.textContent = 'Appreciation';
+        liveApprBadge.style.color = 'var(--pos-green)';
+      }
+    } else {
+      if(liveApprLabel) liveApprLabel.textContent = 'Depreciation:';
+      if(liveGainVal) {
+        liveGainVal.textContent = '-' + fmtMoney(Math.abs(gainDiff)) + ' (' + appreciationPercent.toFixed(2) + '%)';
+        liveGainVal.style.color = 'var(--error-red)';
+      }
+      if(liveApprBadge) {
+        liveApprBadge.textContent = 'Depreciation';
+        liveApprBadge.style.color = 'var(--error-red)';
+      }
+    }
+
+    const liveWeight = document.getElementById('r-live-weight');
+    if(liveWeight) liveWeight.textContent = weight.toFixed(3) + ' gm (' + fmtPavan(weight) + ')';
+    const liveWastage = document.getElementById('r-live-wastage');
+    if(liveWastage) liveWastage.textContent = wastageWeight.toFixed(3) + ' gm (' + wastagePercent.toFixed(2) + '%)';
+    const liveEffective = document.getElementById('r-live-effective');
+    if(liveEffective) liveEffective.textContent = effectiveWeight.toFixed(3) + ' gm';
+    const liveBuyrate = document.getElementById('r-live-buyrate');
+    if(liveBuyrate) liveBuyrate.textContent = fmtMoney(buyPrice) + ' /gm';
+    const liveBase = document.getElementById('r-live-base');
+    if(liveBase) liveBase.textContent = fmtMoney(baseAmount);
+    const liveGst = document.getElementById('r-live-gst');
+    if(liveGst) liveGst.textContent = '(' + gst.toFixed(1) + '%) ' + fmtMoney(gstAmount);
+    const liveOldExRow = document.getElementById('r-live-oldex-row');
+    const liveOldEx = document.getElementById('r-live-oldex');
+    if(oldExchangeValue > 0){
+      if(liveOldExRow) liveOldExRow.style.display = 'flex';
+      if(liveOldEx) liveOldEx.textContent = '- ' + fmtMoney(oldExchangeValue);
+    } else {
+      if(liveOldExRow) liveOldExRow.style.display = 'none';
+    }
+    const liveTotalCost = document.getElementById('r-live-total-cost');
+    if(liveTotalCost) liveTotalCost.textContent = fmtMoney(total);
+    const liveMarketRate = document.getElementById('r-live-market-rate');
+    if(liveMarketRate) liveMarketRate.textContent = fmtMoney(marketRate) + ' /gm';
+    const liveCurrentVal = document.getElementById('r-live-current-val');
+    if(liveCurrentVal) liveCurrentVal.textContent = fmtMoney(currentValue);
+
+    if(manualClick && window.innerWidth <= 768){
+      document.getElementById('resultModal').classList.add('active');
+    }
   }
 
   function closeResultModal(){
@@ -1256,9 +1789,73 @@
   // ---------- tabs ----------
   function switchTab(tab){
     ['calculator','history','settings'].forEach(t => {
-      document.getElementById('tab-'+t).classList.toggle('active', t === tab);
-      document.getElementById('nav-'+t).classList.toggle('active', t === tab);
+      const tabEl = document.getElementById('tab-'+t);
+      if(tabEl) tabEl.classList.toggle('active', t === tab);
+      const navEl = document.getElementById('nav-'+t);
+      if(navEl) navEl.classList.toggle('active', t === tab);
+      const dtabEl = document.getElementById('dtab-'+t);
+      if(dtabEl) dtabEl.classList.toggle('active', t === tab);
     });
+  }
+
+  // ---------- copy summary ----------
+  function copyEstimatorSummary(){
+    if(!lastResult) {
+      calculate(false);
+    }
+    if(!lastResult) return;
+    const r = lastResult;
+    const pavanText = fmtPavan(r.weight);
+    const isGain = (r.gainDiff >= 0);
+    const apprName = isGain ? 'Total Appreciation' : 'Depreciation';
+    const apprSign = isGain ? '+' : '-';
+    const apprValue = `${apprSign}₹${Math.abs(r.gainDiff).toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})} (${isGain ? '+' : ''}${r.appreciationPercent.toFixed(2)}%)`;
+
+    const summaryText = [
+      '🪙 Metal Price Estimator Summary',
+      '----------------------------------------',
+      `Metal: ${r.metalType}`,
+      r.description ? `Item: ${r.description}` : '',
+      r.avenue ? `Avenue/Store: ${r.avenue}` : '',
+      `Net Weight: ${r.weight.toFixed(3)} gm (${pavanText})`,
+      r.wastageWeight > 0 ? `Wastage (VA): ${r.wastageWeight.toFixed(3)} gm (${r.wastagePercent.toFixed(2)}%)` : '',
+      `Effective Billed Weight: ${r.effectiveWeight.toFixed(3)} gm`,
+      `Buy Rate: ₹${r.buyPrice.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}/gm`,
+      `Base Cost: ₹${r.baseAmount.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `GST (${r.gst}%): ₹${r.gstAmount.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      r.oldExchangeValue > 0 ? `Old Exchange Deduction: -₹${r.oldExchangeValue.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}` : '',
+      '----------------------------------------',
+      `Total Cost: ₹${r.total.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `Current Market Rate: ₹${r.marketRate.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}/gm`,
+      `Current Valuation: ₹${r.currentValue.toLocaleString('en-IN', {minimumFractionDigits:2, maximumFractionDigits:2})}`,
+      `${apprName}: ${apprValue}`,
+      '----------------------------------------',
+      `Estimated on ${r.purchaseDate || new Date().toISOString().slice(0,10)} via https://iamsaravofficial.com/apps/gold-price-estimator/`
+    ].filter(Boolean).join('\n');
+
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(summaryText).then(() => {
+        showToast('📋 Summary copied to clipboard!');
+      }).catch(() => {
+        fallbackCopy(summaryText);
+      });
+    } else {
+      fallbackCopy(summaryText);
+    }
+  }
+
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showToast('📋 Summary copied to clipboard!');
+    } catch(e) {
+      showToast('Could not copy to clipboard');
+    }
+    document.body.removeChild(ta);
   }
 
   // ---------- init ----------
@@ -1272,6 +1869,36 @@
   }
   renderHistory();
   renderCustomTypes();
+
+  // Real-time calculation on input/change
+  const calcInputs = document.querySelectorAll('#tab-calculator input, #tab-calculator select');
+  calcInputs.forEach(input => {
+    input.addEventListener('input', () => { calculate(false); });
+    input.addEventListener('change', () => { calculate(false); });
+  });
+
+  // Ecosystem navigation dropdown click toggle & Escape handlers
+  document.querySelectorAll('.eco-dropdown').forEach(function(drop) {
+    var btn = drop.querySelector('.eco-dropbtn');
+    if (!btn) return;
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = drop.classList.contains('open');
+      document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+      if (!isOpen) drop.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function() {
+    document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+  });
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+    }
+  });
+
+  // Calculate initially so dashboard is pre-populated
+  calculate(false);
 </script>
 
 </body>

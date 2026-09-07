@@ -20,47 +20,68 @@
 <meta name="twitter:image" content="og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #1B2320;
-    --paper: #F6F3EA;
-    --wheat: #C9A227;
-    --moss: #3F6B4A;
-    --moss-soft: #E7EFE7;
-    --rust: #A65B3A;
-    --rust-soft: #F3E6DE;
-    --slate: #5C6B66;
-    --line: #DDD8C8;
-    --radius: 14px;
-    --border: #3A453F;
-    --surface: #212B27;
-    --surface-dark: #161D1A;
+    --gold-primary: #C1810A;
+    --gold-primary-dark: #8B5E00;
+    --gold-header-start: #F9D77E;
+    --gold-header-end: #F0B429;
+    --gold-bg: #FFFBF0;
+    --card-white: #FFFFFF;
+    --text-dark: #3D2B00;
+    --text-muted: #8A7554;
+    --border-gold: #E0B84B;
+    --error-red: #D32F2F;
+    --pos-green: #1B8A3D;
+    --chip-bg: #F6E3B0;
+    --chip-border: #E0B84B;
+    --nav-bg: #FFFFFF;
+    --body-bg: #E6DFD5;
+  }
+  [data-theme="dark"] {
+    --gold-primary: #E5A93C;
+    --gold-primary-dark: #FFC04D;
+    --gold-header-start: #38290E;
+    --gold-header-end: #251A07;
+    --gold-bg: #12100C;
+    --card-white: #1D1913;
+    --text-dark: #F7F2E8;
+    --text-muted: #B0A28E;
+    --border-gold: #52411E;
+    --error-red: #EF5350;
+    --pos-green: #4CAF50;
+    --chip-bg: #2E2412;
+    --chip-border: #52411E;
+    --nav-bg: #1A1712;
+    --body-bg: #0A0907;
   }
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    background: var(--ink);
-    color: var(--paper);
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--body-bg);
+    color: var(--text-dark);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     -webkit-font-smoothing: antialiased;
     line-height: 1.5;
+    transition: background 0.3s;
   }
-  a { color: var(--wheat); text-decoration: none; }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--gold-primary); text-decoration: none; }
   a:hover { text-decoration: underline; }
 
-  /* Sub-header / Ecosystem bar with Hover Dropdowns */
+  /* Ecosystem Bar with Hover Dropdowns */
   .ecosystem-bar {
-    background: var(--surface-dark);
-    border-bottom: 1px solid var(--border);
-    padding: 6px 16px;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 6px 20px;
     font-size: 12.5px;
-    color: #A9B3AD;
+    color: var(--text-muted);
     position: relative;
     z-index: 1000;
   }
   .ecosystem-inner {
-    max-width: 900px;
+    max-width: 1240px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -74,16 +95,17 @@
   }
   .eco-brand {
     font-weight: 700 !important;
-    color: var(--paper) !important;
+    color: var(--text-dark) !important;
     text-decoration: none;
     transition: color 0.15s ease;
   }
   .eco-brand:hover {
-    color: var(--wheat) !important;
+    color: var(--gold-primary) !important;
     text-decoration: none;
   }
   .eco-divider {
-    color: #4A5550;
+    color: var(--border-gold);
+    font-weight: 300;
     margin: 0 4px;
     user-select: none;
   }
@@ -96,7 +118,7 @@
   .eco-dropbtn {
     background: transparent;
     border: none;
-    color: #CCD6D0;
+    color: var(--text-muted);
     font-family: inherit;
     font-size: 12.5px;
     font-weight: 600;
@@ -108,15 +130,15 @@
     gap: 4px;
     transition: all 0.15s ease;
   }
-  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
-    color: var(--wheat);
-    background: rgba(201, 162, 39, 0.12);
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--gold-primary-dark);
+    background: var(--chip-bg);
   }
   .eco-caret {
     font-size: 9px;
     transition: transform 0.2s ease;
   }
-  .eco-dropdown:hover .eco-caret {
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret {
     transform: rotate(180deg);
   }
   .eco-menu {
@@ -124,17 +146,26 @@
     position: absolute;
     top: 100%;
     left: 0;
-    margin-top: 4px;
-    min-width: 210px;
-    background: #19221E;
-    border: 1px solid #3A453F;
-    border-radius: 10px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
     padding: 6px;
+    min-width: 210px;
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
     z-index: 2000;
     backdrop-filter: blur(12px);
   }
-  .eco-dropdown:hover .eco-menu, .eco-dropdown:focus-within .eco-menu {
+  /* Invisible hover bridge to eliminate gap */
+  .eco-menu::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
     display: block;
     animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -144,7 +175,7 @@
   }
   .eco-menu a {
     display: block;
-    color: #CCD6D0;
+    color: var(--text-dark);
     text-decoration: none;
     padding: 8px 12px;
     border-radius: 6px;
@@ -154,12 +185,12 @@
     white-space: nowrap;
   }
   .eco-menu a:hover {
-    background: rgba(201, 162, 39, 0.15);
-    color: var(--wheat);
+    background: var(--chip-bg);
+    color: var(--gold-primary-dark);
     text-decoration: none;
   }
   .eco-tokenomics {
-    color: var(--wheat) !important;
+    color: var(--gold-primary) !important;
     font-weight: 600;
     text-decoration: none;
     font-size: 12px;
@@ -168,226 +199,305 @@
     text-decoration: underline;
   }
 
-  .wrap {
-    max-width: 520px;
+  /* Yellow/Gold Header Banner */
+  .gold-header-banner {
+    background: linear-gradient(180deg, var(--gold-header-start), var(--gold-header-end));
+    padding: 24px 20px 20px;
+    border-bottom: 1px solid var(--border-gold);
+  }
+  .banner-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .banner-text { flex: 1; min-width: 300px; }
+  .banner-eyebrow {
+    font-size: 12px;
+    color: var(--gold-primary-dark);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+  .gold-header-banner h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-primary-dark);
+    margin: 0 0 6px;
+    line-height: 1.25;
+  }
+  .gold-header-banner .sub {
+    font-size: 13.5px;
+    color: var(--text-dark);
+    margin: 0;
+    max-width: 820px;
+    line-height: 1.5;
+  }
+
+  .theme-selector {
+    display: flex;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--border-gold);
+  }
+  .theme-btn {
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    color: var(--text-dark);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+  }
+  .theme-btn.active {
+    background: var(--card-white);
+    color: var(--gold-primary-dark);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Main Container & 2-Column Dashboard Layout */
+  .container {
+    max-width: 1240px;
     margin: 0 auto;
     padding: 28px 20px 60px;
   }
-  .eyebrow {
-    font-size: 13px;
-    color: var(--wheat);
-    letter-spacing: 0.03em;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 6px;
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 24px;
+    align-items: start;
   }
-  h1 {
-    font-family: 'Newsreader', serif;
-    font-weight: 500;
-    font-size: 27px;
-    line-height: 1.25;
-    margin: 0 0 8px;
-    color: var(--paper);
-  }
-  .sub {
-    color: #A9B3AD;
-    font-size: 13.5px;
-    line-height: 1.5;
-    margin: 0 0 24px;
+  @media (max-width: 960px) {
+    .calc-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* ---- Hero card ---- */
+  /* ---- Hero Card ---- */
   .hero {
-    background: var(--paper);
-    color: var(--ink);
-    border-radius: var(--radius);
-    padding: 24px 22px;
-    margin-bottom: 16px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    color: var(--text-dark);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   }
   .hero-figure {
-    font-family: 'Newsreader', serif;
-    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
     font-size: 40px;
-    line-height: 1;
+    line-height: 1.1;
     letter-spacing: -0.01em;
+    color: var(--gold-primary-dark);
   }
   .hero-label {
-    color: var(--slate);
+    color: var(--text-muted);
     font-size: 13px;
     margin-top: 6px;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
   .splitbar {
     display: flex;
     height: 10px;
     border-radius: 6px;
     overflow: hidden;
-    background: var(--line);
-    margin-bottom: 14px;
+    background: var(--chip-bg);
+    margin-bottom: 16px;
   }
-  .splitbar .ltcg { background: var(--moss); }
-  .splitbar .stcg { background: var(--rust); }
-  .split-rows { display: flex; flex-direction: column; gap: 9px; }
+  .splitbar .ltcg { background: var(--pos-green); }
+  .splitbar .stcg { background: var(--gold-primary); }
+  .split-rows { display: flex; flex-direction: column; gap: 10px; }
   .split-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-size: 13.5px;
+    color: var(--text-dark);
   }
   .dot {
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
     display: inline-block;
     margin-right: 8px;
   }
-  .dot.ltcg { background: var(--moss); }
-  .dot.stcg { background: var(--rust); }
-  .split-row .amt { font-weight: 700; }
+  .dot.ltcg { background: var(--pos-green); }
+  .dot.stcg { background: var(--gold-primary); }
+  .split-row .amt {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    color: var(--text-dark);
+  }
 
   .real-val-card {
-    background: #EDE8DC;
-    border-radius: 9px;
-    padding: 10px 12px;
-    margin-top: 14px;
-    font-size: 12.5px;
-    color: #44504A;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 13px;
+    color: var(--text-dark);
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  .real-val-card b { color: var(--ink); }
-
-  /* ---- Regulatory warning box ---- */
-  .risk-box {
-    background: rgba(166, 91, 58, 0.18);
-    border: 1px solid rgba(166, 91, 58, 0.4);
-    border-radius: 10px;
-    padding: 14px;
-    font-size: 12.5px;
-    color: #F0CDC0;
-    line-height: 1.55;
-    margin-bottom: 16px;
+  .real-val-card b {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--pos-green);
+    font-size: 15px;
   }
-  .risk-box b { color: #FFE3D8; }
+
+  /* ---- Warning Box ---- */
+  .risk-box {
+    background: rgba(211, 47, 47, 0.08);
+    border: 1px solid var(--error-red);
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    color: var(--error-red);
+    line-height: 1.5;
+    margin-bottom: 18px;
+  }
 
   /* ---- Form sections ---- */
   .section {
-    background: var(--surface);
-    border-radius: var(--radius);
-    padding: 20px;
-    margin-bottom: 14px;
-    border: 1px solid #2B3731;
+    background: var(--card-white);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 18px;
+    border: 1px solid var(--border-gold);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   }
   .section h2 {
-    font-size: 15px;
-    font-weight: 600;
-    margin: 0 0 4px;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--text-dark);
   }
   .section .hint {
-    color: #8C9691;
-    font-size: 12px;
+    color: var(--text-muted);
+    font-size: 12.5px;
     margin: 0 0 16px;
     line-height: 1.45;
   }
-  .field { margin-bottom: 13px; }
+  .field { margin-bottom: 14px; }
   .field label {
     display: block;
-    font-size: 12px;
-    color: #B7C0BB;
-    margin-bottom: 5px;
-    font-weight: 500;
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    font-weight: 600;
   }
   .field input, .field select {
     width: 100%;
-    background: #18201D;
-    border: 1px solid var(--border);
-    color: var(--paper);
-    border-radius: 8px;
-    padding: 10px 12px;
+    background: var(--gold-bg);
+    border: 1px solid var(--border-gold);
+    color: var(--text-dark);
+    border-radius: 10px;
+    padding: 10px 14px;
     font-size: 14.5px;
-    font-family: inherit;
-    transition: border-color 0.15s ease;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    transition: all 0.15s ease;
   }
   .field input:focus, .field select:focus {
     outline: none;
-    border-color: var(--wheat);
+    border-color: var(--gold-primary);
+    box-shadow: 0 0 0 2px rgba(193, 129, 10, 0.2);
   }
-  .row2 { display: flex; gap: 10px; }
+  .row2 { display: flex; gap: 12px; }
   .row2 .field { flex: 1; }
 
   /* ---- Breakdown ---- */
   .breakdown-row {
     display: flex;
     justify-content: space-between;
-    padding: 9px 0;
-    border-bottom: 1px solid #2C3732;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--chip-border);
     font-size: 13.5px;
   }
   .breakdown-row:last-child { border-bottom: none; }
-  .breakdown-row .lbl { color: #B7C0BB; }
-  .breakdown-row .sub { font-size: 11.5px; color: #7C8781; margin-top: 2px; }
-  .breakdown-row .val { font-weight: 600; text-align: right; }
+  .breakdown-row .lbl { color: var(--text-dark); font-weight: 600; }
+  .breakdown-row .val {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    text-align: right;
+    color: var(--text-dark);
+  }
+  .breakdown-row .sub { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
 
   .actionbar {
     display: flex;
-    gap: 10px;
-    margin-top: 16px;
+    gap: 12px;
+    margin-top: 18px;
     flex-wrap: wrap;
   }
   .btn {
     flex: 1;
     min-width: 140px;
-    background: #25332C;
-    border: 1px solid #3F5046;
-    color: var(--paper);
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    color: var(--text-dark);
     padding: 11px 14px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
     transition: all 0.15s ease;
+    font-family: inherit;
   }
   .btn:hover {
-    background: #2E3F37;
-    border-color: var(--wheat);
-    color: var(--wheat);
+    background: var(--chip-bg);
+    border-color: var(--gold-primary);
+    color: var(--gold-primary-dark);
   }
   .btn.primary {
-    background: var(--wheat);
-    color: #1A1F1C;
-    border-color: var(--wheat);
+    background: var(--gold-primary);
+    color: #FFFFFF;
+    border-color: var(--gold-primary);
   }
   .btn.primary:hover {
     filter: brightness(1.1);
-    color: #111;
   }
 
   .note {
     font-size: 12px;
-    color: #7C8781;
+    color: var(--text-muted);
     line-height: 1.6;
     padding: 18px 4px 0;
   }
-  .note b { color: #A9B3AD; }
+  .note b { color: var(--text-dark); }
 
   footer {
     padding: 36px 0 10px;
     text-align: center;
-    color: #6D7973;
+    color: var(--text-muted);
     font-size: 12px;
-    border-top: 1px solid #2B3731;
-    margin-top: 30px;
+    border-top: 1px solid var(--border-gold);
+    margin-top: 40px;
   }
-  footer a { color: #9AA6A0; }
+  footer a { color: var(--gold-primary); }
 
   @media print {
-    .ecosystem-bar, .actionbar, .note, footer { display: none !important; }
+    .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, .note, footer { display: none !important; }
     body { background: #fff !important; color: #000 !important; }
     .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
     .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
@@ -434,160 +544,178 @@
   </div>
 </div>
 
-<div class="wrap">
-
-  <div class="eyebrow">DigiGold SIP Calculator</div>
-  <h1>What you'll actually redeem — after GST, spread, and per-lot tax</h1>
-  <p class="sub">Every monthly installment starts its own 24-month tax clock. When you liquidate, lots held ≥24 months qualify for 12.5% LTCG, while lots &lt;24 months are taxed at your income tax slab.</p>
-
-  <!-- HERO CARD -->
-  <div class="hero">
-    <div class="hero-figure" id="heroNet">₹0</div>
-    <div class="hero-label">net liquidation proceeds (after 3% GST, sell spread, and per-lot capital gains tax)</div>
-    <div class="splitbar">
-      <div class="ltcg" id="barLtcg" style="width:50%"></div>
-      <div class="stcg" id="barStcg" style="width:50%"></div>
+<div class="gold-header-banner">
+  <div class="banner-inner">
+    <div class="banner-text">
+      <div class="banner-eyebrow">DigiGold SIP Calculator</div>
+      <h1>What you'll actually redeem — after GST, spread, and per-lot tax</h1>
+      <p class="sub">Every monthly installment starts its own 24-month tax clock. When you liquidate, lots held ≥24 months qualify for 12.5% LTCG, while lots &lt;24 months are taxed at your income tax slab.</p>
     </div>
-    <div class="split-rows">
-      <div class="split-row">
-        <span><span class="dot ltcg"></span>LTCG lots (≥24 months, 12.5% flat)</span>
-        <span class="amt" id="rowLtcg">₹0</span>
-      </div>
-      <div class="split-row">
-        <span><span class="dot stcg"></span>STCG lots (&lt;24 months, your slab rate)</span>
-        <span class="amt" id="rowStcg">₹0</span>
-      </div>
-    </div>
-    <div class="real-val-card" id="realValCard">
-      <span>Real purchasing power (today's value @ 6% inflation):</span>
-      <b id="realNet">₹0</b>
+    <div class="theme-selector" id="themeSelector">
+      <button class="theme-btn active" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+      <button class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+      <button class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
     </div>
   </div>
+</div>
 
-  <!-- REGULATORY NOTICE -->
-  <div class="risk-box">
-    <b>⚠️ Unregulated Product Warning:</b> SEBI and RBI issued formal advisories warning that Digital Gold operates outside regulatory oversight, unlike Gold ETFs or Sovereign Gold Bonds. Verify that your platform's custodian vaults are independently audited (e.g., DPMACI). <i>Investor Tip:</i> For pure systematic investment, SEBI-regulated <b>Gold ETFs</b> offer 0% GST, tighter bid-ask spreads, and LTCG after 12 months.
+<div class="container">
+  <div class="calc-grid">
+    <!-- LEFT COLUMN: INPUTS & REGULATORY WARNING -->
+    <div class="col-inputs">
+      <!-- SIP DETAILS -->
+      <div class="section">
+        <h2>SIP Details</h2>
+        <div class="row2">
+          <div class="field">
+            <label>Monthly SIP amount (₹)</label>
+            <input type="number" id="sipAmount" value="5000" step="500">
+          </div>
+          <div class="field">
+            <label>Tenure (months)</label>
+            <input type="number" id="tenure" value="36" min="1" max="240">
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Gold price today (₹/g, 24K)</label>
+            <input type="number" id="spotToday" value="12500" step="50">
+          </div>
+          <div class="field">
+            <label>Assumed gold CAGR (% p.a.)</label>
+            <input type="number" id="cagr" value="9.0" step="0.5">
+          </div>
+        </div>
+      </div>
+
+      <!-- PLATFORM SPREADS -->
+      <div class="section">
+        <h2>Platform Spreads &amp; GST</h2>
+        <p class="hint">3% GST on purchases is mandatory and deducted automatically. Platforms charge a premium on buying and a discount on redemption.</p>
+        <div class="row2">
+          <div class="field">
+            <label>Buy premium over spot (%)</label>
+            <input type="number" id="buyPremium" value="1.0" step="0.1">
+          </div>
+          <div class="field">
+            <label>Sell discount to spot (%)</label>
+            <input type="number" id="sellDiscount" value="1.0" step="0.1">
+          </div>
+        </div>
+      </div>
+
+      <!-- TAX SLAB -->
+      <div class="section">
+        <h2>Your Tax Slab (for STCG Lots)</h2>
+        <p class="hint">Lots held under 24 months are taxed as short-term capital gains at your marginal income slab rate.</p>
+        <div class="field">
+          <label>Marginal income tax slab (%)</label>
+          <select id="slabRate">
+            <option value="0">0% (Below taxable threshold)</option>
+            <option value="5">5%</option>
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="20">20%</option>
+            <option value="30" selected>30% (High income bracket)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- REGULATORY NOTICE -->
+      <div class="risk-box">
+        <b>⚠️ Unregulated Product Warning:</b> SEBI and RBI issued formal advisories warning that Digital Gold operates outside regulatory oversight, unlike Gold ETFs or Sovereign Gold Bonds. Verify that your platform's custodian vaults are independently audited (e.g., DPMACI). <i>Investor Tip:</i> For pure systematic investment, SEBI-regulated <b>Gold ETFs</b> offer 0% GST, tighter bid-ask spreads, and LTCG after 12 months.
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: RESULTS & BREAKDOWN -->
+    <div class="col-outputs">
+      <!-- HERO CARD -->
+      <div class="hero">
+        <div class="hero-figure" id="heroNet">₹0</div>
+        <div class="hero-label">net liquidation proceeds (after 3% GST, sell spread, and per-lot capital gains tax)</div>
+        <div class="splitbar">
+          <div class="ltcg" id="barLtcg" style="width:50%"></div>
+          <div class="stcg" id="barStcg" style="width:50%"></div>
+        </div>
+        <div class="split-rows">
+          <div class="split-row">
+            <span><span class="dot ltcg"></span>LTCG lots (≥24 months, 12.5% flat)</span>
+            <span class="amt" id="rowLtcg">₹0</span>
+          </div>
+          <div class="split-row">
+            <span><span class="dot stcg"></span>STCG lots (&lt;24 months, your slab rate)</span>
+            <span class="amt" id="rowStcg">₹0</span>
+          </div>
+        </div>
+        <div class="real-val-card" id="realValCard">
+          <span>Real purchasing power (today's value @ 6% inflation):</span>
+          <b id="realNet">₹0</b>
+        </div>
+      </div>
+
+      <!-- FULL BREAKDOWN -->
+      <div class="section">
+        <h2>Comprehensive Breakdown</h2>
+        <div class="breakdown-row">
+          <div><div class="lbl">Total amount invested</div></div>
+          <div class="val" id="outInvested">₹0</div>
+        </div>
+        <div class="breakdown-row">
+          <div>
+            <div class="lbl">GST paid (3% non-refundable)</div>
+            <div class="sub">deducted upfront on every purchase tranche</div>
+          </div>
+          <div class="val" id="outGst" style="color:var(--error-red);">₹0</div>
+        </div>
+        <div class="breakdown-row">
+          <div><div class="lbl">Total 24K gold accumulated</div></div>
+          <div class="val" id="outGrams" style="color:var(--gold-primary-dark);">0.000 g</div>
+        </div>
+        <div class="breakdown-row">
+          <div>
+            <div class="lbl">Gross spot value at exit</div>
+            <div class="sub">before sell spread and taxes</div>
+          </div>
+          <div class="val" id="outSpotValue">₹0</div>
+        </div>
+        <div class="breakdown-row">
+          <div>
+            <div class="lbl">Redemption value (after sell spread)</div>
+            <div class="sub">gross cash realization before tax</div>
+          </div>
+          <div class="val" id="outSellValue">₹0</div>
+        </div>
+        <div class="breakdown-row">
+          <div>
+            <div class="lbl">Capital gains tax liability</div>
+            <div class="sub" id="outTaxSub">per-lot computation</div>
+          </div>
+          <div class="val" id="outTax" style="color:var(--error-red);">₹0</div>
+        </div>
+        <div class="breakdown-row" style="border-top:1px solid var(--border-gold); padding-top:12px; margin-top:4px;">
+          <div>
+            <div class="lbl">Net liquidation proceeds</div>
+            <div class="sub">true in-hand cash received</div>
+          </div>
+          <div class="val" id="outNet" style="color:var(--pos-green); font-size:16px;">₹0</div>
+        </div>
+      </div>
+
+      <!-- ACTION BAR -->
+      <div class="actionbar">
+        <button class="btn primary" id="btnShareWhatsApp">
+          <span>📱 Share on WhatsApp</span>
+        </button>
+        <button class="btn" id="btnCopySummary">
+          <span>📋 Copy Summary</span>
+        </button>
+      </div>
+
+      <p class="note">
+        <b>Assumptions &amp; Regulatory Context:</b> Each installment backs out 3% GST before acquiring gold grams. Per Budget 2024 provisions (effective 23 July 2024), physical and digital gold holding cutoff is 24 months: lots held ≥24 months attract flat 12.5% LTCG without indexation; lots held &lt;24 months attract STCG at personal slab rates. GST paid is non-refundable and excluded from acquisition cost basis. Spread varies by platform (typically 2% to 4% total). Not formal financial advice.
+      </p>
+    </div>
   </div>
-
-  <!-- SIP DETAILS -->
-  <div class="section">
-    <h2>SIP Details</h2>
-    <div class="row2">
-      <div class="field">
-        <label>Monthly SIP amount (₹)</label>
-        <input type="number" id="sipAmount" value="5000" step="500">
-      </div>
-      <div class="field">
-        <label>Tenure (months)</label>
-        <input type="number" id="tenure" value="36" min="1" max="240">
-      </div>
-    </div>
-    <div class="row2">
-      <div class="field">
-        <label>Gold price today (₹/g, 24K)</label>
-        <input type="number" id="spotToday" value="12500" step="50">
-      </div>
-      <div class="field">
-        <label>Assumed gold CAGR (% p.a.)</label>
-        <input type="number" id="cagr" value="9.0" step="0.5">
-      </div>
-    </div>
-  </div>
-
-  <!-- PLATFORM SPREADS -->
-  <div class="section">
-    <h2>Platform Spreads &amp; GST</h2>
-    <p class="hint">3% GST on purchases is mandatory and deducted automatically. Platforms charge a premium on buying and a discount on redemption.</p>
-    <div class="row2">
-      <div class="field">
-        <label>Buy premium over spot (%)</label>
-        <input type="number" id="buyPremium" value="1.0" step="0.1">
-      </div>
-      <div class="field">
-        <label>Sell discount to spot (%)</label>
-        <input type="number" id="sellDiscount" value="1.0" step="0.1">
-      </div>
-    </div>
-  </div>
-
-  <!-- TAX SLAB -->
-  <div class="section">
-    <h2>Your Tax Slab (for STCG Lots)</h2>
-    <p class="hint">Lots held under 24 months are taxed as short-term capital gains at your marginal income slab rate.</p>
-    <div class="field">
-      <label>Marginal income tax slab (%)</label>
-      <select id="slabRate">
-        <option value="0">0% (Below taxable threshold)</option>
-        <option value="5">5%</option>
-        <option value="10">10%</option>
-        <option value="15">15%</option>
-        <option value="20">20%</option>
-        <option value="30" selected>30% (High income bracket)</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- FULL BREAKDOWN -->
-  <div class="section">
-    <h2>Comprehensive Breakdown</h2>
-    <div class="breakdown-row">
-      <div><div class="lbl">Total amount invested</div></div>
-      <div class="val" id="outInvested">₹0</div>
-    </div>
-    <div class="breakdown-row">
-      <div>
-        <div class="lbl">GST paid (3% non-refundable)</div>
-        <div class="sub">deducted upfront on every purchase tranche</div>
-      </div>
-      <div class="val" id="outGst" style="color:var(--rust);">₹0</div>
-    </div>
-    <div class="breakdown-row">
-      <div><div class="lbl">Total 24K gold accumulated</div></div>
-      <div class="val" id="outGrams" style="color:var(--wheat);">0.000 g</div>
-    </div>
-    <div class="breakdown-row">
-      <div>
-        <div class="lbl">Gross spot value at exit</div>
-        <div class="sub">before sell spread and taxes</div>
-      </div>
-      <div class="val" id="outSpotValue">₹0</div>
-    </div>
-    <div class="breakdown-row">
-      <div>
-        <div class="lbl">Redemption value (after sell spread)</div>
-        <div class="sub">gross cash realization before tax</div>
-      </div>
-      <div class="val" id="outSellValue">₹0</div>
-    </div>
-    <div class="breakdown-row">
-      <div>
-        <div class="lbl">Capital gains tax liability</div>
-        <div class="sub" id="outTaxSub">per-lot computation</div>
-      </div>
-      <div class="val" id="outTax" style="color:var(--rust);">₹0</div>
-    </div>
-    <div class="breakdown-row" style="border-top:1px solid #3A453F; padding-top:12px; margin-top:4px;">
-      <div>
-        <div class="lbl">Net liquidation proceeds</div>
-        <div class="sub">true in-hand cash received</div>
-      </div>
-      <div class="val" id="outNet" style="color:var(--moss); font-size:15px;">₹0</div>
-    </div>
-  </div>
-
-  <!-- ACTION BAR -->
-  <div class="actionbar">
-    <button class="btn primary" id="btnShareWhatsApp">
-      <span>📱 Share on WhatsApp</span>
-    </button>
-    <button class="btn" id="btnCopySummary">
-      <span>📋 Copy Summary</span>
-    </button>
-  </div>
-
-  <p class="note">
-    <b>Assumptions &amp; Regulatory Context:</b> Each installment backs out 3% GST before acquiring gold grams. Per Budget 2024 provisions (effective 23 July 2024), physical and digital gold holding cutoff is 24 months: lots held ≥24 months attract flat 12.5% LTCG without indexation; lots held &lt;24 months attract STCG at personal slab rates. GST paid is non-refundable and excluded from acquisition cost basis. Spread varies by platform (typically 2% to 4% total). Not formal financial advice.
-  </p>
 
   <footer>
     <p>Crafted for <a href="https://iamsaravofficial.com/">Sarav's World</a> · Financial Clarity &amp; Sovereign Wealth</p>
@@ -728,6 +856,48 @@ document.getElementById('btnCopySummary').addEventListener('click', function() {
   }).catch(function() {
     prompt('Copy your summary:', text);
   });
+});
+
+// Theme Switcher
+function setTheme(theme) {
+  localStorage.setItem('dgc_theme', theme);
+  ['auto', 'light', 'dark'].forEach(function(t) {
+    var btn = document.querySelector('[data-theme-choice="' + t + '"]');
+    if (btn) btn.classList.toggle('active', t === theme);
+  });
+  if (theme === 'auto') {
+    var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+  } else {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+}
+var savedTheme = localStorage.getItem('dgc_theme') || 'auto';
+setTheme(savedTheme);
+if (window.matchMedia) {
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+    if ((localStorage.getItem('dgc_theme') || 'auto') === 'auto') setTheme('auto');
+  });
+}
+
+// Ecosystem Dropdown Click & Outside-Click Toggle
+document.querySelectorAll('.eco-dropdown').forEach(function(drop) {
+  var btn = drop.querySelector('.eco-dropbtn');
+  if (!btn) return;
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', function() {
+  document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.eco-dropdown').forEach(function(d) { d.classList.remove('open'); });
+  }
 });
 
 calc();
