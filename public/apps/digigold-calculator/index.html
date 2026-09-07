@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DigiGold SIP Calculator — Real Redemption, Spreads & Tax | Sarav's World</title>
+<meta name="description" content="Calculate real digital gold SIP returns: 3% non-refundable GST, platform buy/sell spreads, and per-lot Budget 2024 capital gains tax (12.5% LTCG vs STCG slabs).">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/digigold-calculator/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="DigiGold SIP Calculator — Real Redemption, Spreads & Per-Lot Tax">
+<meta property="og:description" content="Each SIP installment starts its own 24-month tax clock. Computes real redemption value after GST, spread, and Budget 2024 capital gains tax.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/digigold-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DigiGold SIP Calculator — Real Redemption Value">
+<meta name="twitter:description" content="What you actually redeem from Digital Gold after 3% GST, buy-sell spreads, and per-lot LTCG/STCG taxes.">
+<meta name="twitter:image" content="og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1B2320;
+    --paper: #F6F3EA;
+    --wheat: #C9A227;
+    --moss: #3F6B4A;
+    --moss-soft: #E7EFE7;
+    --rust: #A65B3A;
+    --rust-soft: #F3E6DE;
+    --slate: #5C6B66;
+    --line: #DDD8C8;
+    --radius: 14px;
+    --border: #3A453F;
+    --surface: #212B27;
+    --surface-dark: #161D1A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  a { color: var(--wheat); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Sub-header / Ecosystem bar */
+  .ecosystem-bar {
+    background: var(--surface-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #A9B3AD;
+  }
+  .ecosystem-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ecosystem-links {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .ecosystem-links a {
+    color: #B7C0BB;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  .ecosystem-links a:hover {
+    color: var(--wheat);
+    text-decoration: none;
+  }
+  .eco-brand {
+    font-weight: 700 !important;
+    color: var(--paper) !important;
+  }
+  .eco-brand:hover {
+    color: var(--wheat) !important;
+  }
+  .eco-divider {
+    color: #4A5550;
+    margin: 0 4px;
+    user-select: none;
+  }
+  .eco-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--wheat);
+    margin-right: 2px;
+  }
+  .eco-dot {
+    color: #55625C;
+    margin: 0 2px;
+    user-select: none;
+  }
+  .eco-tokenomics {
+    color: var(--wheat) !important;
+    font-weight: 600;
+  }
+
+  .wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    color: var(--wheat);
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: var(--paper);
+  }
+  .sub {
+    color: #A9B3AD;
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+
+  /* ---- Hero card ---- */
+  .hero {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .hero-figure {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .hero-label {
+    color: var(--slate);
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+  }
+  .splitbar {
+    display: flex;
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--line);
+    margin-bottom: 14px;
+  }
+  .splitbar .ltcg { background: var(--moss); }
+  .splitbar .stcg { background: var(--rust); }
+  .split-rows { display: flex; flex-direction: column; gap: 9px; }
+  .split-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13.5px;
+  }
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  .dot.ltcg { background: var(--moss); }
+  .dot.stcg { background: var(--rust); }
+  .split-row .amt { font-weight: 700; }
+
+  .real-val-card {
+    background: #EDE8DC;
+    border-radius: 9px;
+    padding: 10px 12px;
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: #44504A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .real-val-card b { color: var(--ink); }
+
+  /* ---- Regulatory warning box ---- */
+  .risk-box {
+    background: rgba(166, 91, 58, 0.18);
+    border: 1px solid rgba(166, 91, 58, 0.4);
+    border-radius: 10px;
+    padding: 14px;
+    font-size: 12.5px;
+    color: #F0CDC0;
+    line-height: 1.55;
+    margin-bottom: 16px;
+  }
+  .risk-box b { color: #FFE3D8; }
+
+  /* ---- Form sections ---- */
+  .section {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 14px;
+    border: 1px solid #2B3731;
+  }
+  .section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .section .hint {
+    color: #8C9691;
+    font-size: 12px;
+    margin: 0 0 16px;
+    line-height: 1.45;
+  }
+  .field { margin-bottom: 13px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: #B7C0BB;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .field input, .field select {
+    width: 100%;
+    background: #18201D;
+    border: 1px solid var(--border);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14.5px;
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .field input:focus, .field select:focus {
+    outline: none;
+    border-color: var(--wheat);
+  }
+  .row2 { display: flex; gap: 10px; }
+  .row2 .field { flex: 1; }
+
+  /* ---- Breakdown ---- */
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid #2C3732;
+    font-size: 13.5px;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .lbl { color: #B7C0BB; }
+  .breakdown-row .sub { font-size: 11.5px; color: #7C8781; margin-top: 2px; }
+  .breakdown-row .val { font-weight: 600; text-align: right; }
+
+  .actionbar {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    background: #25332C;
+    border: 1px solid #3F5046;
+    color: var(--paper);
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  .btn:hover {
+    background: #2E3F37;
+    border-color: var(--wheat);
+    color: var(--wheat);
+  }
+  .btn.primary {
+    background: var(--wheat);
+    color: #1A1F1C;
+    border-color: var(--wheat);
+  }
+  .btn.primary:hover {
+    filter: brightness(1.1);
+    color: #111;
+  }
+
+  .note {
+    font-size: 12px;
+    color: #7C8781;
+    line-height: 1.6;
+    padding: 18px 4px 0;
+  }
+  .note b { color: #A9B3AD; }
+
+  footer {
+    padding: 36px 0 10px;
+    text-align: center;
+    color: #6D7973;
+    font-size: 12px;
+    border-top: 1px solid #2B3731;
+    margin-top: 30px;
+  }
+  footer a { color: #9AA6A0; }
+
+  @media print {
+    .ecosystem-bar, .actionbar, .note, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
+    .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Apps:</span>
+      <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/digigold-calculator/" style="color:var(--wheat);">DigiGold Calculator</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Projects:</span>
+      <a href="https://iamsaravofficial.com/temples/">Temples</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="eyebrow">DigiGold SIP Calculator</div>
+  <h1>What you'll actually redeem — after GST, spread, and per-lot tax</h1>
+  <p class="sub">Every monthly installment starts its own 24-month tax clock. When you liquidate, lots held ≥24 months qualify for 12.5% LTCG, while lots &lt;24 months are taxed at your income tax slab.</p>
+
+  <!-- HERO CARD -->
+  <div class="hero">
+    <div class="hero-figure" id="heroNet">₹0</div>
+    <div class="hero-label">net liquidation proceeds (after 3% GST, sell spread, and per-lot capital gains tax)</div>
+    <div class="splitbar">
+      <div class="ltcg" id="barLtcg" style="width:50%"></div>
+      <div class="stcg" id="barStcg" style="width:50%"></div>
+    </div>
+    <div class="split-rows">
+      <div class="split-row">
+        <span><span class="dot ltcg"></span>LTCG lots (≥24 months, 12.5% flat)</span>
+        <span class="amt" id="rowLtcg">₹0</span>
+      </div>
+      <div class="split-row">
+        <span><span class="dot stcg"></span>STCG lots (&lt;24 months, your slab rate)</span>
+        <span class="amt" id="rowStcg">₹0</span>
+      </div>
+    </div>
+    <div class="real-val-card" id="realValCard">
+      <span>Real purchasing power (today's value @ 6% inflation):</span>
+      <b id="realNet">₹0</b>
+    </div>
+  </div>
+
+  <!-- REGULATORY NOTICE -->
+  <div class="risk-box">
+    <b>⚠️ Unregulated Product Warning:</b> SEBI and RBI issued formal advisories warning that Digital Gold operates outside regulatory oversight, unlike Gold ETFs or Sovereign Gold Bonds. Verify that your platform's custodian vaults are independently audited (e.g., DPMACI). <i>Investor Tip:</i> For pure systematic investment, SEBI-regulated <b>Gold ETFs</b> offer 0% GST, tighter bid-ask spreads, and LTCG after 12 months.
+  </div>
+
+  <!-- SIP DETAILS -->
+  <div class="section">
+    <h2>SIP Details</h2>
+    <div class="row2">
+      <div class="field">
+        <label>Monthly SIP amount (₹)</label>
+        <input type="number" id="sipAmount" value="5000" step="500">
+      </div>
+      <div class="field">
+        <label>Tenure (months)</label>
+        <input type="number" id="tenure" value="36" min="1" max="240">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Gold price today (₹/g, 24K)</label>
+        <input type="number" id="spotToday" value="12500" step="50">
+      </div>
+      <div class="field">
+        <label>Assumed gold CAGR (% p.a.)</label>
+        <input type="number" id="cagr" value="9.0" step="0.5">
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM SPREADS -->
+  <div class="section">
+    <h2>Platform Spreads &amp; GST</h2>
+    <p class="hint">3% GST on purchases is mandatory and deducted automatically. Platforms charge a premium on buying and a discount on redemption.</p>
+    <div class="row2">
+      <div class="field">
+        <label>Buy premium over spot (%)</label>
+        <input type="number" id="buyPremium" value="1.0" step="0.1">
+      </div>
+      <div class="field">
+        <label>Sell discount to spot (%)</label>
+        <input type="number" id="sellDiscount" value="1.0" step="0.1">
+      </div>
+    </div>
+  </div>
+
+  <!-- TAX SLAB -->
+  <div class="section">
+    <h2>Your Tax Slab (for STCG Lots)</h2>
+    <p class="hint">Lots held under 24 months are taxed as short-term capital gains at your marginal income slab rate.</p>
+    <div class="field">
+      <label>Marginal income tax slab (%)</label>
+      <select id="slabRate">
+        <option value="0">0% (Below taxable threshold)</option>
+        <option value="5">5%</option>
+        <option value="10">10%</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+        <option value="30" selected>30% (High income bracket)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FULL BREAKDOWN -->
+  <div class="section">
+    <h2>Comprehensive Breakdown</h2>
+    <div class="breakdown-row">
+      <div><div class="lbl">Total amount invested</div></div>
+      <div class="val" id="outInvested">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">GST paid (3% non-refundable)</div>
+        <div class="sub">deducted upfront on every purchase tranche</div>
+      </div>
+      <div class="val" id="outGst" style="color:var(--rust);">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div><div class="lbl">Total 24K gold accumulated</div></div>
+      <div class="val" id="outGrams" style="color:var(--wheat);">0.000 g</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">Gross spot value at exit</div>
+        <div class="sub">before sell spread and taxes</div>
+      </div>
+      <div class="val" id="outSpotValue">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">Redemption value (after sell spread)</div>
+        <div class="sub">gross cash realization before tax</div>
+      </div>
+      <div class="val" id="outSellValue">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">Capital gains tax liability</div>
+        <div class="sub" id="outTaxSub">per-lot computation</div>
+      </div>
+      <div class="val" id="outTax" style="color:var(--rust);">₹0</div>
+    </div>
+    <div class="breakdown-row" style="border-top:1px solid #3A453F; padding-top:12px; margin-top:4px;">
+      <div>
+        <div class="lbl">Net liquidation proceeds</div>
+        <div class="sub">true in-hand cash received</div>
+      </div>
+      <div class="val" id="outNet" style="color:var(--moss); font-size:15px;">₹0</div>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="actionbar">
+    <button class="btn primary" id="btnShareWhatsApp">
+      <span>📱 Share on WhatsApp</span>
+    </button>
+    <button class="btn" id="btnCopySummary">
+      <span>📋 Copy Summary</span>
+    </button>
+  </div>
+
+  <p class="note">
+    <b>Assumptions &amp; Regulatory Context:</b> Each installment backs out 3% GST before acquiring gold grams. Per Budget 2024 provisions (effective 23 July 2024), physical and digital gold holding cutoff is 24 months: lots held ≥24 months attract flat 12.5% LTCG without indexation; lots held &lt;24 months attract STCG at personal slab rates. GST paid is non-refundable and excluded from acquisition cost basis. Spread varies by platform (typically 2% to 4% total). Not formal financial advice.
+  </p>
+
+  <footer>
+    <p>Crafted for <a href="https://iamsaravofficial.com/">Sarav's World</a> · Financial Clarity &amp; Sovereign Wealth</p>
+  </footer>
+
+</div>
+
+<script>
+function fmtCr(n) {
+  if (isNaN(n) || n === 0) return '₹0';
+  if (n < 0) return '-' + fmtCr(-n);
+  if (n >= 10000000) return '₹' + (n / 10000000).toFixed(2) + ' Cr';
+  if (n >= 100000) return '₹' + (n / 100000).toFixed(2) + ' Lakh';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+function calc() {
+  var sipAmount = parseFloat(document.getElementById('sipAmount').value) || 0;
+  var months = Math.max(1, parseInt(document.getElementById('tenure').value) || 0);
+  var spotToday = parseFloat(document.getElementById('spotToday').value) || 0;
+  var cagr = parseFloat(document.getElementById('cagr').value) || 0;
+  var buyPremium = parseFloat(document.getElementById('buyPremium').value) || 0;
+  var sellDiscount = parseFloat(document.getElementById('sellDiscount').value) || 0;
+  var slabRate = parseFloat(document.getElementById('slabRate').value) || 0;
+  var GST = 0.03;
+
+  var monthlyGrowth = Math.pow(1 + cagr / 100, 1 / 12);
+
+  var lots = [];
+  var totalInvested = 0, totalGst = 0, totalGrams = 0, totalCostBasis = 0;
+
+  for (var k = 1; k <= months; k++) {
+    var spot_k = spotToday * Math.pow(monthlyGrowth, k - 1);
+    var buyPrice_k = spot_k * (1 + buyPremium / 100);
+    var goldValue_k = sipAmount / (1 + GST);
+    var gst_k = sipAmount - goldValue_k;
+    var grams_k = goldValue_k / buyPrice_k;
+
+    totalInvested += sipAmount;
+    totalGst += gst_k;
+    totalGrams += grams_k;
+    totalCostBasis += goldValue_k;
+
+    lots.push({ k: k, grams: grams_k, costBasis: goldValue_k, holdingMonths: months - k + 1 });
+  }
+
+  var finalSpot = spotToday * Math.pow(monthlyGrowth, months);
+  var sellPrice = finalSpot * (1 - sellDiscount / 100);
+
+  var spotValue = totalGrams * finalSpot;
+  var sellValue = totalGrams * sellPrice;
+
+  var ltcgGain = 0, stcgGain = 0, ltcgValue = 0, stcgValue = 0, ltcgTax = 0, stcgTax = 0;
+  lots.forEach(function(lot) {
+    var saleValue = lot.grams * sellPrice;
+    var gain = saleValue - lot.costBasis;
+    if (lot.holdingMonths >= 24) {
+      ltcgValue += saleValue;
+      if (gain > 0) {
+        ltcgGain += gain;
+        ltcgTax += gain * 0.125 * 1.04; // 12.5% + 4% cess
+      }
+    } else {
+      stcgValue += saleValue;
+      if (gain > 0) {
+        stcgGain += gain;
+        stcgTax += gain * (slabRate / 100) * 1.04; // slab + 4% cess
+      }
+    }
+  });
+
+  var totalTax = ltcgTax + stcgTax;
+  var netValue = sellValue - totalTax;
+
+  // Inflation discounting (6% assumed)
+  var years = months / 12;
+  var inflationFactor = Math.pow(1 + 0.06, years);
+  var realNet = netValue / inflationFactor;
+
+  // Hero Display
+  document.getElementById('heroNet').textContent = fmtCr(netValue);
+  document.getElementById('rowLtcg').textContent = fmtCr(ltcgValue);
+  document.getElementById('rowStcg').textContent = fmtCr(stcgValue);
+  var totalLotValue = ltcgValue + stcgValue;
+  var ltcgPct = totalLotValue > 0 ? (ltcgValue / totalLotValue * 100) : 0;
+  document.getElementById('barLtcg').style.width = ltcgPct + '%';
+  document.getElementById('barStcg').style.width = (100 - ltcgPct) + '%';
+  document.getElementById('realNet').textContent = fmtCr(realNet);
+
+  // Breakdown
+  document.getElementById('outInvested').textContent = fmtCr(totalInvested);
+  document.getElementById('outGst').textContent = fmtCr(totalGst);
+  document.getElementById('outGrams').textContent = totalGrams.toFixed(3) + ' g';
+  document.getElementById('outSpotValue').textContent = fmtCr(spotValue);
+  document.getElementById('outSellValue').textContent = fmtCr(sellValue);
+  document.getElementById('outTax').textContent = fmtCr(totalTax);
+  document.getElementById('outTaxSub').textContent = months >= 24
+    ? 'LTCG ' + fmtCr(ltcgTax) + ' + STCG ' + fmtCr(stcgTax)
+    : 'All lots <24 months — fully STCG at ' + slabRate + '% slab';
+  document.getElementById('outNet').textContent = fmtCr(netValue);
+
+  window.lastCalc = {
+    netValue: fmtCr(netValue),
+    totalInvested: fmtCr(totalInvested),
+    totalGrams: totalGrams.toFixed(3) + ' g',
+    totalTax: fmtCr(totalTax),
+    months: months
+  };
+}
+
+document.querySelectorAll('input, select').forEach(function(el) {
+  el.addEventListener('input', calc);
+  if (el.tagName === 'SELECT') el.addEventListener('change', calc);
+});
+
+// Share Handlers
+document.getElementById('btnShareWhatsApp').addEventListener('click', function() {
+  if (!window.lastCalc) return;
+  var text = '📊 *DigiGold SIP Projection*\n\n' +
+    '💰 *Net Redemption Value:* ' + window.lastCalc.netValue + '\n' +
+    '💵 *Total Invested:* ' + window.lastCalc.totalInvested + ' (' + window.lastCalc.months + ' months)\n' +
+    '🪙 *Gold Accumulated:* ' + window.lastCalc.totalGrams + ' (24K)\n' +
+    '🧾 *Capital Gains Tax:* ' + window.lastCalc.totalTax + '\n\n' +
+    'Calculate your true DigiGold redemption: https://iamsaravofficial.com/apps/digigold-calculator/';
+  window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+});
+
+document.getElementById('btnCopySummary').addEventListener('click', function() {
+  if (!window.lastCalc) return;
+  var text = 'DigiGold SIP Summary:\n' +
+    'Net Redemption: ' + window.lastCalc.netValue + '\n' +
+    'Total Invested: ' + window.lastCalc.totalInvested + '\n' +
+    'Gold Accumulated: ' + window.lastCalc.totalGrams + '\n' +
+    'Capital Gains Tax: ' + window.lastCalc.totalTax + '\n' +
+    'Source: https://iamsaravofficial.com/apps/digigold-calculator/';
+  navigator.clipboard.writeText(text).then(function() {
+    alert('Summary copied to clipboard!');
+  }).catch(function() {
+    prompt('Copy your summary:', text);
+  });
+});
+
+calc();
+</script>
+</body>
+</html>

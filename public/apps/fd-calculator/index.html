@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FD Calculator — Cumulative vs Payout, TDS & Tax Slabs | Sarav's World</title>
+<meta name="description" content="Calculate real fixed deposit returns: Cumulative vs Payout FDs, bank TDS under Section 194A (2025-26 rules), tax slab liability, inflation-adjusted value, and early withdrawal penalty.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/fd-calculator/">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="FD Calculator — Cumulative vs Payout, TDS & Tax Slabs">
+<meta property="og:description" content="Shows what a payout FD really costs you vs cumulative, and the TDS surprise: banks deduct tax annually on cumulative FDs even though you're paid nothing until maturity.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/fd-calculator/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FD Calculator — Cumulative vs Payout, TDS & Tax Slabs">
+<meta name="twitter:description" content="Calculate real FD returns after TDS, personal income tax slab liability, and inflation.">
+<meta name="twitter:image" content="og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1B2320;
+    --paper: #F6F3EA;
+    --wheat: #C9A227;
+    --moss: #3F6B4A;
+    --moss-soft: #E7EFE7;
+    --rust: #A65B3A;
+    --rust-soft: #F3E6DE;
+    --slate: #5C6B66;
+    --line: #DDD8C8;
+    --radius: 14px;
+    --border: #3A453F;
+    --surface: #212B27;
+    --surface-dark: #161D1A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+  a { color: var(--wheat); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Sub-header / Ecosystem bar */
+  .ecosystem-bar {
+    background: var(--surface-dark);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    font-size: 12px;
+    color: #A9B3AD;
+  }
+  .ecosystem-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ecosystem-links {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .ecosystem-links a {
+    color: #B7C0BB;
+    font-weight: 500;
+    transition: color 0.15s ease;
+  }
+  .ecosystem-links a:hover {
+    color: var(--wheat);
+    text-decoration: none;
+  }
+  .eco-brand {
+    font-weight: 700 !important;
+    color: var(--paper) !important;
+  }
+  .eco-brand:hover {
+    color: var(--wheat) !important;
+  }
+  .eco-divider {
+    color: #4A5550;
+    margin: 0 4px;
+    user-select: none;
+  }
+  .eco-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--wheat);
+    margin-right: 2px;
+  }
+  .eco-dot {
+    color: #55625C;
+    margin: 0 2px;
+    user-select: none;
+  }
+  .eco-tokenomics {
+    color: var(--wheat) !important;
+    font-weight: 600;
+  }
+
+  .wrap {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 28px 20px 60px;
+  }
+  .eyebrow {
+    font-size: 13px;
+    color: var(--wheat);
+    letter-spacing: 0.03em;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 27px;
+    line-height: 1.25;
+    margin: 0 0 8px;
+    color: var(--paper);
+  }
+  .sub {
+    color: #A9B3AD;
+    font-size: 13.5px;
+    line-height: 1.5;
+    margin: 0 0 24px;
+  }
+
+  /* ---- Hero card ---- */
+  .hero {
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+  }
+  .hero-figure {
+    font-family: 'Newsreader', serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .hero-label {
+    color: var(--slate);
+    font-size: 13px;
+    margin-top: 6px;
+    margin-bottom: 18px;
+  }
+  .net-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  .net-row .label { font-size: 13.5px; color: var(--slate); }
+  .net-row .figure {
+    font-family: 'Newsreader', serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--moss);
+  }
+  .surprise-note {
+    font-size: 12px;
+    color: var(--rust);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .real-val-card {
+    background: #EDE8DC;
+    border-radius: 9px;
+    padding: 10px 12px;
+    margin-top: 14px;
+    font-size: 12.5px;
+    color: #44504A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .real-val-card b { color: var(--ink); }
+
+  /* ---- Form sections ---- */
+  .section {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 14px;
+    border: 1px solid #2B3731;
+  }
+  .section h2 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 4px;
+  }
+  .section .hint {
+    color: #8C9691;
+    font-size: 12px;
+    margin: 0 0 16px;
+    line-height: 1.45;
+  }
+  .field { margin-bottom: 13px; }
+  .field label {
+    display: block;
+    font-size: 12px;
+    color: #B7C0BB;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  .field input, .field select {
+    width: 100%;
+    background: #18201D;
+    border: 1px solid var(--border);
+    color: var(--paper);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 14.5px;
+    font-family: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .field input:focus, .field select:focus {
+    outline: none;
+    border-color: var(--wheat);
+  }
+  .row2 { display: flex; gap: 10px; }
+  .row2 .field { flex: 1; }
+
+  .checkline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--paper);
+    margin-bottom: 13px;
+    cursor: pointer;
+  }
+  .checkline input { width: auto; accent-color: var(--wheat); cursor: pointer; }
+
+  .typepills {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .typepill {
+    flex: 1;
+    text-align: center;
+    padding: 10px 8px;
+    border-radius: 8px;
+    background: #18201D;
+    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .typepill:hover { border-color: var(--wheat); }
+  .typepill.on {
+    background: var(--moss);
+    border-color: var(--moss);
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .lockbadge {
+    font-size: 12px;
+    color: #E2B19A;
+    background: rgba(166, 91, 58, 0.2);
+    border: 1px solid rgba(166, 91, 58, 0.4);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* ---- Breakdown ---- */
+  .breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid #2C3732;
+    font-size: 13.5px;
+  }
+  .breakdown-row:last-child { border-bottom: none; }
+  .breakdown-row .lbl { color: #B7C0BB; }
+  .breakdown-row .sub { font-size: 11.5px; color: #7C8781; margin-top: 2px; }
+  .breakdown-row .val { font-weight: 600; text-align: right; }
+
+  .compare-box {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .compare-col {
+    flex: 1;
+    background: #18201D;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px;
+    text-align: center;
+    transition: all 0.15s ease;
+  }
+  .compare-col.active {
+    border-color: var(--wheat);
+    background: #1F2823;
+  }
+  .compare-col .ctitle {
+    font-size: 11px;
+    color: #8C9691;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .compare-col .cval {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th {
+    text-align: right;
+    color: #8C9691;
+    font-weight: 600;
+    font-size: 11px;
+    padding: 8px 6px;
+    border-bottom: 1px solid var(--border);
+    text-transform: uppercase;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  td {
+    text-align: right;
+    padding: 8px 6px;
+    border-bottom: 1px solid #26312C;
+  }
+  td.tds { color: #E58763; font-weight: 600; }
+  .overflow-x { overflow-x: auto; }
+
+  .actionbar {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    flex: 1;
+    min-width: 140px;
+    background: #25332C;
+    border: 1px solid #3F5046;
+    color: var(--paper);
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  .btn:hover {
+    background: #2E3F37;
+    border-color: var(--wheat);
+    color: var(--wheat);
+  }
+  .btn.primary {
+    background: var(--wheat);
+    color: #1A1F1C;
+    border-color: var(--wheat);
+  }
+  .btn.primary:hover {
+    filter: brightness(1.1);
+    color: #111;
+  }
+
+  .note {
+    font-size: 12px;
+    color: #7C8781;
+    line-height: 1.6;
+    padding: 18px 4px 0;
+  }
+  .note b { color: #A9B3AD; }
+  .badge {
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 20px;
+    background: var(--rust-soft);
+    color: var(--rust);
+    margin-left: 6px;
+  }
+
+  footer {
+    padding: 36px 0 10px;
+    text-align: center;
+    color: #6D7973;
+    font-size: 12px;
+    border-top: 1px solid #2B3731;
+    margin-top: 30px;
+  }
+  footer a { color: #9AA6A0; }
+
+  @media print {
+    .ecosystem-bar, .actionbar, .note, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
+    .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Apps:</span>
+      <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/fd-calculator/" style="color:var(--wheat);">FD Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+      <span class="eco-divider">│</span>
+      <span class="eco-label">Projects:</span>
+      <a href="https://iamsaravofficial.com/temples/">Temples</a>
+      <span class="eco-dot">·</span>
+      <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="eyebrow">Fixed Deposit Calculator</div>
+  <h1>Cumulative vs payout — and the TDS surprise</h1>
+  <p class="sub">Cumulative FDs get taxed annually on interest you haven't received yet. Payout FDs never compound. And bank TDS is only advance withholding: your actual slab determines what you keep.</p>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-figure" id="heroGross">₹0</div>
+    <div class="hero-label" id="heroGrossLabel">maturity value (gross, before tax)</div>
+    <div class="net-row">
+      <span class="label" id="netLabel">what you'll actually keep (after bank TDS)</span>
+      <span class="figure" id="heroNet">₹0</span>
+    </div>
+    <div class="surprise-note" id="surpriseNote"></div>
+    <div class="real-val-card" id="realValCard">
+      <span>Real purchasing power (today's value @ 6% inflation):</span>
+      <b id="realMaturity">₹0</b>
+    </div>
+  </div>
+
+  <!-- FD DETAILS -->
+  <div class="section">
+    <h2>FD details</h2>
+    <div class="typepills" id="typeToggle">
+      <div class="typepill on" data-type="cumulative">Cumulative</div>
+      <div class="typepill" data-type="payout">Payout</div>
+      <div class="typepill" data-type="taxsaver">Tax-Saver</div>
+    </div>
+    <div class="field">
+      <label>Deposit amount (₹)</label>
+      <input type="number" id="principal" value="500000" step="10000">
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Tenure (months)</label>
+        <input type="number" id="tenure" value="36" min="6" max="120">
+      </div>
+      <div class="field">
+        <label>Interest rate (% p.a.)</label>
+        <input type="number" id="rate" value="7.0" step="0.05">
+      </div>
+    </div>
+    <div class="field" id="freqField">
+      <label id="freqLabel">Compounding frequency</label>
+      <select id="freq">
+        <option value="4" selected>Quarterly (standard)</option>
+        <option value="12">Monthly</option>
+        <option value="2">Half-Yearly</option>
+        <option value="1">Annually</option>
+      </select>
+    </div>
+    <label class="checkline">
+      <input type="checkbox" id="senior">
+      Senior citizen (adds bonus interest rate)
+    </label>
+    <div class="row2" id="seniorBonusRow" style="display:none;">
+      <div class="field">
+        <label>Senior citizen bonus (% p.a.)</label>
+        <input type="number" id="seniorBonus" value="0.5" step="0.05">
+      </div>
+    </div>
+    <div class="lockbadge" id="taxsaverNote" style="display:none;">
+      Locked 5 years, no premature withdrawal — even with penalty, even in an emergency (only exception: depositor's demise). Principal up to ₹1,50,000/yr is deductible under Section 123 (Income Tax Act 2025 / erstwhile Section 80C). Interest is fully taxable and subject to TDS.
+    </div>
+  </div>
+
+  <!-- TAX & SLABS -->
+  <div class="section">
+    <h2>Tax &amp; Marginal Slab (TDS vs ITR Liability)</h2>
+    <p class="hint" id="tdsHint">TDS threshold: ₹50,000/yr (General) or ₹1,00,000/yr (Senior Citizens) per Section 194A.</p>
+    <label class="checkline">
+      <input type="checkbox" id="panProvided" checked>
+      PAN provided to bank (10% TDS instead of 20% penalty TDS)
+    </label>
+    <div class="field">
+      <label>Your marginal income tax slab (%)</label>
+      <select id="slabRate">
+        <option value="0">0% (Below taxable threshold / Form 15G/15H eligible)</option>
+        <option value="5">5% (Old/New slab basic bracket)</option>
+        <option value="10">10% (TDS equals slab)</option>
+        <option value="15">15%</option>
+        <option value="20">20%</option>
+        <option value="30" selected>30% (High income bracket)</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- FULL BREAKDOWN -->
+  <div class="section">
+    <h2>Comprehensive Breakdown</h2>
+    <div class="breakdown-row">
+      <div><div class="lbl">Principal deposited</div></div>
+      <div class="val" id="outPrincipal">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div><div class="lbl">Total interest earned (gross)</div></div>
+      <div class="val" id="outInterest">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div><div class="lbl">Effective rate applied</div></div>
+      <div class="val" id="outEffRate">0%</div>
+    </div>
+    <div class="breakdown-row" id="payoutRow" style="display:none;">
+      <div><div class="lbl">Payout per period</div></div>
+      <div class="val" id="outPayout">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">Bank TDS deducted</div>
+        <div class="sub" id="outTdsSub">withheld at source</div>
+      </div>
+      <div class="val" id="outTds" style="color:var(--rust);">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl">Total tax liability (at your slab)</div>
+        <div class="sub" id="outSlabSub">inclusive of 4% health &amp; education cess</div>
+      </div>
+      <div class="val" id="outTotalTax" style="color:var(--rust);">₹0</div>
+    </div>
+    <div class="breakdown-row">
+      <div>
+        <div class="lbl" id="outDiffLabel">Additional tax due at ITR filing</div>
+        <div class="sub">difference between your tax slab and bank TDS</div>
+      </div>
+      <div class="val" id="outDiffTax">₹0</div>
+    </div>
+    <div class="breakdown-row" style="border-top:1px solid #3A453F; padding-top:12px; margin-top:4px;">
+      <div>
+        <div class="lbl">True net wealth (after full tax liability)</div>
+        <div class="sub">what you actually retain after filing ITR</div>
+      </div>
+      <div class="val" id="outTrueNet" style="color:var(--moss); font-size:15px;">₹0</div>
+    </div>
+
+    <p class="hint" style="margin-top:16px; margin-bottom:8px;">Same rate, same tenure — the other mode:</p>
+    <div class="compare-box">
+      <div class="compare-col" id="compareCumulative">
+        <div class="ctitle">Cumulative interest</div>
+        <div class="cval" id="cvalCumulative">₹0</div>
+      </div>
+      <div class="compare-col" id="comparePayout">
+        <div class="ctitle">Payout interest (total)</div>
+        <div class="cval" id="cvalPayout">₹0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- YEAR BY YEAR TABLE -->
+  <div class="section">
+    <h2>Year-by-year accrual &amp; TDS schedule</h2>
+    <p class="hint">Cumulative FDs are taxed on accrued interest every year — not just at maturity, even though you receive zero payout until then.</p>
+    <div class="overflow-x">
+      <table>
+        <thead>
+          <tr>
+            <th>12-Mo Block</th>
+            <th>Interest Accrued</th>
+            <th>Bank TDS</th>
+          </tr>
+        </thead>
+        <tbody id="yearBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- EARLY WITHDRAWAL -->
+  <div class="section" id="earlySection">
+    <h2>Withdrawing early? <span class="badge">Optional</span></h2>
+    <p class="hint">Banks calculate interest on the rate applicable for the period actually held, minus an early withdrawal penalty (typically 0.5% – 1.0%).</p>
+    <label class="checkline">
+      <input type="checkbox" id="earlyWithdraw">
+      I'm considering premature withdrawal
+    </label>
+    <div id="earlyWithdrawFields" style="display:none;">
+      <div class="row2">
+        <div class="field">
+          <label>Months completed so far</label>
+          <input type="number" id="monthsElapsed" value="12">
+        </div>
+        <div class="field">
+          <label>Penalty on rate (% p.a.)</label>
+          <input type="number" id="penalty" value="1.0" step="0.1">
+        </div>
+      </div>
+      <div class="breakdown-row" style="border-top:1px solid #3A453F; padding-top:12px;">
+        <div>
+          <div class="lbl">Value if withdrawn today</div>
+          <div class="sub">at contracted rate minus penalty, for completed duration</div>
+        </div>
+        <div class="val" id="outEarlyValue">₹0</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTION BAR -->
+  <div class="actionbar">
+    <button class="btn primary" id="btnShareWhatsApp">
+      <span>📱 Share on WhatsApp</span>
+    </button>
+    <button class="btn" id="btnCopySummary">
+      <span>📋 Copy Summary</span>
+    </button>
+  </div>
+
+  <p class="note">
+    <b>Assumptions &amp; Regulatory Context:</b> Cumulative compounding formula: A = P × (1 + r/(100n))^(n×t). Payout formula: annual interest = P × r/100, distributed evenly. Section 194A TDS thresholds (FY 2025-26): ₹50,000 general, ₹1,00,000 senior citizens. TDS is applied on the entire year's interest once threshold is breached. TDS is advance withholding tax; actual tax liability depends on your total annual income slab. Tax-Saver FDs have a mandatory 5-year lock-in without premature liquidation. Not official tax advice.
+  </p>
+
+  <footer>
+    <p>Crafted for <a href="https://iamsaravofficial.com/">Sarav's World</a> · Financial Clarity &amp; Sovereign Wealth</p>
+  </footer>
+
+</div>
+
+<script>
+function fmtCr(n) {
+  if (isNaN(n) || n === 0) return '₹0';
+  if (n < 0) return '-' + fmtCr(-n);
+  if (n >= 10000000) return '₹' + (n / 10000000).toFixed(2) + ' Cr';
+  if (n >= 100000) return '₹' + (n / 100000).toFixed(2) + ' Lakh';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+
+var currentType = 'cumulative';
+
+document.getElementById('typeToggle').addEventListener('click', function(e) {
+  var pill = e.target.closest('.typepill');
+  if (!pill) return;
+  currentType = pill.dataset.type;
+  document.querySelectorAll('.typepill').forEach(function(p) { p.classList.toggle('on', p === pill); });
+
+  var isTaxSaver = currentType === 'taxsaver';
+  document.getElementById('taxsaverNote').style.display = isTaxSaver ? 'block' : 'none';
+  document.getElementById('earlySection').style.display = isTaxSaver ? 'none' : 'block';
+
+  if (isTaxSaver) {
+    document.getElementById('tenure').value = 60;
+    document.getElementById('tenure').disabled = true;
+  } else {
+    document.getElementById('tenure').disabled = false;
+  }
+
+  var isPayout = currentType === 'payout';
+  document.getElementById('freqLabel').textContent = isPayout ? 'Payout frequency' : 'Compounding frequency';
+  document.getElementById('payoutRow').style.display = isPayout ? 'flex' : 'none';
+  calc();
+});
+
+document.getElementById('senior').addEventListener('change', function() {
+  document.getElementById('seniorBonusRow').style.display = this.checked ? 'flex' : 'none';
+  calc();
+});
+
+document.getElementById('earlyWithdraw').addEventListener('change', function() {
+  document.getElementById('earlyWithdrawFields').style.display = this.checked ? 'block' : 'none';
+  calc();
+});
+
+function simulateCumulative(principal, annualRatePct, months, freqPerYear) {
+  var i = annualRatePct / 100 / freqPerYear;
+  var monthlyBalances = [principal];
+  var periodMonths = 12 / freqPerYear;
+  var bal = principal;
+  var monthsSincePeriod = 0;
+  for (var m = 1; m <= months; m++) {
+    monthsSincePeriod++;
+    if (monthsSincePeriod >= periodMonths - 1e-9) {
+      bal = bal * (1 + i);
+      monthsSincePeriod = 0;
+    }
+    monthlyBalances.push(bal);
+  }
+  return { final: bal, monthlyBalances: monthlyBalances };
+}
+
+function payoutAnnualInterest(principal, annualRatePct) {
+  return principal * (annualRatePct / 100);
+}
+
+function tdsRateAndThreshold(isSenior, panProvided) {
+  return { threshold: isSenior ? 100000 : 50000, rate: panProvided ? 0.10 : 0.20 };
+}
+
+function calc() {
+  var principal = parseFloat(document.getElementById('principal').value) || 0;
+  var months = Math.max(1, parseInt(document.getElementById('tenure').value) || 0);
+  var baseRate = parseFloat(document.getElementById('rate').value) || 0;
+  var isSenior = document.getElementById('senior').checked;
+  var seniorBonus = parseFloat(document.getElementById('seniorBonus').value) || 0;
+  var effRate = baseRate + (isSenior ? seniorBonus : 0);
+  var panProvided = document.getElementById('panProvided').checked;
+  var freq = parseInt(document.getElementById('freq').value) || 4;
+  var slabRate = parseFloat(document.getElementById('slabRate').value) || 0;
+  var isPayout = currentType === 'payout';
+
+  var tds = tdsRateAndThreshold(isSenior, panProvided);
+  document.getElementById('tdsHint').textContent = 'Section 194A Threshold: ' + fmtCr(tds.threshold) + '/yr. TDS rate: ' +
+    (tds.rate * 100) + '%' + (panProvided ? '' : ' (no PAN on file)') + '.';
+
+  var yearRows = [];
+  var totalTds = 0, anyTdsYear = false;
+  var grossInterestTotal, grossMaturity;
+
+  if (isPayout) {
+    var annualInterest = payoutAnnualInterest(principal, effRate);
+    var paymentsPerYear = freq;
+    var payoutPerPeriod = annualInterest / paymentsPerYear;
+    document.getElementById('outPayout').textContent = fmtCr(payoutPerPeriod);
+
+    var m = 0;
+    while (m < months) {
+      var blockEnd = Math.min(m + 12, months);
+      var blockFraction = (blockEnd - m) / 12;
+      var interestThisBlock = annualInterest * blockFraction;
+      var tdsThisBlock = interestThisBlock > tds.threshold ? interestThisBlock * tds.rate : 0;
+      if (tdsThisBlock > 0) anyTdsYear = true;
+      totalTds += tdsThisBlock;
+      yearRows.push({ label: 'Mo ' + (m + 1) + '–' + blockEnd, interest: interestThisBlock, tds: tdsThisBlock });
+      m = blockEnd;
+    }
+    grossInterestTotal = annualInterest * (months / 12);
+    grossMaturity = principal + grossInterestTotal;
+  } else {
+    var sim = simulateCumulative(principal, effRate, months, freq);
+    grossMaturity = sim.final;
+    grossInterestTotal = grossMaturity - principal;
+
+    var prevBal = principal, m2 = 0;
+    while (m2 < months) {
+      var blockEnd2 = Math.min(m2 + 12, months);
+      var balAtEnd = sim.monthlyBalances[blockEnd2];
+      var interestThisBlock2 = balAtEnd - prevBal;
+      var tdsThisBlock2 = interestThisBlock2 > tds.threshold ? interestThisBlock2 * tds.rate : 0;
+      if (tdsThisBlock2 > 0) anyTdsYear = true;
+      totalTds += tdsThisBlock2;
+      yearRows.push({ label: 'Mo ' + (m2 + 1) + '–' + blockEnd2, interest: interestThisBlock2, tds: tdsThisBlock2 });
+      prevBal = balAtEnd;
+      m2 = blockEnd2;
+    }
+  }
+
+  // TDS-adjusted net
+  var netAfterTds = grossMaturity - totalTds;
+
+  // Total Tax Liability at Slab (with 4% cess)
+  var totalTaxLiability = grossInterestTotal * (slabRate / 100) * 1.04;
+  var taxDiff = totalTaxLiability - totalTds;
+  var trueNetWealth = grossMaturity - totalTaxLiability;
+
+  // Inflation Discounting (6% assumed)
+  var years = months / 12;
+  var inflationFactor = Math.pow(1 + 0.06, years);
+  var realMaturity = trueNetWealth / inflationFactor;
+
+  // Hero Display
+  document.getElementById('heroGross').textContent = fmtCr(grossMaturity);
+  document.getElementById('heroGrossLabel').textContent = isPayout ? 'principal + total payouts (gross, before tax)' : 'maturity value (gross, before tax)';
+  document.getElementById('heroNet').textContent = fmtCr(netAfterTds);
+  document.getElementById('realMaturity').textContent = fmtCr(realMaturity);
+
+  document.getElementById('surpriseNote').textContent = !isPayout
+    ? (anyTdsYear
+        ? '⚠️ TDS is deducted every year on accrued interest — even though you receive nothing until maturity.'
+        : '✓ No 12-month block crosses bank TDS threshold — but interest is still taxable in your ITR.')
+    : (anyTdsYear ? '⚠️ TDS applies on at least one year’s payout — see breakdown below.' : '✓ No year crosses TDS threshold.');
+
+  // Breakdown
+  document.getElementById('outPrincipal').textContent = fmtCr(principal);
+  document.getElementById('outInterest').textContent = fmtCr(grossInterestTotal);
+  document.getElementById('outEffRate').textContent = effRate.toFixed(2) + '%';
+  document.getElementById('outTds').textContent = fmtCr(totalTds);
+  document.getElementById('outTdsSub').textContent = anyTdsYear ? 'withheld at source across flagged years' : 'no year crossed threshold';
+  
+  document.getElementById('outTotalTax').textContent = fmtCr(totalTaxLiability);
+  
+  if (taxDiff > 0) {
+    document.getElementById('outDiffLabel').textContent = 'Additional tax due at ITR filing';
+    document.getElementById('outDiffTax').textContent = fmtCr(taxDiff);
+    document.getElementById('outDiffTax').style.color = 'var(--rust)';
+  } else if (taxDiff < 0) {
+    document.getElementById('outDiffLabel').textContent = 'Refund claimable in ITR';
+    document.getElementById('outDiffTax').textContent = fmtCr(Math.abs(taxDiff));
+    document.getElementById('outDiffTax').style.color = 'var(--moss)';
+  } else {
+    document.getElementById('outDiffLabel').textContent = 'Tax due / refund';
+    document.getElementById('outDiffTax').textContent = '₹0 (Exact match)';
+    document.getElementById('outDiffTax').style.color = '#B7C0BB';
+  }
+
+  document.getElementById('outTrueNet').textContent = fmtCr(trueNetWealth);
+
+  // Year-by-year table
+  document.getElementById('yearBody').innerHTML = yearRows.map(function(y) {
+    return '<tr><td>' + y.label + '</td><td>' + fmtCr(y.interest) + '</td>' +
+      '<td class="' + (y.tds > 0 ? 'tds' : '') + '">' + (y.tds > 0 ? fmtCr(y.tds) : '—') + '</td></tr>';
+  }).join('');
+
+  // Mode comparison
+  var cumForCompare = simulateCumulative(principal, effRate, months, freq).final - principal;
+  var payoutForCompare = payoutAnnualInterest(principal, effRate) * (months / 12);
+  document.getElementById('cvalCumulative').textContent = fmtCr(cumForCompare);
+  document.getElementById('cvalPayout').textContent = fmtCr(payoutForCompare);
+  document.getElementById('compareCumulative').classList.toggle('active', !isPayout);
+  document.getElementById('comparePayout').classList.toggle('active', isPayout);
+
+  // Early withdrawal
+  if (document.getElementById('earlyWithdraw').checked) {
+    var elapsed = Math.min(months, Math.max(0, parseInt(document.getElementById('monthsElapsed').value) || 0));
+    var penalty = parseFloat(document.getElementById('penalty').value) || 0;
+    var earlyRate = Math.max(0, effRate - penalty);
+    var earlyVal = simulateCumulative(principal, earlyRate, elapsed, freq).final;
+    document.getElementById('outEarlyValue').textContent = fmtCr(earlyVal);
+  }
+
+  window.lastCalc = {
+    grossMaturity: fmtCr(grossMaturity),
+    netAfterTds: fmtCr(netAfterTds),
+    trueNetWealth: fmtCr(trueNetWealth),
+    totalInterest: fmtCr(grossInterestTotal),
+    tds: fmtCr(totalTds),
+    slabRate: slabRate,
+    mode: isPayout ? 'Payout' : (isTaxSaver ? 'Tax-Saver' : 'Cumulative')
+  };
+}
+
+document.querySelectorAll('input, select').forEach(function(el) {
+  el.addEventListener('input', calc);
+  if (el.tagName === 'SELECT' || el.type === 'checkbox') el.addEventListener('change', calc);
+});
+
+// Share handlers
+document.getElementById('btnShareWhatsApp').addEventListener('click', function() {
+  if (!window.lastCalc) return;
+  var text = '📊 *Fixed Deposit Calculation Summary*\n\n' +
+    '🏷️ *Mode:* ' + window.lastCalc.mode + '\n' +
+    '📈 *Gross Maturity:* ' + window.lastCalc.grossMaturity + '\n' +
+    '💰 *Total Interest:* ' + window.lastCalc.totalInterest + '\n' +
+    '🏦 *Bank TDS (Sec 194A):* ' + window.lastCalc.tds + '\n' +
+    '🧾 *Net In-Hand (after ' + window.lastCalc.slabRate + '% slab tax):* ' + window.lastCalc.trueNetWealth + '\n\n' +
+    'Calculate your FD returns: https://iamsaravofficial.com/apps/fd-calculator/';
+  window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+});
+
+document.getElementById('btnCopySummary').addEventListener('click', function() {
+  if (!window.lastCalc) return;
+  var text = 'Fixed Deposit Summary:\n' +
+    'Mode: ' + window.lastCalc.mode + '\n' +
+    'Gross Maturity: ' + window.lastCalc.grossMaturity + '\n' +
+    'Total Interest: ' + window.lastCalc.totalInterest + '\n' +
+    'Bank TDS: ' + window.lastCalc.tds + '\n' +
+    'True Net (after ' + window.lastCalc.slabRate + '% slab): ' + window.lastCalc.trueNetWealth + '\n' +
+    'Source: https://iamsaravofficial.com/apps/fd-calculator/';
+  navigator.clipboard.writeText(text).then(function() {
+    alert('Summary copied to clipboard!');
+  }).catch(function() {
+    prompt('Copy your summary:', text);
+  });
+});
+
+calc();
+</script>
+</body>
+</html>
