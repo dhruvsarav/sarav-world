@@ -535,6 +535,14 @@
     .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
     .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
   }
+
+  /* Toast Notification */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; background: var(--surface-3); border: 1px solid var(--accent);
+    color: var(--text); padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.25s ease; z-index: 9999;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
 </style>
 </head>
 <body>
@@ -807,6 +815,8 @@
   </footer>
 </div>
 
+<div class="toast" id="toast"></div>
+
 <script>
 function fmtCr(n) {
   if (isNaN(n) || n === 0) return '₹0';
@@ -955,35 +965,70 @@ document.querySelectorAll('input, select').forEach(function(el) {
   if (el.tagName === 'SELECT' || el.type === 'checkbox') el.addEventListener('change', calc);
 });
 
+function showToast(msg){
+  var t = document.getElementById('toast');
+  if(!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('📋 Summary copied to clipboard!');
+  } catch(e) {
+    showToast('Could not copy to clipboard');
+  }
+  document.body.removeChild(ta);
+}
+
 // Share Handlers
 document.getElementById('btnShareWhatsApp').addEventListener('click', function() {
   if (!window.lastCalc) return;
-  var text = '📊 *My Retirement Projection (NPS + EPF at 60)*\n\n' +
-    '💰 *Spendable Liquid Cash:* ' + window.lastCalc.liquidTotal + '\n' +
-    '🔒 *Locked Annuity Corpus:* ' + window.lastCalc.lockedTotal + '\n' +
-    '🏦 *EPF Corpus:* ' + window.lastCalc.epfCorpus + '\n' +
-    '📈 *NPS Corpus:* ' + window.lastCalc.npsCorpus + '\n' +
-    '🛡️ *Estimated Monthly Pension:* ' + window.lastCalc.totalPension + '/mo\n' +
-    '📉 *Today\'s Real Purchasing Power:* ' + window.lastCalc.realLiquid + '\n\n' +
-    'Calculate your retirement split: https://iamsaravofficial.com/apps/retirement-planner/';
+  var text = [
+    '📊 *My Retirement Projection (NPS + EPF at 60)*',
+    '----------------------------------------',
+    '💰 *Spendable Liquid Cash:* ' + window.lastCalc.liquidTotal,
+    '🔒 *Locked Annuity Corpus:* ' + window.lastCalc.lockedTotal,
+    '🏦 *EPF Corpus (100% Tax-Free):* ' + window.lastCalc.epfCorpus,
+    '📈 *NPS Corpus:* ' + window.lastCalc.npsCorpus,
+    '🛡️ *Estimated Monthly Pension:* ' + window.lastCalc.totalPension + '/mo',
+    '📉 *Today\'s Real Purchasing Power:* ' + window.lastCalc.realLiquid,
+    '----------------------------------------',
+    'Calculate yours free: https://iamsaravofficial.com/apps/retirement-planner/'
+  ].join('\n');
   window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
 });
 
 document.getElementById('btnCopySummary').addEventListener('click', function() {
   if (!window.lastCalc) return;
-  var text = 'NPS + EPF Retirement Calculation Summary:\n' +
-    'Liquid at 60: ' + window.lastCalc.liquidTotal + '\n' +
-    'Locked Annuity: ' + window.lastCalc.lockedTotal + '\n' +
-    'EPF Corpus: ' + window.lastCalc.epfCorpus + '\n' +
-    'NPS Corpus: ' + window.lastCalc.npsCorpus + '\n' +
-    'Est. Monthly Pension: ' + window.lastCalc.totalPension + '/mo\n' +
-    'Real Purchasing Power: ' + window.lastCalc.realLiquid + '\n' +
-    'Source: https://iamsaravofficial.com/apps/retirement-planner/';
-  navigator.clipboard.writeText(text).then(function() {
-    alert('Summary copied to clipboard!');
-  }).catch(function() {
-    prompt('Copy your summary:', text);
-  });
+  var text = [
+    '📊 Retirement Projection Summary (NPS + EPF at 60)',
+    '----------------------------------------',
+    '• Spendable Liquid Cash at 60: ' + window.lastCalc.liquidTotal,
+    '• Permanently Locked Annuity: ' + window.lastCalc.lockedTotal,
+    '• EPF Final Corpus (100% Tax-Free): ' + window.lastCalc.epfCorpus,
+    '• NPS Final Corpus: ' + window.lastCalc.npsCorpus,
+    '• Estimated Monthly Pension: ' + window.lastCalc.totalPension + '/mo',
+    '• Today\'s Real Purchasing Power: ' + window.lastCalc.realLiquid,
+    '----------------------------------------',
+    'Source: https://iamsaravofficial.com/apps/retirement-planner/'
+  ].join('\n');
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      showToast('📋 Summary copied to clipboard!');
+    }).catch(function() {
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
 });
 
 // Ecosystem Dropdown Click & Outside-Click Toggle
@@ -1068,9 +1113,9 @@ function saveRetirementScenario() {
   try {
     localStorage.setItem(RETIRE_HIST_KEY, JSON.stringify(list));
     renderRetirementHistory();
-    alert('Scenario saved to history! 💾');
+    showToast('Scenario saved to history! 💾');
   } catch(e) {
-    alert('Could not save to localStorage.');
+    showToast('Could not save to localStorage.');
   }
 }
 function loadRetirementScenario(idx) {

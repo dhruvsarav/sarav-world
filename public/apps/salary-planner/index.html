@@ -759,7 +759,6 @@
           <button onclick="printPlan()">🖨️ Print / Save PDF</button>
           <button onclick="copyPlanSummary()">📋 Copy Plan Summary</button>
           <button onclick="savePlanToHistory()">💾 Save to History</button>
-          <button onclick="resetDefaults()">↺ Reset</button>
         </div>
       </div>
 
@@ -1117,11 +1116,30 @@ function generateSummaryText(){
 }
 
 function copyPlanSummary(){
-  navigator.clipboard.writeText(generateSummaryText()).then(function(){
-    showToast('Summary copied to clipboard!');
-  }).catch(function(){
-    showToast('Failed to copy. Please allow clipboard permissions.');
-  });
+  var text = generateSummaryText();
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('📋 Summary copied to clipboard!');
+    }).catch(function(){
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('📋 Summary copied to clipboard!');
+  } catch(e) {
+    showToast('Could not copy to clipboard');
+  }
+  document.body.removeChild(ta);
 }
 
 function shareWhatsApp(){
