@@ -591,7 +591,7 @@
 
 
   @media print {
-    .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, footer { display: none !important; }
+    .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, #historyCard, footer { display: none !important; }
     body { background: #fff !important; color: #000 !important; }
     .card, .hero-card { border: 1px solid #ccc !important; background: #fff !important; box-shadow: none !important; }
   }
@@ -904,10 +904,16 @@
       <!-- Action Bar -->
       <div class="actionbar">
         <button class="btn primary" onclick="shareQuote()">
-          <span>📱 Share Loan Quote (WhatsApp)</span>
+          <span>📱 Share on WhatsApp</span>
+        </button>
+        <button class="btn" onclick="window.print()">
+          <span>🖨️ Print / Save PDF</span>
         </button>
         <button class="btn" onclick="copySummary()">
           <span>📋 Copy Summary</span>
+        </button>
+        <button class="btn" onclick="saveLoanQuoteToHistory()">
+          <span>💾 Save to History</span>
         </button>
       </div>
 
@@ -915,8 +921,17 @@
 
   </div>
 
+  <!-- Saved Quotes / History Box -->
+  <div class="card" id="historyCard" style="display:none; margin-top:24px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h3 style="margin:0; font-size:16px; color:var(--text-dark);">📜 Saved Loan Quotes</h3>
+      <button class="btn" style="padding:4px 10px; font-size:11px; color:var(--neg-red); flex:none; min-width:auto;" onclick="clearLoanHistory()">Clear All</button>
+    </div>
+    <div id="historyList" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
+
   <footer>
-    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
     <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 </div>
@@ -1306,8 +1321,90 @@
     });
   }
 
+  // Gold Loan Quote Persistence
+  const LOAN_HIST_KEY = 'gold_loan_quotes_v1';
+  function getLoanHistory() {
+    try {
+      return JSON.parse(localStorage.getItem(LOAN_HIST_KEY)) || [];
+    } catch(e) {
+      return [];
+    }
+  }
+  function saveLoanQuoteToHistory() {
+    if(!lastLoanResult) return;
+    const r = lastLoanResult;
+    const dateStr = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+    const item = {
+      date: dateStr,
+      purity: r.purityLabel,
+      netWeight: r.netWeight,
+      grossWeight: document.getElementById('grossWeight').value,
+      puritySelect: document.getElementById('puritySelect').value,
+      stoneWeight: document.getElementById('stoneWeight').value,
+      repaymentMode: document.getElementById('repaymentMode').value,
+      tenureMonths: document.getElementById('tenureMonths').value,
+      interestRate: document.getElementById('interestRate').value,
+      loanAmount: r.loanAmount,
+      monthlyVal: r.monthlyVal,
+      totalRepayment: r.totalRepayment
+    };
+    const list = getLoanHistory();
+    list.unshift(item);
+    if(list.length > 10) list.splice(10);
+    localStorage.setItem(LOAN_HIST_KEY, JSON.stringify(list));
+    renderLoanHistory();
+    alert('Loan quote saved to history! 💾');
+  }
+  function loadLoanQuoteFromHistory(idx) {
+    const list = getLoanHistory();
+    const item = list[idx];
+    if(!item) return;
+    document.getElementById('grossWeight').value = item.grossWeight;
+    document.getElementById('puritySelect').value = item.puritySelect;
+    document.getElementById('stoneWeight').value = item.stoneWeight;
+    document.getElementById('repaymentMode').value = item.repaymentMode;
+    document.getElementById('tenureMonths').value = item.tenureMonths;
+    document.getElementById('interestRate').value = item.interestRate;
+    calculate();
+  }
+  function deleteLoanQuoteFromHistory(idx) {
+    const list = getLoanHistory();
+    list.splice(idx, 1);
+    localStorage.setItem(LOAN_HIST_KEY, JSON.stringify(list));
+    renderLoanHistory();
+  }
+  function clearLoanHistory() {
+    if(confirm('Clear all saved gold loan quotes?')) {
+      localStorage.removeItem(LOAN_HIST_KEY);
+      renderLoanHistory();
+    }
+  }
+  function renderLoanHistory() {
+    const list = getLoanHistory();
+    const card = document.getElementById('historyCard');
+    const container = document.getElementById('historyList');
+    if(!list.length) {
+      card.style.display = 'none';
+      return;
+    }
+    card.style.display = 'block';
+    container.innerHTML = list.map((item, idx) => {
+      return '<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--bg-warm); border:1px solid var(--border-gold); border-radius:8px; font-size:13px;">' +
+        '<div>' +
+          '<div style="font-weight:600; color:var(--text-dark);">' + fmtMoney(item.loanAmount) + ' &bull; ' + item.purity + ' (' + item.netWeight.toFixed(2) + ' gm)</div>' +
+          '<div style="font-size:11px; color:var(--text-muted);">' + item.date + ' &bull; Total Repayment: ' + fmtMoney(item.totalRepayment) + '</div>' +
+        '</div>' +
+        '<div style="display:flex; gap:8px;">' +
+          '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; flex:none; min-width:auto;" onclick="loadLoanQuoteFromHistory(' + idx + ')">Load</button>' +
+          '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; color:var(--neg-red); flex:none; min-width:auto;" onclick="deleteLoanQuoteFromHistory(' + idx + ')">✕</button>' +
+        '</div>' +
+      '</div>';
+    }).join('');
+  }
+
   // Initial Calculation Run
   calculate();
+  renderLoanHistory();
 </script>
 
 </body>

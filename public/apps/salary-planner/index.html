@@ -164,8 +164,8 @@
     color: var(--accent); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
   }
   .header-left h1 { font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; }
-  .header-left .sub { color: var(--text-dim); font-size: 14px; max-width: 720px; line-height: 1.5; margin: 0; }
-  .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .header-presets { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
   .theme-selector {
     display: inline-flex;
     background: var(--surface-2);
@@ -196,7 +196,7 @@
   }
   .preset-chip {
     background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
-    padding: 5px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.15s ease;
+    padding: 5px 11px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.15s ease;
   }
   .preset-chip:hover { border-color: var(--accent); color: var(--accent); }
 
@@ -302,7 +302,7 @@
   .actions-bar {
     display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
   }
-  .actions-bar button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 13px; }
+  .actions-bar button { flex: 1; min-width: 130px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 12.5px; }
 
   /* Assumptions footer */
   .assumptions-box {
@@ -311,6 +311,43 @@
   }
   .assumptions-box b { color: var(--text-dim); }
 
+  /* History Box */
+  .history-box {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 24px;
+  }
+  .history-box-head {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
+  }
+  .history-box-head h3 { font-size: 14px; margin: 0; display: flex; align-items: center; gap: 8px; color: var(--text); }
+  .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 280px; overflow-y: auto; }
+  .history-item {
+    display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px; font-size: 13px;
+  }
+  .history-item .h-info { display: flex; flex-direction: column; gap: 2px; }
+  .history-item .h-title { font-weight: 600; color: var(--text); }
+  .history-item .h-meta { font-size: 11px; color: var(--text-faint); }
+  .history-item .h-actions { display: flex; align-items: center; gap: 8px; }
+  .h-btn { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-3); color: var(--text-dim); cursor: pointer; }
+  .h-btn:hover { color: var(--accent); border-color: var(--accent); }
+  .h-btn.del { color: var(--danger); border-color: var(--danger-soft); }
+  .h-btn.del:hover { background: var(--danger-soft); }
+
+  /* Standardized Footer */
+  footer {
+    padding: 36px 0 16px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 12px;
+    border-top: 1px solid var(--border-soft);
+    margin-top: 40px;
+    width: 100%;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer p { margin: 4px 0; }
+  footer b { color: var(--text); }
+
   /* Toast Notification */
   #toast {
     position: fixed; bottom: 24px; right: 24px; background: var(--surface-3); border: 1px solid var(--accent);
@@ -318,6 +355,18 @@
     box-shadow: 0 8px 24px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.25s ease; z-index: 9999;
   }
   #toast.show { transform: translateY(0); opacity: 1; }
+
+  @media print {
+    .ecosystem-bar, .header-right, .header-presets, .actions-bar, .history-box, #toast, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+    .app-header { border-bottom: 2px solid #333 !important; }
+    .dashboard-grid { display: block !important; }
+    .inputs-col, .results-col { width: 100% !important; margin-bottom: 20px !important; }
+    .card, .scorecard-card { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
+    .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
+    .waterfall-bar { border: 1px solid #999 !important; }
+  }
 </style>
 </head>
 <body>
@@ -365,11 +414,14 @@
       <div class="eyebrow">💰 Wealth Engineering &amp; Cashflow Planning</div>
       <h1>Salary Planner</h1>
       <p class="sub">Sequenced like a fiduciary advisor: safety net first, debt-aware HLV insurance, then investing — not a generic 50/30/20 formula. Features a Projected Financial Health Score (FHS) calibrated with Family Intelligence.</p>
+      <div class="header-presets">
+        <span style="font-size:11.5px; color:var(--text-faint); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Presets:</span>
+        <button type="button" class="preset-chip" onclick="applyPreset('starter')">🐣 Early Career (₹45k)</button>
+        <button type="button" class="preset-chip" onclick="applyPreset('mid')">👨‍👩‍👧 Mid-Career (₹1.2L)</button>
+        <button type="button" class="preset-chip" onclick="applyPreset('senior')">💼 Leader / Sole Earner (₹2.5L)</button>
+      </div>
     </div>
-    <div class="header-actions">
-      <button class="preset-chip" onclick="applyPreset('starter')">🐣 Early Career (₹45k)</button>
-      <button class="preset-chip" onclick="applyPreset('mid')">👨‍👩‍👧 Mid-Career (₹1.2L)</button>
-      <button class="preset-chip" onclick="applyPreset('senior')">💼 Leader / Sole Earner (₹2.5L)</button>
+    <div class="header-right">
       <div class="theme-selector" id="themeSelector">
         <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
         <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
@@ -703,14 +755,25 @@
         </div>
 
         <div class="actions-bar">
-          <button class="primary" onclick="copyPlanSummary()">📋 Copy Plan Summary</button>
-          <button onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+          <button class="primary" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
+          <button onclick="printPlan()">🖨️ Print / Save PDF</button>
+          <button onclick="copyPlanSummary()">📋 Copy Plan Summary</button>
+          <button onclick="savePlanToHistory()">💾 Save to History</button>
           <button onclick="resetDefaults()">↺ Reset</button>
         </div>
       </div>
 
     </div>
 
+  </div>
+
+  <!-- Saved Scenarios / History Box -->
+  <div class="history-box" id="historyCard" style="display:none;">
+    <div class="history-box-head">
+      <h3>📜 Saved Salary Planning Scenarios</h3>
+      <button class="h-btn del" onclick="clearPlanHistory()">Clear All</button>
+    </div>
+    <div class="history-list" id="historyList"></div>
   </div>
 
   <!-- Educational & Tax Assumptions -->
@@ -726,7 +789,7 @@
 
   <!-- Standardized Footer -->
   <footer>
-    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
     <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 
@@ -1066,12 +1129,122 @@ function shareWhatsApp(){
   window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
 }
 
+function printPlan(){
+  window.print();
+}
+
+// Scenario History Persistence in localStorage
+var HISTORY_KEY = 'salary_planner_scenarios_v1';
+
+function getHistory(){
+  try {
+    return JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+
+function savePlanToHistory(){
+  var takeHome = Number(document.getElementById('takeHome').value) || 0;
+  var score = document.getElementById('fhsScore').textContent;
+  var surplus = document.getElementById('wfSurplus').textContent;
+  var dateStr = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+
+  var state = {
+    date: dateStr,
+    takeHome: takeHome,
+    fixedExpenses: document.getElementById('fixedExpenses').value,
+    variableExpenses: document.getElementById('variableExpenses').value,
+    emiSpend: document.getElementById('emiSpend').value,
+    loanOutstanding: document.getElementById('loanOutstanding').value,
+    termCover: document.getElementById('termCover').value,
+    liquidSavings: document.getElementById('liquidSavings').value,
+    dependents: document.getElementById('dependents').value,
+    stability: document.getElementById('stability').value,
+    cityTier: document.getElementById('cityTier').value,
+    riskAppetite: document.getElementById('riskAppetite').value,
+    goalYears: document.getElementById('goalYears').value,
+    score: score,
+    surplus: surplus
+  };
+
+  var list = getHistory();
+  list.unshift(state);
+  if(list.length > 10) list = list.slice(0, 10);
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+    renderPlanHistory();
+    showToast('Plan saved to history! 💾');
+  } catch(e) {
+    showToast('Could not save to localStorage.');
+  }
+}
+
+function loadPlanFromHistory(idx){
+  var list = getHistory();
+  var s = list[idx];
+  if(!s) return;
+  document.getElementById('takeHome').value = s.takeHome || '';
+  document.getElementById('fixedExpenses').value = s.fixedExpenses || '';
+  document.getElementById('variableExpenses').value = s.variableExpenses || '';
+  document.getElementById('emiSpend').value = s.emiSpend || '';
+  document.getElementById('loanOutstanding').value = s.loanOutstanding || '';
+  document.getElementById('termCover').value = s.termCover || '';
+  document.getElementById('liquidSavings').value = s.liquidSavings || '';
+  document.getElementById('dependents').value = s.dependents || 'none';
+  document.getElementById('stability').value = s.stability || 'stable';
+  document.getElementById('cityTier').value = s.cityTier || 'tier1';
+  document.getElementById('riskAppetite').value = s.riskAppetite || 'moderate';
+  document.getElementById('goalYears').value = s.goalYears || '';
+  calc();
+  showToast('Loaded scenario from ' + s.date);
+}
+
+function deletePlanFromHistory(idx){
+  var list = getHistory();
+  list.splice(idx, 1);
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+  renderPlanHistory();
+}
+
+function clearPlanHistory(){
+  if(confirm('Clear all saved salary planning scenarios?')){
+    localStorage.removeItem(HISTORY_KEY);
+    renderPlanHistory();
+    showToast('All saved scenarios cleared.');
+  }
+}
+
+function renderPlanHistory(){
+  var list = getHistory();
+  var card = document.getElementById('historyCard');
+  var container = document.getElementById('historyList');
+  if(!list.length){
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = 'block';
+  container.innerHTML = list.map(function(item, idx){
+    return '<div class="history-item">' +
+      '<div class="h-info">' +
+        '<div class="h-title">₹' + Number(item.takeHome).toLocaleString('en-IN') + '/mo &bull; Score ' + item.score + '/100</div>' +
+        '<div class="h-meta">' + item.date + ' &bull; Surplus: ' + item.surplus + '</div>' +
+      '</div>' +
+      '<div class="h-actions">' +
+        '<button type="button" class="h-btn" onclick="loadPlanFromHistory(' + idx + ')">Load</button>' +
+        '<button type="button" class="h-btn del" onclick="deletePlanFromHistory(' + idx + ')">✕</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
 // Event Listeners
 document.querySelectorAll('input, select').forEach(function(el){
   el.addEventListener('input', calc);
   if(el.tagName === 'SELECT') el.addEventListener('change', calc);
 });
 calc();
+renderPlanHistory();
 </script>
 </body>
 </html>

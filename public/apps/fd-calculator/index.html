@@ -44,6 +44,27 @@
     --radius: 14px;
     --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   }
+  [data-theme="light"] {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F7;
+    --surface-3: #E4E9F0;
+    --border: #D1D8E2;
+    --border-soft: #E2E8F0;
+    --text: #1A202C;
+    --text-dim: #4A5568;
+    --text-faint: #718096;
+    --accent: #D97706;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(217, 119, 6, 0.14);
+    --accent2: #0D9488;
+    --accent2-soft: rgba(13, 148, 136, 0.14);
+    --danger: #DC2626;
+    --danger-soft: rgba(220, 38, 38, 0.14);
+    --success: #16A34A;
+    --success-soft: rgba(22, 163, 74, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -193,7 +214,50 @@
     padding: 32px 20px 60px;
   }
   .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
     margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  .page-header-text {
+    flex: 1;
+    min-width: 280px;
+  }
+  .header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .theme-selector {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
   }
   .eyebrow {
     font-size: 12px;
@@ -535,7 +599,7 @@
   footer a:hover { color: var(--accent); }
 
   @media print {
-    .ecosystem-bar, .actionbar, .note, footer { display: none !important; }
+    .ecosystem-bar, .header-right, .actionbar, .note, #historyCard, footer { display: none !important; }
     body { background: #fff !important; color: #000 !important; }
     .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
     .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
@@ -587,9 +651,18 @@
 <div class="container">
 
   <div class="page-header">
-    <div class="eyebrow">Fixed Deposit Calculator</div>
-    <h1>Cumulative vs payout — and the TDS surprise</h1>
-    <p class="sub">Cumulative FDs get taxed annually on interest you haven't received yet. Payout FDs never compound. And bank TDS is only advance withholding: your actual slab determines what you keep.</p>
+    <div class="page-header-text">
+      <div class="eyebrow">Fixed Deposit Calculator</div>
+      <h1>Cumulative vs payout — and the TDS surprise</h1>
+      <p class="sub">Cumulative FDs get taxed annually on interest you haven't received yet. Payout FDs never compound. And bank TDS is only advance withholding: your actual slab determines what you keep.</p>
+    </div>
+    <div class="header-right">
+      <div class="theme-selector" id="themeSelector">
+        <button type="button" class="theme-btn active" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+        <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+        <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+      </div>
+    </div>
   </div>
 
   <div class="calc-grid">
@@ -793,8 +866,14 @@
         <button class="btn primary" id="btnShareWhatsApp">
           <span>📱 Share on WhatsApp</span>
         </button>
+        <button class="btn" id="btnPrintPDF" onclick="window.print()">
+          <span>🖨️ Print / Save PDF</span>
+        </button>
         <button class="btn" id="btnCopySummary">
           <span>📋 Copy Summary</span>
+        </button>
+        <button class="btn" id="btnSaveHistory" onclick="saveFdScenario()">
+          <span>💾 Save to History</span>
         </button>
       </div>
 
@@ -804,8 +883,17 @@
     </div>
   </div>
 
+  <!-- Saved Scenarios / History Box -->
+  <div class="section" id="historyCard" style="display:none; margin-top:24px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h2 style="margin:0; font-size:16px;">📜 Saved Fixed Deposit Scenarios</h2>
+      <button class="btn" style="padding:4px 10px; font-size:11px; color:var(--danger); flex:none; min-width:auto;" onclick="clearFdHistory()">Clear All</button>
+    </div>
+    <div id="historyList" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
+
   <footer>
-    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
     <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 
@@ -1076,7 +1164,120 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// Theme Engine
+function setTheme(theme) {
+  if (theme === 'auto') {
+    localStorage.removeItem('theme_preference');
+    applyAutoTheme();
+  } else {
+    localStorage.setItem('theme_preference', theme);
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+  updateThemeButtons();
+}
+function applyAutoTheme() {
+  const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+}
+function updateThemeButtons() {
+  const current = localStorage.getItem('theme_preference') || 'auto';
+  document.querySelectorAll('.theme-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === current);
+  });
+}
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+  if (!localStorage.getItem('theme_preference')) applyAutoTheme();
+});
+(function() {
+  const saved = localStorage.getItem('theme_preference');
+  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  else applyAutoTheme();
+  updateThemeButtons();
+})();
+
+// FD Scenario History Persistence
+var FD_HIST_KEY = 'fd_calculator_scenarios_v1';
+function getFdHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(FD_HIST_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+function saveFdScenario() {
+  if (!window.lastCalc) return;
+  var dateStr = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  var state = {
+    date: dateStr,
+    principal: document.getElementById('principal').value,
+    rate: document.getElementById('rate').value,
+    years: document.getElementById('years').value,
+    months: document.getElementById('months').value,
+    citizen: document.getElementById('citizen').value,
+    mode: window.lastCalc.mode,
+    grossMaturity: window.lastCalc.grossMaturity,
+    totalInterest: window.lastCalc.totalInterest,
+    trueNetWealth: window.lastCalc.trueNetWealth
+  };
+  var list = getFdHistory();
+  list.unshift(state);
+  if (list.length > 10) list = list.slice(0, 10);
+  try {
+    localStorage.setItem(FD_HIST_KEY, JSON.stringify(list));
+    renderFdHistory();
+    alert('FD scenario saved to history! 💾');
+  } catch(e) {
+    alert('Could not save to localStorage.');
+  }
+}
+function loadFdScenario(idx) {
+  var list = getFdHistory();
+  var s = list[idx];
+  if (!s) return;
+  document.getElementById('principal').value = s.principal || '500000';
+  document.getElementById('rate').value = s.rate || '7.1';
+  document.getElementById('years').value = s.years || '3';
+  document.getElementById('months').value = s.months || '0';
+  document.getElementById('citizen').value = s.citizen || 'general';
+  calc();
+}
+function deleteFdScenario(idx) {
+  var list = getFdHistory();
+  list.splice(idx, 1);
+  localStorage.setItem(FD_HIST_KEY, JSON.stringify(list));
+  renderFdHistory();
+}
+function clearFdHistory() {
+  if (confirm('Clear all saved FD scenarios?')) {
+    localStorage.removeItem(FD_HIST_KEY);
+    renderFdHistory();
+  }
+}
+function renderFdHistory() {
+  var list = getFdHistory();
+  var card = document.getElementById('historyCard');
+  var container = document.getElementById('historyList');
+  if (!list.length) {
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = 'block';
+  container.innerHTML = list.map(function(item, idx) {
+    return '<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--surface-2); border:1px solid var(--border-soft); border-radius:8px; font-size:13px;">' +
+      '<div>' +
+        '<div style="font-weight:600; color:var(--text);">Deposit ₹' + Number(item.principal).toLocaleString('en-IN') + ' &bull; Maturity: ' + item.grossMaturity + '</div>' +
+        '<div style="font-size:11px; color:var(--text-faint);">' + item.date + ' &bull; ' + item.mode + ' (' + item.rate + '%) &bull; Interest: ' + item.totalInterest + '</div>' +
+      '</div>' +
+      '<div style="display:flex; gap:8px;">' +
+        '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; flex:none; min-width:auto;" onclick="loadFdScenario(' + idx + ')">Load</button>' +
+        '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; color:var(--danger); flex:none; min-width:auto;" onclick="deleteFdScenario(' + idx + ')">✕</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
 calc();
+renderFdHistory();
 </script>
 </body>
 </html>

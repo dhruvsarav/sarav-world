@@ -501,7 +501,7 @@
   footer a { color: var(--gold-primary); }
 
   @media print {
-    .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, .note, footer { display: none !important; }
+    .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, .note, #historyCard, footer { display: none !important; }
     body { background: #fff !important; color: #000 !important; }
     .hero, .section { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
     .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
@@ -712,8 +712,14 @@
         <button class="btn primary" id="btnShareWhatsApp">
           <span>📱 Share on WhatsApp</span>
         </button>
+        <button class="btn" id="btnPrintPDF" onclick="window.print()">
+          <span>🖨️ Print / Save PDF</span>
+        </button>
         <button class="btn" id="btnCopySummary">
           <span>📋 Copy Summary</span>
+        </button>
+        <button class="btn" id="btnSaveHistory" onclick="saveDigiGoldScenario()">
+          <span>💾 Save to History</span>
         </button>
       </div>
 
@@ -723,8 +729,17 @@
     </div>
   </div>
 
+  <!-- Saved Scenarios / History Box -->
+  <div class="section" id="historyCard" style="display:none; margin-top:24px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+      <h2 style="margin:0; font-size:16px;">📜 Saved DigiGold Scenarios</h2>
+      <button class="btn" style="padding:4px 10px; font-size:11px; color:var(--neg-red); flex:none; min-width:auto;" onclick="clearDigiGoldHistory()">Clear All</button>
+    </div>
+    <div id="historyList" style="display:flex; flex-direction:column; gap:10px;"></div>
+  </div>
+
   <footer>
-    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
     <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 
@@ -907,7 +922,90 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+// DigiGold Scenario History Persistence
+var DGC_HIST_KEY = 'digigold_scenarios_v1';
+function getDigiGoldHistory() {
+  try {
+    return JSON.parse(localStorage.getItem(DGC_HIST_KEY)) || [];
+  } catch(e) {
+    return [];
+  }
+}
+function saveDigiGoldScenario() {
+  if (!window.lastCalc) return;
+  var dateStr = new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit' });
+  var state = {
+    date: dateStr,
+    sipAmount: document.getElementById('sipAmount').value,
+    months: document.getElementById('months').value,
+    currentRate: document.getElementById('currentRate').value,
+    growthRate: document.getElementById('growthRate').value,
+    spread: document.getElementById('spread').value,
+    slabRate: document.getElementById('slabRate').value,
+    netValue: window.lastCalc.netValue,
+    totalInvested: window.lastCalc.totalInvested,
+    totalGrams: window.lastCalc.totalGrams
+  };
+  var list = getDigiGoldHistory();
+  list.unshift(state);
+  if (list.length > 10) list = list.slice(0, 10);
+  try {
+    localStorage.setItem(DGC_HIST_KEY, JSON.stringify(list));
+    renderDigiGoldHistory();
+    alert('DigiGold scenario saved to history! 💾');
+  } catch(e) {
+    alert('Could not save to localStorage.');
+  }
+}
+function loadDigiGoldScenario(idx) {
+  var list = getDigiGoldHistory();
+  var s = list[idx];
+  if (!s) return;
+  document.getElementById('sipAmount').value = s.sipAmount || '5000';
+  document.getElementById('months').value = s.months || '36';
+  document.getElementById('currentRate').value = s.currentRate || '7200';
+  document.getElementById('growthRate').value = s.growthRate || '10';
+  document.getElementById('spread').value = s.spread || '3';
+  document.getElementById('slabRate').value = s.slabRate || '30';
+  calc();
+}
+function deleteDigiGoldScenario(idx) {
+  var list = getDigiGoldHistory();
+  list.splice(idx, 1);
+  localStorage.setItem(DGC_HIST_KEY, JSON.stringify(list));
+  renderDigiGoldHistory();
+}
+function clearDigiGoldHistory() {
+  if (confirm('Clear all saved DigiGold scenarios?')) {
+    localStorage.removeItem(DGC_HIST_KEY);
+    renderDigiGoldHistory();
+  }
+}
+function renderDigiGoldHistory() {
+  var list = getDigiGoldHistory();
+  var card = document.getElementById('historyCard');
+  var container = document.getElementById('historyList');
+  if (!list.length) {
+    card.style.display = 'none';
+    return;
+  }
+  card.style.display = 'block';
+  container.innerHTML = list.map(function(item, idx) {
+    return '<div style="display:flex; justify-content:space-between; align-items:center; padding:10px 14px; background:var(--bg-warm); border:1px solid var(--border-gold); border-radius:8px; font-size:13px;">' +
+      '<div>' +
+        '<div style="font-weight:600; color:var(--text-dark);">₹' + Number(item.sipAmount).toLocaleString('en-IN') + '/mo &bull; Net: ' + item.netValue + '</div>' +
+        '<div style="font-size:11px; color:var(--text-muted);">' + item.date + ' &bull; Invested: ' + item.totalInvested + ' &bull; Gold: ' + item.totalGrams + '</div>' +
+      '</div>' +
+      '<div style="display:flex; gap:8px;">' +
+        '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; flex:none; min-width:auto;" onclick="loadDigiGoldScenario(' + idx + ')">Load</button>' +
+        '<button type="button" class="btn" style="padding:4px 8px; font-size:11px; color:var(--neg-red); flex:none; min-width:auto;" onclick="deleteDigiGoldScenario(' + idx + ')">✕</button>' +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
 calc();
+renderDigiGoldHistory();
 </script>
 </body>
 </html>
