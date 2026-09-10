@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Salary Planner — Goal-Based Cashflow, Safety Net & Health Score | Sarav's World</title>
+<meta name="description" content="Sequenced like a fiduciary advisor: safety net first, debt-aware HLV insurance, then investing. Includes Projected Financial Health Score (FHS) and cashflow waterfall.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/salary-planner/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/salary-planner/">
+<meta property="og:title" content="Salary Planner — Goal-Based Cashflow & Projected Health Score">
+<meta property="og:description" content="Sequenced like an advisor: safety net first, debt-aware HLV insurance, then investing. Includes Projected Financial Health Score.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Salary Planner — Goal-Based Cashflow & Projected Health Score">
+<meta name="twitter:description" content="Sequenced like an advisor: safety net first, debt-aware HLV insurance, then investing.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button { font-family: inherit; font-size: 14px; color: var(--text); }
+  input, select {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 12px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  label { display: block; font-size: 12.5px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+    transition: all 0.12s ease;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
+  .eco-tokenomics {
+    color: var(--accent2) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px; background: var(--accent2-soft);
+  }
+
+  /* Main Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* Top App Bar */
+  .app-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 20px; margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-soft);
+    flex-wrap: wrap;
+  }
+  .header-left .eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .header-left h1 { font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; }
+  .header-left .sub { color: var(--text-dim); font-size: 14px; max-width: 720px; line-height: 1.5; margin: 0; }
+  .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .theme-toggle {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-chip {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
+    padding: 5px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.15s ease;
+  }
+  .preset-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Layout Grid */
+  .dashboard-grid {
+    display: grid; grid-template-columns: 460px 1fr; gap: 24px; align-items: start;
+  }
+  @media(max-width: 1024px) {
+    .dashboard-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Card */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 20px; margin-bottom: 18px; box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 15px; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .card-desc { font-size: 12.5px; color: var(--text-faint); margin-bottom: 14px; line-height: 1.45; }
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .row2 { display: flex; gap: 10px; }
+  .row2 .field { flex: 1; }
+  .checkline {
+    display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim);
+    margin: 8px 0 14px; cursor: pointer;
+  }
+
+  /* Executive Score Hero */
+  .fhs-hero {
+    background: linear-gradient(145deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 20px;
+    box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .fhs-hero::after {
+    content: ""; position: absolute; top: 0; right: 0; width: 140px; height: 140px;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .fhs-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+  .fhs-score-wrap { display: flex; align-items: baseline; gap: 8px; }
+  .fhs-score { font-size: 48px; font-weight: 700; color: var(--text); font-family: 'IBM Plex Mono', monospace; line-height: 1; }
+  .fhs-max { font-size: 16px; color: var(--text-faint); }
+  .fhs-status { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+  .fhs-status.ok { background: var(--success-soft); color: var(--success); }
+  .fhs-status.warn { background: var(--accent-soft); color: var(--accent); }
+  .fhs-status.bad { background: var(--danger-soft); color: var(--danger); }
+  .fhs-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; }
+  .fhs-buckets { display: flex; flex-direction: column; gap: 8px; }
+  .fhs-bucket { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
+  .fhs-bucket .bname { width: 90px; color: var(--text-dim); flex-shrink: 0; }
+  .fhs-bucket .btrack { flex: 1; height: 8px; background: var(--border-soft); border-radius: 4px; overflow: hidden; }
+  .fhs-bucket .bfill { height: 100%; background: var(--accent); transition: width 0.3s ease; }
+  .fhs-bucket .bfill.dim { background: var(--text-faint); opacity: 0.6; }
+  .fhs-bucket .bval { width: 44px; text-align: right; color: var(--text-faint); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; }
+  .fhs-note { font-size: 11.5px; color: var(--text-faint); margin-top: 12px; line-height: 1.45; border-top: 1px solid var(--border-soft); padding-top: 8px; }
+
+  /* Waterfall & Metrics */
+  .waterfall-bar {
+    height: 14px; border-radius: 7px; background: var(--surface-3); display: flex; overflow: hidden; margin: 12px 0 16px;
+  }
+  .wf-segment { height: 100%; transition: width 0.3s ease; }
+  .wf-housing { background: #E2665A; }
+  .wf-debt { background: #E3A63E; }
+  .wf-essentials { background: #4FB0A8; }
+  .wf-dependent { background: #A078E6; }
+  .wf-surplus { background: #5FBF77; }
+
+  .wf-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; margin-bottom: 16px; }
+  .wf-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
+
+  /* Stat Rows */
+  .stat-row {
+    display: flex; justify-content: space-between; align-items: center; padding: 9px 0;
+    border-bottom: 1px solid var(--border-soft); font-size: 13.5px;
+  }
+  .stat-row:last-child { border-bottom: none; }
+  .stat-row .lbl { color: var(--text-dim); }
+  .stat-row .sub { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; }
+  .stat-row .val { font-weight: 600; font-family: 'IBM Plex Mono', monospace; text-align: right; }
+  .stat-row .val.gap { color: var(--danger); }
+  .stat-row .val.met { color: var(--success); }
+
+  /* Surplus Routing Cards */
+  .routing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+  @media(max-width: 640px) { .routing-grid { grid-template-columns: 1fr; } }
+  .route-card {
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 10px; padding: 12px;
+  }
+  .route-card .rhead { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; font-weight: 500; }
+  .route-card .ramt { font-size: 18px; font-weight: 700; color: var(--text); font-family: 'IBM Plex Mono', monospace; }
+  .route-card .rdesc { font-size: 11px; color: var(--text-faint); margin-top: 4px; line-height: 1.35; }
+
+  .badge-tag {
+    display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); font-weight: 500;
+  }
+  .badge-tag.gold { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .badge-tag.teal { border-color: var(--accent2); color: var(--accent2); background: var(--accent2-soft); }
+  .badge-tag.green { border-color: var(--success); color: var(--success); background: var(--success-soft); }
+
+  .actions-bar {
+    display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
+  }
+  .actions-bar button { flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 13px; }
+
+  /* Assumptions footer */
+  .assumptions-box {
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 16px; margin-top: 24px;
+    font-size: 12px; color: var(--text-faint); line-height: 1.6;
+  }
+  .assumptions-box b { color: var(--text-dim); }
+
+  /* Toast Notification */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px; background: var(--surface-3); border: 1px solid var(--accent);
+    color: var(--text); padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.25s ease; z-index: 9999;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/" class="current">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- App Header -->
+  <div class="app-header">
+    <div class="header-left">
+      <div class="eyebrow">💰 Wealth Engineering &amp; Cashflow Planning</div>
+      <h1>Salary Planner</h1>
+      <p class="sub">Sequenced like a fiduciary advisor: safety net first, debt-aware HLV insurance, then investing — not a generic 50/30/20 formula. Features a Projected Financial Health Score (FHS) calibrated with Family Intelligence.</p>
+    </div>
+    <div class="header-actions">
+      <button class="preset-chip" onclick="applyPreset('starter')">🐣 Early Career (₹45k)</button>
+      <button class="preset-chip" onclick="applyPreset('mid')">👨‍👩‍👧 Mid-Career (₹1.2L)</button>
+      <button class="preset-chip" onclick="applyPreset('senior')">💼 Leader / Sole Earner (₹2.5L)</button>
+      <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle theme">☀️ Light</button>
+    </div>
+  </div>
+
+  <div class="dashboard-grid">
+
+    <!-- LEFT COLUMN: INPUTS -->
+    <div class="inputs-col">
+
+      <!-- Income & Retirals -->
+      <div class="card">
+        <div class="card-title">
+          <span>1. Income &amp; Retirals</span>
+          <span class="badge-tag gold">Cash Inflow</span>
+        </div>
+        <div class="card-desc">Start with what actually hits your account. Mandatory EPF and NPS are recognized as saving, not ignored.</div>
+        <div class="field">
+          <label>Monthly Take-Home Salary (₹ in account)</label>
+          <input type="number" id="takeHome" value="70000" step="1000">
+        </div>
+        <div class="field">
+          <label>Monthly EPF + NPS Deductions (Employee + Employer ₹)</label>
+          <input type="number" id="epfNps" value="8000" step="500">
+        </div>
+      </div>
+
+      <!-- Housing & Fixed Obligations -->
+      <div class="card">
+        <div class="card-title">
+          <span>2. Housing &amp; Committed Obligations</span>
+          <span class="badge-tag">Fixed Burn</span>
+        </div>
+        <div class="card-desc">Committed cash outflows that must be serviced every month regardless of circumstances.</div>
+        <div class="field">
+          <label>Housing Cost — Rent or Home Loan EMI (₹/month)</label>
+          <input type="number" id="housingCost" value="20000" step="1000">
+        </div>
+        <label class="checkline">
+          <input type="checkbox" id="housingIsLoan" checked>
+          <span>This is a <b>Home Loan EMI</b> (counts toward FOIR &amp; liability cover)</span>
+        </label>
+        <div class="row2">
+          <div class="field">
+            <label>Other Loan EMIs (Car/Personal/Edu ₹)</label>
+            <input type="number" id="otherEMI" value="5000" step="500">
+          </div>
+          <div class="field">
+            <label>Essential Living Costs (Groceries/Utilities ₹)</label>
+            <input type="number" id="otherEssentials" value="15000" step="500">
+          </div>
+        </div>
+        <div class="field">
+          <label>Dependent &amp; Family Support (₹/month)</label>
+          <input type="number" id="dependentSupport" value="5000" step="500">
+        </div>
+      </div>
+
+      <!-- Profile & Risk Appetite -->
+      <div class="card">
+        <div class="card-title">
+          <span>3. Profile &amp; Risk Dynamics</span>
+          <span class="badge-tag teal">Context</span>
+        </div>
+        <div class="card-desc">Calibrates emergency fund runway, health benchmarks, and insurance needs.</div>
+        <div class="row2">
+          <div class="field">
+            <label>Life Stage</label>
+            <select id="lifeStage">
+              <option value="single">Single (No dependents)</option>
+              <option value="married">Married (No kids)</option>
+              <option value="married_kids" selected>Married with kids</option>
+              <option value="sole_earner">Sole earner supporting parents</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Income Stability</label>
+            <select id="stability">
+              <option value="stable" selected>Stable salaried (MNC/Govt)</option>
+              <option value="variable">Variable (Sales/Startup bonus)</option>
+              <option value="self_employed">Self-employed / Freelance</option>
+            </select>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>City Tier</label>
+            <select id="cityTier">
+              <option value="metro" selected>Metro (Mumbai, Blr, Chn, Del)</option>
+              <option value="tier2">Tier-2 City</option>
+              <option value="tier3">Tier-3 / Town</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Risk Appetite</label>
+            <select id="riskAppetite">
+              <option value="conservative">Conservative (Debt-focused)</option>
+              <option value="balanced" selected>Balanced (Index + Hybrid)</option>
+              <option value="aggressive">Aggressive (High Equity)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current Safety Net -->
+      <div class="card">
+        <div class="card-title">
+          <span>4. Existing Safety Net</span>
+          <span class="badge-tag">Current Shield</span>
+        </div>
+        <div class="card-desc">Enter existing shields. Leave 0 if not started; reveals exact protection deficits.</div>
+        <div class="field">
+          <label>Existing Emergency Liquid Funds Saved (₹)</label>
+          <input type="number" id="existingEF" value="50000" step="5000">
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label>Existing Term Life Cover (₹ sum assured)</label>
+            <input type="number" id="existingTermCover" value="2000000" step="500000">
+          </div>
+          <div class="field">
+            <label>Existing Health Cover (₹ base/floater)</label>
+            <input type="number" id="existingHealthCover" value="300000" step="100000">
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Goal Horizon -->
+      <div class="card">
+        <div class="card-title">
+          <span>5. Goal Time Horizon</span>
+          <span class="badge-tag green">Horizon</span>
+        </div>
+        <div class="card-desc">Schedules your investable surplus into capital protection vs growth assets.</div>
+        <div class="field">
+          <label>Years to Primary Goal (leave blank for general wealth building)</label>
+          <input type="number" id="goalYears" placeholder="e.g. 5" value="">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: SCORECARD, WATERFALL & ADVISORY -->
+    <div class="output-col">
+
+      <!-- FHS Hero Scorecard -->
+      <div class="fhs-hero">
+        <div class="fhs-header">
+          <div class="fhs-score-wrap">
+            <span class="fhs-score" id="fhsScore">0</span>
+            <span class="fhs-max">/ 100</span>
+          </div>
+          <div id="fhsPill" class="fhs-status ok">Healthy Plan</div>
+        </div>
+        <div class="fhs-sub" id="fhsLabel">Projected Financial Health Score if you execute this plan</div>
+        <div class="fhs-buckets">
+          <div class="fhs-bucket"><span class="bname">Savings (30)</span><span class="btrack"><span class="bfill" id="bucketSavings" style="width:0%"></span></span><span class="bval" id="bucketSavingsVal">0/30</span></div>
+          <div class="fhs-bucket"><span class="bname">Budget (20)</span><span class="btrack"><span class="bfill dim" id="bucketBudget" style="width:50%"></span></span><span class="bval" id="bucketBudgetVal">10/20</span></div>
+          <div class="fhs-bucket"><span class="bname">Recurring (20)</span><span class="btrack"><span class="bfill" id="bucketRecurring" style="width:0%"></span></span><span class="bval" id="bucketRecurringVal">0/20</span></div>
+          <div class="fhs-bucket"><span class="bname">Forecast (20)</span><span class="btrack"><span class="bfill dim" id="bucketForecast" style="width:100%"></span></span><span class="bval">20/20</span></div>
+          <div class="fhs-bucket"><span class="bname">Trend (10)</span><span class="btrack"><span class="bfill dim" style="width:100%"></span></span><span class="bval">10/10</span></div>
+        </div>
+        <div class="fhs-note">
+          Calibrated with <b>Family Intelligence</b>: Budget defaults to 10/20 and Forecast to 20/20 (prospective plan ceiling is 90/100; remaining points require real tracked bank reconciliation).
+        </div>
+      </div>
+
+      <!-- Take-Home Cashflow Waterfall -->
+      <div class="card">
+        <div class="card-title">
+          <span>Take-Home Cashflow Waterfall</span>
+          <span class="badge-tag gold" id="surplusBadge">₹0 Surplus</span>
+        </div>
+        <div class="card-desc">Where your net monthly in-hand cash is consumed before new investments.</div>
+
+        <div class="waterfall-bar">
+          <div class="wf-segment wf-housing" id="barHousing" title="Housing" style="width:25%"></div>
+          <div class="wf-segment wf-debt" id="barDebt" title="Other EMIs" style="width:10%"></div>
+          <div class="wf-segment wf-essentials" id="barEssentials" title="Essentials" style="width:20%"></div>
+          <div class="wf-segment wf-dependent" id="barDependent" title="Dependent Support" style="width:10%"></div>
+          <div class="wf-segment wf-surplus" id="barSurplus" title="Investable Surplus" style="width:35%"></div>
+        </div>
+
+        <div class="wf-legend">
+          <span><span class="wf-dot" style="background:#E2665A"></span>Housing (<span id="pctHousing">0%</span>)</span>
+          <span><span class="wf-dot" style="background:#E3A63E"></span>Other EMIs (<span id="pctDebt">0%</span>)</span>
+          <span><span class="wf-dot" style="background:#4FB0A8"></span>Essentials (<span id="pctEssentials">0%</span>)</span>
+          <span><span class="wf-dot" style="background:#A078E6"></span>Dependents (<span id="pctDependent">0%</span>)</span>
+          <span><span class="wf-dot" style="background:#5FBF77"></span>Investable (<span id="pctSurplus">0%</span>)</span>
+        </div>
+
+        <div class="stat-row"><div class="lbl">Housing Cost (Rent / Home EMI)</div><div class="val" id="wfHousing">₹0</div></div>
+        <div class="stat-row"><div class="lbl">Other Loan EMIs (Vehicles / Personal / Student)</div><div class="val" id="wfEmi">₹0</div></div>
+        <div class="stat-row"><div class="lbl">Essential Living Expenses</div><div class="val" id="wfEssentials">₹0</div></div>
+        <div class="stat-row"><div class="lbl">Dependent &amp; Family Support</div><div class="val" id="wfDependent">₹0</div></div>
+        <div class="stat-row" style="background:var(--surface-2); padding:10px 12px; border-radius:8px; margin-top:6px;">
+          <div><div class="lbl" style="font-weight:600; color:var(--text);">Net Investable Cash Surplus</div><div class="sub">Available for Emergency Fund + Insurance + Wealth</div></div>
+          <div class="val" id="wfSurplus" style="font-size:16px; color:var(--success);">₹0</div>
+        </div>
+      </div>
+
+      <!-- Financial Risk Ratios -->
+      <div class="card">
+        <div class="card-title">
+          <span>Key Prudence Ratios</span>
+          <span class="badge-tag">Solvency Health</span>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">FOIR (Fixed Obligation to Income Ratio)</div>
+            <div class="sub">Prudent &le;30%, Ideal &le;20%. Banks approve up to 50%, but that is lender risk, not financial freedom.</div>
+          </div>
+          <div class="val" id="outFoir">0%</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">Housing Cost Ratio</div>
+            <div class="sub" id="housingHint">Benchmark: &le;30% for Metro, &le;18% for Tier 2/3</div>
+          </div>
+          <div class="val" id="outHousingRatio">0%</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">Effective True Savings Rate</div>
+            <div class="sub">(Take-Home Surplus + EPF/NPS) &divide; (Take-Home + EPF/NPS)</div>
+          </div>
+          <div class="val" id="outSavingsRate" style="color:var(--accent);">0%</div>
+        </div>
+      </div>
+
+      <!-- Safety Net Protection Gaps -->
+      <div class="card">
+        <div class="card-title">
+          <span>Safety Net Protection Gaps</span>
+          <span class="badge-tag gold">Shield First</span>
+        </div>
+        <div class="card-desc">Fiduciary rule: Fill safety net gaps before taking capital market risks.</div>
+
+        <!-- Emergency Fund -->
+        <div class="stat-row">
+          <div>
+            <div class="lbl">🛡️ Emergency Fund Target</div>
+            <div class="sub" id="efSub">Runway calculated on total committed burn (EMIs don't stop)</div>
+          </div>
+          <div class="val" id="outEfTarget">₹0</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">Emergency Fund Gap</div>
+            <div class="sub">Split 30% in instant Sweep-in FD / 70% in Low-volatility Arbitrage Fund</div>
+          </div>
+          <div class="val" id="outEfGap">₹0</div>
+        </div>
+
+        <!-- Term Life -->
+        <div class="stat-row">
+          <div>
+            <div class="lbl">☂️ Debt-Aware Term Life Target (HLV)</div>
+            <div class="sub" id="termSub">Income replacement + Outstanding debt liability</div>
+          </div>
+          <div class="val" id="outTermTarget">₹0</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">Term Insurance Gap</div>
+            <div class="sub">Pure plain-vanilla Term Cover (No ULIP / Endowment plans)</div>
+          </div>
+          <div class="val" id="outTermGap">₹0</div>
+        </div>
+
+        <!-- Health Cover -->
+        <div class="stat-row">
+          <div>
+            <div class="lbl">🏥 Health Insurance Target</div>
+            <div class="sub" id="healthSub">Base Floater + recommended ₹25L–₹50L Super Top-up</div>
+          </div>
+          <div class="val" id="outHealthTarget">₹0</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">Health Insurance Gap</div>
+            <div class="sub">Do not rely solely on employer group corporate insurance</div>
+          </div>
+          <div class="val" id="outHealthGap">₹0</div>
+        </div>
+      </div>
+
+      <!-- Surplus Routing & Wealth Allocation -->
+      <div class="card">
+        <div class="card-title">
+          <span>Surplus Routing &amp; Wealth Allocation</span>
+          <span class="badge-tag green">Action Plan</span>
+        </div>
+        <div class="card-desc" id="horizonSub">Schedules your monthly cash surplus into protection and compounding growth.</div>
+
+        <div class="stat-row">
+          <div>
+            <div class="lbl">1. Priority: To Emergency Fund (25% of surplus until filled)</div>
+            <div class="sub">Automate via recurring monthly sweep to emergency reserve</div>
+          </div>
+          <div class="val" id="outToEF" style="color:var(--accent);">₹0</div>
+        </div>
+        <div class="stat-row">
+          <div>
+            <div class="lbl">2. Net Surplus Left for Long-Term Wealth</div>
+            <div class="sub">Invested systematically into market assets</div>
+          </div>
+          <div class="val" id="outToInvest" style="color:var(--success);">₹0</div>
+        </div>
+
+        <!-- 3-Way Asset Allocation Cards -->
+        <div class="routing-grid">
+          <div class="route-card">
+            <div class="rhead">📈 Equity-Heavy (Wealth Growth)</div>
+            <div class="ramt" id="outEquitySplit">₹0</div>
+            <div class="rdesc">Nifty 50 Index, Large &amp; Midcap 250, Flexicap. Compounding engine for 7+ year horizon.</div>
+          </div>
+          <div class="route-card">
+            <div class="rhead">⚖️ Hybrid / Sovereign Gold (Stabilizer)</div>
+            <div class="ramt" id="outHybridSplit">₹0</div>
+            <div class="rdesc">Multi-Asset Allocation, Sovereign Gold Bonds / Gold ETFs. Cushions equity drawdowns.</div>
+          </div>
+          <div class="route-card" style="grid-column: span 2;">
+            <div class="rhead">🛡️ Debt / Arbitrage (Capital Preservation)</div>
+            <div class="ramt" id="outDebtSplit">₹0</div>
+            <div class="rdesc">Arbitrage Funds (equity taxation: 12.5% LTCG) &amp; Target Maturity Debt. Liquidity and rebalancing ballast.</div>
+          </div>
+        </div>
+
+        <div class="actions-bar">
+          <button class="primary" onclick="copyPlanSummary()">📋 Copy Plan Summary</button>
+          <button onclick="shareWhatsApp()">💬 Share on WhatsApp</button>
+          <button onclick="resetDefaults()">↺ Reset</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Educational & Tax Assumptions -->
+  <div class="assumptions-box">
+    <b>Portfolio Manager &amp; Tax Specialist Assumptions:</b>
+    <ul style="margin:6px 0 0; padding-left:18px;">
+      <li><b>Financial Health Score (FHS):</b> True savings ratio uses <code>(Take-home + EPF/NPS − Fixed committed spend) ÷ (Take-home + EPF/NPS)</code>. Calibrated with the Family Intelligence algorithm. Prospective ceiling is 90/100 until bank statement reconciliation.</li>
+      <li><b>Debt-Aware Term Life (HLV):</b> Calculated as <code>(12x–15x Annual Take-Home) + Total Outstanding Debt Liability − Existing Liquid Savings</code>. Standard term multiple is 12x (5x if single with no dependents). This ensures dependent family is not burdened with mortgage foreclosure.</li>
+      <li><b>Emergency Fund Sizing:</b> Scales with income stability (3 mo for stable salaried, 6 mo for variable, 9–12 mo for freelance/self-employed, +1 mo if servicing loans). Sized against total committed monthly burn because EMIs and family support do not stop in an emergency.</li>
+      <li><b>Tax Notes:</b> High earners should note Finance Act 2023 taxation: Pure debt funds are taxed at slab rates; Arbitrage Funds provide equity tax treatment. If EPF contributions exceed ₹2.5L/year, interest on excess is taxable under Rule 9D. Corporate NPS under Section 80CCD(2) offers up to 14% tax-exempt employer contribution under the New Tax Regime. Not formal financial advice.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div id="toast">Plan copied to clipboard!</div>
+
+<script>
+// Currency Formatting
+function fmtCr(n){
+  if(n < 0) return '-' + fmtCr(-n);
+  if(n >= 10000000) return '₹' + (n/10000000).toFixed(2) + ' Cr';
+  if(n >= 100000) return '₹' + (n/100000).toFixed(2) + ' L';
+  return '₹' + Math.round(n).toLocaleString('en-IN');
+}
+function pct(n){ return (n * 100).toFixed(1) + '%'; }
+
+// Theme Engine
+function initTheme(){
+  var saved = localStorage.getItem('sw_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeBtn(saved);
+}
+function toggleTheme(){
+  var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', cur);
+  localStorage.setItem('sw_theme', cur);
+  updateThemeBtn(cur);
+}
+function updateThemeBtn(t){
+  var btn = document.getElementById('themeToggleBtn');
+  if(btn) btn.textContent = t === 'light' ? '🌙 Dark' : '☀️ Light';
+}
+initTheme();
+
+// Dropdown Handlers
+document.querySelectorAll('.eco-dropdown').forEach(function(drop){
+  var btn = drop.querySelector('.eco-dropbtn');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    document.querySelectorAll('.eco-dropdown').forEach(function(d){ if(d!==drop) d.classList.remove('open'); });
+    drop.classList.toggle('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
+});
+
+// Toast notification
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2500);
+}
+
+// Preset Profiles
+function applyPreset(type){
+  if(type === 'starter'){
+    document.getElementById('takeHome').value = 45000;
+    document.getElementById('epfNps').value = 5000;
+    document.getElementById('housingCost').value = 14000;
+    document.getElementById('housingIsLoan').checked = false;
+    document.getElementById('otherEMI').value = 0;
+    document.getElementById('otherEssentials').value = 12000;
+    document.getElementById('dependentSupport').value = 2000;
+    document.getElementById('lifeStage').value = 'single';
+    document.getElementById('stability').value = 'stable';
+    document.getElementById('cityTier').value = 'metro';
+    document.getElementById('riskAppetite').value = 'aggressive';
+    document.getElementById('existingEF').value = 25000;
+    document.getElementById('existingTermCover').value = 0;
+    document.getElementById('existingHealthCover').value = 300000;
+    document.getElementById('goalYears').value = '7';
+  } else if(type === 'mid'){
+    document.getElementById('takeHome').value = 120000;
+    document.getElementById('epfNps').value = 15000;
+    document.getElementById('housingCost').value = 35000;
+    document.getElementById('housingIsLoan').checked = true;
+    document.getElementById('otherEMI').value = 10000;
+    document.getElementById('otherEssentials').value = 25000;
+    document.getElementById('dependentSupport').value = 10000;
+    document.getElementById('lifeStage').value = 'married_kids';
+    document.getElementById('stability').value = 'stable';
+    document.getElementById('cityTier').value = 'metro';
+    document.getElementById('riskAppetite').value = 'balanced';
+    document.getElementById('existingEF').value = 150000;
+    document.getElementById('existingTermCover').value = 5000000;
+    document.getElementById('existingHealthCover').value = 500000;
+    document.getElementById('goalYears').value = '10';
+  } else if(type === 'senior'){
+    document.getElementById('takeHome').value = 250000;
+    document.getElementById('epfNps').value = 30000;
+    document.getElementById('housingCost').value = 55000;
+    document.getElementById('housingIsLoan').checked = true;
+    document.getElementById('otherEMI').value = 18000;
+    document.getElementById('otherEssentials').value = 40000;
+    document.getElementById('dependentSupport').value = 25000;
+    document.getElementById('lifeStage').value = 'sole_earner';
+    document.getElementById('stability').value = 'stable';
+    document.getElementById('cityTier').value = 'metro';
+    document.getElementById('riskAppetite').value = 'balanced';
+    document.getElementById('existingEF').value = 400000;
+    document.getElementById('existingTermCover').value = 20000000;
+    document.getElementById('existingHealthCover').value = 1000000;
+    document.getElementById('goalYears').value = '5';
+  }
+  calc();
+  showToast('Preset applied!');
+}
+
+function resetDefaults(){
+  document.getElementById('takeHome').value = 70000;
+  document.getElementById('epfNps').value = 8000;
+  document.getElementById('housingCost').value = 20000;
+  document.getElementById('housingIsLoan').checked = true;
+  document.getElementById('otherEMI').value = 5000;
+  document.getElementById('otherEssentials').value = 15000;
+  document.getElementById('dependentSupport').value = 5000;
+  document.getElementById('lifeStage').value = 'married_kids';
+  document.getElementById('stability').value = 'stable';
+  document.getElementById('cityTier').value = 'metro';
+  document.getElementById('riskAppetite').value = 'balanced';
+  document.getElementById('existingEF').value = 50000;
+  document.getElementById('existingTermCover').value = 2000000;
+  document.getElementById('existingHealthCover').value = 300000;
+  document.getElementById('goalYears').value = '';
+  calc();
+  showToast('Reset to defaults');
+}
+
+// Main Calculation Engine
+function calc(){
+  var takeHome = parseFloat(document.getElementById('takeHome').value) || 0;
+  var epfNps = parseFloat(document.getElementById('epfNps').value) || 0;
+  var housingCost = parseFloat(document.getElementById('housingCost').value) || 0;
+  var housingIsLoan = document.getElementById('housingIsLoan').checked;
+  var otherEMI = parseFloat(document.getElementById('otherEMI').value) || 0;
+  var otherEssentials = parseFloat(document.getElementById('otherEssentials').value) || 0;
+  var dependentSupport = parseFloat(document.getElementById('dependentSupport').value) || 0;
+  var lifeStage = document.getElementById('lifeStage').value;
+  var stability = document.getElementById('stability').value;
+  var cityTier = document.getElementById('cityTier').value;
+  var riskAppetite = document.getElementById('riskAppetite').value;
+  var existingEF = parseFloat(document.getElementById('existingEF').value) || 0;
+  var existingTermCover = parseFloat(document.getElementById('existingTermCover').value) || 0;
+  var existingHealthCover = parseFloat(document.getElementById('existingHealthCover').value) || 0;
+  var goalYearsRaw = document.getElementById('goalYears').value.trim();
+  var goalYears = goalYearsRaw === '' ? null : parseFloat(goalYearsRaw);
+
+  var trueIncome = takeHome + epfNps;
+  var housingInFoir = housingIsLoan ? housingCost : 0;
+  var totalEmiAll = housingInFoir + otherEMI;
+  var foir = takeHome > 0 ? (totalEmiAll / takeHome) : 0;
+
+  var committedSpend = housingCost + otherEMI + otherEssentials + dependentSupport;
+  var availableAfterFixed = Math.max(0, takeHome - committedSpend);
+  var savingsRatio = trueIncome > 0 ? (trueIncome - committedSpend) / trueIncome : 0;
+  var housingRatio = takeHome > 0 ? housingCost / takeHome : 0;
+  var housingBenchmark = cityTier === 'metro' ? 0.30 : 0.18;
+
+  // Waterfall Percentages
+  var totalWater = Math.max(takeHome, committedSpend);
+  var pctH = totalWater > 0 ? (housingCost / totalWater * 100) : 0;
+  var pctD = totalWater > 0 ? (otherEMI / totalWater * 100) : 0;
+  var pctE = totalWater > 0 ? (otherEssentials / totalWater * 100) : 0;
+  var pctDep = totalWater > 0 ? (dependentSupport / totalWater * 100) : 0;
+  var pctSur = totalWater > 0 ? (availableAfterFixed / totalWater * 100) : 0;
+
+  document.getElementById('barHousing').style.width = pctH + '%';
+  document.getElementById('barDebt').style.width = pctD + '%';
+  document.getElementById('barEssentials').style.width = pctE + '%';
+  document.getElementById('barDependent').style.width = pctDep + '%';
+  document.getElementById('barSurplus').style.width = pctSur + '%';
+
+  document.getElementById('pctHousing').textContent = pctH.toFixed(0) + '%';
+  document.getElementById('pctDebt').textContent = pctD.toFixed(0) + '%';
+  document.getElementById('pctEssentials').textContent = pctE.toFixed(0) + '%';
+  document.getElementById('pctDependent').textContent = pctDep.toFixed(0) + '%';
+  document.getElementById('pctSurplus').textContent = pctSur.toFixed(0) + '%';
+
+  document.getElementById('wfHousing').textContent = fmtCr(housingCost);
+  document.getElementById('wfEmi').textContent = fmtCr(otherEMI);
+  document.getElementById('wfEssentials').textContent = fmtCr(otherEssentials);
+  document.getElementById('wfDependent').textContent = fmtCr(dependentSupport);
+  document.getElementById('wfSurplus').textContent = fmtCr(availableAfterFixed);
+  document.getElementById('surplusBadge').textContent = fmtCr(availableAfterFixed) + ' / mo Surplus';
+
+  // 1. Emergency Fund (Months of total committed burn)
+  var baseMonths = lifeStage === 'sole_earner' ? 6 : (lifeStage === 'single' ? 3 : 4);
+  if(stability === 'variable') baseMonths += 3;
+  if(stability === 'self_employed') baseMonths += 5;
+  if(totalEmiAll > 0) baseMonths += 1;
+  baseMonths = Math.min(baseMonths, 12);
+
+  var monthlyBurn = committedSpend;
+  var efTarget = baseMonths * monthlyBurn;
+  var efGap = Math.max(0, efTarget - existingEF);
+
+  document.getElementById('efSub').textContent = baseMonths + ' months burn @ ' + fmtCr(monthlyBurn) + '/mo';
+  document.getElementById('outEfTarget').textContent = fmtCr(efTarget);
+  document.getElementById('outEfGap').textContent = efGap > 0 ? fmtCr(efGap) : '✓ Fully Funded';
+  document.getElementById('outEfGap').className = 'val ' + (efGap > 0 ? 'gap' : 'met');
+
+  // 2. Debt-Aware Term Insurance (HLV Method)
+  var termMultiple = (lifeStage === 'single') ? 5 : 12;
+  var incomeReplacement = termMultiple * takeHome * 12;
+  var estimatedDebtOutstanding = (housingIsLoan ? housingCost * 60 : 0) + (otherEMI * 36);
+  var termTarget = incomeReplacement + estimatedDebtOutstanding;
+  var termGap = Math.max(0, termTarget - existingTermCover);
+
+  document.getElementById('termSub').textContent = termMultiple + 'x Annual Take-Home (' + fmtCr(incomeReplacement) + ') + Debt Liabilities (' + fmtCr(estimatedDebtOutstanding) + ')';
+  document.getElementById('outTermTarget').textContent = fmtCr(termTarget);
+  document.getElementById('outTermGap').textContent = termGap > 0 ? fmtCr(termGap) : '✓ Adequate Cover';
+  document.getElementById('outTermGap').className = 'val ' + (termGap > 0 ? 'gap' : 'met');
+
+  // 3. Health Insurance
+  var healthBase = 500000;
+  if(lifeStage === 'married') healthBase += 300000;
+  if(lifeStage === 'married_kids') healthBase += 500000;
+  if(lifeStage === 'sole_earner') healthBase += 300000;
+  if(cityTier === 'metro') healthBase += 200000;
+  var healthGap = Math.max(0, healthBase - existingHealthCover);
+
+  document.getElementById('healthSub').textContent = (cityTier === 'metro' ? 'Metro Tier Floater' : 'Standard Floater') + ' (Recommend ₹25L–₹50L Super Top-up)';
+  document.getElementById('outHealthTarget').textContent = fmtCr(healthBase);
+  document.getElementById('outHealthGap').textContent = healthGap > 0 ? fmtCr(healthGap) : '✓ Adequate Base';
+  document.getElementById('outHealthGap').className = 'val ' + (healthGap > 0 ? 'gap' : 'met');
+
+  // 4. Financial Health Score (FHS)
+  var savingsScore = savingsRatio >= 0.30 ? 30 : (savingsRatio >= 0.15 ? 20 : (savingsRatio >= 0.05 ? 10 : 0));
+  var budgetScore = 10;
+  var recurringCount = [housingCost>0, totalEmiAll>0, dependentSupport>0, epfNps>0, existingTermCover>0, existingHealthCover>0].filter(Boolean).length;
+  var recurringScore = recurringCount >= 4 ? 20 : (recurringCount >= 2 ? 15 : 10);
+  var forecastScore = 20;
+  var trendScore = 10;
+  var catastrophic = committedSpend > (1.8 * trueIncome);
+  var finalScore = savingsScore + budgetScore + recurringScore + forecastScore + trendScore;
+  if(catastrophic) finalScore = Math.min(finalScore, 40);
+
+  document.getElementById('fhsScore').textContent = finalScore;
+  document.getElementById('bucketSavings').style.width = (savingsScore / 30 * 100) + '%';
+  document.getElementById('bucketSavingsVal').textContent = savingsScore + '/30';
+  document.getElementById('bucketBudgetVal').textContent = budgetScore + '/20';
+  document.getElementById('bucketRecurring').style.width = (recurringScore / 20 * 100) + '%';
+  document.getElementById('bucketRecurringVal').textContent = recurringScore + '/20';
+
+  var fhsPill = document.getElementById('fhsPill');
+  if(finalScore >= 75){
+    fhsPill.className = 'fhs-status ok';
+    fhsPill.textContent = '🌟 Excellent Plan (' + finalScore + '/100)';
+  } else if(finalScore >= 55){
+    fhsPill.className = 'fhs-status warn';
+    fhsPill.textContent = '⚡ Prudent Base (' + finalScore + '/100)';
+  } else {
+    fhsPill.className = 'fhs-status bad';
+    fhsPill.textContent = '⚠️ Cashflow Strained (' + finalScore + '/100)';
+  }
+
+  // Prudence Ratios
+  document.getElementById('outFoir').textContent = pct(foir);
+  document.getElementById('outFoir').style.color = foir <= 0.30 ? 'var(--success)' : (foir <= 0.45 ? 'var(--accent)' : 'var(--danger)');
+  document.getElementById('outHousingRatio').textContent = pct(housingRatio);
+  document.getElementById('outHousingRatio').style.color = housingRatio <= housingBenchmark ? 'var(--success)' : 'var(--accent)';
+  document.getElementById('housingHint').textContent = 'City benchmark: ≤' + pct(housingBenchmark) + (housingRatio > housingBenchmark ? ' — Housing takes a high share' : ' — Within prudent range');
+  document.getElementById('outSavingsRate').textContent = pct(savingsRatio);
+
+  // Surplus Routing
+  var toEF = efGap > 0 ? Math.min(availableAfterFixed * 0.25, efGap) : 0;
+  var toInvest = Math.max(0, availableAfterFixed - toEF);
+  document.getElementById('outToEF').textContent = fmtCr(toEF);
+  document.getElementById('outToInvest').textContent = fmtCr(toInvest);
+
+  // Asset Allocation Split (Matrix: Goal Years + Risk Appetite)
+  var debtPct, hybridPct, equityPct, horizonText;
+  if(goalYears !== null && goalYears < 3){
+    debtPct = 0.75; hybridPct = 0.20; equityPct = 0.05;
+    horizonText = 'Goal under 3 years: Capital preservation priority (Liquid/Arbitrage & short-term debt).';
+  } else if(goalYears !== null && goalYears <= 7){
+    if(riskAppetite === 'conservative'){ debtPct = 0.45; hybridPct = 0.35; equityPct = 0.20; }
+    else if(riskAppetite === 'aggressive'){ debtPct = 0.15; hybridPct = 0.25; equityPct = 0.60; }
+    else { debtPct = 0.25; hybridPct = 0.40; equityPct = 0.35; }
+    horizonText = 'Goal in 3–7 years: Hybrid allocation balancing inflation-beating growth and stability.';
+  } else {
+    if(riskAppetite === 'conservative'){ debtPct = 0.25; hybridPct = 0.35; equityPct = 0.40; }
+    else if(riskAppetite === 'aggressive'){ debtPct = 0.05; hybridPct = 0.10; equityPct = 0.85; }
+    else { debtPct = 0.10; hybridPct = 0.20; equityPct = 0.70; }
+    horizonText = (goalYears === null ? 'Long-term wealth building (7+ yrs)' : 'Goal in ' + goalYears + ' years') + ' with ' + riskAppetite + ' risk appetite.';
+  }
+
+  document.getElementById('horizonSub').textContent = horizonText;
+  document.getElementById('outEquitySplit').textContent = fmtCr(toInvest * equityPct);
+  document.getElementById('outHybridSplit').textContent = fmtCr(toInvest * hybridPct);
+  document.getElementById('outDebtSplit').textContent = fmtCr(toInvest * debtPct);
+}
+
+// Sharing & Summary Generation
+function generateSummaryText(){
+  var score = document.getElementById('fhsScore').textContent;
+  var takeHome = document.getElementById('takeHome').value;
+  var surplus = document.getElementById('wfSurplus').textContent;
+  var foir = document.getElementById('outFoir').textContent;
+  var efGap = document.getElementById('outEfGap').textContent;
+  var toInvest = document.getElementById('outToInvest').textContent;
+  var equity = document.getElementById('outEquitySplit').textContent;
+
+  return [
+    '📊 *My Salary Planning Summary — Sarav\'s World*',
+    '• Monthly Take-Home: ₹' + Number(takeHome).toLocaleString('en-IN'),
+    '• Net Surplus Available: ' + surplus + ' / month',
+    '• Projected Financial Health Score: ' + score + ' / 100',
+    '• FOIR (Debt-to-Income): ' + foir,
+    '• Emergency Fund Gap: ' + efGap,
+    '• Investable Cash: ' + toInvest + ' / month',
+    '• Equity Growth Allocation: ' + equity + ' / month',
+    '',
+    'Plan yours free at: https://iamsaravofficial.com/apps/salary-planner/'
+  ].join('\n');
+}
+
+function copyPlanSummary(){
+  navigator.clipboard.writeText(generateSummaryText()).then(function(){
+    showToast('Summary copied to clipboard!');
+  }).catch(function(){
+    showToast('Failed to copy. Please allow clipboard permissions.');
+  });
+}
+
+function shareWhatsApp(){
+  var text = encodeURIComponent(generateSummaryText());
+  window.open('https://api.whatsapp.com/send?text=' + text, '_blank');
+}
+
+// Event Listeners
+document.querySelectorAll('input, select').forEach(function(el){
+  el.addEventListener('input', calc);
+  if(el.tagName === 'SELECT') el.addEventListener('change', calc);
+});
+calc();
+</script>
+</body>
+</html>
