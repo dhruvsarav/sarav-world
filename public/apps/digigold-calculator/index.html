@@ -239,31 +239,35 @@
   }
 
   .theme-selector {
-    display: flex;
-    gap: 6px;
-    background: rgba(255, 255, 255, 0.25);
-    padding: 4px;
-    border-radius: 10px;
+    display: inline-flex;
+    gap: 2px;
+    background: var(--card-white);
+    padding: 2px;
+    border-radius: 8px;
     border: 1px solid var(--border-gold);
   }
   .theme-btn {
-    padding: 6px 12px;
-    border-radius: 8px;
+    padding: 5px 11px;
+    border-radius: 6px;
     border: none;
     background: transparent;
-    color: var(--text-dark);
+    color: var(--text-muted);
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
     transition: all 0.15s ease;
+    font-family: inherit;
   }
   .theme-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
+    color: var(--text-dark);
   }
   .theme-btn.active {
-    background: var(--card-white);
-    color: var(--gold-primary-dark);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: var(--gold-primary);
+    color: #fff;
+    font-weight: 600;
   }
 
   /* Main Container & 2-Column Dashboard Layout */
@@ -541,7 +545,7 @@
       </div>
     </div>
     <div>
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">Enterprise AI Economics</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
     </div>
   </div>
 </div>
@@ -720,7 +724,8 @@
   </div>
 
   <footer>
-    <p>Crafted for <a href="https://iamsaravofficial.com/">Sarav's World</a> · Financial Clarity &amp; Sovereign Wealth</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 
 </div>

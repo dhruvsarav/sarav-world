@@ -166,9 +166,33 @@
   .header-left h1 { font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; }
   .header-left .sub { color: var(--text-dim); font-size: 14px; max-width: 720px; line-height: 1.5; margin: 0; }
   .header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .theme-toggle {
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
-    padding: 7px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; gap: 6px;
+  .theme-selector {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
   }
   .preset-chip {
     background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
@@ -346,7 +370,11 @@
       <button class="preset-chip" onclick="applyPreset('starter')">🐣 Early Career (₹45k)</button>
       <button class="preset-chip" onclick="applyPreset('mid')">👨‍👩‍👧 Mid-Career (₹1.2L)</button>
       <button class="preset-chip" onclick="applyPreset('senior')">💼 Leader / Sole Earner (₹2.5L)</button>
-      <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle theme">☀️ Light</button>
+      <div class="theme-selector" id="themeSelector">
+        <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+        <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+        <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+      </div>
     </div>
   </div>
 
@@ -696,6 +724,12 @@
     </ul>
   </div>
 
+  <!-- Standardized Footer -->
+  <footer>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </footer>
+
 </div>
 
 <div id="toast">Plan copied to clipboard!</div>
@@ -710,23 +744,29 @@ function fmtCr(n){
 }
 function pct(n){ return (n * 100).toFixed(1) + '%'; }
 
-// Theme Engine
+// Standardized Theme Engine with Auto / Light / Dark
+function setTheme(choice){
+  localStorage.setItem('sw_theme', choice);
+  var activeTheme = choice;
+  if(choice === 'auto' || choice === 'system'){
+    activeTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  document.querySelectorAll('.theme-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === choice);
+  });
+}
+
 function initTheme(){
-  var saved = localStorage.getItem('sw_theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', saved);
-  updateThemeBtn(saved);
-}
-function toggleTheme(){
-  var cur = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', cur);
-  localStorage.setItem('sw_theme', cur);
-  updateThemeBtn(cur);
-}
-function updateThemeBtn(t){
-  var btn = document.getElementById('themeToggleBtn');
-  if(btn) btn.textContent = t === 'light' ? '🌙 Dark' : '☀️ Light';
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  setTheme(saved);
 }
 initTheme();
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(){
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  if(saved === 'auto' || saved === 'system') setTheme('auto');
+});
 
 // Dropdown Handlers
 document.querySelectorAll('.eco-dropdown').forEach(function(drop){

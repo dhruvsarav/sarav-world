@@ -558,7 +558,37 @@
     border-top: 1px solid var(--border-gold);
     margin-top: 40px;
   }
-  footer a { color: var(--gold-primary); }
+  /* Standardized Segmented Theme Selector */
+  .theme-selector {
+    display: inline-flex;
+    background: var(--card-white);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+    font-family: inherit;
+  }
+  .theme-btn:hover { color: var(--text-dark); }
+  .theme-btn.active {
+    background: var(--gold-primary);
+    color: #fff;
+    font-weight: 600;
+  }
+
 
   @media print {
     .ecosystem-bar, .gold-header-banner .theme-selector, .actionbar, footer { display: none !important; }
@@ -604,7 +634,7 @@
       </div>
     </div>
     <div>
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">Enterprise AI Economics</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
     </div>
   </div>
 </div>
@@ -886,7 +916,8 @@
   </div>
 
   <footer>
-    <p>Crafted for <a href="https://iamsaravofficial.com/">Sarav's World</a> · Precision Financial Planning &amp; RBI Compliance</p>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
   </footer>
 </div>
 
