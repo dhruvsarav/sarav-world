@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Then &amp; Now — GenZ &amp; Alpha Slang Decoder | Sarav's World</title>
+<meta name="description" content="Decode GenZ &amp; Gen Alpha slang, idioms, and abbreviations with millennial translations, cultural context, and tap-to-speak neural voice pronunciation.">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="/apps/genzalphaslang/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/apps/genzalphaslang/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/apps/genzalphaslang/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apps/genzalphaslang/apple-touch-icon.png">
+
+<!-- OpenGraph & Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Then &amp; Now — GenZ &amp; Alpha Slang Decoder">
+<meta property="og:description" content="How the next generation actually communicates. Millennial vs GenZ &amp; Alpha slang with tap-to-speak neural pronunciation.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/genzalphaslang/og-image.png">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/genzalphaslang/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Then &amp; Now — GenZ &amp; Alpha Slang Decoder">
+<meta name="twitter:description" content="How the next generation actually communicates. Millennial vs GenZ &amp; Alpha slang with tap-to-speak neural pronunciation.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/genzalphaslang/og-image.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --genz-color: #A78BFA;
+    --genz-bg: rgba(167, 139, 250, 0.14);
+    --genz-border: rgba(167, 139, 250, 0.35);
+    --alpha-color: #38BDF8;
+    --alpha-bg: rgba(56, 189, 248, 0.14);
+    --alpha-border: rgba(56, 189, 248, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F7;
+    --surface-3: #E4E9F0;
+    --border: #D1D8E2;
+    --border-soft: #E2E8F0;
+    --text: #1A202C;
+    --text-dim: #4A5568;
+    --text-faint: #718096;
+    --accent: #D97706;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(217, 119, 6, 0.14);
+    --accent2: #0D9488;
+    --accent2-soft: rgba(13, 148, 136, 0.14);
+    --danger: #DC2626;
+    --danger-soft: rgba(220, 38, 38, 0.14);
+    --success: #16A34A;
+    --success-soft: rgba(22, 163, 74, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --genz-color: #7C3AED;
+    --genz-bg: rgba(124, 58, 237, 0.10);
+    --genz-border: rgba(124, 58, 237, 0.25);
+    --alpha-color: #0284C7;
+    --alpha-bg: rgba(2, 132, 199, 0.10);
+    --alpha-border: rgba(2, 132, 199, 0.25);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5; min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 230px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+    transition: all 0.12s ease;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
+  .eco-tokenomics {
+    color: var(--accent2) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px; background: var(--accent2-soft);
+  }
+
+  /* Main Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 28px 20px 60px; flex: 1; width: 100%; }
+
+  /* App Header */
+  .app-header {
+    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-soft);
+  }
+  .header-main-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 20px;
+  }
+  .header-left { flex: 1; min-width: 0; }
+  .header-left .eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .header-left h1 { font-size: 28px; font-weight: 700; line-height: 1.2; margin: 0 0 6px; }
+  .header-left .sub {
+    font-size: 13.5px; color: var(--text-dim); margin: 0; max-width: 820px; line-height: 1.5;
+  }
+  .header-right {
+    display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0;
+  }
+  .theme-selector {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  /* Interactive Controls & Filters */
+  .controls-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+  }
+  .section-tabs {
+    display: flex;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .sec-tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-dim);
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .sec-tab:hover { color: var(--text); border-color: var(--accent); }
+  .sec-tab.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .sec-tab .count-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1px 6px;
+    border-radius: 10px;
+  }
+  [data-theme="light"] .sec-tab.active .count-badge { background: rgba(255, 255, 255, 0.25); }
+
+  .filter-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1;
+    min-width: 260px;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 36px 9px 36px;
+    color: var(--text);
+    font-size: 13.5px;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+  .search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .search-icon {
+    position: absolute; left: 12px; color: var(--text-faint); font-size: 14px; pointer-events: none;
+  }
+  .clear-btn {
+    position: absolute; right: 10px; background: transparent; border: none; color: var(--text-faint);
+    cursor: pointer; font-size: 12px; padding: 4px; display: none;
+  }
+
+  .view-options {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .gen-chips { display: flex; gap: 6px; }
+  .gen-chip {
+    padding: 6px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--text-dim);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gen-chip:hover { border-color: var(--accent); color: var(--text); }
+  .gen-chip.active {
+    background: var(--surface-3);
+    color: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .view-toggle {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+  }
+  .v-btn {
+    background: transparent; border: none; color: var(--text-dim);
+    padding: 5px 12px; font-size: 12px; font-weight: 500; border-radius: 6px;
+    cursor: pointer; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 4px;
+  }
+  .v-btn.active {
+    background: var(--surface-3); color: var(--text); font-weight: 600;
+  }
+
+  /* Generation Badges */
+  .gen-pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 2px 8px; border-radius: 12px;
+  }
+  .gen-pill.genz { background: var(--genz-bg); color: var(--genz-color); border: 1px solid var(--genz-border); }
+  .gen-pill.alpha { background: var(--alpha-bg); color: var(--alpha-color); border: 1px solid var(--alpha-border); }
+  .gen-pill.shared { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+
+  /* Deck / Flashcard View Mode */
+  .deck-view {
+    max-width: 720px; margin: 0 auto 30px;
+  }
+  .deck-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .deck-counter {
+    font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--text-dim); font-weight: 600;
+  }
+  .flashcard {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 32px;
+    box-shadow: var(--shadow);
+    min-height: 290px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .flashcard::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+  }
+  .fc-top {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 20px;
+  }
+  .then-block { display: flex; flex-direction: column; gap: 4px; }
+  .then-tag {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint);
+  }
+  .then-text {
+    font-family: 'IBM Plex Mono', monospace; font-size: 15px; color: var(--text-dim);
+    text-decoration: line-through; text-decoration-color: var(--text-faint);
+  }
+
+  .now-block {
+    display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .now-title {
+    font-size: clamp(26px, 5vw, 36px); font-weight: 700; color: var(--text); line-height: 1.15;
+  }
+  .speaker-btn {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: var(--accent-soft); border: 1px solid var(--accent);
+    color: var(--accent); font-size: 22px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: all 0.15s ease; flex-shrink: 0;
+  }
+  .speaker-btn:hover { transform: scale(1.06); filter: brightness(1.15); box-shadow: 0 4px 16px var(--accent-soft); }
+  .speaker-btn:active { transform: scale(0.95); }
+  .speaker-btn.playing { animation: pulseGlow 1s infinite alternate; background: var(--accent); color: var(--accent-ink); }
+  @keyframes pulseGlow {
+    from { transform: scale(1); box-shadow: 0 0 0 0 var(--accent-soft); }
+    to { transform: scale(1.08); box-shadow: 0 0 0 10px var(--accent-soft); }
+  }
+
+  .fc-divider { height: 1px; background: var(--border-soft); margin: 0 0 20px; }
+  .fc-field { margin-bottom: 14px; }
+  .fc-field:last-child { margin-bottom: 0; }
+  .fc-label {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent2); margin-bottom: 4px;
+  }
+  .fc-val { font-size: 14.5px; color: var(--text); line-height: 1.5; }
+  .fc-example {
+    background: var(--surface-2);
+    border-left: 3px solid var(--accent2);
+    padding: 12px 16px;
+    border-radius: 0 10px 10px 0;
+    font-style: normal;
+    color: var(--text);
+  }
+
+  /* Deck Controls */
+  .deck-controls {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 20px;
+  }
+  .nav-btn {
+    padding: 10px 22px; border-radius: 30px; font-size: 14px; font-weight: 600;
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .nav-btn:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+  .nav-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+  .nav-btn.shuffle { background: var(--surface-2); border-color: transparent; color: var(--text-dim); }
+  .nav-btn.shuffle:hover { color: var(--accent); }
+
+  /* Glossary Grid View Mode */
+  .glossary-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 18px;
+  }
+  .g-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between;
+    transition: all 0.15s ease; position: relative;
+  }
+  .g-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .g-header {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px;
+  }
+  .g-now { font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.25; }
+  .g-actions { display: flex; align-items: center; gap: 6px; }
+  .g-speak-btn {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--accent);
+    width: 34px; height: 34px; border-radius: 50%; font-size: 14px; cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center; transition: all 0.15s ease;
+  }
+  .g-speak-btn:hover { background: var(--accent-soft); border-color: var(--accent); transform: scale(1.08); }
+  .g-then {
+    font-size: 13px; color: var(--text-dim); margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  }
+  .g-then span {
+    font-family: 'IBM Plex Mono', monospace; text-decoration: line-through; text-decoration-color: var(--text-faint);
+  }
+  .g-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; line-height: 1.45; }
+  .g-ex {
+    background: var(--surface-2); border-left: 2px solid var(--accent2);
+    padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 12.5px; color: var(--text);
+  }
+  .empty-state {
+    text-align: center; padding: 60px 20px; color: var(--text-faint); font-size: 15px; grid-column: 1 / -1;
+  }
+
+  /* Universal 4-Action Suite */
+  .actions-bar {
+    max-width: 720px; margin: 28px auto 0;
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .action-btn {
+    flex: 1; min-width: 140px; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px 14px; font-size: 12.5px; font-weight: 500; border-radius: 8px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    cursor: pointer; transition: all 0.15s ease;
+  }
+  .action-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .action-btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  .action-btn.primary:hover { filter: brightness(1.08); }
+
+  /* Standardized Footer */
+  footer {
+    padding: 36px 0 16px; text-align: center; color: var(--text-faint); font-size: 12px;
+    border-top: 1px solid var(--border-soft); margin-top: 40px; width: 100%;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer p { margin: 4px 0; }
+  footer b { color: var(--text); }
+
+  /* Toast Notification */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px; background: var(--surface-3); border: 1px solid var(--accent);
+    color: var(--text); padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.25s ease; z-index: 9999;
+  }
+  #toast.show { transform: translateY(0); opacity: 1; }
+
+  @media(max-width: 640px) {
+    .header-main-row { flex-wrap: wrap; }
+    .flashcard { padding: 24px 20px; }
+    .glossary-grid { grid-template-columns: 1fr; }
+    .filter-row { flex-direction: column; align-items: stretch; }
+  }
+
+  @media print {
+    .ecosystem-bar, .header-right, .controls-card, .deck-controls, .actions-bar, #toast, footer { display: none !important; }
+    body { background: #fff !important; color: #000 !important; }
+    .container { max-width: 100% !important; padding: 0 !important; }
+    .flashcard, .g-card { border: 1px solid #ccc !important; box-shadow: none !important; color: #000 !important; background: #fff !important; }
+    .speaker-btn, .g-speak-btn { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/" class="current">GenZ &amp; Alpha Slang</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- App Header -->
+  <div class="app-header">
+    <div class="header-main-row">
+      <div class="header-left">
+        <div class="eyebrow">💬 Sociolinguistics &amp; Generational Intelligence</div>
+        <h1>GenZ &amp; Alpha Slang Decoder</h1>
+        <p class="sub">How the next generation actually communicates. Translate classic millennial phrases into authentic GenZ and Gen Alpha terms — with neural voice pronunciation, cultural context, and real-world examples.</p>
+      </div>
+      <div class="header-right">
+        <div class="theme-selector" id="themeSelector">
+          <button type="button" class="theme-btn active" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+          <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+          <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Controls & Filter Bar -->
+  <div class="controls-card">
+    <div class="section-tabs" id="sectionTabs"></div>
+
+    <div class="filter-row">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search slang, millennial reference, or sentence..." autocomplete="off">
+        <button type="button" id="clearSearch" class="clear-btn">✕</button>
+      </div>
+
+      <div class="view-options">
+        <div class="gen-chips">
+          <button type="button" class="gen-chip active" data-gen="all" onclick="setGeneration('all')">All</button>
+          <button type="button" class="gen-chip" data-gen="genz" onclick="setGeneration('genz')">Gen Z</button>
+          <button type="button" class="gen-chip" data-gen="alpha" onclick="setGeneration('alpha')">Gen Alpha</button>
+          <button type="button" class="gen-chip" data-gen="shared" onclick="setGeneration('shared')">Shared</button>
+        </div>
+
+        <div class="view-toggle">
+          <button type="button" class="v-btn active" id="btnModeDeck" onclick="setViewMode('deck')">🎴 Deck</button>
+          <button type="button" class="v-btn" id="btnModeGlossary" onclick="setViewMode('glossary')">📚 Glossary</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW MODE 1: Flashcard Deck -->
+  <div class="deck-view" id="deckView">
+    <div class="deck-header">
+      <div class="deck-counter" id="deckCounter">01 / 60</div>
+      <div id="deckGenBadge"></div>
+    </div>
+
+    <div class="flashcard" id="flashcard">
+      <div>
+        <div class="fc-top">
+          <div class="then-block">
+            <span class="then-tag">Millennial Reference ("Then")</span>
+            <span class="then-text" id="fcThen"></span>
+          </div>
+        </div>
+
+        <div class="now-block">
+          <div class="now-title" id="fcNow"></div>
+          <button type="button" class="speaker-btn" id="fcSpeakBtn" aria-label="Play pronunciation" title="Tap to listen">🔊</button>
+        </div>
+
+        <div class="fc-divider"></div>
+
+        <div class="fc-field">
+          <div class="fc-label">Where You'll Hear It</div>
+          <div class="fc-val" id="fcContext"></div>
+        </div>
+      </div>
+
+      <div class="fc-field" style="margin-top:16px;">
+        <div class="fc-label">In A Real-World Sentence</div>
+        <div class="fc-val fc-example" id="fcExample"></div>
+      </div>
+    </div>
+
+    <div class="deck-controls">
+      <button type="button" class="nav-btn" id="btnPrev" onclick="prevCard()">← Prev</button>
+      <button type="button" class="nav-btn shuffle" id="btnShuffle" onclick="shuffleCard()">🔀 Shuffle</button>
+      <button type="button" class="nav-btn" id="btnNext" onclick="nextCard()">Next →</button>
+    </div>
+  </div>
+
+  <!-- VIEW MODE 2: Full Glossary Dictionary Grid -->
+  <div class="glossary-grid" id="glossaryGrid" style="display:none;"></div>
+
+  <!-- Universal 4-Action Suite -->
+  <div class="actions-bar">
+    <button type="button" class="action-btn primary" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
+    <button type="button" class="action-btn" onclick="copyCurrentSlang()">📋 Copy Slang Card</button>
+    <button type="button" class="action-btn" onclick="saveFavorite()">⭐ Favorite Word</button>
+    <button type="button" class="action-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+
+</div>
+
+<!-- Standardized Footer -->
+<footer>
+  <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+  <p>&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All lookups and audio run strictly client-side.</p>
+</footer>
+
+<!-- Toast Float -->
+<div id="toast"></div>
+
+<!-- Audio Player Tag -->
+<audio id="audioPlayer" preload="none"></audio>
+
+<script>
+// State Management
+var dictionaryData = null;
+var activeSectionIdx = 0;
+var activeCardIdx = 0;
+var activeGenFilter = 'all';
+var activeViewMode = 'deck'; // 'deck' or 'glossary'
+var activeSearchQuery = '';
+
+// Audio Player & Fallback Web Speech Engine
+var player = document.getElementById('audioPlayer');
+
+function playPronunciation(phrase, audioFile, btnEl){
+  if(btnEl) btnEl.classList.add('playing');
+
+  // Try playing neural pre-generated MP3 first
+  if(audioFile){
+    player.src = audioFile;
+    var playPromise = player.play();
+    if(playPromise !== undefined){
+      playPromise.then(function(){
+        // Audio started smoothly
+      }).catch(function(){
+        // Pre-generated audio failed -> Graceful fallback to Web Speech API
+        speakWithSynthesis(phrase, btnEl);
+      });
+    }
+  } else {
+    speakWithSynthesis(phrase, btnEl);
+  }
+}
+
+function speakWithSynthesis(text, btnEl){
+  if('speechSynthesis' in window){
+    window.speechSynthesis.cancel();
+    var utter = new SpeechSynthesisUtterance(text);
+    utter.rate = 0.95;
+    utter.pitch = 1.0;
+    utter.onend = function(){
+      if(btnEl) btnEl.classList.remove('playing');
+    };
+    utter.onerror = function(){
+      if(btnEl) btnEl.classList.remove('playing');
+    };
+    window.speechSynthesis.speak(utter);
+  } else {
+    if(btnEl) btnEl.classList.remove('playing');
+  }
+}
+
+player.addEventListener('ended', function(){
+  document.querySelectorAll('.speaker-btn, .g-speak-btn').forEach(function(b){ b.classList.remove('playing'); });
+});
+player.addEventListener('error', function(){
+  // On error, try synthesis for the current active card
+  var current = getCurrentCard();
+  if(current){
+    speakWithSynthesis(current.now);
+  }
+});
+
+// Load Dictionary Data
+fetch('genz_alpha_lingo.json')
+  .then(function(res){ return res.json(); })
+  .then(function(data){
+    dictionaryData = data;
+    renderApp();
+  })
+  .catch(function(err){
+    console.error('Could not load genz_alpha_lingo.json', err);
+  });
+
+function getFilteredEntries(){
+  if(!dictionaryData) return [];
+  var entries = dictionaryData.sections[activeSectionIdx].entries;
+
+  return entries.filter(function(item){
+    // Generation filter
+    if(activeGenFilter !== 'all' && item.generation !== activeGenFilter) return false;
+
+    // Search query
+    if(activeSearchQuery){
+      var q = activeSearchQuery.toLowerCase();
+      var nowMatch = (item.now || '').toLowerCase().indexOf(q) !== -1;
+      var thenMatch = (item.then || '').toLowerCase().indexOf(q) !== -1;
+      var ctxMatch = (item.context || '').toLowerCase().indexOf(q) !== -1;
+      var exMatch = (item.example || '').toLowerCase().indexOf(q) !== -1;
+      return nowMatch || thenMatch || ctxMatch || exMatch;
+    }
+    return true;
+  });
+}
+
+function getCurrentCard(){
+  var list = getFilteredEntries();
+  if(!list.length) return null;
+  if(activeCardIdx >= list.length) activeCardIdx = 0;
+  return list[activeCardIdx];
+}
+
+function renderApp(){
+  renderSectionTabs();
+  if(activeViewMode === 'deck'){
+    document.getElementById('deckView').style.display = 'block';
+    document.getElementById('glossaryGrid').style.display = 'none';
+    renderFlashcard();
+  } else {
+    document.getElementById('deckView').style.display = 'none';
+    document.getElementById('glossaryGrid').style.display = 'grid';
+    renderGlossary();
+  }
+}
+
+function renderSectionTabs(){
+  var container = document.getElementById('sectionTabs');
+  container.innerHTML = dictionaryData.sections.map(function(sec, idx){
+    var count = sec.entries.length;
+    var isActive = idx === activeSectionIdx ? 'active' : '';
+    return '<button type="button" class="sec-tab ' + isActive + '" onclick="switchSection(' + idx + ')">' +
+      sec.title + ' <span class="count-badge">' + count + '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function switchSection(idx){
+  activeSectionIdx = idx;
+  activeCardIdx = 0;
+  renderApp();
+}
+
+function setGeneration(gen){
+  activeGenFilter = gen;
+  activeCardIdx = 0;
+  document.querySelectorAll('.gen-chip').forEach(function(c){
+    c.classList.toggle('active', c.getAttribute('data-gen') === gen);
+  });
+  renderApp();
+}
+
+function setViewMode(mode){
+  activeViewMode = mode;
+  document.getElementById('btnModeDeck').classList.toggle('active', mode === 'deck');
+  document.getElementById('btnModeGlossary').classList.toggle('active', mode === 'glossary');
+  renderApp();
+}
+
+function renderFlashcard(){
+  var list = getFilteredEntries();
+  var card = getCurrentCard();
+
+  if(!card){
+    document.getElementById('deckCounter').textContent = '00 / 00';
+    document.getElementById('deckGenBadge').innerHTML = '';
+    document.getElementById('fcThen').textContent = 'No matching slang found';
+    document.getElementById('fcNow').textContent = 'Search empty';
+    document.getElementById('fcContext').textContent = 'Try adjusting your search terms or generation filter.';
+    document.getElementById('fcExample').textContent = '—';
+    document.getElementById('btnPrev').disabled = true;
+    document.getElementById('btnNext').disabled = true;
+    return;
+  }
+
+  document.getElementById('deckCounter').textContent =
+    String(activeCardIdx + 1).padStart(2, '0') + ' / ' + String(list.length).padStart(2, '0');
+
+  var genClass = card.generation || 'shared';
+  var genLabel = genClass === 'genz' ? 'Gen Z' : (genClass === 'alpha' ? 'Gen Alpha' : 'Shared');
+  document.getElementById('deckGenBadge').innerHTML =
+    '<span class="gen-pill ' + genClass + '">' + genLabel + '</span>';
+
+  document.getElementById('fcThen').textContent = card.then;
+  document.getElementById('fcNow').textContent = card.now;
+  document.getElementById('fcContext').textContent = card.context;
+  document.getElementById('fcExample').textContent = '"' + card.example + '"';
+
+  var speakBtn = document.getElementById('fcSpeakBtn');
+  speakBtn.onclick = function(){
+    playPronunciation(card.now, card.audio_file, speakBtn);
+  };
+
+  document.getElementById('btnPrev').disabled = activeCardIdx === 0;
+  document.getElementById('btnNext').disabled = activeCardIdx >= list.length - 1;
+}
+
+function prevCard(){
+  if(activeCardIdx > 0){
+    activeCardIdx--;
+    renderFlashcard();
+  }
+}
+
+function nextCard(){
+  var list = getFilteredEntries();
+  if(activeCardIdx < list.length - 1){
+    activeCardIdx++;
+    renderFlashcard();
+  }
+}
+
+function shuffleCard(){
+  var list = getFilteredEntries();
+  if(list.length <= 1) return;
+  var nextIdx;
+  do {
+    nextIdx = Math.floor(Math.random() * list.length);
+  } while(nextIdx === activeCardIdx && list.length > 1);
+  activeCardIdx = nextIdx;
+  renderFlashcard();
+}
+
+function renderGlossary(){
+  var list = getFilteredEntries();
+  var container = document.getElementById('glossaryGrid');
+
+  if(!list.length){
+    container.innerHTML = '<div class="empty-state">No slang terms match your current filter or search query.</div>';
+    return;
+  }
+
+  container.innerHTML = list.map(function(item, idx){
+    var genClass = item.generation || 'shared';
+    var genLabel = genClass === 'genz' ? 'Gen Z' : (genClass === 'alpha' ? 'Gen Alpha' : 'Shared');
+    return '<div class="g-card">' +
+      '<div>' +
+        '<div class="g-header">' +
+          '<div class="g-now">' + item.now + '</div>' +
+          '<div class="g-actions">' +
+            '<span class="gen-pill ' + genClass + '">' + genLabel + '</span>' +
+            '<button type="button" class="g-speak-btn" onclick="playPronunciation(\'' + item.now.replace(/'/g, "\\'") + '\', \'' + item.audio_file + '\', this)" title="Listen">🔊</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="g-then">Then: <span>' + item.then + '</span></div>' +
+        '<div class="g-desc">' + item.context + '</div>' +
+      '</div>' +
+      '<div class="g-ex">"' + item.example + '"</div>' +
+    '</div>';
+  }).join('');
+}
+
+// Search Handler
+var searchInput = document.getElementById('searchInput');
+var clearBtn = document.getElementById('clearSearch');
+
+searchInput.addEventListener('input', function(e){
+  activeSearchQuery = e.target.value.trim();
+  clearBtn.style.display = activeSearchQuery ? 'block' : 'none';
+  activeCardIdx = 0;
+  renderApp();
+});
+
+clearBtn.addEventListener('click', function(){
+  searchInput.value = '';
+  activeSearchQuery = '';
+  clearBtn.style.display = 'none';
+  activeCardIdx = 0;
+  renderApp();
+});
+
+// Keyboard Navigation
+document.addEventListener('keydown', function(e){
+  // Don't trigger shortcuts if user is typing in search
+  if(document.activeElement === searchInput) return;
+
+  if(e.key === 'ArrowLeft') prevCard();
+  if(e.key === 'ArrowRight') nextCard();
+  if(e.key === ' '){
+    e.preventDefault();
+    var card = getCurrentCard();
+    if(card) playPronunciation(card.now, card.audio_file, document.getElementById('fcSpeakBtn'));
+  }
+});
+
+// WhatsApp Share
+function shareWhatsApp(){
+  var card = getCurrentCard();
+  if(!card) return;
+  var text = [
+    '💡 *GenZ & Alpha Slang of the Day:* ' + card.now,
+    '👴 *Millennial Translation ("Then"):* ' + card.then,
+    '📖 *Where You\'ll Hear It:* ' + card.context,
+    '💬 *Example:* "' + card.example + '"',
+    '----------------------------------------',
+    'Decode 150+ GenZ & Alpha slang terms: https://iamsaravofficial.com/apps/genzalphaslang/'
+  ].join('\n');
+  window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+}
+
+// Copy Card Summary
+function copyCurrentSlang(){
+  var card = getCurrentCard();
+  if(!card) return;
+  var text = [
+    '💡 GenZ & Alpha Slang: ' + card.now,
+    '• Millennial Translation: ' + card.then,
+    '• Context: ' + card.context,
+    '• Example: "' + card.example + '"',
+    'Source: https://iamsaravofficial.com/apps/genzalphaslang/'
+  ].join('\n');
+
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('📋 Slang card copied to clipboard!');
+    }).catch(function(){
+      fallbackCopy(text);
+    });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('📋 Slang card copied to clipboard!');
+  } catch(e){
+    showToast('Could not copy to clipboard.');
+  }
+  document.body.removeChild(ta);
+}
+
+// Favorite Slang in localStorage
+function saveFavorite(){
+  var card = getCurrentCard();
+  if(!card) return;
+  var favKey = 'sw_slang_favorites_v1';
+  var list = [];
+  try {
+    list = JSON.parse(localStorage.getItem(favKey)) || [];
+  } catch(e){}
+
+  var exists = list.some(function(item){ return item.id === card.id; });
+  if(!exists){
+    list.unshift({ id: card.id, now: card.now, then: card.then, date: new Date().toLocaleDateString('en-IN') });
+    if(list.length > 30) list = list.slice(0, 30);
+    localStorage.setItem(favKey, JSON.stringify(list));
+    showToast('⭐ Added "' + card.now + '" to favorites!');
+  } else {
+    showToast('⭐ "' + card.now + '" is already in favorites.');
+  }
+}
+
+// Toast
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 2600);
+}
+
+// Standardized Theme Engine with Auto / Light / Dark
+function setTheme(choice){
+  localStorage.setItem('sw_theme', choice);
+  var activeTheme = choice;
+  if(choice === 'auto' || choice === 'system'){
+    activeTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  document.querySelectorAll('.theme-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === choice);
+  });
+}
+
+function initTheme(){
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  setTheme(saved);
+}
+initTheme();
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(){
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  if(saved === 'auto' || saved === 'system') setTheme('auto');
+});
+
+// Dropdown Handlers
+document.querySelectorAll('.eco-dropdown').forEach(function(drop){
+  var btn = drop.querySelector('.eco-dropbtn');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    document.querySelectorAll('.eco-dropdown').forEach(function(d){ if(d!==drop) d.classList.remove('open'); });
+    drop.classList.toggle('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
+});
+</script>
+</body>
+</html>

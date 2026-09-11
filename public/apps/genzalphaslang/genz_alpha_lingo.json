@@ -1,0 +1,1588 @@
+{
+  "app": "GenZ Alpha Lingo Translator",
+  "description": "Millennial vs GenZ/Alpha lingo, idioms, and abbreviations, with tap-to-speak pronunciation for the GenZ/Alpha term.",
+  "schema_note": "then = classic/millennial reference version. now = GenZ/Alpha term to learn; audio_file maps to 'now' only. Navigate each section with prev/next by 'order'.",
+  "sections": [
+    {
+      "id": "lingo",
+      "title": "Millennial vs GenZ Alpha Lingo",
+      "count": 60,
+      "entries": [
+        {
+          "id": "lingo-01",
+          "order": 1,
+          "then": "What's your location / Where are you",
+          "now": "Drop your pin / WYA",
+          "context": "Asking someone where they are over text or DM",
+          "example": "yo WYA? we're waiting outside the spot",
+          "audio_file": "audio/lingo/wya.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-02",
+          "order": 2,
+          "then": "That's awesome",
+          "now": "That's fire",
+          "context": "Reacting to something impressive or exciting",
+          "example": "bro that new drop is fire",
+          "audio_file": "audio/lingo/fire.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-03",
+          "order": 3,
+          "then": "That's cool with me",
+          "now": "That's valid",
+          "context": "Accepting or agreeing with something, no pushback",
+          "example": "you skipping the party? that's valid",
+          "audio_file": "audio/lingo/valid.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-04",
+          "order": 4,
+          "then": "That's really good",
+          "now": "That slaps",
+          "context": "Praising music, food, or content that hits well",
+          "example": "this beat slaps ngl",
+          "audio_file": "audio/lingo/slaps.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-05",
+          "order": 5,
+          "then": "That's boring or average",
+          "now": "That's mid",
+          "context": "Dismissing something as unimpressive",
+          "example": "the movie was mid tbh",
+          "audio_file": "audio/lingo/mid.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-06",
+          "order": 6,
+          "then": "I'm exhausted",
+          "now": "I'm cooked",
+          "context": "Expressing you're tired, stressed, or doomed",
+          "example": "stayed up till 3am, I'm so cooked for the exam",
+          "audio_file": "audio/lingo/cooked.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-07",
+          "order": 7,
+          "then": "That's embarrassing",
+          "now": "That's cringe",
+          "context": "Reacting to secondhand embarrassment",
+          "example": "his dance video was so cringe",
+          "audio_file": "audio/lingo/cringe.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-08",
+          "order": 8,
+          "then": "He's delusional but confident",
+          "now": "He's delulu",
+          "context": "Teasing unrealistic confidence, often about a crush",
+          "example": "she thinks he likes her back, she's delulu",
+          "audio_file": "audio/lingo/delulu.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-09",
+          "order": 9,
+          "then": "She's very attractive",
+          "now": "She's a whole gyat",
+          "context": "Complimenting looks, often exaggerated for effect",
+          "example": "did you see her? gyat",
+          "audio_file": "audio/lingo/gyat.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-10",
+          "order": 10,
+          "then": "He stole the spotlight or a share of something",
+          "now": "He hit the fanum tax",
+          "context": "Calling out someone taking credit, food, or attention",
+          "example": "bro ate half my fries, fanum tax fr",
+          "audio_file": "audio/lingo/fanum.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-11",
+          "order": 11,
+          "then": "He's independent, doesn't care what others think",
+          "now": "He's sigma",
+          "context": "Describing someone who moves alone, unbothered by norms",
+          "example": "he skipped prom to study alone, so sigma",
+          "audio_file": "audio/lingo/sigma.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-12",
+          "order": 12,
+          "then": "That's suspicious",
+          "now": "That's sus",
+          "context": "Calling out shady or questionable behavior",
+          "example": "why'd you leave early, that's sus",
+          "audio_file": "audio/lingo/sus.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-13",
+          "order": 13,
+          "then": "I agree, deal",
+          "now": "Bet",
+          "context": "Confirming a plan or accepting a challenge",
+          "example": "wanna run it back? bet",
+          "audio_file": "audio/lingo/bet.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-14",
+          "order": 14,
+          "then": "Seriously, I'm not lying",
+          "now": "No cap",
+          "context": "Emphasizing honesty about a claim",
+          "example": "that test was so hard, no cap",
+          "audio_file": "audio/lingo/no.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-15",
+          "order": 15,
+          "then": "That has great energy",
+          "now": "That's got aura",
+          "context": "Complimenting someone's presence or swagger",
+          "example": "the way he walked in, that's aura",
+          "audio_file": "audio/lingo/aura.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-16",
+          "order": 16,
+          "then": "He's outshining everyone",
+          "now": "He's mogging",
+          "context": "Describing someone who looks better than everyone around",
+          "example": "bro's mogging in that fit",
+          "audio_file": "audio/lingo/mogging.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-17",
+          "order": 17,
+          "then": "Notice that",
+          "now": "Clock it",
+          "context": "Pointing out something you noticed",
+          "example": "did you clock her new kicks",
+          "audio_file": "audio/lingo/clock.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-18",
+          "order": 18,
+          "then": "That's strange or off",
+          "now": "That's so ohio",
+          "context": "Calling something bizarre, meme-style",
+          "example": "why is he doing that, so ohio",
+          "audio_file": "audio/lingo/ohio.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-19",
+          "order": 19,
+          "then": "That's chaotic nonsense",
+          "now": "That's skibidi",
+          "context": "Describing absurd, meme-fueled chaos",
+          "example": "his little brother's just yelling skibidi all day",
+          "audio_file": "audio/lingo/skibidi.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-20",
+          "order": 20,
+          "then": "That's mindless internet content",
+          "now": "That's brainrot",
+          "context": "Describing low-effort, addictive meme content",
+          "example": "stop watching brainrot and do your homework",
+          "audio_file": "audio/lingo/brainrot.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-21",
+          "order": 21,
+          "then": "He acts fake or robotic",
+          "now": "He's an NPC",
+          "context": "Calling out someone with no independent reactions",
+          "example": "he just repeats what everyone says, total NPC",
+          "audio_file": "audio/lingo/npc.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-22",
+          "order": 22,
+          "then": "She looks amazing today",
+          "now": "She's serving",
+          "context": "Complimenting someone's look or outfit",
+          "example": "she's serving in that dress",
+          "audio_file": "audio/lingo/serving.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-23",
+          "order": 23,
+          "then": "That outfit looks great",
+          "now": "That fit's bussin",
+          "context": "Complimenting an outfit",
+          "example": "bro your fit is bussin today",
+          "audio_file": "audio/lingo/bussin.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-24",
+          "order": 24,
+          "then": "That's not a convincing excuse",
+          "now": "That ain't it chief",
+          "context": "Dismissing a weak excuse or explanation",
+          "example": "you blamed the dog again? that ain't it chief",
+          "audio_file": "audio/lingo/chief.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-25",
+          "order": 25,
+          "then": "That's a win",
+          "now": "That's a dub",
+          "context": "Celebrating a success",
+          "example": "got the internship, that's a dub",
+          "audio_file": "audio/lingo/dub.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-26",
+          "order": 26,
+          "then": "That's a loss or failure",
+          "now": "That's an L",
+          "context": "Acknowledging a failure or bad outcome",
+          "example": "lost the match, that's an L",
+          "audio_file": "audio/lingo/l.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-27",
+          "order": 27,
+          "then": "I really like this",
+          "now": "This hits different",
+          "context": "Saying something feels especially good or resonant",
+          "example": "this song hits different at night",
+          "audio_file": "audio/lingo/different.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-28",
+          "order": 28,
+          "then": "Calm down, relax",
+          "now": "Touch grass",
+          "context": "Telling someone to step away from their screen",
+          "example": "you've tweeted 40 times today, touch grass",
+          "audio_file": "audio/lingo/touch.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-29",
+          "order": 29,
+          "then": "That's over the top",
+          "now": "That's so extra",
+          "context": "Calling out excessive or dramatic behavior",
+          "example": "she cried over a paper cut, so extra",
+          "audio_file": "audio/lingo/extra.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-30",
+          "order": 30,
+          "then": "That's disturbing or wild",
+          "now": "That's unhinged",
+          "context": "Reacting to shocking or erratic behavior",
+          "example": "he texted his ex at 3am, that's unhinged",
+          "audio_file": "audio/lingo/unhinged.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-31",
+          "order": 31,
+          "then": "That gives me a bad feeling",
+          "now": "That gives me the ick",
+          "context": "Describing sudden repulsion, usually about a crush",
+          "example": "he chewed with his mouth open, instant ick",
+          "audio_file": "audio/lingo/ick.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-32",
+          "order": 32,
+          "then": "I respect that",
+          "now": "That's based",
+          "context": "Approving of a bold, authentic opinion",
+          "example": "he said what everyone was thinking, that's based",
+          "audio_file": "audio/lingo/based.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-33",
+          "order": 33,
+          "then": "Focus up",
+          "now": "Lock in",
+          "context": "Telling someone, or yourself, to concentrate",
+          "example": "exam's tomorrow, gotta lock in",
+          "audio_file": "audio/lingo/lock.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-34",
+          "order": 34,
+          "then": "That's outdated or uncool",
+          "now": "That's boomer-coded",
+          "context": "Calling something old-fashioned",
+          "example": "using Comic Sans is so boomer-coded",
+          "audio_file": "audio/lingo/boomercoded.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-35",
+          "order": 35,
+          "then": "He backed out or gave up",
+          "now": "He pulled an L",
+          "context": "Describing someone quitting or failing",
+          "example": "he pulled an L and dropped out of the race",
+          "audio_file": "audio/lingo/pulled.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-36",
+          "order": 36,
+          "then": "Being the center of attention",
+          "now": "Main character energy",
+          "context": "Describing someone acting like the star of their own story",
+          "example": "she walked in with main character energy",
+          "audio_file": "audio/lingo/main.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-37",
+          "order": 37,
+          "then": "That's fake, a lie",
+          "now": "That's cap",
+          "context": "Calling out a lie",
+          "example": "you ran a 4 minute mile? that's cap",
+          "audio_file": "audio/lingo/cap.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-38",
+          "order": 38,
+          "then": "That's genuinely the best",
+          "now": "That's peak",
+          "context": "Calling something the best version of its kind",
+          "example": "that finale was peak",
+          "audio_file": "audio/lingo/peak.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-39",
+          "order": 39,
+          "then": "Romantic charm, charisma, or game",
+          "now": "He's got unspoken rizz",
+          "context": "Effortless romantic magnetism without even speaking",
+          "example": "bro didn't say a word and got her number, unspoken rizz",
+          "audio_file": "audio/lingo/rizz.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-40",
+          "order": 40,
+          "then": "Lose your temper violently or recklessly",
+          "now": "He's about to crash out",
+          "context": "Overreacting angrily with zero regard for consequences",
+          "example": "chill bro, do not crash out over a video game",
+          "audio_file": "audio/lingo/crashout.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-41",
+          "order": 41,
+          "then": "Practicing what you preach / holding your ground",
+          "now": "Standing on business",
+          "context": "Taking care of obligations firmly without compromise",
+          "example": "he asked for his promotion and stood on business",
+          "audio_file": "audio/lingo/standingonbusiness.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-42",
+          "order": 42,
+          "then": "Nailed it / performed flawlessly",
+          "now": "She ate and left no crumbs",
+          "context": "Highest praise for an outfit, dance, speech, or performance",
+          "example": "her solo performance was unreal, she ate and left no crumbs",
+          "audio_file": "audio/lingo/ate.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-43",
+          "order": 43,
+          "then": "Give him room / let him show his skill",
+          "now": "Hold up, let him cook",
+          "context": "Letting someone execute an idea or show what they've got",
+          "example": "it sounds wild at first, but wait, let him cook",
+          "audio_file": "audio/lingo/lethimcook.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-44",
+          "order": 44,
+          "then": "Jawline posture / facial fitness workout",
+          "now": "He's mewing rn, don't talk",
+          "context": "Pressing tongue to roof of mouth for jaw definition; silent meme gesture",
+          "example": "tried to ask him a question and he tapped his jaw, he's mewing",
+          "audio_file": "audio/lingo/mewing.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-45",
+          "order": 45,
+          "then": "Rambling / talking endlessly",
+          "now": "Bro is fluent in yappanese",
+          "context": "Teasing someone for speaking non-stop without saying anything useful",
+          "example": "he has been yapping for twenty minutes straight, CEO of yapping",
+          "audio_file": "audio/lingo/yappanese.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-46",
+          "order": 46,
+          "then": "Secret hookup / quiet rendezvous",
+          "now": "That's his sneaky link",
+          "context": "Meeting someone in secret without notifying friends or social media",
+          "example": "he slipped out at midnight, definitely meeting a sneaky link",
+          "audio_file": "audio/lingo/sneakylink.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-47",
+          "order": 47,
+          "then": "Rivals / enemies / adversaries",
+          "now": "Spotted the opps",
+          "context": "Referring to rivals, haters, or competitors",
+          "example": "look natural, the opps just walked into the room",
+          "audio_file": "audio/lingo/opps.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-48",
+          "order": 48,
+          "then": "Suspicious dirty look / judgmental side glance",
+          "now": "Bombastic side eye",
+          "context": "Judging someone silently with an exaggerated, suspicious side look",
+          "example": "he ordered warm milk at the club, bombastic side eye",
+          "audio_file": "audio/lingo/sideeye.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-49",
+          "order": 49,
+          "then": "Look fantastic / killed it",
+          "now": "You slay every single time",
+          "context": "Complimenting someone who looks incredible or did something brilliantly",
+          "example": "that red carpet look is iconic, slay",
+          "audio_file": "audio/lingo/slay.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-50",
+          "order": 50,
+          "then": "Swag / stylish outfit and fashion",
+          "now": "Check out the drip",
+          "context": "Complimenting someone's fashion, sneakers, or jewelry",
+          "example": "vintage jacket with fresh kicks, bro has serious drip",
+          "audio_file": "audio/lingo/drip.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-51",
+          "order": 51,
+          "then": "Undefined romantic connection",
+          "now": "It's just a situationship",
+          "context": "A romantic involvement that avoids formal labels or commitment",
+          "example": "they have been talking for eight months but it's still a situationship",
+          "audio_file": "audio/lingo/situationship.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-52",
+          "order": 52,
+          "then": "Hard lesson that builds character",
+          "now": "It's a canon event, can't interfere",
+          "context": "An unavoidable, painful life milestone someone has to experience to grow",
+          "example": "he bought bad crypto, it's a canon event bro, we can't interfere",
+          "audio_file": "audio/lingo/canonevent.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-53",
+          "order": 53,
+          "then": "Hit song / catchy tune",
+          "now": "This track is a certified bop",
+          "context": "Praising an undeniably great, catchy song",
+          "example": "turn the volume up, this track is an absolute bop",
+          "audio_file": "audio/lingo/bop.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-54",
+          "order": 54,
+          "then": "Sucking up / excessive flattery",
+          "now": "Stop glazing him so hard",
+          "context": "Calling out someone who is overpraising or kissing up to an idol or peer",
+          "example": "bro is calling him the greatest coder in history, the glazing is crazy",
+          "audio_file": "audio/lingo/glazing.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-55",
+          "order": 55,
+          "then": "Stunning, confident woman",
+          "now": "Certified baddie",
+          "context": "Describing an attractive, self-assured, impeccably styled woman",
+          "example": "she walked into the venue like a certified baddie",
+          "audio_file": "audio/lingo/baddie.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-56",
+          "order": 56,
+          "then": "Assessing mood / character check",
+          "now": "Passed the vibe check",
+          "context": "Determining if someone's energy or personality fits the group",
+          "example": "he bought everyone pizza without asking, passed the vibe check",
+          "audio_file": "audio/lingo/vibecheck.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "lingo-57",
+          "order": 57,
+          "then": "Master of charm",
+          "now": "Bro is the ultimate Rizzler",
+          "context": "Playful title for someone who charms anyone effortlessly",
+          "example": "talked his way into VIP, bro is the true Rizzler",
+          "audio_file": "audio/lingo/rizzler.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-58",
+          "order": 58,
+          "then": "Exceeded all expectations",
+          "now": "They understood the assignment",
+          "context": "Doing exactly what was needed with flair and excellence",
+          "example": "look at the retro outfits, the whole team understood the assignment",
+          "audio_file": "audio/lingo/understoodtheassignment.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "lingo-59",
+          "order": 59,
+          "then": "Maximizing physical appearance / self-improvement",
+          "now": "He's on that looksmaxxing grind",
+          "context": "Dedicated effort to improve facial aesthetics, fitness, and grooming",
+          "example": "new haircut, skincare, and gym routine, he's looksmaxxing fr",
+          "audio_file": "audio/lingo/looksmaxxing.mp3",
+          "generation": "alpha"
+        },
+        {
+          "id": "lingo-60",
+          "order": 60,
+          "then": "Obsessing over someone constantly",
+          "now": "Living rent free in your mind",
+          "context": "Occupying someone's thoughts without any effort",
+          "example": "he hasn't played in a week and you still talk about him, rent free",
+          "audio_file": "audio/lingo/rentfree.mp3",
+          "generation": "shared"
+        }
+      ]
+    },
+    {
+      "id": "idioms",
+      "title": "Idioms",
+      "count": 31,
+      "entries": [
+        {
+          "id": "idioms-01",
+          "order": 1,
+          "then": "Wake up and smell the coffee",
+          "now": "The delulu is not the solulu",
+          "context": "Telling someone to accept an unpopular truth",
+          "example": "he still thinks she'll text back, the delulu is not the solulu",
+          "audio_file": "audio/idioms/delulu.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-02",
+          "order": 2,
+          "then": "Actions speak louder than words",
+          "now": "Receipts or it didn't happen",
+          "context": "Demanding proof instead of just claims",
+          "example": "he said he'd change, but receipts or it didn't happen",
+          "audio_file": "audio/idioms/receipts.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-03",
+          "order": 3,
+          "then": "It's not rocket science",
+          "now": "It's not that deep",
+          "context": "Telling someone not to overanalyze something simple",
+          "example": "it's just a group project, it's not that deep",
+          "audio_file": "audio/idioms/not.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-04",
+          "order": 4,
+          "then": "The ball is in your court",
+          "now": "It's your move, no cap",
+          "context": "Telling someone it's their turn to decide or act",
+          "example": "I texted first twice, it's your move no cap",
+          "audio_file": "audio/idioms/your.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-05",
+          "order": 5,
+          "then": "Bite off more than you can chew",
+          "now": "Not built for this",
+          "context": "Realizing a task is more than you can handle",
+          "example": "signed up for three clubs and a job, not built for this",
+          "audio_file": "audio/idioms/not-2.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-06",
+          "order": 6,
+          "then": "The grass is always greener",
+          "now": "The grass is greener where you don't see the edits",
+          "context": "Reminding someone social media hides the full picture",
+          "example": "her life looks perfect online, the grass is greener where you don't see the edits",
+          "audio_file": "audio/idioms/grass.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-07",
+          "order": 7,
+          "then": "When it rains, it pours",
+          "now": "The universe said take the L twice",
+          "context": "Describing back-to-back bad luck",
+          "example": "lost my phone and failed the quiz, universe said take the L twice",
+          "audio_file": "audio/idioms/universe.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-08",
+          "order": 8,
+          "then": "Every cloud has a silver lining",
+          "now": "There's always a plot twist",
+          "context": "Finding hope after something bad happens",
+          "example": "missed the bus but met my best friend, there's always a plot twist",
+          "audio_file": "audio/idioms/always.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-09",
+          "order": 9,
+          "then": "Curiosity killed the cat",
+          "now": "Stay out of it before you catch a stray",
+          "context": "Warning someone not to get pulled into others' drama",
+          "example": "don't comment on their beef, stay out of it before you catch a stray",
+          "audio_file": "audio/idioms/stay.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-10",
+          "order": 10,
+          "then": "Don't cry over spilled milk",
+          "now": "Don't let it live rent free",
+          "context": "Telling someone to stop dwelling on something small",
+          "example": "it was one bad grade, don't let it live rent free",
+          "audio_file": "audio/idioms/let.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-11",
+          "order": 11,
+          "then": "A picture is worth a thousand words",
+          "now": "The screenshot says it all",
+          "context": "Letting visual proof speak for itself",
+          "example": "no need to explain, the screenshot says it all",
+          "audio_file": "audio/idioms/screenshot.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-12",
+          "order": 12,
+          "then": "Out of sight, out of mind",
+          "now": "If it ain't on my feed, it ain't real",
+          "context": "Describing how attention follows what's visible online",
+          "example": "he forgot her birthday, if it ain't on my feed it ain't real",
+          "audio_file": "audio/idioms/if.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-13",
+          "order": 13,
+          "then": "Barking up the wrong tree",
+          "now": "Sliding into the wrong DMs",
+          "context": "Pointing out someone is blaming or approaching the wrong person",
+          "example": "he's mad at me for that? sliding into the wrong DMs",
+          "audio_file": "audio/idioms/sliding.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-14",
+          "order": 14,
+          "then": "Let sleeping dogs lie",
+          "now": "Don't revive the group chat drama",
+          "context": "Telling someone to leave old conflict alone",
+          "example": "it's settled, don't revive the group chat drama",
+          "audio_file": "audio/idioms/revive.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-15",
+          "order": 15,
+          "then": "Once bitten, twice shy",
+          "now": "Left on read once, never texting first again",
+          "context": "Being cautious after getting hurt before",
+          "example": "she ghosted him, left on read once never texting first again",
+          "audio_file": "audio/idioms/left.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-16",
+          "order": 16,
+          "then": "The cat's out of the bag",
+          "now": "Caught in 4k",
+          "context": "Something is now undeniably exposed with proof",
+          "example": "the video's everywhere, caught in 4k",
+          "audio_file": "audio/idioms/caught.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-17",
+          "order": 17,
+          "then": "Don't judge a book by its cover",
+          "now": "Their feed ain't their reality",
+          "context": "Reminding someone online image isn't the full story",
+          "example": "she looks so put together, but their feed ain't their reality",
+          "audio_file": "audio/idioms/their.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-18",
+          "order": 18,
+          "then": "Practice makes perfect",
+          "now": "Reps don't lie",
+          "context": "Saying consistent effort is what actually shows results",
+          "example": "he's been grinding daily, reps don't lie",
+          "audio_file": "audio/idioms/reps.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-19",
+          "order": 19,
+          "then": "Speak of the devil",
+          "now": "Plot armor much",
+          "context": "Reacting when someone appears right as they're mentioned",
+          "example": "we were just talking about you, plot armor much",
+          "audio_file": "audio/idioms/plot.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-20",
+          "order": 20,
+          "then": "Kill two birds with one stone",
+          "now": "Two W's, one move",
+          "context": "Solving two problems with a single action",
+          "example": "study group doubles as hangout, two W's one move",
+          "audio_file": "audio/idioms/two.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-21",
+          "order": 21,
+          "then": "Break the ice",
+          "now": "Send the first text",
+          "context": "Making the first move in a new conversation",
+          "example": "just send the first text, worst case it's mid",
+          "audio_file": "audio/idioms/send.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-22",
+          "order": 22,
+          "then": "You can't have your cake and eat it too",
+          "now": "Pick a struggle",
+          "context": "Pointing out someone wants two things that conflict",
+          "example": "you want the grades but not the studying, pick a struggle",
+          "audio_file": "audio/idioms/pick.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-23",
+          "order": 23,
+          "then": "Every dog has its day",
+          "now": "Everybody gets their main character moment",
+          "context": "Saying everyone eventually gets their turn to shine",
+          "example": "she finally won, everybody gets their main character moment",
+          "audio_file": "audio/idioms/everybody.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-24",
+          "order": 24,
+          "then": "When the going gets tough, the tough get going",
+          "now": "Lock in when it's giving hard mode",
+          "context": "Encouraging focus when things get difficult",
+          "example": "finals week is giving hard mode, lock in",
+          "audio_file": "audio/idioms/lock.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-25",
+          "order": 25,
+          "then": "Don't put all your eggs in one basket",
+          "now": "Diversify the bag, don't ride for one plan",
+          "context": "Warning against relying on a single option",
+          "example": "apply to more than one school, diversify the bag",
+          "audio_file": "audio/idioms/diversify.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-26",
+          "order": 26,
+          "then": "Don't judge a work in progress",
+          "now": "Let him cook before you judge",
+          "context": "Asking for patience while someone works through their plan",
+          "example": "the draft looks rough, but let him cook before you judge",
+          "audio_file": "audio/idioms/lethimcook.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-27",
+          "order": 27,
+          "then": "Stick to your guns no matter what",
+          "now": "Standing on business 24/7",
+          "context": "Uncompromising commitment to your values or terms",
+          "example": "they tried to lowball him, but he stood on business 24/7",
+          "audio_file": "audio/idioms/standingonbusiness.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "idioms-28",
+          "order": 28,
+          "then": "It exudes that certain aura / essence",
+          "now": "It's giving main character",
+          "context": "Describing something that radiates a very specific aesthetic or energy",
+          "example": "the trench coat with sunglasses, it's giving main character",
+          "audio_file": "audio/idioms/itsgiving.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "idioms-29",
+          "order": 29,
+          "then": "Fly off the handle over small things",
+          "now": "Crashing out over nothing",
+          "context": "Losing control and reacting with disproportionate fury",
+          "example": "his Wi-Fi disconnected and he smashed his mouse, crashing out over nothing",
+          "audio_file": "audio/idioms/crashingout.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "idioms-30",
+          "order": 30,
+          "then": "Knocked it right out of the park",
+          "now": "Ate and left zero crumbs",
+          "context": "Delivering a masterclass execution",
+          "example": "her debate speech was lethal, ate and left zero crumbs",
+          "audio_file": "audio/idioms/atezero.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "idioms-31",
+          "order": 31,
+          "then": "They have to learn the hard way",
+          "now": "Canon event, don't intervene",
+          "context": "Accepting that some painful life lessons cannot be prevented",
+          "example": "he didn't study for the mock test, canon event, don't intervene",
+          "audio_file": "audio/idioms/canonevent.mp3",
+          "generation": "shared"
+        }
+      ]
+    },
+    {
+      "id": "abbreviations",
+      "title": "Abbreviations",
+      "count": 65,
+      "entries": [
+        {
+          "id": "abbreviations-01",
+          "order": 1,
+          "then": "Fear Of Missing Out",
+          "now": "FOMO",
+          "context": "Texting about anxiety over missing an event or trend",
+          "example": "everyone's at the party, I've got major FOMO",
+          "audio_file": "audio/abbreviations/fomo.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-02",
+          "order": 2,
+          "then": "Non-Player Character",
+          "now": "NPC",
+          "context": "Describing someone acting without independent thought",
+          "example": "he just agrees with everyone, total NPC behavior",
+          "audio_file": "audio/abbreviations/npc.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-03",
+          "order": 3,
+          "then": "Greatest Of All Time",
+          "now": "GOAT",
+          "context": "Calling someone or something the best ever",
+          "example": "that's the GOAT of all group chats",
+          "audio_file": "audio/abbreviations/goat.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-04",
+          "order": 4,
+          "then": "In My Opinion",
+          "now": "IMO",
+          "context": "Softening a statement as personal opinion",
+          "example": "IMO the sequel was better",
+          "audio_file": "audio/abbreviations/imo.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-05",
+          "order": 5,
+          "then": "To Be Honest",
+          "now": "TBH",
+          "context": "Prefacing an honest take",
+          "example": "TBH I didn't even study",
+          "audio_file": "audio/abbreviations/tbh.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-06",
+          "order": 6,
+          "then": "At This Point",
+          "now": "ATP",
+          "context": "Expressing something's gone on long enough",
+          "example": "ATP just tell me the answer",
+          "audio_file": "audio/abbreviations/atp.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-07",
+          "order": 7,
+          "then": "In Case You Missed It",
+          "now": "ICYMI",
+          "context": "Recapping something for people who weren't around",
+          "example": "ICYMI, the drop got pushed to Friday",
+          "audio_file": "audio/abbreviations/icymi.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-08",
+          "order": 8,
+          "then": "Point Of View",
+          "now": "POV",
+          "context": "Framing a scenario from someone's perspective, common in video captions",
+          "example": "POV: it's 8am and the group project is due",
+          "audio_file": "audio/abbreviations/pov.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-09",
+          "order": 9,
+          "then": "Not Gonna Lie",
+          "now": "NGL",
+          "context": "Admitting something honestly, sometimes reluctantly",
+          "example": "NGL that outfit is fire",
+          "audio_file": "audio/abbreviations/ngl.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-10",
+          "order": 10,
+          "then": "I Love You",
+          "now": "ILY",
+          "context": "Quick way to say I love you",
+          "example": "ILY, see you tomorrow",
+          "audio_file": "audio/abbreviations/ily.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-11",
+          "order": 11,
+          "then": "I Know Right",
+          "now": "IKR",
+          "context": "Agreeing enthusiastically with what someone said",
+          "example": "IKR the ending made no sense",
+          "audio_file": "audio/abbreviations/ikr.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-12",
+          "order": 12,
+          "then": "I Don't Know",
+          "now": "IDK",
+          "context": "Expressing uncertainty",
+          "example": "IDK what to wear tonight",
+          "audio_file": "audio/abbreviations/idk.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-13",
+          "order": 13,
+          "then": "Shaking My Head",
+          "now": "SMH",
+          "context": "Reacting to something disappointing or ridiculous",
+          "example": "he forgot again, SMH",
+          "audio_file": "audio/abbreviations/smh.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-14",
+          "order": 14,
+          "then": "To Be Fair",
+          "now": "TBF",
+          "context": "Adding a balancing point to a statement",
+          "example": "TBF he did warn us",
+          "audio_file": "audio/abbreviations/tbf.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-15",
+          "order": 15,
+          "then": "For Real For Real",
+          "now": "FR FR",
+          "context": "Emphasizing sincerity, stronger than just fr",
+          "example": "that test was brutal FR FR",
+          "audio_file": "audio/abbreviations/fr.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-16",
+          "order": 16,
+          "then": "What About You",
+          "now": "WBU",
+          "context": "Asking the same question back",
+          "example": "I'm good, WBU",
+          "audio_file": "audio/abbreviations/wbu.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-17",
+          "order": 17,
+          "then": "Right Now",
+          "now": "RN",
+          "context": "Referring to the current moment",
+          "example": "can't talk RN, in class",
+          "audio_file": "audio/abbreviations/rn.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-18",
+          "order": 18,
+          "then": "On My Way",
+          "now": "OMW",
+          "context": "Letting someone know you're heading there",
+          "example": "OMW, 5 mins",
+          "audio_file": "audio/abbreviations/omw.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-19",
+          "order": 19,
+          "then": "Good Game",
+          "now": "GG",
+          "context": "Acknowledging a match or effort is done, win or lose",
+          "example": "GG that was close",
+          "audio_file": "audio/abbreviations/gg.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-20",
+          "order": 20,
+          "then": "Away From Keyboard",
+          "now": "AFK",
+          "context": "Saying you'll be briefly unavailable, mostly gaming",
+          "example": "AFK, be back in 5",
+          "audio_file": "audio/abbreviations/afk.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-21",
+          "order": 21,
+          "then": "In Real Life",
+          "now": "IRL",
+          "context": "Referring to offline, physical-world events",
+          "example": "we finally met up IRL",
+          "audio_file": "audio/abbreviations/irl.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-22",
+          "order": 22,
+          "then": "Direct Message",
+          "now": "DM",
+          "context": "Referring to a private message on social platforms",
+          "example": "slide into my DMs",
+          "audio_file": "audio/abbreviations/dm.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-23",
+          "order": 23,
+          "then": "For The Win",
+          "now": "FTW",
+          "context": "Celebrating something as the winning choice",
+          "example": "pizza for dinner, FTW",
+          "audio_file": "audio/abbreviations/ftw.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-24",
+          "order": 24,
+          "then": "Laugh Out Loud",
+          "now": "LOL",
+          "context": "Reacting to something funny",
+          "example": "LOL that's actually so true",
+          "audio_file": "audio/abbreviations/lol.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-25",
+          "order": 25,
+          "then": "Laughing My Ass Off",
+          "now": "LMAO",
+          "context": "Reacting to something very funny",
+          "example": "LMAO he really said that",
+          "audio_file": "audio/abbreviations/lmao.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-26",
+          "order": 26,
+          "then": "Be Right Back",
+          "now": "BRB",
+          "context": "Stepping away briefly",
+          "example": "BRB grabbing food",
+          "audio_file": "audio/abbreviations/brb.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-27",
+          "order": 27,
+          "then": "You Only Live Once",
+          "now": "YOLO",
+          "context": "Justifying a spontaneous or risky choice",
+          "example": "booked the flight, YOLO",
+          "audio_file": "audio/abbreviations/yolo.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-28",
+          "order": 28,
+          "then": "Talk To You Later",
+          "now": "TTYL",
+          "context": "Ending a conversation for now",
+          "example": "gotta go, TTYL",
+          "audio_file": "audio/abbreviations/ttyl.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-29",
+          "order": 29,
+          "then": "Never Mind",
+          "now": "NVM",
+          "context": "Dropping a point or question",
+          "example": "NVM I found it already",
+          "audio_file": "audio/abbreviations/nvm.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-30",
+          "order": 30,
+          "then": "Just Kidding",
+          "now": "JK",
+          "context": "Clarifying a joke wasn't serious",
+          "example": "you're the worst, JK love you",
+          "audio_file": "audio/abbreviations/jk.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-31",
+          "order": 31,
+          "then": "Got To Go",
+          "now": "GTG",
+          "context": "Signaling you need to leave",
+          "example": "GTG, class is starting",
+          "audio_file": "audio/abbreviations/gtg.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-32",
+          "order": 32,
+          "then": "Hit Me Up",
+          "now": "HMU",
+          "context": "Inviting someone to reach out later",
+          "example": "HMU if you're free this weekend",
+          "audio_file": "audio/abbreviations/hmu.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-33",
+          "order": 33,
+          "then": "What You Doing",
+          "now": "WYD",
+          "context": "Casual check-in on someone's plans",
+          "example": "WYD tonight",
+          "audio_file": "audio/abbreviations/wyd.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-34",
+          "order": 34,
+          "then": "On God",
+          "now": "ONG",
+          "context": "Swearing something is true, similar to no cap",
+          "example": "ONG that's the best burger I've had",
+          "audio_file": "audio/abbreviations/ong.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-35",
+          "order": 35,
+          "then": "If You Know You Know",
+          "now": "IYKYK",
+          "context": "Referencing something only insiders will get",
+          "example": "the group chat name, IYKYK",
+          "audio_file": "audio/abbreviations/iykyk.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-36",
+          "order": 36,
+          "then": "Swear To God",
+          "now": "STG",
+          "context": "Emphasizing sincerity or frustration",
+          "example": "STG if he's late again",
+          "audio_file": "audio/abbreviations/stg.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-37",
+          "order": 37,
+          "then": "I Don't Care",
+          "now": "IDC",
+          "context": "Expressing indifference",
+          "example": "IDC where we eat, you choose",
+          "audio_file": "audio/abbreviations/idc.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-38",
+          "order": 38,
+          "then": "What You Mean",
+          "now": "WYM",
+          "context": "Asking for clarification, often skeptically",
+          "example": "WYM you're not coming",
+          "audio_file": "audio/abbreviations/wym.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-39",
+          "order": 39,
+          "then": "Shoutout For Shoutout",
+          "now": "SFS",
+          "context": "Proposing a mutual social media promotion",
+          "example": "SFS if you post my page too",
+          "audio_file": "audio/abbreviations/sfs.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-40",
+          "order": 40,
+          "then": "Best Friend",
+          "now": "BSF",
+          "context": "Genz-spelled variant of BFF",
+          "example": "her and her BSF do everything together",
+          "audio_file": "audio/abbreviations/bsf.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-41",
+          "order": 41,
+          "then": "Let Me Know",
+          "now": "LMK",
+          "context": "Asking to be informed later",
+          "example": "LMK when you land",
+          "audio_file": "audio/abbreviations/lmk.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-42",
+          "order": 42,
+          "then": "Thanks In Advance",
+          "now": "TIA",
+          "context": "Thanking someone before they've helped",
+          "example": "can you send the notes? TIA",
+          "audio_file": "audio/abbreviations/tia.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-43",
+          "order": 43,
+          "then": "Outfit Of The Day",
+          "now": "OOTD",
+          "context": "Sharing or referring to today's outfit",
+          "example": "posted my OOTD, check it out",
+          "audio_file": "audio/abbreviations/ootd.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-44",
+          "order": 44,
+          "then": "By The Way",
+          "now": "BTW",
+          "context": "Adding a side note",
+          "example": "BTW the plan changed",
+          "audio_file": "audio/abbreviations/btw.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-45",
+          "order": 45,
+          "then": "Be For Real",
+          "now": "BFFR",
+          "context": "Telling someone to stop exaggerating or lying",
+          "example": "you did not run a marathon, BFFR",
+          "audio_file": "audio/abbreviations/bffr.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-46",
+          "order": 46,
+          "then": "Explain Like I'm Five",
+          "now": "ELI5",
+          "context": "Asking for a very simple explanation",
+          "example": "ELI5 how taxes work",
+          "audio_file": "audio/abbreviations/eli5.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-47",
+          "order": 47,
+          "then": "Thank You So Much",
+          "now": "TYSM",
+          "context": "Expressing strong gratitude",
+          "example": "TYSM for helping me move",
+          "audio_file": "audio/abbreviations/tysm.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-48",
+          "order": 48,
+          "then": "Of Course",
+          "now": "OFC",
+          "context": "Confirming something is obviously true or agreed",
+          "example": "OFC I'll be there",
+          "audio_file": "audio/abbreviations/ofc.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-49",
+          "order": 49,
+          "then": "No Problem",
+          "now": "NP",
+          "context": "Responding casually to thanks",
+          "example": "thanks! NP",
+          "audio_file": "audio/abbreviations/np.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-50",
+          "order": 50,
+          "then": "I Miss You",
+          "now": "IMY",
+          "context": "Expressing you miss someone",
+          "example": "IMY, call me later",
+          "audio_file": "audio/abbreviations/imy.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-51",
+          "order": 51,
+          "then": "At The Moment",
+          "now": "ATM",
+          "context": "Referring to the current time or state",
+          "example": "busy ATM, text you back",
+          "audio_file": "audio/abbreviations/atm.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-52",
+          "order": 52,
+          "then": "As Soon As Possible",
+          "now": "ASAP",
+          "context": "Requesting urgency",
+          "example": "need this ASAP",
+          "audio_file": "audio/abbreviations/asap.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-53",
+          "order": 53,
+          "then": "Too Long; Didn't Read",
+          "now": "TL;DR",
+          "context": "Summarizing a long message briefly",
+          "example": "TL;DR we're meeting at 6 instead",
+          "audio_file": "audio/abbreviations/tldr.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-54",
+          "order": 54,
+          "then": "Just In Case",
+          "now": "JIC",
+          "context": "Preparing for a possible situation",
+          "example": "bringing a jacket JIC it rains",
+          "audio_file": "audio/abbreviations/jic.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-55",
+          "order": 55,
+          "then": "No Big Deal",
+          "now": "NBD",
+          "context": "Downplaying something as unimportant",
+          "example": "I can cover your shift, NBD",
+          "audio_file": "audio/abbreviations/nbd.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-56",
+          "order": 56,
+          "then": "Too Much Information",
+          "now": "TMI",
+          "context": "Calling out an overshare",
+          "example": "TMI, didn't need to know that",
+          "audio_file": "audio/abbreviations/tmi.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-57",
+          "order": 57,
+          "then": "Get Ready With Me",
+          "now": "GRWM",
+          "context": "TikTok and Reels video format showing outfit and routine prep",
+          "example": "posting a GRWM for graduation",
+          "audio_file": "audio/abbreviations/grwm.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "abbreviations-58",
+          "order": 58,
+          "then": "What Do You Mean",
+          "now": "WDYM",
+          "context": "Texting for clarification or shock",
+          "example": "WDYM the tickets sold out already",
+          "audio_file": "audio/abbreviations/wdym.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-59",
+          "order": 59,
+          "then": "I Swear To God",
+          "now": "ISTG",
+          "context": "Emphasizing that you are not exaggerating",
+          "example": "ISTG that teacher hates me",
+          "audio_file": "audio/abbreviations/istg.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-60",
+          "order": 60,
+          "then": "I Don't Care At All",
+          "now": "IDGAF",
+          "context": "Total unbothered indifference",
+          "example": "they can talk all they want, IDGAF",
+          "audio_file": "audio/abbreviations/idgaf.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "abbreviations-61",
+          "order": 61,
+          "then": "Do Not Disturb",
+          "now": "DND",
+          "context": "Phone status or personal mode when focused",
+          "example": "on DND till exams finish",
+          "audio_file": "audio/abbreviations/dnd.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-62",
+          "order": 62,
+          "then": "One Of My Followers / Friends",
+          "now": "OOMF",
+          "context": "Referring to someone on your feed without tagging them",
+          "example": "OOMF just posted the craziest story",
+          "audio_file": "audio/abbreviations/oomf.mp3",
+          "generation": "genz"
+        },
+        {
+          "id": "abbreviations-63",
+          "order": 63,
+          "then": "Don't Worry",
+          "now": "DW",
+          "context": "Reassuring someone casually",
+          "example": "DW about it, I got this covered",
+          "audio_file": "audio/abbreviations/dw.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-64",
+          "order": 64,
+          "then": "Win / Victory",
+          "now": "Common W",
+          "context": "Celebrating a consistent winner or great move",
+          "example": "another A grade, common W",
+          "audio_file": "audio/abbreviations/commonw.mp3",
+          "generation": "shared"
+        },
+        {
+          "id": "abbreviations-65",
+          "order": 65,
+          "then": "Loss / Major L",
+          "now": "Massive L",
+          "context": "Calling out an embarrassing loss",
+          "example": "dropped my phone in the lake, massive L",
+          "audio_file": "audio/abbreviations/massivel.mp3",
+          "generation": "shared"
+        }
+      ]
+    }
+  ]
+}
