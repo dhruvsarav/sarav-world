@@ -156,6 +156,18 @@
   .theme-btn:hover { color: var(--text); }
   .theme-btn.active { background: var(--accent); color: var(--accent-ink); }
 
+  /* Presets Bar (GenZ Styles) */
+  .header-presets {
+    display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; margin-bottom: 20px;
+  }
+  .preset-chip {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
+    padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 500; cursor: pointer;
+    transition: all 0.15s ease; font-family: inherit;
+  }
+  .preset-chip:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .preset-chip.active { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+
   /* Month Navigator */
   .month-bar {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
@@ -422,15 +434,15 @@
         <button class="eco-dropbtn" aria-haspopup="true">Apps <span>▾</span></button>
         <div class="eco-menu">
           <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
           <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
           <a href="https://iamsaravofficial.com/apps/home-budget-planner/" class="current">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
           <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
           <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
-          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
           <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
           <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
-          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
-          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
         </div>
       </div>
       <span class="eco-divider">│</span>
@@ -465,6 +477,14 @@
         <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
       </div>
     </div>
+  </div>
+
+  <!-- Vibe Presets (GenZ Styles) -->
+  <div class="header-presets">
+    <span style="font-size:11.5px; color:var(--text-faint); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">Vibe Presets:</span>
+    <button type="button" class="preset-chip" id="presetBtn-yolo" onclick="applyBudgetPreset('yolo')">💀 No Cap YOLO (95% Burn)</button>
+    <button type="button" class="preset-chip" id="presetBtn-balanced" onclick="applyBudgetPreset('balanced')">✨ Soft Life (65% Burn)</button>
+    <button type="button" class="preset-chip" id="presetBtn-monk" onclick="applyBudgetPreset('monk')">🗿 Monk Mode (35% Burn)</button>
   </div>
 
   <!-- Month Navigator -->
@@ -941,6 +961,128 @@ function emptyState(){
     ],
     ledger: []
   };
+}
+
+function applyBudgetPreset(mode){
+  var s = emptyState();
+  Object.keys(s.budgets).forEach(function(k){ s.budgets[k] = 0; });
+
+  if(mode === 'yolo'){
+    // 95% Burn (No Cap YOLO / Paycheck to Paycheck Reality Check)
+    s.income = [
+      { id: uid(), source: 'Primary Salary', amount: 100000 },
+      { id: uid(), source: 'Spouse Salary / Side Hustle', amount: 50000 }
+    ];
+    s.bills = [
+      { id: uid(), name: 'Luxury Apartment Rent', day: 1, amount: 50000, category: 'rentEmi', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'SUV Car Loan EMI', day: 10, amount: 18500, category: 'transport', debtLink: 'debt-car', paid: false, paidDate: '' },
+      { id: uid(), name: 'Cook & Housekeeping Maid', day: 1, amount: 8000, category: 'domesticHelp', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Child Premium School Tuition', day: 10, amount: 15000, category: 'education', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'AC Power & Gas Utilities', day: 15, amount: 6000, category: 'utilities', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'OTT Bundles & 1Gbps Broadband', day: 18, amount: 3500, category: 'subscriptions', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Term & Health Insurance', day: 25, amount: 4000, category: 'insurance', debtLink: '', paid: false, paidDate: '' }
+    ];
+    s.budgets['rentEmi'] = 50000;
+    s.budgets['transport'] = 22500;
+    s.budgets['domesticHelp'] = 8000;
+    s.budgets['education'] = 15000;
+    s.budgets['utilities'] = 6000;
+    s.budgets['subscriptions'] = 3500;
+    s.budgets['insurance'] = 4000;
+    s.budgets['groceries'] = 14000;
+    s.budgets['foodDining'] = 10000;
+    s.budgets['shopping'] = 6000;
+    s.budgets['travel'] = 3500;
+    s.budgets['emergencyFund'] = 7500;
+    s.debts = [
+      { id: 'debt-car', name: 'HDFC Car Loan (SUV)', opening: 680000, interestRate: 9.2, emi: 18500, tenureMonths: 48 }
+    ];
+    s.savings = [
+      { id: uid(), name: 'Token Emergency Reserve', target: 200000, addedThisMonth: 7500 }
+    ];
+    showToast('Loaded 💀 No Cap YOLO (95% Burn / 5% Stash)');
+  } else if(mode === 'balanced'){
+    // 65% Burn (Soft Life / Balanced Household Discipline)
+    s.income = [
+      { id: uid(), source: 'Primary Salary', amount: 100000 },
+      { id: uid(), source: 'Spouse Salary', amount: 50000 }
+    ];
+    s.bills = [
+      { id: uid(), name: 'Home Loan EMI (2BHK)', day: 5, amount: 32000, category: 'rentEmi', debtLink: 'debt-hl', paid: false, paidDate: '' },
+      { id: uid(), name: 'Society Maintenance', day: 1, amount: 3500, category: 'maintenance', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Car Loan EMI', day: 10, amount: 11500, category: 'transport', debtLink: 'debt-car', paid: false, paidDate: '' },
+      { id: uid(), name: 'Maid & Helper Salary', day: 1, amount: 4500, category: 'domesticHelp', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Child School Tuition', day: 10, amount: 7000, category: 'education', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Electricity & Gas Utilities', day: 15, amount: 3500, category: 'utilities', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Broadband & Subscriptions', day: 18, amount: 1500, category: 'subscriptions', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Life & Health Insurance', day: 25, amount: 3000, category: 'insurance', debtLink: '', paid: false, paidDate: '' }
+    ];
+    s.budgets['rentEmi'] = 32000;
+    s.budgets['maintenance'] = 3500;
+    s.budgets['transport'] = 16000;
+    s.budgets['domesticHelp'] = 4500;
+    s.budgets['education'] = 7000;
+    s.budgets['utilities'] = 3500;
+    s.budgets['subscriptions'] = 1500;
+    s.budgets['insurance'] = 3000;
+    s.budgets['groceries'] = 13000;
+    s.budgets['foodDining'] = 6000;
+    s.budgets['shopping'] = 4500;
+    s.budgets['healthcare'] = 3000;
+    s.budgets['emergencyFund'] = 12500;
+    s.budgets['sipInvestments'] = 30000;
+    s.budgets['jewelleryScheme'] = 10000;
+    s.debts = [
+      { id: 'debt-hl', name: 'SBI Home Loan', opening: 3200000, interestRate: 8.5, emi: 32000, tenureMonths: 180 },
+      { id: 'debt-car', name: 'HDFC Car Loan', opening: 380000, interestRate: 8.8, emi: 11500, tenureMonths: 36 }
+    ];
+    s.savings = [
+      { id: uid(), name: 'Emergency Fund (6 Months)', target: 500000, addedThisMonth: 12500 },
+      { id: uid(), name: 'Mutual Fund SIP Portfolio', target: 2500000, addedThisMonth: 30000 },
+      { id: uid(), name: 'Gold Jewellery Scheme (GRT)', target: 120000, addedThisMonth: 10000 }
+    ];
+    showToast('Loaded ✨ Soft Life (65% Burn / 35% Wealth)');
+  } else if(mode === 'monk'){
+    // 35% Burn (Monk Mode / Aggressive FIRE)
+    s.income = [
+      { id: uid(), source: 'Primary Salary', amount: 100000 },
+      { id: uid(), source: 'Secondary / Freelance', amount: 50000 }
+    ];
+    s.bills = [
+      { id: uid(), name: 'Minimalist Compact Rent', day: 1, amount: 18000, category: 'rentEmi', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'High-Speed Broadband', day: 5, amount: 1000, category: 'subscriptions', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Electricity & Gas Utilities', day: 15, amount: 2000, category: 'utilities', debtLink: '', paid: false, paidDate: '' },
+      { id: uid(), name: 'Essential Term & Health Insurance', day: 20, amount: 2500, category: 'insurance', debtLink: '', paid: false, paidDate: '' }
+    ];
+    s.budgets['rentEmi'] = 18000;
+    s.budgets['subscriptions'] = 1000;
+    s.budgets['utilities'] = 2000;
+    s.budgets['insurance'] = 2500;
+    s.budgets['groceries'] = 11000;
+    s.budgets['transport'] = 3500;
+    s.budgets['foodDining'] = 2500;
+    s.budgets['shopping'] = 2000;
+    s.budgets['healthcare'] = 10000;
+    s.budgets['emergencyFund'] = 22500;
+    s.budgets['sipInvestments'] = 65000;
+    s.budgets['jewelleryScheme'] = 10000;
+    s.debts = [];
+    s.savings = [
+      { id: uid(), name: 'Aggressive FIRE Equity SIPs', target: 5000000, addedThisMonth: 65000 },
+      { id: uid(), name: 'Liquid Emergency Treasury', target: 600000, addedThisMonth: 22500 },
+      { id: uid(), name: 'Sovereign / Physical Gold SIP', target: 500000, addedThisMonth: 10000 }
+    ];
+    showToast('Loaded 🗿 Monk Mode (35% Burn / 65% FIRE)');
+  }
+
+  // Update active button styling
+  document.querySelectorAll('.preset-chip').forEach(function(btn){ btn.classList.remove('active'); });
+  var activeBtn = document.getElementById('presetBtn-' + mode);
+  if(activeBtn) activeBtn.classList.add('active');
+
+  state = s;
+  saveMonth();
+  renderAll();
 }
 
 function loadMonth(key){

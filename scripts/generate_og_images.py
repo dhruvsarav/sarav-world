@@ -20,7 +20,12 @@ def get_font(path, size):
 def draw_app_icon(draw, x, y, icon_type, theme_family):
     """Draws a clean geometric brand icon on the top-left."""
     size = 48
-    if theme_family == 'gold':
+    if theme_family == 'gold_light':
+        # Physical gold light container
+        draw.rounded_rectangle([x, y, x + size, y + size], radius=12, fill='#FFF8E7', outline='#D8B979', width=2)
+        accent = '#C1810A'
+        accent2 = '#8B5E00'
+    elif theme_family == 'gold':
         # Obsidian container with gold border
         draw.rounded_rectangle([x, y, x + size, y + size], radius=12, fill='#1D1913', outline='#52411E', width=2)
         accent = '#FFC04D'
@@ -36,17 +41,17 @@ def draw_app_icon(draw, x, y, icon_type, theme_family):
         # Stacked coin bars
         draw.rounded_rectangle([x+10, y+12, x+38, y+18], radius=3, fill=accent)
         draw.rounded_rectangle([x+14, y+21, x+38, y+27], radius=3, fill=accent2)
-        draw.rounded_rectangle([x+18, y+30, x+38, y+36], radius=3, fill='#5FBF77' if theme_family!='gold' else '#FFD580')
+        draw.rounded_rectangle([x+18, y+30, x+38, y+36], radius=3, fill='#1B8A3D' if theme_family=='gold_light' else ('#5FBF77' if theme_family!='gold' else '#FFD580'))
     elif icon_type == 'house':
         # House shape with budget lines
         draw.polygon([(x+24, y+10), (x+10, y+22), (x+38, y+22)], fill=accent)
         draw.rectangle([x+13, y+22, x+35, y+37], fill=accent2)
-        draw.rectangle([x+18, y+26, x+30, y+34], fill='#0C0F14' if theme_family!='gold' else '#12100C')
+        draw.rectangle([x+18, y+26, x+30, y+34], fill='#FFF8E7' if theme_family=='gold_light' else ('#0C0F14' if theme_family!='gold' else '#12100C'))
     elif icon_type == 'chart':
         # Bar chart
         draw.rounded_rectangle([x+11, y+24, x+17, y+36], radius=2, fill=accent)
         draw.rounded_rectangle([x+21, y+16, x+27, y+36], radius=2, fill=accent2)
-        draw.rounded_rectangle([x+31, y+10, x+37, y+36], radius=2, fill='#5FBF77' if theme_family!='gold' else '#FFD580')
+        draw.rounded_rectangle([x+31, y+10, x+37, y+36], radius=2, fill='#1B8A3D' if theme_family=='gold_light' else ('#5FBF77' if theme_family!='gold' else '#FFD580'))
     elif icon_type == 'bank':
         # Pillar bank shape
         draw.polygon([(x+24, y+10), (x+10, y+18), (x+38, y+18)], fill=accent)
@@ -60,8 +65,8 @@ def draw_app_icon(draw, x, y, icon_type, theme_family):
         draw.rounded_rectangle([x+18, y+22, x+38, y+36], radius=6, fill=accent2)
     elif icon_type == 'gold':
         # Gold bar ingot
-        draw.polygon([(x+14, y+14), (x+34, y+14), (x+38, y+28), (x+10, y+28)], fill='#FFC04D')
-        draw.polygon([(x+10, y+28), (x+38, y+28), (x+34, y+36), (x+14, y+36)], fill='#B8860B')
+        draw.polygon([(x+14, y+14), (x+34, y+14), (x+38, y+28), (x+10, y+28)], fill='#D4AF37' if theme_family=='gold_light' else '#FFC04D')
+        draw.polygon([(x+10, y+28), (x+38, y+28), (x+34, y+36), (x+14, y+36)], fill='#8B5E00' if theme_family=='gold_light' else '#B8860B')
     elif icon_type == 'loan':
         # Scales of loan & pledge
         draw.line([(x+24, y+12), (x+24, y+36)], fill=accent, width=2)
@@ -77,7 +82,19 @@ def generate_og_card(app_config):
     family = app_config['family']
     
     # Palette definition
-    if family == 'gold':
+    if family == 'gold_light':
+        bg_color = '#F7F3EB'
+        card_bg = '#FFFFFF'
+        border_color = '#E2D5BE'
+        accent_border = '#C1810A'
+        eyebrow_color = '#A76906'
+        title_color = '#2E1E05'
+        sub_color = '#6E5D46'
+        bullet_text_color = '#2E1E05'
+        url_color = '#8A7554'
+        tag_bg = '#F6E3B0'
+        tag_text = '#8B5E00'
+    elif family == 'gold':
         bg_color = '#12100C'
         card_bg = '#1D1913'
         border_color = '#38290E'
@@ -177,49 +194,49 @@ def generate_og_card(app_config):
 
 APPS_CONFIG = [
     # -------------------------------------------------------------
-    # FAMILY A: PRECIOUS METALS SUITE (Obsidian & Liquid Gold)
+    # FAMILY A: PRECIOUS METALS SUITE (Physical Gold Light Mode)
     # -------------------------------------------------------------
     {
         "id": "gold-price-estimator",
-        "family": "gold",
+        "family": "gold_light",
         "icon": "gold",
         "eyebrow": "Precious Metals · Retail Valuation",
         "badge": "INDIAN JEWELLERY ENGINE",
         "title": "Metal Price Estimator",
         "subtitle": "Real-world Indian jewellery billing, wastage deduction & portfolio gain",
         "bullets": [
-            ("#E5A93C", "Precise Indian Billing:", "Gross weight, stone deductions, wastage (VA in g & %), and 3% GST"),
-            ("#4CAF50", "Live Portfolio Valuation:", "Tracks Gold & Silver appreciation in Pavans (8g) and Tolas (11.66g)")
+            ("#C1810A", "Precise Indian Billing:", "Gross weight, stone deductions, wastage (VA in g & %), and 3% GST"),
+            ("#1B8A3D", "Live Portfolio Valuation:", "Tracks Gold & Silver appreciation in Pavans (8g) and Tolas (11.66g)")
         ],
         "url": "iamsaravofficial.com/apps/gold-price-estimator",
         "dest": "D:/Websites/SaravsWorld/public/apps/gold-price-estimator/og-image.png"
     },
     {
         "id": "gold-loan-calculator",
-        "family": "gold",
+        "family": "gold_light",
         "icon": "loan",
         "eyebrow": "Precious Metals · RBI Compliance",
         "badge": "MAX 75% LTV CAP",
         "title": "Gold Loan Calculator",
         "subtitle": "RBI Master Directions compliance, loan-per-gram & risk simulator",
         "bullets": [
-            ("#E5A93C", "Statutory Lending Math:", "Strict 75% LTV ceiling evaluated against 30-day conservative 24K rate"),
-            ("#4CAF50", "3 Repayment Schemes:", "Monthly Interest Only, Bullet Repayment (12-mo), and Standard EMI")
+            ("#C1810A", "Statutory Lending Math:", "Strict 75% LTV ceiling evaluated against 30-day conservative 24K rate"),
+            ("#1B8A3D", "3 Repayment Schemes:", "Monthly Interest Only, Bullet Repayment (12-mo), and Standard EMI")
         ],
         "url": "iamsaravofficial.com/apps/gold-loan-calculator",
         "dest": "D:/Websites/SaravsWorld/public/apps/gold-loan-calculator/og-image.png"
     },
     {
         "id": "digigold-calculator",
-        "family": "gold",
+        "family": "gold_light",
         "icon": "coins",
         "eyebrow": "Precious Metals · Digital Gold",
         "badge": "FRICTION & TAX CLOCK",
         "title": "DigiGold SIP Calculator",
         "subtitle": "True in-hand redemption wealth after 3% GST, bid-ask spreads & taxes",
         "bullets": [
-            ("#E5A93C", "Sunk Friction Modeled:", "3% non-refundable GST on every lot plus platform buy-sell spreads"),
-            ("#4CAF50", "Per-Lot Tax Clock:", "LTCG 12.5% (≥ 24 months) vs STCG slab rate under Budget 2024 rules")
+            ("#C1810A", "Sunk Friction Modeled:", "3% non-refundable GST on every lot plus platform buy-sell spreads"),
+            ("#1B8A3D", "Per-Lot Tax Clock:", "LTCG 12.5% (≥ 24 months) vs STCG slab rate under Budget 2024 rules")
         ],
         "url": "iamsaravofficial.com/apps/digigold-calculator",
         "dest": "D:/Websites/SaravsWorld/public/apps/digigold-calculator/og-image.png"
