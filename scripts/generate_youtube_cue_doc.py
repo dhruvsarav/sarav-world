@@ -9,7 +9,6 @@ from docx.oxml import OxmlElement, parse_xml
 from docx.oxml.ns import nsdecls, qn
 
 JSON_PATH = Path(r'D:\Websites\SaravsWorld\public\apps\genzalphaslang\genz_alpha_lingo.json')
-OUT_PATH_WEB = Path(r'D:\Websites\SaravsWorld\public\apps\genzalphaslang\Dhruv_GenZ_Alpha_Slang_YouTube_Practice_Script.docx')
 OUT_PATH_DOCS = Path(r'D:\sdrv\docs\Dhruv_GenZ_Alpha_Slang_YouTube_Practice_Script.docx')
 
 # Custom actions mapped by ID
@@ -479,16 +478,12 @@ def build_word_document():
 
         doc.add_paragraph().paragraph_format.space_after = Pt(8)
 
-    # Save to both locations
-    OUT_PATH_WEB.parent.mkdir(parents=True, exist_ok=True)
+    # Save to private documents folder
     OUT_PATH_DOCS.parent.mkdir(parents=True, exist_ok=True)
-
-    doc.save(str(OUT_PATH_WEB))
     doc.save(str(OUT_PATH_DOCS))
 
-    print(f"Successfully generated Word Document:")
-    print(f"1. {OUT_PATH_WEB} ({OUT_PATH_WEB.stat().st_size} bytes)")
-    print(f"2. {OUT_PATH_DOCS} ({OUT_PATH_DOCS.stat().st_size} bytes)")
+    print(f"Successfully generated Word Document for Dhruv:")
+    print(f"-> {OUT_PATH_DOCS} ({OUT_PATH_DOCS.stat().st_size} bytes)")
 
 if __name__ == "__main__":
     build_word_document()
