@@ -87,6 +87,13 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
    - All Consumer Apps & Games pages (`/apps/`, 9 live calculators, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
+   - **Canonical Dropdown Items (Strict Standards)**:
+     * `Apps ▾` (10 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`.
+     * `Games ▾` (11 items): `🎰 Games Arcade Hub`, `🎰 Family Jackpot`, `💖 Senti-Meter`, `🎁 Secret Box`, `🏓 Ping-Pong Cup Toss`, `🍾 Bottle Flip Showdown`, `⚡ Samosa Snatch`, `🗣️ Chit-Charades`, `🎡 Snack Roulette`, `🎙️ Dialogue Detective`, `🎯 Desi Gulel Strike`.
+     * `Projects ▾` (4 items): `🏛️ Projects Hub`, `Temples of Tamil Gods`, `FactDrop`, `Thirukkural Hub`.
+     * **Right Side**: `🎪 Playground` link + `🧠 Enterprise AI Economics` badge.
+   - **Zero Placeholder Policy**: Fictitious, speculative, or unreleased apps (e.g. `Doc Vault`, `Voice Notes`, `Task Zen`, `Family Ledger`, `Family Recipe Vault`, `Desi Food Explorer`, `Heritage Weaver`, `Folk Soundscape`, `Mythos Interactive`) must **NEVER** be placed in navigation menus.
+   - **Hover Stability Standard**: All `.eco-menu` elements must include the invisible hover bridge `.eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }` to eliminate cursor dropoff when moving from the button to the dropdown menu.
 13. **Cultural Heritage & Open Knowledge Projects Hub (`/projects/`)**:
    - Unites all 3 cultural databases: Temples of Tamil Gods, Thirukkural Hub, and FactDrop.
    - Features complete 4-tier navigation: `Apps ▾`, `E-Apps ▾`, `Games ▾`, `Projects ▾`.
