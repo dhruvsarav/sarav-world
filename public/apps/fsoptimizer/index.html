@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Field Services Hub-Spoke Optimizer — Optimize Your Dispatch Network | Sarav's World</title>
+<meta name="description" content="Cost-minimizing hub count optimizer for field services dispatch — square-root travel-time law, Erlang C technician staffing, AI remote diagnostics deflection, and Pure-Hub vs. Hub-Spoke vs. Decentralized cost comparison.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/fsoptimizer/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/fsoptimizer/">
+<meta property="og:title" content="Field Services Hub-Spoke Optimizer — Sarav's World">
+<meta property="og:description" content="Erlang C technician staffing, square-root travel law, AI remote diagnostics deflection, and vehicle travel cost modeling to find the cost-minimizing hub count.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/fsoptimizer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Field Services Hub-Spoke Optimizer — Sarav's World">
+<meta name="twitter:description" content="Erlang C technician staffing, square-root travel law, and AI remote diagnostics deflection for enterprise field services dispatch.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/fsoptimizer/og-image.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-menu a.current {
+    background: var(--accent-soft); color: var(--accent); font-weight: 600;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border: 1px solid var(--border); }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 820px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Action Bar */
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+  .btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+
+  /* Sweep and comparison */
+  .sweep-row { display: flex; align-items: center; gap: 10px; padding: 5px 0; font-family: 'IBM Plex Mono'; font-size: 12px; }
+  .sweep-row .sw-hubs { width: 70px; flex: none; color: var(--text-dim); }
+  .sweep-row .sw-bar-track { flex: 1; height: 7px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+  .sweep-row .sw-bar-fill { height: 100%; background: var(--accent2); }
+  .sweep-row.optimal .sw-bar-fill { background: var(--success); }
+  .sweep-row .sw-cost { width: 140px; flex: none; text-align: right; color: var(--text-dim); }
+  .sweep-row.optimal .sw-cost { color: var(--success); font-weight: 600; }
+  .sweep-row .sw-tag { font-size: 10px; color: var(--success); border: 1px solid var(--success); padding: 1px 5px; border-radius: 3px; margin-left: 6px; }
+  .compare-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-soft); }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-name { width: 200px; flex: none; font-weight: 600; font-size: 13.5px; }
+  .compare-name .cn-sub { font-weight: 400; font-size: 11px; color: var(--text-faint); }
+  .compare-metric { flex: 1; text-align: right; font-family: 'IBM Plex Mono'; font-size: 13px; }
+  .term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+  .term-input { width: 70px; flex: none; }
+  @media (max-width: 640px) {
+    .compare-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+    .compare-metric { text-align: left; }
+  }
+
+  /* Non-blocking Toast Notification */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+    padding: 12px 18px; font-size: 13px; font-weight: 500;
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+  /* Standard Footer */
+  footer {
+    padding: 40px 20px 60px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+    border-top: 1px solid var(--border-soft); line-height: 1.6;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, .toast { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/" class="current">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="eco-tokenomics">🗺️ Digital Workplace Services · Version 2026.09</span></div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="Field Services Hub-Spoke Optimizer Logo"></div>
+        <div>
+          <h1>Field Services <span class="badge gold">Hub-Spoke Optimizer</span></h1>
+          <span class="tagline">Square-Root Travel Law &bull; Erlang C &bull; AI Remote Deflection</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="currency-toggle" id="currencyToggle">
+          <button data-curr="USD" class="active">USD ($)</button>
+          <button data-curr="INR">INR (₹)</button>
+          <button data-curr="EUR">EUR (€)</button>
+          <button data-curr="GBP">GBP (£)</button>
+        </div>
+        <div class="live-total-pill">Optimal: <b id="liveTotal" class="mono">—</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Service Profile</a>
+      <a href="#geometry" class="sec-nav-link"><span class="sn-num">02</span> Coverage</a>
+      <a href="#sla" class="sec-nav-link"><span class="sn-num">03</span> Dispatch SLA</a>
+      <a href="#techs" class="sec-nav-link"><span class="sn-num">04</span> Technicians</a>
+      <a href="#economics" class="sec-nav-link"><span class="sn-num">05</span> Hub Economics</a>
+      <a href="#optimizer" class="sec-nav-link"><span class="sn-num">06</span> Hub Optimizer</a>
+      <a href="#compare" class="sec-nav-link"><span class="sn-num">07</span> Model Comparison</a>
+      <a href="#projection" class="sec-nav-link"><span class="sn-num">08</span> Projection</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
+    </div>
+  </nav>
+</div>
+
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="regional">📍 Regional (compact territory)</button>
+    <button class="preset-btn active" data-preset="statewide">🗺️ Statewide (mid-spread)</button>
+    <button class="preset-btn" data-preset="national">🌎 National (wide-spread)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 Service Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Service Profile &amp; AI Deflection</h2></div>
+    <p class="sec-desc">Fleet dispatch volume, ticket profile, and AI remote self-healing deflection vectors.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="svc_region">Region / Account Territory</label><input id="svc_region" type="text" placeholder="e.g. North America Tri-State"></div>
+        <div class="field">
+          <label for="svc_type">Primary Service Type</label>
+          <select id="svc_type">
+            <option value="breakfix" selected>Break-Fix &amp; Component Swap</option>
+            <option value="install">Project Staging &amp; Installation</option>
+            <option value="maintenance">Preventive Maintenance (PM)</option>
+          </select>
+        </div>
+        <div class="field"><label for="svc_volume">Gross Monthly Dispatch Requests</label><input id="svc_volume" type="number" min="0" value="800"></div>
+      </div>
+      <div class="grid grid-2" style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-soft);">
+        <div class="field">
+          <label for="svc_ai_deflection">AI Remote Diagnostics Deflection % (Autonomous Telemetry / Self-Healing)</label>
+          <div class="slider-control">
+            <input id="svc_ai_deflection" type="range" min="0" max="35" value="12">
+            <span class="slider-val" id="svc_ai_deflection_val">12%</span>
+          </div>
+          <p class="hint">Averted physical dispatches via automated DEX telemetry, remote BIOS/firmware recovery, and GenAI diagnostic resolution before a truck rolls.</p>
+        </div>
+        <div class="field">
+          <label for="svc_ftfr">First-Time Fix Rate (FTFR %)</label>
+          <div class="slider-control">
+            <input id="svc_ftfr" type="range" min="60" max="100" value="85">
+            <span class="slider-val" id="svc_ftfr_val">85%</span>
+          </div>
+          <p class="hint">Dispatches resolved in 1 visit. The remaining 15% trigger secondary return truck rolls (re-dispatch multiplier).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Coverage Geometry -->
+  <section class="block" id="geometry">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Coverage Geometry &amp; Square-Root Travel Law</h2></div>
+    <p class="sec-desc">Base travel time assumes a single central depot covering the entire territory. Adding forward hubs shrinks average driving time via the square-root facility law.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="geo_travel_base">Single-Hub Base Travel Time (hours / visit)</label><input id="geo_travel_base" type="number" min="0.1" step="0.1" value="2.0"></div>
+        <div class="field"><label for="geo_onsite">Avg Onsite Hands-On Service Time (hours / visit)</label><input id="geo_onsite" type="number" min="0.1" step="0.1" value="1.5"></div>
+      </div>
+      <p class="hint">Square-Root Law: Travel time at N hubs = <code>Base ÷ √N</code>. 4 distributed hubs halves driving time across evenly balanced territory polygons.</p>
+    </div>
+  </section>
+
+  <!-- 03 Dispatch SLA -->
+  <section class="block" id="sla">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Dispatch SLA Target</h2></div>
+    <p class="sec-desc">Field services response windows mapped into the Erlang C stochastic queueing engine.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="sla_window">SLA Dispatch Window</label>
+          <select id="sla_window">
+            <option value="sameday">Same-Day (4 operating hrs)</option>
+            <option value="nbd" selected>Next-Business-Day (8 operating hrs)</option>
+            <option value="twobd">2-Business-Day (16 operating hrs)</option>
+            <option value="custom">Custom Hours</option>
+          </select>
+        </div>
+        <div class="field"><label for="sla_window_custom">Custom Window (Operating Hours)</label><input id="sla_window_custom" type="number" min="1" value="8" disabled></div>
+      </div>
+      <div class="field"><label for="sla_target_sl">Target Service Level (% of dispatches within SLA window)</label><input id="sla_target_sl" type="number" min="1" max="99" value="90"></div>
+    </div>
+  </section>
+
+  <!-- 04 Technician Parameters -->
+  <section class="block" id="techs">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Technician Parameters</h2></div>
+    <p class="sec-desc">Productive capacity, roster days, and shrinkage buffers per field specialist.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="tech_workdays">Working Days / Month</label><input id="tech_workdays" type="number" min="1" value="21"></div>
+        <div class="field"><label for="tech_hours">Operating Hours / Day</label><input id="tech_hours" type="number" min="1" value="8"></div>
+        <div class="field">
+          <label for="tech_shrinkage">Shrinkage % (PTO, Training, Van Prep &amp; Administrative)</label>
+          <div class="slider-control"><input id="tech_shrinkage" type="range" min="0" max="60" value="25"><span class="slider-val" id="tech_shrinkage_val">25%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Hub Economics -->
+  <section class="block" id="economics">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Hub &amp; Fleet Vehicle Economics</h2></div>
+    <p class="sec-desc">Facility lease, inventory forward stocking buffers, technician loaded compensation, and vehicle fleet fuel opex.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="econ_hub_fixed">Hub Fixed Facility / Month (Rent + Spares Staging)</label><input id="econ_hub_fixed" type="number" min="0" value="8500"></div>
+        <div class="field"><label for="econ_tech_cost">Technician Fully-Loaded Salary / Year</label><input id="econ_tech_cost" type="number" min="0" value="58000"></div>
+        <div class="field"><label for="econ_travel_hourly">Fleet Vehicle &amp; Fuel Opex / Travel Hour</label><input id="econ_travel_hourly" type="number" min="0" step="1" value="12"></div>
+      </div>
+      <p class="hint">Fleet Travel Opex accounts for vehicle lease amortisation, fuel, tolls, and insurance per road hour. Adding hubs drastically reduces fleet mileage costs.</p>
+    </div>
+  </section>
+
+  <!-- 06 Hub Count Optimizer -->
+  <section class="block" id="optimizer">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Hub Count Optimizer (1–20 Hubs)</h2></div>
+    <p class="sec-desc">Sweeps hub topologies from 1 to 20 facilities. Every candidate meets your target SLA by construction &mdash; this identifies the exact mathematical sweet-spot where forward facility costs balance technician driving time and vehicle fuel burn.</p>
+    <div class="panel" id="sweepPanel"></div>
+  </section>
+
+  <!-- 07 Model Comparison -->
+  <section class="block" id="compare">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Operating Model Comparison</h2></div>
+    <p class="sec-desc">Pure-Hub (Single Central Facility) vs. Optimal Hub-Spoke Network vs. Decentralized Dispatch (Contractor/Independent Depot +15% coordination overhead).</p>
+    <div class="panel" id="comparePanel"></div>
+  </section>
+
+  <!-- 08 Multi-Year Projection -->
+  <section class="block" id="projection">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Multi-Year Volume &amp; TCO Projection</h2></div>
+    <p class="sec-desc">Forecast fleet capacity and annual cost savings across multi-year growth curves as hub counts re-balance dynamically.</p>
+    <div class="panel">
+      <div class="term-row">
+        <span class="presets-title">Projection Term:</span>
+        <div class="pillrow" id="termToggle">
+          <div class="pill" data-term="1">1 yr</div>
+          <div class="pill" data-term="3">3 yr</div>
+          <div class="pill on" data-term="5">5 yr</div>
+          <div class="pill" data-term="7">7 yr</div>
+        </div>
+        <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
+        <span class="hint" style="margin:0;">years</span>
+        <span class="presets-title" style="margin-left:20px;">Annual Growth:</span>
+        <input id="proj_growth" type="number" min="-50" max="100" step="1" value="8" style="width:70px;">
+        <span class="hint" style="margin:0;">%</span>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>Monthly Dispatches</th><th>Optimal Hubs</th><th>Technicians</th><th>Total TCO</th><th>Savings vs. Pure-Hub</th></tr></thead>
+          <tbody id="projectionBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 Executive Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Commercial Export</h2></div>
+    <p class="sec-desc">Optimal network blueprint, workforce allocation, and strategic cost savings.</p>
+
+    <div class="kpi-row">
+      <div class="kpi accent2"><div class="label">Recommended Hub Count</div><div class="value mono" id="kpi_r_hubs">0</div></div>
+      <div class="kpi"><div class="label">Field Techs Required</div><div class="value mono" id="kpi_r_techs">0</div></div>
+      <div class="kpi accent2"><div class="label">Total Annual TCO</div><div class="value mono" id="kpi_r_cost">$0</div></div>
+      <div class="kpi success"><div class="label">Annual Savings vs. Single Hub</div><div class="value mono" id="kpi_r_savings">$0</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Operational Diagnostic Summary</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">AI Dispatches Deflected</div><div class="value mono" id="diag_deflected">0 / mo</div></div>
+        <div class="kpi"><div class="label">Net Physical Dispatches</div><div class="value mono" id="diag_net_volume">0 / mo</div></div>
+        <div class="kpi"><div class="label">Travel Time Per Visit</div><div class="value mono" id="diag_travel_time">0.0 hrs</div></div>
+        <div class="kpi"><div class="label">Achieved SLA Compliance</div><div class="value mono" id="diag_achieved_sl">0%</div></div>
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnShareWhatsApp" class="btn-whatsapp">📱 Share on WhatsApp</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Non-blocking Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<!-- Standard Enterprise Footer -->
+<footer>
+  <div class="container">
+    <p>Field Services Hub-Spoke Optimizer crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// FIELD SERVICES HUB-SPOKE OPTIMIZER — Erlang C + Square-Root Travel Law + AI Deflection
+// ============================================================================================
+
+const FALLBACK_BENCH = {
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-11" },
+  "sla_windows": {
+    "sameday": { "label": "Same-Day (4 hrs)", "hours": 4 },
+    "nbd":     { "label": "Next-Business-Day (8 hrs)", "hours": 8 },
+    "twobd":   { "label": "2-Business-Day (16 hrs)", "hours": 16 },
+    "custom":  { "label": "Custom", "hours": null }
+  },
+  "decentralized_penalty_pct": 15,
+  "hub_sweep_max": 20,
+  "staffing_defaults": {
+    "target_service_level_pct": 90,
+    "working_days_per_month": 21,
+    "hours_per_day": 8,
+    "shrinkage_pct": 25,
+    "hub_fixed_cost_per_month": 8500,
+    "tech_loaded_cost_per_year": 58000,
+    "travel_hourly_cost": 12
+  }
+};
+let BENCH = null;
+
+const CURRENCIES = {
+  USD: { symbol: '$', rate: 1.00, locale: 'en-US', decimals: 0 },
+  INR: { symbol: '₹', rate: 85.00, locale: 'en-IN', decimals: 0 },
+  EUR: { symbol: '€', rate: 0.92, locale: 'de-DE', decimals: 0 },
+  GBP: { symbol: '£', rate: 0.78, locale: 'en-GB', decimals: 0 }
+};
+let currentCurrency = 'USD';
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function fmtMoney(usdVal) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = (usdVal || 0) * c.rate;
+  return c.symbol + converted.toLocaleString(c.locale, { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
+}
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+const fmt1 = (v) => (Math.round((v || 0) * 10) / 10).toLocaleString('en-US');
+
+const state = { themeChoice: 'dark', projTerm: 5 };
+
+// ---------------- QUEUEING & MATHEMATICAL ENGINE ----------------
+function erlangBRecursive(A, N) {
+  let B = 1.0;
+  for (let i = 1; i <= N; i++) {
+    B = (A * B) / (i + A * B);
+  }
+  return B;
+}
+
+function erlangC(A, N) {
+  if (N <= A) return 1;
+  const B = erlangBRecursive(A, N);
+  const C = (N * B) / (N - A * (1 - B));
+  return Math.max(0, Math.min(1, C));
+}
+
+function serviceLevel(A, N, ahtSec, targetAnswerSec) {
+  if (N <= A) return 0;
+  const C = erlangC(A, N);
+  const sl = 1 - C * Math.exp(-(N - A) * (targetAnswerSec / ahtSec));
+  return Math.max(0, Math.min(1, sl));
+}
+
+function requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec, maxAgents = 3000) {
+  if (erlangs <= 0) return { agents: 0, achievedSL: 1, erlangs: 0 };
+  let N = Math.max(1, Math.ceil(erlangs) + 1);
+  let sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  while (sl < targetSLFrac && N < maxAgents) {
+    N++;
+    sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  }
+  return { agents: N, achievedSL: sl, erlangs };
+}
+
+function volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay) {
+  const arrivalPerHour = monthlyVolume / (workingDaysPerMonth * hoursPerDay);
+  return (arrivalPerHour * ahtSec) / 3600;
+}
+
+function techFTE_realtime(monthlyVolume, ahtSec, targetSLFrac, targetAnswerSec, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  const erlangs = volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay);
+  const r = requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec);
+  const fte = shrinkageFrac < 1 ? r.agents / (1 - shrinkageFrac) : r.agents;
+  return { fte, achievedSL: r.achievedSL, erlangs, agents: r.agents };
+}
+
+function travelTimeForHubs(baseTravelTimeHours, hubCount) {
+  return baseTravelTimeHours / Math.sqrt(Math.max(1, hubCount));
+}
+
+function scenarioForHubCount(hubCount, params) {
+  const travelTime = travelTimeForHubs(params.baseTravelTimeHours, hubCount);
+  const ahtHours = travelTime + params.onsiteServiceHours;
+  const ahtSec = ahtHours * 3600;
+  const targetAnswerSec = params.slaWindowHours * 3600;
+
+  // Effective dispatch volume accounting for AI deflection & FTFR secondary visits
+  const deflectedMonthly = params.monthlyVolume * params.aiDeflectionFrac;
+  const netBeforeFTFR = params.monthlyVolume - deflectedMonthly;
+  const repeatMultiplier = 1 + (1 - params.ftfrFrac); // e.g. 15% fail FTFR = 1.15x visits
+  const effectiveMonthlyDispatches = netBeforeFTFR * repeatMultiplier;
+
+  const staffing = techFTE_realtime(
+    effectiveMonthlyDispatches,
+    ahtSec,
+    params.targetSLFrac,
+    targetAnswerSec,
+    params.shrinkageFrac,
+    params.workingDaysPerMonth,
+    params.hoursPerDay
+  );
+
+  const hubFixedCostAnnual = hubCount * params.hubFixedCostPerMonth * 12;
+  const techCostAnnual = staffing.fte * params.techLoadedCostPerYear;
+
+  // Travel fleet opex: total travel hours annually * hourly vehicle cost
+  const totalTravelHoursAnnual = effectiveMonthlyDispatches * 12 * travelTime;
+  const travelOpexAnnual = totalTravelHoursAnnual * params.travelHourlyCost;
+
+  const totalCostAnnual = hubFixedCostAnnual + techCostAnnual + travelOpexAnnual;
+
+  return {
+    hubCount,
+    travelTime,
+    ahtHours,
+    effectiveMonthlyDispatches,
+    deflectedMonthly,
+    staffing,
+    hubFixedCostAnnual,
+    techCostAnnual,
+    travelOpexAnnual,
+    totalCostAnnual
+  };
+}
+
+function optimizeHubCount(params, maxHubs) {
+  const scenarios = [];
+  for (let n = 1; n <= maxHubs; n++) {
+    scenarios.push(scenarioForHubCount(n, params));
+  }
+  const optimal = scenarios.reduce((best, s) => (s.totalCostAnnual < best.totalCostAnnual ? s : best), scenarios[0]);
+  return { scenarios, optimal };
+}
+
+function decentralizedScenario(params, penaltyPct) {
+  const ahtHours = params.baseTravelTimeHours + params.onsiteServiceHours;
+  const ahtSec = ahtHours * 3600;
+  const targetAnswerSec = params.slaWindowHours * 3600;
+
+  const deflectedMonthly = params.monthlyVolume * params.aiDeflectionFrac;
+  const netBeforeFTFR = params.monthlyVolume - deflectedMonthly;
+  const repeatMultiplier = 1 + (1 - params.ftfrFrac);
+  const effectiveMonthlyDispatches = netBeforeFTFR * repeatMultiplier;
+
+  const staffing = techFTE_realtime(
+    effectiveMonthlyDispatches,
+    ahtSec,
+    params.targetSLFrac,
+    targetAnswerSec,
+    params.shrinkageFrac,
+    params.workingDaysPerMonth,
+    params.hoursPerDay
+  );
+
+  const techCostAnnual = staffing.fte * params.techLoadedCostPerYear;
+  const totalTravelHoursAnnual = effectiveMonthlyDispatches * 12 * params.baseTravelTimeHours;
+  const travelOpexAnnual = totalTravelHoursAnnual * params.travelHourlyCost;
+
+  // Decentralized penalty on coordination & vendor contractor markups
+  const totalCostAnnual = (techCostAnnual + travelOpexAnnual) * (1 + penaltyPct / 100);
+
+  return {
+    hubCount: 0,
+    travelTime: params.baseTravelTimeHours,
+    ahtHours,
+    staffing,
+    hubFixedCostAnnual: 0,
+    techCostAnnual,
+    travelOpexAnnual,
+    totalCostAnnual
+  };
+}
+
+// ---------------- INPUT COLLECTION ----------------
+function getSlaWindowHours() {
+  const key = $('sla_window').value;
+  if (key === 'custom') return num('sla_window_custom');
+  return (BENCH && BENCH.sla_windows[key]) ? BENCH.sla_windows[key].hours : 8;
+}
+
+function collectParams(monthlyVolumeOverride) {
+  return {
+    baseTravelTimeHours: num('geo_travel_base'),
+    onsiteServiceHours: num('geo_onsite'),
+    monthlyVolume: monthlyVolumeOverride !== undefined ? monthlyVolumeOverride : num('svc_volume'),
+    aiDeflectionFrac: num('svc_ai_deflection') / 100,
+    ftfrFrac: num('svc_ftfr') / 100,
+    slaWindowHours: getSlaWindowHours(),
+    targetSLFrac: num('sla_target_sl') / 100,
+    shrinkageFrac: num('tech_shrinkage') / 100,
+    workingDaysPerMonth: num('tech_workdays'),
+    hoursPerDay: num('tech_hours'),
+    hubFixedCostPerMonth: num('econ_hub_fixed'),
+    techLoadedCostPerYear: num('econ_tech_cost'),
+    travelHourlyCost: num('econ_travel_hourly')
+  };
+}
+
+// ---------------- RENDER FUNCTIONS ----------------
+function renderSweep(scenarios, optimal) {
+  const maxCost = Math.max(...scenarios.map(s => s.totalCostAnnual));
+  $('sweepPanel').innerHTML = scenarios.map(s => {
+    const isOpt = s.hubCount === optimal.hubCount;
+    const pct = (s.totalCostAnnual / maxCost) * 100;
+    return `<div class="sweep-row${isOpt ? ' optimal' : ''}">
+      <div class="sw-hubs">${s.hubCount} hub${s.hubCount > 1 ? 's' : ''}</div>
+      <div class="sw-bar-track"><div class="sw-bar-fill" style="width:${pct.toFixed(0)}%;"></div></div>
+      <div class="sw-cost">${fmtMoney(s.totalCostAnnual)}${isOpt ? '<span class="sw-tag">OPTIMAL</span>' : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderCompare(pureHub, optimal, decentralized) {
+  const rows = [
+    { name: 'Pure-Hub (Central Depot)', sub: '1 centralized mega-facility', s: pureHub },
+    { name: 'Recommended Hub-Spoke', sub: `${optimal.hubCount} distributed hubs (TCO sweet spot)`, s: optimal },
+    { name: 'Decentralized Dispatch', sub: 'Zero fixed hubs, +15% coordination & contractor penalty', s: decentralized }
+  ];
+  $('comparePanel').innerHTML = rows.map(r => `
+    <div class="compare-row">
+      <div class="compare-name">${r.name}<div class="cn-sub">${r.sub}</div></div>
+      <div class="compare-metric">${fmt1(r.s.staffing.fte)} technicians</div>
+      <div class="compare-metric">${fmtMoney(r.s.totalCostAnnual)} / yr</div>
+    </div>`).join('');
+}
+
+function renderProjection(baseParams, pureHubYear1TotalCost) {
+  const growth = num('proj_growth') / 100;
+  const rows = [];
+  for (let y = 1; y <= state.projTerm; y++) {
+    const volumeY = baseParams.monthlyVolume * Math.pow(1 + growth, y - 1);
+    const paramsY = Object.assign({}, baseParams, { monthlyVolume: volumeY });
+    const { optimal } = optimizeHubCount(paramsY, BENCH.hub_sweep_max);
+    const savings = Math.max(0, pureHubYear1TotalCost - optimal.totalCostAnnual);
+    rows.push({ y, volumeY, optimal, savings });
+  }
+  $('projectionBody').innerHTML = rows.map(r => `
+    <tr>
+      <td><b>Year ${r.y}</b></td>
+      <td class="num-cell mono">${fmtInt(r.volumeY)}</td>
+      <td class="num-cell mono">${r.optimal.hubCount}</td>
+      <td class="num-cell mono">${fmt1(r.optimal.staffing.fte)}</td>
+      <td class="num-cell mono">${fmtMoney(r.optimal.totalCostAnnual)}</td>
+      <td class="num-cell mono" style="color:var(--success); font-weight:600;">${fmtMoney(r.savings)}</td>
+    </tr>`).join('');
+  return rows;
+}
+
+function renderReport(optimal, pureHub, params) {
+  $('kpi_r_hubs').textContent = optimal.hubCount;
+  $('kpi_r_techs').textContent = fmt1(optimal.staffing.fte);
+  $('kpi_r_cost').textContent = fmtMoney(optimal.totalCostAnnual);
+  $('kpi_r_savings').textContent = fmtMoney(Math.max(0, pureHub.totalCostAnnual - optimal.totalCostAnnual));
+
+  const deflected = Math.round(optimal.deflectedMonthly);
+  $('diag_deflected').textContent = fmtInt(deflected) + ' / mo';
+  $('diag_net_volume').textContent = fmtInt(optimal.effectiveMonthlyDispatches) + ' / mo';
+  $('diag_travel_time').textContent = optimal.travelTime.toFixed(1) + ' hrs';
+  $('diag_achieved_sl').textContent = (optimal.staffing.achievedSL * 100).toFixed(0) + '%';
+
+  $('liveTotal').textContent = optimal.hubCount + ' hubs · ' + fmtMoney(optimal.totalCostAnnual);
+}
+
+// ---------------- MASTER RECALCULATION ----------------
+function recalcAll() {
+  if (!BENCH) return;
+  const params = collectParams();
+  const { scenarios, optimal } = optimizeHubCount(params, BENCH.hub_sweep_max);
+  const pureHub = scenarios[0];
+  const decentralized = decentralizedScenario(params, BENCH.decentralized_penalty_pct);
+
+  renderSweep(scenarios, optimal);
+  renderCompare(pureHub, optimal, decentralized);
+  renderProjection(params, pureHub.totalCostAnnual);
+  renderReport(optimal, pureHub, params);
+}
+
+// ---------------- EVENT LISTENERS ----------------
+['svc_type', 'svc_volume', 'svc_ai_deflection', 'svc_ftfr', 'geo_travel_base', 'geo_onsite',
+ 'sla_target_sl', 'tech_workdays', 'tech_hours', 'tech_shrinkage', 'econ_hub_fixed',
+ 'econ_tech_cost', 'econ_travel_hourly', 'proj_growth'].forEach(id => {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    if (id === 'svc_ai_deflection') $('svc_ai_deflection_val').textContent = el.value + '%';
+    if (id === 'svc_ftfr') $('svc_ftfr_val').textContent = el.value + '%';
+    if (id === 'tech_shrinkage') $('tech_shrinkage_val').textContent = el.value + '%';
+    recalcAll();
+  });
+  if (el.tagName === 'SELECT') el.addEventListener('change', recalcAll);
+});
+
+$('sla_window').addEventListener('change', () => {
+  const isCustom = $('sla_window').value === 'custom';
+  $('sla_window_custom').disabled = !isCustom;
+  recalcAll();
+});
+$('sla_window_custom').addEventListener('input', recalcAll);
+
+// Projection Term Selector
+$('termToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.projTerm = +pill.dataset.term;
+  $('term_custom').value = state.projTerm;
+  recalcAll();
+});
+$('term_custom').addEventListener('input', (e) => {
+  let v = Math.round(parseFloat(e.target.value) || 1);
+  v = Math.max(1, Math.min(7, v));
+  state.projTerm = v;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === v));
+  recalcAll();
+});
+
+// Presets
+const PRESETS = {
+  regional:  { travel: 1.0, onsite: 1.2, volume: 400, hubFixed: 6000, aiDeflection: 15, ftfr: 88 },
+  statewide: { travel: 2.0, onsite: 1.5, volume: 800, hubFixed: 8500, aiDeflection: 12, ftfr: 85 },
+  national:  { travel: 4.0, onsite: 1.8, volume: 2000, hubFixed: 12000, aiDeflection: 10, ftfr: 80 },
+  reset:     { travel: 1.0, onsite: 1.0, volume: 0, hubFixed: 5000, aiDeflection: 0, ftfr: 85 }
+};
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const p = PRESETS[btn.dataset.preset];
+    if (!p) return;
+    $('geo_travel_base').value = p.travel;
+    $('geo_onsite').value = p.onsite;
+    $('svc_volume').value = p.volume;
+    $('econ_hub_fixed').value = p.hubFixed;
+    $('svc_ai_deflection').value = p.aiDeflection;
+    $('svc_ai_deflection_val').textContent = p.aiDeflection + '%';
+    $('svc_ftfr').value = p.ftfr;
+    $('svc_ftfr_val').textContent = p.ftfr + '%';
+    recalcAll();
+    showToast(`Loaded ${btn.textContent.trim()} preset.`);
+  });
+});
+
+// Currency Switcher
+document.querySelectorAll('#currencyToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCurrency = btn.dataset.curr;
+    recalcAll();
+    showToast(`Currency switched to ${currentCurrency}.`);
+  });
+});
+
+// Theme Switcher
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('fsoptimizer_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Ecosystem dropdowns
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+// Scrollspy
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+    }
+  });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS & ACTIONS ----------------
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast(successMsg);
+  } catch (err) {
+    showToast('Copy failed. Please grant clipboard access.');
+  }
+  document.body.removeChild(ta);
+}
+
+// 1. WhatsApp Share
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const hubs = $('kpi_r_hubs').textContent;
+  const techs = $('kpi_r_techs').textContent;
+  const cost = $('kpi_r_cost').textContent;
+  const savings = $('kpi_r_savings').textContent;
+  const deflected = $('diag_deflected').textContent;
+  const netVol = $('diag_net_volume').textContent;
+
+  const text = `🗺️ *Field Services Hub-Spoke Optimizer — Architecture Summary*
+*Source:* https://iamsaravofficial.com/apps/fsoptimizer/
+
+🎯 *Optimal Network Recommendation:*
+• Recommended Hub Count: *${hubs} hubs*
+• Field Technicians Required: *${techs} FTE*
+• Total Annual TCO: *${cost}*
+• Annual Savings vs. Single Hub: *${savings}*
+
+⚡ *Operational Diagnostics:*
+• Gross Monthly Dispatches: ${$('svc_volume').value}
+• AI Diagnostics Deflected: ${deflected}
+• Net Physical Dispatches: ${netVol}
+• First-Time Fix Rate: ${$('svc_ftfr').value}%
+• Single-Hub Driving Base: ${$('geo_travel_base').value} hrs
+
+Calculated via Sarav's World Digital Workplace Suite.`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+// 2. Export CSV
+$('btnExportCSV').addEventListener('click', () => {
+  const params = collectParams();
+  const { scenarios, optimal } = optimizeHubCount(params, BENCH.hub_sweep_max);
+  const pureHub = scenarios[0];
+  const decentralized = decentralizedScenario(params, BENCH.decentralized_penalty_pct);
+
+  let csv = 'FIELD SERVICES HUB-SPOKE OPTIMIZER — MODEL EXPORT\n';
+  csv += `Currency,${currentCurrency}\nSLA Window,${$('sla_window').selectedOptions[0].textContent}\nAI Deflection %,${params.aiDeflectionFrac * 100}%\nFTFR %,${params.ftfrFrac * 100}%\nProjection Term (years),${state.projTerm}\n\n`;
+  csv += 'HUB TOPOLOGY SWEEP\nHubs,Travel Time (hrs),Techs Required,Hub Facility Cost,Tech Labor Cost,Fleet Travel Opex,Total Annual TCO\n';
+  scenarios.forEach(s => {
+    csv += `${s.hubCount},${s.travelTime.toFixed(2)},${s.staffing.fte.toFixed(1)},${s.hubFixedCostAnnual.toFixed(2)},${s.techCostAnnual.toFixed(2)},${s.travelOpexAnnual.toFixed(2)},${s.totalCostAnnual.toFixed(2)}\n`;
+  });
+  csv += '\nOPERATING MODEL COMPARISON\nModel,Techs,Total Annual Cost\n';
+  csv += `Pure-Hub (Central),${pureHub.staffing.fte.toFixed(1)},${pureHub.totalCostAnnual.toFixed(2)}\n`;
+  csv += `Recommended Hub-Spoke (${optimal.hubCount} hubs),${optimal.staffing.fte.toFixed(1)},${optimal.totalCostAnnual.toFixed(2)}\n`;
+  csv += `Decentralized Dispatch,${decentralized.staffing.fte.toFixed(1)},${decentralized.totalCostAnnual.toFixed(2)}\n`;
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `FieldServices_Model_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  showToast('Model exported to CSV.');
+});
+
+// 3. Copy Executive Briefing (Markdown)
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 🗺️ Field Services Hub-Spoke Optimizer — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/fsoptimizer/
+
+### Recommendation
+- **Recommended Hub Count:** ${$('kpi_r_hubs').textContent}
+- **Technicians Required:** ${$('kpi_r_techs').textContent} FTE
+- **Total Annual TCO:** ${$('kpi_r_cost').textContent}
+- **Annual Savings vs. Single Hub:** ${$('kpi_r_savings').textContent}
+
+### Operational Diagnostics
+- **Service Type:** ${$('svc_type').selectedOptions[0].textContent}
+- **SLA Dispatch Window:** ${$('sla_window').selectedOptions[0].textContent}
+- **Gross Monthly Dispatches:** ${$('svc_volume').value}
+- **AI Diagnostics Deflected:** ${$('diag_deflected').textContent}
+- **Net Physical Dispatches:** ${$('diag_net_volume').textContent}
+- **First-Time Fix Rate:** ${$('svc_ftfr').value}%
+- **Achieved SLA Compliance:** ${$('diag_achieved_sl').textContent}
+
+*All calculations powered client-side by Erlang C & Square-Root Travel Law.*`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Executive briefing copied to clipboard.');
+    } catch (e) {
+      fallbackCopy(text, 'Executive briefing copied to clipboard.');
+    }
+  } else {
+    fallbackCopy(text, 'Executive briefing copied to clipboard.');
+  }
+});
+
+// 4. Save Scenario JSON
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '2.0',
+    appId: 'fsoptimizer',
+    timestamp: new Date().toISOString(),
+    currency: currentCurrency,
+    orgProfile: { territory: $('svc_region').value, serviceType: $('svc_type').value },
+    moduleData: {
+      volume: num('svc_volume'),
+      aiDeflection: num('svc_ai_deflection'),
+      ftfr: num('svc_ftfr'),
+      geometry: { travelBase: num('geo_travel_base'), onsite: num('geo_onsite') },
+      sla: { window: $('sla_window').value, customHours: num('sla_window_custom'), targetSL: num('sla_target_sl') },
+      tech: { workdays: num('tech_workdays'), hours: num('tech_hours'), shrinkage: num('tech_shrinkage') },
+      economics: { hubFixed: num('econ_hub_fixed'), techCost: num('econ_tech_cost'), travelHourly: num('econ_travel_hourly') },
+      projTerm: state.projTerm,
+      growth: num('proj_growth')
+    }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `fsoptimizer_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  showToast('Scenario saved as JSON.');
+});
+
+// 5. Load Scenario JSON
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile && data.orgProfile.territory) $('svc_region').value = data.orgProfile.territory;
+      if (data.moduleData) {
+        const m = data.moduleData;
+        if (m.serviceType) $('svc_type').value = m.serviceType;
+        if (m.volume !== undefined) $('svc_volume').value = m.volume;
+        if (m.aiDeflection !== undefined) { $('svc_ai_deflection').value = m.aiDeflection; $('svc_ai_deflection_val').textContent = m.aiDeflection + '%'; }
+        if (m.ftfr !== undefined) { $('svc_ftfr').value = m.ftfr; $('svc_ftfr_val').textContent = m.ftfr + '%'; }
+        if (m.geometry) {
+          if (m.geometry.travelBase !== undefined) $('geo_travel_base').value = m.geometry.travelBase;
+          if (m.geometry.onsite !== undefined) $('geo_onsite').value = m.geometry.onsite;
+        }
+        if (m.sla) {
+          if (m.sla.window) $('sla_window').value = m.sla.window;
+          if (m.sla.customHours !== undefined) $('sla_window_custom').value = m.sla.customHours;
+          if (m.sla.targetSL !== undefined) $('sla_target_sl').value = m.sla.targetSL;
+          $('sla_window_custom').disabled = m.sla.window !== 'custom';
+        }
+        if (m.tech) {
+          if (m.tech.workdays !== undefined) $('tech_workdays').value = m.tech.workdays;
+          if (m.tech.hours !== undefined) $('tech_hours').value = m.tech.hours;
+          if (m.tech.shrinkage !== undefined) { $('tech_shrinkage').value = m.tech.shrinkage; $('tech_shrinkage_val').textContent = m.tech.shrinkage + '%'; }
+        }
+        if (m.economics) {
+          if (m.economics.hubFixed !== undefined) $('econ_hub_fixed').value = m.economics.hubFixed;
+          if (m.economics.techCost !== undefined) $('econ_tech_cost').value = m.economics.techCost;
+          if (m.economics.travelHourly !== undefined) $('econ_travel_hourly').value = m.economics.travelHourly;
+        }
+        if (m.projTerm) {
+          state.projTerm = m.projTerm;
+          $('term_custom').value = m.projTerm;
+          document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm));
+        }
+        if (m.growth !== undefined) $('proj_growth').value = m.growth;
+        showToast('Field Services scenario loaded successfully.');
+      } else {
+        showToast('Shared parameters loaded.');
+      }
+      recalcAll();
+    } catch (err) {
+      showToast('Could not parse that file as valid scenario JSON.');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// 6. Print PDF
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- INITIALIZATION ----------------
+async function loadBenchmarks() {
+  try {
+    const res = await fetch('fs-benchmarks.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('fetch failed');
+    BENCH = await res.json();
+  } catch (e) {
+    BENCH = JSON.parse(JSON.stringify(FALLBACK_BENCH));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('fsoptimizer_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+
+  await loadBenchmarks();
+  $('tech_shrinkage_val').textContent = $('tech_shrinkage').value + '%';
+  $('svc_ai_deflection_val').textContent = $('svc_ai_deflection').value + '%';
+  $('svc_ftfr_val').textContent = $('svc_ftfr').value + '%';
+  recalcAll();
+})();
+</script>
+</body>
+</html>

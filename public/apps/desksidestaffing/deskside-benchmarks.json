@@ -1,0 +1,25 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-12" },
+  "sla_windows": {
+    "samehour": { "label": "Same-Hour (1 hr)", "hours": 1 },
+    "sameday":  { "label": "Same-Day (4 hrs)", "hours": 4 },
+    "nextday":  { "label": "Next-Day (8 hrs)", "hours": 8 },
+    "custom":   { "label": "Custom", "hours": null }
+  },
+  "vip_sla_windows": {
+    "within30": { "label": "Within 30 Minutes", "hours": 0.5 },
+    "samehour": { "label": "Same-Hour (1 hr)", "hours": 1 },
+    "custom":   { "label": "Custom", "hours": null }
+  },
+  "vip_aht_multiplier_default": 1.2,
+  "staffing_defaults": {
+    "target_service_level_pct": 90,
+    "working_days_per_month": 21,
+    "hours_per_day": 8,
+    "shrinkage_pct": 20,
+    "tech_loaded_cost_per_year": 62000,
+    "hybrid_pct": 60,
+    "locker_deflection_pct": 15,
+    "peak_multiplier": 1.4
+  }
+}

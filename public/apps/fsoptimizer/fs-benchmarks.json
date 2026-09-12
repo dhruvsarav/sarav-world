@@ -1,0 +1,22 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-12" },
+  "sla_windows": {
+    "sameday": { "label": "Same-Day", "hours": 4 },
+    "nbd":     { "label": "Next-Business-Day (NBD)", "hours": 8 },
+    "twobd":   { "label": "2-Business-Day", "hours": 16 },
+    "custom":  { "label": "Custom", "hours": null }
+  },
+  "decentralized_penalty_pct": 15,
+  "hub_sweep_max": 20,
+  "staffing_defaults": {
+    "target_service_level_pct": 90,
+    "working_days_per_month": 21,
+    "hours_per_day": 8,
+    "shrinkage_pct": 25,
+    "hub_fixed_cost_per_month": 8500,
+    "tech_loaded_cost_per_year": 58000,
+    "travel_hourly_cost": 12,
+    "ai_deflection_pct": 12,
+    "ftfr_pct": 85
+  }
+}

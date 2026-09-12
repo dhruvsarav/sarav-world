@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Deskside Staffing Calculator — Right-Size Onsite IT Support | Sarav's World</title>
+<meta name="description" content="Erlang C staffing for deskside/onsite IT support — dedicated VIP white-glove queue, smart locker deflection, hybrid campus density, and walk-up minimum coverage floor.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/desksidestaffing/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/desksidestaffing/">
+<meta property="og:title" content="Deskside Staffing Calculator — Sarav's World">
+<meta property="og:description" content="Erlang C staffing, dedicated VIP queue, smart locker deflection, and walk-up desk minimum coverage for onsite IT support teams.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/desksidestaffing/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Deskside Staffing Calculator — Sarav's World">
+<meta name="twitter:description" content="Erlang C staffing, dedicated VIP queue, smart locker deflection, and walk-up desk coverage for onsite IT support teams.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/desksidestaffing/og-image.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-menu a.current {
+    background: var(--accent-soft); color: var(--accent); font-weight: 600;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--surface-2); border: 1px solid var(--border); }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 820px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Action Bar */
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+  .btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+
+  /* Deskside specific badges */
+  .floor-badge { font-family: 'IBM Plex Mono'; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600; }
+  .floor-badge.binding { color: var(--accent); border: 1px solid var(--accent); background: var(--accent-soft); }
+  .floor-badge.ok { color: var(--success); border: 1px solid var(--success); background: var(--success-soft); }
+  .term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+  .term-input { width: 70px; flex: none; }
+
+  /* Non-blocking Toast Notification */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+    padding: 12px 18px; font-size: 13px; font-weight: 500;
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+  /* Standard Footer */
+  footer {
+    padding: 40px 20px 60px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+    border-top: 1px solid var(--border-soft); line-height: 1.6;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, .toast { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/" class="current">🖥️ Deskside Support Staffing</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="eco-tokenomics">🖥️ Digital Workplace Services · Version 2026.09</span></div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="Deskside Support Staffing Calculator Logo"></div>
+        <div>
+          <h1>Deskside <span class="badge gold">Onsite Support Staffing</span></h1>
+          <span class="tagline">Erlang C &bull; Dedicated VIP Queue &bull; Smart Locker Deflection</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="currency-toggle" id="currencyToggle">
+          <button data-curr="USD" class="active">USD ($)</button>
+          <button data-curr="INR">INR (₹)</button>
+          <button data-curr="EUR">EUR (€)</button>
+          <button data-curr="GBP">GBP (£)</button>
+        </div>
+        <div class="live-total-pill">Total Techs: <b id="liveTotal" class="mono">0</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Site Profile</a>
+      <a href="#volume" class="sec-nav-link"><span class="sn-num">02</span> Volume &amp; Shift-Left</a>
+      <a href="#geometry" class="sec-nav-link"><span class="sn-num">03</span> Geometry</a>
+      <a href="#sla" class="sec-nav-link"><span class="sn-num">04</span> Dispatch SLA</a>
+      <a href="#techs" class="sec-nav-link"><span class="sn-num">05</span> Technicians</a>
+      <a href="#vip" class="sec-nav-link"><span class="sn-num">06</span> VIP Tier</a>
+      <a href="#walkup" class="sec-nav-link"><span class="sn-num">07</span> Walk-Up Floor</a>
+      <a href="#projection" class="sec-nav-link"><span class="sn-num">08</span> Projection</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
+    </div>
+  </nav>
+</div>
+
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="small">🏢 Small Campus (500 headcount)</button>
+    <button class="preset-btn active" data-preset="mid">🏬 Mid Campus (3,000 headcount)</button>
+    <button class="preset-btn" data-preset="large">🏙️ Large Campus (15,000 headcount)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 Site Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Campus Profile &amp; Hybrid Density</h2></div>
+    <p class="sec-desc">On-site employee roster, physical campus buildings, and hybrid workplace attendance factor.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="site_employees">Campus Employee Roster (Total Headcount)</label><input id="site_employees" type="number" min="0" value="3000"></div>
+        <div class="field"><label for="site_buildings">Buildings / Floors Covered</label><input id="site_buildings" type="number" min="1" value="4"></div>
+        <div class="field"><label for="site_deskhours">Walk-Up Tech Bar Operating Hours / Day</label><input id="site_deskhours" type="number" min="1" max="24" value="9"></div>
+      </div>
+      <div class="field" style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-soft);">
+        <label for="site_hybrid_pct">Hybrid Workplace In-Office Attendance (%)</label>
+        <div class="slider-control">
+          <input id="site_hybrid_pct" type="range" min="20" max="100" value="60">
+          <span class="slider-val" id="site_hybrid_pct_val">60%</span>
+        </div>
+        <p class="hint">Models effective daily physical campus presence (e.g. 3-day hybrid policy = ~60% average daily attendance). Effective on-site presence: <b id="lbl_effective_headcount" class="mono" style="color:var(--accent);">1,800</b> employees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Request Volume -->
+  <section class="block" id="volume">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Request Volume &amp; Smart Locker Shift-Left</h2></div>
+    <p class="sec-desc">Total monthly deskside requests, average handle time (AHT), and automated dispensing locker deflection.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="vol_monthly">Gross Monthly Deskside Requests</label><input id="vol_monthly" type="number" min="0" value="1200"></div>
+        <div class="field"><label for="vol_aht">Avg Hands-On Service Time (minutes)</label><input id="vol_aht" type="number" min="1" value="35"></div>
+      </div>
+      <div class="field" style="margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--border-soft);">
+        <label for="vol_locker_deflection">Smart IT Locker &amp; Automated Kiosk Deflection (%)</label>
+        <div class="slider-control">
+          <input id="vol_locker_deflection" type="range" min="0" max="40" value="15">
+          <span class="slider-val" id="vol_locker_deflection_val">15%</span>
+        </div>
+        <p class="hint">Deflected walk-up hardware swaps (peripherals, automated laptop loaners, power adapters, security keys) resolved via self-service smart lockers without human tech intervention.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Coverage Geometry -->
+  <section class="block" id="geometry">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Coverage Geometry &amp; Inter-Building Walking</h2></div>
+    <p class="sec-desc">Walk and transit time across campus buildings or multi-story elevator travel, added into total ticket duration.</p>
+    <div class="panel">
+      <div class="field"><label for="geo_walk">Avg Inter-Building Walking / Transit Time (minutes per visit)</label><input id="geo_walk" type="number" min="0" value="8"></div>
+      <p class="hint">Added to Section 02's handle time for every dispatched onsite visit across floors and wings.</p>
+    </div>
+  </section>
+
+  <!-- 04 Dispatch SLA -->
+  <section class="block" id="sla">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Dispatch SLA Target &amp; Peak Hour Clustering</h2></div>
+    <p class="sec-desc">General queue SLA response thresholds and peak morning arrival multipliers.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="sla_window">General Queue SLA Window</label>
+          <select id="sla_window">
+            <option value="samehour">Same-Hour (1 operating hr)</option>
+            <option value="sameday" selected>Same-Day (4 operating hrs)</option>
+            <option value="nextday">Next-Day (8 operating hrs)</option>
+            <option value="custom">Custom Hours</option>
+          </select>
+        </div>
+        <div class="field"><label for="sla_window_custom">Custom Window (Hours)</label><input id="sla_window_custom" type="number" min="0.1" step="0.1" value="4" disabled></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="field"><label for="sla_target_sl">Target Service Level (% of visits within SLA)</label><input id="sla_target_sl" type="number" min="1" max="99" value="90"></div>
+        <div class="field">
+          <label for="sla_peak_mult">Peak-Hour Arrival Surge Multiplier</label>
+          <div class="slider-control">
+            <input id="sla_peak_mult" type="range" min="10" max="25" value="14">
+            <span class="slider-val" id="sla_peak_mult_val">1.4x</span>
+          </div>
+          <p class="hint">Morning boot surges (8:30–10:30 AM) cause arrival density up to 1.4x the daily average.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Technician Parameters -->
+  <section class="block" id="techs">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Technician Roster &amp; Economics</h2></div>
+    <p class="sec-desc">Working hours, shrinkage factors, and fully loaded annual compensation per deskside engineer.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="tech_workdays">Working Days / Month</label><input id="tech_workdays" type="number" min="1" value="21"></div>
+        <div class="field"><label for="tech_hours">Operating Hours / Day</label><input id="tech_hours" type="number" min="1" value="8"></div>
+        <div class="field">
+          <label for="tech_shrinkage">Shrinkage % (Breaks, PTO, Training)</label>
+          <div class="slider-control"><input id="tech_shrinkage" type="range" min="0" max="60" value="20"><span class="slider-val" id="tech_shrinkage_val">20%</span></div>
+        </div>
+      </div>
+      <div class="field"><label for="econ_tech_cost">Technician Fully Loaded Salary / Year</label><input id="econ_tech_cost" type="number" min="0" value="62000"></div>
+    </div>
+  </section>
+
+  <!-- 06 VIP Tier -->
+  <section class="block" id="vip">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Dedicated VIP / Executive White-Glove Tier</h2></div>
+    <p class="sec-desc">Modeled as an isolated dedicated white-glove queue &mdash; dedicated senior technicians, accelerated SLA, and dedicated standing float capacity.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="vip_pct">% of Requests Requiring VIP White-Glove</label><input id="vip_pct" type="number" min="0" max="100" value="8"></div>
+        <div class="field"><label for="vip_aht_mult">VIP Handle-Time Multiplier (Extra Care)</label><input id="vip_aht_mult" type="number" min="1" step="0.1" value="1.2"></div>
+        <div class="field"><label for="vip_float">Dedicated Executive Float (Standing Techs)</label><input id="vip_float" type="number" min="0" step="0.5" value="1"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="vip_sla_window">VIP White-Glove SLA Window</label>
+          <select id="vip_sla_window">
+            <option value="within30">Within 30 Minutes</option>
+            <option value="samehour" selected>Same-Hour (1 operating hr)</option>
+            <option value="custom">Custom Hours</option>
+          </select>
+        </div>
+        <div class="field"><label for="vip_sla_custom">Custom VIP Window (Hours)</label><input id="vip_sla_custom" type="number" min="0.1" step="0.1" value="1" disabled></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Walk-Up Floor -->
+  <section class="block" id="walkup">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Walk-Up Tech Bar Minimum Physical Floor</h2></div>
+    <p class="sec-desc">Physical presence threshold &mdash; ensuring walk-up kiosks or tech lounges are never unstaffed during business hours regardless of mathematical demand dips.</p>
+    <div class="panel">
+      <div class="field"><label for="walkup_min">Minimum Walk-Up Desk Roster Floor (Techs)</label><input id="walkup_min" type="number" min="0" value="2"></div>
+      <p class="hint" id="walkup_status"></p>
+    </div>
+  </section>
+
+  <!-- 08 Multi-Year Projection -->
+  <section class="block" id="projection">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Multi-Year Headcount Projection</h2></div>
+    <p class="sec-desc">Forecast campus staffing needs and annual budget across multi-year workforce expansion.</p>
+    <div class="panel">
+      <div class="term-row">
+        <span class="presets-title">Projection Term:</span>
+        <div class="pillrow" id="termToggle">
+          <div class="pill" data-term="1">1 yr</div>
+          <div class="pill" data-term="3">3 yr</div>
+          <div class="pill on" data-term="5">5 yr</div>
+          <div class="pill" data-term="7">7 yr</div>
+        </div>
+        <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
+        <span class="hint" style="margin:0;">years</span>
+        <span class="presets-title" style="margin-left:20px;">Annual Growth:</span>
+        <input id="proj_growth" type="number" min="-50" max="100" step="1" value="6" style="width:70px;">
+        <span class="hint" style="margin:0;">%</span>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>Gross Volume/mo</th><th>General FTE</th><th>VIP FTE</th><th>Total Techs</th><th>Annual Staffing Cost</th></tr></thead>
+          <tbody id="projectionBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 Executive Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Commercial Export</h2></div>
+    <p class="sec-desc">Right-sized deskside workforce, queue breakdown, and campus diagnostic overview.</p>
+
+    <div class="kpi-row">
+      <div class="kpi accent2"><div class="label">Total Technicians Required</div><div class="value mono" id="kpi_r_total">0</div></div>
+      <div class="kpi"><div class="label">General Queue FTE</div><div class="value mono" id="kpi_r_general">0</div></div>
+      <div class="kpi accent2"><div class="label">VIP Queue FTE (incl. float)</div><div class="value mono" id="kpi_r_vip">0</div></div>
+      <div class="kpi success"><div class="label">Annual Staffing Budget</div><div class="value mono" id="kpi_r_cost">$0</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Campus Diagnostic Summary</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Effective Daily Headcount</div><div class="value mono" id="diag_employees">0</div></div>
+        <div class="kpi"><div class="label">Smart Locker Deflected</div><div class="value mono" id="diag_deflected">0 / mo</div></div>
+        <div class="kpi"><div class="label">General SLA Compliance</div><div class="value mono" id="diag_sl_general">0%</div></div>
+        <div class="kpi"><div class="label">Walk-Up Floor Status</div><div class="value mono" id="diag_floor" style="font-size:15px;">—</div></div>
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnShareWhatsApp" class="btn-whatsapp">📱 Share on WhatsApp</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Non-blocking Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<!-- Standard Enterprise Footer -->
+<footer>
+  <div class="container">
+    <p>Deskside Staffing Calculator crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// DESKSIDE STAFFING CALCULATOR — Erlang C + Dedicated VIP Queue + Smart Locker Deflection
+// ============================================================================================
+
+const FALLBACK_BENCH = {
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-12" },
+  "sla_windows": {
+    "samehour": { "label": "Same-Hour (1 hr)", "hours": 1 },
+    "sameday":  { "label": "Same-Day (4 hrs)", "hours": 4 },
+    "nextday":  { "label": "Next-Day (8 hrs)", "hours": 8 },
+    "custom":   { "label": "Custom", "hours": null }
+  },
+  "vip_sla_windows": {
+    "within30": { "label": "Within 30 Minutes", "hours": 0.5 },
+    "samehour": { "label": "Same-Hour (1 hr)", "hours": 1 },
+    "custom":   { "label": "Custom", "hours": null }
+  },
+  "vip_aht_multiplier_default": 1.2,
+  "staffing_defaults": {
+    "target_service_level_pct": 90,
+    "working_days_per_month": 21,
+    "hours_per_day": 8,
+    "shrinkage_pct": 20,
+    "tech_loaded_cost_per_year": 62000,
+    "hybrid_pct": 60,
+    "locker_deflection_pct": 15,
+    "peak_multiplier": 1.4
+  }
+};
+let BENCH = null;
+
+const CURRENCIES = {
+  USD: { symbol: '$', rate: 1.00, locale: 'en-US', decimals: 0 },
+  INR: { symbol: '₹', rate: 85.00, locale: 'en-IN', decimals: 0 },
+  EUR: { symbol: '€', rate: 0.92, locale: 'de-DE', decimals: 0 },
+  GBP: { symbol: '£', rate: 0.78, locale: 'en-GB', decimals: 0 }
+};
+let currentCurrency = 'USD';
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function fmtMoney(usdVal) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = (usdVal || 0) * c.rate;
+  return c.symbol + converted.toLocaleString(c.locale, { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
+}
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+const fmt1 = (v) => (Math.round((v || 0) * 10) / 10).toLocaleString('en-US');
+
+const state = { themeChoice: 'dark', projTerm: 5 };
+
+// ---------------- QUEUEING & MATHEMATICAL ENGINE ----------------
+function erlangBRecursive(A, N) {
+  let B = 1.0;
+  for (let i = 1; i <= N; i++) {
+    B = (A * B) / (i + A * B);
+  }
+  return B;
+}
+
+function erlangC(A, N) {
+  if (N <= A) return 1;
+  const B = erlangBRecursive(A, N);
+  const C = (N * B) / (N - A * (1 - B));
+  return Math.max(0, Math.min(1, C));
+}
+
+function serviceLevel(A, N, ahtSec, targetAnswerSec) {
+  if (N <= A) return 0;
+  const C = erlangC(A, N);
+  const sl = 1 - C * Math.exp(-(N - A) * (targetAnswerSec / ahtSec));
+  return Math.max(0, Math.min(1, sl));
+}
+
+function requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec, maxAgents = 3000) {
+  if (erlangs <= 0) return { agents: 0, achievedSL: 1, erlangs: 0 };
+  let N = Math.max(1, Math.ceil(erlangs) + 1);
+  let sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  while (sl < targetSLFrac && N < maxAgents) {
+    N++;
+    sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  }
+  return { agents: N, achievedSL: sl, erlangs };
+}
+
+function volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay, peakMult = 1.0) {
+  const baseArrivalPerHour = monthlyVolume / (workingDaysPerMonth * hoursPerDay);
+  const effectiveArrivalPerHour = baseArrivalPerHour * peakMult;
+  return (effectiveArrivalPerHour * ahtSec) / 3600;
+}
+
+function techFTE_realtime(monthlyVolume, ahtSec, targetSLFrac, targetAnswerSec, shrinkageFrac, workingDaysPerMonth, hoursPerDay, peakMult = 1.0) {
+  const erlangs = volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay, peakMult);
+  const r = requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec);
+  const fte = shrinkageFrac < 1 ? r.agents / (1 - shrinkageFrac) : r.agents;
+  return { fte, achievedSL: r.achievedSL, erlangs, agents: r.agents };
+}
+
+function computeDeskside(params) {
+  // 1. Shift-Left Smart Locker Deflection
+  const lockerDeflectedVol = params.monthlyVolume * params.lockerDeflectionFrac;
+  const netHandledVolume = params.monthlyVolume - lockerDeflectedVol;
+
+  // 2. Queue split: VIP vs General
+  const vipVolume = netHandledVolume * (params.vipPct / 100);
+  const generalVolume = netHandledVolume - vipVolume;
+
+  const generalAhtSec = params.ahtMinutes * 60;
+  const general = techFTE_realtime(
+    generalVolume,
+    generalAhtSec,
+    params.targetSLFrac,
+    params.slaWindowHours * 3600,
+    params.shrinkageFrac,
+    params.workingDaysPerMonth,
+    params.hoursPerDay,
+    params.peakMultiplier
+  );
+
+  const vipAhtSec = params.ahtMinutes * params.vipAhtMultiplier * 60;
+  const vipQueue = techFTE_realtime(
+    vipVolume,
+    vipAhtSec,
+    params.targetSLFrac,
+    params.vipSlaWindowHours * 3600,
+    params.shrinkageFrac,
+    params.workingDaysPerMonth,
+    params.hoursPerDay,
+    1.0 // VIP queue arrives with dedicated white-glove booking
+  );
+  const vipTotalFte = vipQueue.fte + params.vipFloatCapacity;
+
+  const demandDrivenTotal = general.fte + vipTotalFte;
+  const floorApplied = params.walkUpMinimum > demandDrivenTotal;
+  const totalTechs = Math.max(demandDrivenTotal, params.walkUpMinimum);
+
+  return {
+    general,
+    vip: Object.assign({}, vipQueue, { fte: vipTotalFte, demandFte: vipQueue.fte }),
+    demandDrivenTotal,
+    floorApplied,
+    totalTechs,
+    generalVolume,
+    vipVolume,
+    lockerDeflectedVol,
+    netHandledVolume
+  };
+}
+
+// ---------------- INPUT COLLECTION ----------------
+function getSlaWindowHours() {
+  const key = $('sla_window').value;
+  if (key === 'custom') return num('sla_window_custom');
+  return (BENCH && BENCH.sla_windows[key]) ? BENCH.sla_windows[key].hours : 4;
+}
+
+function getVipSlaWindowHours() {
+  const key = $('vip_sla_window').value;
+  if (key === 'custom') return num('vip_sla_custom');
+  return (BENCH && BENCH.vip_sla_windows[key]) ? BENCH.vip_sla_windows[key].hours : 1;
+}
+
+function collectParams(volumeOverride) {
+  const hybridAttendanceFrac = num('site_hybrid_pct') / 100;
+  return {
+    siteEmployees: num('site_employees'),
+    hybridAttendanceFrac,
+    effectiveEmployees: Math.round(num('site_employees') * hybridAttendanceFrac),
+    monthlyVolume: volumeOverride !== undefined ? volumeOverride : num('vol_monthly'),
+    lockerDeflectionFrac: num('vol_locker_deflection') / 100,
+    ahtMinutes: num('vol_aht') + num('geo_walk'),
+    targetSLFrac: num('sla_target_sl') / 100,
+    slaWindowHours: getSlaWindowHours(),
+    peakMultiplier: num('sla_peak_mult') / 10,
+    vipPct: num('vip_pct'),
+    vipAhtMultiplier: num('vip_aht_mult'),
+    vipFloatCapacity: num('vip_float'),
+    vipSlaWindowHours: getVipSlaWindowHours(),
+    shrinkageFrac: num('tech_shrinkage') / 100,
+    workingDaysPerMonth: num('tech_workdays'),
+    hoursPerDay: num('tech_hours'),
+    walkUpMinimum: num('walkup_min')
+  };
+}
+
+// ---------------- RENDER FUNCTIONS ----------------
+function renderWalkupStatus(result) {
+  const el = $('walkup_status');
+  if (result.floorApplied) {
+    el.innerHTML = `Mathematical demand requires ${fmt1(result.demandDrivenTotal)} techs &mdash; the walk-up minimum floor of ${$('walkup_min').value} is actively driving the final headcount.<span class="floor-badge binding">FLOOR BINDING</span>`;
+  } else {
+    el.innerHTML = `Demand already requires ${fmt1(result.demandDrivenTotal)} techs, safely clearing the minimum floor.<span class="floor-badge ok">DEMAND-DRIVEN</span>`;
+  }
+}
+
+function renderProjection(baseParams, techCostPerYear) {
+  const growth = num('proj_growth') / 100;
+  const rows = [];
+  for (let y = 1; y <= state.projTerm; y++) {
+    const volumeY = baseParams.monthlyVolume * Math.pow(1 + growth, y - 1);
+    const paramsY = Object.assign({}, baseParams, { monthlyVolume: volumeY });
+    const r = computeDeskside(paramsY);
+    const cost = r.totalTechs * techCostPerYear;
+    rows.push({ y, volumeY, r, cost });
+  }
+  $('projectionBody').innerHTML = rows.map(row => `
+    <tr>
+      <td><b>Year ${row.y}</b></td>
+      <td class="num-cell mono">${fmtInt(row.volumeY)}</td>
+      <td class="num-cell mono">${fmt1(row.r.general.fte)}</td>
+      <td class="num-cell mono">${fmt1(row.r.vip.fte)}</td>
+      <td class="num-cell mono">${fmt1(row.r.totalTechs)}</td>
+      <td class="num-cell mono" style="color:var(--accent); font-weight:600;">${fmtMoney(row.cost)}</td>
+    </tr>`).join('');
+  return rows;
+}
+
+function renderReport(result, techCostPerYear, params) {
+  $('kpi_r_total').textContent = fmt1(result.totalTechs);
+  $('kpi_r_general').textContent = fmt1(result.general.fte);
+  $('kpi_r_vip').textContent = fmt1(result.vip.fte);
+  $('kpi_r_cost').textContent = fmtMoney(result.totalTechs * techCostPerYear);
+
+  $('diag_employees').textContent = fmtInt(params.effectiveEmployees) + ' / day';
+  $('lbl_effective_headcount').textContent = fmtInt(params.effectiveEmployees);
+  $('diag_deflected').textContent = fmtInt(result.lockerDeflectedVol) + ' / mo';
+  $('diag_sl_general').textContent = (result.general.achievedSL * 100).toFixed(0) + '%';
+  $('diag_floor').textContent = result.floorApplied ? 'Floor Binding' : 'Demand-Driven';
+
+  $('liveTotal').textContent = fmt1(result.totalTechs) + ' techs';
+}
+
+// ---------------- MASTER RECALCULATION ----------------
+function recalcAll() {
+  if (!BENCH) return;
+  const techCostPerYear = num('econ_tech_cost') || BENCH.staffing_defaults.tech_loaded_cost_per_year;
+  const params = collectParams();
+  const result = computeDeskside(params);
+
+  renderWalkupStatus(result);
+  renderProjection(params, techCostPerYear);
+  renderReport(result, techCostPerYear, params);
+}
+
+// ---------------- EVENT LISTENERS ----------------
+['site_employees', 'site_buildings', 'site_deskhours', 'site_hybrid_pct', 'vol_monthly', 'vol_aht',
+ 'vol_locker_deflection', 'geo_walk', 'sla_target_sl', 'sla_peak_mult', 'tech_workdays', 'tech_hours',
+ 'vip_pct', 'vip_aht_mult', 'vip_float', 'walkup_min', 'proj_growth', 'econ_tech_cost'].forEach(id => {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    if (id === 'site_hybrid_pct') $('site_hybrid_pct_val').textContent = el.value + '%';
+    if (id === 'vol_locker_deflection') $('vol_locker_deflection_val').textContent = el.value + '%';
+    if (id === 'sla_peak_mult') $('sla_peak_mult_val').textContent = (el.value / 10).toFixed(1) + 'x';
+    if (id === 'tech_shrinkage') $('tech_shrinkage_val').textContent = el.value + '%';
+    recalcAll();
+  });
+});
+
+$('tech_shrinkage').addEventListener('input', (e) => {
+  $('tech_shrinkage_val').textContent = e.target.value + '%';
+  recalcAll();
+});
+
+$('sla_window').addEventListener('change', () => {
+  $('sla_window_custom').disabled = $('sla_window').value !== 'custom';
+  recalcAll();
+});
+$('sla_window_custom').addEventListener('input', recalcAll);
+
+$('vip_sla_window').addEventListener('change', () => {
+  $('vip_sla_custom').disabled = $('vip_sla_window').value !== 'custom';
+  recalcAll();
+});
+$('vip_sla_custom').addEventListener('input', recalcAll);
+
+// Projection Term Selector
+$('termToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.projTerm = +pill.dataset.term;
+  $('term_custom').value = state.projTerm;
+  recalcAll();
+});
+$('term_custom').addEventListener('input', (e) => {
+  let v = Math.round(parseFloat(e.target.value) || 1);
+  v = Math.max(1, Math.min(7, v));
+  state.projTerm = v;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === v));
+  recalcAll();
+});
+
+// Presets
+const PRESETS = {
+  small: { employees: 500, buildings: 1, volume: 250, walkup: 1, hybrid: 60, locker: 10 },
+  mid:   { employees: 3000, buildings: 4, volume: 1200, walkup: 2, hybrid: 60, locker: 15 },
+  large: { employees: 15000, buildings: 10, volume: 5500, walkup: 4, hybrid: 55, locker: 20 },
+  reset: { employees: 0, buildings: 1, volume: 0, walkup: 1, hybrid: 60, locker: 0 }
+};
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const p = PRESETS[btn.dataset.preset];
+    if (!p) return;
+    $('site_employees').value = p.employees;
+    $('site_buildings').value = p.buildings;
+    $('vol_monthly').value = p.volume;
+    $('walkup_min').value = p.walkup;
+    $('site_hybrid_pct').value = p.hybrid;
+    $('site_hybrid_pct_val').textContent = p.hybrid + '%';
+    $('vol_locker_deflection').value = p.locker;
+    $('vol_locker_deflection_val').textContent = p.locker + '%';
+    recalcAll();
+    showToast(`Loaded ${btn.textContent.trim()} preset.`);
+  });
+});
+
+// Currency Switcher
+document.querySelectorAll('#currencyToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCurrency = btn.dataset.curr;
+    recalcAll();
+    showToast(`Currency switched to ${currentCurrency}.`);
+  });
+});
+
+// Theme Switcher
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('desksidestaffing_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Ecosystem dropdowns
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+// Scrollspy
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+    }
+  });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS & ACTIONS ----------------
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast(successMsg);
+  } catch (err) {
+    showToast('Copy failed. Please grant clipboard access.');
+  }
+  document.body.removeChild(ta);
+}
+
+// 1. WhatsApp Share
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const total = $('kpi_r_total').textContent;
+  const general = $('kpi_r_general').textContent;
+  const vip = $('kpi_r_vip').textContent;
+  const cost = $('kpi_r_cost').textContent;
+  const effHeadcount = $('diag_employees').textContent;
+  const lockerDeflected = $('diag_deflected').textContent;
+  const floorStatus = $('diag_floor').textContent;
+
+  const text = `🖥️ *Deskside Support Staffing Calculator — Executive Sizing*
+*Source:* https://iamsaravofficial.com/apps/desksidestaffing/
+
+🎯 *Campus Staffing Recommendation:*
+• Total Technicians Required: *${total} FTE*
+• General Support Queue: *${general} FTE*
+• VIP White-Glove Queue (incl. float): *${vip} FTE*
+• Annual Staffing Budget: *${cost}*
+
+⚡ *Operational Diagnostics:*
+• Total Campus Roster: ${$('site_employees').value} employees
+• Effective Daily In-Office Footprint: ${effHeadcount}
+• Smart Locker Hardware Deflection: ${lockerDeflected}
+• General SLA Compliance: ${$('diag_sl_general').textContent}
+• Walk-Up Floor Status: ${floorStatus}
+
+Calculated via Sarav's World Digital Workplace Suite.`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+// 2. Export CSV
+$('btnExportCSV').addEventListener('click', () => {
+  const techCostPerYear = num('econ_tech_cost') || BENCH.staffing_defaults.tech_loaded_cost_per_year;
+  const params = collectParams();
+  const result = computeDeskside(params);
+
+  let csv = 'DESKSIDE SUPPORT STAFFING CALCULATOR — MODEL EXPORT\n';
+  csv += `Currency,${currentCurrency}\nProjection Term (years),${state.projTerm}\nEffective Campus Daily Attendance,${params.effectiveEmployees}\nSmart Locker Deflection %,${params.lockerDeflectionFrac * 100}%\n\n`;
+  csv += 'STAFFING QUEUE BREAKDOWN\nQueue,Monthly Requests,FTE Required,Achieved SLA\n';
+  csv += `General Campus Support,${result.generalVolume.toFixed(0)},${result.general.fte.toFixed(2)},${(result.general.achievedSL * 100).toFixed(1)}%\n`;
+  csv += `VIP White-Glove (incl. float),${result.vipVolume.toFixed(0)},${result.vip.fte.toFixed(2)},100.0%\n`;
+  csv += `Smart Locker Deflected,${result.lockerDeflectedVol.toFixed(0)},0.00,N/A (Automated)\n`;
+  csv += `Total Roster,,${result.totalTechs.toFixed(2)},\n\n`;
+  csv += `${state.projTerm}-YEAR PROJECTION\nYear,Gross Monthly Requests,General FTE,VIP FTE,Total Techs,Annual Budget\n`;
+  for (let y = 1; y <= state.projTerm; y++) {
+    const growth = num('proj_growth') / 100;
+    const volumeY = params.monthlyVolume * Math.pow(1 + growth, y - 1);
+    const r = computeDeskside(Object.assign({}, params, { monthlyVolume: volumeY }));
+    csv += `Year ${y},${volumeY.toFixed(0)},${r.general.fte.toFixed(2)},${r.vip.fte.toFixed(2)},${r.totalTechs.toFixed(2)},${(r.totalTechs * techCostPerYear).toFixed(2)}\n`;
+  }
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `Deskside_Model_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  showToast('Model exported to CSV.');
+});
+
+// 3. Copy Executive Briefing (Markdown)
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 🖥️ Deskside Support Staffing Calculator — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/desksidestaffing/
+
+### Staffing Recommendation
+- **Total Technicians Required:** ${$('kpi_r_total').textContent} FTE
+- **General Support Queue:** ${$('kpi_r_general').textContent} FTE
+- **VIP White-Glove Queue (incl. float):** ${$('kpi_r_vip').textContent} FTE
+- **Annual Staffing Budget:** ${$('kpi_r_cost').textContent}
+
+### Campus Diagnostics
+- **Total Campus Roster:** ${$('site_employees').value} employees
+- **Effective Daily In-Office Footprint:** ${$('diag_employees').textContent}
+- **Smart Locker Deflection:** ${$('diag_deflected').textContent}
+- **General SLA Compliance:** ${$('diag_sl_general').textContent}
+- **Walk-Up Floor Status:** ${$('diag_floor').textContent}
+
+*All calculations powered client-side by Erlang C Queueing Theory.*`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Executive briefing copied to clipboard.');
+    } catch (e) {
+      fallbackCopy(text, 'Executive briefing copied to clipboard.');
+    }
+  } else {
+    fallbackCopy(text, 'Executive briefing copied to clipboard.');
+  }
+});
+
+// 4. Save Scenario JSON
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '2.0',
+    appId: 'desksidestaffing',
+    timestamp: new Date().toISOString(),
+    currency: currentCurrency,
+    orgProfile: {
+      employees: num('site_employees'),
+      hybridPct: num('site_hybrid_pct'),
+      buildings: num('site_buildings'),
+      deskHours: num('site_deskhours')
+    },
+    moduleData: {
+      volume: num('vol_monthly'),
+      lockerDeflection: num('vol_locker_deflection'),
+      aht: num('vol_aht'),
+      walkTime: num('geo_walk'),
+      sla: { window: $('sla_window').value, customHours: num('sla_window_custom'), targetSL: num('sla_target_sl'), peakMult: num('sla_peak_mult') },
+      tech: { workdays: num('tech_workdays'), hours: num('tech_hours'), shrinkage: num('tech_shrinkage') },
+      vip: { pct: num('vip_pct'), ahtMult: num('vip_aht_mult'), float: num('vip_float'), slaWindow: $('vip_sla_window').value, slaCustom: num('vip_sla_custom') },
+      walkupMin: num('walkup_min'),
+      techCost: num('econ_tech_cost'),
+      projTerm: state.projTerm,
+      growth: num('proj_growth')
+    }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `desksidestaffing_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  showToast('Scenario saved as JSON.');
+});
+
+// 5. Load Scenario JSON
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile) {
+        if (data.orgProfile.employees !== undefined) $('site_employees').value = data.orgProfile.employees;
+        if (data.orgProfile.hybridPct !== undefined) { $('site_hybrid_pct').value = data.orgProfile.hybridPct; $('site_hybrid_pct_val').textContent = data.orgProfile.hybridPct + '%'; }
+        if (data.orgProfile.buildings !== undefined) $('site_buildings').value = data.orgProfile.buildings;
+        if (data.orgProfile.deskHours !== undefined) $('site_deskhours').value = data.orgProfile.deskHours;
+      }
+      if (data.moduleData) {
+        const m = data.moduleData;
+        if (m.volume !== undefined) $('vol_monthly').value = m.volume;
+        if (m.lockerDeflection !== undefined) { $('vol_locker_deflection').value = m.lockerDeflection; $('vol_locker_deflection_val').textContent = m.lockerDeflection + '%'; }
+        if (m.aht !== undefined) $('vol_aht').value = m.aht;
+        if (m.walkTime !== undefined) $('geo_walk').value = m.walkTime;
+        if (m.sla) {
+          if (m.sla.window) $('sla_window').value = m.sla.window;
+          if (m.sla.customHours !== undefined) $('sla_window_custom').value = m.sla.customHours;
+          if (m.sla.targetSL !== undefined) $('sla_target_sl').value = m.sla.targetSL;
+          if (m.sla.peakMult !== undefined) { $('sla_peak_mult').value = m.sla.peakMult; $('sla_peak_mult_val').textContent = (m.sla.peakMult / 10).toFixed(1) + 'x'; }
+          $('sla_window_custom').disabled = m.sla.window !== 'custom';
+        }
+        if (m.tech) {
+          if (m.tech.workdays !== undefined) $('tech_workdays').value = m.tech.workdays;
+          if (m.tech.hours !== undefined) $('tech_hours').value = m.tech.hours;
+          if (m.tech.shrinkage !== undefined) { $('tech_shrinkage').value = m.tech.shrinkage; $('tech_shrinkage_val').textContent = m.tech.shrinkage + '%'; }
+        }
+        if (m.vip) {
+          if (m.vip.pct !== undefined) $('vip_pct').value = m.vip.pct;
+          if (m.vip.ahtMult !== undefined) $('vip_aht_mult').value = m.vip.ahtMult;
+          if (m.vip.float !== undefined) $('vip_float').value = m.vip.float;
+          if (m.vip.slaWindow) $('vip_sla_window').value = m.vip.slaWindow;
+          if (m.vip.slaCustom !== undefined) $('vip_sla_custom').value = m.vip.slaCustom;
+          $('vip_sla_custom').disabled = m.vip.slaWindow !== 'custom';
+        }
+        if (m.walkupMin !== undefined) $('walkup_min').value = m.walkupMin;
+        if (m.techCost !== undefined) $('econ_tech_cost').value = m.techCost;
+        if (m.projTerm) {
+          state.projTerm = m.projTerm;
+          $('term_custom').value = m.projTerm;
+          document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm));
+        }
+        if (m.growth !== undefined) $('proj_growth').value = m.growth;
+        showToast('Deskside scenario loaded successfully.');
+      } else {
+        showToast('Shared parameters loaded.');
+      }
+      recalcAll();
+    } catch (err) {
+      showToast('Could not parse that file as valid scenario JSON.');
+    }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// 6. Print PDF
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- INITIALIZATION ----------------
+async function loadBenchmarks() {
+  try {
+    const res = await fetch('deskside-benchmarks.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('fetch failed');
+    BENCH = await res.json();
+  } catch (e) {
+    BENCH = JSON.parse(JSON.stringify(FALLBACK_BENCH));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('desksidestaffing_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+
+  await loadBenchmarks();
+  $('tech_shrinkage_val').textContent = $('tech_shrinkage').value + '%';
+  $('site_hybrid_pct_val').textContent = $('site_hybrid_pct').value + '%';
+  $('vol_locker_deflection_val').textContent = $('vol_locker_deflection').value + '%';
+  $('sla_peak_mult_val').textContent = ($('sla_peak_mult').value / 10).toFixed(1) + 'x';
+  recalcAll();
+})();
+</script>
+</body>
+</html>
