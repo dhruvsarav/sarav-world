@@ -70,14 +70,23 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - **Footer Standard for Enterprise Apps**:
      `Executive Design Engine Suite crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.`
      `&copy; 2009–2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All calculations run strictly client-side.`
-10. **Official Brand Icon Systems for Apps & E-Apps Suites**:
+10. **Official Brand Icon Systems across All 5 Portals**:
+   - **Playground Gateway (`/playground/`)**:
+     * Official Brand Icon: **The Celestial 4-Way Nexus Portal** (Isometric futuristic crystal nexus uniting cyber gold, digital cyan, neon magenta, and sacred gold beams converging on a quantum orb).
+     * Production assets: `playground-square.png` (512px), `favicon-32.png`, `apple-touch-icon.png`.
    - **Apps Hub (`/apps/`)**:
      * Official Brand Icon: **The Cosmic Glass Cube** (Isometric frosted glass sandbox with floating cyber gold `#E3A63E` and digital teal `#4FB0A8` spheres).
      * Production assets: `apps-full.png` (1024px), `apps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
    - **E-Apps Suite (`/eapps/`)**:
      * Official Brand Icon: **The Sovereign Hex Core** (Faceted titanium hexagonal core with precision gyroscopic telemetry rings and glowing amber/cyan dual-core neural processor).
      * Production assets: `eapps-full.png` (1024px), `eapps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
-   - Both portals feature a responsive squircle brand badge in their respective hero headers.
+   - **Family Games Arcade (`/games/`)**:
+     * Official Brand Icon: **The Arcade Hologram Core** (Isometric glowing retro-modern arcade cabinet with neon magenta/pink and gold lighting, holographic controller, and floating dice).
+     * Production assets: `games-square.png` (512px), `favicon-32.png`, `apple-touch-icon.png`.
+   - **Cultural Projects Hub (`/projects/`)**:
+     * Official Brand Icon: **The Heritage Golden Codex** (Isometric South Indian Dravidian temple gopuram kalasam pinnacle floating above an ancient sacred engraved palm-leaf manuscript with Thiruvalluvar glyph).
+     * Production assets: `projects-square.png` (512px), `favicon-32.png`, `apple-touch-icon.png`.
+   - All 5 portals feature their respective responsive squircle brand badges in hero headers and across the Playground 4-quadrant grid.
 11. **Interactive Family Games Arcade Suite (`/games/`)**:
     - Master Family Games Hub at `https://iamsaravofficial.com/games/` uniting 10 interactive games with zero telemetry, procedural Web Audio effects, canvas physics, family roster turn selectors, and 1-tap WhatsApp boast sharing:
       1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
@@ -105,9 +114,13 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
 13. **Cultural Heritage & Open Knowledge Projects Hub (`/projects/`)**:
    - Unites all 3 cultural databases: Temples of Tamil Gods, Thirukkural Hub, and FactDrop.
    - Features complete 4-tier navigation: `Apps ▾`, `E-Apps ▾`, `Games ▾`, `Projects ▾`.
+   - Features official brand icon `projects-square.png` in hero.
 14. **Master Playground Gateway Portal (`/playground/`)**:
    - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
-   - Quadrant 3 links directly to `/games/` (Sarav's Family Games Arcade Hub).
+   - Features official brand icon `playground-square.png` in hero.
+   - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
+   - Reflects full live suite metrics: 9 Apps, 7 Engines, 10 Games, 3 Projects.
+   - Full 4-tier ecosystem navigation matching canonical inventories.
 
 ---
 
