@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Vendor RFP Weighted Scorer — Bring Your Own Vendors &amp; Criteria | Sarav's World</title>
+<meta name="description" content="Generic weighted decision matrix for vendor RFP evaluation — your own criteria, your own vendors, must-have disqualifying gates, and a weighted ranked result.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/rfpscorer/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/rfpscorer/">
+<meta property="og:title" content="Vendor RFP Weighted Scorer — Sarav's World">
+<meta property="og:description" content="Bring your own vendors and criteria to a weighted RFP scoring matrix with must-have disqualifying gates.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/rfpscorer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap between button and menu */
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover, .eco-menu a.current {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none; font-weight: 600;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+
+
+/* DEX Advisor additions */
+.slider-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border-soft); }
+.slider-row:last-child { border-bottom: none; }
+.slider-row .s-label { font-size: 13px; color: var(--text); flex: 1; min-width: 0; }
+.slider-row .s-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.slider-row .slider-control { width: 220px; flex: none; }
+.weight-bar-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.weight-bar-label { width: 220px; flex: none; font-size: 12.5px; color: var(--text-dim); }
+.weight-bar-track { flex: 1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.weight-bar-fill { height: 100%; background: var(--accent2); }
+.weight-bar-val { width: 46px; flex: none; text-align: right; font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-dim); }
+.vendor-row { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; background: var(--surface); }
+.vendor-row.top { border-color: var(--accent); }
+.vendor-head { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+.vendor-rank { font-family: 'IBM Plex Mono'; color: var(--text-faint); font-size: 13px; width: 22px; }
+.vendor-name-wrap { flex: 1; min-width: 0; }
+.vendor-name-wrap .vname { font-weight: 600; font-size: 15px; }
+.vendor-name-wrap .vtier { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); }
+.vendor-bar-wrap { flex: 2; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; min-width: 100px; }
+.vendor-bar-fill { height: 100%; background: var(--accent2); }
+.vendor-row.top .vendor-bar-fill { background: var(--accent); }
+.vendor-fit-num { font-family: 'IBM Plex Mono'; font-size: 15px; width: 50px; text-align: right; }
+.best-match-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 3px; margin-left: 8px; white-space: nowrap; }
+.vendor-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border-soft); }
+.vendor-row.open .vendor-body { display: block; }
+.vendor-body .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; }
+.vendor-body h4 { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); margin: 0 0 8px; font-weight: 500; }
+.vendor-body ul { margin: 0; padding-left: 16px; font-size: 13.5px; }
+.vendor-body li { margin-bottom: 4px; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+@media (max-width: 640px) {
+  .slider-row { flex-direction: column; align-items: flex-start; }
+  .slider-row .slider-control { width: 100%; }
+  .weight-bar-label { width: 140px; }
+}
+
+
+/* ITSM Advisor additions: comparison matrix, TCO envelope, playbook */
+.matrix-wrap { overflow-x: auto; margin-top: 16px; }
+.matrix-wrap table { width: 100%; border-collapse: collapse; }
+.matrix-wrap th, .matrix-wrap td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border-soft); font-size: 12.5px; }
+.matrix-wrap th:first-child, .matrix-wrap td:first-child { text-align: left; color: var(--text-dim); }
+.matrix-wrap thead th { color: var(--text-faint); font-family: 'IBM Plex Mono'; font-size: 11px; font-weight: 500; }
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); }
+.dot.on { background: var(--accent2); }
+.playbook-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+.playbook-step:last-child { border-bottom: none; }
+.playbook-num { font-family: 'IBM Plex Mono'; font-size: 20px; color: var(--accent); font-weight: 600; width: 32px; flex: none; }
+.playbook-body h4 { margin: 0 0 4px; font-size: 14px; }
+.playbook-body p { margin: 0; font-size: 13.5px; color: var(--text-dim); }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+
+
+/* RFP Scorer additions: dynamic tables, add/remove rows, score grid, gate grid */
+.dyn-table { width: 100%; border-collapse: collapse; }
+.dyn-table th, .dyn-table td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); font-size: 13px; }
+.dyn-table thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); text-align: left; font-weight: 500; }
+.dyn-table input[type="text"], .dyn-table input[type="number"] { width: 100%; }
+.dyn-table .rm-btn { background: transparent; border: 1px solid var(--border); color: var(--danger); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1; }
+.rm-btn:hover { border-color: var(--danger); }
+.add-row-btn { margin-top: 12px; background: transparent; border: 1px dashed var(--border); color: var(--text-dim); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 12.5px; }
+.add-row-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.grid-wrap { overflow-x: auto; }
+.grid-wrap table { border-collapse: collapse; min-width: 100%; }
+.grid-wrap th, .grid-wrap td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); text-align: center; white-space: nowrap; }
+.grid-wrap thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); font-weight: 500; }
+.grid-wrap th:first-child, .grid-wrap td:first-child { text-align: left; white-space: normal; min-width: 160px; color: var(--text-dim); }
+.grid-wrap input[type="number"] { width: 56px; text-align: center; }
+.gate-check { width: 20px; height: 20px; accent-color: var(--accent2); cursor: pointer; }
+.dq-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--danger); border: 1px solid var(--danger); padding: 2px 6px; border-radius: 3px; margin-left: 8px; }
+.weight-status { font-family: 'IBM Plex Mono'; font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+.normalize-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 4px 10px; border-radius: 5px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 11px; }
+.btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+.btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+  padding: 12px 18px; font-size: 13px; font-weight: 500;
+  opacity: 0; pointer-events: none; transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex; align-items: center; gap: 8px;
+}
+.toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/itsmadvisor/">🎫 ITSM Platform Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/rfpscorer/" class="current">⚖️ Vendor RFP Weighted Scorer</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="eco-tokenomics"><img src="https://iamsaravofficial.com/eapps/eapps-square.png" alt="" style="width:14px; height:14px; border-radius:3px; vertical-align:middle; margin-right:4px;">Digital Workplace Suite · Version 2026.09</span></div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="Vendor RFP Weighted Scorer Logo"></div>
+        <div>
+          <h1>RFP Scorer <span class="badge gold">Bring Your Own Vendors</span></h1>
+          <span class="tagline">Weighted Decision Matrix + Must-Have Gates</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="live-total-pill">Top Pick: <b id="liveTotal" class="mono">—</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> RFP Profile</a>
+      <a href="#criteria" class="sec-nav-link"><span class="sn-num">02</span> Criteria</a>
+      <a href="#gates" class="sec-nav-link"><span class="sn-num">03</span> Must-Have Gates</a>
+      <a href="#vendors" class="sec-nav-link"><span class="sn-num">04</span> Vendors</a>
+      <a href="#scoring" class="sec-nav-link"><span class="sn-num">05</span> Scoring</a>
+      <a href="#gatecheck" class="sec-nav-link"><span class="sn-num">06</span> Gate Check</a>
+      <a href="#results" class="sec-nav-link"><span class="sn-num">07</span> Results</a>
+      <a href="#compare" class="sec-nav-link"><span class="sn-num">08</span> Comparison</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
+    </div>
+  </nav>
+</div>
+
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Templates:</span>
+    <button class="preset-btn active" data-preset="generic">📋 Generic Vendor RFP</button>
+    <button class="preset-btn" data-preset="msp">🏢 DWP Managed Services (MSP)</button>
+    <button class="preset-btn" data-preset="itsm">🎫 ITSM Platform Criteria</button>
+    <button class="preset-btn" data-preset="dex">🧭 DEX Platform Criteria</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 RFP Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>RFP Profile</h2></div>
+    <p class="sec-desc">What this evaluation is for.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="rfp_title">RFP / evaluation title</label><input id="rfp_title" type="text" value="Vendor Selection"></div>
+        <div class="field"><label for="rfp_evaluator">Evaluator (optional)</label><input id="rfp_evaluator" type="text" placeholder="Your name"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Criteria & Weights -->
+  <section class="block" id="criteria">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Criteria &amp; Weights</h2></div>
+    <p class="sec-desc">Weights should sum to 100% &mdash; use Normalize if they don't.</p>
+    <div class="panel">
+      <table class="dyn-table">
+        <thead><tr><th>Criterion</th><th style="width:110px;">Weight %</th><th style="width:50px;"></th></tr></thead>
+        <tbody id="criteriaBody"></tbody>
+      </table>
+      <button class="add-row-btn" id="addCriterion">+ Add Criterion</button>
+      <div class="weight-status" id="weightStatus"></div>
+    </div>
+  </section>
+
+  <!-- 03 Must-Have Gates -->
+  <section class="block" id="gates">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Must-Have Gates (Pass/Fail)</h2></div>
+    <p class="sec-desc">Optional disqualifying criteria &mdash; a vendor failing any gate is disqualified regardless of weighted score.</p>
+    <div class="panel">
+      <table class="dyn-table">
+        <thead><tr><th>Gate (must-have requirement)</th><th style="width:50px;"></th></tr></thead>
+        <tbody id="gatesBody"></tbody>
+      </table>
+      <button class="add-row-btn" id="addGate">+ Add Gate</button>
+    </div>
+  </section>
+
+  <!-- 04 Vendors -->
+  <section class="block" id="vendors">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Vendors</h2></div>
+    <p class="sec-desc">Who's being evaluated.</p>
+    <div class="panel">
+      <table class="dyn-table">
+        <thead><tr><th>Vendor Name</th><th style="width:50px;"></th></tr></thead>
+        <tbody id="vendorsBody"></tbody>
+      </table>
+      <button class="add-row-btn" id="addVendor">+ Add Vendor</button>
+    </div>
+  </section>
+
+  <!-- 05 Scoring Matrix -->
+  <section class="block" id="scoring">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Scoring Matrix</h2></div>
+    <p class="sec-desc">Score each vendor against each criterion, 1 (poor) to 5 (excellent).</p>
+    <div class="panel"><div class="grid-wrap"><table id="scoringTable"></table></div></div>
+  </section>
+
+  <!-- 06 Gate Check -->
+  <section class="block" id="gatecheck">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Gate Check</h2></div>
+    <p class="sec-desc">Check the box if the vendor passes that must-have requirement.</p>
+    <div class="panel"><div class="grid-wrap"><table id="gateTable"></table></div></div>
+  </section>
+
+  <!-- 07 Weighted Results -->
+  <section class="block" id="results">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Weighted Results</h2></div>
+    <p class="sec-desc">Ranked by weighted fit score. Disqualified vendors sink to the bottom regardless of score.</p>
+    <div id="vendorResultsList"></div>
+  </section>
+
+  <!-- 08 Comparison -->
+  <section class="block" id="compare">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Top Contenders — Side by Side</h2></div>
+    <p class="sec-desc">Direct comparison across every criterion for the top-ranked (qualified) vendors.</p>
+    <div class="panel"><div class="matrix-wrap"><table id="matrixTable"></table></div></div>
+  </section>
+
+  <!-- 09 Executive Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Export</h2></div>
+    <p class="sec-desc">Final recommendation and evaluation summary.</p>
+
+    <div class="kpi-row">
+      <div class="kpi accent2"><div class="label">Top Pick</div><div class="value mono" id="kpi_r_top" style="font-size:20px;">—</div><div class="sub" id="kpi_r_topscore">0%</div></div>
+      <div class="kpi"><div class="label">Vendors Evaluated</div><div class="value mono" id="kpi_r_vendorcount">0</div></div>
+      <div class="kpi accent2"><div class="label">Disqualified</div><div class="value mono" id="kpi_r_dqcount">0</div></div>
+      <div class="kpi"><div class="label">Weights Reconciled</div><div class="value mono" id="kpi_r_reconciled" style="font-size:16px;">—</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Disqualification Summary</h3>
+      <ul id="dq_summary"><li class="hint">None &mdash; all vendors passed every gate.</li></ul>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnShareWhatsApp" class="btn-whatsapp">📱 Share on WhatsApp</button>
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  <div class="container">
+    <p>Vendor RFP Weighted Scorer crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All scoring runs client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// VENDOR RFP WEIGHTED SCORER — generic decision matrix, bring your own vendors & criteria
+// ============================================================================================
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+let idCounter = 1;
+const newId = (prefix) => prefix + (idCounter++);
+
+const state = {
+  themeChoice: 'dark',
+  criteria: [],      // { id, name, weight }
+  gates: [],         // { id, name }
+  vendors: [],       // { id, name }
+  scores: {},        // { vendorId: { criterionId: 1-5 } }
+  gateResults: {}     // { vendorId: { gateId: true/false } }
+};
+
+// ---------------- ENGINE (identical to tested engine.js) ----------------
+function normalizeWeights(criteria) {
+  const total = criteria.reduce((s, c) => s + (c.weight || 0), 0);
+  if (total <= 0) return criteria.map(c => Object.assign({}, c, { weight: 0 }));
+  return criteria.map(c => Object.assign({}, c, { weight: (c.weight / total) * 100 }));
+}
+function weightsReconcile(criteria) {
+  const total = criteria.reduce((s, c) => s + (c.weight || 0), 0);
+  return Math.abs(total - 100) < 0.01;
+}
+function computeVendorScore(vendor, criteria, scores, gates, gateResults) {
+  const vendorScores = scores[vendor.id] || {};
+  const totalWeight = criteria.reduce((s, c) => s + (c.weight || 0), 0);
+  let weighted = 0;
+  criteria.forEach(c => { const raw = vendorScores[c.id] || 0; weighted += (totalWeight > 0 ? c.weight / totalWeight : 0) * raw; });
+  const fitScore = Math.round(weighted * 20);
+  const vendorGates = (gateResults[vendor.id]) || {};
+  const failedGates = gates.filter(g => vendorGates[g.id] === false).map(g => g.name);
+  const disqualified = failedGates.length > 0;
+  return Object.assign({}, vendor, { fitScore, disqualified, failedGates });
+}
+function rankVendors(vendors, criteria, scores, gates, gateResults) {
+  const scored = vendors.map(v => computeVendorScore(v, criteria, scores, gates, gateResults));
+  const qualified = scored.filter(v => !v.disqualified).sort((a, b) => b.fitScore - a.fitScore);
+  const disqualified = scored.filter(v => v.disqualified).sort((a, b) => b.fitScore - a.fitScore);
+  return qualified.concat(disqualified);
+}
+
+// ---------------- RENDER: dynamic tables ----------------
+function renderCriteriaTable() {
+  $('criteriaBody').innerHTML = state.criteria.map(c => `
+    <tr data-id="${c.id}">
+      <td><input type="text" data-crit-name="${c.id}" value="${c.name}"></td>
+      <td><input type="number" min="0" max="100" step="0.5" data-crit-weight="${c.id}" value="${c.weight}"></td>
+      <td><button class="rm-btn" data-rm-criterion="${c.id}">×</button></td>
+    </tr>`).join('') || `<tr><td colspan="3" class="hint">No criteria yet — add one below.</td></tr>`;
+
+  $('criteriaBody').querySelectorAll('[data-crit-name]').forEach(el => el.addEventListener('input', (e) => {
+    const c = state.criteria.find(x => x.id === e.target.dataset.critName);
+    if (c) c.name = e.target.value;
+    recalcAll();
+  }));
+  $('criteriaBody').querySelectorAll('[data-crit-weight]').forEach(el => el.addEventListener('input', (e) => {
+    const c = state.criteria.find(x => x.id === e.target.dataset.critWeight);
+    if (c) c.weight = parseFloat(e.target.value) || 0;
+    recalcAll();
+  }));
+  $('criteriaBody').querySelectorAll('[data-rm-criterion]').forEach(el => el.addEventListener('click', (e) => {
+    const id = e.target.dataset.rmCriterion;
+    state.criteria = state.criteria.filter(c => c.id !== id);
+    Object.keys(state.scores).forEach(vId => { if (state.scores[vId]) delete state.scores[vId][id]; });
+    renderAll();
+  }));
+}
+
+function renderGatesTable() {
+  $('gatesBody').innerHTML = state.gates.map(g => `
+    <tr data-id="${g.id}">
+      <td><input type="text" data-gate-name="${g.id}" value="${g.name}"></td>
+      <td><button class="rm-btn" data-rm-gate="${g.id}">×</button></td>
+    </tr>`).join('') || `<tr><td colspan="2" class="hint">No must-have gates &mdash; optional.</td></tr>`;
+
+  $('gatesBody').querySelectorAll('[data-gate-name]').forEach(el => el.addEventListener('input', (e) => {
+    const g = state.gates.find(x => x.id === e.target.dataset.gateName);
+    if (g) g.name = e.target.value;
+    recalcAll();
+  }));
+  $('gatesBody').querySelectorAll('[data-rm-gate]').forEach(el => el.addEventListener('click', (e) => {
+    const id = e.target.dataset.rmGate;
+    state.gates = state.gates.filter(g => g.id !== id);
+    Object.keys(state.gateResults).forEach(vId => { if (state.gateResults[vId]) delete state.gateResults[vId][id]; });
+    renderAll();
+  }));
+}
+
+function renderVendorsTable() {
+  $('vendorsBody').innerHTML = state.vendors.map(v => `
+    <tr data-id="${v.id}">
+      <td><input type="text" data-vendor-name="${v.id}" value="${v.name}"></td>
+      <td><button class="rm-btn" data-rm-vendor="${v.id}">×</button></td>
+    </tr>`).join('') || `<tr><td colspan="2" class="hint">No vendors yet — add one below.</td></tr>`;
+
+  $('vendorsBody').querySelectorAll('[data-vendor-name]').forEach(el => el.addEventListener('input', (e) => {
+    const v = state.vendors.find(x => x.id === e.target.dataset.vendorName);
+    if (v) v.name = e.target.value;
+    recalcAll();
+  }));
+  $('vendorsBody').querySelectorAll('[data-rm-vendor]').forEach(el => el.addEventListener('click', (e) => {
+    const id = e.target.dataset.rmVendor;
+    state.vendors = state.vendors.filter(v => v.id !== id);
+    delete state.scores[id];
+    delete state.gateResults[id];
+    renderAll();
+  }));
+}
+
+function renderScoringTable() {
+  if (state.vendors.length === 0 || state.criteria.length === 0) {
+    $('scoringTable').innerHTML = `<tr><td class="hint">Add at least one vendor and one criterion to score.</td></tr>`;
+    return;
+  }
+  const header = `<thead><tr><th>Vendor</th>${state.criteria.map(c => `<th>${c.name || '(unnamed)'}</th>`).join('')}</tr></thead>`;
+  const rows = state.vendors.map(v => {
+    if (!state.scores[v.id]) state.scores[v.id] = {};
+    const cells = state.criteria.map(c => {
+      const val = state.scores[v.id][c.id] || '';
+      return `<td><input type="number" min="1" max="5" data-score-vendor="${v.id}" data-score-crit="${c.id}" value="${val}"></td>`;
+    }).join('');
+    return `<tr><td>${v.name || '(unnamed)'}</td>${cells}</tr>`;
+  }).join('');
+  $('scoringTable').innerHTML = header + `<tbody>${rows}</tbody>`;
+
+  $('scoringTable').querySelectorAll('[data-score-vendor]').forEach(el => el.addEventListener('input', (e) => {
+    const vId = e.target.dataset.scoreVendor, cId = e.target.dataset.scoreCrit;
+    const v = Math.max(1, Math.min(5, parseFloat(e.target.value) || 0));
+    if (!state.scores[vId]) state.scores[vId] = {};
+    state.scores[vId][cId] = v;
+    recalcResultsOnly();
+  }));
+}
+
+function renderGateTable() {
+  if (state.vendors.length === 0 || state.gates.length === 0) {
+    $('gateTable').innerHTML = `<tr><td class="hint">No gates defined, or no vendors yet — every vendor auto-qualifies.</td></tr>`;
+    return;
+  }
+  const header = `<thead><tr><th>Vendor</th>${state.gates.map(g => `<th>${g.name || '(unnamed)'}</th>`).join('')}</tr></thead>`;
+  const rows = state.vendors.map(v => {
+    if (!state.gateResults[v.id]) state.gateResults[v.id] = {};
+    const cells = state.gates.map(g => {
+      const checked = state.gateResults[v.id][g.id] !== false; // default: passing until unchecked
+      return `<td><input type="checkbox" class="gate-check" data-gate-vendor="${v.id}" data-gate-gate="${g.id}" ${checked ? 'checked' : ''}></td>`;
+    }).join('');
+    return `<tr><td>${v.name || '(unnamed)'}</td>${cells}</tr>`;
+  }).join('');
+  $('gateTable').innerHTML = header + `<tbody>${rows}</tbody>`;
+
+  $('gateTable').querySelectorAll('[data-gate-vendor]').forEach(el => el.addEventListener('change', (e) => {
+    const vId = e.target.dataset.gateVendor, gId = e.target.dataset.gateGate;
+    if (!state.gateResults[vId]) state.gateResults[vId] = {};
+    state.gateResults[vId][gId] = e.target.checked;
+    recalcResultsOnly();
+  }));
+}
+
+function renderWeightStatus() {
+  const total = state.criteria.reduce((s, c) => s + (c.weight || 0), 0);
+  const ok = weightsReconcile(state.criteria);
+  $('weightStatus').innerHTML = `<span style="color:${ok ? 'var(--success)' : 'var(--danger)'};">Total: ${total.toFixed(1)}%${ok ? ' ✓' : ' — should be 100%'}</span>` +
+    (ok ? '' : ` <button class="normalize-btn" id="btnNormalize">Normalize to 100%</button>`);
+  const btn = $('btnNormalize');
+  if (btn) btn.addEventListener('click', () => { state.criteria = normalizeWeights(state.criteria); renderAll(); });
+}
+
+function renderResults() {
+  const ranked = rankVendors(state.vendors, state.criteria, state.scores, state.gates, state.gateResults);
+  if (ranked.length === 0) {
+    $('vendorResultsList').innerHTML = `<p class="hint">Add vendors and score them to see results.</p>`;
+    return ranked;
+  }
+  const maxFit = Math.max(1, ...ranked.filter(v => !v.disqualified).map(v => v.fitScore));
+  $('vendorResultsList').innerHTML = ranked.map((v, idx) => {
+    const isTop = idx === 0 && !v.disqualified;
+    const barPct = v.disqualified ? 0 : (v.fitScore / maxFit * 100);
+    return `<div class="vendor-row${isTop ? ' top' : ''}">
+      <div class="vendor-head">
+        <span class="vendor-rank">${String(idx + 1).padStart(2, '0')}</span>
+        <div class="vendor-name-wrap"><div class="vname">${v.name || '(unnamed)'}${isTop ? '<span class="best-match-tag">TOP PICK</span>' : ''}${v.disqualified ? `<span class="dq-tag">DISQUALIFIED</span>` : ''}</div>
+        ${v.disqualified ? `<div class="vtier">Failed: ${v.failedGates.join(', ')}</div>` : ''}</div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar-fill" style="width:${barPct.toFixed(0)}%; ${v.disqualified ? 'background:var(--border);' : ''}"></div></div>
+        <div class="vendor-fit-num mono">${v.fitScore}%</div>
+      </div>
+    </div>`;
+  }).join('');
+  return ranked;
+}
+
+function renderMatrix(ranked) {
+  const top = ranked.filter(v => !v.disqualified).slice(0, 3);
+  if (top.length === 0 || state.criteria.length === 0) {
+    $('matrixTable').innerHTML = `<tr><td class="hint">Need at least one qualified, scored vendor to compare.</td></tr>`;
+    return;
+  }
+  const rows = state.criteria.map(c => {
+    const cells = top.map(v => {
+      const score = (state.scores[v.id] && state.scores[v.id][c.id]) || 0;
+      const dots = [1, 2, 3, 4, 5].map(i => `<span class="dot${i <= score ? ' on' : ''}"></span>`).join('');
+      return `<td><span class="dots">${dots}</span></td>`;
+    }).join('');
+    return `<tr><td>${c.name || '(unnamed)'}</td>${cells}</tr>`;
+  }).join('');
+  $('matrixTable').innerHTML = `<thead><tr><th>Criterion</th>${top.map((v, i) => `<th>#${i + 1} ${v.name}</th>`).join('')}</tr></thead><tbody>${rows}</tbody>`;
+}
+
+function renderReport(ranked) {
+  const qualified = ranked.filter(v => !v.disqualified);
+  const top = qualified[0];
+  $('kpi_r_top').textContent = top ? top.name : '—';
+  $('kpi_r_topscore').textContent = top ? top.fitScore + '%' : '0%';
+  $('kpi_r_vendorcount').textContent = state.vendors.length;
+  const dqList = ranked.filter(v => v.disqualified);
+  $('kpi_r_dqcount').textContent = dqList.length;
+  $('kpi_r_reconciled').textContent = weightsReconcile(state.criteria) ? 'Yes' : 'No — check Sec. 02';
+
+  $('dq_summary').innerHTML = dqList.length === 0
+    ? `<li class="hint">None — all vendors passed every gate.</li>`
+    : dqList.map(v => `<li>${v.name} — failed: ${v.failedGates.join(', ')}</li>`).join('');
+
+  $('liveTotal').textContent = top ? `${top.fitScore}% ${top.name}` : '—';
+}
+
+function renderAll() {
+  renderCriteriaTable();
+  renderGatesTable();
+  renderVendorsTable();
+  renderWeightStatus();
+  renderScoringTable();
+  renderGateTable();
+  const ranked = renderResults();
+  renderMatrix(ranked);
+  renderReport(ranked);
+}
+function recalcAll() { renderWeightStatus(); recalcResultsOnly(); }
+function recalcResultsOnly() { const ranked = renderResults(); renderMatrix(ranked); renderReport(ranked); }
+
+// ---------------- ADD ROW HANDLERS ----------------
+$('addCriterion').addEventListener('click', () => { state.criteria.push({ id: newId('c'), name: 'New Criterion', weight: 10 }); renderAll(); });
+$('addGate').addEventListener('click', () => { state.gates.push({ id: newId('g'), name: 'New Gate' }); renderAll(); });
+$('addVendor').addEventListener('click', () => { state.vendors.push({ id: newId('v'), name: 'New Vendor' }); renderAll(); });
+
+['rfp_title', 'rfp_evaluator'].forEach(id => { const el = $(id); if (el) el.addEventListener('input', () => {}); });
+
+// ---------------- PRESETS ----------------
+const ITSM_DIMS = ['Incident & Request Management', 'Change & Release Management', 'CMDB / Asset Management Maturity', 'Workflow / No-Code Automation', 'AI / Copilot & Virtual Agent', 'Self-Service Portal & Knowledge Base', 'Integration Ecosystem / APIs', 'Reporting & Analytics', 'Deployment Flexibility'];
+const DEX_DIMS = ['Sentiment / XLA Surveys', 'Real-Time Telemetry Depth', 'Automated Remediation / Self-Healing', 'AI/ML Anomaly & Predictive Detection', 'SaaS / Business App Experience Monitoring', 'Network & Wi-Fi Experience Visibility', 'Security & Patch Posture Visibility', 'Native ITSM / Ecosystem Integration', 'Deployment Flexibility'];
+const MSP_DIMS = [
+  'Global Service Desk 24x7 Delivery Maturity',
+  'Onsite Deskside & Campus Engineering Footprint',
+  'Field Services Dispatch & Depots Geometry',
+  'GenAI & Self-Healing Automation Integration',
+  'Experience Level Agreements (XLAs) Commitment',
+  'Cost Transparency, Unit Rate & Pricing Elasticity',
+  'Security, SOC2/ISO Compliance & Clearance Capability',
+  'Transition Agility & Transformation Track Record'
+];
+
+function loadPreset(name) {
+  state.scores = {}; state.gateResults = {};
+  if (name === 'reset') {
+    state.criteria = []; state.gates = []; state.vendors = [];
+  } else if (name === 'generic') {
+    state.criteria = [
+      { id: newId('c'), name: 'Price / TCO', weight: 25 },
+      { id: newId('c'), name: 'Functional Fit', weight: 25 },
+      { id: newId('c'), name: 'Vendor Viability & Financial Stability', weight: 15 },
+      { id: newId('c'), name: 'Implementation Timeline', weight: 15 },
+      { id: newId('c'), name: 'Support & SLA Quality', weight: 10 },
+      { id: newId('c'), name: 'Security & Compliance', weight: 10 }
+    ];
+    state.gates = [{ id: newId('g'), name: 'References Available' }, { id: newId('g'), name: 'Signed NDA/MSA Ready' }];
+    state.vendors = [{ id: newId('v'), name: 'Vendor A' }, { id: newId('v'), name: 'Vendor B' }, { id: newId('v'), name: 'Vendor C' }];
+  } else if (name === 'msp') {
+    const w = Math.round((100 / MSP_DIMS.length) * 100) / 100;
+    state.criteria = MSP_DIMS.map(d => ({ id: newId('c'), name: d, weight: w }));
+    state.gates = [
+      { id: newId('g'), name: 'SOC2 Type II / ISO 27001 Certified' },
+      { id: newId('g'), name: 'Global 24x7 Follow-the-Sun SLA Guarantee' }
+    ];
+    state.vendors = [
+      { id: newId('v'), name: 'Incumbent Provider' },
+      { id: newId('v'), name: 'Challenger SI' },
+      { id: newId('v'), name: 'Specialist Boutique' }
+    ];
+  } else if (name === 'itsm' || name === 'dex') {
+    const dims = name === 'itsm' ? ITSM_DIMS : DEX_DIMS;
+    const w = Math.round((100 / dims.length) * 100) / 100;
+    state.criteria = dims.map(d => ({ id: newId('c'), name: d, weight: w }));
+    state.gates = [{ id: newId('g'), name: 'SOC2 / ISO27001 Certified' }];
+    state.vendors = [{ id: newId('v'), name: 'Vendor A' }, { id: newId('v'), name: 'Vendor B' }, { id: newId('v'), name: 'Vendor C' }];
+  }
+  renderAll();
+}
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    loadPreset(btn.dataset.preset);
+  });
+});
+
+// ---------------- THEME / NAV (same pattern as rest of suite) ----------------
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('rfp_scorer_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => { const btn = e.target.closest('button'); if (!btn) return; applyTheme(btn.dataset.themeChoice); });
+
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = drop.classList.contains('open'); document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); if (!isOpen) drop.classList.add('open'); });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.id; document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`)); } });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  const ranked = rankVendors(state.vendors, state.criteria, state.scores, state.gates, state.gateResults);
+  let csv = 'VENDOR RFP WEIGHTED SCORER — MODEL EXPORT\n';
+  csv += `RFP Title,${$('rfp_title').value}\nEvaluator,${$('rfp_evaluator').value}\n\n`;
+  csv += 'CRITERIA & WEIGHTS\nCriterion,Weight %\n';
+  state.criteria.forEach(c => { csv += `${c.name},${c.weight}\n`; });
+  csv += '\nMUST-HAVE GATES\nGate\n';
+  state.gates.forEach(g => { csv += `${g.name}\n`; });
+  csv += '\nSCORING MATRIX\nVendor,' + state.criteria.map(c => c.name).join(',') + '\n';
+  state.vendors.forEach(v => { csv += `${v.name},` + state.criteria.map(c => (state.scores[v.id] && state.scores[v.id][c.id]) || '').join(',') + '\n'; });
+  csv += '\nRANKED RESULTS\nRank,Vendor,Fit %,Disqualified,Failed Gates\n';
+  ranked.forEach((v, i) => { csv += `${i + 1},${v.name},${v.fitScore},${v.disqualified},${v.failedGates.join('; ')}\n`; });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `RFP_Scorer_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# ⚖️ Vendor RFP Weighted Scorer — Executive Briefing
+**RFP:** ${$('rfp_title').value} | **Evaluator:** ${$('rfp_evaluator').value || 'Not specified'}
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/rfpscorer/
+
+### Recommendation
+- **Top Pick:** ${$('kpi_r_top').textContent} (${$('kpi_r_topscore').textContent} weighted fit)
+- **Vendors Evaluated:** ${$('kpi_r_vendorcount').textContent}
+- **Disqualified:** ${$('kpi_r_dqcount').textContent}
+- **Weights Reconciled:** ${$('kpi_r_reconciled').textContent}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch (e) { showToast('Clipboard copy failed. Please grant permission.'); }
+});
+
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const text = `*VENDOR RFP WEIGHTED SCORER — EXECUTIVE SUMMARY*
+Generated via Sarav's World Digital Workplace Suite: https://iamsaravofficial.com/apps/rfpscorer/
+
+📋 *Evaluation:* ${$('rfp_title').value || 'Vendor RFP'}
+🏆 *Top Contender:* ${$('kpi_r_top').textContent} (${$('kpi_r_topscore').textContent} weighted fit)
+📊 *Vendors Evaluated:* ${$('kpi_r_vendorcount').textContent}
+🚫 *Disqualified (Gate Failures):* ${$('kpi_r_dqcount').textContent}
+⚖️ *Weight Balance:* ${$('kpi_r_reconciled').textContent}`;
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '1.0', appId: 'vendor-rfp-scorer', timestamp: new Date().toISOString(),
+    orgProfile: { employees: 0, industry: $('rfp_title').value, languages: 1, shiftModel: '' },
+    channelMix: { voice: 0, chat: 0, email: 0, digital: 0 },
+    moduleData: { evaluator: $('rfp_evaluator').value, criteria: state.criteria, gates: state.gates, vendors: state.vendors, scores: state.scores, gateResults: state.gateResults }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `rfp_scorer_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+});
+
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile && data.orgProfile.industry) $('rfp_title').value = data.orgProfile.industry;
+      if (data.appId === 'vendor-rfp-scorer' && data.moduleData) {
+        const m = data.moduleData;
+        if (m.evaluator) $('rfp_evaluator').value = m.evaluator;
+        state.criteria = m.criteria || [];
+        state.gates = m.gates || [];
+        state.vendors = m.vendors || [];
+        state.scores = m.scores || {};
+        state.gateResults = m.gateResults || {};
+        renderAll();
+        showToast('Loaded full RFP Scorer scenario.');
+      } else {
+        showToast('Loaded shared profile field only. App-specific criteria/vendors left as-is.');
+      }
+    } catch (err) { showToast('Could not read that file as a valid scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- BOOT ----------------
+(function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('rfp_scorer_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+  loadPreset('generic');
+})();
+
+</script>
+</body>
+</html>

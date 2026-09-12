@@ -1,0 +1,16 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-12" },
+  "pain_slider_max_boost": 3.0,
+  "trigger_max_boost": 2.5,
+  "triggers": [
+    { "id": "contract_renewal",     "label": "Contract renewal pressure",                    "dims": ["reporting", "integration"] },
+    { "id": "legacy_eol",           "label": "Legacy platform EOL / tech debt",               "dims": ["deployment", "integration"] },
+    { "id": "ma_consolidation",     "label": "M&A / estate consolidation",                    "dims": ["cmdb", "integration"] },
+    { "id": "ai_copilot_demand",    "label": "AI / Copilot roadmap demand",                   "dims": ["ai_copilot", "automation"] },
+    { "id": "licensing_pressure",   "label": "Licensing cost pressure",                       "dims": ["deployment", "reporting"] },
+    { "id": "compliance_reporting", "label": "Compliance / regulatory reporting need",        "dims": ["reporting", "change"] },
+    { "id": "selfservice_goal",     "label": "Self-service deflection goal",                  "dims": ["selfservice", "ai_copilot"] },
+    { "id": "automation_mandate",   "label": "Automation / efficiency mandate",               "dims": ["automation", "ai_copilot"] }
+  ],
+  "efficiency_formula": { "dims": ["automation", "ai_copilot"], "max_score": 10, "max_efficiency_pct": 30 }
+}

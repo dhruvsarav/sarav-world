@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>DEX Platform Advisor — Find Your Digital Employee Experience Fit | Sarav's World</title>
-<meta name="description" content="Guided assessment scoring 8 leading Digital Employee Experience platforms against your pain points, trigger drivers, and ecosystem — with a computed XPI (Experience Performance Indicator) uplift projection.">
-<link rel="canonical" href="https://iamsaravofficial.com/apps/dexadvisor/">
+<title>ITSM Advisor — Find Your ITSM Platform Fit | Sarav's World</title>
+<meta name="description" content="Guided assessment scoring 5 leading ITSM platforms against your capability priorities, trigger drivers, and deployment needs — with a directional TCO envelope and multi-year efficiency projection.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/itsmadvisor/">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://iamsaravofficial.com/apps/dexadvisor/">
-<meta property="og:title" content="DEX Platform Advisor — Sarav's World">
-<meta property="og:description" content="Trigger-driven vendor fit scoring and multi-year XPI uplift projection for Digital Employee Experience platforms.">
-<meta property="og:image" content="https://iamsaravofficial.com/apps/dexadvisor/og-image.png">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/itsmadvisor/">
+<meta property="og:title" content="ITSM Advisor — Sarav's World">
+<meta property="og:description" content="Trigger-driven ITSM platform fit scoring, weight transparency, and directional TCO envelope.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/itsmadvisor/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -25,6 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
   :root, [data-theme="dark"] {
     --bg: #0C0F14;
     --surface: #141922;
@@ -166,8 +167,8 @@
     padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
     font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
   }
-  .eco-menu a:hover {
-    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  .eco-menu a:hover, .eco-menu a.current {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none; font-weight: 600;
   }
   .eco-tokenomics {
     color: var(--accent) !important; font-weight: 600; font-size: 12px;
@@ -357,6 +358,36 @@
   .slider-row .slider-control { width: 100%; }
   .weight-bar-label { width: 140px; }
 }
+
+
+/* ITSM Advisor additions: comparison matrix, TCO envelope, playbook */
+.matrix-wrap { overflow-x: auto; margin-top: 16px; }
+.matrix-wrap table { width: 100%; border-collapse: collapse; }
+.matrix-wrap th, .matrix-wrap td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border-soft); font-size: 12.5px; }
+.matrix-wrap th:first-child, .matrix-wrap td:first-child { text-align: left; color: var(--text-dim); }
+.matrix-wrap thead th { color: var(--text-faint); font-family: 'IBM Plex Mono'; font-size: 11px; font-weight: 500; }
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); }
+.dot.on { background: var(--accent2); }
+.playbook-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+.playbook-step:last-child { border-bottom: none; }
+.playbook-num { font-family: 'IBM Plex Mono'; font-size: 20px; color: var(--accent); font-weight: 600; width: 32px; flex: none; }
+.playbook-body h4 { margin: 0 0 4px; font-size: 14px; }
+.playbook-body p { margin: 0; font-size: 13.5px; color: var(--text-dim); }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+.btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+.btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+.toast {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+  padding: 12px 18px; font-size: 13px; font-weight: 500;
+  opacity: 0; pointer-events: none; transform: translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  display: flex; align-items: center; gap: 8px;
+}
+.toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 </style>
 </head>
 <body>
@@ -374,8 +405,8 @@
           <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
           <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
           <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
-          <a href="https://iamsaravofficial.com/apps/dexadvisor/" class="current">🧭 DEX Advisor</a>
-          <a href="https://iamsaravofficial.com/apps/itsmadvisor/">🎫 ITSM Platform Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/itsmadvisor/" class="current">🎫 ITSM Platform Advisor</a>
           <a href="https://iamsaravofficial.com/apps/rfpscorer/">⚖️ Vendor RFP Weighted Scorer</a>
         </div>
       </div>
@@ -388,10 +419,10 @@
   <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <div class="mark"><img src="favicon-192.png" alt="DEX Platform Advisor Logo"></div>
+        <div class="mark"><img src="favicon-192.png" alt="ITSM Advisor Logo"></div>
         <div>
-          <h1>DEX Advisor <span class="badge gold">XPI-Driven Vendor Fit</span></h1>
-          <span class="tagline">Trigger-Weighted Scoring &amp; Multi-Year XPI Uplift</span>
+          <h1>ITSM Advisor <span class="badge gold">Trigger-Weighted Vendor Fit</span></h1>
+          <span class="tagline">Capability Scoring &amp; Directional TCO Envelope</span>
         </div>
       </div>
       <div class="topbar-controls">
@@ -409,12 +440,12 @@
     <div class="sec-nav-inner">
       <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Profile</a>
       <a href="#estate" class="sec-nav-link"><span class="sn-num">02</span> Estate</a>
-      <a href="#pain" class="sec-nav-link"><span class="sn-num">03</span> Pain Points</a>
+      <a href="#priorities" class="sec-nav-link"><span class="sn-num">03</span> Priorities</a>
       <a href="#triggers" class="sec-nav-link"><span class="sn-num">04</span> Triggers</a>
       <a href="#deploy" class="sec-nav-link"><span class="sn-num">05</span> Deployment</a>
       <a href="#weights" class="sec-nav-link"><span class="sn-num">06</span> Scoring Engine</a>
       <a href="#results" class="sec-nav-link"><span class="sn-num">07</span> Results</a>
-      <a href="#xpi" class="sec-nav-link"><span class="sn-num">08</span> XPI Projection</a>
+      <a href="#tco" class="sec-nav-link"><span class="sn-num">08</span> TCO Projection</a>
       <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
     </div>
   </nav>
@@ -435,87 +466,60 @@
   <!-- 01 Organization Profile -->
   <section class="block" id="profile">
     <div class="sec-head"><div class="sec-num mono">01</div><h2>Organization Profile</h2></div>
-    <p class="sec-desc">Ecosystem choice drives the vendor-match bonus in Section 07.</p>
+    <p class="sec-desc">Agent seat count drives the TCO envelope in Section 08.</p>
     <div class="panel">
       <div class="grid grid-3">
-        <div class="field"><label for="org_employees">Employees</label><input id="org_employees" type="number" min="0" value="10000"></div>
-        <div class="field"><label for="org_industry">Industry (optional)</label><input id="org_industry" type="text" placeholder="e.g. Financial Services"></div>
-        <div class="field">
-          <label for="org_ecosystem">Primary ITSM / ecosystem</label>
-          <select id="org_ecosystem">
-            <option value="servicenow">ServiceNow</option>
-            <option value="ivanti">Ivanti</option>
-            <option value="microsoft">Microsoft-only (Intune + M365 E5)</option>
-            <option value="mixed" selected>Other / mixed</option>
-          </select>
-        </div>
+        <div class="field"><label for="org_agents">ITSM agent seats</label><input id="org_agents" type="number" min="1" value="150"></div>
+        <div class="field"><label for="org_employees">Employees supported</label><input id="org_employees" type="number" min="0" value="8000"></div>
+        <div class="field"><label for="org_current">Current platform (if replacing)</label><input id="org_current" type="text" placeholder="e.g. legacy in-house tool"></div>
       </div>
     </div>
   </section>
 
-  <!-- 02 Estate & Device Profile -->
+  <!-- 02 Estate Profile -->
   <section class="block" id="estate">
-    <div class="sec-head"><div class="sec-num mono">02</div><h2>Estate &amp; Device Profile</h2></div>
-    <p class="sec-desc">Context for the executive report — not weighted into vendor scoring directly.</p>
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Estate Profile</h2></div>
+    <p class="sec-desc">Context for the executive report — not weighted into vendor scoring.</p>
     <div class="panel">
-      <div class="grid grid-3">
-        <div class="field"><label for="est_endpoints">Managed endpoints</label><input id="est_endpoints" type="number" min="0" value="8000"></div>
-        <div class="field"><label for="est_remote_pct">% remote / hybrid workforce</label><input id="est_remote_pct" type="number" min="0" max="100" value="55"></div>
-        <div class="field">
-          <label for="est_refresh_stage">Device refresh stage</label>
-          <select id="est_refresh_stage">
-            <option value="new">New (&lt;1yr fleet age)</option>
-            <option value="aging" selected>Aging (1&ndash;3yr)</option>
-            <option value="eol">End-of-life (3yr+)</option>
-          </select>
-        </div>
+      <div class="grid grid-2">
+        <div class="field"><label for="est_volume">Monthly ticket volume</label><input id="est_volume" type="number" min="0" value="12000"></div>
+        <div class="field"><label for="est_modules">ITSM modules in active use</label><input id="est_modules" type="number" min="0" value="3"></div>
       </div>
     </div>
   </section>
 
-  <!-- 03 Pain Point Priorities -->
-  <section class="block" id="pain">
-    <div class="sec-head"><div class="sec-num mono">03</div><h2>Pain Point Priorities</h2></div>
-    <p class="sec-desc">Weight every dimension — not a single pick. This directly shapes the vendor scoring weights in Section 06.</p>
+  <!-- 03 Capability Priorities -->
+  <section class="block" id="priorities">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Capability Priorities</h2></div>
+    <p class="sec-desc">Weight every dimension — this directly shapes the vendor scoring weights in Section 06.</p>
     <div class="panel" id="painSlidersPanel"></div>
   </section>
 
   <!-- 04 Trigger Drivers -->
   <section class="block" id="triggers">
     <div class="sec-head"><div class="sec-num mono">04</div><h2>Trigger Drivers (Urgency Factors)</h2></div>
-    <p class="sec-desc">The "why now" behind the initiative. Each driver boosts specific scoring dimensions and rolls up into the Urgency Score that paces the XPI projection in Section 08.</p>
+    <p class="sec-desc">The "why now" behind the initiative. Each driver boosts specific scoring dimensions and paces the efficiency rollout in Section 08.</p>
     <div class="panel" id="triggerSlidersPanel"></div>
     <div class="panel" style="margin-top: 14px;">
-      <div class="driver-row" style="display:flex; justify-content:space-between; align-items:center;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
         <div style="font-weight:600;">Computed Urgency Score</div>
         <div class="mono" id="urgency_score_readout" style="font-size:18px; color: var(--accent);">—</div>
       </div>
     </div>
   </section>
 
-  <!-- 05 Deployment & Existing Tooling -->
+  <!-- 05 Deployment -->
   <section class="block" id="deploy">
-    <div class="sec-head"><div class="sec-num mono">05</div><h2>Deployment &amp; Existing Tooling</h2></div>
-    <p class="sec-desc">Deployment requirement feeds the Deployment Flexibility weight. Tooling maturity is informational context for the report.</p>
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Deployment Requirement</h2></div>
+    <p class="sec-desc">Feeds the Deployment Flexibility weight directly.</p>
     <div class="panel">
-      <div class="grid grid-2">
-        <div class="field">
-          <label for="deploy_pref">Deployment requirement</label>
-          <select id="deploy_pref">
-            <option value="20">Cloud-native only is fine</option>
-            <option value="50" selected>Hybrid is fine</option>
-            <option value="90">Must support on-prem / regulated estate</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="tooling_maturity">Existing DEX tooling status</label>
-          <select id="tooling_maturity">
-            <option value="none" selected>None</option>
-            <option value="point">Point tool (survey-only or monitoring-only)</option>
-            <option value="pilot">Pilot underway</option>
-            <option value="mature">Mature platform in place</option>
-          </select>
-        </div>
+      <div class="field">
+        <label for="deploy_pref">Deployment requirement</label>
+        <select id="deploy_pref">
+          <option value="20">Cloud-native only is fine</option>
+          <option value="50" selected>Hybrid is fine</option>
+          <option value="90">Must support on-prem / regulated estate</option>
+        </select>
       </div>
     </div>
   </section>
@@ -523,36 +527,28 @@
   <!-- 06 Scoring Engine Transparency -->
   <section class="block" id="weights">
     <div class="sec-head"><div class="sec-num mono">06</div><h2>Vendor Scoring Engine</h2></div>
-    <p class="sec-desc">Computed dimension weights — base(1) + pain-slider boost + trigger-driver boost. This is why the ranking below looks the way it does.</p>
+    <p class="sec-desc">Computed dimension weights — base(1) + priority-slider boost + trigger-driver boost.</p>
     <div class="panel" id="weightBarsPanel"></div>
   </section>
 
   <!-- 07 Results -->
   <section class="block" id="results">
     <div class="sec-head"><div class="sec-num mono">07</div><h2>Vendor Comparison Results</h2></div>
-    <p class="sec-desc">Ranked by weighted capability fit + ecosystem match. Tap a row for strengths and gaps.</p>
+    <p class="sec-desc">Ranked by weighted capability fit. No ecosystem-match bonus here \u2014 ITSM is the platform being chosen, not something a third-party tool integrates with. Tap a row for strengths and gaps.</p>
     <div id="vendorResultsList"></div>
     <p class="hint" id="vendorDisclaimer"></p>
 
-    <!-- Top 3 Head-to-Head Dimension Matrix -->
-    <div class="panel" style="margin-top: 18px;">
+    <div class="panel" style="margin-top:16px;">
       <h3>Top 3 Contenders — Dimension Comparison Matrix</h3>
-      <p class="hint" style="margin-bottom: 12px;">Direct side-by-side architectural capability rating across all 9 dimensions (scale: 1 to 5 rating dots).</p>
-      <div class="overflow-x">
-        <table id="matrixTable">
-          <thead>
-            <tr id="matrixHead"><th>Evaluation Dimension</th><th>#1 Vendor</th><th>#2 Vendor</th><th>#3 Vendor</th></tr>
-          </thead>
-          <tbody id="matrixBody"></tbody>
-        </table>
-      </div>
+      <p class="hint" style="margin-top:4px;">Direct side-by-side capability rating across all 9 dimensions (scale: 1 to 5 rating dots).</p>
+      <div class="matrix-wrap"><table id="matrixTable"></table></div>
     </div>
   </section>
 
-  <!-- 08 XPI Projection -->
-  <section class="block" id="xpi">
-    <div class="sec-head"><div class="sec-num mono">08</div><h2>XPI Uplift Projection</h2></div>
-    <p class="sec-desc">XPI = Experience Performance Indicator, this suite's replacement for a generic KPI here. Term is your choice, not locked to 5 years.</p>
+  <!-- 08 TCO Projection -->
+  <section class="block" id="tco">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Multi-Year Efficiency &amp; TCO Projection</h2></div>
+    <p class="sec-desc">Term is your choice, not locked to 5 years. Efficiency rollout paces with your computed Urgency Score.</p>
     <div class="panel">
       <div class="term-row">
         <span class="presets-title">Projection term:</span>
@@ -563,76 +559,70 @@
           <div class="pill" data-term="7">7 yr</div>
         </div>
         <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
-        <span class="hint" style="margin:0;">years (1–7, any value)</span>
+        <span class="hint" style="margin:0;">years</span>
       </div>
       <div class="overflow-x">
         <table>
-          <thead><tr><th>Year</th><th>Rollout %</th><th style="width:140px;">XPI Score</th><th style="width:160px;">XPI Uplift vs. Baseline</th></tr></thead>
-          <tbody id="xpiBody"></tbody>
+          <thead><tr><th>Year</th><th>Rollout %</th><th style="width:150px;">Annual Software Cost</th><th style="width:170px;">Cumulative Efficiency Value</th><th style="width:150px;">Net Value</th></tr></thead>
+          <tbody id="tcoBody"></tbody>
         </table>
       </div>
-      <p class="hint">XPI baseline assumes a typical unmanaged estate. Ceiling scales with your top vendor's fit score; rollout pace scales with your computed Urgency Score.</p>
+      <p class="hint">Efficiency value is directional \u2014 modeled from the top vendor's automation + AI/Copilot capability scores, not a guaranteed labor reduction.</p>
     </div>
   </section>
 
   <!-- 09 Executive Report -->
   <section class="block" id="report">
     <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Export</h2></div>
-    <p class="sec-desc">XPI scorecard, top recommendation, and estate diagnostics.</p>
+    <p class="sec-desc">Top recommendation, TCO envelope, and migration playbook.</p>
 
     <div class="kpi-row">
-      <div class="kpi accent2"><div class="label">Baseline XPI (Today)</div><div class="value mono" id="xpi_r_baseline">0</div></div>
-      <div class="kpi"><div class="label">Top Vendor Fit</div><div class="value mono" id="xpi_r_fit">0%</div><div class="sub" id="xpi_r_vendorname">—</div></div>
-      <div class="kpi accent2"><div class="label">Urgency Score</div><div class="value mono" id="xpi_r_urgency">0</div></div>
-      <div class="kpi"><div class="label">Final-Year XPI</div><div class="value mono" id="xpi_r_finalxpi">0</div></div>
+      <div class="kpi accent2"><div class="label">Top Vendor Fit</div><div class="value mono" id="kpi_r_fit">0%</div><div class="sub" id="kpi_r_vendorname">—</div></div>
+      <div class="kpi"><div class="label">Urgency Score</div><div class="value mono" id="kpi_r_urgency">0</div></div>
+      <div class="kpi accent2"><div class="label">Est. Annual Software Budget</div><div class="value mono" id="kpi_r_swcost">$0</div></div>
+      <div class="kpi success"><div class="label">Estimated Value Multiple</div><div class="value mono" id="kpi_r_multiple">0.0×</div></div>
     </div>
 
     <div class="panel">
       <h3>Top Recommendation</h3>
-      <div class="cols" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
         <div><h4 style="font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint);">STRENGTHS</h4><ul id="report_strengths"></ul></div>
         <div><h4 style="font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint);">GAPS</h4><ul id="report_gaps"></ul></div>
       </div>
     </div>
 
-    <!-- Directional TCO & Budget Sizing Envelope -->
     <div class="panel">
       <h3>Directional TCO &amp; Licensing Investment Envelope</h3>
-      <p class="hint" style="margin-bottom: 12px;">Qualitative budgetary sizing based on managed endpoint fleet size and vendor tier pricing profile.</p>
-      <div class="kpi-row">
-        <div class="kpi"><div class="label">Top Vendor Tier</div><div class="value mono" id="tco_tier">—</div><div class="sub" id="tco_rate_range">$0 / endpoint / mo</div></div>
-        <div class="kpi accent2"><div class="label">Est. Annual Software Budget</div><div class="value mono" id="tco_annual_cost">$0</div><div class="sub">Fleet licensing envelope</div></div>
-        <div class="kpi"><div class="label">Projected Dispatch Avoidance</div><div class="value mono" id="tco_avoidance">$0</div><div class="sub">Deskside &amp; L1 reduction</div></div>
-        <div class="kpi success"><div class="label">Estimated Value Multiple</div><div class="value mono" id="tco_roi">0.0×</div><div class="sub">Avoidance to software ratio</div></div>
+      <p class="hint" style="margin-top:4px;">Qualitative budgetary sizing based on agent seat count and vendor tier pricing profile.</p>
+      <div class="kpi-row" style="margin-top:12px;">
+        <div class="kpi"><div class="label">Top Vendor Tier</div><div class="value mono" id="tco_tier" style="font-size:16px;">—</div><div class="sub" id="tco_rate">$0 / agent / mo</div></div>
+        <div class="kpi accent2"><div class="label">Projected Efficiency Value</div><div class="value mono" id="tco_effvalue">$0</div><div class="sub">Automation + AI/Copilot driven</div></div>
       </div>
     </div>
 
-    <!-- Executive XLA Playbook -->
-    <div class="panel" style="background: var(--surface-2); border-left: 4px solid var(--accent);">
-      <h3 style="color: var(--accent); display:flex; align-items:center; gap:8px;">📜 Executive Playbook: Transitioning MSP Contracts from SLA to XLA</h3>
-      <p style="font-size:13px; color: var(--text-dim); line-height:1.6; margin-bottom: 8px;">
-        Traditional SLAs measure uptime and MTTR, producing the "Watermelon Effect" (dashboards show green, but employees remain frustrated). 
-        Use this DEX assessment to modernize service partner agreements into <b>Experience Level Agreements (XLAs)</b>:
-      </p>
-      <ul style="font-size:13px; color: var(--text); padding-left:20px; line-height:1.6; margin-bottom:0;">
-        <li><b>1. Baseline Empirical XPI:</b> Deploy sensors across 100% of endpoints to establish verified baseline sentiment and telemetry prior to renewal negotiations.</li>
-        <li><b>2. Dual-Track SLA + XLA Governance:</b> Institute a 6-month parallel evaluation correlating MTTR tickets with actual device crash frequency and Wi-Fi stability.</li>
-        <li><b>3. Experience-Tied Vendor At-Risk Fees:</b> Shift 15–25% of BPO/MSP quarterly bonus pools to sustained XPI index targets rather than raw closed ticket counts.</li>
-        <li><b>4. Proactive Self-Healing Credits:</b> Reward service providers for background automated remediation actions that prevent tickets before users notice degradation.</li>
-      </ul>
+    <div class="panel">
+      <h3>📜 ITSM Modernization &amp; Migration Playbook</h3>
+      <p class="hint" style="margin-top:4px;">Use this assessment to sequence a platform migration without a big-bang cutover risk.</p>
+      <div style="margin-top:10px;">
+        <div class="playbook-step"><div class="playbook-num">1</div><div class="playbook-body"><h4>Parallel-Run Validation</h4><p>Run the new platform alongside the legacy tool for a full ticket cycle before any cutover commitment \u2014 validate workflows, not just data fields.</p></div></div>
+        <div class="playbook-step"><div class="playbook-num">2</div><div class="playbook-body"><h4>Data Migration &amp; CMDB Reconciliation</h4><p>Reconcile the CMDB before migrating, not after \u2014 stale CI relationships migrate perfectly and stay wrong forever if uncleaned first.</p></div></div>
+        <div class="playbook-step"><div class="playbook-num">3</div><div class="playbook-body"><h4>Phased Cutover by Business Unit</h4><p>Migrate one business unit or ticket category at a time. Isolates rollback blast radius and builds internal champions before full rollout.</p></div></div>
+        <div class="playbook-step"><div class="playbook-num">4</div><div class="playbook-body"><h4>Legacy Decommission &amp; Contract Exit</h4><p>Lock in the legacy contract exit date only after Step 3 is fully validated \u2014 overlapping licensing cost is cheaper than a forced rollback.</p></div></div>
+      </div>
     </div>
 
     <div class="panel">
       <h3>Estate Diagnostic Summary</h3>
       <div class="kpi-row">
-        <div class="kpi"><div class="label">Managed Endpoints</div><div class="value mono" id="diag_endpoints">0</div></div>
-        <div class="kpi"><div class="label">Ecosystem</div><div class="value mono" id="diag_ecosystem" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">Agent Seats</div><div class="value mono" id="diag_agents">0</div></div>
+        <div class="kpi"><div class="label">Monthly Ticket Volume</div><div class="value mono" id="diag_volume">0</div></div>
         <div class="kpi"><div class="label">Deployment Requirement</div><div class="value mono" id="diag_deploy" style="font-size:16px;">—</div></div>
-        <div class="kpi"><div class="label">Existing Tooling</div><div class="value mono" id="diag_tooling" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">Current Platform</div><div class="value mono" id="diag_current" style="font-size:16px;">—</div></div>
       </div>
     </div>
 
     <div class="actionbar">
+      <button id="btnShareWhatsApp" class="btn-whatsapp">📱 Share on WhatsApp</button>
       <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
       <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
       <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
@@ -644,53 +634,55 @@
 
 </div>
 
+<div id="toast" class="toast"></div>
+
 <footer>
   <div class="container">
-    <p>DEX Platform Advisor crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.</p>
+    <p>ITSM Platform Advisor crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.</p>
     <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All scoring runs client-side. Independent assessment, not vendor-sponsored.</p>
   </div>
 </footer>
 
 <script>
 // ============================================================================================
-// DEX PLATFORM ADVISOR — Trigger-Driven Vendor Fit, Weight Transparency, XPI Uplift Projection
+// ITSM ADVISOR — Trigger-Driven Vendor Fit, Weight Transparency, TCO Envelope
 // ============================================================================================
 
 const FALLBACK_PLATFORMS = {
   "version": "2026.09",
-  "disclaimer": "Capability ratings are Sarav's World / Saravanakumar Murugan's independent directional assessment based on enterprise architecture practice, public product documentation, and market positioning. Pricing/investment tiers are relative and qualitative only — no list prices are modeled, since DEX platform pricing is quote-based. Verify current capability and cost against an RFP before purchase.",
+  "disclaimer": "Capability ratings are Nalkudil Studio's independent directional assessment based on public product documentation and market positioning, not vendor-verified or analyst-sourced. TCO figures are directional/qualitative tier-based sizing, not exact list prices \u2014 verify against an RFP before purchase.",
   "dimensions": [
     {
-      "id": "sentiment",
-      "label": "Sentiment / XLA Surveys"
+      "id": "incident",
+      "label": "Incident & Request Management"
     },
     {
-      "id": "telemetry",
-      "label": "Real-Time Telemetry Depth"
+      "id": "change",
+      "label": "Change & Release Management"
     },
     {
-      "id": "remediation",
-      "label": "Automated Remediation / Self-Healing"
+      "id": "cmdb",
+      "label": "CMDB / Asset Management Maturity"
     },
     {
-      "id": "predictive",
-      "label": "AI/ML Anomaly & Predictive Detection"
+      "id": "automation",
+      "label": "Workflow / No-Code Automation"
     },
     {
-      "id": "saas",
-      "label": "SaaS / Business App Experience Monitoring"
+      "id": "ai_copilot",
+      "label": "AI / Copilot & Virtual Agent"
     },
     {
-      "id": "network",
-      "label": "Network & Wi-Fi Experience Visibility"
+      "id": "selfservice",
+      "label": "Self-Service Portal & Knowledge Base"
     },
     {
-      "id": "security",
-      "label": "Security & Patch Posture Visibility"
+      "id": "integration",
+      "label": "Integration Ecosystem / APIs"
     },
     {
-      "id": "itsm",
-      "label": "Native ITSM / Ecosystem Integration"
+      "id": "reporting",
+      "label": "Reporting & Analytics"
     },
     {
       "id": "deployment",
@@ -699,230 +691,133 @@ const FALLBACK_PLATFORMS = {
   ],
   "platforms": [
     {
-      "id": "nexthink",
-      "name": "Nexthink",
-      "tier": "Premium",
-      "ecosystem": [
-        "servicenow",
-        "mixed"
-      ],
-      "scores": {
-        "sentiment": 5,
-        "telemetry": 5,
-        "remediation": 4,
-        "predictive": 5,
-        "saas": 4,
-        "network": 4,
-        "security": 4,
-        "itsm": 4,
-        "deployment": 4
-      },
-      "strengths": [
-        "Deepest sentiment/XLA correlation to telemetry",
-        "Strong AI-driven anomaly detection",
-        "Rich real-time endpoint data model"
-      ],
-      "gaps": [
-        "Premium cost tier",
-        "Heavier rollout/tuning effort than lighter tools"
-      ]
-    },
-    {
-      "id": "controlup",
-      "name": "ControlUp",
-      "tier": "Mid",
-      "ecosystem": [
-        "mixed"
-      ],
-      "scores": {
-        "sentiment": 3,
-        "telemetry": 5,
-        "remediation": 5,
-        "predictive": 4,
-        "saas": 3,
-        "network": 3,
-        "security": 3,
-        "itsm": 3,
-        "deployment": 5
-      },
-      "strengths": [
-        "Best-in-class real-time remediation console",
-        "Strong VDI/DaaS + hybrid endpoint support",
-        "Fast time-to-value for ops teams"
-      ],
-      "gaps": [
-        "Sentiment/XLA survey layer is lighter",
-        "Less native SaaS/business-app monitoring"
-      ]
-    },
-    {
-      "id": "lakeside",
-      "name": "Lakeside SysTrack",
-      "tier": "Mid-Premium",
-      "ecosystem": [
-        "servicenow",
-        "mixed"
-      ],
-      "scores": {
-        "sentiment": 4,
-        "telemetry": 5,
-        "remediation": 3,
-        "predictive": 4,
-        "saas": 3,
-        "network": 3,
-        "security": 3,
-        "itsm": 4,
-        "deployment": 4
-      },
-      "strengths": [
-        "Long-standing digital experience scoring model",
-        "Strong device/persona segmentation",
-        "Solid ServiceNow integration"
-      ],
-      "gaps": [
-        "Remediation is more advisory than automated",
-        "Network visibility is basic"
-      ]
-    },
-    {
-      "id": "aternity",
-      "name": "Aternity (Riverbed)",
-      "tier": "Premium",
-      "ecosystem": [
-        "mixed"
-      ],
-      "scores": {
-        "sentiment": 3,
-        "telemetry": 4,
-        "remediation": 3,
-        "predictive": 3,
-        "saas": 5,
-        "network": 4,
-        "security": 3,
-        "itsm": 3,
-        "deployment": 3
-      },
-      "strengths": [
-        "Strong business-app and transaction-level monitoring",
-        "Network heritage from Riverbed NPM",
-        "Good for app-outage-to-endpoint correlation"
-      ],
-      "gaps": [
-        "Sentiment/XLA layer less mature",
-        "Smaller automation/remediation catalog"
-      ]
-    },
-    {
-      "id": "tachyon",
-      "name": "1E Tachyon",
-      "tier": "Mid-Premium",
-      "ecosystem": [
-        "servicenow"
-      ],
-      "scores": {
-        "sentiment": 3,
-        "telemetry": 4,
-        "remediation": 5,
-        "predictive": 3,
-        "saas": 2,
-        "network": 2,
-        "security": 5,
-        "itsm": 4,
-        "deployment": 3
-      },
-      "strengths": [
-        "Real-time fleet-wide remediation actions at scale",
-        "Deep ServiceNow-native workflow",
-        "Strong patch/vulnerability remediation tie-in"
-      ],
-      "gaps": [
-        "Limited SaaS/app and network visibility",
-        "Predictive/AI layer is narrower"
-      ]
-    },
-    {
-      "id": "ivanti",
-      "name": "Ivanti Neurons for DEX",
-      "tier": "Mid",
-      "ecosystem": [
-        "ivanti"
-      ],
-      "scores": {
-        "sentiment": 3,
-        "telemetry": 4,
-        "remediation": 4,
-        "predictive": 3,
-        "saas": 3,
-        "network": 3,
-        "security": 5,
-        "itsm": 5,
-        "deployment": 4
-      },
-      "strengths": [
-        "Deepest fit if already on Ivanti ITSM/UEM",
-        "Native patch & vulnerability management heritage",
-        "Balanced feature set across the board"
-      ],
-      "gaps": [
-        "No single experience dimension is category-leading",
-        "Predictive analytics newer than incumbents"
-      ]
-    },
-    {
-      "id": "msft",
-      "name": "Microsoft Viva Insights + Endpoint Analytics",
-      "tier": "Budget",
-      "ecosystem": [
-        "microsoft"
-      ],
-      "scores": {
-        "sentiment": 3,
-        "telemetry": 3,
-        "remediation": 2,
-        "predictive": 3,
-        "saas": 2,
-        "network": 1,
-        "security": 4,
-        "itsm": 3,
-        "deployment": 5
-      },
-      "strengths": [
-        "Lowest incremental cost for M365 E5/Intune shops",
-        "Native Copilot/AI roadmap",
-        "Strong security signal via Defender/Intune ecosystem"
-      ],
-      "gaps": [
-        "Weakest network/Wi-Fi visibility",
-        "Remediation is limited vs. dedicated DEX tools",
-        "Not built for non-Microsoft-heavy estates"
-      ]
-    },
-    {
       "id": "servicenow",
-      "name": "ServiceNow DEX",
+      "name": "ServiceNow",
       "tier": "Premium",
-      "ecosystem": [
-        "servicenow"
-      ],
+      "cost_per_agent_month": 110,
       "scores": {
-        "sentiment": 3,
-        "telemetry": 3,
-        "remediation": 4,
-        "predictive": 4,
-        "saas": 3,
-        "network": 2,
-        "security": 5,
-        "itsm": 5,
+        "incident": 5,
+        "change": 5,
+        "cmdb": 5,
+        "automation": 5,
+        "ai_copilot": 5,
+        "selfservice": 4,
+        "integration": 5,
+        "reporting": 5,
         "deployment": 4
       },
       "strengths": [
-        "Native ServiceNow workflow orchestration for remediation",
-        "Strong Vulnerability Response / security posture integration",
-        "One platform if already ServiceNow-centric \u2014 no new vendor to manage"
+        "Category-leading breadth across every ITSM discipline",
+        "Deepest native workflow/automation engine (Flow Designer)",
+        "Strongest AI/Copilot roadmap (Now Assist)"
       ],
       "gaps": [
-        "Weaker native network/Wi-Fi telemetry than dedicated DEX tools",
-        "Endpoint telemetry depth leans on partner integrations vs. purpose-built agents"
+        "Highest cost tier in the set",
+        "Implementation/configuration complexity is real \u2014 longest time-to-value"
+      ]
+    },
+    {
+      "id": "bmchelix",
+      "name": "BMC Helix ITSM",
+      "tier": "Premium",
+      "cost_per_agent_month": 95,
+      "scores": {
+        "incident": 4,
+        "change": 4,
+        "cmdb": 4,
+        "automation": 3,
+        "ai_copilot": 3,
+        "selfservice": 3,
+        "integration": 4,
+        "reporting": 4,
+        "deployment": 4
+      },
+      "strengths": [
+        "Strong enterprise incumbent with mature CMDB/asset discipline",
+        "Solid change management for regulated/ITIL-heavy shops",
+        "Good hybrid deployment track record"
+      ],
+      "gaps": [
+        "AI/Copilot layer trails ServiceNow noticeably",
+        "Automation/no-code tooling is less modern"
+      ]
+    },
+    {
+      "id": "jira",
+      "name": "Jira Service Management",
+      "tier": "Mid",
+      "cost_per_agent_month": 65,
+      "scores": {
+        "incident": 4,
+        "change": 3,
+        "cmdb": 2,
+        "automation": 4,
+        "ai_copilot": 3,
+        "selfservice": 4,
+        "integration": 5,
+        "reporting": 3,
+        "deployment": 5
+      },
+      "strengths": [
+        "Best-in-class integration ecosystem via Atlassian Marketplace",
+        "Cloud-native deployment flexibility",
+        "Natural fit if engineering already lives in Jira/Confluence"
+      ],
+      "gaps": [
+        "CMDB/asset management is the weakest in this set",
+        "Change management lighter than ITIL-native incumbents"
+      ]
+    },
+    {
+      "id": "topdesk",
+      "name": "TopDesk",
+      "tier": "Mid",
+      "cost_per_agent_month": 60,
+      "scores": {
+        "incident": 4,
+        "change": 3,
+        "cmdb": 3,
+        "automation": 3,
+        "ai_copilot": 2,
+        "selfservice": 4,
+        "integration": 3,
+        "reporting": 3,
+        "deployment": 3
+      },
+      "strengths": [
+        "Clean, fast-to-adopt UI \u2014 low training overhead",
+        "Strong self-service portal out of the box",
+        "Good mid-market value for ITIL-aligned shops"
+      ],
+      "gaps": [
+        "AI/Copilot capability is minimal today",
+        "Smaller integration marketplace than the majors"
+      ]
+    },
+    {
+      "id": "sdplus",
+      "name": "ServiceDesk Plus (ManageEngine)",
+      "tier": "Budget",
+      "cost_per_agent_month": 35,
+      "scores": {
+        "incident": 4,
+        "change": 3,
+        "cmdb": 3,
+        "automation": 3,
+        "ai_copilot": 2,
+        "selfservice": 3,
+        "integration": 3,
+        "reporting": 3,
+        "deployment": 4
+      },
+      "strengths": [
+        "Lowest cost tier in this set by a wide margin",
+        "Both cloud and on-prem editions \u2014 flexible for budget-constrained/regulated buyers",
+        "Reasonable breadth for the price point"
+      ],
+      "gaps": [
+        "AI/Copilot and automation depth trail every other vendor here",
+        "Less analyst/enterprise mindshare than the majors"
       ]
     }
   ]
@@ -930,88 +825,83 @@ const FALLBACK_PLATFORMS = {
 const FALLBACK_BENCH = {
   "meta": {
     "version": "2026.09",
-    "last_refreshed": "2026-09-11"
+    "last_refreshed": "2026-09-12"
   },
   "pain_slider_max_boost": 3.0,
   "trigger_max_boost": 2.5,
   "triggers": [
     {
-      "id": "cost_pressure",
-      "label": "Cost pressure (deskside dispatch load)",
+      "id": "contract_renewal",
+      "label": "Contract renewal pressure",
       "dims": [
-        "remediation",
-        "telemetry"
+        "reporting",
+        "integration"
       ]
     },
     {
-      "id": "retention_risk",
-      "label": "Experience & retention risk",
+      "id": "legacy_eol",
+      "label": "Legacy platform EOL / tech debt",
       "dims": [
-        "sentiment"
-      ]
-    },
-    {
-      "id": "contractual_xla",
-      "label": "Contractual SLA \u2192 XLA requirement",
-      "dims": [
-        "sentiment",
-        "predictive"
-      ]
-    },
-    {
-      "id": "ai_copilot_rollout",
-      "label": "AI / Copilot rollout stage",
-      "dims": [
-        "predictive",
-        "telemetry"
+        "deployment",
+        "integration"
       ]
     },
     {
       "id": "ma_consolidation",
       "label": "M&A / estate consolidation",
       "dims": [
-        "itsm",
-        "deployment"
+        "cmdb",
+        "integration"
       ]
     },
     {
-      "id": "hardware_refresh",
-      "label": "Hardware refresh cycle stage",
+      "id": "ai_copilot_demand",
+      "label": "AI / Copilot roadmap demand",
       "dims": [
-        "telemetry",
-        "predictive",
-        "security"
+        "ai_copilot",
+        "automation"
       ]
     },
     {
-      "id": "risk_compliance",
-      "label": "Risk / compliance visibility gap",
+      "id": "licensing_pressure",
+      "label": "Licensing cost pressure",
       "dims": [
-        "security"
+        "deployment",
+        "reporting"
       ]
     },
     {
-      "id": "exec_governance",
-      "label": "Exec governance demand for an XPI metric",
+      "id": "compliance_reporting",
+      "label": "Compliance / regulatory reporting need",
       "dims": [
-        "sentiment",
-        "predictive"
+        "reporting",
+        "change"
+      ]
+    },
+    {
+      "id": "selfservice_goal",
+      "label": "Self-service deflection goal",
+      "dims": [
+        "selfservice",
+        "ai_copilot"
+      ]
+    },
+    {
+      "id": "automation_mandate",
+      "label": "Automation / efficiency mandate",
+      "dims": [
+        "automation",
+        "ai_copilot"
       ]
     }
   ],
-  "xpi_formula": {
-    "fit_weight": 0.7,
-    "urgency_weight": 0.3
-  },
-  "xpi_baseline": 35,
-  "xpi_ceiling_formula": {
-    "base": 40,
-    "fit_multiplier": 0.5
-  },
-  "rollout_curve_bounds": {
-    "year1_cap": 25,
-    "annual_growth_cap": 15,
-    "max_cap": 100
+  "efficiency_formula": {
+    "dims": [
+      "automation",
+      "ai_copilot"
+    ],
+    "max_score": 10,
+    "max_efficiency_pct": 30
   }
 };
 
@@ -1021,64 +911,62 @@ let BENCH = null;
 const $ = (id) => document.getElementById(id);
 const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
 const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+const fmtMoney = (v) => '$' + Math.round(v || 0).toLocaleString('en-US');
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
 
 const PAIN_DIMS = [
-  { id: 'sentiment',   label: 'Sentiment / XLA visibility',              sub: 'How blind are you to employee sentiment today?' },
-  { id: 'telemetry',   label: 'Real-time telemetry depth',               sub: 'Fleet-wide visibility into device health' },
-  { id: 'remediation', label: 'Automated remediation need',              sub: 'Ticket volume from fixable, repeatable issues' },
-  { id: 'predictive',  label: 'AI / predictive detection need',          sub: 'Desire to catch issues before users report them' },
-  { id: 'saas',        label: 'SaaS / business app monitoring',          sub: 'Visibility into critical app performance' },
-  { id: 'network',     label: 'Network & Wi-Fi visibility',              sub: 'Ability to diagnose connectivity complaints' },
-  { id: 'security',    label: 'Security & patch posture visibility',     sub: 'Visibility into vulnerability/patch compliance' }
+  { id: 'incident',    label: 'Incident & Request Management',        sub: 'Core ticketing, queueing, and resolution workflow' },
+  { id: 'change',      label: 'Change & Release Management',          sub: 'Change advisory boards, risk assessment, release windows' },
+  { id: 'cmdb',        label: 'CMDB / Asset Management maturity',     sub: 'Configuration item tracking and relationship mapping' },
+  { id: 'automation',  label: 'Workflow / No-Code Automation',        sub: 'Building automated workflows without custom code' },
+  { id: 'ai_copilot',  label: 'AI / Copilot & Virtual Agent',         sub: 'AI-assisted resolution and conversational ticket deflection' },
+  { id: 'selfservice', label: 'Self-Service Portal & Knowledge Base', sub: 'End-user deflection before a ticket is even raised' },
+  { id: 'integration', label: 'Integration Ecosystem / APIs',         sub: 'Connecting to your existing tool stack' },
+  { id: 'reporting',   label: 'Reporting & Analytics',                sub: 'Executive dashboards and SLA/XLA visibility' }
 ];
 
 const TRIGGER_SUB = {
-  cost_pressure: 'Deskside dispatch cost and "my device is slow" ticket volume',
-  retention_risk: 'Attrition or engagement scores tied to digital experience',
-  contractual_xla: 'BPO/MSP contracts moving from SLA to XLA terms',
-  ai_copilot_rollout: 'Copilot/AI rollout needing adoption & productivity proof',
-  ma_consolidation: 'Merged estates needing unified visibility fast',
-  hardware_refresh: 'Refresh cycle decisions need real device health data',
-  risk_compliance: 'Security incidents traced to poor endpoint visibility',
-  exec_governance: 'Leadership wants a boardroom-level experience metric'
+  contract_renewal: 'Upcoming contract renewal needs negotiation leverage',
+  legacy_eol: 'Legacy platform reaching end-of-life or unsupported',
+  ma_consolidation: 'Merged estates need a unified ITSM platform',
+  ai_copilot_demand: 'Leadership wants AI/Copilot in the service desk now',
+  licensing_pressure: 'Budget scrutiny on per-agent licensing cost',
+  compliance_reporting: 'Regulatory or audit reporting requirements',
+  selfservice_goal: 'Mandate to deflect tickets before they are raised',
+  automation_mandate: 'Efficiency mandate to automate manual workflows'
 };
 
-const state = {
-  themeChoice: 'dark',
-  projTerm: 5,
-  painValues: {},
-  triggerValues: {},
-  openVendor: null
-};
+const state = { themeChoice: 'dark', projTerm: 5, painValues: {}, triggerValues: {}, openVendor: null };
 
 // ---------------- ENGINE (identical to tested engine.js) ----------------
 function computeUrgencyScore(triggerValues, triggers) {
   const vals = triggers.map(t => triggerValues[t.id] || 0);
-  const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
-  return Math.max(0, Math.min(100, avg));
+  return Math.max(0, Math.min(100, vals.reduce((a, b) => a + b, 0) / vals.length));
 }
 function computeDimensionWeights(dimensions, painValues, triggerValues, triggers, painMaxBoost, triggerMaxBoost) {
   const weights = {};
   dimensions.forEach(d => { weights[d.id] = 1; });
-  Object.keys(painValues).forEach(dimId => {
-    if (weights[dimId] !== undefined) weights[dimId] += (painValues[dimId] / 100) * painMaxBoost;
-  });
+  Object.keys(painValues).forEach(dimId => { if (weights[dimId] !== undefined) weights[dimId] += (painValues[dimId] / 100) * painMaxBoost; });
   triggers.forEach(t => {
     const v = (triggerValues[t.id] || 0) / 100;
     t.dims.forEach(dimId => { if (weights[dimId] !== undefined) weights[dimId] += v * triggerMaxBoost; });
   });
   return weights;
 }
-function scoreVendors(platforms, dimensions, weights, ecosystemChoice) {
+function scoreVendors(platforms, dimensions, weights) {
   const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0);
   return platforms.map(p => {
     let weighted = 0;
     dimensions.forEach(d => { weighted += (p.scores[d.id] || 0) * weights[d.id]; });
-    const dimScore = (weighted / (5 * totalWeight)) * 100;
-    let ecoMatch = 40;
-    if (p.ecosystem.includes(ecosystemChoice)) ecoMatch = 100;
-    else if (p.ecosystem.includes('mixed')) ecoMatch = 70;
-    const fit = Math.round(dimScore * 0.85 + ecoMatch * 0.15);
+    const fit = Math.round((weighted / (5 * totalWeight)) * 100);
     return Object.assign({}, p, { fit });
   }).sort((a, b) => b.fit - a.fit);
 }
@@ -1090,14 +978,20 @@ function computedRolloutForYear(year, drivingScore, bounds) {
   for (let y = 2; y <= year; y++) { target = Math.min(bounds.max_cap, target + bounds.annual_growth_cap * S); }
   return Math.round(target);
 }
-function computeXPI(fitScore, urgencyScore, formula) {
-  return Math.round(fitScore * formula.fit_weight + urgencyScore * formula.urgency_weight);
-}
-function computeXPICeiling(fitScore, ceilingFormula) {
-  return Math.min(98, ceilingFormula.base + fitScore * ceilingFormula.fit_multiplier);
+function computeTCO(vendor, agentCount, loadedCostPerAgentYear, effFormula) {
+  const annualSoftwareCost = vendor.cost_per_agent_month * agentCount * 12;
+  const dimSum = effFormula.dims.reduce((s, d) => s + (vendor.scores[d] || 0), 0);
+  const efficiencyPct = Math.min(effFormula.max_efficiency_pct, (dimSum / effFormula.max_score) * effFormula.max_efficiency_pct);
+  const efficiencyValue = (efficiencyPct / 100) * agentCount * loadedCostPerAgentYear;
+  const valueMultiple = annualSoftwareCost > 0 ? efficiencyValue / annualSoftwareCost : 0;
+  return { annualSoftwareCost, efficiencyPct, efficiencyValue, valueMultiple };
 }
 
-// ---------------- BUILD SLIDER PANELS (once, at boot) ----------------
+// Rollout bounds reused conceptually from DEX's XPI curve — same shape, own config
+const ROLLOUT_BOUNDS = { year1_cap: 25, annual_growth_cap: 15, max_cap: 100 };
+const LOADED_COST_PER_AGENT_YEAR = 65000; // benchmark assumption for efficiency-value sizing
+
+// ---------------- BUILD SLIDER PANELS ----------------
 function buildPainSliders() {
   const panel = $('painSlidersPanel');
   panel.innerHTML = PAIN_DIMS.map(d => `
@@ -1130,13 +1024,9 @@ function buildTriggerSliders() {
 }
 
 // ---------------- RENDER ----------------
-function getFullPainValues() {
-  // deployment preference feeds the 'deployment' weight the same way a pain slider would
-  return Object.assign({}, state.painValues, { deployment: num('deploy_pref') });
-}
+function getFullPainValues() { return Object.assign({}, state.painValues, { deployment: num('deploy_pref') }); }
 
 function renderWeights(weights) {
-  const total = Object.values(weights).reduce((a, b) => a + b, 0);
   const maxW = Math.max(...Object.values(weights));
   $('weightBarsPanel').innerHTML = PLATFORMS.dimensions.map(d => {
     const w = weights[d.id];
@@ -1156,19 +1046,14 @@ function renderVendorResults(ranked) {
     return `<div class="vendor-row${isTop ? ' top' : ''}${state.openVendor === p.id ? ' open' : ''}" id="vrow-${p.id}">
       <div class="vendor-head" data-toggle="${p.id}">
         <span class="vendor-rank">${String(idx + 1).padStart(2, '0')}</span>
-        <div class="vendor-name-wrap">
-          <div class="vname">${p.name}${isTop ? '<span class="best-match-tag">BEST MATCH</span>' : ''}</div>
-          <div class="vtier">${p.tier} tier</div>
-        </div>
+        <div class="vendor-name-wrap"><div class="vname">${p.name}${isTop ? '<span class="best-match-tag">BEST MATCH</span>' : ''}</div><div class="vtier">${p.tier} tier</div></div>
         <div class="vendor-bar-wrap"><div class="vendor-bar-fill" style="width:${(p.fit / maxFit * 100).toFixed(0)}%;"></div></div>
         <div class="vendor-fit-num mono">${p.fit}%</div>
       </div>
-      <div class="vendor-body">
-        <div class="cols">
-          <div><h4>STRENGTHS</h4><ul>${p.strengths.map(s => `<li>${s}</li>`).join('')}</ul></div>
-          <div><h4>GAPS</h4><ul>${p.gaps.map(s => `<li>${s}</li>`).join('')}</ul></div>
-        </div>
-      </div>
+      <div class="vendor-body"><div class="cols" style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:14px;">
+        <div><h4>STRENGTHS</h4><ul>${p.strengths.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        <div><h4>GAPS</h4><ul>${p.gaps.map(s => `<li>${s}</li>`).join('')}</ul></div>
+      </div></div>
     </div>`;
   }).join('');
   $('vendorResultsList').querySelectorAll('[data-toggle]').forEach(el => el.addEventListener('click', () => {
@@ -1179,80 +1064,61 @@ function renderVendorResults(ranked) {
   $('vendorDisclaimer').textContent = PLATFORMS.disclaimer;
 }
 
-function renderXPI(urgencyScore, topFit) {
-  const ceiling = computeXPICeiling(topFit, BENCH.xpi_ceiling_formula);
-  const baseline = BENCH.xpi_baseline;
-  const rows = [];
-  for (let y = 1; y <= state.projTerm; y++) {
-    const rollout = computedRolloutForYear(y, urgencyScore, BENCH.rollout_curve_bounds);
-    const xpiYear = Math.round(baseline + (ceiling - baseline) * (rollout / 100));
-    rows.push({ y, rollout, xpiYear, uplift: xpiYear - baseline });
-  }
-  $('xpiBody').innerHTML = rows.map(r => `
-    <tr><td><b>Year ${r.y}</b></td><td class="num-cell mono">${r.rollout}%</td>
-    <td class="num-cell mono">${r.xpiYear}</td>
-    <td class="num-cell mono" style="color:var(--success);">+${r.uplift}</td></tr>`).join('');
-  return { rows, ceiling, baseline };
-}
-
 function renderMatrix(ranked) {
   const top3 = ranked.slice(0, 3);
-  if (!$('matrixHead') || !$('matrixBody')) return;
-  $('matrixHead').innerHTML = `<th>Evaluation Dimension</th>` + top3.map((v, i) => `<th>#${i+1} ${v.name} (${v.fit}%)</th>`).join('');
-  
-  $('matrixBody').innerHTML = PLATFORMS.dimensions.map(d => {
-    const cells = top3.map(v => {
-      const score = v.scores[d.id] || 0;
-      const dots = '●'.repeat(score) + '○'.repeat(5 - score);
-      const isTop = score >= 4 ? ' style="color:var(--accent); font-weight:600;"' : '';
-      return `<td${isTop} class="mono num-cell">${dots} ${score}/5</td>`;
+  const rows = PLATFORMS.dimensions.map(d => {
+    const cells = top3.map(p => {
+      const score = p.scores[d.id] || 0;
+      const dots = [1, 2, 3, 4, 5].map(i => `<span class="dot${i <= score ? ' on' : ''}"></span>`).join('');
+      return `<td><span class="dots">${dots}</span></td>`;
     }).join('');
-    return `<tr><td><b>${d.label}</b></td>${cells}</tr>`;
+    return `<tr><td>${d.label}</td>${cells}</tr>`;
   }).join('');
+  $('matrixTable').innerHTML = `
+    <thead><tr><th>Evaluation Dimension</th>${top3.map((p, i) => `<th>#${i + 1} ${p.name}</th>`).join('')}</tr></thead>
+    <tbody>${rows}</tbody>`;
 }
 
-function renderTCO(topVendor, endpoints) {
-  if (!$('tco_tier')) return;
-  const rates = {
-    'Budget': { min: 1.25, max: 2.50, label: '$1.25 - $2.50 / ep / mo' },
-    'Mid': { min: 3.00, max: 5.00, label: '$3.00 - $5.00 / ep / mo' },
-    'Mid-Premium': { min: 4.50, max: 7.00, label: '$4.50 - $7.00 / ep / mo' },
-    'Premium': { min: 6.50, max: 10.00, label: '$6.50 - $10.00 / ep / mo' }
-  };
-  const tierInfo = rates[topVendor.tier] || rates['Mid'];
-  const avgMonthlyRate = (tierInfo.min + tierInfo.max) / 2;
-  const annualSoftware = endpoints * avgMonthlyRate * 12;
-  
-  // Empirical benchmark: A well-implemented DEX tool eliminates 0.15 - 0.25 deskside dispatches per endpoint per year at ~$75 loaded cost per dispatch
-  const annualAvoidance = endpoints * 0.20 * 75;
-  const roiMultiple = annualSoftware > 0 ? (annualAvoidance / annualSoftware).toFixed(1) + '×' : '—';
-  
-  $('tco_tier').textContent = topVendor.tier;
-  $('tco_rate_range').textContent = tierInfo.label;
-  $('tco_annual_cost').textContent = '$' + Math.round(annualSoftware).toLocaleString();
-  $('tco_avoidance').textContent = '$' + Math.round(annualAvoidance).toLocaleString();
-  $('tco_roi').textContent = roiMultiple;
+function renderTCO(urgencyScore, topVendor) {
+  const agents = num('org_agents');
+  const rows = [];
+  for (let y = 1; y <= state.projTerm; y++) {
+    const rollout = computedRolloutForYear(y, urgencyScore, ROLLOUT_BOUNDS);
+    const tco = computeTCO(topVendor, agents, LOADED_COST_PER_AGENT_YEAR, BENCH.efficiency_formula);
+    const cumEffValue = tco.efficiencyValue * (rollout / 100) * y; // cumulative through year y at that rollout pace
+    const netValue = cumEffValue - tco.annualSoftwareCost * y;
+    rows.push({ y, rollout, annualSoftwareCost: tco.annualSoftwareCost, cumEffValue, netValue, tco });
+  }
+  $('tcoBody').innerHTML = rows.map(r => `
+    <tr><td><b>Year ${r.y}</b></td><td class="num-cell mono">${r.rollout}%</td>
+    <td class="num-cell mono">${fmtMoney(r.annualSoftwareCost)}</td>
+    <td class="num-cell mono">${fmtMoney(r.cumEffValue)}</td>
+    <td class="num-cell mono" style="color:${r.netValue >= 0 ? 'var(--success)' : 'var(--danger)'};">${fmtMoney(r.netValue)}</td></tr>`).join('');
+  return rows;
 }
 
-function renderReport(inputs, ranked, urgencyScore, xpiData) {
+function renderReport(inputs, ranked, urgencyScore, tcoRows) {
   const top = ranked[0];
-  $('xpi_r_baseline').textContent = xpiData.baseline;
-  $('xpi_r_fit').textContent = top.fit + '%';
-  $('xpi_r_vendorname').textContent = top.name;
-  $('xpi_r_urgency').textContent = Math.round(urgencyScore);
-  const finalYear = xpiData.rows[xpiData.rows.length - 1];
-  $('xpi_r_finalxpi').textContent = finalYear ? finalYear.xpiYear : xpiData.baseline;
+  $('xpi_r_fit_unused'); // no-op guard, kept ids consistent below
+  $('kpi_r_fit').textContent = top.fit + '%';
+  $('kpi_r_vendorname').textContent = top.name;
+  $('kpi_r_urgency').textContent = Math.round(urgencyScore);
+
+  const tco = tcoRows[0].tco;
+  $('kpi_r_swcost').textContent = fmtMoney(tco.annualSoftwareCost);
+  $('kpi_r_multiple').textContent = tco.valueMultiple.toFixed(1) + '×';
 
   $('report_strengths').innerHTML = top.strengths.map(s => `<li>${s}</li>`).join('');
   $('report_gaps').innerHTML = top.gaps.map(s => `<li>${s}</li>`).join('');
 
-  $('diag_endpoints').textContent = fmtInt(inputs.endpoints);
-  $('diag_ecosystem').textContent = $('org_ecosystem').selectedOptions[0].textContent;
-  $('diag_deploy').textContent = $('deploy_pref').selectedOptions[0].textContent;
-  $('diag_tooling').textContent = $('tooling_maturity').selectedOptions[0].textContent;
+  $('tco_tier').textContent = top.tier;
+  $('tco_rate').textContent = `$${top.cost_per_agent_month} / agent / mo`;
+  $('tco_effvalue').textContent = fmtMoney(tco.efficiencyValue);
 
-  renderMatrix(ranked);
-  renderTCO(top, inputs.endpoints);
+  $('diag_agents').textContent = fmtInt(inputs.agents);
+  $('diag_volume').textContent = fmtInt(inputs.volume);
+  $('diag_deploy').textContent = $('deploy_pref').selectedOptions[0].textContent;
+  $('diag_current').textContent = $('org_current').value || 'Not specified';
 
   $('liveTotal').textContent = top.fit + '% ' + top.name;
 }
@@ -1260,8 +1126,7 @@ function renderReport(inputs, ranked, urgencyScore, xpiData) {
 // ---------------- MASTER RECALC ----------------
 function recalcAll() {
   if (!PLATFORMS || !BENCH) return;
-  const inputs = { employees: num('org_employees'), endpoints: num('est_endpoints') };
-  const ecosystem = $('org_ecosystem').value;
+  const inputs = { agents: num('org_agents'), volume: num('est_volume') };
   const painValues = getFullPainValues();
   const urgencyScore = computeUrgencyScore(state.triggerValues, BENCH.triggers);
   $('urgency_score_readout').textContent = urgencyScore.toFixed(1) + ' / 100';
@@ -1269,22 +1134,22 @@ function recalcAll() {
   const weights = computeDimensionWeights(PLATFORMS.dimensions, painValues, state.triggerValues, BENCH.triggers, BENCH.pain_slider_max_boost, BENCH.trigger_max_boost);
   renderWeights(weights);
 
-  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights, ecosystem);
+  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights);
   renderVendorResults(ranked);
+  renderMatrix(ranked);
 
-  const xpiData = renderXPI(urgencyScore, ranked[0].fit);
-  renderReport(inputs, ranked, urgencyScore, xpiData);
+  const tcoRows = renderTCO(urgencyScore, ranked[0]);
+  renderReport(inputs, ranked, urgencyScore, tcoRows);
 }
 
 // ---------------- EVENT WIRING ----------------
-['org_employees', 'org_industry', 'org_ecosystem', 'est_endpoints', 'est_remote_pct', 'est_refresh_stage', 'deploy_pref', 'tooling_maturity'].forEach(id => {
+['org_agents', 'org_employees', 'org_current', 'est_volume', 'est_modules', 'deploy_pref'].forEach(id => {
   const el = $(id);
   if (!el) return;
   el.addEventListener('input', recalcAll);
   if (el.tagName === 'SELECT') el.addEventListener('change', recalcAll);
 });
 
-// Term selector
 $('termToggle').addEventListener('click', (e) => {
   const pill = e.target.closest('.pill'); if (!pill) return;
   document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
@@ -1301,8 +1166,7 @@ $('term_custom').addEventListener('input', (e) => {
   recalcAll();
 });
 
-// Presets — control urgency level primarily
-const PRESET_TRIGGER_LEVELS = { lowurgency: 15, midurgency: 50, highurgency: 85, reset: 30 };
+const PRESET_TRIGGER_LEVELS = { lowurgency: 15, midurgency: 40, highurgency: 85, reset: 30 };
 document.querySelectorAll('.preset-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
@@ -1325,113 +1189,105 @@ document.querySelectorAll('.preset-btn').forEach(btn => {
   });
 });
 
-// Theme
 function applyTheme(choice) {
   state.themeChoice = choice;
   let effective = choice;
   if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', effective);
   document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
-  try { localStorage.setItem('sw_theme', choice); } catch (e) {}
+  try { localStorage.setItem('itsm_advisor_theme', choice); } catch (e) {}
 }
-$('themeToggle').addEventListener('click', (e) => {
-  const btn = e.target.closest('button'); if (!btn) return;
-  applyTheme(btn.dataset.themeChoice);
-});
+$('themeToggle').addEventListener('click', (e) => { const btn = e.target.closest('button'); if (!btn) return; applyTheme(btn.dataset.themeChoice); });
 
-// Ecosystem dropdowns
 document.querySelectorAll('.eco-dropdown').forEach((drop) => {
   const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = drop.classList.contains('open');
-    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
-    if (!isOpen) drop.classList.add('open');
-  });
+  btn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = drop.classList.contains('open'); document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); if (!isOpen) drop.classList.add('open'); });
 });
 document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
 
-// Section nav scrollspy
 const secObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.id;
-      document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
-    }
-  });
+  entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.id; document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`)); } });
 }, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
 document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
 
 // ---------------- EXPORTS ----------------
 $('btnExportCSV').addEventListener('click', () => {
-  const ecosystem = $('org_ecosystem').value;
   const painValues = getFullPainValues();
   const urgencyScore = computeUrgencyScore(state.triggerValues, BENCH.triggers);
   const weights = computeDimensionWeights(PLATFORMS.dimensions, painValues, state.triggerValues, BENCH.triggers, BENCH.pain_slider_max_boost, BENCH.trigger_max_boost);
-  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights, ecosystem);
+  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights);
+  const tcoRows = renderTCO(urgencyScore, ranked[0]);
 
-  let csv = 'DEX PLATFORM ADVISOR — MODEL EXPORT\n';
-  csv += `Ecosystem,${ecosystem}\nUrgency Score,${urgencyScore.toFixed(1)}\nProjection Term (years),${state.projTerm}\n\n`;
+  let csv = 'ITSM ADVISOR — MODEL EXPORT\n';
+  csv += `Agent Seats,${num('org_agents')}\nUrgency Score,${urgencyScore.toFixed(1)}\nProjection Term (years),${state.projTerm}\n\n`;
   csv += 'DIMENSION WEIGHTS\nDimension,Weight\n';
   PLATFORMS.dimensions.forEach(d => { csv += `${d.label},${weights[d.id].toFixed(2)}\n`; });
   csv += '\nVENDOR RANKING\nRank,Vendor,Tier,Fit %\n';
   ranked.forEach((p, i) => { csv += `${i + 1},${p.name},${p.tier},${p.fit}\n`; });
-  csv += `\n${state.projTerm}-YEAR XPI PROJECTION\nYear,Rollout %,XPI Score,XPI Uplift\n`;
-  const xpiData = renderXPI(urgencyScore, ranked[0].fit);
-  xpiData.rows.forEach(r => { csv += `Year ${r.y},${r.rollout}%,${r.xpiYear},+${r.uplift}\n`; });
+  csv += `\n${state.projTerm}-YEAR TCO PROJECTION\nYear,Rollout %,Annual Software Cost,Cumulative Efficiency Value,Net Value\n`;
+  tcoRows.forEach(r => { csv += `Year ${r.y},${r.rollout}%,${r.annualSoftwareCost.toFixed(2)},${r.cumEffValue.toFixed(2)},${r.netValue.toFixed(2)}\n`; });
 
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `DEX_Advisor_Model_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.download = `ITSM_Advisor_Model_${new Date().toISOString().slice(0, 10)}.csv`;
   link.click();
 });
 
 $('btnCopyBrief').addEventListener('click', async () => {
-  const text = `# 🧭 DEX Platform Advisor — Executive Briefing
-**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/dexadvisor/
+  const text = `# 🎫 ITSM Advisor — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/itsmadvisor/
 **Term:** ${state.projTerm} years
 
-### XPI Scorecard
-- **Baseline XPI (Today):** ${$('xpi_r_baseline').textContent}
-- **Top Vendor Fit:** ${$('xpi_r_fit').textContent} (${$('xpi_r_vendorname').textContent})
-- **Urgency Score:** ${$('xpi_r_urgency').textContent}
-- **Final-Year XPI:** ${$('xpi_r_finalxpi').textContent}
+### Recommendation
+- **Top Vendor Fit:** ${$('kpi_r_fit').textContent} (${$('kpi_r_vendorname').textContent})
+- **Urgency Score:** ${$('kpi_r_urgency').textContent}
+- **Est. Annual Software Budget:** ${$('kpi_r_swcost').textContent}
+- **Estimated Value Multiple:** ${$('kpi_r_multiple').textContent}
 
 ### Estate
-- **Managed Endpoints:** ${$('diag_endpoints').textContent}
-- **Ecosystem:** ${$('diag_ecosystem').textContent}
+- **Agent Seats:** ${$('diag_agents').textContent}
+- **Monthly Ticket Volume:** ${$('diag_volume').textContent}
 - **Deployment Requirement:** ${$('diag_deploy').textContent}
-- **Existing Tooling:** ${$('diag_tooling').textContent}`;
+- **Current Platform:** ${$('diag_current').textContent}`;
   try {
     await navigator.clipboard.writeText(text);
     $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
     setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
-  } catch (e) { alert('Clipboard copy failed. Please grant permission.'); }
+  } catch (e) { showToast('Clipboard copy failed. Please grant permission.'); }
+});
+
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const text = `*ITSM PLATFORM ADVISOR — EXECUTIVE SUMMARY*
+Generated via Sarav's World Digital Workplace Suite: https://iamsaravofficial.com/apps/itsmadvisor/
+
+🏆 *Top Vendor Fit:* ${$('kpi_r_fit').textContent} (${$('kpi_r_vendorname').textContent})
+⚡ *Urgency Score:* ${$('kpi_r_urgency').textContent}
+💰 *Est. Annual Software Budget:* ${$('kpi_r_swcost').textContent}
+📈 *Estimated Value Multiple:* ${$('kpi_r_multiple').textContent}
+👥 *Agent Seats:* ${$('diag_agents').textContent} | *Monthly Tickets:* ${$('diag_volume').textContent}
+🏢 *Deployment Requirement:* ${$('diag_deploy').textContent}`;
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
 });
 
 $('btnSaveScenario').addEventListener('click', () => {
   const scenario = {
-    schemaVersion: '1.0',
-    appId: 'dex-advisor',
-    timestamp: new Date().toISOString(),
-    orgProfile: { employees: num('org_employees'), industry: $('org_industry').value, languages: 1, shiftModel: '' },
+    schemaVersion: '1.0', appId: 'itsm-advisor', timestamp: new Date().toISOString(),
+    orgProfile: { employees: num('org_employees'), industry: '', languages: 1, shiftModel: '' },
     channelMix: { voice: 0, chat: 0, email: 0, digital: 0 },
     moduleData: {
-      ecosystem: $('org_ecosystem').value,
-      estate: { endpoints: num('est_endpoints'), remotePct: num('est_remote_pct'), refreshStage: $('est_refresh_stage').value },
-      painValues: state.painValues,
-      triggerValues: state.triggerValues,
-      deployPref: $('deploy_pref').value,
-      toolingMaturity: $('tooling_maturity').value,
-      projTerm: state.projTerm
+      agents: num('org_agents'), currentPlatform: $('org_current').value,
+      volume: num('est_volume'), modules: num('est_modules'),
+      painValues: state.painValues, triggerValues: state.triggerValues,
+      deployPref: $('deploy_pref').value, projTerm: state.projTerm
     }
   };
   const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
-  link.download = `dex_advisor_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.download = `itsm_advisor_scenario_${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
 });
 
@@ -1442,41 +1298,31 @@ $('fileLoadScenario').addEventListener('change', (e) => {
   reader.onload = (evt) => {
     try {
       const data = JSON.parse(evt.target.result);
-      if (data.orgProfile) {
-        if (data.orgProfile.employees !== undefined) $('org_employees').value = data.orgProfile.employees;
-        if (data.orgProfile.industry) $('org_industry').value = data.orgProfile.industry;
-      }
-      if (data.appId === 'dex-advisor' && data.moduleData) {
+      if (data.orgProfile && data.orgProfile.employees !== undefined) $('org_employees').value = data.orgProfile.employees;
+      if (data.appId === 'itsm-advisor' && data.moduleData) {
         const m = data.moduleData;
-        if (m.ecosystem) $('org_ecosystem').value = m.ecosystem;
-        if (m.estate) {
-          if (m.estate.endpoints !== undefined) $('est_endpoints').value = m.estate.endpoints;
-          if (m.estate.remotePct !== undefined) $('est_remote_pct').value = m.estate.remotePct;
-          if (m.estate.refreshStage) $('est_refresh_stage').value = m.estate.refreshStage;
-        }
-        if (m.painValues) {
-          Object.keys(m.painValues).forEach(id => {
-            state.painValues[id] = m.painValues[id];
-            const slider = document.querySelector(`[data-pain="${id}"]`);
-            if (slider) { slider.value = m.painValues[id]; document.querySelector(`[data-pain-val="${id}"]`).textContent = m.painValues[id] + '%'; }
-          });
-        }
-        if (m.triggerValues) {
-          Object.keys(m.triggerValues).forEach(id => {
-            state.triggerValues[id] = m.triggerValues[id];
-            const slider = document.querySelector(`[data-trigger="${id}"]`);
-            if (slider) { slider.value = m.triggerValues[id]; document.querySelector(`[data-trigger-val="${id}"]`).textContent = m.triggerValues[id] + '%'; }
-          });
-        }
+        if (m.agents !== undefined) $('org_agents').value = m.agents;
+        if (m.currentPlatform) $('org_current').value = m.currentPlatform;
+        if (m.volume !== undefined) $('est_volume').value = m.volume;
+        if (m.modules !== undefined) $('est_modules').value = m.modules;
+        if (m.painValues) Object.keys(m.painValues).forEach(id => {
+          state.painValues[id] = m.painValues[id];
+          const slider = document.querySelector(`[data-pain="${id}"]`);
+          if (slider) { slider.value = m.painValues[id]; document.querySelector(`[data-pain-val="${id}"]`).textContent = m.painValues[id] + '%'; }
+        });
+        if (m.triggerValues) Object.keys(m.triggerValues).forEach(id => {
+          state.triggerValues[id] = m.triggerValues[id];
+          const slider = document.querySelector(`[data-trigger="${id}"]`);
+          if (slider) { slider.value = m.triggerValues[id]; document.querySelector(`[data-trigger-val="${id}"]`).textContent = m.triggerValues[id] + '%'; }
+        });
         if (m.deployPref) $('deploy_pref').value = m.deployPref;
-        if (m.toolingMaturity) $('tooling_maturity').value = m.toolingMaturity;
         if (m.projTerm) { state.projTerm = m.projTerm; $('term_custom').value = m.projTerm; document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm)); }
-        alert('Loaded full DEX Advisor scenario.');
+        showToast('Loaded full ITSM Advisor scenario.');
       } else {
-        alert('Loaded shared org profile from an external scenario. App-specific fields (pain points, triggers) were left as-is.');
+        showToast('Loaded shared org profile from external scenario. App fields retained.');
       }
       recalcAll();
-    } catch (err) { alert('Could not read that file as a valid scenario JSON.'); }
+    } catch (err) { showToast('Could not read that file as a valid scenario JSON.'); }
   };
   reader.readAsText(file);
   e.target.value = '';
@@ -1487,7 +1333,7 @@ $('btnPrint').addEventListener('click', () => window.print());
 // ---------------- BOOT ----------------
 async function loadData() {
   try {
-    const [pRes, bRes] = await Promise.all([fetch('dex-platforms.json', { cache: 'no-store' }), fetch('dex-benchmarks.json', { cache: 'no-store' })]);
+    const [pRes, bRes] = await Promise.all([fetch('itsm-platforms.json', { cache: 'no-store' }), fetch('itsm-benchmarks.json', { cache: 'no-store' })]);
     if (!pRes.ok || !bRes.ok) throw new Error('fetch failed');
     PLATFORMS = await pRes.json();
     BENCH = await bRes.json();
@@ -1500,13 +1346,25 @@ async function loadData() {
 
 (async function init() {
   let savedTheme = 'dark';
-  try { savedTheme = localStorage.getItem('sw_theme') || 'dark'; } catch (e) {}
+  try { savedTheme = localStorage.getItem('itsm_advisor_theme') || 'dark'; } catch (e) {}
   applyTheme(savedTheme);
 
   await loadData();
   buildPainSliders();
   buildTriggerSliders();
   recalcAll();
+
+  document.querySelectorAll('.eco-dropdown').forEach(drop => {
+    const btn = drop.querySelector('.eco-dropbtn');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.eco-dropdown').forEach(d => { if (d !== drop) d.classList.remove('open'); });
+      drop.classList.toggle('open');
+    });
+  });
+  document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
 })();
 
 </script>

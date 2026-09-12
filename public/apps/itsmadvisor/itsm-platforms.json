@@ -1,0 +1,62 @@
+{
+  "version": "2026.09",
+  "disclaimer": "Capability ratings are Nalkudil Studio's independent directional assessment based on public product documentation and market positioning, not vendor-verified or analyst-sourced. TCO figures are directional/qualitative tier-based sizing, not exact list prices \u2014 verify against an RFP before purchase.",
+  "dimensions": [
+    { "id": "incident",    "label": "Incident & Request Management" },
+    { "id": "change",      "label": "Change & Release Management" },
+    { "id": "cmdb",        "label": "CMDB / Asset Management Maturity" },
+    { "id": "automation",  "label": "Workflow / No-Code Automation" },
+    { "id": "ai_copilot",  "label": "AI / Copilot & Virtual Agent" },
+    { "id": "selfservice", "label": "Self-Service Portal & Knowledge Base" },
+    { "id": "integration", "label": "Integration Ecosystem / APIs" },
+    { "id": "reporting",   "label": "Reporting & Analytics" },
+    { "id": "deployment",  "label": "Deployment Flexibility (Cloud/Hybrid/On-Prem)" }
+  ],
+  "platforms": [
+    {
+      "id": "servicenow",
+      "name": "ServiceNow",
+      "tier": "Premium",
+      "cost_per_agent_month": 110,
+      "scores": { "incident": 5, "change": 5, "cmdb": 5, "automation": 5, "ai_copilot": 5, "selfservice": 4, "integration": 5, "reporting": 5, "deployment": 4 },
+      "strengths": ["Category-leading breadth across every ITSM discipline", "Deepest native workflow/automation engine (Flow Designer)", "Strongest AI/Copilot roadmap (Now Assist)"],
+      "gaps": ["Highest cost tier in the set", "Implementation/configuration complexity is real \u2014 longest time-to-value"]
+    },
+    {
+      "id": "bmchelix",
+      "name": "BMC Helix ITSM",
+      "tier": "Premium",
+      "cost_per_agent_month": 95,
+      "scores": { "incident": 4, "change": 4, "cmdb": 4, "automation": 3, "ai_copilot": 3, "selfservice": 3, "integration": 4, "reporting": 4, "deployment": 4 },
+      "strengths": ["Strong enterprise incumbent with mature CMDB/asset discipline", "Solid change management for regulated/ITIL-heavy shops", "Good hybrid deployment track record"],
+      "gaps": ["AI/Copilot layer trails ServiceNow noticeably", "Automation/no-code tooling is less modern"]
+    },
+    {
+      "id": "jira",
+      "name": "Jira Service Management",
+      "tier": "Mid",
+      "cost_per_agent_month": 65,
+      "scores": { "incident": 4, "change": 3, "cmdb": 2, "automation": 4, "ai_copilot": 3, "selfservice": 4, "integration": 5, "reporting": 3, "deployment": 5 },
+      "strengths": ["Best-in-class integration ecosystem via Atlassian Marketplace", "Cloud-native deployment flexibility", "Natural fit if engineering already lives in Jira/Confluence"],
+      "gaps": ["CMDB/asset management is the weakest in this set", "Change management lighter than ITIL-native incumbents"]
+    },
+    {
+      "id": "topdesk",
+      "name": "TopDesk",
+      "tier": "Mid",
+      "cost_per_agent_month": 60,
+      "scores": { "incident": 4, "change": 3, "cmdb": 3, "automation": 3, "ai_copilot": 2, "selfservice": 4, "integration": 3, "reporting": 3, "deployment": 3 },
+      "strengths": ["Clean, fast-to-adopt UI \u2014 low training overhead", "Strong self-service portal out of the box", "Good mid-market value for ITIL-aligned shops"],
+      "gaps": ["AI/Copilot capability is minimal today", "Smaller integration marketplace than the majors"]
+    },
+    {
+      "id": "sdplus",
+      "name": "ServiceDesk Plus (ManageEngine)",
+      "tier": "Budget",
+      "cost_per_agent_month": 35,
+      "scores": { "incident": 4, "change": 3, "cmdb": 3, "automation": 3, "ai_copilot": 2, "selfservice": 3, "integration": 3, "reporting": 3, "deployment": 4 },
+      "strengths": ["Lowest cost tier in this set by a wide margin", "Both cloud and on-prem editions \u2014 flexible for budget-constrained/regulated buyers", "Reasonable breadth for the price point"],
+      "gaps": ["AI/Copilot and automation depth trail every other vendor here", "Less analyst/enterprise mindshare than the majors"]
+    }
+  ]
+}
