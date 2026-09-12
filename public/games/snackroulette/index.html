@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Snack Roulette 🎡 — Family Treat & Dare Wheel | Sarav's World</title>
+<meta name="description" content="Spin the carnival wheel for delicious evening snacks, hilarious family dares, or empty plates! The viral parlor game built for Hubby, Wifey, and Kids.">
+<link rel="canonical" href="https://iamsaravofficial.com/games/snackroulette/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@600;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0A0D14;
+    --surface: #121824;
+    --surface-2: #1B2334;
+    --border: #2A364F;
+    --border-soft: #1E273A;
+    --text: #F8FAFC;
+    --text-dim: #94A3B8;
+    --accent: #F59E0B;
+    --accent-glow: rgba(245, 158, 11, 0.3);
+    --gold: #F59E0B;
+    --brand-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  }
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --border: #CBD5E1;
+    --border-soft: #E2E8F0;
+    --text: #0F172A;
+    --text-dim: #64748B;
+    --accent: #D97706;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+    --gold: #D97706;
+    --brand-gradient: linear-gradient(135deg, #D97706 0%, #DC2626 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    min-height: 100vh; overflow-x: hidden; touch-action: manipulation;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .bungee { font-family: 'Bungee', cursive; }
+
+  /* Ecosystem Menubar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); margin: 0 4px; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn { color: var(--accent); }
+  .eco-caret { font-size: 9px; }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+  }
+  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+
+  /* App Container */
+  .game-container { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* Header */
+  .game-header {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .game-title-wrap h1 { font-size: 26px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .game-title-wrap p { font-size: 13.5px; color: var(--text-dim); margin-top: 4px; }
+  .theme-toggle-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600;
+  }
+
+  /* Roster Selection */
+  .roster-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 18px; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .roster-label { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .roster-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .player-pill {
+    background: var(--surface-2); border: 1.5px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;
+  }
+  .player-pill.active {
+    background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700;
+    box-shadow: 0 4px 14px var(--accent-glow);
+  }
+
+  /* Preset Selector Tabs */
+  .preset-tabs {
+    display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border);
+    padding-bottom: 10px; overflow-x: auto;
+  }
+  .preset-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim); padding: 8px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .preset-btn.active {
+    background: var(--surface-2); color: var(--text); border-color: var(--accent);
+  }
+
+  /* Wheel Stage */
+  .wheel-stage {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; margin: 10px 0 30px;
+  }
+  .wheel-wrapper {
+    position: relative; width: min(92vw, 440px); height: min(92vw, 440px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #wheelCanvas {
+    width: 100%; height: 100%; border-radius: 50%;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(0,0,0,0.5);
+  }
+
+  /* Top Ratchet Pointer (The flapper) */
+  .wheel-flapper {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    width: 32px; height: 42px; z-index: 100; pointer-events: none;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    transition: transform 0.05s ease-out;
+    transform-origin: 50% 10%;
+  }
+  .wheel-flapper.tick {
+    transform: translateX(-50%) rotate(18deg);
+  }
+
+  /* Center Hub Button */
+  .center-spin-hub {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 86px; height: 86px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #F59E0B 0%, #B45309 100%);
+    border: 4px solid #FFF; color: #000; font-family: 'Bungee', cursive;
+    font-size: 15px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    user-select: none; z-index: 50; transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .center-spin-hub:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .center-spin-hub:active { transform: translate(-50%, -50%) scale(0.95); }
+  .center-spin-hub.disabled { pointer-events: none; opacity: 0.8; filter: grayscale(0.5); }
+
+  /* Big Spin Button on Mobile */
+  .spin-action-bar {
+    width: 100%; max-width: 440px; margin: 16px auto 0; display: flex; gap: 10px;
+  }
+  .spin-big-btn {
+    flex: 1; background: var(--brand-gradient); color: #FFF;
+    border: none; border-radius: 14px; padding: 16px; font-size: 18px;
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+    cursor: pointer; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .spin-big-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Result Alert Card */
+  .result-banner {
+    background: var(--surface); border: 2px solid var(--accent);
+    border-radius: 16px; padding: 20px; margin-bottom: 24px;
+    text-align: center; display: none; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .result-banner.active { display: block; }
+  .result-icon { font-size: 52px; margin-bottom: 6px; }
+  .result-player { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+  .result-title { font-size: 26px; font-weight: 800; margin: 4px 0 8px; }
+  .result-desc { font-size: 14.5px; color: var(--text-dim); max-width: 500px; margin: 0 auto 16px; }
+  .result-btns { display: flex; justify-content: center; gap: 10px; }
+  .btn-wa-share {
+    background: #25D366; color: #FFF; border: none; padding: 10px 18px;
+    border-radius: 10px; font-size: 13.5px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* Turn Ledger Log */
+  .ledger-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-bottom: 24px;
+  }
+  .ledger-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .ledger-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
+  .ledger-clear { background: transparent; border: none; color: #EF4444; font-size: 12px; cursor: pointer; font-weight: 600; }
+  .ledger-list { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; }
+  .ledger-item {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface-2); padding: 10px 14px; border-radius: 10px;
+    font-size: 13.5px;
+  }
+  .item-player { font-weight: 700; color: var(--text); }
+  .item-outcome { font-weight: 600; color: var(--accent); }
+  .item-type { font-size: 11px; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 700; margin-left: 8px; }
+  .type-treat { background: rgba(16, 185, 129, 0.2); color: #10B981; }
+  .type-dare { background: rgba(239, 68, 68, 0.2); color: #EF4444; }
+  .type-empty { background: rgba(148, 163, 184, 0.2); color: var(--text-dim); }
+
+  /* Custom Slice Editor Modal */
+  .custom-editor-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-top: 24px;
+  }
+  .custom-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 10px; }
+  .editor-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .editor-input {
+    flex: 1; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px;
+  }
+  .editor-add-btn {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .editor-add-btn:hover { border-color: var(--accent); }
+
+  /* Confetti Canvas */
+  #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">Sarav's World</a>
+      <span class="eco-divider">/</span>
+      
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/doc-vault/">🔐 Doc Vault</a>
+          <a href="https://iamsaravofficial.com/apps/voice-notes/">🎙️ Voice Notes</a>
+          <a href="https://iamsaravofficial.com/apps/task-zen/">✅ Task Zen</a>
+          <a href="https://iamsaravofficial.com/apps/family-ledger/">💰 Family Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/family-recipe-vault/">🍲 Family Recipe Vault</a>
+          <a href="https://iamsaravofficial.com/apps/desi-food-explorer/">🍛 Desi Food Explorer</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Games Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/" class="current">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/heritage-weaver/">🏛️ Heritage Weaver</a>
+          <a href="https://iamsaravofficial.com/projects/folk-soundscape/">🪕 Folk Soundscape</a>
+          <a href="https://iamsaravofficial.com/projects/mythos-interactive/">📜 Mythos Interactive</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); margin-right:12px; font-weight:600;">🎪 Playground</a>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Container -->
+<div class="game-container">
+  <!-- Header -->
+  <div class="game-header">
+    <div class="game-title-wrap">
+      <h1>🎡 Snack Roulette</h1>
+      <p>Carnival Treat & Dare Spin Wheel — Samosas, Dares & Mystery Outcomes!</p>
+    </div>
+  </div>
+
+  <!-- Roster Selection -->
+  <div class="roster-card">
+    <span class="roster-label">Current Spinner:</span>
+    <div class="roster-pills" id="rosterPills">
+      <button class="player-pill active" data-player="Daddy">👨 Daddy</button>
+      <button class="player-pill" data-player="Mummy">👩 Mummy</button>
+      <button class="player-pill" data-player="Dhruv">👦 Dhruv</button>
+      <button class="player-pill" data-player="Kid 2">👧 Kid 2</button>
+      <button class="player-pill" data-player="Guest">✨ Guest</button>
+    </div>
+  </div>
+
+  <!-- Preset Selector -->
+  <div class="preset-tabs">
+    <button class="preset-btn active" data-preset="snacks">🥟 Evening Snack Attack</button>
+    <button class="preset-btn" data-preset="chores">🧺 House Chores & Boons</button>
+    <button class="preset-btn" data-preset="party">🎉 Party Dare Mayhem</button>
+  </div>
+
+  <!-- Result Banner -->
+  <div class="result-banner" id="resultBanner">
+    <div class="result-icon" id="resIcon">🥟</div>
+    <div class="result-player" id="resPlayer">DADDY WON!</div>
+    <div class="result-title" id="resTitle">Warm Samosa with Mint Chutney</div>
+    <div class="result-desc" id="resDesc">Enjoy your delicious treat! Next player's turn to spin.</div>
+    <div class="result-btns">
+      <button class="btn-wa-share" id="btnShareWhatsApp">💬 WhatsApp Result</button>
+    </div>
+  </div>
+
+  <!-- Wheel Canvas Arena -->
+  <div class="wheel-stage">
+    <div class="wheel-wrapper">
+      <!-- SVG Flapper -->
+      <svg class="wheel-flapper" id="wheelFlapper" viewBox="0 0 40 50">
+        <polygon points="20,50 4,10 36,10" fill="#EF4444" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round" />
+        <circle cx="20" cy="12" r="6" fill="#F59E0B" stroke="#FFFFFF" stroke-width="2"/>
+      </svg>
+
+      <canvas id="wheelCanvas" width="800" height="800"></canvas>
+
+      <!-- Center Spin Button -->
+      <button class="center-spin-hub" id="centerSpinHub" aria-label="Spin the wheel">SPIN</button>
+    </div>
+
+    <div class="spin-action-bar">
+      <button class="spin-big-btn" id="spinBigBtn">
+        <span>🎲 Spin the Wheel</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Turn History / Ledger -->
+  <div class="ledger-card">
+    <div class="ledger-header">
+      <div class="ledger-title">📜 Tonight's Spin Log</div>
+      <button class="ledger-clear" id="clearLogBtn">Clear Log</button>
+    </div>
+    <div class="ledger-list" id="ledgerList">
+      <div style="text-align:center; color:var(--text-dim); padding:16px; font-size:13px;">No spins yet tonight! Tap SPIN to see who gets the treats.</div>
+    </div>
+  </div>
+
+  <!-- Custom Slice Editor -->
+  <div class="custom-editor-card">
+    <div class="custom-title">✏️ Quick Custom Item</div>
+    <div class="editor-row">
+      <input type="text" id="customInput" class="editor-input" placeholder="Add custom item (e.g. 🍫 Dairy Milk Silk, 💃 Sing Chorus)">
+      <button class="editor-add-btn" id="addCustomBtn">+ Add to Wheel</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ----------------------------------------------------
+   Audio Synthesizer Engine (Web Audio API)
+---------------------------------------------------- */
+class SoundEngine {
+  constructor() {
+    this.ctx = null;
+  }
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+  click() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(650, now);
+    osc.frequency.exponentialRampToValueAtTime(200, now + 0.025);
+
+    gain.gain.setValueAtTime(0.2, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.035);
+  }
+  winFanfare() {
+    this.init();
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, idx) => {
+      const now = this.ctx.currentTime + idx * 0.1;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      gain.gain.setValueAtTime(0.25, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.4);
+    });
+  }
+  dareSound() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(250, now);
+    osc.frequency.exponentialRampToValueAtTime(120, now + 0.3);
+
+    gain.gain.setValueAtTime(0.25, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.35);
+  }
+}
+const audio = new SoundEngine();
+
+/* ----------------------------------------------------
+   Wheel Presets Data
+---------------------------------------------------- */
+const PRESETS = {
+  snacks: [
+    { text: "Hot Samosa 🥟", icon: "🥟", type: "treat", color: "#F59E0B", desc: "Golden, crispy, potato stuffed perfection!" },
+    { text: "Empty Plate! 🍽️", icon: "🍽️", type: "empty", color: "#64748B", desc: "Hard luck! Just breathe in the aroma." },
+    { text: "Filter Kaapi ☕", icon: "☕", type: "treat", color: "#D97706", desc: "Freshly brewed, frothy Davara tumbler bliss!" },
+    { text: "Green Chilli! 🌶️", icon: "🌶️", type: "dare", color: "#EF4444", desc: "Take one brave tiny nibble of green chilli!" },
+    { text: "Gulab Jamun 🍩", icon: "🍩", type: "treat", color: "#EC4899", desc: "Mouth-melting sweet swimming in cardamom syrup!" },
+    { text: "Cold Water Shot 💧", icon: "💧", type: "dare", color: "#0284C7", desc: "Drink one full cup of cold water in one breath!" },
+    { text: "Banana Chips 🍌", icon: "🍌", type: "treat", color: "#EAB308", desc: "Crispy salted Nendran chips straight from Kerala!" },
+    { text: "Feed Your Left! 🤝", icon: "🤝", type: "dare", color: "#8B5CF6", desc: "You must hand-feed the next snack to the person on your left!" }
+  ],
+  chores: [
+    { text: "Dishes Duty! 🧼", icon: "🧼", type: "dare", color: "#EF4444", desc: "You are the head dish cleaner after dinner!" },
+    { text: "+30m Screen Time 🎮", icon: "🎮", type: "treat", color: "#10B981", desc: "Bonus gaming or YouTube pass tonight!" },
+    { text: "Make Tea 🫖", icon: "🫖", type: "dare", color: "#D97706", desc: "Brew fresh ginger cardamom chai for everyone!" },
+    { text: "Free Foot Massage 💆", icon: "💆", type: "treat", color: "#EC4899", desc: "Relax! Someone in the family gives you a massage." },
+    { text: "Fold Laundry 🧺", icon: "🧺", type: "dare", color: "#6366F1", desc: "Fold 5 shirts or trousers neatly." },
+    { text: "Pick Tomorrow's Menu 🍱", icon: "🍱", type: "treat", color: "#F59E0B", desc: "You decide lunch and dinner tomorrow!" }
+  ],
+  party: [
+    { text: "Bollywood Hook Step 💃", icon: "💃", type: "dare", color: "#EC4899", desc: "Do a 15-second signature movie dance step!" },
+    { text: "Free Pass! 🛡️", icon: "🛡️", type: "treat", color: "#10B981", desc: "Safe! You can pass this turn to anyone." },
+    { text: "Mime an Auto Driver 🛺", icon: "🛺", type: "dare", color: "#F59E0B", desc: "Say 'Meter mela 50 rupees' with full drama!" },
+    { text: "Eat Sweet Treat 🍬", icon: "🍬", type: "treat", color: "#38BDF8", desc: "Grab whatever chocolate or sweet is in the fridge!" },
+    { text: "Sing in Robot Voice 🤖", icon: "🤖", type: "dare", color: "#8B5CF6", desc: "Sing any song in a mechanical robotic monotone." },
+    { text: "Tell a Family Secret 🤫", icon: "🤫", type: "dare", color: "#EF4444", desc: "Confess a funny harmless secret from the past!" }
+  ]
+};
+
+/* ----------------------------------------------------
+   Wheel Engine & Canvas Renderer
+---------------------------------------------------- */
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const flapper = document.getElementById('wheelFlapper');
+const centerHub = document.getElementById('centerSpinHub');
+const spinBigBtn = document.getElementById('spinBigBtn');
+const resultBanner = document.getElementById('resultBanner');
+const resIcon = document.getElementById('resIcon');
+const resPlayer = document.getElementById('resPlayer');
+const resTitle = document.getElementById('resTitle');
+const resDesc = document.getElementById('resDesc');
+const btnShareWhatsApp = document.getElementById('btnShareWhatsApp');
+const ledgerList = document.getElementById('ledgerList');
+
+let activePreset = "snacks";
+let slices = [...PRESETS[activePreset]];
+let activePlayer = "Daddy";
+
+let currentRotation = 0; // In radians
+let angularVelocity = 0;
+let isSpinning = false;
+let lastPegIndex = -1;
+
+function drawWheel() {
+  const width = canvas.width;
+  const height = canvas.height;
+  const cx = width / 2;
+  const cy = height / 2;
+  const radius = cx - 18;
+
+  ctx.clearRect(0, 0, width, height);
+
+  const numSlices = slices.length;
+  const arc = (Math.PI * 2) / numSlices;
+
+  // Outer Decorative Rim
+  ctx.save();
+  ctx.translate(cx, cy);
+
+  ctx.beginPath();
+  ctx.arc(0, 0, radius + 12, 0, Math.PI * 2);
+  ctx.fillStyle = '#1E293B';
+  ctx.fill();
+  ctx.lineWidth = 6;
+  ctx.strokeStyle = '#F59E0B';
+  ctx.stroke();
+
+  // Draw Gold Carnival Bulbs along the rim
+  const numBulbs = 24;
+  for (let b = 0; b < numBulbs; b++) {
+    const bAngle = (b * Math.PI * 2) / numBulbs;
+    const bx = (radius + 6) * Math.cos(bAngle);
+    const by = (radius + 6) * Math.sin(bAngle);
+    ctx.beginPath();
+    ctx.arc(bx, by, 5, 0, Math.PI * 2);
+    ctx.fillStyle = b % 2 === 0 ? '#FEF08A' : '#F59E0B';
+    ctx.fill();
+  }
+
+  // Draw Slices with current rotation
+  ctx.rotate(currentRotation);
+
+  for (let i = 0; i < numSlices; i++) {
+    const sliceAngle = i * arc;
+    const slice = slices[i];
+
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.arc(0, 0, radius, sliceAngle, sliceAngle + arc);
+    ctx.closePath();
+
+    ctx.fillStyle = slice.color;
+    ctx.fill();
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#0F172A';
+    ctx.stroke();
+
+    // Text & Emoji
+    ctx.save();
+    ctx.rotate(sliceAngle + arc / 2);
+    ctx.textAlign = 'right';
+    ctx.fillStyle = '#FFFFFF';
+    ctx.font = 'bold 26px "Space Grotesk", sans-serif';
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.7)';
+    ctx.shadowBlur = 6;
+    ctx.fillText(slice.text, radius - 36, 10);
+    ctx.restore();
+  }
+
+  // Draw Boundary Pegs on the outer edge
+  for (let i = 0; i < numSlices; i++) {
+    const pegAngle = i * arc;
+    const px = radius * Math.cos(pegAngle);
+    const py = radius * Math.sin(pegAngle);
+
+    ctx.beginPath();
+    ctx.arc(px, py, 7, 0, Math.PI * 2);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.strokeStyle = '#334155';
+    ctx.stroke();
+  }
+
+  ctx.restore();
+}
+
+/* ----------------------------------------------------
+   Physics Spin Animation & Ratchet Clicks
+---------------------------------------------------- */
+function spinWheel() {
+  if (isSpinning) return;
+  audio.init();
+
+  isSpinning = true;
+  centerHub.classList.add('disabled');
+  spinBigBtn.disabled = true;
+  resultBanner.classList.remove('active');
+
+  // Random initial impulse velocity (0.28 to 0.42 rad/frame)
+  angularVelocity = Math.random() * 0.16 + 0.30;
+  // Friction factor: roughly 0.987 to 0.991 per frame
+  const friction = 0.988 + Math.random() * 0.003;
+
+  const numSlices = slices.length;
+  const arc = (Math.PI * 2) / numSlices;
+
+  function update() {
+    currentRotation += angularVelocity;
+    angularVelocity *= friction;
+
+    // Keep rotation in [0, 2PI)
+    currentRotation = currentRotation % (Math.PI * 2);
+
+    // Calculate which slice boundary is at the top flapper (-PI/2)
+    // The top flapper is at angle -PI/2 (or 3*PI/2)
+    const normalizedAngle = (Math.PI * 2 - (currentRotation % (Math.PI * 2)) + (Math.PI * 1.5)) % (Math.PI * 2);
+    const pegIndex = Math.floor(normalizedAngle / arc);
+
+    if (pegIndex !== lastPegIndex) {
+      lastPegIndex = pegIndex;
+      audio.click();
+      flapper.classList.add('tick');
+      setTimeout(() => flapper.classList.remove('tick'), 45);
+    }
+
+    drawWheel();
+
+    if (angularVelocity > 0.002) {
+      requestAnimationFrame(update);
+    } else {
+      isSpinning = false;
+      centerHub.classList.remove('disabled');
+      spinBigBtn.disabled = false;
+      finishSpin();
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+function finishSpin() {
+  const numSlices = slices.length;
+  const arc = (Math.PI * 2) / numSlices;
+
+  // The pointer is at 12 o'clock (-PI/2)
+  const normalizedAngle = (Math.PI * 2 - (currentRotation % (Math.PI * 2)) + (Math.PI * 1.5)) % (Math.PI * 2);
+  const winningIndex = Math.floor(normalizedAngle / arc) % numSlices;
+  const winner = slices[winningIndex];
+
+  // Display result
+  resIcon.textContent = winner.icon;
+  resPlayer.textContent = `${activePlayer.toUpperCase()} SPUN:`;
+  resTitle.textContent = winner.text;
+  resDesc.textContent = winner.desc;
+  resultBanner.classList.add('active');
+
+  if (winner.type === 'treat') {
+    audio.winFanfare();
+    fireConfetti();
+  } else {
+    audio.dareSound();
+  }
+
+  // Add to turn log
+  addToLedger(activePlayer, winner);
+}
+
+function addToLedger(player, slice) {
+  const logItem = document.createElement('div');
+  logItem.className = 'ledger-item';
+  logItem.innerHTML = `
+    <div>
+      <span class="item-player">${player}</span>
+      <span class="item-type type-${slice.type}">${slice.type}</span>
+    </div>
+    <span class="item-outcome">${slice.text}</span>
+  `;
+
+  if (ledgerList.children.length === 1 && ledgerList.children[0].textContent.includes('No spins yet')) {
+    ledgerList.innerHTML = '';
+  }
+  ledgerList.prepend(logItem);
+}
+
+document.getElementById('clearLogBtn').addEventListener('click', () => {
+  ledgerList.innerHTML = '<div style="text-align:center; color:var(--text-dim); padding:16px; font-size:13px;">Log cleared. Ready for new spins!</div>';
+});
+
+/* ----------------------------------------------------
+   Presets & Custom Editor
+---------------------------------------------------- */
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (isSpinning) return;
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activePreset = btn.dataset.preset;
+    slices = [...PRESETS[activePreset]];
+    drawWheel();
+  });
+});
+
+document.getElementById('addCustomBtn').addEventListener('click', () => {
+  const input = document.getElementById('customInput');
+  const val = input.value.trim();
+  if (!val) return;
+
+  const colors = ['#F59E0B', '#EF4444', '#10B981', '#38BDF8', '#8B5CF6', '#EC4899'];
+  slices.push({
+    text: val,
+    icon: "✨",
+    type: "dare",
+    color: colors[slices.length % colors.length],
+    desc: "Custom surprise outcome added by family!"
+  });
+  input.value = '';
+  drawWheel();
+});
+
+/* ----------------------------------------------------
+   Roster Selection
+---------------------------------------------------- */
+document.querySelectorAll('.player-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.player-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    activePlayer = pill.dataset.player;
+  });
+});
+
+centerHub.addEventListener('click', spinWheel);
+spinBigBtn.addEventListener('click', spinWheel);
+
+/* ----------------------------------------------------
+   WhatsApp Sharing
+---------------------------------------------------- */
+btnShareWhatsApp.addEventListener('click', () => {
+  const title = resTitle.textContent;
+  const desc = resDesc.textContent;
+  const text = `🎡 Family Snack Roulette Outcome!\n\n` +
+    `👤 Player: ${activePlayer}\n` +
+    `🎯 Outcome: ${title}\n` +
+    `💬 Note: "${desc}"\n\n` +
+    `Who is spinning next? Play at:\nhttps://iamsaravofficial.com/games/snackroulette/`;
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+});
+
+/* ----------------------------------------------------
+   Theme Toggle
+---------------------------------------------------- */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+function initTheme() {
+  const saved = localStorage.getItem('sarav_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+}
+themeToggleBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('sarav_theme', next);
+  drawWheel();
+});
+initTheme();
+drawWheel();
+
+/* ----------------------------------------------------
+   Lightweight Confetti Engine
+---------------------------------------------------- */
+function fireConfetti() {
+  const cCanvas = document.getElementById('confettiCanvas');
+  const cCtx = cCanvas.getContext('2d');
+  cCanvas.width = window.innerWidth;
+  cCanvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#F59E0B', '#EF4444', '#10B981', '#38BDF8', '#EC4899', '#8B5CF6'];
+
+  for (let i = 0; i < 80; i++) {
+    particles.push({
+      x: cCanvas.width / 2,
+      y: cCanvas.height / 2,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 0.7) * 14,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 10
+    });
+  }
+
+  function render() {
+    cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+    let active = false;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.35;
+      p.rotation += p.rotSpeed;
+      p.alpha -= 0.012;
+
+      if (p.alpha > 0) {
+        active = true;
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate((p.rotation * Math.PI) / 180);
+        cCtx.fillStyle = p.color;
+        cCtx.globalAlpha = Math.max(0, p.alpha);
+        cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        cCtx.restore();
+      }
+    });
+
+    if (active) requestAnimationFrame(render);
+    else cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+  }
+  requestAnimationFrame(render);
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Family Dialogue Detective 🎙️ — "Who Said That?!" | Sarav's World</title>
+<meta name="description" content="Test your family telepathy! Guess whether Daddy, Mummy, or the Kids said the hilarious real-life household quote, or secretly submit your own quotes!">
+<link rel="canonical" href="https://iamsaravofficial.com/games/dialoguedetective/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@600;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #090D16;
+    --surface: #121826;
+    --surface-2: #1B2438;
+    --border: #293854;
+    --border-soft: #1E283D;
+    --text: #F8FAFC;
+    --text-dim: #94A3B8;
+    --accent: #F59E0B;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+    --gold: #F59E0B;
+    --brand-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  }
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --border: #CBD5E1;
+    --border-soft: #E2E8F0;
+    --text: #0F172A;
+    --text-dim: #64748B;
+    --accent: #D97706;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+    --gold: #D97706;
+    --brand-gradient: linear-gradient(135deg, #D97706 0%, #DC2626 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    min-height: 100vh; overflow-x: hidden; touch-action: manipulation;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .bungee { font-family: 'Bungee', cursive; }
+
+  /* Ecosystem Menubar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); margin: 0 4px; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn { color: var(--accent); }
+  .eco-caret { font-size: 9px; }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+  }
+  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+
+  /* App Container */
+  .game-container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* Header */
+  .game-header {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .game-title-wrap h1 { font-size: 26px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .game-title-wrap p { font-size: 13.5px; color: var(--text-dim); margin-top: 4px; }
+  .theme-toggle-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600;
+  }
+
+  /* Scoreboard & Streak Bar */
+  .hud-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px 20px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  }
+  .hud-item { display: flex; flex-direction: column; }
+  .hud-val { font-size: 22px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; }
+  .hud-lbl { font-size: 11px; text-transform: uppercase; color: var(--text-dim); font-weight: 700; letter-spacing: 0.05em; }
+
+  /* Quote Presentation Box */
+  .quote-box {
+    background: var(--surface); border: 2px solid var(--border); border-radius: 20px;
+    padding: 32px 24px; position: relative; margin-bottom: 28px; text-align: center;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+  }
+  .quote-tag {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #000; font-size: 11.5px; font-weight: 800;
+    padding: 4px 16px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.08em;
+  }
+  .quote-icon { font-size: 40px; margin-bottom: 12px; }
+  .quote-text {
+    font-size: clamp(20px, 4vw, 30px); font-weight: 800; line-height: 1.35;
+    margin-bottom: 12px; color: var(--text);
+  }
+  .quote-context { font-size: 13.5px; color: var(--text-dim); font-style: italic; }
+
+  /* Answer Options Grid */
+  .options-title {
+    font-size: 13px; font-weight: 700; text-transform: uppercase; color: var(--text-dim);
+    letter-spacing: 0.06em; margin-bottom: 12px; text-align: center;
+  }
+  .options-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 28px;
+  }
+  @media (max-width: 540px) {
+    .options-grid { grid-template-columns: 1fr; }
+  }
+  .suspect-btn {
+    background: var(--surface); border: 2px solid var(--border); border-radius: 14px;
+    padding: 16px; display: flex; align-items: center; gap: 14px; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .suspect-btn:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .suspect-btn:active { transform: translateY(0); }
+  .suspect-btn.correct {
+    background: #064E3B !important; border-color: #10B981 !important; color: #FFF !important;
+  }
+  .suspect-btn.wrong {
+    background: #7F1D1D !important; border-color: #EF4444 !important; opacity: 0.7;
+  }
+  .suspect-avatar { font-size: 32px; }
+  .suspect-info { text-align: left; }
+  .suspect-name { font-size: 16px; font-weight: 800; display: block; }
+  .suspect-tagline { font-size: 11.5px; color: var(--text-dim); }
+  .suspect-btn.correct .suspect-tagline { color: rgba(255,255,255,0.8); }
+
+  /* Revelation Banner */
+  .reveal-banner {
+    background: var(--surface); border: 2px solid var(--border); border-radius: 16px;
+    padding: 20px; text-align: center; margin-bottom: 24px; display: none;
+    animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes slideUp { from { transform: translateY(12px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .reveal-banner.active { display: block; }
+  .reveal-status { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .reveal-commentary { font-size: 14.5px; color: var(--text-dim); line-height: 1.5; margin-bottom: 16px; }
+  .btn-next-quote {
+    background: var(--brand-gradient); color: #FFF; border: none;
+    padding: 12px 28px; border-radius: 10px; font-size: 15px; font-weight: 800;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  /* Custom Quote Creator Card */
+  .custom-quote-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; margin-top: 30px;
+  }
+  .custom-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); margin-bottom: 8px; }
+  .custom-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 14px; }
+  .form-group { margin-bottom: 12px; }
+  .form-group label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; color: var(--text-dim); }
+  .custom-input, .custom-select {
+    width: 100%; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 10px 12px; color: var(--text); font-family: inherit; font-size: 13.5px;
+  }
+  .submit-quote-btn {
+    background: var(--surface-2); border: 1.5px solid var(--accent); color: var(--accent);
+    padding: 10px 18px; border-radius: 8px; font-size: 13.5px; font-weight: 700; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .submit-quote-btn:hover { background: var(--accent); color: #000; }
+
+  /* Confetti Canvas */
+  #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">Sarav's World</a>
+      <span class="eco-divider">/</span>
+      
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/doc-vault/">🔐 Doc Vault</a>
+          <a href="https://iamsaravofficial.com/apps/voice-notes/">🎙️ Voice Notes</a>
+          <a href="https://iamsaravofficial.com/apps/task-zen/">✅ Task Zen</a>
+          <a href="https://iamsaravofficial.com/apps/family-ledger/">💰 Family Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/family-recipe-vault/">🍲 Family Recipe Vault</a>
+          <a href="https://iamsaravofficial.com/apps/desi-food-explorer/">🍛 Desi Food Explorer</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Games Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/" class="current">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/heritage-weaver/">🏛️ Heritage Weaver</a>
+          <a href="https://iamsaravofficial.com/projects/folk-soundscape/">🪕 Folk Soundscape</a>
+          <a href="https://iamsaravofficial.com/projects/mythos-interactive/">📜 Mythos Interactive</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); margin-right:12px; font-weight:600;">🎪 Playground</a>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Game Container -->
+<div class="game-container">
+  <!-- Header -->
+  <div class="game-header">
+    <div class="game-title-wrap">
+      <h1>🎙️ Family Dialogue Detective</h1>
+      <p>"Who Said That?!" — The hilarious household quote trivia showdown!</p>
+    </div>
+  </div>
+
+  <!-- HUD Bar -->
+  <div class="hud-card">
+    <div class="hud-item">
+      <span class="hud-val" id="scoreVal" style="color:#10B981;">0</span>
+      <span class="hud-lbl">Correct Guesses</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-val" id="streakVal" style="color:var(--accent);">🔥 0</span>
+      <span class="hud-lbl">Streak Multiplier</span>
+    </div>
+    <div class="hud-item">
+      <span class="hud-val" id="roundVal" style="color:#38BDF8;">1 / 25</span>
+      <span class="hud-lbl">Quote Round</span>
+    </div>
+  </div>
+
+  <!-- Quote Box -->
+  <div class="quote-box">
+    <span class="quote-tag" id="quoteCategory">Household Drama</span>
+    <div class="quote-icon">💬</div>
+    <div class="quote-text" id="quoteText">"I was NOT sleeping! I was just resting my eyes!"</div>
+    <div class="quote-context" id="quoteContext">Said on Sunday afternoon while loud snoring was clearly audible from the sofa.</div>
+  </div>
+
+  <!-- Options Title -->
+  <div class="options-title">Who is the prime suspect?</div>
+
+  <!-- 4 Suspect Buttons -->
+  <div class="options-grid" id="optionsGrid">
+    <button class="suspect-btn" data-person="Daddy">
+      <span class="suspect-avatar">👨</span>
+      <div class="suspect-info">
+        <span class="suspect-name">Daddy</span>
+        <span class="suspect-tagline">Chief sofa inspector & WhatsApp forwarder</span>
+      </div>
+    </button>
+
+    <button class="suspect-btn" data-person="Mummy">
+      <span class="suspect-avatar">👩</span>
+      <div class="suspect-info">
+        <span class="suspect-name">Mummy</span>
+        <span class="suspect-tagline">Master of the kitchen & lost-item finder</span>
+      </div>
+    </button>
+
+    <button class="suspect-btn" data-person="Dhruv">
+      <span class="suspect-avatar">👦</span>
+      <div class="suspect-info">
+        <span class="suspect-name">Dhruv (Kid 1)</span>
+        <span class="suspect-tagline">Gaming champion & snack hunter</span>
+      </div>
+    </button>
+
+    <button class="suspect-btn" data-person="Kid 2">
+      <span class="suspect-avatar">👧</span>
+      <div class="suspect-info">
+        <span class="suspect-name">Kid 2</span>
+        <span class="suspect-tagline">The innocent witness & drama instigator</span>
+      </div>
+    </button>
+  </div>
+
+  <!-- Reveal Banner -->
+  <div class="reveal-banner" id="revealBanner">
+    <div class="reveal-status" id="revealStatus">🎯 Spot on! It was Daddy!</div>
+    <div class="reveal-commentary" id="revealCommentary">Classic Daddy move. The TV was running on full volume, yet he claims he was completely awake!</div>
+    <button class="btn-next-quote" id="btnNextQuote">Next Household Mystery ➡️</button>
+  </div>
+
+  <!-- Submit a Family Quote (Custom Studio) -->
+  <div class="custom-quote-card">
+    <div class="custom-title">📝 Submit a Real Family Crime (Custom Quote)</div>
+    <div class="custom-desc">Hear something funny in your house today? Add it right here so it shows up in future detective rounds!</div>
+    <div class="form-group">
+      <label>The Exact Dialogue / Quote:</label>
+      <input type="text" id="customQuoteInput" class="custom-input" placeholder='e.g. "Who drank the cold water and put an empty bottle back in the fridge?!"'>
+    </div>
+    <div class="form-group">
+      <label>The Situation / Context:</label>
+      <input type="text" id="customContextInput" class="custom-input" placeholder='e.g. "Staring into the open refrigerator door at 10 PM"'>
+    </div>
+    <div class="form-group">
+      <label>Who actually said it?</label>
+      <select id="customPersonSelect" class="custom-select">
+        <option value="Daddy">👨 Daddy</option>
+        <option value="Mummy">👩 Mummy</option>
+        <option value="Dhruv">👦 Dhruv</option>
+        <option value="Kid 2">👧 Kid 2</option>
+      </select>
+    </div>
+    <button class="submit-quote-btn" id="btnSaveCustomQuote">+ Add to Family Deck</button>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ----------------------------------------------------
+   Audio Synthesizer Engine (Web Audio API)
+---------------------------------------------------- */
+class SoundEngine {
+  constructor() {
+    this.ctx = null;
+  }
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+  correct() {
+    this.init();
+    const notes = [523.25, 659.25, 783.99, 1046.50];
+    notes.forEach((freq, idx) => {
+      const now = this.ctx.currentTime + idx * 0.08;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.3);
+    });
+  }
+  wrong() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(260, now);
+    osc.frequency.exponentialRampToValueAtTime(140, now + 0.25);
+    gain.gain.setValueAtTime(0.25, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.28);
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.3);
+  }
+}
+const audio = new SoundEngine();
+
+/* ----------------------------------------------------
+   Curated Household Mystery Quotes Deck
+---------------------------------------------------- */
+const DEFAULT_QUOTES = [
+  {
+    quote: "I was NOT sleeping! I was just resting my eyes!",
+    context: "Said on the sofa with TV playing news on volume 35 while loud snoring was audible.",
+    speaker: "Daddy",
+    category: "Sleeping Habits",
+    commentary: "Classic Daddy defense mechanism! As soon as you try to change the TV channel, he suddenly opens one eye and says 'I'm watching that!'"
+  },
+  {
+    quote: "Did someone move my keys? They were right here on the dining table!",
+    context: "Searching the entire house for 15 minutes before realizing they were inside his own pocket.",
+    speaker: "Daddy",
+    category: "Lost & Found",
+    commentary: "Guaranteed 100% of the time: The keys/spectacles were right in his pocket or on his own forehead."
+  },
+  {
+    quote: "If I come there and find it within 5 seconds, what will you give me?",
+    context: "Responding to someone shouting 'Mummy I can't find my blue shirt anywhere!'",
+    speaker: "Mummy",
+    category: "Superpowers",
+    commentary: "Mummy has X-ray vision. She walks into the room and picks it up from the exact spot you stared at for 10 minutes."
+  },
+  {
+    quote: "Just 5 more minutes! The match is in the final round!",
+    context: "Dinner has been called 4 times. Samosas are getting cold on the plate.",
+    speaker: "Dhruv",
+    category: "Screen Time",
+    commentary: "A gamer's '5 minutes' is a universal constant roughly equivalent to 45 Earth minutes."
+  },
+  {
+    quote: "He started it first! I was just sitting quietly!",
+    context: "Sudden loud shriek from the living room during evening study hours.",
+    speaker: "Kid 2",
+    category: "Sibling Rivalry",
+    commentary: "The universal defense strategy: Perfect angelic innocent face presented to Mummy."
+  },
+  {
+    quote: "Why are all the lights and fans running in empty rooms?! Do you think electricity grows on trees?!",
+    context: "Walking into the corridor and clicking off 4 switches consecutively with dramatic sighing.",
+    speaker: "Daddy",
+    category: "Electricity Patrol",
+    commentary: "The national hobby of every Indian father: Patrolling switches and auditing the electricity bill."
+  },
+  {
+    quote: "I have literally zero clothes to wear for this family function!",
+    context: "Standing in front of a wardrobe containing 45 ironed sarees and kurtas.",
+    speaker: "Mummy",
+    category: "Wardrobe Dilemma",
+    commentary: "A full wardrobe, yet absolutely nothing suitable for today's specific vibe."
+  },
+  {
+    quote: "Can I have just one more scoop of ice cream? I already finished all my homework!",
+    context: "Opening the freezer door on tiptoes with hopeful puppy eyes.",
+    speaker: "Dhruv",
+    category: "Snack Tactics",
+    commentary: "Negotiation skills that could rival top corporate dealmakers!"
+  },
+  {
+    quote: "Who drank the cold water and put the empty bottle right back into the fridge?!",
+    context: "Opening fridge door to find 20ml of water sitting at the bottom of the pitcher.",
+    speaker: "Mummy",
+    category: "Kitchen Crimes",
+    commentary: "A heinous household crime punishable by immediate kitchen cleaning duty."
+  },
+  {
+    quote: "I don't need Google Maps! I know a shortcut through this galli that will save 20 minutes!",
+    context: "Car is currently stuck behind three cows and a broken vegetable cart in a narrow dead end.",
+    speaker: "Daddy",
+    category: "Driving Directions",
+    commentary: "Fatherly intuition vs. Satellite GPS. Fatherly pride always takes the galli!"
+  },
+  {
+    quote: "Have you reached safely? Message me the minute you step out of the cab!",
+    context: "A routine 15-minute journey to the grocery store around the corner.",
+    speaker: "Mummy",
+    category: "Family Tracking",
+    commentary: "Parental radar is always active at 360-degree range!"
+  },
+  {
+    quote: "Why can't we just order pizza tonight? Nobody feels like eating roti!",
+    context: "Sunday evening 7:30 PM debate in the living room.",
+    speaker: "Dhruv",
+    category: "Dinner Wars",
+    commentary: "United front formed between kids to overthrow home-cooked vegetables in favor of cheese pizza!"
+  }
+];
+
+/* ----------------------------------------------------
+   Game State
+---------------------------------------------------- */
+let quotesList = [];
+let currentIndex = 0;
+let score = 0;
+let streak = 0;
+let hasAnswered = false;
+
+/* ----------------------------------------------------
+   DOM Elements
+---------------------------------------------------- */
+const scoreVal = document.getElementById('scoreVal');
+const streakVal = document.getElementById('streakVal');
+const roundVal = document.getElementById('roundVal');
+const quoteCategory = document.getElementById('quoteCategory');
+const quoteText = document.getElementById('quoteText');
+const quoteContext = document.getElementById('quoteContext');
+
+const optionsGrid = document.getElementById('optionsGrid');
+const suspectBtns = document.querySelectorAll('.suspect-btn');
+const revealBanner = document.getElementById('revealBanner');
+const revealStatus = document.getElementById('revealStatus');
+const revealCommentary = document.getElementById('revealCommentary');
+const btnNextQuote = document.getElementById('btnNextQuote');
+
+/* ----------------------------------------------------
+   Deck Initialization & Shuffling
+---------------------------------------------------- */
+function loadDeck() {
+  const custom = JSON.parse(localStorage.getItem('sarav_dialogue_custom_quotes') || '[]');
+  const combined = [...DEFAULT_QUOTES, ...custom];
+  // Shuffle
+  for (let i = combined.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [combined[i], combined[j]] = [combined[j], combined[i]];
+  }
+  quotesList = combined;
+  currentIndex = 0;
+  score = 0;
+  streak = 0;
+}
+
+function displayCurrentQuote() {
+  if (currentIndex >= quotesList.length) {
+    currentIndex = 0; // loop with re-shuffle
+  }
+  const q = quotesList[currentIndex];
+  hasAnswered = false;
+
+  quoteCategory.textContent = q.category || "Household Mystery";
+  quoteText.textContent = `"${q.quote}"`;
+  quoteContext.textContent = q.context;
+
+  roundVal.textContent = `${currentIndex + 1} / ${quotesList.length}`;
+  revealBanner.classList.remove('active');
+
+  // Reset button states
+  suspectBtns.forEach(btn => {
+    btn.className = 'suspect-btn';
+    btn.disabled = false;
+  });
+}
+
+function handleGuess(selectedSpeaker) {
+  if (hasAnswered) return;
+  hasAnswered = true;
+  audio.init();
+
+  const q = quotesList[currentIndex];
+  const isCorrect = (selectedSpeaker.toLowerCase() === q.speaker.toLowerCase());
+
+  // Update button appearances
+  suspectBtns.forEach(btn => {
+    btn.disabled = true;
+    if (btn.dataset.person.toLowerCase() === q.speaker.toLowerCase()) {
+      btn.classList.add('correct');
+    } else if (btn.dataset.person.toLowerCase() === selectedSpeaker.toLowerCase()) {
+      btn.classList.add('wrong');
+    }
+  });
+
+  if (isCorrect) {
+    score++;
+    streak++;
+    scoreVal.textContent = score;
+    streakVal.textContent = `🔥 ${streak}`;
+    audio.correct();
+
+    if (streak >= 3) {
+      fireConfetti();
+    }
+
+    revealStatus.textContent = `🎯 Spot on! It was ${q.speaker}!`;
+    revealStatus.style.color = '#10B981';
+  } else {
+    streak = 0;
+    streakVal.textContent = `🔥 0`;
+    audio.wrong();
+
+    revealStatus.textContent = `❌ Nope! It was actually ${q.speaker}!`;
+    revealStatus.style.color = '#EF4444';
+  }
+
+  revealCommentary.textContent = q.commentary || `That's an undeniable ${q.speaker} quote!`;
+  revealBanner.classList.add('active');
+}
+
+suspectBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    handleGuess(btn.dataset.person);
+  });
+});
+
+btnNextQuote.addEventListener('click', () => {
+  currentIndex++;
+  displayCurrentQuote();
+});
+
+/* ----------------------------------------------------
+   Custom Quote Submissions
+---------------------------------------------------- */
+document.getElementById('btnSaveCustomQuote').addEventListener('click', () => {
+  const quoteInput = document.getElementById('customQuoteInput');
+  const contextInput = document.getElementById('customContextInput');
+  const speakerSelect = document.getElementById('customPersonSelect');
+
+  const quote = quoteInput.value.trim();
+  const context = contextInput.value.trim() || "Caught live in action at home!";
+  const speaker = speakerSelect.value;
+
+  if (!quote) {
+    alert("Please write the dialogue first!");
+    return;
+  }
+
+  const customQuotes = JSON.parse(localStorage.getItem('sarav_dialogue_custom_quotes') || '[]');
+  customQuotes.push({
+    quote,
+    context,
+    speaker,
+    category: "Real Family Memory",
+    commentary: `Submitted directly by the family! Verified 100% authentic ${speaker} quote.`
+  });
+  localStorage.setItem('sarav_dialogue_custom_quotes', JSON.stringify(customQuotes));
+
+  alert(`✅ Added quote to family mystery deck! It will appear in upcoming rounds.`);
+  quoteInput.value = '';
+  contextInput.value = '';
+
+  // Add into current active game deck immediately
+  quotesList.splice(currentIndex + 1, 0, {
+    quote,
+    context,
+    speaker,
+    category: "Real Family Memory",
+    commentary: `Submitted directly by the family! Verified 100% authentic ${speaker} quote.`
+  });
+  roundVal.textContent = `${currentIndex + 1} / ${quotesList.length}`;
+});
+
+/* ----------------------------------------------------
+   Theme & Startup
+---------------------------------------------------- */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+function initTheme() {
+  const saved = localStorage.getItem('sarav_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+}
+themeToggleBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('sarav_theme', next);
+});
+initTheme();
+
+loadDeck();
+displayCurrentQuote();
+
+/* ----------------------------------------------------
+   Confetti Engine
+---------------------------------------------------- */
+function fireConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#F59E0B', '#EF4444', '#10B981', '#38BDF8', '#8B5CF6'];
+
+  for (let i = 0; i < 70; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 14,
+      vy: (Math.random() - 0.7) * 14,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 10
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.35;
+      p.rotation += p.rotSpeed;
+      p.alpha -= 0.012;
+
+      if (p.alpha > 0) {
+        active = true;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      }
+    });
+
+    if (active) requestAnimationFrame(render);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  requestAnimationFrame(render);
+}
+</script>
+</body>
+</html>

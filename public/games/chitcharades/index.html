@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Chit-Charades 🗣️ — Forehead Tilt & Party Guessing Game | Sarav's World</title>
+<meta name="description" content="The ultimate Desi family party game! Hold the phone to your forehead or face your team. Tilt down for Correct, tilt up to Pass before the 60-second buzzer sounds!">
+<link rel="canonical" href="https://iamsaravofficial.com/games/chitcharades/">
+
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@600;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0B0E14;
+    --surface: #141923;
+    --surface-2: #1D2433;
+    --border: #2B354A;
+    --border-soft: #202738;
+    --text: #F8FAFC;
+    --text-dim: #94A3B8;
+    --accent: #F59E0B;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+    --correct-bg: #064E3B;
+    --correct-text: #34D399;
+    --pass-bg: #7F1D1D;
+    --pass-text: #F87171;
+    --brand-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  }
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --border: #E2E8F0;
+    --border-soft: #EDF2F7;
+    --text: #0F172A;
+    --text-dim: #64748B;
+    --accent: #D97706;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+    --correct-bg: #D1FAE5;
+    --correct-text: #059669;
+    --pass-bg: #FEE2E2;
+    --pass-text: #DC2626;
+    --brand-gradient: linear-gradient(135deg, #D97706 0%, #DC2626 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    min-height: 100vh; overflow-x: hidden; touch-action: manipulation;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .bungee { font-family: 'Bungee', cursive; }
+
+  /* Ecosystem Menubar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); margin: 0 4px; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn { color: var(--accent); }
+  .eco-caret { font-size: 9px; }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+  }
+  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+
+  /* App Container */
+  .game-container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* Header */
+  .game-header {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .game-title-wrap h1 { font-size: 26px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .game-title-wrap p { font-size: 13.5px; color: var(--text-dim); margin-top: 4px; }
+  .theme-toggle-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600;
+  }
+
+  /* Roster Selection */
+  .roster-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 14px 18px; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .roster-label { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .roster-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .player-pill {
+    background: var(--surface-2); border: 1.5px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;
+  }
+  .player-pill.active {
+    background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700;
+    box-shadow: 0 4px 14px var(--accent-glow);
+  }
+
+  /* Deck Category Selector */
+  .deck-section-title {
+    font-size: 14px; font-weight: 700; color: var(--text-dim); text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 12px;
+  }
+  .deck-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px; margin-bottom: 24px;
+  }
+  .deck-card {
+    background: var(--surface); border: 2px solid var(--border);
+    border-radius: 14px; padding: 18px; cursor: pointer; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative; overflow: hidden;
+  }
+  .deck-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .deck-card.selected {
+    border-color: var(--accent); background: var(--surface-2);
+    box-shadow: 0 8px 24px var(--accent-glow);
+  }
+  .deck-icon { font-size: 32px; margin-bottom: 8px; display: block; }
+  .deck-title { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+  .deck-desc { font-size: 12.5px; color: var(--text-dim); line-height: 1.4; }
+  .deck-count {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 11px; font-weight: 700; background: var(--surface-2);
+    padding: 3px 8px; border-radius: 8px; border: 1px solid var(--border);
+  }
+  .deck-card.selected .deck-count { background: var(--accent); color: #000; }
+
+  /* Duration / Mode Control */
+  .control-row {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  }
+  .timer-options { display: flex; gap: 8px; align-items: center; }
+  .timer-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px; border-radius: 10px;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .timer-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+  /* Big Start Button */
+  .start-btn {
+    width: 100%; background: var(--brand-gradient); color: #FFF;
+    border: none; border-radius: 16px; padding: 20px; font-size: 20px;
+    font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 0.05em;
+    box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .start-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(245, 158, 11, 0.5); }
+  .start-btn:active { transform: translateY(1px); }
+
+  /* IN-GAME FOREHEAD MODE FULLSCREEN OVERLAY */
+  .gameplay-overlay {
+    position: fixed; inset: 0; background: #0B0E14; z-index: 5000;
+    display: none; flex-direction: column; justify-content: space-between;
+    padding: 24px 20px; user-select: none; -webkit-user-select: none;
+    transition: background-color 0.15s ease;
+  }
+  .gameplay-overlay.active { display: flex; }
+  .gameplay-overlay.flash-correct { background: #064E3B !important; }
+  .gameplay-overlay.flash-pass { background: #7F1D1D !important; }
+
+  /* HUD Top */
+  .hud-bar {
+    display: flex; justify-content: space-between; align-items: center; width: 100%;
+    z-index: 10;
+  }
+  .hud-badge {
+    background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 30px;
+    font-size: 15px; font-weight: 800; color: #FFF; letter-spacing: 0.04em;
+  }
+  .hud-timer {
+    font-size: 28px; font-weight: 800; color: #F59E0B;
+    background: rgba(0,0,0,0.4); padding: 6px 20px; border-radius: 30px; border: 1.5px solid #F59E0B;
+  }
+  .hud-timer.urgent { color: #EF4444; border-color: #EF4444; animation: blink 0.5s infinite; }
+  @keyframes blink { 50% { opacity: 0.4; } }
+
+  /* Main Word Card Area */
+  .card-center {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 20px;
+  }
+  .word-category-pill {
+    font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: #F59E0B; background: rgba(245, 158, 11, 0.15); padding: 6px 16px; border-radius: 20px;
+    margin-bottom: 24px; border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  .main-word {
+    font-size: clamp(34px, 7vw, 68px); font-weight: 800; color: #FFFFFF;
+    line-height: 1.15; max-width: 95%; word-break: break-word; text-shadow: 0 4px 24px rgba(0,0,0,0.8);
+    margin-bottom: 16px;
+  }
+  .word-hint {
+    font-size: clamp(15px, 3vw, 20px); color: rgba(255, 255, 255, 0.7);
+    max-width: 80%; font-weight: 500;
+  }
+
+  /* Tap Control Zones (For mobile/desktop without tilt, or for easy tapping) */
+  .tap-controls {
+    display: flex; gap: 14px; width: 100%; max-width: 600px; margin: 0 auto; z-index: 10;
+  }
+  .btn-pass {
+    flex: 1; background: rgba(220, 38, 38, 0.85); color: #FFF; border: none;
+    padding: 20px; border-radius: 16px; font-size: 18px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+    box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-correct {
+    flex: 1.4; background: rgba(16, 185, 129, 0.9); color: #FFF; border: none;
+    padding: 20px; border-radius: 16px; font-size: 20px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .tilt-indicator {
+    text-align: center; font-size: 12px; color: rgba(255,255,255,0.55);
+    margin-top: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  /* ROUND RECAP MODAL */
+  .recap-modal {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(14px);
+    display: none; align-items: center; justify-content: center; z-index: 6000; padding: 20px;
+  }
+  .recap-modal.active { display: flex; }
+  .recap-box {
+    background: var(--surface); border: 2px solid var(--border); border-radius: 20px;
+    max-width: 540px; width: 100%; padding: 28px 24px; max-height: 90vh; overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6); text-align: center;
+  }
+  .recap-trophy { font-size: 54px; margin-bottom: 8px; }
+  .recap-title { font-size: 24px; font-weight: 800; margin-bottom: 4px; }
+  .recap-player { font-size: 14px; color: var(--accent); font-weight: 700; margin-bottom: 18px; }
+  .recap-score-stat {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px; display: flex; justify-content: space-around; margin-bottom: 20px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num { font-size: 26px; font-weight: 800; font-family: 'IBM Plex Mono', monospace; }
+  .stat-num.c { color: #10B981; }
+  .stat-num.p { color: #EF4444; }
+  .stat-lbl { font-size: 11px; text-transform: uppercase; color: var(--text-dim); font-weight: 700; }
+
+  /* Word breakdown pill list */
+  .recap-list {
+    text-align: left; max-height: 200px; overflow-y: auto; margin-bottom: 22px;
+    background: var(--surface-2); border-radius: 12px; padding: 12px;
+  }
+  .recap-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 10px; border-bottom: 1px solid var(--border-soft); font-size: 14px; font-weight: 600;
+  }
+  .recap-row:last-child { border-bottom: none; }
+  .recap-tag {
+    font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;
+  }
+  .recap-tag.correct { background: var(--correct-bg); color: var(--correct-text); }
+  .recap-tag.passed { background: var(--pass-bg); color: var(--pass-text); }
+
+  .recap-actions { display: flex; gap: 10px; }
+  .recap-btn-play {
+    flex: 1; background: var(--brand-gradient); color: #FFF; border: none;
+    padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 800; cursor: pointer;
+  }
+  .recap-btn-share {
+    background: #25D366; color: #FFF; border: none;
+    padding: 14px 18px; border-radius: 12px; font-size: 15px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; gap: 6px;
+  }
+
+  /* Confetti Canvas */
+  #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
+
+  /* Leaderboard Card */
+  .leaderboard-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-top: 24px;
+  }
+  .leaderboard-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 12px; }
+  .lb-table { width: 100%; border-collapse: collapse; }
+  .lb-table th { text-align: left; font-size: 11.5px; color: var(--text-dim); padding: 8px; border-bottom: 1px solid var(--border); }
+  .lb-table td { padding: 10px 8px; font-size: 13.5px; border-bottom: 1px solid var(--border-soft); }
+
+  /* Instructions Card */
+  .howto-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 18px; margin-top: 20px; font-size: 13px; color: var(--text-dim); line-height: 1.6;
+  }
+  .howto-card h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">Sarav's World</a>
+      <span class="eco-divider">/</span>
+      
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/doc-vault/">🔐 Doc Vault</a>
+          <a href="https://iamsaravofficial.com/apps/voice-notes/">🎙️ Voice Notes</a>
+          <a href="https://iamsaravofficial.com/apps/task-zen/">✅ Task Zen</a>
+          <a href="https://iamsaravofficial.com/apps/family-ledger/">💰 Family Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/family-recipe-vault/">🍲 Family Recipe Vault</a>
+          <a href="https://iamsaravofficial.com/apps/desi-food-explorer/">🍛 Desi Food Explorer</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Games Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/" class="current">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/heritage-weaver/">🏛️ Heritage Weaver</a>
+          <a href="https://iamsaravofficial.com/projects/folk-soundscape/">🪕 Folk Soundscape</a>
+          <a href="https://iamsaravofficial.com/projects/mythos-interactive/">📜 Mythos Interactive</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); margin-right:12px; font-weight:600;">🎪 Playground</a>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
+  </div>
+</div>
+
+<!-- Main Game Lobby -->
+<div class="game-container">
+  <!-- Header -->
+  <div class="game-header">
+    <div class="game-title-wrap">
+      <h1>🗣️ Chit-Charades</h1>
+      <p>Forehead Tilt & Party Guessing Game — Hubby, Wifey, Kids & Family!</p>
+    </div>
+  </div>
+
+  <!-- Roster Selection -->
+  <div class="roster-card">
+    <span class="roster-label">Who is Guessing?</span>
+    <div class="roster-pills" id="rosterPills">
+      <button class="player-pill active" data-player="Daddy">👨 Daddy</button>
+      <button class="player-pill" data-player="Mummy">👩 Mummy</button>
+      <button class="player-pill" data-player="Dhruv">👦 Dhruv</button>
+      <button class="player-pill" data-player="Kid 2">👧 Kid 2</button>
+      <button class="player-pill" data-player="Guest">✨ Guest</button>
+    </div>
+  </div>
+
+  <!-- Deck Selection -->
+  <div class="deck-section-title">Select Deck Category</div>
+  <div class="deck-grid" id="deckGrid">
+    <div class="deck-card selected" data-deck="cinema">
+      <span class="deck-count">35 Cards</span>
+      <span class="deck-icon">🎬</span>
+      <div class="deck-title">90s & 2000s Cinema</div>
+      <div class="deck-desc">Iconic Tamil & Hindi movies, legendary punch dialogues, superstar characters & songs.</div>
+    </div>
+
+    <div class="deck-card" data-deck="family">
+      <span class="deck-count">30 Cards</span>
+      <span class="deck-icon">🏠</span>
+      <div class="deck-title">Household Dramas & Quirks</div>
+      <div class="deck-desc">TV remote searches, Sunday Biryani, asking "Have you reached?" 5 times & family chaos.</div>
+    </div>
+
+    <div class="deck-card" data-deck="food">
+      <span class="deck-count">30 Cards</span>
+      <span class="deck-icon">🥟</span>
+      <div class="deck-title">Desi Street Food & Sweets</div>
+      <div class="deck-desc">From piping hot Filter Kaapi and crispy Medu Vada to Pani Puri and Motichoor Ladoo.</div>
+    </div>
+
+    <div class="deck-card" data-deck="charades">
+      <span class="deck-count">25 Cards</span>
+      <span class="deck-icon">🎭</span>
+      <div class="deck-title">Crazy Dumb Charades</div>
+      <div class="deck-desc">Pure actions only! Peeling a blazing hot potato, riding a bumpy auto rickshaw, sneezing silently.</div>
+    </div>
+  </div>
+
+  <!-- Duration Controls -->
+  <div class="control-row">
+    <div>
+      <span class="roster-label" style="display:block; margin-bottom:4px;">Round Timer</span>
+      <span style="font-size:12.5px; color:var(--text-dim);">Fast-paced frenzy or relaxed family rounds</span>
+    </div>
+    <div class="timer-options">
+      <button class="timer-btn" data-time="45">45s</button>
+      <button class="timer-btn active" data-time="60">60s</button>
+      <button class="timer-btn" data-time="90">90s</button>
+    </div>
+  </div>
+
+  <!-- Start Button -->
+  <button class="start-btn" id="startRoundBtn">
+    <span>🚀 Start Forehead Round</span>
+  </button>
+
+  <!-- How to Play -->
+  <div class="howto-card">
+    <h3>📖 How to Play on Mobile & Tablet:</h3>
+    <p>
+      1. Choose who is guessing (e.g. <b>Daddy</b>) and select a category.<br>
+      2. Tap <b>Start Forehead Round</b>. Hold the phone against your forehead facing outward towards your family members.<br>
+      3. Your family members shout clues, dance, or act without speaking the actual word!<br>
+      4. <b>Got it Right?</b> Tilt the phone screen <b>DOWN</b> (towards floor) or tap the green <b>CORRECT</b> button!<br>
+      5. <b>Stuck?</b> Tilt the phone screen <b>UP</b> (towards sky) or tap the red <b>PASS</b> button!<br>
+      6. Score as many points as possible before the timer reaches zero!
+    </p>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="leaderboard-card">
+    <div class="leaderboard-title">🏆 Family Chit-Charades Champions</div>
+    <table class="lb-table">
+      <thead>
+        <tr>
+          <th>Guesser</th>
+          <th>Deck</th>
+          <th>Correct</th>
+          <th>Passed</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody">
+        <tr><td colspan="5" style="text-align:center; color:var(--text-dim);">No games played yet today. Start a round!</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- IN-GAME FULLSCREEN OVERLAY -->
+<div class="gameplay-overlay" id="gameplayOverlay">
+  <!-- Top HUD -->
+  <div class="hud-bar">
+    <div class="hud-badge" id="hudPlayerBadge">👨 Daddy</div>
+    <div class="hud-timer mono" id="hudTimer">60</div>
+    <div class="hud-badge" id="hudScoreBadge">Score: 0</div>
+  </div>
+
+  <!-- Central Word Card -->
+  <div class="card-center">
+    <div class="word-category-pill" id="cardCategoryPill">🎬 90s & 2000s Cinema</div>
+    <div class="main-word" id="cardMainWord">Baasha</div>
+    <div class="word-hint" id="cardHint">"Naan oru thadava sonna, nooru thadava sonna madhiri!"</div>
+  </div>
+
+  <!-- Bottom Action Buttons (Touch + Tilt fallback) -->
+  <div>
+    <div class="tap-controls">
+      <button class="btn-pass" id="btnPass">
+        <span>❌ Pass (Tilt Up)</span>
+      </button>
+      <button class="btn-correct" id="btnCorrect">
+        <span>✅ Got It! (Tilt Down)</span>
+      </button>
+    </div>
+    <div class="tilt-indicator">Tip: Tilt screen down for Correct • Tilt up for Pass</div>
+  </div>
+</div>
+
+<!-- ROUND RECAP MODAL -->
+<div class="recap-modal" id="recapModal">
+  <div class="recap-box">
+    <div class="recap-trophy" id="recapTrophy">🎉</div>
+    <div class="recap-title bungee" id="recapTitle">Time's Up!</div>
+    <div class="recap-player" id="recapPlayerLine">Guesser: Daddy | Deck: 90s Cinema</div>
+
+    <div class="recap-score-stat">
+      <div class="stat-item">
+        <div class="stat-num c" id="statCorrect">0</div>
+        <div class="stat-lbl">Guessed Correct</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num p" id="statPassed">0</div>
+        <div class="stat-lbl">Passed Words</div>
+      </div>
+    </div>
+
+    <div class="recap-list" id="recapWordsList">
+      <!-- Injected word rows -->
+    </div>
+
+    <div class="recap-actions">
+      <button class="recap-btn-play" id="btnPlayAgain">🔄 Play Another Round</button>
+      <button class="recap-btn-share" id="btnShareWhatsApp">💬 Share</button>
+    </div>
+  </div>
+</div>
+
+<canvas id="confettiCanvas"></canvas>
+
+<script>
+/* ----------------------------------------------------
+   Audio Synthesizer Engine (Web Audio API)
+---------------------------------------------------- */
+class SoundEngine {
+  constructor() {
+    this.ctx = null;
+  }
+  init() {
+    if (!this.ctx) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      this.ctx = new AudioCtx();
+    }
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+  }
+  correct() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc1 = this.ctx.createOscillator();
+    const osc2 = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc1.type = 'sine';
+    osc2.type = 'triangle';
+    osc1.frequency.setValueAtTime(523.25, now); // C5
+    osc1.frequency.exponentialRampToValueAtTime(783.99, now + 0.12); // G5
+    osc2.frequency.setValueAtTime(659.25, now + 0.06); // E5
+    osc2.frequency.exponentialRampToValueAtTime(1046.50, now + 0.22); // C6
+
+    gain.gain.setValueAtTime(0.25, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+
+    osc1.connect(gain);
+    osc2.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc1.start(now);
+    osc2.start(now + 0.05);
+    osc1.stop(now + 0.35);
+    osc2.stop(now + 0.35);
+  }
+  pass() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(320, now);
+    osc.frequency.exponentialRampToValueAtTime(160, now + 0.2);
+
+    gain.gain.setValueAtTime(0.2, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.22);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.25);
+  }
+  tick() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(800, now);
+    gain.gain.setValueAtTime(0.05, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.05);
+  }
+  timesUp() {
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(440, now);
+    osc.frequency.setValueAtTime(349.23, now + 0.15);
+    osc.frequency.setValueAtTime(261.63, now + 0.3);
+
+    gain.gain.setValueAtTime(0.3, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.65);
+  }
+}
+const audio = new SoundEngine();
+
+/* ----------------------------------------------------
+   Curated Desi Family Card Decks
+---------------------------------------------------- */
+const DECKS = {
+  cinema: [
+    { word: "Baasha", hint: "Rajinikanth auto driver with a secret Mumbai Don past!" },
+    { word: "Annamalai", hint: "Paala kudikira pullaikku thalayila konda... Milkman turns billionaire!" },
+    { word: "Padayappa", hint: "Seeviduven! Neelambari vs Superstar confrontation" },
+    { word: "Ghilli", hint: "Vijay kabaddi match + Muthupandi: 'Chellam Chellam!'" },
+    { word: "Alaipayuthey", hint: "Madhavan & Shalini electric train romance by Mani Ratnam" },
+    { word: "Sholay", hint: "Kitne aadmi the? Gabbar Singh & Thakur" },
+    { word: "Dilwale Dulhania Le Jayenge", hint: "Bade bade deshon mein... Raj & Simran train scene" },
+    { word: "Mankatha", hint: "Ajith Kumar salt & pepper Vinayak Mahadev heist" },
+    { word: "Mudhalvan", hint: "Arjun as 1-Day Chief Minister interview with Raghuvaran" },
+    { word: "Sivaji The Boss", hint: "Superstar chewing gum flick & 'Kanna, panni dhan kootama varum!'" },
+    { word: "3 Idiots", hint: "All is Well! Rancho, Farhan & Raju" },
+    { word: "Lagaan", hint: "Cricket match to cancel British tax in Champaner" },
+    { word: "Vikram Vedha", hint: "Oru kadha sollatuma saar? Vijay Sethupathi & Madhavan" },
+    { word: "Indian (Senapathy)", hint: "Kamal Haasan freedom fighter using ancient Varma Kalai" },
+    { word: "Enthiran / Chitti", hint: "Speed 1 Terahertz, memory 1 Zettabyte! Robo dot!" },
+    { word: "Kabhi Khushi Kabhie Gham", hint: "Poo, Rahul, Anjali and the giant helicopter entry" },
+    { word: "Panchatanthiram", hint: "Kamal Haasan, Crazy Mohan dialogues & Maggie diamond necklace" },
+    { word: "Chandramukhi", hint: "Laka laka laka laka! Ganga trapped in the palace room" },
+    { word: "Theri", hint: "Joseph Kuruvilla bakery owner protecting his little daughter" },
+    { word: "RRR", hint: "Naatu Naatu hook step dance competition with the British" },
+    { word: "Bahubali", hint: "Why Katappa killed Bahubali? Lifting the massive Shivling" },
+    { word: "Michael Madana Kama Rajan", hint: "Kameshwaran cook, fish curry & quadruplet madness" },
+    { word: "Avvai Shanmughi", hint: "Kamal Haasan dressed as an elderly Brahmin nanny" },
+    { word: "Munna Bhai M.B.B.S.", hint: "Jaadu ki jhappi & Circuit solving medical exams" },
+    { word: "Chennai 600028", hint: "Shark vs Sharks gully cricket rivalry & friendship" }
+  ],
+  family: [
+    { word: "Searching for TV Remote", hint: "Always hidden deep inside the sofa cushion folds!" },
+    { word: "Boiling Milk Overflowing", hint: "You looked away for just 2 seconds and it spilled!" },
+    { word: "Daddy's WhatsApp Forwards", hint: "Good morning flowers & dubious health advice at 6 AM" },
+    { word: "Eating the Last Samosa", hint: "Everyone stares at the plate pretending they don't want it" },
+    { word: "Sunday Biryani Aroma", hint: "Waking up at 11 AM to the sound of pressure cooker whistles" },
+    { word: "Have You Reached Yet?", hint: "Phone call arriving the exact millisecond you reach destination" },
+    { word: "Negotiating with Auto Driver", hint: "Meter-ku mela 30 rupees saar! Bargaining marathon" },
+    { word: "Tupperware Missing Lid", hint: "A drawer full of 40 containers and zero matching caps" },
+    { word: "Tangled Earphone Wires", hint: "Pulling a giant rat's nest out of your pocket" },
+    { word: "Guests Arriving Unannounced", hint: "Sudden frantic scramble to clean the living room in 90 seconds" },
+    { word: "Asking Wi-Fi Password", hint: "The first thing guests do after drinking one sip of water" },
+    { word: "Sunday Afternoon Snooze", hint: "Falling asleep on sofa watching TV, claiming 'I was just resting my eyes'" },
+    { word: "Grandmother's Pickle Jar", hint: "Kept on terrace under the sun with white cloth tied" },
+    { word: "Finding Gold Ring in Saree", hint: "Wedding preparation chaos with 5 suitcases wide open" },
+    { word: "Stealing Ice Cream at 1 AM", hint: "Opening freezer door in pitch dark without making a sound" }
+  ],
+  food: [
+    { word: "Filter Kaapi", hint: "Poured from Davara to tumbler from a great height to make froth!" },
+    { word: "Crispy Masala Dosa", hint: "Golden brown rolled crepe loaded with spicy potato filling" },
+    { word: "Pani Puri", hint: "Eating all 6 puris without letting the mint water spill on your shirt" },
+    { word: "Hot Gulab Jamun", hint: "Deep-fried sweet dumplings swimming in warm cardamom syrup" },
+    { word: "Medu Vada with Sambar", hint: "Crispy lentil donut dipped in piping hot drumstick sambar" },
+    { word: "Chicken Biryani", hint: "Fragrant basmati rice cooked on dum with boiled egg & raita" },
+    { word: "Madurai Jigarthanda", hint: "Chilled almond gum, nannari syrup, basundi & rich ice cream" },
+    { word: "Kothu Parotta", hint: "Rhythmic metal blade clanging on hot iron griddle in street stall" },
+    { word: "Mysore Pak", hint: "Mouth-melting golden ghee sweet created in the royal palace" },
+    { word: "Piping Hot Samosa", hint: "Triangular crispy crust packed with spicy peas & potatoes" },
+    { word: "Mango Kulfi", hint: "Dense frozen milk popsicle served on a wooden stick" },
+    { word: "Jalebi", hint: "Swirly orange spirals dripping with crystal sugar syrup" },
+    { word: "Chettinad Pepper Chicken", hint: "Fiery dry roasted pepper spices that make you sweat happily" }
+  ],
+  charades: [
+    { word: "Peeling a Blazing Hot Potato", hint: "Juggle it between hands quickly while blowing on it!" },
+    { word: "Riding a Bumpy Auto Rickshaw", hint: "Bouncing up and down while holding onto the ceiling rod" },
+    { word: "Silent Library Sneezing", hint: "Trying desperately to suppress a massive sneeze without sound" },
+    { word: "Walking on Burning Beach Sand", hint: "Tiptoeing rapidly at Marina Beach at 2 PM seeking shade" },
+    { word: "Untangling a Kite Thread", hint: "Frustrated shaking of kite string caught in a tree branch" },
+    { word: "Washing Hands with No Towel", hint: "Aggressively flapping both wet hands in the air" },
+    { word: "Swatting a Mosquito at Midnight", hint: "Clapping in mid-air and checking your palms with phone light" },
+    { word: "Trying on Tight Jeans", hint: "Hopping around the room and sucking in your stomach" },
+    { word: "Cat Walking on a High Ledge", hint: "Delicate balance, sniffing around, sudden jump" },
+    { word: "Heavy Weightlifter Struggling", hint: "Chalking hands, deep grunt, knees trembling under bar" }
+  ]
+};
+
+/* ----------------------------------------------------
+   Game State
+---------------------------------------------------- */
+let selectedPlayer = "Daddy";
+let selectedDeckKey = "cinema";
+let roundDuration = 60;
+let remainingTime = 60;
+let timerInterval = null;
+let currentDeckCards = [];
+let currentCardIndex = 0;
+let playedCards = []; // { word, hint, result: 'correct' | 'pass' }
+let isPlaying = false;
+let isTiltLocked = false;
+
+/* ----------------------------------------------------
+   DOM Elements
+---------------------------------------------------- */
+const rosterPills = document.querySelectorAll('.player-pill');
+const deckCards = document.querySelectorAll('.deck-card');
+const timerBtns = document.querySelectorAll('.timer-btn');
+const startRoundBtn = document.getElementById('startRoundBtn');
+
+const gameplayOverlay = document.getElementById('gameplayOverlay');
+const hudPlayerBadge = document.getElementById('hudPlayerBadge');
+const hudTimer = document.getElementById('hudTimer');
+const hudScoreBadge = document.getElementById('hudScoreBadge');
+const cardCategoryPill = document.getElementById('cardCategoryPill');
+const cardMainWord = document.getElementById('cardMainWord');
+const cardHint = document.getElementById('cardHint');
+
+const btnPass = document.getElementById('btnPass');
+const btnCorrect = document.getElementById('btnCorrect');
+
+const recapModal = document.getElementById('recapModal');
+const recapTitle = document.getElementById('recapTitle');
+const recapPlayerLine = document.getElementById('recapPlayerLine');
+const statCorrect = document.getElementById('statCorrect');
+const statPassed = document.getElementById('statPassed');
+const recapWordsList = document.getElementById('recapWordsList');
+const btnPlayAgain = document.getElementById('btnPlayAgain');
+const btnShareWhatsApp = document.getElementById('btnShareWhatsApp');
+const leaderboardBody = document.getElementById('leaderboardBody');
+
+/* ----------------------------------------------------
+   Theme & Preferences
+---------------------------------------------------- */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+function initTheme() {
+  const saved = localStorage.getItem('sarav_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+}
+themeToggleBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('sarav_theme', next);
+});
+initTheme();
+
+/* ----------------------------------------------------
+   Roster & Selection Handlers
+---------------------------------------------------- */
+rosterPills.forEach(pill => {
+  pill.addEventListener('click', () => {
+    rosterPills.forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    selectedPlayer = pill.dataset.player;
+  });
+});
+
+deckCards.forEach(card => {
+  card.addEventListener('click', () => {
+    deckCards.forEach(c => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selectedDeckKey = card.dataset.deck;
+  });
+});
+
+timerBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    timerBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    roundDuration = parseInt(btn.dataset.time, 10);
+  });
+});
+
+/* ----------------------------------------------------
+   Round Management
+---------------------------------------------------- */
+function shuffle(array) {
+  const arr = [...array];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function startRound() {
+  audio.init();
+  requestOrientationPermission();
+
+  currentDeckCards = shuffle(DECKS[selectedDeckKey] || DECKS.cinema);
+  currentCardIndex = 0;
+  playedCards = [];
+  remainingTime = roundDuration;
+  isPlaying = true;
+  isTiltLocked = false;
+
+  hudPlayerBadge.textContent = selectedPlayer;
+  hudTimer.textContent = remainingTime;
+  hudTimer.classList.remove('urgent');
+  hudScoreBadge.textContent = 'Score: 0';
+
+  displayCurrentCard();
+  gameplayOverlay.classList.add('active');
+
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    remainingTime--;
+    hudTimer.textContent = remainingTime;
+
+    if (remainingTime <= 10) {
+      hudTimer.classList.add('urgent');
+      audio.tick();
+    }
+
+    if (remainingTime <= 0) {
+      endRound();
+    }
+  }, 1000);
+}
+
+function displayCurrentCard() {
+  if (currentCardIndex >= currentDeckCards.length) {
+    // Re-shuffle to keep going if players are ultra fast
+    currentDeckCards = shuffle(DECKS[selectedDeckKey]);
+    currentCardIndex = 0;
+  }
+  const item = currentDeckCards[currentCardIndex];
+  cardMainWord.textContent = item.word;
+  cardHint.textContent = item.hint;
+
+  const deckNames = { cinema: "🎬 Cinema", family: "🏠 Household Dramas", food: "🥟 Desi Food", charades: "🎭 Dumb Charades" };
+  cardCategoryPill.textContent = deckNames[selectedDeckKey] || "🗣️ Charades";
+}
+
+function handleGuess(isCorrect) {
+  if (!isPlaying || isTiltLocked) return;
+
+  isTiltLocked = true;
+  const currentItem = currentDeckCards[currentCardIndex];
+
+  if (isCorrect) {
+    audio.correct();
+    playedCards.push({ ...currentItem, result: 'correct' });
+    gameplayOverlay.classList.add('flash-correct');
+  } else {
+    audio.pass();
+    playedCards.push({ ...currentItem, result: 'pass' });
+    gameplayOverlay.classList.add('flash-pass');
+  }
+
+  const score = playedCards.filter(c => c.result === 'correct').length;
+  hudScoreBadge.textContent = `Score: ${score}`;
+
+  setTimeout(() => {
+    gameplayOverlay.classList.remove('flash-correct', 'flash-pass');
+    currentCardIndex++;
+    displayCurrentCard();
+    setTimeout(() => {
+      isTiltLocked = false;
+    }, 250);
+  }, 350);
+}
+
+function endRound() {
+  clearInterval(timerInterval);
+  isPlaying = false;
+  audio.timesUp();
+  gameplayOverlay.classList.remove('active');
+
+  const correctCount = playedCards.filter(c => c.result === 'correct').length;
+  const passCount = playedCards.filter(c => c.result === 'pass').length;
+
+  statCorrect.textContent = correctCount;
+  statPassed.textContent = passCount;
+  recapPlayerLine.textContent = `Guesser: ${selectedPlayer} | Deck: ${selectedDeckKey.toUpperCase()}`;
+
+  if (correctCount >= 8) {
+    fireConfetti();
+    recapTitle.textContent = "🏆 Superstar Guesser!";
+  } else if (correctCount >= 4) {
+    recapTitle.textContent = "👏 Great Teamwork!";
+  } else {
+    recapTitle.textContent = "😅 Good Try!";
+  }
+
+  // Populate words list
+  recapWordsList.innerHTML = '';
+  playedCards.forEach(c => {
+    const row = document.createElement('div');
+    row.className = 'recap-row';
+    row.innerHTML = `
+      <span>${c.word}</span>
+      <span class="recap-tag ${c.result === 'correct' ? 'correct' : 'passed'}">${c.result === 'correct' ? 'Correct' : 'Passed'}</span>
+    `;
+    recapWordsList.appendChild(row);
+  });
+
+  saveGameScore(selectedPlayer, selectedDeckKey, correctCount, passCount);
+  renderLeaderboard();
+  recapModal.classList.add('active');
+}
+
+/* ----------------------------------------------------
+   Orientation Tilt Mechanics (Forehead play)
+---------------------------------------------------- */
+function requestOrientationPermission() {
+  if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+    DeviceOrientationEvent.requestPermission()
+      .then(response => {
+        if (response === 'granted') {
+          window.addEventListener('deviceorientation', handleOrientation);
+        }
+      })
+      .catch(console.error);
+  } else {
+    window.addEventListener('deviceorientation', handleOrientation);
+  }
+}
+
+let lastGamma = null;
+let lastBeta = null;
+
+function handleOrientation(event) {
+  if (!isPlaying || isTiltLocked) return;
+
+  // Beta represents front-to-back tilt in degrees (-180 to 180)
+  // When holding phone on forehead in portrait or landscape:
+  const beta = event.beta;
+  if (beta === null) return;
+
+  // Forehead standard portrait orientation:
+  // Tilting down (towards floor): beta increases significantly or pitch drops
+  // Normal forehead upright angle is roughly 75 to 105 degrees.
+  if (beta > 60 && beta < 120) {
+    // Upright ready state
+    return;
+  }
+
+  // Screen facing floor (Tilt Down = Correct)
+  if (beta < 30 && beta > -30) {
+    handleGuess(true);
+  }
+  // Screen facing sky (Tilt Up = Pass)
+  else if (beta > 150 || beta < -150) {
+    handleGuess(false);
+  }
+}
+
+/* ----------------------------------------------------
+   Button & Keyboard Listeners
+---------------------------------------------------- */
+startRoundBtn.addEventListener('click', startRound);
+btnCorrect.addEventListener('click', () => handleGuess(true));
+btnPass.addEventListener('click', () => handleGuess(false));
+
+btnPlayAgain.addEventListener('click', () => {
+  recapModal.classList.remove('active');
+});
+
+// Keyboard hotkeys for desktop pair play
+window.addEventListener('keydown', (e) => {
+  if (!isPlaying) return;
+  if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+    handleGuess(true);
+  } else if (e.key === 'ArrowLeft' || e.key === 'Escape') {
+    handleGuess(false);
+  }
+});
+
+/* ----------------------------------------------------
+   Leaderboard Persistence & WhatsApp Sharing
+---------------------------------------------------- */
+function saveGameScore(player, deck, correct, passed) {
+  const scores = JSON.parse(localStorage.getItem('sarav_chitcharades_scores') || '[]');
+  scores.unshift({
+    player,
+    deck,
+    correct,
+    passed,
+    date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  });
+  localStorage.setItem('sarav_chitcharades_scores', JSON.stringify(scores.slice(0, 10)));
+}
+
+function renderLeaderboard() {
+  const scores = JSON.parse(localStorage.getItem('sarav_chitcharades_scores') || '[]');
+  if (!scores.length) return;
+
+  leaderboardBody.innerHTML = scores.map(s => `
+    <tr>
+      <td><b>${s.player}</b></td>
+      <td><span style="text-transform:capitalize;">${s.deck}</span></td>
+      <td style="color:#10B981; font-weight:700;">+${s.correct}</td>
+      <td style="color:#EF4444; font-weight:600;">${s.passed}</td>
+      <td style="color:var(--text-dim); font-size:12px;">${s.date}</td>
+    </tr>
+  `).join('');
+}
+renderLeaderboard();
+
+btnShareWhatsApp.addEventListener('click', () => {
+  const correctCount = statCorrect.textContent;
+  const passedCount = statPassed.textContent;
+  const text = `🗣️ Chit-Charades Family Battle!\n\n` +
+    `👤 Guesser: ${selectedPlayer}\n` +
+    `🎯 Score: ${correctCount} Correct | ${passedCount} Passed\n` +
+    `⏱️ Duration: ${roundDuration}s in category "${selectedDeckKey.toUpperCase()}"\n\n` +
+    `Can anyone beat this score? Play now at:\nhttps://iamsaravofficial.com/games/chitcharades/`;
+  
+  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+});
+
+/* ----------------------------------------------------
+   Lightweight Confetti Engine
+---------------------------------------------------- */
+function fireConfetti() {
+  const canvas = document.getElementById('confettiCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+  const colors = ['#F59E0B', '#EF4444', '#10B981', '#38BDF8', '#EC4899', '#8B5CF6'];
+
+  for (let i = 0; i < 90; i++) {
+    particles.push({
+      x: canvas.width / 2,
+      y: canvas.height / 2,
+      vx: (Math.random() - 0.5) * 16,
+      vy: (Math.random() - 0.7) * 16,
+      size: Math.random() * 8 + 4,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      alpha: 1,
+      rotation: Math.random() * 360,
+      rotSpeed: (Math.random() - 0.5) * 10
+    });
+  }
+
+  function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let active = false;
+
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.35; // gravity
+      p.rotation += p.rotSpeed;
+      p.alpha -= 0.012;
+
+      if (p.alpha > 0) {
+        active = true;
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate((p.rotation * Math.PI) / 180);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0, p.alpha);
+        ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        ctx.restore();
+      }
+    });
+
+    if (active) requestAnimationFrame(render);
+    else ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+  requestAnimationFrame(render);
+}
+</script>
+</body>
+</html>
