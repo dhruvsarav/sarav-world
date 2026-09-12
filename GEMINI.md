@@ -52,6 +52,22 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Header must use `.header-main-row` containing `.header-left` (`flex: 1; min-width: 0;`) and `.header-right` (`flex-shrink: 0; align-items: flex-end;`). The theme selector (`Auto | ☀️ Light | 🌙 Dark`) is **always anchored to the top-right end**.
    - Preset buttons (`.header-presets`) must always sit in a dedicated block directly underneath the header row, spanning full width with its own breathing room so chips never force horizontal flex-wrapping or push the theme toggle below them.
    - Home Budget Planner features 3 GenZ vibe presets: `💀 No Cap YOLO (95% Burn)`, `✨ Soft Life (65% Burn)`, `🗿 Monk Mode (35% Burn)`.
+9. **Executive Digital Workplace & AI Suite Architecture (`/eapps/`)**:
+   - Executive portal at `/eapps/` (`https://iamsaravofficial.com/eapps/`) crafted for CIOs, IT Directors, Heads of EUC, and Chief AI Architects.
+   - Houses 3 deterministic decision engines:
+     1. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
+     2. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
+     3. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (1E, Nexthink, Riverbed), 3-year TCO modeling, and 4-phase SLA-to-XLA migration playbook.
+   - All enterprise apps retain strict client-side zero-telemetry computation.
+   - Ecosystem Navigation Standard: `Apps ▾`, `E-Apps ▾`, `Projects ▾`, and right-anchored `🧠 Enterprise AI Economics` pill.
+10. **Official Brand Icon Systems for Apps & E-Apps Suites**:
+   - **Apps Hub (`/apps/`)**:
+     * Official Brand Icon: **The Cosmic Glass Cube** (Isometric frosted glass sandbox with floating cyber gold `#E3A63E` and digital teal `#4FB0A8` spheres).
+     * Production assets: `apps-full.png` (1024px), `apps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
+   - **E-Apps Suite (`/eapps/`)**:
+     * Official Brand Icon: **The Sovereign Hex Core** (Faceted titanium hexagonal core with precision gyroscopic telemetry rings and glowing amber/cyan dual-core neural processor).
+     * Production assets: `eapps-full.png` (1024px), `eapps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
+   - Both portals feature a responsive squircle brand badge in their respective hero headers.
 
 ---
 
