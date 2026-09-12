@@ -54,12 +54,14 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Home Budget Planner features 3 GenZ vibe presets: `💀 No Cap YOLO (95% Burn)`, `✨ Soft Life (65% Burn)`, `🗿 Monk Mode (35% Burn)`.
 9. **Executive Digital Workplace & AI Suite Architecture (`/eapps/`)**:
    - Executive portal at `/eapps/` (`https://iamsaravofficial.com/eapps/`) crafted for CIOs, IT Directors, Heads of EUC, and Chief AI Architects.
-   - Houses 3 deterministic decision engines:
+   - Houses 5 deterministic decision engines:
      1. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
      2. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
      3. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (1E, Nexthink, Riverbed), 3-year TCO modeling, and 4-phase SLA-to-XLA migration playbook.
+     4. `fsoptimizer` (`/apps/fsoptimizer/`): Field Services hub-and-spoke dispatch optimization using square-root travel law, AI remote deflection, and vehicle OPEX modeling.
+     5. `desksidestaffing` (`/apps/desksidestaffing/`): Deskside, Tech Bar, and smart locker staffing capacity engine with dual-tier Erlang C queueing and hybrid office attendance factors.
    - All enterprise apps retain strict client-side zero-telemetry computation.
-    - Ecosystem Navigation Standard: `Apps ▾`, `E-Apps ▾`, `Projects ▾`, `Games ▾`, and right-anchored `🧠 Enterprise AI Economics` pill.
+   - Ecosystem Navigation Standard for Enterprise Apps: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/` and all 5 enterprise engines). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
 10. **Official Brand Icon Systems for Apps & E-Apps Suites**:
    - **Apps Hub (`/apps/`)**:
      * Official Brand Icon: **The Cosmic Glass Cube** (Isometric frosted glass sandbox with floating cyber gold `#E3A63E` and digital teal `#4FB0A8` spheres).
@@ -73,7 +75,9 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
      2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) played on a single phone via Pass & Guess, featuring edge-to-edge full-card privacy barrier masking active choices, live Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
      3. `secretbox` (`/games/secretbox/`): 3D antique mystery chest dispensing 4 card decks (Wholesome Memories, Cheeky Truths, Mild Desi Dares, and Family Mimicry) with 30s ticking timer and Chicken-Out Penalty Wheel.
-   - Ecosystem Navigation Bar: `Games ▾` dropdown is anchored between `Projects ▾` and `🧠 Enterprise AI Economics`, linking all 3 games.
+12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
+   - All 13 Consumer Apps & Games pages (`/apps/`, 9 live calculators, and 3 games at `/games/`) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
+   - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
 
 ---
 
