@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Cultural Heritage &amp; Knowledge Projects | Sarav's World</title>
+<meta name="description" content="Curated cultural preservation databases and open knowledge repositories: 436 Temples of Tamil Gods, complete 1,330 Thirukkural with G.U. Pope translation, and weekly FactDrop tickets.">
+<link rel="canonical" href="https://iamsaravofficial.com/projects/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/projects/">
+<meta property="og:title" content="Cultural Heritage &amp; Knowledge Projects — Sarav's World">
+<meta property="og:description" content="Preserving ancient heritage, classical Tamil literature, and curious universal trivia — Temples of Tamil Gods, Thirukkural Hub, and FactDrop.">
+<meta property="og:image" content="https://iamsaravofficial.com/temples/assets/logo-512.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cultural Heritage &amp; Knowledge Projects — Sarav's World">
+<meta name="twitter:description" content="Preserving ancient heritage, classical Tamil literature, and curious universal trivia — Temples of Tamil Gods, Thirukkural Hub, and FactDrop.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/temples/assets/logo-512.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/temples/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://iamsaravofficial.com/temples/assets/favicon-16x16.png">
+<link rel="apple-touch-icon" href="https://iamsaravofficial.com/temples/assets/apple-touch-icon.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Noto+Serif+Tamil:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --temple: #C9A15A;
+    --temple-soft: rgba(201, 161, 90, 0.15);
+    --kural: #E58E4E;
+    --kural-soft: rgba(229, 142, 78, 0.15);
+    --fact: #38BDF8;
+    --fact-soft: rgba(56, 189, 248, 0.15);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --temple: #A27932;
+    --temple-soft: rgba(162, 121, 50, 0.12);
+    --kural: #B85F1E;
+    --kural-soft: rgba(184, 95, 30, 0.12);
+    --fact: #0284C7;
+    --fact-soft: rgba(2, 132, 199, 0.12);
+    --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 700; }
+  p { margin: 0 0 0.6em; }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 230px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+    transition: all 0.12s ease;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
+  .eco-tokenomics {
+    color: var(--accent2) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px; background: var(--accent2-soft);
+  }
+
+  /* Main Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  /* Hero Section */
+  .hero {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 24px; margin-bottom: 36px; padding-bottom: 28px; border-bottom: 1px solid var(--border-soft);
+    flex-wrap: wrap;
+  }
+  .hero-brand-wrap { display: flex; align-items: center; gap: 22px; flex: 1; min-width: 320px; }
+  .hero-icon-box {
+    width: 68px; height: 68px; border-radius: 16px; background: var(--surface-2);
+    border: 1px solid var(--border); padding: 6px; box-shadow: var(--shadow);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .hero-icon-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+  .hero-text { flex: 1; min-width: 260px; }
+  .hero-text .eyebrow {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); margin-bottom: 6px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hero-text h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin: 0 0 8px; color: var(--text); }
+  .hero-text .sub { color: var(--text-dim); font-size: 15px; max-width: 820px; line-height: 1.55; margin: 0; }
+  @media(max-width: 640px) {
+    .hero-brand-wrap { flex-direction: column; align-items: flex-start; gap: 14px; }
+  }
+
+  /* Segmented Theme Selector */
+  .theme-selector {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px;
+    gap: 2px;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-dim);
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 11px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+  }
+
+  /* Metrics Summary Bar */
+  .metrics-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 40px;
+  }
+  @media(max-width: 880px) { .metrics-bar { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 480px) { .metrics-bar { grid-template-columns: 1fr; } }
+  .metric-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .metric-val { font-size: 26px; font-weight: 700; color: var(--text); line-height: 1.1; margin-bottom: 4px; }
+  .metric-val span.unit { font-size: 14px; font-weight: 500; color: var(--accent); margin-left: 4px; }
+  .metric-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+  .metric-sub { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; }
+
+  /* Section Title */
+  .section-head {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  }
+  .section-head h2 { font-size: 20px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .section-head .count-badge {
+    background: var(--surface-2); border: 1px solid var(--border);
+    padding: 3px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; color: var(--accent);
+  }
+
+  /* Projects Showcase Stack */
+  .project-stack { display: flex; flex-direction: column; gap: 32px; }
+
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 18px; overflow: hidden; box-shadow: var(--shadow);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: grid; grid-template-columns: 340px 1fr; gap: 0;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+  @media(max-width: 900px) { .project-card { grid-template-columns: 1fr; } }
+
+  .project-visual {
+    background: var(--surface-2); border-right: 1px solid var(--border);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 36px 28px; position: relative; overflow: hidden; text-align: center;
+  }
+  @media(max-width: 900px) {
+    .project-visual { border-right: none; border-bottom: 1px solid var(--border); padding: 28px 20px; }
+  }
+  .project-visual::before {
+    content: ""; position: absolute; inset: 0;
+    background: radial-gradient(circle at center, var(--glow-color, rgba(227,166,62,0.12)) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .project-logo-box {
+    width: 120px; height: 120px; border-radius: 24px; background: var(--surface);
+    border: 1px solid var(--border); padding: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    margin-bottom: 18px; display: flex; align-items: center; justify-content: center;
+    position: relative; z-index: 1;
+  }
+  .project-logo-box img { width: 100%; height: 100%; object-fit: contain; }
+  .project-visual-tag {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--accent); background: var(--surface); border: 1px solid var(--border);
+    padding: 4px 10px; border-radius: 20px; position: relative; z-index: 1;
+  }
+
+  .project-body { padding: 32px 36px; display: flex; flex-direction: column; justify-content: space-between; }
+  @media(max-width: 600px) { .project-body { padding: 24px 20px; } }
+
+  .project-badge-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .p-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 6px;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .p-badge.temple { background: var(--temple-soft); color: var(--temple); border: 1px solid var(--temple); }
+  .p-badge.kural { background: var(--kural-soft); color: var(--kural); border: 1px solid var(--kural); }
+  .p-badge.fact { background: var(--fact-soft); color: var(--fact); border: 1px solid var(--fact); }
+  .p-badge.neutral { background: var(--surface-2); color: var(--text-dim); border: 1px solid var(--border); }
+
+  .project-title { font-size: 24px; font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.25; }
+  .project-title .tamil { font-family: 'Noto Serif Tamil', serif; font-size: 18px; font-weight: 600; color: var(--text-dim); display: block; margin-top: 4px; }
+
+  .project-desc { font-size: 14px; color: var(--text-dim); line-height: 1.65; margin-bottom: 20px; }
+
+  .project-feature-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 18px; margin-bottom: 24px;
+  }
+  @media(max-width: 680px) { .project-feature-grid { grid-template-columns: 1fr; } }
+  .p-feat { font-size: 12.5px; color: var(--text); display: flex; align-items: flex-start; gap: 8px; }
+  .p-feat-icon { color: var(--accent); font-weight: 700; flex-shrink: 0; line-height: 1.3; }
+
+  .project-actions {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding-top: 18px; border-top: 1px solid var(--border-soft); flex-wrap: wrap;
+  }
+  .btn-project {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--accent); color: var(--accent-ink);
+    font-family: inherit; font-size: 13.5px; font-weight: 700;
+    padding: 10px 20px; border-radius: 9px; text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .btn-project:hover { filter: brightness(1.1); text-decoration: none; transform: translateX(2px); }
+  .project-meta-pill {
+    font-size: 12px; color: var(--text-faint); font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border-soft);
+    padding: 36px 0 16px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-top: 60px;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+</style>
+</head>
+<body>
+
+<!-- Standardized Ecosystem Navigation Bar for Projects Ecosystem (All 4 Dropdowns) -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">│</span>
+
+      <!-- E-Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">⚡ Field Services Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Staffing Engine</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">│</span>
+
+      <!-- Games Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot Winner</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">❤️ Couples Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">📦 Family Secret Box</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">│</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/" class="current">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">🎟️ FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Header / Hero -->
+  <div class="hero">
+    <div class="hero-brand-wrap">
+      <div class="hero-icon-box">
+        <img src="https://iamsaravofficial.com/temples/assets/logo-512.png" alt="Cultural Projects Emblem">
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow">🏛️ Cultural Heritage &amp; Open Knowledge</div>
+        <h1>Sarav's Cultural &amp; Knowledge Projects</h1>
+        <p class="sub">Preserving ancient Dravidian sacred heritage, classical Tamil ethical philosophy, and curious universal trivia — engineered with client-side performance, bilingual Tamil-English typography, and zero telemetry.</p>
+      </div>
+    </div>
+    <div class="theme-selector" id="themeSelector">
+      <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+      <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+      <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+    </div>
+  </div>
+
+  <!-- Key Statistics Banner -->
+  <div class="metrics-bar">
+    <div class="metric-card">
+      <div class="metric-val mono">436<span class="unit">Temples</span></div>
+      <div class="metric-label">Sacred Heritage</div>
+      <div class="metric-sub">276 Shiva &amp; 108 Vishnu Divya Desams</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val mono">1,330<span class="unit">Kurals</span></div>
+      <div class="metric-label">Classical Ethics</div>
+      <div class="metric-sub">133 Chapters across Aram, Porul, Inbam</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val mono">100<span class="unit">Drops</span></div>
+      <div class="metric-label">Curated Facts</div>
+      <div class="metric-sub">9 Categories with Cloudflare KV Likes</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-val mono">100%<span class="unit">Free</span></div>
+      <div class="metric-label">Open Knowledge</div>
+      <div class="metric-sub">Zero Ads • Zero Trackers • Zero Telemetry</div>
+    </div>
+  </div>
+
+  <!-- Section Title -->
+  <div class="section-head">
+    <h2><span>🏛️ Master Cultural &amp; Open Knowledge Repositories</span></h2>
+    <span class="count-badge">3 Major Projects</span>
+  </div>
+
+  <!-- Projects Stack -->
+  <div class="project-stack">
+
+    <!-- 1. TEMPLES OF TAMIL GODS -->
+    <div class="project-card" style="--glow-color: rgba(201, 161, 90, 0.16);">
+      <div class="project-visual">
+        <div class="project-logo-box">
+          <img src="https://iamsaravofficial.com/temples/assets/logo-512.png" alt="Temples of Tamil Gods Seal">
+        </div>
+        <div class="project-visual-tag">Sacred Heritage</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-badge-row">
+            <span class="p-badge temple">436 Sacred Temples</span>
+            <span class="p-badge neutral">Bilingual Tamil &amp; English</span>
+            <span class="p-badge neutral">Sacred Circuits</span>
+          </div>
+          <h2 class="project-title">
+            Temples of Tamil Gods
+            <span class="tamil">தமிழ் கடவுளர்களின் புனிதத் தலங்கள்</span>
+          </h2>
+          <p class="project-desc">
+            A monumental bilingual guide and cultural archive documenting 436 ancient temples across Tamil Nadu. Features complete coverage of all 276 Shiva Paadal Petra Sthalams glorified in the 7th–9th century Tevaram hymns, 108 Vishnu Divya Desams sung by the Alvars in the Naalayira Divya Prabandham, Lord Murugan's Arupadaiveedu, Navagraha sthalams, and Shakti Peethams.
+          </p>
+          <div class="project-feature-grid">
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>282 / 276</b> Paadal Petra Sthalams (Sambandar, Appar, Sundarar)</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>108 / 108</b> Divya Desams with Alvar pasuram references</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>254+ Verified WebP Photos</b> from Wikimedia Commons</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Sacred Circuits:</b> Curated pilgrimage itineraries &amp; routes</span></div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://iamsaravofficial.com/temples/" class="btn-project">
+            <span>Explore 436 Sacred Temples</span>
+            <span>→</span>
+          </a>
+          <span class="project-meta-pill">445 Verified Pages • Offline First</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. THIRUKKURAL HUB -->
+    <div class="project-card" style="--glow-color: rgba(229, 142, 78, 0.16);">
+      <div class="project-visual">
+        <div class="project-logo-box">
+          <img src="https://iamsaravofficial.com/thirukkural/assets/logo-512.png" alt="Thirukkural Hub Seal">
+        </div>
+        <div class="project-visual-tag">Classical Philosophy</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-badge-row">
+            <span class="p-badge kural">1,330 Kurals</span>
+            <span class="p-badge neutral">133 Adhikarams</span>
+            <span class="p-badge neutral">Rev. G.U. Pope (1886)</span>
+          </div>
+          <h2 class="project-title">
+            Thirukkural Hub
+            <span class="tamil">திருக்குறள் களஞ்சியம் — முப்பால் முழக்கம்</span>
+          </h2>
+          <p class="project-desc">
+            The immortal classical Tamil masterpiece on universal ethics, statecraft, righteousness, and pure love by Sage Thiruvalluvar. Spans all 1,330 rhyming couplets across 133 Adhikarams in three universal Paals: Aram (Virtue), Porul (Wealth &amp; Governance), and Inbam (Love &amp; Emotion).
+          </p>
+          <div class="project-feature-grid">
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Complete 1,330 Kurals:</b> Authentic Tamil metrical couplets</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Rev. G.U. Pope Translation:</b> Classical 1886 English verse</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>3 Universal Paals:</b> Aram (38), Porul (70), Inbam (25)</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Instant Navigation:</b> Adhikaram directory &amp; keyword search</span></div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://iamsaravofficial.com/thirukkural/" class="btn-project">
+            <span>Read 1,330 Thirukkurals</span>
+            <span>→</span>
+          </a>
+          <span class="project-meta-pill">1,466 Pages • Bilingual Typography</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. FACTDROP -->
+    <div class="project-card" style="--glow-color: rgba(56, 189, 248, 0.16);">
+      <div class="project-visual">
+        <div class="project-logo-box">
+          <img src="https://iamsaravofficial.com/factdrop/assets/logo-512.png" alt="FactDrop Ticket Seal">
+        </div>
+        <div class="project-visual-tag">Curious Trivia</div>
+      </div>
+      <div class="project-body">
+        <div>
+          <div class="project-badge-row">
+            <span class="p-badge fact">100 Weekly Drops</span>
+            <span class="p-badge neutral">9 Categories</span>
+            <span class="p-badge neutral">Cloudflare KV Likes</span>
+          </div>
+          <h2 class="project-title">
+            FactDrop
+            <span class="tamil">வியக்கவைக்கும் உண்மைத் துளிகள்</span>
+          </h2>
+          <p class="project-desc">
+            A beautifully designed weekly repository of 100 mind-bending, verified facts across science, history, linguistics, psychology, nature, food, and modern technology. Presented in an interactive retro ticket-stub layout with real-time community engagement.
+          </p>
+          <div class="project-feature-grid">
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>100 Curated Facts:</b> Tech, Love, History, Science, Mind &amp; more</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Interactive Ticket Interface:</b> Tearable ticket stub aesthetics</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Real-Time Likes:</b> Serverless Cloudflare KV vote counter</span></div>
+            <div class="p-feat"><span class="p-feat-icon">✓</span> <span><b>Automated Pipeline:</b> Weekly GitHub Actions drop engine</span></div>
+          </div>
+        </div>
+        <div class="project-actions">
+          <a href="https://iamsaravofficial.com/factdrop/" class="btn-project">
+            <span>Browse FactDrop Tickets</span>
+            <span>→</span>
+          </a>
+          <span class="project-meta-pill">92 Pages • Zero Telemetry</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Standardized Footer -->
+  <footer>
+    <p>Projects Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/projects/">Sarav's Projects</a>. Cultural preservation &amp; open knowledge. Zero telemetry.</p>
+  </footer>
+
+</div>
+
+<script>
+// Standardized Theme Engine with Auto / Light / Dark syncing with sw_theme
+function setTheme(choice){
+  try { localStorage.setItem('sw_theme', choice); } catch(e){}
+  var activeTheme = choice;
+  if(choice === 'auto' || choice === 'system'){
+    activeTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  document.querySelectorAll('.theme-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === choice);
+  });
+}
+
+function initTheme(){
+  var saved = 'dark';
+  try { saved = localStorage.getItem('sw_theme') || 'auto'; } catch(e){}
+  setTheme(saved);
+}
+initTheme();
+
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(){
+  var saved = 'auto';
+  try { saved = localStorage.getItem('sw_theme') || 'auto'; } catch(e){}
+  if(saved === 'auto' || saved === 'system') setTheme('auto');
+});
+
+// Dropdown Handlers
+document.querySelectorAll('.eco-dropdown').forEach(function(drop){
+  var btn = drop.querySelector('.eco-dropbtn');
+  if(!btn) return;
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    document.querySelectorAll('.eco-dropdown').forEach(function(d){ if(d!==drop) d.classList.remove('open'); });
+    drop.classList.toggle('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
+});
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
+});
+</script>
+</body>
+</html>
