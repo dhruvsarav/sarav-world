@@ -12,11 +12,19 @@
 <meta property="og:url" content="https://iamsaravofficial.com/apps/">
 <meta property="og:title" content="Sarav's Playground — Web Apps &amp; Enterprise Tools">
 <meta property="og:description" content="Interactive financial calculators, retail precious metals engines, cultural preservation hubs, and enterprise AI simulators.">
-<meta property="og:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/apps-full.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Sarav's Playground — Web Apps &amp; Enterprise Tools">
 <meta name="twitter:description" content="Interactive financial calculators, retail wealth engines, and enterprise AI simulators.">
-<meta name="twitter:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/apps-full.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -139,12 +147,23 @@
     gap: 20px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--border-soft);
     flex-wrap: wrap;
   }
+  .hero-brand-wrap { display: flex; align-items: flex-start; gap: 20px; flex: 1; min-width: 300px; }
+  .hero-icon-box {
+    width: 68px; height: 68px; border-radius: 16px; background: var(--surface-2);
+    border: 1px solid var(--border); padding: 5px; box-shadow: var(--shadow);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  }
+  .hero-icon-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 11px; }
+  .hero-text { flex: 1; min-width: 260px; }
   .hero-text .eyebrow {
     font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
     color: var(--accent); margin-bottom: 6px; display: inline-flex; align-items: center; gap: 6px;
   }
   .hero-text h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin: 0 0 8px; }
   .hero-text .sub { color: var(--text-dim); font-size: 15px; max-width: 780px; line-height: 1.55; margin: 0; }
+  @media(max-width: 640px) {
+    .hero-brand-wrap { flex-direction: column; gap: 14px; }
+  }
 
   /* Standardized Segmented Theme Selector */
   .theme-selector {
@@ -358,10 +377,15 @@
 
   <!-- Hub Header -->
   <div class="hero">
-    <div class="hero-text">
-      <div class="eyebrow">🎡 Interactive Web Apps &amp; Tools</div>
-      <h1>Sarav's Playground</h1>
-      <p class="sub">Client-side financial calculators, retail precious metals engines, cultural preservation databases, and enterprise AI simulators — built with zero telemetry, instant computation, and Indian market fidelity.</p>
+    <div class="hero-brand-wrap">
+      <div class="hero-icon-box">
+        <img src="apps-square.png" alt="Sarav's Playground App Icon">
+      </div>
+      <div class="hero-text">
+        <div class="eyebrow">🎡 Interactive Web Apps &amp; Tools</div>
+        <h1>Sarav's Playground</h1>
+        <p class="sub">Client-side financial calculators, retail precious metals engines, cultural preservation databases, and enterprise AI simulators — built with zero telemetry, instant computation, and Indian market fidelity.</p>
+      </div>
     </div>
     <div class="theme-selector" id="themeSelector">
       <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
