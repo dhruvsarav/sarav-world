@@ -78,6 +78,12 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
    - All 13 Consumer Apps & Games pages (`/apps/`, 9 live calculators, and 3 games at `/games/`) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
+13. **Cultural Heritage & Open Knowledge Projects Hub (`/projects/`)**:
+   - Unites all 3 cultural databases: Temples of Tamil Gods, Thirukkural Hub, and FactDrop.
+   - Features complete 4-tier navigation: `Apps ▾`, `E-Apps ▾`, `Games ▾`, `Projects ▾`.
+14. **Master Playground Gateway Portal (`/playground/`)**:
+   - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/familywinner/`, and `/projects/`.
+   - Requires zero maintenance when individual apps or games are added.
 
 ---
 
