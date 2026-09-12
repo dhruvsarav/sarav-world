@@ -198,6 +198,65 @@
   }
   .submit-quote-btn:hover { background: var(--accent); color: #000; }
 
+  /* Mobile Fullscreen Immersive Stage */
+  body.is-fullscreen {
+    position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; overscroll-behavior: none; touch-action: none;
+  }
+  body.is-fullscreen .ecosystem-bar,
+  body.is-fullscreen .game-header,
+  body.is-fullscreen .custom-quote-card,
+  body.is-fullscreen footer {
+    display: none !important;
+  }
+
+  body.is-fullscreen .game-container {
+    max-width: 600px; height: 100vh; height: 100dvh;
+    padding: calc(env(safe-area-inset-top, 10px) + 8px) 14px calc(env(safe-area-inset-bottom, 12px) + 8px);
+    display: flex; flex-direction: column; justify-content: space-between;
+    box-sizing: border-box; overflow: hidden;
+  }
+
+  body.is-fullscreen .hud-card {
+    margin-bottom: 10px; padding: 10px 14px;
+  }
+  body.is-fullscreen .hud-val { font-size: 18px; }
+  body.is-fullscreen .hud-lbl { font-size: 10px; }
+
+  .fs-exit-btn {
+    display: none; background: rgba(255,255,255,0.12); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 12px; border-radius: 16px;
+    font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+  body.is-fullscreen .fs-exit-btn { display: inline-flex; align-items: center; }
+  .fs-exit-btn:active { background: rgba(239,68,68,0.4); }
+
+  body.is-fullscreen .quote-box {
+    margin-bottom: 12px; padding: 22px 16px 16px; flex: 1; min-height: 110px; max-height: 38dvh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+  body.is-fullscreen .quote-icon { font-size: 28px; margin-bottom: 6px; }
+  body.is-fullscreen .quote-text { font-size: clamp(17px, 4.2vw, 24px); margin-bottom: 8px; }
+  body.is-fullscreen .quote-context { font-size: 12.5px; }
+
+  body.is-fullscreen .options-title { margin-bottom: 8px; font-size: 12px; }
+  body.is-fullscreen .options-grid {
+    margin-bottom: 8px; gap: 8px;
+  }
+  body.is-fullscreen .suspect-btn {
+    padding: 10px 12px; border-radius: 12px;
+  }
+  body.is-fullscreen .suspect-avatar { font-size: 26px; }
+  body.is-fullscreen .suspect-name { font-size: 14.5px; }
+  body.is-fullscreen .suspect-tagline { font-size: 10.5px; }
+
+  body.is-fullscreen .reveal-banner {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 5000; padding: 24px; text-align: center;
+  }
+  body.is-fullscreen .reveal-banner.active { display: flex; }
+
   /* Confetti Canvas */
   #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
 </style>
@@ -271,6 +330,10 @@
       <h1>🎙️ Family Dialogue Detective</h1>
       <p>"Who Said That?!" — The hilarious household quote trivia showdown!</p>
     </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle-btn" id="fsToggleBtn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
   </div>
 
   <!-- HUD Bar -->
@@ -287,6 +350,7 @@
       <span class="hud-val" id="roundVal" style="color:#38BDF8;">1 / 25</span>
       <span class="hud-lbl">Quote Round</span>
     </div>
+    <button class="fs-exit-btn" onclick="toggleFullscreen()">🗗 Exit</button>
   </div>
 
   <!-- Quote Box -->
@@ -619,16 +683,75 @@ function handleGuess(selectedSpeaker) {
   revealBanner.classList.add('active');
 }
 
+/* ----------------------------------------------------
+   Fullscreen & Touch Handling Architecture
+---------------------------------------------------- */
+function isFsActive() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.body.classList.contains('is-fullscreen'));
+}
+
+function enterFullscreen() {
+  const docEl = document.documentElement;
+  document.body.classList.add('is-fullscreen');
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen().catch(() => {});
+  } else if (docEl.webkitRequestFullscreen) {
+    docEl.webkitRequestFullscreen();
+  }
+  updateFsBtn();
+}
+
+function exitFullscreen() {
+  document.body.classList.remove('is-fullscreen');
+  if (document.exitFullscreen) {
+    document.exitFullscreen().catch(() => {});
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+  updateFsBtn();
+}
+
+function toggleFullscreen() {
+  if (isFsActive()) {
+    exitFullscreen();
+  } else {
+    enterFullscreen();
+  }
+}
+
+function updateFsBtn() {
+  const active = isFsActive();
+  const btn = document.getElementById('fsToggleBtn');
+  if (btn) btn.innerText = active ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
+}
+
+document.addEventListener('fullscreenchange', updateFsBtn);
+document.addEventListener('webkitfullscreenchange', updateFsBtn);
+
 suspectBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
+  let lastTap = 0;
+  function handleChoice(e) {
+    if (e.cancelable) e.preventDefault();
+    const now = Date.now();
+    if (now - lastTap < 300) return;
+    lastTap = now;
     handleGuess(btn.dataset.person);
-  });
+  }
+  btn.addEventListener('touchstart', handleChoice, { passive: false });
+  btn.addEventListener('click', handleChoice);
 });
 
-btnNextQuote.addEventListener('click', () => {
+let nextLastTap = 0;
+function handleNext(e) {
+  if (e.cancelable) e.preventDefault();
+  const now = Date.now();
+  if (now - nextLastTap < 300) return;
+  nextLastTap = now;
   currentIndex++;
   displayCurrentQuote();
-});
+}
+btnNextQuote.addEventListener('touchstart', handleNext, { passive: false });
+btnNextQuote.addEventListener('click', handleNext);
 
 /* ----------------------------------------------------
    Custom Quote Submissions

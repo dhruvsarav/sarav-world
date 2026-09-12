@@ -249,6 +249,76 @@
   }
   .editor-add-btn:hover { border-color: var(--accent); }
 
+  /* Mobile Fullscreen Immersive Stage */
+  body.is-fullscreen {
+    position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; overscroll-behavior: none; touch-action: none;
+  }
+  body.is-fullscreen .ecosystem-bar,
+  body.is-fullscreen .game-header,
+  body.is-fullscreen .preset-tabs,
+  body.is-fullscreen .roster-card,
+  body.is-fullscreen .ledger-card,
+  body.is-fullscreen .custom-editor-card,
+  body.is-fullscreen footer {
+    display: none !important;
+  }
+
+  body.is-fullscreen .game-container {
+    max-width: 100%; height: 100vh; height: 100dvh;
+    padding: calc(env(safe-area-inset-top, 10px) + 8px) 16px calc(env(safe-area-inset-bottom, 12px) + 8px);
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* Floating HUD for Fullscreen */
+  .fs-hud {
+    display: none; width: 100%; max-width: 500px;
+    align-items: center; justify-content: space-between; gap: 8px;
+    background: rgba(18, 24, 36, 0.9); backdrop-filter: blur(14px);
+    border: 1px solid var(--border); border-radius: 30px; padding: 6px 12px;
+    z-index: 500;
+  }
+  body.is-fullscreen .fs-hud { display: flex; }
+
+  .fs-hud-players { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .fs-player-pill {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 4px 10px; border-radius: 16px;
+    font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+  .fs-player-pill.active {
+    background: var(--accent); color: #000; border-color: var(--accent);
+  }
+  .fs-exit-btn {
+    background: rgba(255,255,255,0.12); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 12px; border-radius: 16px;
+    font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+  .fs-exit-btn:active { background: rgba(239,68,68,0.4); }
+
+  body.is-fullscreen .wheel-stage {
+    margin: auto 0;
+  }
+  body.is-fullscreen .wheel-wrapper {
+    width: min(84vw, 55dvh, 400px);
+    height: min(84vw, 55dvh, 400px);
+  }
+  body.is-fullscreen .spin-action-bar {
+    margin: 10px auto 0;
+  }
+
+  /* Result Banner in Fullscreen */
+  body.is-fullscreen .result-banner {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(90vw, 420px); z-index: 2000;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.85); backdrop-filter: blur(16px);
+  }
+  .result-close-btn {
+    background: var(--accent); color: #000; border: none; padding: 10px 20px;
+    border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer;
+  }
+
   /* Confetti Canvas */
   #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
 </style>
@@ -316,11 +386,23 @@
 
 <!-- Main Container -->
 <div class="game-container">
+  <!-- Floating Fullscreen HUD -->
+  <div class="fs-hud" id="fsHud">
+    <div class="fs-hud-players" id="fsHudPlayers">
+      <!-- Synced via JS with roster -->
+    </div>
+    <button class="fs-exit-btn" onclick="toggleFullscreen()">🗗 Exit</button>
+  </div>
+
   <!-- Header -->
   <div class="game-header">
     <div class="game-title-wrap">
       <h1>🎡 Snack Roulette</h1>
       <p>Carnival Treat & Dare Spin Wheel — Samosas, Dares & Mystery Outcomes!</p>
+    </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle-btn" id="fsToggleBtn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
     </div>
   </div>
 
@@ -350,6 +432,7 @@
     <div class="result-title" id="resTitle">Warm Samosa with Mint Chutney</div>
     <div class="result-desc" id="resDesc">Enjoy your delicious treat! Next player's turn to spin.</div>
     <div class="result-btns">
+      <button class="result-close-btn" onclick="dismissResult()">Next Spinner ⚡</button>
       <button class="btn-wa-share" id="btnShareWhatsApp">💬 WhatsApp Result</button>
     </div>
   </div>
@@ -373,6 +456,7 @@
       <button class="spin-big-btn" id="spinBigBtn">
         <span>🎲 Spin the Wheel</span>
       </button>
+      <button class="spin-big-btn" id="fsStageBtn" onclick="toggleFullscreen()" style="flex:0 0 auto; background:var(--surface-2); border:1px solid var(--border); color:var(--text); padding:16px 20px;" title="Full Screen Carnival Wheel">⛶</button>
     </div>
   </div>
 
@@ -750,15 +834,109 @@ document.getElementById('addCustomBtn').addEventListener('click', () => {
 });
 
 /* ----------------------------------------------------
-   Roster Selection
+   Roster Selection & Fullscreen Sync
 ---------------------------------------------------- */
+function selectPlayer(name) {
+  activePlayer = name;
+  document.querySelectorAll('.player-pill').forEach(pill => {
+    pill.classList.toggle('active', pill.dataset.player === name);
+  });
+  syncFsHudPlayers();
+}
+
+function syncFsHudPlayers() {
+  const container = document.getElementById('fsHudPlayers');
+  if (!container) return;
+  const players = [
+    { label: '👨 Daddy', name: 'Daddy' },
+    { label: '👩 Mummy', name: 'Mummy' },
+    { label: '👦 Kid 1', name: 'Kid 1' },
+    { label: '👧 Kid 2', name: 'Kid 2' },
+    { label: '✨ Guest', name: 'Guest' }
+  ];
+  container.innerHTML = players.map(p => `
+    <button class="fs-player-pill ${p.name === activePlayer ? 'active' : ''}" onclick="selectPlayer('${p.name}')">${p.label}</button>
+  `).join('');
+}
+
 document.querySelectorAll('.player-pill').forEach(pill => {
   pill.addEventListener('click', () => {
-    document.querySelectorAll('.player-pill').forEach(p => p.classList.remove('active'));
-    pill.classList.add('active');
-    activePlayer = pill.dataset.player;
+    selectPlayer(pill.dataset.player);
   });
 });
+
+function dismissResult() {
+  resultBanner.classList.remove('active');
+  // Auto advance to next family member for party flow!
+  const players = ['Daddy', 'Mummy', 'Kid 1', 'Kid 2'];
+  const idx = players.indexOf(activePlayer);
+  if (idx !== -1) {
+    selectPlayer(players[(idx + 1) % players.length]);
+  }
+}
+
+/* ----------------------------------------------------
+   Fullscreen Architecture
+---------------------------------------------------- */
+function isFsActive() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.body.classList.contains('is-fullscreen'));
+}
+
+function enterFullscreen() {
+  const docEl = document.documentElement;
+  document.body.classList.add('is-fullscreen');
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen().catch(() => {});
+  } else if (docEl.webkitRequestFullscreen) {
+    docEl.webkitRequestFullscreen();
+  }
+  updateFsBtn();
+}
+
+function exitFullscreen() {
+  document.body.classList.remove('is-fullscreen');
+  if (document.exitFullscreen) {
+    document.exitFullscreen().catch(() => {});
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+  updateFsBtn();
+}
+
+function toggleFullscreen() {
+  if (isFsActive()) {
+    exitFullscreen();
+  } else {
+    enterFullscreen();
+  }
+}
+
+function updateFsBtn() {
+  const active = isFsActive();
+  const btn = document.getElementById('fsToggleBtn');
+  const stageBtn = document.getElementById('fsStageBtn');
+  if (btn) btn.innerText = active ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
+  if (stageBtn) stageBtn.innerText = active ? '🗗' : '⛶';
+}
+
+document.addEventListener('fullscreenchange', updateFsBtn);
+document.addEventListener('webkitfullscreenchange', updateFsBtn);
+
+// Non-passive Touch Binding
+function bindWheelTouch() {
+  let lastTap = 0;
+  function handleTouch(e) {
+    if (e.cancelable) e.preventDefault();
+    const now = Date.now();
+    if (now - lastTap < 300) return;
+    lastTap = now;
+    spinWheel();
+  }
+  centerHub.addEventListener('touchstart', handleTouch, { passive: false });
+  spinBigBtn.addEventListener('touchstart', handleTouch, { passive: false });
+}
+bindWheelTouch();
+syncFsHudPlayers();
 
 centerHub.addEventListener('click', spinWheel);
 spinBigBtn.addEventListener('click', spinWheel);

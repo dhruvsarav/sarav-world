@@ -220,6 +220,98 @@
     pointer-events: none; z-index: 9999;
   }
 
+  /* Fullscreen Mode */
+  body.is-fullscreen {
+    overflow: hidden !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+  }
+  body.is-fullscreen .ecosystem-bar,
+  body.is-fullscreen .game-header,
+  body.is-fullscreen .roster-bar,
+  body.is-fullscreen .scoreboard-strip,
+  body.is-fullscreen .controls-bar,
+  body.is-fullscreen .leaderboard-panel,
+  body.is-fullscreen footer {
+    display: none !important;
+  }
+  body.is-fullscreen .game-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+  }
+  body.is-fullscreen .arena-card {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    z-index: 10000 !important;
+  }
+  body.is-fullscreen #gameCanvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .fs-hud {
+    display: none;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+  body.is-fullscreen .fs-hud {
+    display: flex !important;
+  }
+  .fs-hud-left, .fs-hud-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    pointer-events: auto;
+  }
+  .fs-pill {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFF;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+  }
+  .fs-btn {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1.5px solid var(--accent);
+    color: #FFF;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: transform 0.1s ease;
+  }
+  .fs-btn:active {
+    transform: scale(0.95);
+  }
+  .btn-fs-toggle {
+    background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+    color: #FFF !important;
+    font-weight: 800;
+  }
+
   footer {
     border-top: 1px solid var(--border-soft); padding: 30px 0 10px;
     text-align: center; font-size: 12.5px; color: var(--text-faint); margin-top: 50px;
@@ -312,7 +404,18 @@
   </div>
 
   <!-- The Physics Arena -->
-  <div class="arena-card">
+  <div class="arena-card" id="arenaCard">
+    <div class="fs-hud" id="fsHud">
+      <div class="fs-hud-left">
+        <span class="fs-pill" id="fsPlayer">👨 Daddy</span>
+        <span class="fs-pill mono" id="fsScore">Score: 0</span>
+        <span class="fs-pill mono" id="fsBalls">Balls: 5/5</span>
+      </div>
+      <div class="fs-hud-right">
+        <button class="fs-btn" onclick="resetRound()" title="Reset Round">🔄 New</button>
+        <button class="fs-btn" onclick="toggleFullScreen()" title="Exit Fullscreen">✕ Exit</button>
+      </div>
+    </div>
     <div class="toast-overlay" id="toastOverlay">TABLE BOUNCE! +25</div>
     <canvas id="gameCanvas" width="900" height="500"></canvas>
   </div>
@@ -323,6 +426,7 @@
       <span>🕹️ <b>Controls:</b> Drag back the ball to aim angle &amp; power, then release to toss!</span>
     </div>
     <div class="action-btn-group">
+      <button class="btn btn-fs-toggle" onclick="toggleFullScreen()">⛶ Fullscreen</button>
       <button class="btn btn-secondary" onclick="resetRound()">🔄 New Round</button>
       <button class="btn btn-primary" onclick="shareWhatsApp()">📱 Share Score</button>
     </div>
@@ -471,18 +575,52 @@ function showToast(text){
   setTimeout(function(){ el.classList.remove('show'); }, 1400);
 }
 
+// Fullscreen Mode Controller
+function updateFsHud(){
+  var pEl = document.getElementById('fsPlayer');
+  var sEl = document.getElementById('fsScore');
+  var bEl = document.getElementById('fsBalls');
+  if(pEl) pEl.innerText = activePlayer;
+  if(sEl) sEl.innerText = 'Score: ' + score + (streak > 0 ? ' (' + streak + '🔥)' : '');
+  if(bEl) bEl.innerText = 'Balls: ' + balls + '/5';
+}
+
+function toggleFullScreen(){
+  var doc = window.document;
+  var docEl = document.documentElement;
+  var request = docEl.requestFullscreen || docEl.webkitRequestFullScreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+  var cancel = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.webkitFullscreenElement && !doc.mozFullScreenElement && !doc.msFullscreenElement){
+    if(request) request.call(docEl).catch(function(){});
+    document.body.classList.add('is-fullscreen');
+  } else {
+    if(cancel) cancel.call(doc).catch(function(){});
+    document.body.classList.remove('is-fullscreen');
+  }
+  updateFsHud();
+}
+document.addEventListener('fullscreenchange', function(){
+  if(!document.fullscreenElement) document.body.classList.remove('is-fullscreen');
+});
+document.addEventListener('webkitfullscreenchange', function(){
+  if(!document.webkitFullscreenElement) document.body.classList.remove('is-fullscreen');
+});
+
 // Drag & Throw Event Handlers
 function handlePointerDown(e){
   if(ball.inAir || balls <= 0) return;
+  if(e.cancelable && (e.type === 'touchstart' || e.type === 'touchmove')) e.preventDefault();
   var rect = canvas.getBoundingClientRect();
   var scaleX = canvas.width / rect.width;
   var scaleY = canvas.height / rect.height;
-  var x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-  var y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
-  x *= scaleX; y *= scaleY;
+  var clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+  var clientY = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : e.clientY;
+  var x = (clientX - rect.left) * scaleX;
+  var y = (clientY - rect.top) * scaleY;
 
   var dist = Math.hypot(x - ball.x, y - ball.y);
-  if(dist < 50){
+  if(dist < 75){
     isDragging = true;
     dragStart = { x: ball.x, y: ball.y };
     dragCurrent = { x: x, y: y };
@@ -491,16 +629,20 @@ function handlePointerDown(e){
 
 function handlePointerMove(e){
   if(!isDragging) return;
+  if(e.cancelable && e.type === 'touchmove') e.preventDefault();
   var rect = canvas.getBoundingClientRect();
   var scaleX = canvas.width / rect.width;
   var scaleY = canvas.height / rect.height;
-  var x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-  var y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
-  dragCurrent = { x: x * scaleX, y: y * scaleY };
+  var clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+  var clientY = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : e.clientY;
+  var x = (clientX - rect.left) * scaleX;
+  var y = (clientY - rect.top) * scaleY;
+  dragCurrent = { x: x, y: y };
 }
 
-function handlePointerUp(){
+function handlePointerUp(e){
   if(!isDragging) return;
+  if(e && e.cancelable && e.type === 'touchend') e.preventDefault();
   isDragging = false;
 
   var dx = dragStart.x - dragCurrent.x;
@@ -508,7 +650,6 @@ function handlePointerUp(){
   var power = Math.hypot(dx, dy);
 
   if(power > 15 && dy > 10){
-    // Throw the ball
     ball.inAir = true;
     ball.bounced = false;
     ball.settled = false;
@@ -518,15 +659,16 @@ function handlePointerUp(){
     playTossSound();
     balls--;
     document.getElementById('ballsLeft').innerText = balls;
+    updateFsHud();
   }
 }
 
 canvas.addEventListener('mousedown', handlePointerDown);
 window.addEventListener('mousemove', handlePointerMove);
 window.addEventListener('mouseup', handlePointerUp);
-canvas.addEventListener('touchstart', handlePointerDown, { passive: true });
-window.addEventListener('touchmove', handlePointerMove, { passive: true });
-window.addEventListener('touchend', handlePointerUp);
+canvas.addEventListener('touchstart', handlePointerDown, { passive: false });
+window.addEventListener('touchmove', handlePointerMove, { passive: false });
+window.addEventListener('touchend', handlePointerUp, { passive: false });
 
 // Physics update loop
 function updatePhysics(){
@@ -581,6 +723,7 @@ function updatePhysics(){
           if(streak > bestStreak) bestStreak = streak;
           document.getElementById('curScore').innerText = score;
           document.getElementById('streakCount').innerText = streak;
+          updateFsHud();
           playScoreSound(ball.bounced);
           fireConfetti();
           setTimeout(resetBall, 1200);
@@ -625,6 +768,7 @@ function resetRound(){
   document.getElementById('curScore').innerText = score;
   document.getElementById('ballsLeft').innerText = balls;
   document.getElementById('streakCount').innerText = streak;
+  updateFsHud();
   resetBall();
 }
 

@@ -183,11 +183,21 @@
   .start-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(245, 158, 11, 0.5); }
   .start-btn:active { transform: translateY(1px); }
 
+  /* Body fullscreen mode */
+  body.is-fullscreen {
+    position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; overscroll-behavior: none; touch-action: none;
+  }
+  body.is-fullscreen .ecosystem-bar { display: none !important; }
+
   /* IN-GAME FOREHEAD MODE FULLSCREEN OVERLAY */
   .gameplay-overlay {
-    position: fixed; inset: 0; background: #0B0E14; z-index: 5000;
+    position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+    background: #0B0E14; z-index: 5000;
     display: none; flex-direction: column; justify-content: space-between;
-    padding: 24px 20px; user-select: none; -webkit-user-select: none;
+    padding: calc(env(safe-area-inset-top, 16px) + 8px) 20px calc(env(safe-area-inset-bottom, 16px) + 8px);
+    user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+    overscroll-behavior: none; touch-action: manipulation;
     transition: background-color 0.15s ease;
   }
   .gameplay-overlay.active { display: flex; }
@@ -197,12 +207,12 @@
   /* HUD Top */
   .hud-bar {
     display: flex; justify-content: space-between; align-items: center; width: 100%;
-    z-index: 10;
+    z-index: 10; gap: 8px;
   }
   .hud-badge {
     background: rgba(255,255,255,0.12); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2); padding: 8px 18px; border-radius: 30px;
-    font-size: 15px; font-weight: 800; color: #FFF; letter-spacing: 0.04em;
+    border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 30px;
+    font-size: 14px; font-weight: 800; color: #FFF; letter-spacing: 0.04em;
   }
   .hud-timer {
     font-size: 28px; font-weight: 800; color: #F59E0B;
@@ -210,6 +220,13 @@
   }
   .hud-timer.urgent { color: #EF4444; border-color: #EF4444; animation: blink 0.5s infinite; }
   @keyframes blink { 50% { opacity: 0.4; } }
+
+  .hud-exit-btn {
+    background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #FFF; padding: 8px 14px; border-radius: 20px; font-size: 13px; font-weight: 700;
+    cursor: pointer; backdrop-filter: blur(8px);
+  }
+  .hud-exit-btn:active { background: rgba(239, 68, 68, 0.5); }
 
   /* Main Word Card Area */
   .card-center {
@@ -241,6 +258,7 @@
     text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
     box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
     display: flex; align-items: center; justify-content: center; gap: 8px;
+    touch-action: manipulation;
   }
   .btn-correct {
     flex: 1.4; background: rgba(16, 185, 129, 0.9); color: #FFF; border: none;
@@ -248,6 +266,7 @@
     text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer;
     box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
     display: flex; align-items: center; justify-content: center; gap: 8px;
+    touch-action: manipulation;
   }
   .tilt-indicator {
     text-align: center; font-size: 12px; color: rgba(255,255,255,0.55);
@@ -395,6 +414,10 @@
       <h1>🗣️ Chit-Charades</h1>
       <p>Forehead Tilt & Party Guessing Game — Hubby, Wifey, Kids & Family!</p>
     </div>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <button class="theme-toggle-btn" id="fsToggleBtn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
   </div>
 
   <!-- Roster Selection -->
@@ -499,6 +522,7 @@
     <div class="hud-badge" id="hudPlayerBadge">👨 Daddy</div>
     <div class="hud-timer mono" id="hudTimer">60</div>
     <div class="hud-badge" id="hudScoreBadge">Score: 0</div>
+    <button class="hud-exit-btn" onclick="abortRound()" title="Exit Round">✕ Exit</button>
   </div>
 
   <!-- Central Word Card -->
@@ -829,6 +853,7 @@ function shuffle(array) {
 
 function startRound() {
   audio.init();
+  enterFullscreen();
   requestOrientationPermission();
 
   currentDeckCards = shuffle(DECKS[selectedDeckKey] || DECKS.cinema);
@@ -991,11 +1016,75 @@ function handleOrientation(event) {
 }
 
 /* ----------------------------------------------------
+   Fullscreen & Mobile App Viewport Management
+---------------------------------------------------- */
+function isFsActive() {
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.body.classList.contains('is-fullscreen'));
+}
+
+function enterFullscreen() {
+  const docEl = document.documentElement;
+  document.body.classList.add('is-fullscreen');
+  if (docEl.requestFullscreen) {
+    docEl.requestFullscreen().catch(() => {});
+  } else if (docEl.webkitRequestFullscreen) {
+    docEl.webkitRequestFullscreen();
+  }
+  updateFsBtn();
+}
+
+function exitFullscreen() {
+  document.body.classList.remove('is-fullscreen');
+  if (document.exitFullscreen) {
+    document.exitFullscreen().catch(() => {});
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+  updateFsBtn();
+}
+
+function toggleFullscreen() {
+  if (isFsActive()) {
+    exitFullscreen();
+  } else {
+    enterFullscreen();
+  }
+}
+
+function updateFsBtn() {
+  const btn = document.getElementById('fsToggleBtn');
+  if (!btn) return;
+  btn.innerText = isFsActive() ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
+}
+
+document.addEventListener('fullscreenchange', updateFsBtn);
+document.addEventListener('webkitfullscreenchange', updateFsBtn);
+
+function abortRound() {
+  clearInterval(timerInterval);
+  isPlaying = false;
+  gameplayOverlay.classList.remove('active');
+}
+
+/* ----------------------------------------------------
    Button & Keyboard Listeners
 ---------------------------------------------------- */
 startRoundBtn.addEventListener('click', startRound);
-btnCorrect.addEventListener('click', () => handleGuess(true));
-btnPass.addEventListener('click', () => handleGuess(false));
+
+function bindTouchAction(btn, isCorrect) {
+  let lastAct = 0;
+  function act(e) {
+    if (e.cancelable) e.preventDefault();
+    const now = Date.now();
+    if (now - lastAct < 250) return;
+    lastAct = now;
+    handleGuess(isCorrect);
+  }
+  btn.addEventListener('touchstart', act, { passive: false });
+  btn.addEventListener('click', act);
+}
+bindTouchAction(btnCorrect, true);
+bindTouchAction(btnPass, false);
 
 btnPlayAgain.addEventListener('click', () => {
   recapModal.classList.remove('active');

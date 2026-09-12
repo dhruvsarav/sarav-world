@@ -195,6 +195,94 @@
     position: fixed; inset: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 9999;
   }
+  /* Fullscreen Arena Mode */
+  body.is-fullscreen {
+    overflow: hidden !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    touch-action: none !important;
+    overscroll-behavior: none !important;
+  }
+  body.is-fullscreen .ecosystem-bar,
+  body.is-fullscreen .game-header,
+  body.is-fullscreen .roster-bar,
+  body.is-fullscreen .scoreboard-strip,
+  body.is-fullscreen .options-bar,
+  body.is-fullscreen .actions-bar,
+  body.is-fullscreen footer {
+    display: none !important;
+  }
+  body.is-fullscreen .game-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100vw !important;
+    height: 100dvh !important;
+  }
+  body.is-fullscreen .arena-card {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    border-radius: 0 !important;
+    border: none !important;
+    margin: 0 !important;
+    z-index: 10000 !important;
+  }
+  body.is-fullscreen #flipCanvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  .fs-hud {
+    display: none;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    pointer-events: none;
+  }
+  body.is-fullscreen .fs-hud {
+    display: flex !important;
+  }
+  .fs-hud-left, .fs-hud-right {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    pointer-events: auto;
+  }
+  .fs-pill {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #FFF;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    backdrop-filter: blur(8px);
+  }
+  .fs-btn {
+    background: rgba(15, 23, 42, 0.88);
+    border: 1.5px solid var(--accent);
+    color: #FFF;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+  }
+  .btn-fs-toggle {
+    background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+    color: #FFF !important;
+    font-weight: 800;
+  }
+
   footer {
     border-top: 1px solid var(--border-soft); padding: 30px 0 10px;
     text-align: center; font-size: 12.5px; color: var(--text-faint); margin-top: 50px;
@@ -284,7 +372,19 @@
   </div>
 
   <!-- Arena -->
-  <div class="arena-card">
+  <div class="arena-card" id="arenaCard">
+    <div class="fs-hud" id="fsHud">
+      <div class="fs-hud-left">
+        <span class="fs-pill" id="fsPlayer">👨 Daddy</span>
+        <span class="fs-pill mono" id="fsStreak">Streak: 0 🔥</span>
+        <span class="fs-pill mono" id="fsCaps">Caps: 0</span>
+      </div>
+      <div class="fs-hud-right">
+        <button class="fs-btn" onclick="cycleWaterLevel()" id="fsWaterBtn" title="Water Level">💧 35%</button>
+        <button class="fs-btn" onclick="resetGame()" title="Reset Streak">🔄</button>
+        <button class="fs-btn" onclick="toggleFullScreen()" title="Exit Fullscreen">✕ Exit</button>
+      </div>
+    </div>
     <div class="toast-overlay" id="toastOverlay">PERFECT LANDING! 🔥</div>
     <canvas id="flipCanvas" width="900" height="480"></canvas>
   </div>
@@ -311,6 +411,7 @@
       <span>🕹️ <b>How to play:</b> Touch/drag the bottle upward with a smooth flick and let go!</span>
     </div>
     <div style="display:flex; gap:10px;">
+      <button class="btn btn-fs-toggle" onclick="toggleFullScreen()">⛶ Fullscreen</button>
       <button class="btn btn-secondary" onclick="resetGame()">🔄 Reset Streak</button>
       <button class="btn btn-primary" onclick="shareWhatsApp()">📱 Share Record</button>
     </div>
@@ -437,26 +538,78 @@ function showToast(msg){
   setTimeout(function(){ el.classList.remove('show'); }, 1500);
 }
 
+// Fullscreen Mode Controller
+function updateFsHud(){
+  var pEl = document.getElementById('fsPlayer');
+  var sEl = document.getElementById('fsStreak');
+  var cEl = document.getElementById('fsCaps');
+  var wEl = document.getElementById('fsWaterBtn');
+  if(pEl) pEl.innerText = activePlayer;
+  if(sEl) sEl.innerText = 'Streak: ' + streak + ' 🔥';
+  if(cEl) cEl.innerText = 'Caps: ' + capLands;
+  if(wEl) wEl.innerText = '💧 ' + Math.round(waterLevel * 100) + '%';
+}
+
+function cycleWaterLevel(){
+  if(waterLevel === 0) waterLevel = 0.35;
+  else if(waterLevel === 0.35) waterLevel = 0.65;
+  else waterLevel = 0;
+  showToast("Water Level: " + Math.round(waterLevel * 100) + "%");
+  updateFsHud();
+}
+
+function toggleFullScreen(){
+  var doc = window.document;
+  var docEl = document.documentElement;
+  var request = docEl.requestFullscreen || docEl.webkitRequestFullScreen || docEl.mozRequestFullScreen || docEl.msRequestFullscreen;
+  var cancel = doc.exitFullscreen || doc.webkitExitFullscreen || doc.mozCancelFullScreen || doc.msExitFullscreen;
+
+  if(!doc.fullscreenElement && !doc.webkitFullscreenElement && !doc.mozFullScreenElement && !doc.msFullscreenElement){
+    if(request) request.call(docEl).catch(function(){});
+    document.body.classList.add('is-fullscreen');
+  } else {
+    if(cancel) cancel.call(doc).catch(function(){});
+    document.body.classList.remove('is-fullscreen');
+  }
+  updateFsHud();
+}
+document.addEventListener('fullscreenchange', function(){
+  if(!document.fullscreenElement) document.body.classList.remove('is-fullscreen');
+});
+document.addEventListener('webkitfullscreenchange', function(){
+  if(!document.webkitFullscreenElement) document.body.classList.remove('is-fullscreen');
+});
+
 // Swipe detection
 function onPointerDown(e){
   if(bottle.inAir) return;
+  if(e.cancelable && e.type === 'touchstart') e.preventDefault();
   var rect = canvas.getBoundingClientRect();
-  touchStartX = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-  touchStartY = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+  var clientX = (e.touches && e.touches.length > 0) ? e.touches[0].clientX : e.clientX;
+  var clientY = (e.touches && e.touches.length > 0) ? e.touches[0].clientY : e.clientY;
+  touchStartX = clientX - rect.left;
+  touchStartY = clientY - rect.top;
   touchStartTime = Date.now();
+}
+
+function onPointerMove(e){
+  if(e.cancelable) e.preventDefault();
 }
 
 function onPointerUp(e){
   if(bottle.inAir) return;
+  if(e && e.cancelable && e.type === 'touchend') e.preventDefault();
   var rect = canvas.getBoundingClientRect();
-  var endX = (e.clientX || (e.changedTouches && e.changedTouches[0].clientX)) - rect.left;
-  var endY = (e.clientY || (e.changedTouches && e.changedTouches[0].clientY)) - rect.top;
+  var clientX = (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientX : e.clientX;
+  var clientY = (e.changedTouches && e.changedTouches.length > 0) ? e.changedTouches[0].clientY : e.clientY;
+  var endX = clientX - rect.left;
+  var endY = clientY - rect.top;
   var elapsed = (Date.now() - touchStartTime) / 1000;
 
   var dy = touchStartY - endY;
   var dx = endX - touchStartX;
 
-  if(dy > 30 && elapsed < 0.8){
+  if(dy > 30 && elapsed < 0.85){
     // Launch flip
     bottle.inAir = true;
     bottle.settled = false;
@@ -464,7 +617,6 @@ function onPointerUp(e){
     bottle.vy = -speed;
     bottle.vx = dx * 0.03;
 
-    // Angular velocity influenced by speed and horizontal flick
     var spinBase = (speed * 0.016) + (dx * 0.002);
     bottle.angularVel = spinBase * (waterLevel === 0 ? 1.4 : (1 - waterLevel * 0.3));
 
@@ -474,8 +626,9 @@ function onPointerUp(e){
 
 canvas.addEventListener('mousedown', onPointerDown);
 window.addEventListener('mouseup', onPointerUp);
-canvas.addEventListener('touchstart', onPointerDown, { passive: true });
-window.addEventListener('touchend', onPointerUp);
+canvas.addEventListener('touchstart', onPointerDown, { passive: false });
+canvas.addEventListener('touchmove', onPointerMove, { passive: false });
+window.addEventListener('touchend', onPointerUp, { passive: false });
 
 function resetBottle(){
   bottle.x = 450;

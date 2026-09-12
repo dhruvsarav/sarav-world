@@ -40,24 +40,27 @@
     --gold: #D97706;
   }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; }
+  * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
   html, body {
     background: var(--bg); color: var(--text);
     font-family: 'Space Grotesk', system-ui, sans-serif;
-    height: 100vh; width: 100vw; overflow: hidden; touch-action: manipulation;
+    height: 100vh; height: 100dvh; width: 100vw;
+    overflow: hidden; overscroll-behavior: none; touch-action: none;
   }
   .mono { font-family: 'IBM Plex Mono', monospace; }
   .bungee { font-family: 'Bungee', cursive; }
 
   /* Main Split-Screen Battle Arena */
   .battle-arena {
-    display: flex; flex-direction: column; height: 100vh; width: 100vw; position: relative;
+    display: flex; flex-direction: column; height: 100vh; height: 100dvh; width: 100vw; position: relative;
+    overflow: hidden; touch-action: none;
   }
 
   /* Player 1 Zone (Top - Inverted 180 deg for opposing player) */
   .player-zone {
     flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: relative; cursor: pointer; transition: background 0.1s ease;
+    touch-action: none; -webkit-tap-highlight-color: transparent;
   }
   .zone-p1 {
     background: var(--p1-bg); transform: rotate(180deg); border-bottom: 2px dashed rgba(255,255,255,0.2);
@@ -104,17 +107,23 @@
   .freeze-banner.active { display: block; }
   @keyframes pulse { from { transform: translate(-50%, -50%) scale(1); } to { transform: translate(-50%, -50%) scale(1.08); } }
 
-  /* Match Control Center (Floating center button) */
-  .center-menu-btn {
+  /* Match Control Cluster (Floating corner buttons) */
+  .control-cluster {
     position: absolute; top: 14px; right: 14px; z-index: 300;
-    background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border);
-    color: var(--text); padding: 6px 12px; border-radius: 8px; font-size: 12px;
-    font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);
+    display: flex; gap: 8px; align-items: center;
   }
+  .cluster-btn {
+    background: rgba(15, 23, 42, 0.85); border: 1px solid var(--border);
+    color: var(--text); padding: 7px 13px; border-radius: 9px; font-size: 12px;
+    font-weight: 700; cursor: pointer; backdrop-filter: blur(8px);
+    display: inline-flex; align-items: center; gap: 5px;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .cluster-btn:active { transform: scale(0.96); }
 
   /* Modal Setup Dialog */
   .modal-backdrop {
-    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(10px);
+    position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
     display: flex; align-items: center; justify-content: center; z-index: 500; padding: 20px;
   }
   .modal-box {
@@ -132,6 +141,24 @@
   .start-btn {
     background: var(--gold); color: #000; font-size: 15px; font-weight: 800;
     padding: 12px 32px; border-radius: 12px; border: none; cursor: pointer; width: 100%;
+    margin-top: 10px;
+  }
+
+  /* Winner Announcement Overlay (replaces disruptive alert to preserve fullscreen) */
+  .winner-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    z-index: 600; text-align: center; padding: 24px;
+  }
+  .winner-overlay.active { display: flex; }
+  .winner-trophy { font-size: 64px; margin-bottom: 12px; animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+  @keyframes pop { 0% { transform: scale(0.4); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+  .winner-title { font-size: 28px; font-weight: 800; color: var(--gold); margin-bottom: 8px; }
+  .winner-score { font-size: 16px; opacity: 0.9; margin-bottom: 24px; font-weight: 600; }
+  .next-round-btn {
+    background: var(--gold); color: #000; font-size: 16px; font-weight: 800;
+    padding: 14px 36px; border-radius: 14px; border: none; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(245,158,11,0.4);
   }
 
   #confettiCanvas {
@@ -156,9 +183,9 @@
       <button class="preset-btn" onclick="setMatchup('Kid 1', 'Kid 2', this)">👦 Kid 1 vs 👧 Kid 2</button>
     </div>
 
-    <div style="margin-bottom: 20px;">
+    <div style="margin-bottom: 16px;">
       <span style="font-size: 12.5px; font-weight: 700; opacity: 0.8;">Prize on the Line:</span>
-      <div style="display:flex; gap:8px; justify-content:center; margin-top:8px;">
+      <div style="display:flex; gap:8px; justify-content:center; margin-top:8px; flex-wrap:wrap;">
         <button class="preset-btn active" onclick="setPrize('🥟', this)">🥟 Samosa</button>
         <button class="preset-btn" onclick="setPrize('🍩', this)">🍩 Gulab Jamun</button>
         <button class="preset-btn" onclick="setPrize('📺', this)">📺 TV Remote</button>
@@ -166,16 +193,35 @@
       </div>
     </div>
 
+    <div style="display:flex; gap:8px; margin-bottom: 12px; justify-content: center;">
+      <button class="preset-btn" id="modalFsBtn" onclick="toggleFullscreen()" style="flex:1;">⛶ Fullscreen Mode</button>
+    </div>
+
     <button class="start-btn" onclick="startBattle()">⚡ START TAP BATTLE ⚡</button>
+    <div style="margin-top: 14px;">
+      <a href="/games/" style="font-size: 12px; color: var(--text); opacity: 0.7; text-decoration: none; font-weight: 600;">← Back to Family Arcade</a>
+    </div>
   </div>
 </div>
 
-<button class="center-menu-btn" onclick="openMenu()">⚙️ Match Setup</button>
+<!-- Floating Top-Right Match Controls -->
+<div class="control-cluster">
+  <button class="cluster-btn" id="fsToggleBtn" onclick="toggleFullscreen()" title="Toggle Immersive Fullscreen">⛶ Fullscreen</button>
+  <button class="cluster-btn" onclick="openMenu()" title="Match Settings">⚙️ Setup</button>
+</div>
+
+<!-- Winner Announcement Overlay (replaces alert for unbroken fullscreen) -->
+<div class="winner-overlay" id="winnerOverlay">
+  <div class="winner-trophy" id="winTrophy">🥟</div>
+  <h2 class="winner-title bungee" id="winTitle">WIFEY SNATCHED IT!</h2>
+  <div class="winner-score mono" id="winScore">Score: 1 — 0</div>
+  <button class="next-round-btn bungee" onclick="continueNextRound()">⚡ NEXT ROUND ⚡</button>
+</div>
 
 <div class="battle-arena">
 
   <!-- Player 1 (Top / Inverted) -->
-  <div class="player-zone zone-p1" id="p1Zone" onpointerdown="onTap(1)">
+  <div class="player-zone zone-p1" id="p1Zone">
     <div class="zone-title"><span id="p1Name">Wifey</span></div>
     <div class="tap-callout">TAP FURIOUSLY HERE! 🔥</div>
     <div class="round-wins-pill mono" id="p1Wins">Wins: 0</div>
@@ -190,7 +236,7 @@
   <div class="freeze-banner" id="freezeBanner">⚡ FREEZE! DON'T TAP! ⚡</div>
 
   <!-- Player 2 (Bottom) -->
-  <div class="player-zone zone-p2" id="p2Zone" onpointerdown="onTap(2)">
+  <div class="player-zone zone-p2" id="p2Zone">
     <div class="zone-title"><span id="p2Name">Hubby</span></div>
     <div class="tap-callout">TAP FURIOUSLY HERE! 🔥</div>
     <div class="round-wins-pill mono" id="p2Wins">Wins: 0</div>
@@ -375,14 +421,84 @@ function onRoundEnd(winnerNum){
   playWinFanfare();
   fireConfetti();
 
-  setTimeout(function(){
-    alert("🎉 " + winner + " SNATCHED THE " + prizeIcon + "!\nScore: " + player1 + " (" + p1Wins + ") vs " + player2 + " (" + p2Wins + ")");
-    tugOffset = 0;
-    updatePrizePosition();
-    isPlaying = true;
-    scheduleNextFreeze();
-  }, 300);
+  var overlay = document.getElementById('winnerOverlay');
+  document.getElementById('winTrophy').innerText = prizeIcon;
+  document.getElementById('winTitle').innerText = winner.toUpperCase() + ' SNATCHED IT!';
+  document.getElementById('winScore').innerText = player1 + ' (' + p1Wins + ') — ' + player2 + ' (' + p2Wins + ')';
+  overlay.classList.add('active');
 }
+
+function continueNextRound(){
+  document.getElementById('winnerOverlay').classList.remove('active');
+  tugOffset = 0;
+  updatePrizePosition();
+  isPlaying = true;
+  scheduleNextFreeze();
+}
+
+// Dual-Layer Mobile Fullscreen Handler
+function isFsActive(){
+  return !!(document.fullscreenElement || document.webkitFullscreenElement || document.body.classList.contains('is-fullscreen'));
+}
+
+function toggleFullscreen(){
+  var docEl = document.documentElement;
+  if(!isFsActive()){
+    document.body.classList.add('is-fullscreen');
+    if(docEl.requestFullscreen){
+      docEl.requestFullscreen().catch(function(){});
+    } else if(docEl.webkitRequestFullscreen){
+      docEl.webkitRequestFullscreen();
+    }
+  } else {
+    document.body.classList.remove('is-fullscreen');
+    if(document.exitFullscreen){
+      document.exitFullscreen().catch(function(){});
+    } else if(document.webkitExitFullscreen){
+      document.webkitExitFullscreen();
+    }
+  }
+  updateFsBtn();
+}
+
+function updateFsBtn(){
+  var active = isFsActive();
+  var btns = [document.getElementById('fsToggleBtn'), document.getElementById('modalFsBtn')];
+  btns.forEach(function(b){
+    if(!b) return;
+    b.innerText = active ? '🗗 Exit Fullscreen' : '⛶ Fullscreen';
+  });
+}
+
+document.addEventListener('fullscreenchange', updateFsBtn);
+document.addEventListener('webkitfullscreenchange', updateFsBtn);
+
+// Non-passive Touch Binding to eliminate zoom/scroll latency on rapid multi-finger taps
+function bindZone(id, playerNum){
+  var el = document.getElementById(id);
+  if(!el) return;
+  var lastTapTime = 0;
+  function handleInput(e){
+    if(e.cancelable) e.preventDefault();
+    var now = Date.now();
+    if(now - lastTapTime < 25) return; // filter accidental hardware micro-bounce
+    lastTapTime = now;
+    onTap(playerNum);
+  }
+  el.addEventListener('touchstart', handleInput, { passive: false });
+  el.addEventListener('pointerdown', function(e){
+    if(e.pointerType === 'mouse'){
+      onTap(playerNum);
+    }
+  });
+}
+
+window.addEventListener('DOMContentLoaded', function(){
+  bindZone('p1Zone', 1);
+  bindZone('p2Zone', 2);
+  updateFsBtn();
+  window.addEventListener('resize', updatePrizePosition);
+});
 
 // Confetti
 function fireConfetti(){
