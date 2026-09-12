@@ -71,17 +71,19 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * Production assets: `eapps-full.png` (1024px), `eapps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
    - Both portals feature a responsive squircle brand badge in their respective hero headers.
 11. **Interactive Family Games Arcade Suite (`/games/`)**:
-   - Master Family Games Hub at `https://iamsaravofficial.com/games/` uniting 10 interactive games with zero telemetry, procedural Web Audio effects, canvas physics, family roster turn selectors, and 1-tap WhatsApp boast sharing:
-     1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
-     2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) played on a single phone via Pass & Guess, featuring edge-to-edge full-card privacy barrier masking active choices, live Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
-     3. `secretbox` (`/games/secretbox/`): 3D antique mystery chest dispensing 4 card decks (Wholesome Memories, Cheeky Truths, Mild Desi Dares, and Family Mimicry) with 30s ticking timer and Chicken-Out Penalty Wheel.
-     4. `cuptoss` (`/games/cuptoss/`): 2.5D dining table ping-pong cup toss with trajectory drag aim, bounce physics, moving obstacle, and leaderboard.
-     5. `bottleflip` (`/games/bottleflip/`): Angular velocity swipe bottle flip physics simulator with water weight customization, multiple bottle skins, and 10x cap-landing bonus.
-     6. `samosasnatch` (`/games/samosasnatch/`): 2-Player rapid finger-tapping tug-of-war on ONE phone with 180° inverted split-screen and Freeze shock penalty.
-     7. `chitcharades` (`/games/chitcharades/`): Forehead tilt party guessing game with DeviceOrientation sensor, 4 Desi decks, 60s countdown, and tap fallbacks.
-     8. `snackroulette` (`/games/snackroulette/`): Carnival treat & dare spin wheel with angular momentum, ratchet clicks, custom slice editor, and turn ledger log.
-     9. `dialoguedetective` (`/games/dialoguedetective/`): Household quote trivia showdown with suspect voting, streak multiplier, and custom family quote studio.
-     10. `gulelstrike` (`/games/gulelstrike/`): Traditional village orchard slingshot game with rubber band pull mechanics, wind drift, fruit sway, and monkey obstacle.
+    - Master Family Games Hub at `https://iamsaravofficial.com/games/` uniting 10 interactive games with zero telemetry, procedural Web Audio effects, canvas physics, family roster turn selectors, and 1-tap WhatsApp boast sharing:
+      1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
+      2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) played on a single phone via Pass & Guess, featuring edge-to-edge full-card privacy barrier masking active choices, live Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
+      3. `secretbox` (`/games/secretbox/`): 3D antique mystery chest dispensing 4 card decks (Wholesome Memories, Cheeky Truths, Mild Desi Dares, and Family Mimicry) with 30s ticking timer and Chicken-Out Penalty Wheel.
+      4. `cuptoss` (`/games/cuptoss/`): 2.5D dining table ping-pong cup toss with trajectory drag aim, bounce physics, moving obstacle, and leaderboard. Fullscreen `100dvh` HUD and 75px thumb grab.
+      5. `bottleflip` (`/games/bottleflip/`): Angular velocity swipe bottle flip physics simulator with water weight customization, multiple bottle skins, and 10x cap-landing bonus.
+      6. `samosasnatch` (`/games/samosasnatch/`): 2-Player rapid finger-tapping tug-of-war on ONE phone with 180° inverted split-screen and Freeze shock penalty. Non-passive touch listeners eliminate zoom/bounce.
+      7. `chitcharades` (`/games/chitcharades/`): Forehead tilt party guessing game with DeviceOrientation sensor, 4 Desi decks, 60s countdown, auto-fullscreen entry and floating exit button.
+      8. `snackroulette` (`/games/snackroulette/`): Carnival treat & dare spin wheel with angular momentum, ratchet clicks, custom slice editor, turn ledger log, and top player-switcher HUD.
+      9. `dialoguedetective` (`/games/dialoguedetective/`): Household quote trivia showdown with suspect voting, streak multiplier, custom family quote studio, and 1-screen zero-scroll mobile layout.
+      10. `gulelstrike` (`/games/gulelstrike/`): Traditional village orchard slingshot game with rubber band pull mechanics, 95px thumb grab radius, wind drift, fruit sway, and monkey obstacle.
+    - **Header & Footer Standards**: Header is named strictly `Family Games Arcade` (no personal names). Standard footer: `Games crafted for Sarav... Engineered with zero external trackers, zero ads, and pure client-side code`.
+    - **Universal Mobile Arcade Fullscreen Architecture**: Dual-layer fullscreen combining native `requestFullscreen()` with `.is-fullscreen` on body (`100dvh`, fixed inset 0), non-passive touch listeners (`{ passive: false }` + `e.preventDefault()`), floating top HUDs with quick `🗗 Exit`, and non-blocking in-game modal cards.
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
    - All Consumer Apps & Games pages (`/apps/`, 9 live calculators, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
