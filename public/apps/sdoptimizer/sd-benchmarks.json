@@ -1,0 +1,33 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-11", "currency": "USD", "unit": "loaded cost per FTE per year" },
+  "shift_coverage_multipliers": {
+    "8x5":  { "label": "8x5 (Business Hours)", "multiplier": 1.00 },
+    "16x5": { "label": "16x5 (Extended Hours)", "multiplier": 1.55 },
+    "24x7": { "label": "24x7 Follow-the-Sun", "multiplier": 2.85 }
+  },
+  "tier_defaults": {
+    "nesting_ratio_t1_pct": 80,
+    "t2_aht_multiplier": 1.8
+  },
+  "region_cost": {
+    "onshore":   { "label": "Onshore (US/UK/AU)",              "loaded_cost_per_fte_year": 68000 },
+    "nearshore": { "label": "Nearshore (LatAm/Eastern Europe)", "loaded_cost_per_fte_year": 42000 },
+    "offshore":  { "label": "Offshore (India/Philippines)",     "loaded_cost_per_fte_year": 22000 }
+  },
+  "automation_driver_weights": {
+    "kb_readiness": 0.30,
+    "tooling_penetration": 0.20,
+    "digital_split": 0.20,
+    "complexity_simple": 0.15,
+    "maturity_stage": 0.15
+  },
+  "maturity_stage_scores": { "none": 0, "pilot": 30, "scaled": 65, "advanced": 90 },
+  "automation_curve_bounds": { "year1_cap": 20, "annual_growth_cap": 12, "max_cap": 75 },
+  "staffing_defaults": {
+    "target_service_level_pct": 80,
+    "target_answer_time_sec": 20,
+    "chat_concurrency": 3,
+    "working_days_per_month": 21,
+    "hours_per_day": 8
+  }
+}

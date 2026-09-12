@@ -1,0 +1,19 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-11" },
+  "pain_slider_max_boost": 3.0,
+  "trigger_max_boost": 2.5,
+  "triggers": [
+    { "id": "cost_pressure",      "label": "Cost pressure (deskside dispatch load)",             "dims": ["remediation", "telemetry"] },
+    { "id": "retention_risk",     "label": "Experience & retention risk",                          "dims": ["sentiment"] },
+    { "id": "contractual_xla",    "label": "Contractual SLA \u2192 XLA requirement",                    "dims": ["sentiment", "predictive"] },
+    { "id": "ai_copilot_rollout", "label": "AI / Copilot rollout stage",                           "dims": ["predictive", "telemetry"] },
+    { "id": "ma_consolidation",   "label": "M&A / estate consolidation",                           "dims": ["itsm", "deployment"] },
+    { "id": "hardware_refresh",   "label": "Hardware refresh cycle stage",                         "dims": ["telemetry", "predictive", "security"] },
+    { "id": "risk_compliance",    "label": "Risk / compliance visibility gap",                     "dims": ["security"] },
+    { "id": "exec_governance",    "label": "Exec governance demand for an XPI metric",             "dims": ["sentiment", "predictive"] }
+  ],
+  "xpi_formula": { "fit_weight": 0.70, "urgency_weight": 0.30 },
+  "xpi_baseline": 35,
+  "xpi_ceiling_formula": { "base": 40, "fit_multiplier": 0.50 },
+  "rollout_curve_bounds": { "year1_cap": 25, "annual_growth_cap": 15, "max_cap": 100 }
+}

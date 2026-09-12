@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>SD Human Agent Optimizer — Right-Size Your Service Desk Staffing | Sarav's World</title>
+<meta name="description" content="Erlang C staffing calculator for IT Service Desk human agents — tiered headcount, shift coverage, automation-driven deflection, and multi-year labor cost avoidance.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/sdoptimizer/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/sdoptimizer/">
+<meta property="og:title" content="SD Human Agent Optimizer — Sarav's World">
+<meta property="og:description" content="Erlang C staffing, tiering, shift coverage, and multi-year labor cost avoidance modeling for Service Desk teams.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/sdoptimizer/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap between button and menu */
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+
+
+/* SD Optimizer additions */
+.driver-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.driver-row:last-child { border-bottom: none; }
+.driver-label { font-size: 13px; color: var(--text); }
+.driver-sub { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; }
+.driver-score { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; color: var(--accent2); min-width: 90px; text-align: right; }
+.override-line { display: flex; align-items: center; gap: 8px; margin: 14px 0 0; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+</style>
+</head>
+<body>
+
+<!-- Sub-header: Sarav's World Ecosystem -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/" class="current">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark">
+          <img src="favicon-192.png" alt="SD Human Agent Optimizer Logo">
+        </div>
+        <div>
+          <h1>SD Optimizer <span class="badge gold">Human Agent Staffing</span></h1>
+          <span class="tagline">Erlang C Staffing, Tiering &amp; Multi-Year Labor Cost Avoidance</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="currency-toggle" id="currencyToggle">
+          <button data-curr="USD" class="active">USD ($)</button>
+          <button data-curr="INR">INR (₹)</button>
+          <button data-curr="EUR">EUR (€)</button>
+          <button data-curr="GBP">GBP (£)</button>
+        </div>
+        <div class="live-total-pill">Month 1: <b id="liveTotal" class="mono">0 FTE</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Profile</a>
+      <a href="#volume" class="sec-nav-link"><span class="sn-num">02</span> Volume</a>
+      <a href="#sla" class="sec-nav-link"><span class="sn-num">03</span> Service Levels</a>
+      <a href="#drivers" class="sec-nav-link"><span class="sn-num">04</span> Automation</a>
+      <a href="#staffing" class="sec-nav-link"><span class="sn-num">05</span> Staffing</a>
+      <a href="#tiering" class="sec-nav-link"><span class="sn-num">06</span> Tiering</a>
+      <a href="#labor" class="sec-nav-link"><span class="sn-num">07</span> Labor Cost</a>
+      <a href="#projection" class="sec-nav-link"><span class="sn-num">08</span> Projection</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; ROI</a>
+    </div>
+  </nav>
+</div>
+
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="small">🏢 Small SD (2,000 users)</button>
+    <button class="preset-btn active" data-preset="mid">🌐 Mid-Size SD (10,000 users)</button>
+    <button class="preset-btn" data-preset="enterprise">🚀 Enterprise SD (50,000 users)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 1. Organization Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Organization Profile</h2></div>
+    <p class="sec-desc">Estate sizing and shift coverage model — drives shift-multiplier overhead in the staffing engine.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="org_employees">Employees supported</label><input id="org_employees" type="number" min="0" value="10000"></div>
+        <div class="field"><label for="org_languages">Languages supported</label><input id="org_languages" type="number" min="1" value="2"></div>
+        <div class="field">
+          <label>Shift coverage model</label>
+          <div class="pillrow" id="shiftModelToggle">
+            <div class="pill" data-shift="8x5">8x5</div>
+            <div class="pill on" data-shift="16x5">16x5</div>
+            <div class="pill" data-shift="24x7">24x7 Follow-the-Sun</div>
+          </div>
+        </div>
+      </div>
+      <p class="hint" id="shift_hint"></p>
+    </div>
+  </section>
+
+  <!-- 2. Volume & Channel Mix -->
+  <section class="block" id="volume">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Volume &amp; Channel Mix</h2></div>
+    <p class="sec-desc">Monthly ticket volume and channel distribution. Digital self-service tickets need no human agent and count only toward the automation-readiness score.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="vol_total">Avg. monthly ticket volume</label><input id="vol_total" type="number" min="0" value="40000"></div>
+        <div class="field"><label for="vol_peak_mult">Peak / seasonality multiplier</label><input id="vol_peak_mult" type="number" min="1" step="0.05" value="1.10"></div>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Channel</th><th style="width:140px;">Share %</th><th style="width:180px;">Computed Volume/mo</th></tr></thead>
+          <tbody>
+            <tr><td>Voice / Telephony</td><td><input id="vol_voice_pct" type="number" min="0" max="100" value="30"></td><td class="num-cell mono" id="vol_voice_computed">—</td></tr>
+            <tr><td>Chat</td><td><input id="vol_chat_pct" type="number" min="0" max="100" value="25"></td><td class="num-cell mono" id="vol_chat_computed">—</td></tr>
+            <tr><td>Email / Ticket Queue</td><td><input id="vol_email_pct" type="number" min="0" max="100" value="20"></td><td class="num-cell mono" id="vol_email_computed">—</td></tr>
+            <tr><td>Digital Self-Service (no agent)</td><td><input id="vol_digital_pct" type="number" min="0" max="100" value="25"></td><td class="num-cell mono" id="vol_digital_computed">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hint" id="vol_reconcile"></p>
+    </div>
+  </section>
+
+  <!-- 3. Service Levels & Shrinkage -->
+  <section class="block" id="sla">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Service Levels &amp; Shrinkage</h2></div>
+    <p class="sec-desc">AHT per channel, target service level, and shrinkage — feeds the Erlang C engine in Section 05.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="sla_aht_voice">Voice AHT (seconds)</label><input id="sla_aht_voice" type="number" min="1" value="360"></div>
+        <div class="field"><label for="sla_aht_chat">Chat AHT (seconds)</label><input id="sla_aht_chat" type="number" min="1" value="480"></div>
+        <div class="field"><label for="sla_aht_email">Email AHT (minutes)</label><input id="sla_aht_email" type="number" min="1" value="12"></div>
+      </div>
+      <div class="grid grid-3">
+        <div class="field"><label for="sla_target_sl">Target service level (% answered within threshold)</label><input id="sla_target_sl" type="number" min="1" max="99" value="80"></div>
+        <div class="field"><label for="sla_target_answer">Target answer time (seconds)</label><input id="sla_target_answer" type="number" min="1" value="20"></div>
+        <div class="field"><label for="sla_occupancy">Occupancy target %</label><input id="sla_occupancy" type="number" min="1" max="100" value="85"></div>
+      </div>
+      <div class="field">
+        <label for="sla_shrinkage">Shrinkage % (PTO, training, breaks, meetings)</label>
+        <div class="slider-control"><input id="sla_shrinkage" type="range" min="0" max="60" value="30"><span class="slider-val" id="sla_shrinkage_val">30%</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Automation Readiness Drivers -->
+  <section class="block" id="drivers">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Automation Readiness Drivers</h2></div>
+    <p class="sec-desc">The deflection ramp in Section 08 is computed from these factors, not typed in as a flat guess. Override per-year if you need to.</p>
+    <div class="panel">
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">KB / RAG readiness</div>
+          <div class="driver-sub">Articles ready for AI retrieval vs. total KB size</div>
+        </div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <input id="drv_kb_ready" type="number" min="0" value="1800" style="width:90px;">
+          <span class="hint" style="margin:0;">/</span>
+          <input id="drv_kb_total" type="number" min="1" value="2400" style="width:90px;">
+        </div>
+      </div>
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">AI / endpoint tooling penetration</div>
+          <div class="driver-sub">Share of estate with AI copilots, virtual agents, or automation tooling live</div>
+        </div>
+        <div class="slider-control" style="width:220px;"><input id="drv_tooling_pct" type="range" min="0" max="100" value="35"><span class="slider-val" id="drv_tooling_val">35%</span></div>
+      </div>
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">Digital vs. voice split</div>
+          <div class="driver-sub">Pulled from Section 02 — digital self-service share deflects easiest</div>
+        </div>
+        <div class="driver-score" id="drv_digital_readout">—</div>
+      </div>
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">Ticket complexity mix</div>
+          <div class="driver-sub">Share of tickets that are simple / scriptable (password reset, access request, status check)</div>
+        </div>
+        <div class="slider-control" style="width:220px;"><input id="drv_complexity_simple" type="range" min="0" max="100" value="55"><span class="slider-val" id="drv_complexity_val">55%</span></div>
+      </div>
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">AI maturity stage</div>
+          <div class="driver-sub">Where the org sits today on AI-in-ITSM adoption</div>
+        </div>
+        <select id="drv_maturity" style="width:160px;">
+          <option value="none">None</option>
+          <option value="pilot" selected>Pilot</option>
+          <option value="scaled">Scaled</option>
+          <option value="advanced">Advanced</option>
+        </select>
+      </div>
+      <div class="driver-row">
+        <div>
+          <div class="driver-label">L1 AI Copilot AHT Compression</div>
+          <div class="driver-sub">Reduction in human handling time via agentic AI summarization & suggested resolution</div>
+        </div>
+        <div class="slider-control" style="width:220px;"><input id="drv_copilot_aht" type="range" min="0" max="50" value="25"><span class="slider-val" id="drv_copilot_aht_val">25%</span></div>
+      </div>
+      <div class="driver-row" style="border-top: 1px solid var(--border); margin-top: 4px; padding-top: 14px;">
+        <div class="driver-label" style="font-weight:600;">Computed automation propensity score</div>
+        <div class="driver-score" id="drv_propensity_score" style="color: var(--accent); font-size: 16px;">—</div>
+      </div>
+      <p class="hint" id="drv_ramp_preview"></p>
+    </div>
+  </section>
+
+  <!-- 5. Staffing Model -->
+  <section class="block" id="staffing">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Staffing Model (Erlang C Engine)</h2></div>
+    <p class="sec-desc">Voice and Chat solved via Erlang C queuing math (Chat adjusted for concurrent chats per agent). Email is async throughput — no queue to solve, just volume ÷ capacity.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="stf_chat_concurrency">Chat concurrency (chats handled at once per agent)</label><input id="stf_chat_concurrency" type="number" min="1" max="10" value="3"></div>
+        <div class="field"><label>&nbsp;</label><p class="hint">Voice and Chat required agents come from Erlang C at your Section 03 service-level target. Shrinkage is then applied to convert on-phone agents into total headcount.</p></div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="label">Voice — Raw FTE Required</div>
+          <div class="value mono" id="kpi_voice_fte">0</div>
+          <div class="sub" id="kpi_voice_sl">—</div>
+        </div>
+        <div class="kpi accent2">
+          <div class="label">Chat — Raw FTE Required</div>
+          <div class="value mono" id="kpi_chat_fte">0</div>
+          <div class="sub" id="kpi_chat_sl">—</div>
+        </div>
+        <div class="kpi">
+          <div class="label">Email — Raw FTE Required</div>
+          <div class="value mono" id="kpi_email_fte">0</div>
+          <div class="sub">Throughput model, shrinkage-adjusted</div>
+        </div>
+        <div class="kpi accent2">
+          <div class="label">Implied Occupancy (Voice)</div>
+          <div class="value mono" id="kpi_occupancy">0%</div>
+          <div class="sub" id="kpi_occupancy_badge">—</div>
+        </div>
+      </div>
+      <div class="kpi-row" style="margin-top:14px;">
+        <div class="kpi"><div class="label">Probability of Delay P(W &gt; 0)</div><div class="value mono" id="kpi_prob_delay">0%</div><div class="sub">Likelihood a contact waits in queue</div></div>
+        <div class="kpi accent2"><div class="label">Avg Speed of Answer (ASA)</div><div class="value mono" id="kpi_asa">0s</div><div class="sub">Average queue wait time</div></div>
+        <div class="kpi"><div class="label">L0 Autonomous Deflection</div><div class="value mono" id="kpi_l0_tickets">0 /mo</div><div class="sub">100% Zero-Touch AI Resolution</div></div>
+        <div class="kpi success"><div class="label">Copilot Hours Saved / Mo</div><div class="value mono" id="kpi_copilot_hours">0 hrs</div><div class="sub">From L1 AHT compression</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Tiering & Nesting -->
+  <section class="block" id="tiering">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Tiering &amp; Nesting</h2></div>
+    <p class="sec-desc">Tier 1 handles every ticket first-touch; the un-resolved share escalates to Tier 2 at Tier 2's own (longer) AHT.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="tier_nesting_pct">Nesting ratio — % resolved at Tier 1 (First Contact Resolution)</label>
+          <div class="slider-control"><input id="tier_nesting_pct" type="range" min="30" max="99" value="80"><span class="slider-val" id="tier_nesting_val">80%</span></div>
+        </div>
+        <div class="field"><label for="tier_t2_mult">Tier 2 AHT multiplier (vs. Tier 1)</label><input id="tier_t2_mult" type="number" min="1" step="0.1" value="1.8"></div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Tier 1 FTE Required</div><div class="value mono" id="kpi_t1_fte">0</div><div class="sub">First-touch, all volume</div></div>
+        <div class="kpi accent2"><div class="label">Tier 2 FTE Required</div><div class="value mono" id="kpi_t2_fte">0</div><div class="sub" id="kpi_t2_sub">Escalated volume only</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Labor Cost & Cost-to-Serve -->
+  <section class="block" id="labor">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Labor Cost &amp; Cost-to-Serve</h2></div>
+    <p class="sec-desc">Geographic blend of loaded cost per FTE. Rates are editable in-place.</p>
+    <div class="panel">
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Region</th><th style="width:120px;">Blend %</th><th style="width:180px;">Loaded Cost / FTE / Year</th></tr></thead>
+          <tbody id="regionBody"></tbody>
+        </table>
+      </div>
+      <p class="hint" id="region_reconcile"></p>
+      <div class="kpi-row" style="margin-top:14px;">
+        <div class="kpi"><div class="label">Blended Cost / FTE / Year</div><div class="value mono" id="kpi_blended_cost">$0</div></div>
+        <div class="kpi accent2"><div class="label">Blended Cost / Ticket</div><div class="value mono" id="kpi_cost_per_ticket">$0</div></div>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:14px;">
+      <h3>Channel Cost-to-Serve Economics (Shift-Left Value)</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Voice (Human Live)</div><div class="value mono" id="ch_cost_voice">$0</div><div class="sub">Direct agent handling</div></div>
+        <div class="kpi accent2"><div class="label">Chat (3× Concurrency)</div><div class="value mono" id="ch_cost_chat">$0</div><div class="sub">Multi-session live chat</div></div>
+        <div class="kpi"><div class="label">Email / Ticket Queue</div><div class="value mono" id="ch_cost_email">$0</div><div class="sub">Asynchronous handling</div></div>
+        <div class="kpi success"><div class="label">Autonomous AI (L0)</div><div class="value mono" id="ch_cost_ai">$0.75</div><div class="sub">Zero human touch · Token API</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Multi-Year Projection -->
+  <section class="block" id="projection">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Multi-Year Staffing &amp; Savings Projection</h2></div>
+    <p class="sec-desc">Term is your choice — not locked to 5 years. FTE need declines as the computed automation ramp deflects volume.</p>
+    <div class="panel">
+      <div class="term-row">
+        <span class="presets-title">Projection term:</span>
+        <div class="pillrow" id="termToggle">
+          <div class="pill" data-term="1">1 yr</div>
+          <div class="pill" data-term="3">3 yr</div>
+          <div class="pill on" data-term="5">5 yr</div>
+          <div class="pill" data-term="7">7 yr</div>
+        </div>
+        <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
+        <span class="hint" style="margin:0;">years (1–7, any value)</span>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>Automation %</th><th style="width:170px;">Effective Volume/mo</th><th style="width:130px;">Required FTE</th><th style="width:160px;">Annual Labor Cost</th><th style="width:170px;">Annual Cost Avoidance</th></tr></thead>
+          <tbody id="projectionBody"></tbody>
+        </table>
+      </div>
+      <p class="hint">Cost avoidance = labor cost of the Year-1 0%-automation baseline headcount minus the actual (deflected) headcount cost for that year.</p>
+    </div>
+  </section>
+
+  <!-- 9. Executive Report & ROI -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; ROI</h2></div>
+    <p class="sec-desc">Month 1 baseline, tiered headcount, and full-term labor cost avoidance.</p>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="label">Month 1 Required FTE (Total)</div>
+        <div class="value mono" id="kpi_r_totalfte">0</div>
+        <div class="sub" id="kpi_r_totalfte_sub">Tier 1 + Tier 2, shift-adjusted</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">Month 1 Blended Labor Cost</div>
+        <div class="value mono" id="kpi_r_cost">$0</div>
+        <div class="sub">Monthly, loaded</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Cost Per Ticket</div>
+        <div class="value mono" id="kpi_r_costperticket">$0</div>
+        <div class="sub">Blended across channels &amp; tiers</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">FTE Capacity Freed by Automation</div>
+        <div class="value mono" id="kpi_r_freed">0</div>
+        <div class="sub">Vs. 0%-automation baseline, Month 1</div>
+      </div>
+    </div>
+    <div class="kpi-row">
+      <div class="kpi success">
+        <div class="label">Year 1 Annual Cost Avoidance</div>
+        <div class="value mono" id="kpi_r_year1avoid">$0</div>
+      </div>
+      <div class="kpi success">
+        <div class="label" id="kpi_r_cumlabel">N-Year Cumulative Avoidance</div>
+        <div class="value mono" id="kpi_r_cumavoid">$0</div>
+      </div>
+      <div class="kpi">
+        <div class="label">Final-Year Automation Target</div>
+        <div class="value mono" id="kpi_r_finaltarget">0%</div>
+      </div>
+      <div class="kpi accent2">
+        <div class="label">Nesting Ratio (T1 FCR)</div>
+        <div class="value mono" id="kpi_r_nesting">0%</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Month 1 Breakdown by Channel &amp; Tier</h3>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Channel</th><th>Model</th><th style="width:140px;">Volume/mo</th><th style="width:120px;">FTE</th><th style="width:140px;">Monthly Cost</th></tr></thead>
+          <tbody id="reportBreakdownBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3>Estate Diagnostic Summary</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Managed Employees</div><div class="value mono" id="diag_employees">0</div></div>
+        <div class="kpi"><div class="label">Shift Coverage Model</div><div class="value mono" id="diag_shift" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">Digital vs. Voice Split</div><div class="value mono" id="diag_split" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">KB / RAG Readiness</div><div class="value mono" id="diag_kb" style="font-size:16px;">—</div></div>
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>SD Human Agent Optimizer crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// SD HUMAN AGENT OPTIMIZER — Erlang C Staffing, Automation-Driver Ramp, Tiering, Cost Avoidance
+// ============================================================================================
+
+const FALLBACK_BENCH = {
+  "meta": {
+    "version": "2026.09",
+    "last_refreshed": "2026-09-11",
+    "currency": "USD",
+    "unit": "loaded cost per FTE per year"
+  },
+  "shift_coverage_multipliers": {
+    "8x5": {
+      "label": "8x5 (Business Hours)",
+      "multiplier": 1.0
+    },
+    "16x5": {
+      "label": "16x5 (Extended Hours)",
+      "multiplier": 1.55
+    },
+    "24x7": {
+      "label": "24x7 Follow-the-Sun",
+      "multiplier": 2.85
+    }
+  },
+  "tier_defaults": {
+    "nesting_ratio_t1_pct": 80,
+    "t2_aht_multiplier": 1.8
+  },
+  "region_cost": {
+    "onshore": {
+      "label": "Onshore (US/UK/AU)",
+      "loaded_cost_per_fte_year": 68000
+    },
+    "nearshore": {
+      "label": "Nearshore (LatAm/Eastern Europe)",
+      "loaded_cost_per_fte_year": 42000
+    },
+    "offshore": {
+      "label": "Offshore (India/Philippines)",
+      "loaded_cost_per_fte_year": 22000
+    }
+  },
+  "automation_driver_weights": {
+    "kb_readiness": 0.3,
+    "tooling_penetration": 0.2,
+    "digital_split": 0.2,
+    "complexity_simple": 0.15,
+    "maturity_stage": 0.15
+  },
+  "maturity_stage_scores": {
+    "none": 0,
+    "pilot": 30,
+    "scaled": 65,
+    "advanced": 90
+  },
+  "automation_curve_bounds": {
+    "year1_cap": 20,
+    "annual_growth_cap": 12,
+    "max_cap": 75
+  },
+  "staffing_defaults": {
+    "target_service_level_pct": 80,
+    "target_answer_time_sec": 20,
+    "chat_concurrency": 3,
+    "working_days_per_month": 21,
+    "hours_per_day": 8
+  }
+};
+
+let BENCH = null;
+
+const CURRENCIES = {
+  USD: { symbol: '$', rate: 1.00, locale: 'en-US', decimals: 2 },
+  INR: { symbol: '₹', rate: 85.00, locale: 'en-IN', decimals: 0 },
+  EUR: { symbol: '€', rate: 0.92, locale: 'de-DE', decimals: 2 },
+  GBP: { symbol: '£', rate: 0.78, locale: 'en-GB', decimals: 2 }
+};
+let currentCurrency = 'USD';
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+function fmtMoney(usdVal) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = (usdVal || 0) * c.rate;
+  return c.symbol + converted.toLocaleString(c.locale, { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
+}
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+const fmt1 = (v) => (Math.round((v || 0) * 10) / 10).toLocaleString('en-US');
+const clampPct = (v) => Math.max(0, Math.min(100, v));
+
+const state = {
+  themeChoice: 'dark',
+  shiftModel: '16x5',
+  projTerm: 5,
+  automationOverride: {},
+  region: { onshore: 20, nearshore: 30, offshore: 50 },
+  regionRates: {}
+};
+
+// ---------------- ENGINE (identical to tested engine.js) ----------------
+function erlangBRecursive(A, N) {
+  let B = 1.0;
+  for (let i = 1; i <= N; i++) { B = (A * B) / (i + A * B); }
+  return B;
+}
+function erlangC(A, N) {
+  if (N <= A) return 1;
+  const B = erlangBRecursive(A, N);
+  const C = (N * B) / (N - A * (1 - B));
+  return Math.max(0, Math.min(1, C));
+}
+function serviceLevel(A, N, ahtSec, targetAnswerSec) {
+  if (N <= A) return 0;
+  const C = erlangC(A, N);
+  const sl = 1 - C * Math.exp(-(N - A) * (targetAnswerSec / ahtSec));
+  return Math.max(0, Math.min(1, sl));
+}
+function requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec, maxAgents = 3000) {
+  if (erlangs <= 0) return { agents: 0, achievedSL: 1, erlangs: 0 };
+  let N = Math.max(1, Math.ceil(erlangs) + 1);
+  let sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  while (sl < targetSLFrac && N < maxAgents) { N++; sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec); }
+  return { agents: N, achievedSL: sl, erlangs };
+}
+function volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay) {
+  const arrivalPerHour = monthlyVolume / (workingDaysPerMonth * hoursPerDay);
+  return (arrivalPerHour * ahtSec) / 3600;
+}
+function channelFTE_realtime(monthlyVolume, ahtSec, targetSLFrac, targetAnswerSec, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  const erlangs = volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay);
+  const r = requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec);
+  const fte = shrinkageFrac < 1 ? r.agents / (1 - shrinkageFrac) : r.agents;
+  const impliedOccupancy = r.agents > 0 ? erlangs / r.agents : 0;
+  const probWait = r.agents > 0 ? erlangC(erlangs, r.agents) : 0;
+  const asa = (r.agents > erlangs && r.agents > 0) ? (probWait * ahtSec) / (r.agents - erlangs) : 0;
+  return { fte, achievedSL: r.achievedSL, erlangs, agents: r.agents, impliedOccupancy, probWait, asa };
+}
+function channelFTE_throughput(monthlyVolume, ahtMinutes, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  const availableMin = workingDaysPerMonth * hoursPerDay * 60;
+  const effectiveMin = availableMin * (1 - shrinkageFrac);
+  const fte = effectiveMin > 0 ? (monthlyVolume * ahtMinutes) / effectiveMin : 0;
+  return { fte };
+}
+function automationPropensity(inputs, weights, maturityScores) {
+  const kbPct = inputs.kbTotal > 0 ? Math.min(100, (inputs.kbReady / inputs.kbTotal) * 100) : 0;
+  const maturityScore = maturityScores[inputs.maturity] ?? 0;
+  const score = weights.kb_readiness * kbPct + weights.tooling_penetration * inputs.toolingPct +
+    weights.digital_split * inputs.digitalPct + weights.complexity_simple * inputs.complexitySimplePct +
+    weights.maturity_stage * maturityScore;
+  return { score: Math.max(0, Math.min(100, score)), kbPct };
+}
+function computedAutomationForYear(year, propensityScore, bounds) {
+  const S = propensityScore / 100;
+  const year1 = bounds.year1_cap * S;
+  if (year === 1) return Math.round(year1);
+  let target = year1;
+  for (let y = 2; y <= year; y++) { target = Math.min(bounds.max_cap, target + bounds.annual_growth_cap * S); }
+  return Math.round(target);
+}
+function tier2Throughput(escalatedVolumeByChannel, ahtByChannelMin, t2Mult, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  let totalMinutes = 0;
+  Object.keys(escalatedVolumeByChannel).forEach(ch => { totalMinutes += escalatedVolumeByChannel[ch] * ahtByChannelMin[ch] * t2Mult; });
+  const availableMin = workingDaysPerMonth * hoursPerDay * 60;
+  const effectiveMin = availableMin * (1 - shrinkageFrac);
+  return effectiveMin > 0 ? totalMinutes / effectiveMin : 0;
+}
+
+// ---------------- INPUT COLLECTION ----------------
+function collectInputs() {
+  return {
+    employees: num('org_employees'),
+    languages: num('org_languages'),
+    volTotal: num('vol_total'),
+    peakMult: num('vol_peak_mult') || 1,
+    volVoicePct: num('vol_voice_pct'),
+    volChatPct: num('vol_chat_pct'),
+    volEmailPct: num('vol_email_pct'),
+    volDigitalPct: num('vol_digital_pct'),
+    ahtVoiceSec: num('sla_aht_voice'),
+    ahtChatSec: num('sla_aht_chat'),
+    ahtEmailMin: num('sla_aht_email'),
+    targetSLPct: num('sla_target_sl'),
+    targetAnswerSec: num('sla_target_answer'),
+    occupancyTargetPct: num('sla_occupancy'),
+    shrinkagePct: num('sla_shrinkage'),
+    kbReady: num('drv_kb_ready'),
+    kbTotal: num('drv_kb_total') || 1,
+    toolingPct: num('drv_tooling_pct'),
+    complexitySimplePct: num('drv_complexity_simple'),
+    maturity: $('drv_maturity') ? $('drv_maturity').value : 'pilot',
+    copilotAhtPct: num('drv_copilot_aht') || 0,
+    chatConcurrency: num('stf_chat_concurrency') || 1,
+    nestingPct: num('tier_nesting_pct'),
+    t2Mult: num('tier_t2_mult') || 1
+  };
+}
+
+function getPropensity(inputs) {
+  return automationPropensity(
+    { kbReady: inputs.kbReady, kbTotal: inputs.kbTotal, toolingPct: inputs.toolingPct, digitalPct: inputs.volDigitalPct, complexitySimplePct: inputs.complexitySimplePct, maturity: inputs.maturity },
+    BENCH.automation_driver_weights, BENCH.maturity_stage_scores
+  );
+}
+
+function getYearAutomationPct(year, propensityScore) {
+  if (state.automationOverride[year] !== undefined) return state.automationOverride[year];
+  return computedAutomationForYear(year, propensityScore, BENCH.automation_curve_bounds);
+}
+
+function computeBlendedCostPerFTE() {
+  const regions = BENCH.region_cost;
+  let blended = 0, pctSum = 0;
+  Object.keys(regions).forEach(key => {
+    const pct = state.region[key] || 0;
+    const rate = state.regionRates[key] !== undefined ? state.regionRates[key] : regions[key].loaded_cost_per_fte_year;
+    blended += (pct / 100) * rate;
+    pctSum += pct;
+  });
+  return { blended, pctSum };
+}
+
+function computeStaffingForAutomationPct(pct, inputs) {
+  const factor = 1 - pct / 100;
+  const l0Tickets = inputs.volTotal * inputs.peakMult * (pct / 100);
+  const volVoice = inputs.volTotal * inputs.volVoicePct / 100 * inputs.peakMult * factor;
+  const volChat = inputs.volTotal * inputs.volChatPct / 100 * inputs.peakMult * factor;
+  const volEmail = inputs.volTotal * inputs.volEmailPct / 100 * inputs.peakMult * factor;
+
+  const shrinkage = inputs.shrinkagePct / 100;
+  const WD = BENCH.staffing_defaults.working_days_per_month;
+  const HD = BENCH.staffing_defaults.hours_per_day;
+  const targetSL = inputs.targetSLPct / 100;
+
+  // AI Copilot AHT Compression
+  const copilotEfficiency = 1 - ((inputs.copilotAhtPct / 100) * (inputs.toolingPct / 100));
+  const effVoiceAHT = Math.max(30, inputs.ahtVoiceSec * copilotEfficiency);
+  const effChatAHT = Math.max(30, (inputs.ahtChatSec * copilotEfficiency) / inputs.chatConcurrency);
+  const effEmailAHT = Math.max(1, inputs.ahtEmailMin * copilotEfficiency);
+
+  const voice = channelFTE_realtime(volVoice, effVoiceAHT, targetSL, inputs.targetAnswerSec, shrinkage, WD, HD);
+  const chat = channelFTE_realtime(volChat, effChatAHT, targetSL, inputs.targetAnswerSec, shrinkage, WD, HD);
+  const email = channelFTE_throughput(volEmail, effEmailAHT, shrinkage, WD, HD);
+
+  const t1FTE = voice.fte + chat.fte + email.fte;
+
+  const escalatedVol = {
+    voice: volVoice * (1 - inputs.nestingPct / 100),
+    chat: volChat * (1 - inputs.nestingPct / 100),
+    email: volEmail * (1 - inputs.nestingPct / 100)
+  };
+  const ahtByChannelMin = { voice: effVoiceAHT / 60, chat: (inputs.ahtChatSec * copilotEfficiency) / 60, email: effEmailAHT };
+  const t2FTE = tier2Throughput(escalatedVol, ahtByChannelMin, inputs.t2Mult, shrinkage, WD, HD);
+
+  const shiftMult = BENCH.shift_coverage_multipliers[state.shiftModel].multiplier;
+  const totalFTE = (t1FTE + t2FTE) * shiftMult;
+
+  const { blended: blendedCostPerFTEYear } = computeBlendedCostPerFTE();
+  const laborCostMonthly = totalFTE * blendedCostPerFTEYear / 12;
+  const effectiveHumanVolume = volVoice + volChat + volEmail;
+  const costPerTicket = effectiveHumanVolume > 0 ? laborCostMonthly / effectiveHumanVolume : 0;
+
+  const monthlyMinutesSaved = (volVoice * (inputs.ahtVoiceSec - effVoiceAHT) / 60) +
+    (volChat * (inputs.ahtChatSec - inputs.ahtChatSec * copilotEfficiency) / 60) +
+    (volEmail * (inputs.ahtEmailMin - effEmailAHT));
+  const copilotHoursSaved = monthlyMinutesSaved / 60;
+
+  const costVoice = volVoice > 0 ? (voice.fte * shiftMult * blendedCostPerFTEYear / 12) / volVoice : 0;
+  const costChat = volChat > 0 ? (chat.fte * shiftMult * blendedCostPerFTEYear / 12) / volChat : 0;
+  const costEmail = volEmail > 0 ? (email.fte * shiftMult * blendedCostPerFTEYear / 12) / volEmail : 0;
+
+  return { voice, chat, email, t1FTE, t2FTE, totalFTE, blendedCostPerFTEYear, laborCostMonthly, laborCostAnnual: laborCostMonthly * 12, costPerTicket, effectiveHumanVolume, volVoice, volChat, volEmail, l0Tickets, copilotHoursSaved, costVoice, costChat, costEmail };
+}
+
+// ---------------- RENDER: Section 02 Channel Mix ----------------
+function renderChannelMix(inputs) {
+  const sum = inputs.volVoicePct + inputs.volChatPct + inputs.volEmailPct + inputs.volDigitalPct;
+  const hint = $('vol_reconcile');
+  hint.textContent = sum === 100 ? `Channel split totals ${sum}% ✓` : `Channel split totals ${sum}% — should be 100%`;
+  hint.style.color = sum === 100 ? 'var(--success)' : 'var(--danger)';
+
+  const base = inputs.volTotal * inputs.peakMult;
+  $('vol_voice_computed').textContent = fmtInt(base * inputs.volVoicePct / 100) + ' / mo';
+  $('vol_chat_computed').textContent = fmtInt(base * inputs.volChatPct / 100) + ' / mo';
+  $('vol_email_computed').textContent = fmtInt(base * inputs.volEmailPct / 100) + ' / mo';
+  $('vol_digital_computed').textContent = fmtInt(base * inputs.volDigitalPct / 100) + ' / mo';
+}
+
+// ---------------- RENDER: Section 04 Drivers ----------------
+function renderDrivers(inputs, propensity) {
+  $('drv_tooling_val').textContent = inputs.toolingPct + '%';
+  $('drv_complexity_val').textContent = inputs.complexitySimplePct + '%';
+  $('drv_digital_readout').textContent = inputs.volDigitalPct + '%';
+  $('drv_copilot_aht_val').textContent = inputs.copilotAhtPct + '%';
+  $('drv_propensity_score').textContent = propensity.score.toFixed(1) + ' / 100';
+
+  const y1 = getYearAutomationPct(1, propensity.score);
+  const yFinal = getYearAutomationPct(state.projTerm, propensity.score);
+  $('drv_ramp_preview').textContent = `Computed ramp preview — Year 1: ${y1}% → Year ${state.projTerm}: ${yFinal}%. Override any year's value directly in Section 08.`;
+}
+
+// ---------------- RENDER: Section 05 Staffing KPIs ----------------
+function renderStaffingKPIs(month1) {
+  $('kpi_voice_fte').textContent = fmt1(month1.voice.fte);
+  $('kpi_voice_sl').textContent = `Achieved SL ${(month1.voice.achievedSL * 100).toFixed(0)}% · ${fmtInt(month1.voice.erlangs)} Erlangs`;
+  $('kpi_chat_fte').textContent = fmt1(month1.chat.fte);
+  $('kpi_chat_sl').textContent = `Achieved SL ${(month1.chat.achievedSL * 100).toFixed(0)}% (concurrency-adjusted)`;
+  $('kpi_email_fte').textContent = fmt1(month1.email.fte);
+
+  const occ = month1.voice.impliedOccupancy * 100;
+  $('kpi_occupancy').textContent = occ.toFixed(0) + '%';
+  const inputs = collectInputs();
+  const badge = $('kpi_occupancy_badge');
+  if (occ > inputs.occupancyTargetPct) {
+    badge.textContent = `Running hotter than ${inputs.occupancyTargetPct}% target`;
+    badge.style.color = 'var(--danger)';
+  } else {
+    badge.textContent = `Within ${inputs.occupancyTargetPct}% target`;
+    badge.style.color = 'var(--success)';
+  }
+
+  // Queue Health & WFM KPIs
+  if ($('kpi_prob_delay')) $('kpi_prob_delay').textContent = (month1.voice.probWait * 100).toFixed(1) + '%';
+  if ($('kpi_asa')) $('kpi_asa').textContent = Math.round(month1.voice.asa) + 's';
+  if ($('kpi_l0_tickets')) $('kpi_l0_tickets').textContent = fmtInt(month1.l0Tickets) + ' / mo';
+  if ($('kpi_copilot_hours')) $('kpi_copilot_hours').textContent = fmtInt(month1.copilotHoursSaved) + ' hrs';
+}
+
+// ---------------- RENDER: Section 06 Tiering KPIs ----------------
+function renderTieringKPIs(month1, inputs) {
+  $('kpi_t1_fte').textContent = fmt1(month1.t1FTE);
+  $('kpi_t2_fte').textContent = fmt1(month1.t2FTE);
+  $('kpi_t2_sub').textContent = `${100 - inputs.nestingPct}% escalation rate, ${inputs.t2Mult}× AHT`;
+}
+
+// ---------------- RENDER: Section 07 Region Table & Labor KPIs ----------------
+function renderRegionTable() {
+  const regions = BENCH.region_cost;
+  $('regionBody').innerHTML = Object.keys(regions).map(key => {
+    const r = regions[key];
+    const pct = state.region[key] !== undefined ? state.region[key] : 0;
+    const rate = state.regionRates[key] !== undefined ? state.regionRates[key] : r.loaded_cost_per_fte_year;
+    return `<tr>
+      <td>${r.label}</td>
+      <td><input type="number" min="0" max="100" data-region-pct="${key}" value="${pct}"></td>
+      <td><input type="number" min="0" step="500" data-region-rate="${key}" value="${rate}"></td>
+    </tr>`;
+  }).join('');
+
+  $('regionBody').querySelectorAll('[data-region-pct]').forEach(el => el.addEventListener('input', (e) => {
+    state.region[e.target.dataset.regionPct] = parseFloat(e.target.value) || 0;
+    recalcAll();
+  }));
+  $('regionBody').querySelectorAll('[data-region-rate]').forEach(el => el.addEventListener('input', (e) => {
+    state.regionRates[e.target.dataset.regionRate] = parseFloat(e.target.value) || 0;
+    recalcAll();
+  }));
+}
+function renderLaborKPIs(month1) {
+  const { pctSum } = computeBlendedCostPerFTE();
+  $('region_reconcile').textContent = pctSum === 100 ? `Region blend totals ${pctSum}% ✓` : `Region blend totals ${pctSum}% — should be 100%`;
+  $('region_reconcile').style.color = pctSum === 100 ? 'var(--success)' : 'var(--danger)';
+  $('kpi_blended_cost').textContent = fmtMoney(month1.blendedCostPerFTEYear);
+  $('kpi_cost_per_ticket').textContent = fmtMoney(month1.costPerTicket);
+
+  // Channel Cost-to-Serve Benchmarks
+  if ($('ch_cost_voice')) $('ch_cost_voice').textContent = fmtMoney(month1.costVoice);
+  if ($('ch_cost_chat')) $('ch_cost_chat').textContent = fmtMoney(month1.costChat);
+  if ($('ch_cost_email')) $('ch_cost_email').textContent = fmtMoney(month1.costEmail);
+  if ($('ch_cost_ai')) $('ch_cost_ai').textContent = fmtMoney(0.75);
+}
+
+// ---------------- RENDER: Section 08 Projection ----------------
+function renderProjection(inputs, propensity, baseline0) {
+  const rows = [];
+  for (let y = 1; y <= state.projTerm; y++) {
+    const pct = getYearAutomationPct(y, propensity.score);
+    const yr = computeStaffingForAutomationPct(pct, inputs);
+    const avoidance = Math.max(0, baseline0.laborCostAnnual - yr.laborCostAnnual);
+    rows.push({ y, pct, yr, avoidance });
+  }
+  $('projectionBody').innerHTML = rows.map(r => `
+    <tr>
+      <td><b>Year ${r.y}</b></td>
+      <td><input type="number" min="0" max="${BENCH.automation_curve_bounds.max_cap}" data-yr-auto="${r.y}" value="${r.pct}"></td>
+      <td class="num-cell mono">${fmtInt(r.yr.effectiveHumanVolume)}</td>
+      <td class="num-cell mono">${fmt1(r.yr.totalFTE)}</td>
+      <td class="num-cell mono">${fmtMoney(r.yr.laborCostAnnual)}</td>
+      <td class="num-cell mono" style="color:var(--success);">${fmtMoney(r.avoidance)}</td>
+    </tr>`).join('');
+
+  $('projectionBody').querySelectorAll('[data-yr-auto]').forEach(el => el.addEventListener('input', (e) => {
+    const y = +e.target.dataset.yrAuto;
+    state.automationOverride[y] = clampPct(parseFloat(e.target.value) || 0);
+    recalcAll();
+  }));
+
+  return rows;
+}
+
+// ---------------- RENDER: Section 09 Executive Report ----------------
+function renderReport(inputs, propensity, month1, baseline0, projectionRows) {
+  $('kpi_r_totalfte').textContent = fmt1(month1.totalFTE);
+  $('kpi_r_totalfte_sub').textContent = `T1 ${fmt1(month1.t1FTE)} + T2 ${fmt1(month1.t2FTE)}, ${state.shiftModel} coverage`;
+  $('kpi_r_cost').textContent = fmtMoney(month1.laborCostMonthly);
+  $('kpi_r_costperticket').textContent = fmtMoney(month1.costPerTicket);
+  $('kpi_r_freed').textContent = fmt1(Math.max(0, baseline0.totalFTE - month1.totalFTE));
+
+  const year1Avoid = Math.max(0, baseline0.laborCostAnnual - month1.laborCostAnnual);
+  $('kpi_r_year1avoid').textContent = fmtMoney(year1Avoid);
+  $('kpi_r_cumlabel').textContent = `${state.projTerm}-Year Cumulative Avoidance`;
+  const cumAvoid = projectionRows.reduce((s, r) => s + r.avoidance, 0);
+  $('kpi_r_cumavoid').textContent = fmtMoney(cumAvoid);
+  $('kpi_r_finaltarget').textContent = projectionRows.length ? projectionRows[projectionRows.length - 1].pct + '%' : '0%';
+  $('kpi_r_nesting').textContent = inputs.nestingPct + '%';
+
+  $('reportBreakdownBody').innerHTML = `
+    <tr><td>Voice</td><td>Erlang C</td><td class="num-cell mono">${fmtInt(month1.volVoice)}</td><td class="num-cell mono">${fmt1(month1.voice.fte)}</td><td class="num-cell mono">${fmtMoney(month1.voice.fte * month1.blendedCostPerFTEYear / 12)}</td></tr>
+    <tr><td>Chat</td><td>Erlang C (concurrency-adj.)</td><td class="num-cell mono">${fmtInt(month1.volChat)}</td><td class="num-cell mono">${fmt1(month1.chat.fte)}</td><td class="num-cell mono">${fmtMoney(month1.chat.fte * month1.blendedCostPerFTEYear / 12)}</td></tr>
+    <tr><td>Email</td><td>Throughput</td><td class="num-cell mono">${fmtInt(month1.volEmail)}</td><td class="num-cell mono">${fmt1(month1.email.fte)}</td><td class="num-cell mono">${fmtMoney(month1.email.fte * month1.blendedCostPerFTEYear / 12)}</td></tr>
+    <tr><td>Tier 2 (escalated, all channels)</td><td>Throughput</td><td class="num-cell mono">—</td><td class="num-cell mono">${fmt1(month1.t2FTE)}</td><td class="num-cell mono">${fmtMoney(month1.t2FTE * month1.blendedCostPerFTEYear / 12)}</td></tr>
+  `;
+
+  $('diag_employees').textContent = fmtInt(inputs.employees);
+  $('diag_shift').textContent = BENCH.shift_coverage_multipliers[state.shiftModel].label;
+  $('diag_split').textContent = `${inputs.volDigitalPct}% Digital`;
+  $('diag_kb').textContent = `${propensity.kbPct.toFixed(0)}%`;
+}
+
+// ---------------- MASTER RECALC ----------------
+function recalcAll() {
+  if (!BENCH) return;
+  const inputs = collectInputs();
+  const propensity = getPropensity(inputs);
+
+  renderChannelMix(inputs);
+  renderDrivers(inputs, propensity);
+
+  const y1pct = getYearAutomationPct(1, propensity.score);
+  const month1 = computeStaffingForAutomationPct(y1pct, inputs);
+  const baseline0 = computeStaffingForAutomationPct(0, inputs);
+
+  renderStaffingKPIs(month1);
+  renderTieringKPIs(month1, inputs);
+  renderLaborKPIs(month1);
+  const projectionRows = renderProjection(inputs, propensity, baseline0);
+  renderReport(inputs, propensity, month1, baseline0, projectionRows);
+
+  $('liveTotal').textContent = fmt1(month1.totalFTE) + ' FTE';
+}
+
+// ---------------- EVENT WIRING ----------------
+[
+  'org_employees', 'org_languages', 'vol_total', 'vol_peak_mult',
+  'vol_voice_pct', 'vol_chat_pct', 'vol_email_pct', 'vol_digital_pct',
+  'sla_aht_voice', 'sla_aht_chat', 'sla_aht_email', 'sla_target_sl', 'sla_target_answer', 'sla_occupancy', 'sla_shrinkage',
+  'drv_kb_ready', 'drv_kb_total', 'drv_tooling_pct', 'drv_complexity_simple', 'drv_maturity', 'drv_copilot_aht',
+  'stf_chat_concurrency', 'tier_nesting_pct', 'tier_t2_mult'
+].forEach(id => {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener('input', () => {
+    if (id === 'sla_shrinkage') $('sla_shrinkage_val').textContent = el.value + '%';
+    if (id === 'tier_nesting_pct') $('tier_nesting_val').textContent = el.value + '%';
+    if (id === 'drv_copilot_aht') $('drv_copilot_aht_val').textContent = el.value + '%';
+    recalcAll();
+  });
+  if (el.tagName === 'SELECT') el.addEventListener('change', recalcAll);
+});
+
+// Shift model pills
+function updateShiftHint() {
+  $('shift_hint').textContent = `Coverage overhead multiplier: ${BENCH.shift_coverage_multipliers[state.shiftModel].multiplier}× applied to base (single-shift) FTE requirement.`;
+}
+$('shiftModelToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#shiftModelToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.shiftModel = pill.dataset.shift;
+  updateShiftHint();
+  recalcAll();
+});
+
+// Term selector pills + custom number
+$('termToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.projTerm = +pill.dataset.term;
+  $('term_custom').value = state.projTerm;
+  recalcAll();
+});
+$('term_custom').addEventListener('input', (e) => {
+  let v = Math.round(parseFloat(e.target.value) || 1);
+  v = Math.max(1, Math.min(7, v));
+  state.projTerm = v;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === v));
+  recalcAll();
+});
+
+// Presets
+const PRESETS = {
+  small: { employees: 2000, volTotal: 6000, shift: '8x5', voice: 35, chat: 20, email: 20, digital: 25 },
+  mid: { employees: 10000, volTotal: 40000, shift: '16x5', voice: 30, chat: 25, email: 20, digital: 25 },
+  enterprise: { employees: 50000, volTotal: 150000, shift: '24x7', voice: 25, chat: 30, email: 20, digital: 25 },
+  reset: { employees: 0, volTotal: 0, shift: '16x5', voice: 30, chat: 25, email: 20, digital: 25 }
+};
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const p = PRESETS[btn.dataset.preset];
+    if (!p) return;
+    $('org_employees').value = p.employees;
+    $('vol_total').value = p.volTotal;
+    $('vol_voice_pct').value = p.voice;
+    $('vol_chat_pct').value = p.chat;
+    $('vol_email_pct').value = p.email;
+    $('vol_digital_pct').value = p.digital;
+    state.shiftModel = p.shift;
+    document.querySelectorAll('#shiftModelToggle .pill').forEach(pl => pl.classList.toggle('on', pl.dataset.shift === p.shift));
+    updateShiftHint();
+    recalcAll();
+  });
+});
+
+// Currency
+document.querySelectorAll('#currencyToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCurrency = btn.dataset.curr;
+    recalcAll();
+  });
+});
+
+// Theme
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('sw_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Ecosystem dropdowns
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+// Section nav scrollspy
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+    }
+  });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  const inputs = collectInputs();
+  const propensity = getPropensity(inputs);
+  const y1pct = getYearAutomationPct(1, propensity.score);
+  const month1 = computeStaffingForAutomationPct(y1pct, inputs);
+  const baseline0 = computeStaffingForAutomationPct(0, inputs);
+
+  let csv = 'SD HUMAN AGENT OPTIMIZER — MODEL EXPORT\n';
+  csv += `Currency,${currentCurrency}\n`;
+  csv += `Shift Coverage Model,${state.shiftModel}\n`;
+  csv += `Projection Term (years),${state.projTerm}\n\n`;
+  csv += 'MONTH 1 BREAKDOWN\n';
+  csv += 'Channel,Model,Volume/mo,FTE,Monthly Cost\n';
+  csv += `Voice,Erlang C,${Math.round(month1.volVoice)},${month1.voice.fte.toFixed(1)},${(month1.voice.fte * month1.blendedCostPerFTEYear / 12).toFixed(2)}\n`;
+  csv += `Chat,Erlang C (concurrency-adj.),${Math.round(month1.volChat)},${month1.chat.fte.toFixed(1)},${(month1.chat.fte * month1.blendedCostPerFTEYear / 12).toFixed(2)}\n`;
+  csv += `Email,Throughput,${Math.round(month1.volEmail)},${month1.email.fte.toFixed(1)},${(month1.email.fte * month1.blendedCostPerFTEYear / 12).toFixed(2)}\n`;
+  csv += `Tier 2 (escalated),Throughput,—,${month1.t2FTE.toFixed(1)},${(month1.t2FTE * month1.blendedCostPerFTEYear / 12).toFixed(2)}\n\n`;
+
+  csv += `${state.projTerm}-YEAR PROJECTION\n`;
+  csv += 'Year,Automation Pct,Effective Volume/mo,Required FTE,Annual Labor Cost,Annual Cost Avoidance\n';
+  for (let y = 1; y <= state.projTerm; y++) {
+    const pct = getYearAutomationPct(y, propensity.score);
+    const yr = computeStaffingForAutomationPct(pct, inputs);
+    const avoid = Math.max(0, baseline0.laborCostAnnual - yr.laborCostAnnual);
+    csv += `Year ${y},${pct}%,${Math.round(yr.effectiveHumanVolume)},${yr.totalFTE.toFixed(1)},${yr.laborCostAnnual.toFixed(2)},${avoid.toFixed(2)}\n`;
+  }
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `SD_Optimizer_Model_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 👷 SD Human Agent Optimizer — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/sdoptimizer/
+**Currency:** ${currentCurrency} | **Shift Model:** ${state.shiftModel} | **Term:** ${state.projTerm} years
+
+### Month 1 Staffing & Cost
+- **Required FTE (Total):** ${$('kpi_r_totalfte').textContent}
+- **Blended Monthly Labor Cost:** ${$('kpi_r_cost').textContent}
+- **Cost Per Ticket:** ${$('kpi_r_costperticket').textContent}
+- **FTE Capacity Freed by Automation:** ${$('kpi_r_freed').textContent}
+- **Year 1 Annual Cost Avoidance:** ${$('kpi_r_year1avoid').textContent}
+- **${state.projTerm}-Year Cumulative Avoidance:** ${$('kpi_r_cumavoid').textContent}
+- **Final-Year Automation Target:** ${$('kpi_r_finaltarget').textContent}
+- **Nesting Ratio (T1 FCR):** ${$('kpi_r_nesting').textContent}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch (e) { alert('Clipboard copy failed. Please grant permission.'); }
+});
+
+$('btnSaveScenario').addEventListener('click', () => {
+  const inputs = collectInputs();
+  const scenario = {
+    schemaVersion: '1.0',
+    appId: 'sd-optimizer',
+    timestamp: new Date().toISOString(),
+    currency: currentCurrency,
+    orgProfile: { employees: inputs.employees, industry: '', languages: inputs.languages, shiftModel: state.shiftModel },
+    channelMix: { voice: inputs.volVoicePct, chat: inputs.volChatPct, email: inputs.volEmailPct, digital: inputs.volDigitalPct },
+    moduleData: {
+      volTotal: inputs.volTotal, peakMult: inputs.peakMult,
+      sla: { ahtVoiceSec: inputs.ahtVoiceSec, ahtChatSec: inputs.ahtChatSec, ahtEmailMin: inputs.ahtEmailMin, targetSLPct: inputs.targetSLPct, targetAnswerSec: inputs.targetAnswerSec, occupancyTargetPct: inputs.occupancyTargetPct, shrinkagePct: inputs.shrinkagePct },
+      drivers: { kbReady: inputs.kbReady, kbTotal: inputs.kbTotal, toolingPct: inputs.toolingPct, complexitySimplePct: inputs.complexitySimplePct, maturity: inputs.maturity },
+      staffing: { chatConcurrency: inputs.chatConcurrency },
+      tiering: { nestingPct: inputs.nestingPct, t2Mult: inputs.t2Mult },
+      region: { blend: state.region, rates: state.regionRates },
+      projTerm: state.projTerm,
+      automationOverride: state.automationOverride
+    }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `sd_optimizer_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+});
+
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile) {
+        if (data.orgProfile.employees !== undefined) $('org_employees').value = data.orgProfile.employees;
+        if (data.orgProfile.languages !== undefined) $('org_languages').value = data.orgProfile.languages;
+        if (data.orgProfile.shiftModel) {
+          state.shiftModel = data.orgProfile.shiftModel;
+          document.querySelectorAll('#shiftModelToggle .pill').forEach(p => p.classList.toggle('on', p.dataset.shift === state.shiftModel));
+        }
+      }
+      if (data.channelMix) {
+        if (data.channelMix.voice !== undefined) $('vol_voice_pct').value = data.channelMix.voice;
+        if (data.channelMix.chat !== undefined) $('vol_chat_pct').value = data.channelMix.chat;
+        if (data.channelMix.email !== undefined) $('vol_email_pct').value = data.channelMix.email;
+        if (data.channelMix.digital !== undefined) $('vol_digital_pct').value = data.channelMix.digital;
+      }
+      if (data.appId === 'sd-optimizer' && data.moduleData) {
+        const m = data.moduleData;
+        if (m.volTotal !== undefined) $('vol_total').value = m.volTotal;
+        if (m.peakMult !== undefined) $('vol_peak_mult').value = m.peakMult;
+        if (m.sla) Object.entries({ ahtVoiceSec: 'sla_aht_voice', ahtChatSec: 'sla_aht_chat', ahtEmailMin: 'sla_aht_email', targetSLPct: 'sla_target_sl', targetAnswerSec: 'sla_target_answer', occupancyTargetPct: 'sla_occupancy', shrinkagePct: 'sla_shrinkage' }).forEach(([k, id]) => { if (m.sla[k] !== undefined) $(id).value = m.sla[k]; });
+        if (m.drivers) Object.entries({ kbReady: 'drv_kb_ready', kbTotal: 'drv_kb_total', toolingPct: 'drv_tooling_pct', complexitySimplePct: 'drv_complexity_simple' }).forEach(([k, id]) => { if (m.drivers[k] !== undefined) $(id).value = m.drivers[k]; });
+        if (m.drivers && m.drivers.maturity) $('drv_maturity').value = m.drivers.maturity;
+        if (m.staffing && m.staffing.chatConcurrency !== undefined) $('stf_chat_concurrency').value = m.staffing.chatConcurrency;
+        if (m.tiering) { if (m.tiering.nestingPct !== undefined) $('tier_nesting_pct').value = m.tiering.nestingPct; if (m.tiering.t2Mult !== undefined) $('tier_t2_mult').value = m.tiering.t2Mult; }
+        if (m.region) { if (m.region.blend) state.region = m.region.blend; if (m.region.rates) state.regionRates = m.region.rates; renderRegionTable(); }
+        if (m.projTerm) { state.projTerm = m.projTerm; $('term_custom').value = m.projTerm; document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm)); }
+        if (m.automationOverride) state.automationOverride = m.automationOverride;
+        alert('Loaded full SD Optimizer scenario.');
+      } else {
+        alert('Loaded shared org profile & channel mix from an external scenario. App-specific fields (SLA, drivers, tiering, region) were left as-is.');
+      }
+      $('sla_shrinkage_val').textContent = $('sla_shrinkage').value + '%';
+      $('tier_nesting_val').textContent = $('tier_nesting_pct').value + '%';
+      recalcAll();
+    } catch (err) { alert('Could not read that file as a valid scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- BOOT ----------------
+async function loadBenchmarks() {
+  try {
+    const res = await fetch('sd-benchmarks.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('fetch failed');
+    BENCH = await res.json();
+  } catch (e) {
+    console.warn('Using embedded fallback benchmarks.', e);
+    BENCH = JSON.parse(JSON.stringify(FALLBACK_BENCH));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('sw_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+
+  await loadBenchmarks();
+  Object.keys(BENCH.region_cost).forEach(key => { state.regionRates[key] = BENCH.region_cost[key].loaded_cost_per_fte_year; });
+  renderRegionTable();
+  $('sla_shrinkage_val').textContent = $('sla_shrinkage').value + '%';
+  $('tier_nesting_val').textContent = $('tier_nesting_pct').value + '%';
+  updateShiftHint();
+  recalcAll();
+})();
+
+</script>
+</body>
+</html>

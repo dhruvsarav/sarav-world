@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>DEX Platform Advisor — Find Your Digital Employee Experience Fit | Sarav's World</title>
+<meta name="description" content="Guided assessment scoring 8 leading Digital Employee Experience platforms against your pain points, trigger drivers, and ecosystem — with a computed XPI (Experience Performance Indicator) uplift projection.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/dexadvisor/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/dexadvisor/">
+<meta property="og:title" content="DEX Platform Advisor — Sarav's World">
+<meta property="og:description" content="Trigger-driven vendor fit scoring and multi-year XPI uplift projection for Digital Employee Experience platforms.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/dexadvisor/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap between button and menu */
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+
+
+/* DEX Advisor additions */
+.slider-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border-soft); }
+.slider-row:last-child { border-bottom: none; }
+.slider-row .s-label { font-size: 13px; color: var(--text); flex: 1; min-width: 0; }
+.slider-row .s-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.slider-row .slider-control { width: 220px; flex: none; }
+.weight-bar-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.weight-bar-label { width: 220px; flex: none; font-size: 12.5px; color: var(--text-dim); }
+.weight-bar-track { flex: 1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.weight-bar-fill { height: 100%; background: var(--accent2); }
+.weight-bar-val { width: 46px; flex: none; text-align: right; font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-dim); }
+.vendor-row { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; background: var(--surface); }
+.vendor-row.top { border-color: var(--accent); }
+.vendor-head { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+.vendor-rank { font-family: 'IBM Plex Mono'; color: var(--text-faint); font-size: 13px; width: 22px; }
+.vendor-name-wrap { flex: 1; min-width: 0; }
+.vendor-name-wrap .vname { font-weight: 600; font-size: 15px; }
+.vendor-name-wrap .vtier { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); }
+.vendor-bar-wrap { flex: 2; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; min-width: 100px; }
+.vendor-bar-fill { height: 100%; background: var(--accent2); }
+.vendor-row.top .vendor-bar-fill { background: var(--accent); }
+.vendor-fit-num { font-family: 'IBM Plex Mono'; font-size: 15px; width: 50px; text-align: right; }
+.best-match-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 3px; margin-left: 8px; white-space: nowrap; }
+.vendor-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border-soft); }
+.vendor-row.open .vendor-body { display: block; }
+.vendor-body .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; }
+.vendor-body h4 { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); margin: 0 0 8px; font-weight: 500; }
+.vendor-body ul { margin: 0; padding-left: 16px; font-size: 13.5px; }
+.vendor-body li { margin-bottom: 4px; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+@media (max-width: 640px) {
+  .slider-row { flex-direction: column; align-items: flex-start; }
+  .slider-row .slider-control { width: 100%; }
+  .weight-bar-label { width: 140px; }
+}
+</style>
+</head>
+<body>
+
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/" class="current">🧭 DEX Advisor</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div><a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a></div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="DEX Platform Advisor Logo"></div>
+        <div>
+          <h1>DEX Advisor <span class="badge gold">XPI-Driven Vendor Fit</span></h1>
+          <span class="tagline">Trigger-Weighted Scoring &amp; Multi-Year XPI Uplift</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="live-total-pill">Top Fit: <b id="liveTotal" class="mono">—</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Profile</a>
+      <a href="#estate" class="sec-nav-link"><span class="sn-num">02</span> Estate</a>
+      <a href="#pain" class="sec-nav-link"><span class="sn-num">03</span> Pain Points</a>
+      <a href="#triggers" class="sec-nav-link"><span class="sn-num">04</span> Triggers</a>
+      <a href="#deploy" class="sec-nav-link"><span class="sn-num">05</span> Deployment</a>
+      <a href="#weights" class="sec-nav-link"><span class="sn-num">06</span> Scoring Engine</a>
+      <a href="#results" class="sec-nav-link"><span class="sn-num">07</span> Results</a>
+      <a href="#xpi" class="sec-nav-link"><span class="sn-num">08</span> XPI Projection</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
+    </div>
+  </nav>
+</div>
+
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="lowurgency">🌤️ Low Urgency (exploring)</button>
+    <button class="preset-btn active" data-preset="midurgency">🌥️ Mid Urgency (active RFP)</button>
+    <button class="preset-btn" data-preset="highurgency">⛈️ High Urgency (crisis-driven)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Blank</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 Organization Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Organization Profile</h2></div>
+    <p class="sec-desc">Ecosystem choice drives the vendor-match bonus in Section 07.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="org_employees">Employees</label><input id="org_employees" type="number" min="0" value="10000"></div>
+        <div class="field"><label for="org_industry">Industry (optional)</label><input id="org_industry" type="text" placeholder="e.g. Financial Services"></div>
+        <div class="field">
+          <label for="org_ecosystem">Primary ITSM / ecosystem</label>
+          <select id="org_ecosystem">
+            <option value="servicenow">ServiceNow</option>
+            <option value="ivanti">Ivanti</option>
+            <option value="microsoft">Microsoft-only (Intune + M365 E5)</option>
+            <option value="mixed" selected>Other / mixed</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Estate & Device Profile -->
+  <section class="block" id="estate">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Estate &amp; Device Profile</h2></div>
+    <p class="sec-desc">Context for the executive report — not weighted into vendor scoring directly.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="est_endpoints">Managed endpoints</label><input id="est_endpoints" type="number" min="0" value="8000"></div>
+        <div class="field"><label for="est_remote_pct">% remote / hybrid workforce</label><input id="est_remote_pct" type="number" min="0" max="100" value="55"></div>
+        <div class="field">
+          <label for="est_refresh_stage">Device refresh stage</label>
+          <select id="est_refresh_stage">
+            <option value="new">New (&lt;1yr fleet age)</option>
+            <option value="aging" selected>Aging (1&ndash;3yr)</option>
+            <option value="eol">End-of-life (3yr+)</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Pain Point Priorities -->
+  <section class="block" id="pain">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Pain Point Priorities</h2></div>
+    <p class="sec-desc">Weight every dimension — not a single pick. This directly shapes the vendor scoring weights in Section 06.</p>
+    <div class="panel" id="painSlidersPanel"></div>
+  </section>
+
+  <!-- 04 Trigger Drivers -->
+  <section class="block" id="triggers">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Trigger Drivers (Urgency Factors)</h2></div>
+    <p class="sec-desc">The "why now" behind the initiative. Each driver boosts specific scoring dimensions and rolls up into the Urgency Score that paces the XPI projection in Section 08.</p>
+    <div class="panel" id="triggerSlidersPanel"></div>
+    <div class="panel" style="margin-top: 14px;">
+      <div class="driver-row" style="display:flex; justify-content:space-between; align-items:center;">
+        <div style="font-weight:600;">Computed Urgency Score</div>
+        <div class="mono" id="urgency_score_readout" style="font-size:18px; color: var(--accent);">—</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Deployment & Existing Tooling -->
+  <section class="block" id="deploy">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Deployment &amp; Existing Tooling</h2></div>
+    <p class="sec-desc">Deployment requirement feeds the Deployment Flexibility weight. Tooling maturity is informational context for the report.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field">
+          <label for="deploy_pref">Deployment requirement</label>
+          <select id="deploy_pref">
+            <option value="20">Cloud-native only is fine</option>
+            <option value="50" selected>Hybrid is fine</option>
+            <option value="90">Must support on-prem / regulated estate</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tooling_maturity">Existing DEX tooling status</label>
+          <select id="tooling_maturity">
+            <option value="none" selected>None</option>
+            <option value="point">Point tool (survey-only or monitoring-only)</option>
+            <option value="pilot">Pilot underway</option>
+            <option value="mature">Mature platform in place</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Scoring Engine Transparency -->
+  <section class="block" id="weights">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Vendor Scoring Engine</h2></div>
+    <p class="sec-desc">Computed dimension weights — base(1) + pain-slider boost + trigger-driver boost. This is why the ranking below looks the way it does.</p>
+    <div class="panel" id="weightBarsPanel"></div>
+  </section>
+
+  <!-- 07 Results -->
+  <section class="block" id="results">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Vendor Comparison Results</h2></div>
+    <p class="sec-desc">Ranked by weighted capability fit + ecosystem match. Tap a row for strengths and gaps.</p>
+    <div id="vendorResultsList"></div>
+    <p class="hint" id="vendorDisclaimer"></p>
+
+    <!-- Top 3 Head-to-Head Dimension Matrix -->
+    <div class="panel" style="margin-top: 18px;">
+      <h3>Top 3 Contenders — Dimension Comparison Matrix</h3>
+      <p class="hint" style="margin-bottom: 12px;">Direct side-by-side architectural capability rating across all 9 dimensions (scale: 1 to 5 rating dots).</p>
+      <div class="overflow-x">
+        <table id="matrixTable">
+          <thead>
+            <tr id="matrixHead"><th>Evaluation Dimension</th><th>#1 Vendor</th><th>#2 Vendor</th><th>#3 Vendor</th></tr>
+          </thead>
+          <tbody id="matrixBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 XPI Projection -->
+  <section class="block" id="xpi">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>XPI Uplift Projection</h2></div>
+    <p class="sec-desc">XPI = Experience Performance Indicator, this suite's replacement for a generic KPI here. Term is your choice, not locked to 5 years.</p>
+    <div class="panel">
+      <div class="term-row">
+        <span class="presets-title">Projection term:</span>
+        <div class="pillrow" id="termToggle">
+          <div class="pill" data-term="1">1 yr</div>
+          <div class="pill" data-term="3">3 yr</div>
+          <div class="pill on" data-term="5">5 yr</div>
+          <div class="pill" data-term="7">7 yr</div>
+        </div>
+        <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
+        <span class="hint" style="margin:0;">years (1–7, any value)</span>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>Rollout %</th><th style="width:140px;">XPI Score</th><th style="width:160px;">XPI Uplift vs. Baseline</th></tr></thead>
+          <tbody id="xpiBody"></tbody>
+        </table>
+      </div>
+      <p class="hint">XPI baseline assumes a typical unmanaged estate. Ceiling scales with your top vendor's fit score; rollout pace scales with your computed Urgency Score.</p>
+    </div>
+  </section>
+
+  <!-- 09 Executive Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Export</h2></div>
+    <p class="sec-desc">XPI scorecard, top recommendation, and estate diagnostics.</p>
+
+    <div class="kpi-row">
+      <div class="kpi accent2"><div class="label">Baseline XPI (Today)</div><div class="value mono" id="xpi_r_baseline">0</div></div>
+      <div class="kpi"><div class="label">Top Vendor Fit</div><div class="value mono" id="xpi_r_fit">0%</div><div class="sub" id="xpi_r_vendorname">—</div></div>
+      <div class="kpi accent2"><div class="label">Urgency Score</div><div class="value mono" id="xpi_r_urgency">0</div></div>
+      <div class="kpi"><div class="label">Final-Year XPI</div><div class="value mono" id="xpi_r_finalxpi">0</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Top Recommendation</h3>
+      <div class="cols" style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+        <div><h4 style="font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint);">STRENGTHS</h4><ul id="report_strengths"></ul></div>
+        <div><h4 style="font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint);">GAPS</h4><ul id="report_gaps"></ul></div>
+      </div>
+    </div>
+
+    <!-- Directional TCO & Budget Sizing Envelope -->
+    <div class="panel">
+      <h3>Directional TCO &amp; Licensing Investment Envelope</h3>
+      <p class="hint" style="margin-bottom: 12px;">Qualitative budgetary sizing based on managed endpoint fleet size and vendor tier pricing profile.</p>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Top Vendor Tier</div><div class="value mono" id="tco_tier">—</div><div class="sub" id="tco_rate_range">$0 / endpoint / mo</div></div>
+        <div class="kpi accent2"><div class="label">Est. Annual Software Budget</div><div class="value mono" id="tco_annual_cost">$0</div><div class="sub">Fleet licensing envelope</div></div>
+        <div class="kpi"><div class="label">Projected Dispatch Avoidance</div><div class="value mono" id="tco_avoidance">$0</div><div class="sub">Deskside &amp; L1 reduction</div></div>
+        <div class="kpi success"><div class="label">Estimated Value Multiple</div><div class="value mono" id="tco_roi">0.0×</div><div class="sub">Avoidance to software ratio</div></div>
+      </div>
+    </div>
+
+    <!-- Executive XLA Playbook -->
+    <div class="panel" style="background: var(--surface-2); border-left: 4px solid var(--accent);">
+      <h3 style="color: var(--accent); display:flex; align-items:center; gap:8px;">📜 Executive Playbook: Transitioning MSP Contracts from SLA to XLA</h3>
+      <p style="font-size:13px; color: var(--text-dim); line-height:1.6; margin-bottom: 8px;">
+        Traditional SLAs measure uptime and MTTR, producing the "Watermelon Effect" (dashboards show green, but employees remain frustrated). 
+        Use this DEX assessment to modernize service partner agreements into <b>Experience Level Agreements (XLAs)</b>:
+      </p>
+      <ul style="font-size:13px; color: var(--text); padding-left:20px; line-height:1.6; margin-bottom:0;">
+        <li><b>1. Baseline Empirical XPI:</b> Deploy sensors across 100% of endpoints to establish verified baseline sentiment and telemetry prior to renewal negotiations.</li>
+        <li><b>2. Dual-Track SLA + XLA Governance:</b> Institute a 6-month parallel evaluation correlating MTTR tickets with actual device crash frequency and Wi-Fi stability.</li>
+        <li><b>3. Experience-Tied Vendor At-Risk Fees:</b> Shift 15–25% of BPO/MSP quarterly bonus pools to sustained XPI index targets rather than raw closed ticket counts.</li>
+        <li><b>4. Proactive Self-Healing Credits:</b> Reward service providers for background automated remediation actions that prevent tickets before users notice degradation.</li>
+      </ul>
+    </div>
+
+    <div class="panel">
+      <h3>Estate Diagnostic Summary</h3>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Managed Endpoints</div><div class="value mono" id="diag_endpoints">0</div></div>
+        <div class="kpi"><div class="label">Ecosystem</div><div class="value mono" id="diag_ecosystem" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">Deployment Requirement</div><div class="value mono" id="diag_deploy" style="font-size:16px;">—</div></div>
+        <div class="kpi"><div class="label">Existing Tooling</div><div class="value mono" id="diag_tooling" style="font-size:16px;">—</div></div>
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>DEX Platform Advisor crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All scoring runs client-side. Independent assessment, not vendor-sponsored.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// DEX PLATFORM ADVISOR — Trigger-Driven Vendor Fit, Weight Transparency, XPI Uplift Projection
+// ============================================================================================
+
+const FALLBACK_PLATFORMS = {
+  "version": "2026.09",
+  "disclaimer": "Capability ratings are Sarav's World / Saravanakumar Murugan's independent directional assessment based on enterprise architecture practice, public product documentation, and market positioning. Pricing/investment tiers are relative and qualitative only — no list prices are modeled, since DEX platform pricing is quote-based. Verify current capability and cost against an RFP before purchase.",
+  "dimensions": [
+    {
+      "id": "sentiment",
+      "label": "Sentiment / XLA Surveys"
+    },
+    {
+      "id": "telemetry",
+      "label": "Real-Time Telemetry Depth"
+    },
+    {
+      "id": "remediation",
+      "label": "Automated Remediation / Self-Healing"
+    },
+    {
+      "id": "predictive",
+      "label": "AI/ML Anomaly & Predictive Detection"
+    },
+    {
+      "id": "saas",
+      "label": "SaaS / Business App Experience Monitoring"
+    },
+    {
+      "id": "network",
+      "label": "Network & Wi-Fi Experience Visibility"
+    },
+    {
+      "id": "security",
+      "label": "Security & Patch Posture Visibility"
+    },
+    {
+      "id": "itsm",
+      "label": "Native ITSM / Ecosystem Integration"
+    },
+    {
+      "id": "deployment",
+      "label": "Deployment Flexibility (Cloud/Hybrid/On-Prem)"
+    }
+  ],
+  "platforms": [
+    {
+      "id": "nexthink",
+      "name": "Nexthink",
+      "tier": "Premium",
+      "ecosystem": [
+        "servicenow",
+        "mixed"
+      ],
+      "scores": {
+        "sentiment": 5,
+        "telemetry": 5,
+        "remediation": 4,
+        "predictive": 5,
+        "saas": 4,
+        "network": 4,
+        "security": 4,
+        "itsm": 4,
+        "deployment": 4
+      },
+      "strengths": [
+        "Deepest sentiment/XLA correlation to telemetry",
+        "Strong AI-driven anomaly detection",
+        "Rich real-time endpoint data model"
+      ],
+      "gaps": [
+        "Premium cost tier",
+        "Heavier rollout/tuning effort than lighter tools"
+      ]
+    },
+    {
+      "id": "controlup",
+      "name": "ControlUp",
+      "tier": "Mid",
+      "ecosystem": [
+        "mixed"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 5,
+        "remediation": 5,
+        "predictive": 4,
+        "saas": 3,
+        "network": 3,
+        "security": 3,
+        "itsm": 3,
+        "deployment": 5
+      },
+      "strengths": [
+        "Best-in-class real-time remediation console",
+        "Strong VDI/DaaS + hybrid endpoint support",
+        "Fast time-to-value for ops teams"
+      ],
+      "gaps": [
+        "Sentiment/XLA survey layer is lighter",
+        "Less native SaaS/business-app monitoring"
+      ]
+    },
+    {
+      "id": "lakeside",
+      "name": "Lakeside SysTrack",
+      "tier": "Mid-Premium",
+      "ecosystem": [
+        "servicenow",
+        "mixed"
+      ],
+      "scores": {
+        "sentiment": 4,
+        "telemetry": 5,
+        "remediation": 3,
+        "predictive": 4,
+        "saas": 3,
+        "network": 3,
+        "security": 3,
+        "itsm": 4,
+        "deployment": 4
+      },
+      "strengths": [
+        "Long-standing digital experience scoring model",
+        "Strong device/persona segmentation",
+        "Solid ServiceNow integration"
+      ],
+      "gaps": [
+        "Remediation is more advisory than automated",
+        "Network visibility is basic"
+      ]
+    },
+    {
+      "id": "aternity",
+      "name": "Aternity (Riverbed)",
+      "tier": "Premium",
+      "ecosystem": [
+        "mixed"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 4,
+        "remediation": 3,
+        "predictive": 3,
+        "saas": 5,
+        "network": 4,
+        "security": 3,
+        "itsm": 3,
+        "deployment": 3
+      },
+      "strengths": [
+        "Strong business-app and transaction-level monitoring",
+        "Network heritage from Riverbed NPM",
+        "Good for app-outage-to-endpoint correlation"
+      ],
+      "gaps": [
+        "Sentiment/XLA layer less mature",
+        "Smaller automation/remediation catalog"
+      ]
+    },
+    {
+      "id": "tachyon",
+      "name": "1E Tachyon",
+      "tier": "Mid-Premium",
+      "ecosystem": [
+        "servicenow"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 4,
+        "remediation": 5,
+        "predictive": 3,
+        "saas": 2,
+        "network": 2,
+        "security": 5,
+        "itsm": 4,
+        "deployment": 3
+      },
+      "strengths": [
+        "Real-time fleet-wide remediation actions at scale",
+        "Deep ServiceNow-native workflow",
+        "Strong patch/vulnerability remediation tie-in"
+      ],
+      "gaps": [
+        "Limited SaaS/app and network visibility",
+        "Predictive/AI layer is narrower"
+      ]
+    },
+    {
+      "id": "ivanti",
+      "name": "Ivanti Neurons for DEX",
+      "tier": "Mid",
+      "ecosystem": [
+        "ivanti"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 4,
+        "remediation": 4,
+        "predictive": 3,
+        "saas": 3,
+        "network": 3,
+        "security": 5,
+        "itsm": 5,
+        "deployment": 4
+      },
+      "strengths": [
+        "Deepest fit if already on Ivanti ITSM/UEM",
+        "Native patch & vulnerability management heritage",
+        "Balanced feature set across the board"
+      ],
+      "gaps": [
+        "No single experience dimension is category-leading",
+        "Predictive analytics newer than incumbents"
+      ]
+    },
+    {
+      "id": "msft",
+      "name": "Microsoft Viva Insights + Endpoint Analytics",
+      "tier": "Budget",
+      "ecosystem": [
+        "microsoft"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 3,
+        "remediation": 2,
+        "predictive": 3,
+        "saas": 2,
+        "network": 1,
+        "security": 4,
+        "itsm": 3,
+        "deployment": 5
+      },
+      "strengths": [
+        "Lowest incremental cost for M365 E5/Intune shops",
+        "Native Copilot/AI roadmap",
+        "Strong security signal via Defender/Intune ecosystem"
+      ],
+      "gaps": [
+        "Weakest network/Wi-Fi visibility",
+        "Remediation is limited vs. dedicated DEX tools",
+        "Not built for non-Microsoft-heavy estates"
+      ]
+    },
+    {
+      "id": "servicenow",
+      "name": "ServiceNow DEX",
+      "tier": "Premium",
+      "ecosystem": [
+        "servicenow"
+      ],
+      "scores": {
+        "sentiment": 3,
+        "telemetry": 3,
+        "remediation": 4,
+        "predictive": 4,
+        "saas": 3,
+        "network": 2,
+        "security": 5,
+        "itsm": 5,
+        "deployment": 4
+      },
+      "strengths": [
+        "Native ServiceNow workflow orchestration for remediation",
+        "Strong Vulnerability Response / security posture integration",
+        "One platform if already ServiceNow-centric \u2014 no new vendor to manage"
+      ],
+      "gaps": [
+        "Weaker native network/Wi-Fi telemetry than dedicated DEX tools",
+        "Endpoint telemetry depth leans on partner integrations vs. purpose-built agents"
+      ]
+    }
+  ]
+};
+const FALLBACK_BENCH = {
+  "meta": {
+    "version": "2026.09",
+    "last_refreshed": "2026-09-11"
+  },
+  "pain_slider_max_boost": 3.0,
+  "trigger_max_boost": 2.5,
+  "triggers": [
+    {
+      "id": "cost_pressure",
+      "label": "Cost pressure (deskside dispatch load)",
+      "dims": [
+        "remediation",
+        "telemetry"
+      ]
+    },
+    {
+      "id": "retention_risk",
+      "label": "Experience & retention risk",
+      "dims": [
+        "sentiment"
+      ]
+    },
+    {
+      "id": "contractual_xla",
+      "label": "Contractual SLA \u2192 XLA requirement",
+      "dims": [
+        "sentiment",
+        "predictive"
+      ]
+    },
+    {
+      "id": "ai_copilot_rollout",
+      "label": "AI / Copilot rollout stage",
+      "dims": [
+        "predictive",
+        "telemetry"
+      ]
+    },
+    {
+      "id": "ma_consolidation",
+      "label": "M&A / estate consolidation",
+      "dims": [
+        "itsm",
+        "deployment"
+      ]
+    },
+    {
+      "id": "hardware_refresh",
+      "label": "Hardware refresh cycle stage",
+      "dims": [
+        "telemetry",
+        "predictive",
+        "security"
+      ]
+    },
+    {
+      "id": "risk_compliance",
+      "label": "Risk / compliance visibility gap",
+      "dims": [
+        "security"
+      ]
+    },
+    {
+      "id": "exec_governance",
+      "label": "Exec governance demand for an XPI metric",
+      "dims": [
+        "sentiment",
+        "predictive"
+      ]
+    }
+  ],
+  "xpi_formula": {
+    "fit_weight": 0.7,
+    "urgency_weight": 0.3
+  },
+  "xpi_baseline": 35,
+  "xpi_ceiling_formula": {
+    "base": 40,
+    "fit_multiplier": 0.5
+  },
+  "rollout_curve_bounds": {
+    "year1_cap": 25,
+    "annual_growth_cap": 15,
+    "max_cap": 100
+  }
+};
+
+let PLATFORMS = null;
+let BENCH = null;
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+
+const PAIN_DIMS = [
+  { id: 'sentiment',   label: 'Sentiment / XLA visibility',              sub: 'How blind are you to employee sentiment today?' },
+  { id: 'telemetry',   label: 'Real-time telemetry depth',               sub: 'Fleet-wide visibility into device health' },
+  { id: 'remediation', label: 'Automated remediation need',              sub: 'Ticket volume from fixable, repeatable issues' },
+  { id: 'predictive',  label: 'AI / predictive detection need',          sub: 'Desire to catch issues before users report them' },
+  { id: 'saas',        label: 'SaaS / business app monitoring',          sub: 'Visibility into critical app performance' },
+  { id: 'network',     label: 'Network & Wi-Fi visibility',              sub: 'Ability to diagnose connectivity complaints' },
+  { id: 'security',    label: 'Security & patch posture visibility',     sub: 'Visibility into vulnerability/patch compliance' }
+];
+
+const TRIGGER_SUB = {
+  cost_pressure: 'Deskside dispatch cost and "my device is slow" ticket volume',
+  retention_risk: 'Attrition or engagement scores tied to digital experience',
+  contractual_xla: 'BPO/MSP contracts moving from SLA to XLA terms',
+  ai_copilot_rollout: 'Copilot/AI rollout needing adoption & productivity proof',
+  ma_consolidation: 'Merged estates needing unified visibility fast',
+  hardware_refresh: 'Refresh cycle decisions need real device health data',
+  risk_compliance: 'Security incidents traced to poor endpoint visibility',
+  exec_governance: 'Leadership wants a boardroom-level experience metric'
+};
+
+const state = {
+  themeChoice: 'dark',
+  projTerm: 5,
+  painValues: {},
+  triggerValues: {},
+  openVendor: null
+};
+
+// ---------------- ENGINE (identical to tested engine.js) ----------------
+function computeUrgencyScore(triggerValues, triggers) {
+  const vals = triggers.map(t => triggerValues[t.id] || 0);
+  const avg = vals.reduce((a, b) => a + b, 0) / vals.length;
+  return Math.max(0, Math.min(100, avg));
+}
+function computeDimensionWeights(dimensions, painValues, triggerValues, triggers, painMaxBoost, triggerMaxBoost) {
+  const weights = {};
+  dimensions.forEach(d => { weights[d.id] = 1; });
+  Object.keys(painValues).forEach(dimId => {
+    if (weights[dimId] !== undefined) weights[dimId] += (painValues[dimId] / 100) * painMaxBoost;
+  });
+  triggers.forEach(t => {
+    const v = (triggerValues[t.id] || 0) / 100;
+    t.dims.forEach(dimId => { if (weights[dimId] !== undefined) weights[dimId] += v * triggerMaxBoost; });
+  });
+  return weights;
+}
+function scoreVendors(platforms, dimensions, weights, ecosystemChoice) {
+  const totalWeight = Object.values(weights).reduce((a, b) => a + b, 0);
+  return platforms.map(p => {
+    let weighted = 0;
+    dimensions.forEach(d => { weighted += (p.scores[d.id] || 0) * weights[d.id]; });
+    const dimScore = (weighted / (5 * totalWeight)) * 100;
+    let ecoMatch = 40;
+    if (p.ecosystem.includes(ecosystemChoice)) ecoMatch = 100;
+    else if (p.ecosystem.includes('mixed')) ecoMatch = 70;
+    const fit = Math.round(dimScore * 0.85 + ecoMatch * 0.15);
+    return Object.assign({}, p, { fit });
+  }).sort((a, b) => b.fit - a.fit);
+}
+function computedRolloutForYear(year, drivingScore, bounds) {
+  const S = drivingScore / 100;
+  const year1 = bounds.year1_cap * S;
+  if (year === 1) return Math.round(year1);
+  let target = year1;
+  for (let y = 2; y <= year; y++) { target = Math.min(bounds.max_cap, target + bounds.annual_growth_cap * S); }
+  return Math.round(target);
+}
+function computeXPI(fitScore, urgencyScore, formula) {
+  return Math.round(fitScore * formula.fit_weight + urgencyScore * formula.urgency_weight);
+}
+function computeXPICeiling(fitScore, ceilingFormula) {
+  return Math.min(98, ceilingFormula.base + fitScore * ceilingFormula.fit_multiplier);
+}
+
+// ---------------- BUILD SLIDER PANELS (once, at boot) ----------------
+function buildPainSliders() {
+  const panel = $('painSlidersPanel');
+  panel.innerHTML = PAIN_DIMS.map(d => `
+    <div class="slider-row">
+      <div class="s-label">${d.label}<div class="s-sub">${d.sub}</div></div>
+      <div class="slider-control"><input type="range" min="0" max="100" value="50" data-pain="${d.id}"><span class="slider-val" data-pain-val="${d.id}">50%</span></div>
+    </div>`).join('');
+  PAIN_DIMS.forEach(d => { state.painValues[d.id] = 50; });
+  panel.querySelectorAll('[data-pain]').forEach(el => el.addEventListener('input', (e) => {
+    const id = e.target.dataset.pain;
+    state.painValues[id] = +e.target.value;
+    panel.querySelector(`[data-pain-val="${id}"]`).textContent = e.target.value + '%';
+    recalcAll();
+  }));
+}
+function buildTriggerSliders() {
+  const panel = $('triggerSlidersPanel');
+  panel.innerHTML = BENCH.triggers.map(t => `
+    <div class="slider-row">
+      <div class="s-label">${t.label}<div class="s-sub">${TRIGGER_SUB[t.id] || ''}</div></div>
+      <div class="slider-control"><input type="range" min="0" max="100" value="40" data-trigger="${t.id}"><span class="slider-val" data-trigger-val="${t.id}">40%</span></div>
+    </div>`).join('');
+  BENCH.triggers.forEach(t => { state.triggerValues[t.id] = 40; });
+  panel.querySelectorAll('[data-trigger]').forEach(el => el.addEventListener('input', (e) => {
+    const id = e.target.dataset.trigger;
+    state.triggerValues[id] = +e.target.value;
+    panel.querySelector(`[data-trigger-val="${id}"]`).textContent = e.target.value + '%';
+    recalcAll();
+  }));
+}
+
+// ---------------- RENDER ----------------
+function getFullPainValues() {
+  // deployment preference feeds the 'deployment' weight the same way a pain slider would
+  return Object.assign({}, state.painValues, { deployment: num('deploy_pref') });
+}
+
+function renderWeights(weights) {
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
+  const maxW = Math.max(...Object.values(weights));
+  $('weightBarsPanel').innerHTML = PLATFORMS.dimensions.map(d => {
+    const w = weights[d.id];
+    const pct = (w / maxW) * 100;
+    return `<div class="weight-bar-row">
+      <div class="weight-bar-label">${d.label}</div>
+      <div class="weight-bar-track"><div class="weight-bar-fill" style="width:${pct.toFixed(0)}%;"></div></div>
+      <div class="weight-bar-val">${w.toFixed(2)}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderVendorResults(ranked) {
+  const maxFit = ranked[0].fit;
+  $('vendorResultsList').innerHTML = ranked.map((p, idx) => {
+    const isTop = idx === 0;
+    return `<div class="vendor-row${isTop ? ' top' : ''}${state.openVendor === p.id ? ' open' : ''}" id="vrow-${p.id}">
+      <div class="vendor-head" data-toggle="${p.id}">
+        <span class="vendor-rank">${String(idx + 1).padStart(2, '0')}</span>
+        <div class="vendor-name-wrap">
+          <div class="vname">${p.name}${isTop ? '<span class="best-match-tag">BEST MATCH</span>' : ''}</div>
+          <div class="vtier">${p.tier} tier</div>
+        </div>
+        <div class="vendor-bar-wrap"><div class="vendor-bar-fill" style="width:${(p.fit / maxFit * 100).toFixed(0)}%;"></div></div>
+        <div class="vendor-fit-num mono">${p.fit}%</div>
+      </div>
+      <div class="vendor-body">
+        <div class="cols">
+          <div><h4>STRENGTHS</h4><ul>${p.strengths.map(s => `<li>${s}</li>`).join('')}</ul></div>
+          <div><h4>GAPS</h4><ul>${p.gaps.map(s => `<li>${s}</li>`).join('')}</ul></div>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+  $('vendorResultsList').querySelectorAll('[data-toggle]').forEach(el => el.addEventListener('click', () => {
+    const id = el.dataset.toggle;
+    state.openVendor = state.openVendor === id ? null : id;
+    document.getElementById(`vrow-${id}`).classList.toggle('open');
+  }));
+  $('vendorDisclaimer').textContent = PLATFORMS.disclaimer;
+}
+
+function renderXPI(urgencyScore, topFit) {
+  const ceiling = computeXPICeiling(topFit, BENCH.xpi_ceiling_formula);
+  const baseline = BENCH.xpi_baseline;
+  const rows = [];
+  for (let y = 1; y <= state.projTerm; y++) {
+    const rollout = computedRolloutForYear(y, urgencyScore, BENCH.rollout_curve_bounds);
+    const xpiYear = Math.round(baseline + (ceiling - baseline) * (rollout / 100));
+    rows.push({ y, rollout, xpiYear, uplift: xpiYear - baseline });
+  }
+  $('xpiBody').innerHTML = rows.map(r => `
+    <tr><td><b>Year ${r.y}</b></td><td class="num-cell mono">${r.rollout}%</td>
+    <td class="num-cell mono">${r.xpiYear}</td>
+    <td class="num-cell mono" style="color:var(--success);">+${r.uplift}</td></tr>`).join('');
+  return { rows, ceiling, baseline };
+}
+
+function renderMatrix(ranked) {
+  const top3 = ranked.slice(0, 3);
+  if (!$('matrixHead') || !$('matrixBody')) return;
+  $('matrixHead').innerHTML = `<th>Evaluation Dimension</th>` + top3.map((v, i) => `<th>#${i+1} ${v.name} (${v.fit}%)</th>`).join('');
+  
+  $('matrixBody').innerHTML = PLATFORMS.dimensions.map(d => {
+    const cells = top3.map(v => {
+      const score = v.scores[d.id] || 0;
+      const dots = '●'.repeat(score) + '○'.repeat(5 - score);
+      const isTop = score >= 4 ? ' style="color:var(--accent); font-weight:600;"' : '';
+      return `<td${isTop} class="mono num-cell">${dots} ${score}/5</td>`;
+    }).join('');
+    return `<tr><td><b>${d.label}</b></td>${cells}</tr>`;
+  }).join('');
+}
+
+function renderTCO(topVendor, endpoints) {
+  if (!$('tco_tier')) return;
+  const rates = {
+    'Budget': { min: 1.25, max: 2.50, label: '$1.25 - $2.50 / ep / mo' },
+    'Mid': { min: 3.00, max: 5.00, label: '$3.00 - $5.00 / ep / mo' },
+    'Mid-Premium': { min: 4.50, max: 7.00, label: '$4.50 - $7.00 / ep / mo' },
+    'Premium': { min: 6.50, max: 10.00, label: '$6.50 - $10.00 / ep / mo' }
+  };
+  const tierInfo = rates[topVendor.tier] || rates['Mid'];
+  const avgMonthlyRate = (tierInfo.min + tierInfo.max) / 2;
+  const annualSoftware = endpoints * avgMonthlyRate * 12;
+  
+  // Empirical benchmark: A well-implemented DEX tool eliminates 0.15 - 0.25 deskside dispatches per endpoint per year at ~$75 loaded cost per dispatch
+  const annualAvoidance = endpoints * 0.20 * 75;
+  const roiMultiple = annualSoftware > 0 ? (annualAvoidance / annualSoftware).toFixed(1) + '×' : '—';
+  
+  $('tco_tier').textContent = topVendor.tier;
+  $('tco_rate_range').textContent = tierInfo.label;
+  $('tco_annual_cost').textContent = '$' + Math.round(annualSoftware).toLocaleString();
+  $('tco_avoidance').textContent = '$' + Math.round(annualAvoidance).toLocaleString();
+  $('tco_roi').textContent = roiMultiple;
+}
+
+function renderReport(inputs, ranked, urgencyScore, xpiData) {
+  const top = ranked[0];
+  $('xpi_r_baseline').textContent = xpiData.baseline;
+  $('xpi_r_fit').textContent = top.fit + '%';
+  $('xpi_r_vendorname').textContent = top.name;
+  $('xpi_r_urgency').textContent = Math.round(urgencyScore);
+  const finalYear = xpiData.rows[xpiData.rows.length - 1];
+  $('xpi_r_finalxpi').textContent = finalYear ? finalYear.xpiYear : xpiData.baseline;
+
+  $('report_strengths').innerHTML = top.strengths.map(s => `<li>${s}</li>`).join('');
+  $('report_gaps').innerHTML = top.gaps.map(s => `<li>${s}</li>`).join('');
+
+  $('diag_endpoints').textContent = fmtInt(inputs.endpoints);
+  $('diag_ecosystem').textContent = $('org_ecosystem').selectedOptions[0].textContent;
+  $('diag_deploy').textContent = $('deploy_pref').selectedOptions[0].textContent;
+  $('diag_tooling').textContent = $('tooling_maturity').selectedOptions[0].textContent;
+
+  renderMatrix(ranked);
+  renderTCO(top, inputs.endpoints);
+
+  $('liveTotal').textContent = top.fit + '% ' + top.name;
+}
+
+// ---------------- MASTER RECALC ----------------
+function recalcAll() {
+  if (!PLATFORMS || !BENCH) return;
+  const inputs = { employees: num('org_employees'), endpoints: num('est_endpoints') };
+  const ecosystem = $('org_ecosystem').value;
+  const painValues = getFullPainValues();
+  const urgencyScore = computeUrgencyScore(state.triggerValues, BENCH.triggers);
+  $('urgency_score_readout').textContent = urgencyScore.toFixed(1) + ' / 100';
+
+  const weights = computeDimensionWeights(PLATFORMS.dimensions, painValues, state.triggerValues, BENCH.triggers, BENCH.pain_slider_max_boost, BENCH.trigger_max_boost);
+  renderWeights(weights);
+
+  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights, ecosystem);
+  renderVendorResults(ranked);
+
+  const xpiData = renderXPI(urgencyScore, ranked[0].fit);
+  renderReport(inputs, ranked, urgencyScore, xpiData);
+}
+
+// ---------------- EVENT WIRING ----------------
+['org_employees', 'org_industry', 'org_ecosystem', 'est_endpoints', 'est_remote_pct', 'est_refresh_stage', 'deploy_pref', 'tooling_maturity'].forEach(id => {
+  const el = $(id);
+  if (!el) return;
+  el.addEventListener('input', recalcAll);
+  if (el.tagName === 'SELECT') el.addEventListener('change', recalcAll);
+});
+
+// Term selector
+$('termToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.projTerm = +pill.dataset.term;
+  $('term_custom').value = state.projTerm;
+  recalcAll();
+});
+$('term_custom').addEventListener('input', (e) => {
+  let v = Math.round(parseFloat(e.target.value) || 1);
+  v = Math.max(1, Math.min(7, v));
+  state.projTerm = v;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === v));
+  recalcAll();
+});
+
+// Presets — control urgency level primarily
+const PRESET_TRIGGER_LEVELS = { lowurgency: 15, midurgency: 50, highurgency: 85, reset: 30 };
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.preset-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const level = PRESET_TRIGGER_LEVELS[btn.dataset.preset];
+    if (level === undefined) return;
+    BENCH.triggers.forEach(t => {
+      state.triggerValues[t.id] = level;
+      const slider = document.querySelector(`[data-trigger="${t.id}"]`);
+      if (slider) { slider.value = level; document.querySelector(`[data-trigger-val="${t.id}"]`).textContent = level + '%'; }
+    });
+    if (btn.dataset.preset === 'reset') {
+      PAIN_DIMS.forEach(d => {
+        state.painValues[d.id] = 30;
+        const slider = document.querySelector(`[data-pain="${d.id}"]`);
+        if (slider) { slider.value = 30; document.querySelector(`[data-pain-val="${d.id}"]`).textContent = '30%'; }
+      });
+    }
+    recalcAll();
+  });
+});
+
+// Theme
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('sw_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => {
+  const btn = e.target.closest('button'); if (!btn) return;
+  applyTheme(btn.dataset.themeChoice);
+});
+
+// Ecosystem dropdowns
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+// Section nav scrollspy
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`));
+    }
+  });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  const ecosystem = $('org_ecosystem').value;
+  const painValues = getFullPainValues();
+  const urgencyScore = computeUrgencyScore(state.triggerValues, BENCH.triggers);
+  const weights = computeDimensionWeights(PLATFORMS.dimensions, painValues, state.triggerValues, BENCH.triggers, BENCH.pain_slider_max_boost, BENCH.trigger_max_boost);
+  const ranked = scoreVendors(PLATFORMS.platforms, PLATFORMS.dimensions, weights, ecosystem);
+
+  let csv = 'DEX PLATFORM ADVISOR — MODEL EXPORT\n';
+  csv += `Ecosystem,${ecosystem}\nUrgency Score,${urgencyScore.toFixed(1)}\nProjection Term (years),${state.projTerm}\n\n`;
+  csv += 'DIMENSION WEIGHTS\nDimension,Weight\n';
+  PLATFORMS.dimensions.forEach(d => { csv += `${d.label},${weights[d.id].toFixed(2)}\n`; });
+  csv += '\nVENDOR RANKING\nRank,Vendor,Tier,Fit %\n';
+  ranked.forEach((p, i) => { csv += `${i + 1},${p.name},${p.tier},${p.fit}\n`; });
+  csv += `\n${state.projTerm}-YEAR XPI PROJECTION\nYear,Rollout %,XPI Score,XPI Uplift\n`;
+  const xpiData = renderXPI(urgencyScore, ranked[0].fit);
+  xpiData.rows.forEach(r => { csv += `Year ${r.y},${r.rollout}%,${r.xpiYear},+${r.uplift}\n`; });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `DEX_Advisor_Model_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 🧭 DEX Platform Advisor — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/dexadvisor/
+**Term:** ${state.projTerm} years
+
+### XPI Scorecard
+- **Baseline XPI (Today):** ${$('xpi_r_baseline').textContent}
+- **Top Vendor Fit:** ${$('xpi_r_fit').textContent} (${$('xpi_r_vendorname').textContent})
+- **Urgency Score:** ${$('xpi_r_urgency').textContent}
+- **Final-Year XPI:** ${$('xpi_r_finalxpi').textContent}
+
+### Estate
+- **Managed Endpoints:** ${$('diag_endpoints').textContent}
+- **Ecosystem:** ${$('diag_ecosystem').textContent}
+- **Deployment Requirement:** ${$('diag_deploy').textContent}
+- **Existing Tooling:** ${$('diag_tooling').textContent}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch (e) { alert('Clipboard copy failed. Please grant permission.'); }
+});
+
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '1.0',
+    appId: 'dex-advisor',
+    timestamp: new Date().toISOString(),
+    orgProfile: { employees: num('org_employees'), industry: $('org_industry').value, languages: 1, shiftModel: '' },
+    channelMix: { voice: 0, chat: 0, email: 0, digital: 0 },
+    moduleData: {
+      ecosystem: $('org_ecosystem').value,
+      estate: { endpoints: num('est_endpoints'), remotePct: num('est_remote_pct'), refreshStage: $('est_refresh_stage').value },
+      painValues: state.painValues,
+      triggerValues: state.triggerValues,
+      deployPref: $('deploy_pref').value,
+      toolingMaturity: $('tooling_maturity').value,
+      projTerm: state.projTerm
+    }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `dex_advisor_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+});
+
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile) {
+        if (data.orgProfile.employees !== undefined) $('org_employees').value = data.orgProfile.employees;
+        if (data.orgProfile.industry) $('org_industry').value = data.orgProfile.industry;
+      }
+      if (data.appId === 'dex-advisor' && data.moduleData) {
+        const m = data.moduleData;
+        if (m.ecosystem) $('org_ecosystem').value = m.ecosystem;
+        if (m.estate) {
+          if (m.estate.endpoints !== undefined) $('est_endpoints').value = m.estate.endpoints;
+          if (m.estate.remotePct !== undefined) $('est_remote_pct').value = m.estate.remotePct;
+          if (m.estate.refreshStage) $('est_refresh_stage').value = m.estate.refreshStage;
+        }
+        if (m.painValues) {
+          Object.keys(m.painValues).forEach(id => {
+            state.painValues[id] = m.painValues[id];
+            const slider = document.querySelector(`[data-pain="${id}"]`);
+            if (slider) { slider.value = m.painValues[id]; document.querySelector(`[data-pain-val="${id}"]`).textContent = m.painValues[id] + '%'; }
+          });
+        }
+        if (m.triggerValues) {
+          Object.keys(m.triggerValues).forEach(id => {
+            state.triggerValues[id] = m.triggerValues[id];
+            const slider = document.querySelector(`[data-trigger="${id}"]`);
+            if (slider) { slider.value = m.triggerValues[id]; document.querySelector(`[data-trigger-val="${id}"]`).textContent = m.triggerValues[id] + '%'; }
+          });
+        }
+        if (m.deployPref) $('deploy_pref').value = m.deployPref;
+        if (m.toolingMaturity) $('tooling_maturity').value = m.toolingMaturity;
+        if (m.projTerm) { state.projTerm = m.projTerm; $('term_custom').value = m.projTerm; document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm)); }
+        alert('Loaded full DEX Advisor scenario.');
+      } else {
+        alert('Loaded shared org profile from an external scenario. App-specific fields (pain points, triggers) were left as-is.');
+      }
+      recalcAll();
+    } catch (err) { alert('Could not read that file as a valid scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- BOOT ----------------
+async function loadData() {
+  try {
+    const [pRes, bRes] = await Promise.all([fetch('dex-platforms.json', { cache: 'no-store' }), fetch('dex-benchmarks.json', { cache: 'no-store' })]);
+    if (!pRes.ok || !bRes.ok) throw new Error('fetch failed');
+    PLATFORMS = await pRes.json();
+    BENCH = await bRes.json();
+  } catch (e) {
+    console.warn('Using embedded fallback data.', e);
+    PLATFORMS = JSON.parse(JSON.stringify(FALLBACK_PLATFORMS));
+    BENCH = JSON.parse(JSON.stringify(FALLBACK_BENCH));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('sw_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+
+  await loadData();
+  buildPainSliders();
+  buildTriggerSliders();
+  recalcAll();
+})();
+
+</script>
+</body>
+</html>
