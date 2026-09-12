@@ -66,34 +66,45 @@
     position: relative; z-index: 1000;
   }
   .ecosystem-inner {
-    max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
   }
   .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
   .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
-  .eco-divider { color: var(--border); margin: 0 4px; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
   .eco-dropdown { position: relative; display: inline-block; }
   .eco-dropbtn {
     background: transparent; border: none; color: var(--text-dim);
     font-family: inherit; font-size: 12.5px; font-weight: 600;
     padding: 4px 8px; border-radius: 6px; cursor: pointer;
-    display: flex; align-items: center; gap: 4px;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
   }
-  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn { color: var(--accent); }
-  .eco-caret { font-size: 9px; }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn {
+    color: var(--accent); background: rgba(245, 158, 11, 0.12);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
   .eco-menu {
     display: none; position: absolute; top: 100%; left: 0;
     padding: 6px; min-width: 220px; background: var(--surface);
     border: 1px solid var(--border); border-radius: 10px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+    backdrop-filter: blur(12px);
   }
-  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: block; }
   .eco-menu a {
     display: block; padding: 7px 10px; border-radius: 6px;
     color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+    transition: all 0.12s ease;
   }
   .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
   .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+  .eco-tokenomics {
+    color: #14B8A6 !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px; background: rgba(20, 184, 166, 0.12); text-decoration: none; font-size: 12px;
+  }
+  .eco-tokenomics:hover { text-decoration: underline; }
 
   /* App Container */
   .game-container { max-width: 860px; margin: 0 auto; padding: 20px 16px 60px; }
@@ -351,28 +362,33 @@
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
-      <a href="https://iamsaravofficial.com/" class="eco-brand">Sarav's World</a>
-      <span class="eco-divider">/</span>
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
       
       <!-- Apps Dropdown -->
       <div class="eco-dropdown">
-        <button class="eco-dropbtn" aria-expanded="false">Apps <span class="eco-caret">▾</span></button>
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
-          <a href="https://iamsaravofficial.com/apps/doc-vault/">🔐 Doc Vault</a>
-          <a href="https://iamsaravofficial.com/apps/voice-notes/">🎙️ Voice Notes</a>
-          <a href="https://iamsaravofficial.com/apps/task-zen/">✅ Task Zen</a>
-          <a href="https://iamsaravofficial.com/apps/family-ledger/">💰 Family Ledger</a>
-          <a href="https://iamsaravofficial.com/apps/family-recipe-vault/">🍲 Family Recipe Vault</a>
-          <a href="https://iamsaravofficial.com/apps/desi-food-explorer/">🍛 Desi Food Explorer</a>
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
         </div>
       </div>
 
-      <span class="eco-divider">/</span>
+      <span class="eco-divider">│</span>
 
       <!-- Games Dropdown -->
       <div class="eco-dropdown">
-        <button class="eco-dropbtn" aria-expanded="false" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
+        <button class="eco-dropbtn" aria-haspopup="true" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
           <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
           <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
           <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
@@ -386,22 +402,23 @@
         </div>
       </div>
 
-      <span class="eco-divider">/</span>
+      <span class="eco-divider">│</span>
 
       <!-- Projects Dropdown -->
       <div class="eco-dropdown">
-        <button class="eco-dropbtn" aria-expanded="false">Projects <span class="eco-caret">▾</span></button>
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
-          <a href="https://iamsaravofficial.com/projects/heritage-weaver/">🏛️ Heritage Weaver</a>
-          <a href="https://iamsaravofficial.com/projects/folk-soundscape/">🪕 Folk Soundscape</a>
-          <a href="https://iamsaravofficial.com/projects/mythos-interactive/">📜 Mythos Interactive</a>
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">Thirukkural Hub</a>
         </div>
       </div>
     </div>
 
-    <div>
-      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); margin-right:12px; font-weight:600;">🎪 Playground</a>
-      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
     </div>
   </div>
 </div>
