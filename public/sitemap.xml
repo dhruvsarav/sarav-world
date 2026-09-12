@@ -85,6 +85,10 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://iamsaravofficial.com/games/</loc>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://iamsaravofficial.com/games/familywinner/</loc>
     <priority>0.9</priority>
   </url>
@@ -94,6 +98,34 @@
   </url>
   <url>
     <loc>https://iamsaravofficial.com/games/secretbox/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/cuptoss/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/bottleflip/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/samosasnatch/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/chitcharades/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/snackroulette/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/dialoguedetective/</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://iamsaravofficial.com/games/gulelstrike/</loc>
     <priority>0.9</priority>
   </url>
   <url>

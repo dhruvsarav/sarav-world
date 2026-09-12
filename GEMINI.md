@@ -70,20 +70,27 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * Official Brand Icon: **The Sovereign Hex Core** (Faceted titanium hexagonal core with precision gyroscopic telemetry rings and glowing amber/cyan dual-core neural processor).
      * Production assets: `eapps-full.png` (1024px), `eapps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
    - Both portals feature a responsive squircle brand badge in their respective hero headers.
-11. **Interactive Family Games Suite (`/games/`)**:
-   - Houses 3 mobile-first parlor games with dedicated 3D icons, zero-dependency Web Audio API sound engines, canvas confetti, and 1-tap WhatsApp sharing:
+11. **Interactive Family Games Arcade Suite (`/games/`)**:
+   - Master Family Games Hub at `https://iamsaravofficial.com/games/` uniting 10 interactive games with zero telemetry, procedural Web Audio effects, canvas physics, family roster turn selectors, and 1-tap WhatsApp boast sharing:
      1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
      2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) played on a single phone via Pass & Guess, featuring edge-to-edge full-card privacy barrier masking active choices, live Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
      3. `secretbox` (`/games/secretbox/`): 3D antique mystery chest dispensing 4 card decks (Wholesome Memories, Cheeky Truths, Mild Desi Dares, and Family Mimicry) with 30s ticking timer and Chicken-Out Penalty Wheel.
+     4. `cuptoss` (`/games/cuptoss/`): 2.5D dining table ping-pong cup toss with trajectory drag aim, bounce physics, moving obstacle, and leaderboard.
+     5. `bottleflip` (`/games/bottleflip/`): Angular velocity swipe bottle flip physics simulator with water weight customization, multiple bottle skins, and 10x cap-landing bonus.
+     6. `samosasnatch` (`/games/samosasnatch/`): 2-Player rapid finger-tapping tug-of-war on ONE phone with 180° inverted split-screen and Freeze shock penalty.
+     7. `chitcharades` (`/games/chitcharades/`): Forehead tilt party guessing game with DeviceOrientation sensor, 4 Desi decks, 60s countdown, and tap fallbacks.
+     8. `snackroulette` (`/games/snackroulette/`): Carnival treat & dare spin wheel with angular momentum, ratchet clicks, custom slice editor, and turn ledger log.
+     9. `dialoguedetective` (`/games/dialoguedetective/`): Household quote trivia showdown with suspect voting, streak multiplier, and custom family quote studio.
+     10. `gulelstrike` (`/games/gulelstrike/`): Traditional village orchard slingshot game with rubber band pull mechanics, wind drift, fruit sway, and monkey obstacle.
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
-   - All 13 Consumer Apps & Games pages (`/apps/`, 9 live calculators, and 3 games at `/games/`) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
+   - All Consumer Apps & Games pages (`/apps/`, 9 live calculators, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
 13. **Cultural Heritage & Open Knowledge Projects Hub (`/projects/`)**:
    - Unites all 3 cultural databases: Temples of Tamil Gods, Thirukkural Hub, and FactDrop.
    - Features complete 4-tier navigation: `Apps ▾`, `E-Apps ▾`, `Games ▾`, `Projects ▾`.
 14. **Master Playground Gateway Portal (`/playground/`)**:
-   - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/familywinner/`, and `/projects/`.
-   - Requires zero maintenance when individual apps or games are added.
+   - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
+   - Quadrant 3 links directly to `/games/` (Sarav's Family Games Arcade Hub).
 
 ---
 

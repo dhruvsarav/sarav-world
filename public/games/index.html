@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Family Games Arcade 🎰 — 10 Interactive Parlor & Tabletop Games | Sarav's World</title>
+<meta name="description" content="Discover 10 high-fidelity family arcade and parlor games: Samosa Snatch, Ping-Pong Cup Toss, Bottle Flip, Chit-Charades, Snack Roulette, Gulel Strike, and more. 100% client-side, zero telemetry.">
+<link rel="canonical" href="https://iamsaravofficial.com/games/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/games/">
+<meta property="og:title" content="Family Games Arcade — 10 Interactive Parlor & Tabletop Games | Sarav's World">
+<meta property="og:description" content="10 interactive browser games for couples, family nights, and kids. Zero telemetry, procedural Web Audio, and instant client-side play.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/apps-full.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Family Games Arcade — 10 Interactive Games | Sarav's World">
+<meta name="twitter:description" content="10 interactive browser games for couples, family nights, and kids.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/apps-full.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="https://iamsaravofficial.com/apps/favicon-192.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0A0D14;
+    --surface: #121722;
+    --surface-2: #1A2232;
+    --surface-3: #222C40;
+    --border: #28354D;
+    --border-soft: #1C2536;
+    --text: #F8FAFC;
+    --text-dim: #94A3B8;
+    --text-faint: #64748B;
+    --accent: #F59E0B;
+    --accent-glow: rgba(245, 158, 11, 0.25);
+    --pink: #EC4899;
+    --emerald: #10B981;
+    --sky: #38BDF8;
+    --brand-gradient: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
+    --card-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --surface-3: #E2E8F0;
+    --border: #CBD5E1;
+    --border-soft: #E2E8F0;
+    --text: #0F172A;
+    --text-dim: #475569;
+    --text-faint: #94A3B8;
+    --accent: #D97706;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+    --pink: #DB2777;
+    --emerald: #059669;
+    --sky: #0284C7;
+    --brand-gradient: linear-gradient(135deg, #DB2777 0%, #D97706 100%);
+    --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    min-height: 100vh; line-height: 1.5; -webkit-font-smoothing: antialiased;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .bungee { font-family: 'Bungee', cursive; }
+
+  /* Ecosystem Menubar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); margin: 0 4px; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn { color: var(--accent); }
+  .eco-caret { font-size: 9px; }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+  }
+  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+
+  /* Main Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 36px 20px 80px; }
+
+  /* Hero Section */
+  .hero-section {
+    text-align: center; margin-bottom: 40px; position: relative;
+  }
+  .hero-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(236, 72, 153, 0.12); border: 1px solid rgba(236, 72, 153, 0.3);
+    color: var(--pink); font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; padding: 5px 16px; border-radius: 30px; margin-bottom: 16px;
+  }
+  .hero-title {
+    font-size: clamp(32px, 5vw, 48px); font-weight: 800; color: var(--text);
+    line-height: 1.15; margin-bottom: 14px;
+  }
+  .hero-title span {
+    background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .hero-desc {
+    max-width: 760px; margin: 0 auto 28px; font-size: clamp(15px, 2vw, 17px);
+    color: var(--text-dim); line-height: 1.6;
+  }
+
+  /* Stats Counter Strip */
+  .stats-strip {
+    display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-bottom: 36px;
+  }
+  .stat-chip {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 10px 18px; display: flex; align-items: center; gap: 10px;
+  }
+  .stat-chip-icon { font-size: 22px; }
+  .stat-chip-val { font-size: 16px; font-weight: 800; }
+  .stat-chip-lbl { font-size: 11px; text-transform: uppercase; color: var(--text-dim); font-weight: 700; letter-spacing: 0.04em; }
+
+  /* Filter Navigation Bar */
+  .filter-bar {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    margin-bottom: 30px; flex-wrap: wrap; border-bottom: 1px solid var(--border-soft); padding-bottom: 16px;
+  }
+  .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-btn {
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 8px 18px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.15s ease;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active {
+    background: var(--pink); color: #FFF; border-color: var(--pink);
+    box-shadow: 0 4px 14px rgba(236, 72, 153, 0.35);
+  }
+  .theme-toggle-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 8px 16px; border-radius: 10px; font-size: 12.5px;
+    cursor: pointer; font-weight: 600;
+  }
+
+  /* Games Grid */
+  .games-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+  }
+  @media (max-width: 480px) {
+    .games-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Game Card */
+  .game-card {
+    background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 18px; padding: 24px; display: flex; flex-direction: column;
+    justify-content: space-between; position: relative; overflow: hidden;
+    box-shadow: var(--card-shadow); transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .game-card:hover {
+    transform: translateY(-4px); border-color: var(--accent);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+  }
+
+  .card-top {
+    display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;
+  }
+  .game-avatar {
+    width: 58px; height: 58px; border-radius: 14px; background: var(--surface-2);
+    border: 1.5px solid var(--border); display: flex; align-items: center;
+    justify-content: center; font-size: 32px;
+  }
+  .badge-col { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  .player-badge {
+    background: var(--surface-2); border: 1px solid var(--border);
+    font-size: 11px; font-weight: 700; color: var(--text-dim);
+    padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .category-badge {
+    background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.3);
+    font-size: 11px; font-weight: 800; color: var(--accent);
+    padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  .game-title {
+    font-size: 20px; font-weight: 800; color: var(--text); margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .game-desc {
+    font-size: 13.5px; color: var(--text-dim); line-height: 1.55; margin-bottom: 16px;
+  }
+
+  .feature-tags {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px;
+  }
+  .tag {
+    background: var(--surface-2); border: 1px solid var(--border-soft);
+    font-size: 11px; font-weight: 600; color: var(--text-faint);
+    padding: 3px 8px; border-radius: 6px;
+  }
+
+  .card-footer {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding-top: 14px; border-top: 1px solid var(--border-soft);
+  }
+  .play-btn {
+    flex: 1; background: var(--brand-gradient); color: #FFF; text-decoration: none;
+    padding: 12px 18px; border-radius: 12px; font-size: 14px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    text-transform: uppercase; letter-spacing: 0.05em; transition: opacity 0.15s ease;
+  }
+  .play-btn:hover { opacity: 0.92; text-decoration: none; }
+
+  /* Footer Note */
+  .footer-note {
+    text-align: center; margin-top: 60px; font-size: 13px; color: var(--text-faint);
+  }
+  .footer-note a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .footer-note a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">Sarav's World</a>
+      <span class="eco-divider">/</span>
+      
+      <!-- Apps Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/doc-vault/">🔐 Doc Vault</a>
+          <a href="https://iamsaravofficial.com/apps/voice-notes/">🎙️ Voice Notes</a>
+          <a href="https://iamsaravofficial.com/apps/task-zen/">✅ Task Zen</a>
+          <a href="https://iamsaravofficial.com/apps/family-ledger/">💰 Family Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/family-recipe-vault/">🍲 Family Recipe Vault</a>
+          <a href="https://iamsaravofficial.com/apps/desi-food-explorer/">🍛 Desi Food Explorer</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Games Dropdown (Current) -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/" class="current">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+
+      <span class="eco-divider">/</span>
+
+      <!-- Projects Dropdown -->
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-expanded="false">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/heritage-weaver/">🏛️ Heritage Weaver</a>
+          <a href="https://iamsaravofficial.com/projects/folk-soundscape/">🪕 Folk Soundscape</a>
+          <a href="https://iamsaravofficial.com/projects/mythos-interactive/">📜 Mythos Interactive</a>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); margin-right:12px; font-weight:600;">🎪 Playground</a>
+      <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle light or dark theme">🌓 Theme</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-pill">✨ Master Family Suite</div>
+    <h1 class="hero-title">Sarav's Family <span>Games Arcade</span></h1>
+    <p class="hero-desc">
+      10 high-fidelity interactive browser games engineered for Hubby & Wifey bonding, parent-child rivalries, and dinner parlor laughs. Built with procedural Web Audio sound synthesis, client-side physics, and zero telemetry.
+    </p>
+
+    <!-- Stats Strip -->
+    <div class="stats-strip">
+      <div class="stat-chip">
+        <span class="stat-chip-icon">🎮</span>
+        <div>
+          <div class="stat-chip-val mono">10 Games</div>
+          <div class="stat-chip-lbl">Full Family Roster</div>
+        </div>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-chip-icon">⚡</span>
+        <div>
+          <div class="stat-chip-val mono">100% Client-Side</div>
+          <div class="stat-chip-lbl">Zero Telemetry</div>
+        </div>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-chip-icon">🔊</span>
+        <div>
+          <div class="stat-chip-val mono">Web Audio API</div>
+          <div class="stat-chip-lbl">Procedural Sounds</div>
+        </div>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-chip-icon">📱</span>
+        <div>
+          <div class="stat-chip-val mono">Mobile First</div>
+          <div class="stat-chip-lbl">Touch & Gyroscope</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <div class="filter-pills">
+      <button class="filter-btn active" data-filter="all">All 10 Games</button>
+      <button class="filter-btn" data-filter="couples">Couples & Decisions</button>
+      <button class="filter-btn" data-filter="reflex">Action & Physics</button>
+      <button class="filter-btn" data-filter="party">Party & Trivia</button>
+    </div>
+  </div>
+
+  <!-- 10 Game Cards Grid -->
+  <div class="games-grid" id="gamesGrid">
+
+    <!-- 1. Family Jackpot Winner -->
+    <div class="game-card" data-category="couples">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🎰</div>
+          <div class="badge-col">
+            <span class="category-badge">Decision Maker</span>
+            <span class="player-badge">Family Roster</span>
+          </div>
+        </div>
+        <div class="game-title">Family Jackpot Winner</div>
+        <p class="game-desc">
+          Mechanical 5-reel slot machine that settles dinner arguments, movie picks, chores, and weekend getaways with fair odds and reel tension.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">5-Reel Slot</span>
+          <span class="tag">Mechanical Lever</span>
+          <span class="tag">Odds Calibrator</span>
+          <span class="tag">Confetti</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/familywinner/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 2. Couples Senti-Meter -->
+    <div class="game-card" data-category="couples">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">💖</div>
+          <div class="badge-col">
+            <span class="category-badge">Telepathy Challenge</span>
+            <span class="player-badge">2 Players (Pass & Guess)</span>
+          </div>
+        </div>
+        <div class="game-title">Couples Senti-Meter</div>
+        <p class="game-desc">
+          Pass-and-guess telepathy test for Hubby & Wifey! Lock in secret answers on 50+ funny Indian marriage situations, swap phone, and match vibes.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Privacy Blurry Shield</span>
+          <span class="tag">50+ Marriage Prompts</span>
+          <span class="tag">Vibe Compatibility %</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/sentimeter/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 3. Family Secret Box -->
+    <div class="game-card" data-category="couples">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🎁</div>
+          <div class="badge-col">
+            <span class="category-badge">Mystery Chest</span>
+            <span class="player-badge">Family & Kids</span>
+          </div>
+        </div>
+        <div class="game-title">Family Secret Box</div>
+        <p class="game-desc">
+          3D interactive treasure chest and fortune wheel that dispenses delightful surprises, chore boons, ice cream tokens, and funny confessions.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">3D Chest Animation</span>
+          <span class="tag">Mystery Boons</span>
+          <span class="tag">Custom Treat Editor</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/secretbox/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 4. Ping-Pong Cup Toss -->
+    <div class="game-card" data-category="reflex">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🏓</div>
+          <div class="badge-col">
+            <span class="category-badge">Physics & Aim</span>
+            <span class="player-badge">Turn-Based Roster</span>
+          </div>
+        </div>
+        <div class="game-title">Ping-Pong Cup Toss</div>
+        <p class="game-desc">
+          Touch and drag back to aim the ping-pong ball across the wooden dining table into red, blue, and gold bonus cups with realistic bounce physics!
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Table Bounce (+15pts)</span>
+          <span class="tag">Salt Shaker Obstacle</span>
+          <span class="tag">Trajectory Aim</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/cuptoss/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 5. Bottle Flip Showdown -->
+    <div class="game-card" data-category="party">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🍾</div>
+          <div class="badge-col">
+            <span class="category-badge">Angular Physics</span>
+            <span class="player-badge">Turn-Based Roster</span>
+          </div>
+        </div>
+        <div class="game-title">Master Bottle Flip Showdown</div>
+        <p class="game-desc">
+          Swipe with precision velocity to flip Bisleri bottles, steel flasks, or brass davaras! Adjust water levels and aim for the 10x cap-landing bonus.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Water Weight Adjuster</span>
+          <span class="tag">Cap-Landing (10x)</span>
+          <span class="tag">Streak Multiplier</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/bottleflip/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 6. Samosa Snatch -->
+    <div class="game-card" data-category="reflex">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">⚡</div>
+          <div class="badge-col">
+            <span class="category-badge">Rapid 2-Player</span>
+            <span class="player-badge">1 Phone / Split-Screen</span>
+          </div>
+        </div>
+        <div class="game-title">Samosa Snatch</div>
+        <p class="game-desc">
+          Head-to-head split screen tug-of-war on ONE phone! Opposing player sits opposite with 180° inverted screen. Tap furiously, avoid Freeze shocks!
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Inverted Split-Screen</span>
+          <span class="tag">Electric Shock Freeze</span>
+          <span class="tag">Snack Prize Selector</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/samosasnatch/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 7. Chit-Charades -->
+    <div class="game-card" data-category="party">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🗣️</div>
+          <div class="badge-col">
+            <span class="category-badge">Forehead Gyroscope</span>
+            <span class="player-badge">Team Party</span>
+          </div>
+        </div>
+        <div class="game-title">Chit-Charades</div>
+        <p class="game-desc">
+          Hold phone to your forehead facing your team! Tilt down for Correct, tilt up to Pass. 4 curated decks: 90s Cinema, Household Dramas & Desi Food.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">DeviceTilt Sensor</span>
+          <span class="tag">60s Countdown</span>
+          <span class="tag">120+ Curated Cards</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/chitcharades/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 8. Snack Roulette -->
+    <div class="game-card" data-category="party">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🎡</div>
+          <div class="badge-col">
+            <span class="category-badge">Carnival Wheel</span>
+            <span class="player-badge">Family & Friends</span>
+          </div>
+        </div>
+        <div class="game-title">Snack Roulette Wheel</div>
+        <p class="game-desc">
+          Spin the carnival wheel for delicious evening snacks, hilarious family dares, or empty plates! Includes ratchet sound slowdown and custom slice editor.
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Ratchet Clicks</span>
+          <span class="tag">Evening Snack Attack</span>
+          <span class="tag">Turn Ledger Log</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/snackroulette/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 9. Family Dialogue Detective -->
+    <div class="game-card" data-category="party">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🎙️</div>
+          <div class="badge-col">
+            <span class="category-badge">Household Trivia</span>
+            <span class="player-badge">Family Pass</span>
+          </div>
+        </div>
+        <div class="game-title">Dialogue Detective</div>
+        <p class="game-desc">
+          "Who Said That?!" — Guess whether Daddy, Mummy, or Kids uttered the hilarious real-life quote, or submit your own secret family crimes!
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Secret Quote Studio</span>
+          <span class="tag">Streak Multiplier</span>
+          <span class="tag">Authentic Commentary</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/dialoguedetective/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+    <!-- 10. Desi Gulel Fruit Strike -->
+    <div class="game-card" data-category="reflex">
+      <div>
+        <div class="card-top">
+          <div class="game-avatar">🎯</div>
+          <div class="badge-col">
+            <span class="category-badge">Slingshot Orchard</span>
+            <span class="player-badge">Turn-Based Roster</span>
+          </div>
+        </div>
+        <div class="game-title">Desi Gulel Fruit Strike</div>
+        <p class="game-desc">
+          Pull back the traditional wooden slingshot, adjust for wind drift, and knock down Alphonso mangoes and coconuts while avoiding naughty orchard monkeys!
+        </p>
+        <div class="feature-tags">
+          <span class="tag">Rubber Band Tension</span>
+          <span class="tag">Fruit Sway & Splashes</span>
+          <span class="tag">Dynamic Wind Drift</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="https://iamsaravofficial.com/games/gulelstrike/" class="play-btn">Play Game 🚀</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer Note -->
+  <div class="footer-note">
+    <p>Part of the <a href="https://iamsaravofficial.com/">Sarav's World</a> ecosystem • Engineered with zero external trackers, zero ads, and pure client-side code.</p>
+  </div>
+</div>
+
+<script>
+/* ----------------------------------------------------
+   Category Filter Logic
+---------------------------------------------------- */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const gameCards = document.querySelectorAll('.game-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+    gameCards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+/* ----------------------------------------------------
+   Theme Synchronization
+---------------------------------------------------- */
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+function initTheme() {
+  const saved = localStorage.getItem('sarav_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+}
+themeToggleBtn.addEventListener('click', () => {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = current === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('sarav_theme', next);
+});
+initTheme();
+</script>
+</body>
+</html>
