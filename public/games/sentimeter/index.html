@@ -169,17 +169,15 @@
     padding: 16px 20px; margin-bottom: 24px; box-shadow: var(--shadow);
     display: flex; justify-content: space-between; align-items: center; gap: 14px; flex-wrap: wrap;
   }
-  .play-mode-pill {
-    display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
-    border-radius: 10px; padding: 3px; gap: 3px;
+  .pass-mode-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 999px; padding: 7px 16px; font-size: 13px; font-weight: 700;
+    color: var(--text); box-shadow: 0 2px 8px rgba(0,0,0,0.15);
   }
-  .mode-btn {
-    background: transparent; border: none; padding: 6px 14px; font-size: 12px; font-weight: 600;
-    color: var(--text-dim); border-radius: 7px; cursor: pointer; transition: all 0.15s ease;
-  }
-  .mode-btn.active {
-    background: var(--surface); color: var(--rose); border: 1px solid var(--rose);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); font-weight: 700;
+  .pass-mode-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 8px var(--gold-glow); animation: turnDotPulse 1.2s infinite; flex-shrink: 0;
   }
 
   .couple-names-strip {
@@ -273,6 +271,7 @@
     background: var(--surface-2); border: 2px solid var(--border); border-radius: 18px;
     padding: 22px 18px; display: flex; flex-direction: column; align-items: center;
     position: relative; transition: all 0.2s ease;
+    overflow: hidden; min-height: 180px;
   }
   .player-box.hubby { border-color: rgba(245, 158, 11, 0.35); }
   .player-box.wifey { border-color: rgba(251, 113, 133, 0.35); }
@@ -307,8 +306,103 @@
     border-color: var(--rose); background: rgba(251, 113, 133, 0.16); color: var(--rose);
     box-shadow: 0 0 16px var(--rose-glow);
   }
-  .choice-btn.locked {
-    pointer-events: none; opacity: 0.85;
+
+  /* Full Box Blocking Locked Overlay */
+  .player-locked-overlay {
+    position: absolute; inset: 0; z-index: 20;
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 20px 16px;
+    border-radius: 16px; pointer-events: all; cursor: default;
+    animation: lockPopIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .player-locked-overlay.active { display: flex; }
+  .player-box.hubby .player-locked-overlay {
+    background: linear-gradient(145deg, #181C26 0%, #251D14 100%);
+    border: 2px solid var(--gold);
+    box-shadow: inset 0 0 30px rgba(245, 158, 11, 0.25), 0 8px 24px rgba(0,0,0,0.5);
+  }
+  .player-box.wifey .player-locked-overlay {
+    background: linear-gradient(145deg, #181C26 0%, #2A151E 100%);
+    border: 2px solid var(--rose);
+    box-shadow: inset 0 0 30px rgba(251, 113, 133, 0.25), 0 8px 24px rgba(0,0,0,0.5);
+  }
+  [data-theme="light"] .player-box.hubby .player-locked-overlay {
+    background: linear-gradient(145deg, #FFFDF9 0%, #FEF3C7 100%);
+    border: 2px solid var(--gold);
+    box-shadow: inset 0 0 20px rgba(217, 119, 6, 0.15), 0 4px 16px rgba(0,0,0,0.08);
+  }
+  [data-theme="light"] .player-box.wifey .player-locked-overlay {
+    background: linear-gradient(145deg, #FFFDF9 0%, #FFE4E6 100%);
+    border: 2px solid var(--rose);
+    box-shadow: inset 0 0 20px rgba(225, 29, 72, 0.15), 0 4px 16px rgba(0,0,0,0.08);
+  }
+  @keyframes lockPopIn {
+    0% { transform: scale(0.92); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .lock-shield-icon {
+    font-size: 38px; margin-bottom: 8px;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+    animation: lockIconPulse 1.4s infinite ease-in-out;
+  }
+  @keyframes lockIconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+  }
+  .lock-title {
+    font-size: 19px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 6px;
+  }
+  .player-box.hubby .lock-title { color: var(--gold); }
+  .player-box.wifey .lock-title { color: var(--rose); }
+  .lock-subtitle {
+    font-size: 13.5px; color: var(--text-dim); font-weight: 500; line-height: 1.45;
+  }
+  .lock-subtitle b { color: var(--text); font-weight: 700; }
+  .lock-badge-pill {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+    padding: 4px 12px; border-radius: 999px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em;
+    background: rgba(0, 0, 0, 0.25); border: 1px solid var(--border); color: var(--text-dim);
+  }
+
+  /* Revealed Choice Display */
+  .choice-revealed-box {
+    width: 100%; display: flex; flex-direction: column; align-items: center;
+    animation: popIn 0.3s ease;
+  }
+  .revealed-pill {
+    width: 100%; padding: 15px 18px; border-radius: 14px;
+    font-size: 15px; font-weight: 700; text-align: center;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    border: 2px solid var(--border); background: var(--surface);
+    transition: all 0.2s ease;
+  }
+  .revealed-pill.match {
+    border-color: var(--success); background: rgba(16, 185, 129, 0.14); color: #34D399;
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.25);
+  }
+  .revealed-pill.mismatch {
+    border-color: var(--rose); background: rgba(225, 29, 72, 0.12); color: var(--rose);
+    box-shadow: 0 0 18px var(--rose-glow);
+  }
+  .pill-avatar { font-size: 20px; }
+  .pill-choice-name { font-weight: 800; }
+
+  /* Turn Guidance Bar */
+  .turn-guide-bar {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 16px; margin-bottom: 20px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    font-size: 13.5px; color: var(--text-dim); text-align: center;
+  }
+  .turn-guide-bar b { color: var(--text); }
+  .turn-pulse-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 8px var(--gold-glow); animation: turnDotPulse 1.2s infinite; flex-shrink: 0;
+  }
+  @keyframes turnDotPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
   }
 
   /* Reveal Banner between answers */
@@ -493,13 +587,9 @@
 
   <!-- Setup Bar -->
   <div class="setup-panel">
-    <div class="play-mode-pill">
-      <button type="button" class="mode-btn active" id="modeDualBtn" onclick="setPlayMode('dual')">
-        📱 Secret Dual-Tap (One Phone)
-      </button>
-      <button type="button" class="mode-btn" id="modePassBtn" onclick="setPlayMode('pass')">
-        🔄 Pass &amp; Guess
-      </button>
+    <div class="pass-mode-badge">
+      <span class="pass-mode-dot"></span>
+      <span>📱 <b>Pass &amp; Guess Challenge</b> (Single Phone Play)</span>
     </div>
     <div class="couple-names-strip">
       <span class="name-chip-hubby">🤵 <b>Hubby</b></span>
@@ -531,13 +621,27 @@
       <div class="q-category-badge" id="qCategory">☕ Daily Life &amp; Quirks</div>
       <div class="q-prompt-text" id="qPrompt">Loading dilemma...</div>
 
-      <!-- Dual Player Choices -->
+      <!-- Turn Guide -->
+      <div class="turn-guide-bar" id="turnBar">
+        <span class="turn-pulse-dot"></span>
+        <span id="turnText">🤫 <b>Step 1:</b> Hubby's turn to pick secretly (Wifey look away!)</span>
+      </div>
+
+      <!-- Dual Player Choices Arena -->
       <div class="dual-arena">
         
         <!-- Hubby Box -->
         <div class="player-box hubby" id="boxHubby">
+          <!-- Entire Area Locked Overlay (Blocks everything from edge to edge!) -->
+          <div class="player-locked-overlay" id="overlayHubby">
+            <div class="lock-shield-icon">🔒</div>
+            <div class="lock-title">Answer Locked!</div>
+            <div class="lock-subtitle">Secretly saved • Pass phone to <b>Wifey</b> 👰</div>
+            <div class="lock-badge-pill">Hidden Until Both Vote</div>
+          </div>
+
           <div class="player-tag hubby">🤵 Hubby's Answer</div>
-          <div class="choice-btn-group">
+          <div class="choice-btn-group" id="groupHubby">
             <button type="button" class="choice-btn" id="btnH-hubby" onclick="handleChoice('hubby', 'Hubby')">
               <span>🤵 It's Hubby!</span>
             </button>
@@ -545,18 +649,36 @@
               <span>👰 Definitely Wifey!</span>
             </button>
           </div>
+
+          <!-- Revealed Choice Display -->
+          <div class="choice-revealed-box hubby" id="revealedHubby" style="display: none;">
+            <div class="revealed-pill" id="revealedPillHubby"></div>
+          </div>
         </div>
 
         <!-- Wifey Box -->
         <div class="player-box wifey" id="boxWifey">
+          <!-- Entire Area Locked Overlay (Blocks everything from edge to edge!) -->
+          <div class="player-locked-overlay" id="overlayWifey">
+            <div class="lock-shield-icon">🔒</div>
+            <div class="lock-title">Answer Locked!</div>
+            <div class="lock-subtitle">Secretly saved • Pass phone to <b>Hubby</b> 🤵</div>
+            <div class="lock-badge-pill">Hidden Until Both Vote</div>
+          </div>
+
           <div class="player-tag wifey">👰 Wifey's Answer</div>
-          <div class="choice-btn-group">
+          <div class="choice-btn-group" id="groupWifey">
             <button type="button" class="choice-btn" id="btnW-hubby" onclick="handleChoice('wifey', 'Hubby')">
               <span>🤵 It's Hubby!</span>
             </button>
             <button type="button" class="choice-btn" id="btnW-wifey" onclick="handleChoice('wifey', 'Wifey')">
               <span>👰 Definitely Wifey!</span>
             </button>
+          </div>
+
+          <!-- Revealed Choice Display -->
+          <div class="choice-revealed-box wifey" id="revealedWifey" style="display: none;">
+            <div class="revealed-pill" id="revealedPillWifey"></div>
           </div>
         </div>
 
@@ -644,7 +766,6 @@
   let matchesCount = 0;
   let hubbyAnswer = null;
   let wifeyAnswer = null;
-  let playMode = 'dual'; // 'dual' or 'pass'
   let resultsHistory = [];
   let soundEnabled = true;
   let audioCtx = null;
@@ -773,11 +894,31 @@
     hubbyAnswer = null;
     wifeyAnswer = null;
 
+    // Reset full-box locked overlays
+    const overlayH = document.getElementById('overlayHubby');
+    const overlayW = document.getElementById('overlayWifey');
+    if (overlayH) overlayH.classList.remove('active');
+    if (overlayW) overlayW.classList.remove('active');
+
+    // Reset button groups display
+    const groupH = document.getElementById('groupHubby');
+    const groupW = document.getElementById('groupWifey');
+    if (groupH) groupH.style.display = 'flex';
+    if (groupW) groupW.style.display = 'flex';
+
+    // Reset revealed choice cards
+    const revH = document.getElementById('revealedHubby');
+    const revW = document.getElementById('revealedWifey');
+    if (revH) revH.style.display = 'none';
+    if (revW) revW.style.display = 'none';
+
     // Reset buttons
     ['btnH-hubby', 'btnH-wifey', 'btnW-hubby', 'btnW-wifey'].forEach(id => {
       const btn = document.getElementById(id);
-      btn.classList.remove('selected', 'locked');
-      btn.innerHTML = btn.id.includes('hubby') ? '<span>🤵 It\'s Hubby!</span>' : '<span>👰 Definitely Wifey!</span>';
+      if (btn) {
+        btn.classList.remove('selected');
+        btn.innerHTML = btn.id.includes('hubby') ? '<span>🤵 It\'s Hubby!</span>' : '<span>👰 Definitely Wifey!</span>';
+      }
     });
 
     const banner = document.getElementById('revealBanner');
@@ -789,6 +930,10 @@
     const item = gameQuestions[currentIndex];
     document.getElementById('qCategory').textContent = item.cat;
     document.getElementById('qPrompt').textContent = `"${item.q}"`;
+
+    // Turn hint
+    const turnEl = document.getElementById('turnText');
+    if (turnEl) turnEl.innerHTML = '🤫 <b>Step 1:</b> Hubby\'s turn to pick secretly (Wifey look away!)';
 
     // Highlight dot
     document.querySelectorAll('.q-dot').forEach((d, idx) => {
@@ -804,39 +949,69 @@
     if (partner === 'hubby') {
       if (hubbyAnswer) return;
       hubbyAnswer = answer;
-      const hBtn = document.getElementById(answer === 'Hubby' ? 'btnH-hubby' : 'btnH-wifey');
-      hBtn.classList.add('selected');
 
-      // If in dual mode, mask with Locked In
-      document.getElementById('btnH-hubby').classList.add('locked');
-      document.getElementById('btnH-wifey').classList.add('locked');
-      hBtn.innerHTML = '<span>🔒 Answer Locked!</span>';
+      // Immediately block the ENTIRE Hubby area with Answer Locked!
+      const overlayH = document.getElementById('overlayHubby');
+      if (overlayH) overlayH.classList.add('active');
+
+      const turnEl = document.getElementById('turnText');
+      if (!wifeyAnswer && turnEl) {
+        turnEl.innerHTML = '👉 <b>Step 2:</b> Hubby locked in! Hand phone to <b>Wifey</b> to pick secretly 👰';
+      }
     } else {
       if (wifeyAnswer) return;
       wifeyAnswer = answer;
-      const wBtn = document.getElementById(answer === 'Hubby' ? 'btnW-hubby' : 'btnW-wifey');
-      wBtn.classList.add('selected');
 
-      document.getElementById('btnW-hubby').classList.add('locked');
-      document.getElementById('btnW-wifey').classList.add('locked');
-      wBtn.innerHTML = '<span>🔒 Answer Locked!</span>';
+      // Immediately block the ENTIRE Wifey area with Answer Locked!
+      const overlayW = document.getElementById('overlayWifey');
+      if (overlayW) overlayW.classList.add('active');
+
+      const turnEl = document.getElementById('turnText');
+      if (!hubbyAnswer && turnEl) {
+        turnEl.innerHTML = '👉 <b>Step 2:</b> Wifey locked in! Hand phone to <b>Hubby</b> to pick secretly 🤵';
+      }
     }
 
     // Check if both have answered!
     if (hubbyAnswer && wifeyAnswer) {
-      setTimeout(revealAnswers, 350);
+      const turnEl = document.getElementById('turnText');
+      if (turnEl) turnEl.innerHTML = '⚡ <b>Both Locked In!</b> Revealing telepathy...';
+      setTimeout(revealAnswers, 450);
     }
   }
 
   function revealAnswers() {
-    // Unmask actual answers
-    const hBtn = document.getElementById(hubbyAnswer === 'Hubby' ? 'btnH-hubby' : 'btnH-wifey');
-    hBtn.innerHTML = `<span>${hubbyAnswer === 'Hubby' ? '🤵' : '👰'} Chose ${hubbyAnswer}</span>`;
+    // Hide both overlays
+    const overlayH = document.getElementById('overlayHubby');
+    const overlayW = document.getElementById('overlayWifey');
+    if (overlayH) overlayH.classList.remove('active');
+    if (overlayW) overlayW.classList.remove('active');
 
-    const wBtn = document.getElementById(wifeyAnswer === 'Hubby' ? 'btnW-hubby' : 'btnW-wifey');
-    wBtn.innerHTML = `<span>${wifeyAnswer === 'Hubby' ? '🤵' : '👰'} Chose ${wifeyAnswer}</span>`;
+    // Hide button groups
+    const groupH = document.getElementById('groupHubby');
+    const groupW = document.getElementById('groupWifey');
+    if (groupH) groupH.style.display = 'none';
+    if (groupW) groupW.style.display = 'none';
+
+    // Show crisp revealed choice cards
+    const revH = document.getElementById('revealedHubby');
+    const revW = document.getElementById('revealedWifey');
+    const pillH = document.getElementById('revealedPillHubby');
+    const pillW = document.getElementById('revealedPillWifey');
 
     const isMatch = (hubbyAnswer === wifeyAnswer);
+
+    if (pillH) {
+      pillH.className = 'revealed-pill ' + (isMatch ? 'match' : 'mismatch');
+      pillH.innerHTML = `<span class="pill-avatar">${hubbyAnswer === 'Hubby' ? '🤵' : '👰'}</span> Hubby chose: <b class="pill-choice-name">${hubbyAnswer === 'Hubby' ? "It's Hubby!" : "Definitely Wifey!"}</b>`;
+    }
+    if (pillW) {
+      pillW.className = 'revealed-pill ' + (isMatch ? 'match' : 'mismatch');
+      pillW.innerHTML = `<span class="pill-avatar">${wifeyAnswer === 'Hubby' ? '🤵' : '👰'}</span> Wifey chose: <b class="pill-choice-name">${wifeyAnswer === 'Hubby' ? "It's Hubby!" : "Definitely Wifey!"}</b>`;
+    }
+    if (revH) revH.style.display = 'flex';
+    if (revW) revW.style.display = 'flex';
+
     const banner = document.getElementById('revealBanner');
     const dot = document.getElementById(`qdot-${currentIndex}`);
 
@@ -845,12 +1020,19 @@
       playMatchChime();
       banner.className = 'reveal-banner match';
       banner.innerHTML = `🎉 <b>TELEPATHY MATCH!</b> Both agreed on: <b>${hubbyAnswer.toUpperCase()}</b> (+10% Senti-Meter)`;
-      dot.classList.add('match');
+      if (dot) dot.classList.add('match');
     } else {
       playMismatchWhistle();
       banner.className = 'reveal-banner mismatch';
-      banner.innerHTML = `😅 <b>TACTICAL DEBATE!</b> Hubby said <b>${hubbyAnswer}</b> vs. Wifey said <b>${wifeyAnswer}</b>`;
-      dot.classList.add('mismatch');
+      banner.innerHTML = `😅 <b>TACTICAL DEBATE!</b> Hubby said <b>${hubbyAnswer === 'Hubby' ? "It's Hubby" : "Definitely Wifey"}</b> vs. Wifey said <b>${wifeyAnswer === 'Hubby' ? "It's Hubby" : "Definitely Wifey"}</b>`;
+      if (dot) dot.classList.add('mismatch');
+    }
+
+    const turnEl = document.getElementById('turnText');
+    if (turnEl) {
+      turnEl.innerHTML = isMatch 
+        ? '🎉 <b>Telepathy Match!</b> You both think on the exact same wavelength!'
+        : '😅 <b>Tactical Debate!</b> Healthy marriages thrive on hilarious differences!';
     }
 
     resultsHistory.push({
@@ -948,12 +1130,6 @@
   function restartGame() {
     document.getElementById('scoreModal').classList.remove('active');
     shuffleQuestions();
-  }
-
-  function setPlayMode(mode) {
-    playMode = mode;
-    document.getElementById('modeDualBtn').classList.toggle('active', mode === 'dual');
-    document.getElementById('modePassBtn').classList.toggle('active', mode === 'pass');
   }
 
   function toggleTheme() {

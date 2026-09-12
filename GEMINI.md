@@ -71,7 +71,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
 11. **Interactive Family Games Suite (`/games/`)**:
    - Houses 3 mobile-first parlor games with dedicated 3D icons, zero-dependency Web Audio API sound engines, canvas confetti, and 1-tap WhatsApp sharing:
      1. `familywinner` (`/games/familywinner/`): 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, calibrated odds (`DADDY` 35%, `MUMMY` 20%, `HUBBY` 15%, `WIFEY` 15%, `MYKID` 15%), Vegas bell clangs, brass victory fanfare, and coin cascade shower.
-     2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) with 50+ dilemma bank, secret dual-tap masking, live animated Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
+     2. `sentimeter` (`/games/sentimeter/`): Couples telepathy challenge (Hubby vs. Wifey) played on a single phone via Pass & Guess, featuring edge-to-edge full-card privacy barrier masking active choices, live Senti-Meter gauge, romantic chimes / mismatch slide whistles, and cheeky marital prescriptions.
      3. `secretbox` (`/games/secretbox/`): 3D antique mystery chest dispensing 4 card decks (Wholesome Memories, Cheeky Truths, Mild Desi Dares, and Family Mimicry) with 30s ticking timer and Chicken-Out Penalty Wheel.
    - Ecosystem Navigation Bar: `Games ▾` dropdown is anchored between `Projects ▾` and `🧠 Enterprise AI Economics`, linking all 3 games.
 
