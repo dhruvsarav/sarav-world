@@ -7,392 +7,17 @@
 <meta name="description" content="Sequenced like a fiduciary advisor: safety net first, debt-aware HLV insurance, then investing. Includes Projected Financial Health Score (FHS) and cashflow waterfall.">
 <link rel="canonical" href="https://iamsaravofficial.com/apps/salary-planner/">
 
-<!-- Open Graph / Social -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://iamsaravofficial.com/apps/salary-planner/">
-<meta property="og:title" content="Salary Planner — Goal-Based Cashflow & Projected Health Score">
-<meta property="og:description" content="Sequenced like an advisor: safety net first, debt-aware HLV insurance, then investing. Includes Projected Financial Health Score.">
-<meta property="og:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Salary Planner — Goal-Based Cashflow & Projected Health Score">
-<meta name="twitter:description" content="Sequenced like an advisor: safety net first, debt-aware HLV insurance, then investing.">
-<meta name="twitter:image" content="https://iamsaravofficial.com/apps/salary-planner/og-image.png">
-
-<!-- Icons -->
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-  :root, [data-theme="dark"] {
-    --bg: #0C0F14;
-    --surface: #141922;
-    --surface-2: #1B222D;
-    --surface-3: #222B39;
-    --border: #2A3545;
-    --border-soft: #1E2633;
-    --text: #EAEFF5;
-    --text-dim: #94A0B2;
-    --text-faint: #5C6B80;
-    --accent: #E3A63E;
-    --accent-ink: #141005;
-    --accent-soft: rgba(227, 166, 62, 0.14);
-    --accent2: #4FB0A8;
-    --accent2-soft: rgba(79, 176, 168, 0.14);
-    --danger: #E2665A;
-    --danger-soft: rgba(226, 102, 90, 0.14);
-    --success: #5FBF77;
-    --success-soft: rgba(95, 191, 119, 0.14);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-  }
-  [data-theme="light"] {
-    --bg: #F5F7FA;
-    --surface: #FFFFFF;
-    --surface-2: #F0F3F7;
-    --surface-3: #E4E9F0;
-    --border: #D1D8E2;
-    --border-soft: #E2E8F0;
-    --text: #1A202C;
-    --text-dim: #4A5568;
-    --text-faint: #718096;
-    --accent: #D97706;
-    --accent-ink: #FFFFFF;
-    --accent-soft: rgba(217, 119, 6, 0.14);
-    --accent2: #0D9488;
-    --accent2-soft: rgba(13, 148, 136, 0.14);
-    --danger: #DC2626;
-    --danger-soft: rgba(220, 38, 38, 0.14);
-    --success: #16A34A;
-    --success-soft: rgba(22, 163, 74, 0.14);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0; background: var(--bg); color: var(--text);
-    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
-    -webkit-font-smoothing: antialiased; line-height: 1.5;
-  }
-  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
-  p { margin: 0 0 0.6em; }
-  input, select, button { font-family: inherit; font-size: 14px; color: var(--text); }
-  input, select {
-    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
-    padding: 10px 12px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
-  }
-  input:focus, select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
-  input[type="checkbox"] { width: auto; accent-color: var(--accent); cursor: pointer; }
-  label { display: block; font-size: 12.5px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
-  button {
-    cursor: pointer; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-2);
-    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
-  }
-  button:hover { border-color: var(--accent); }
-  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
-  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
-
-  /* Subheader / Ecosystem banner with Hover Dropdowns */
-  .ecosystem-bar {
-    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
-    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
-    position: relative; z-index: 1000;
-  }
-  .ecosystem-inner {
-    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  }
-  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
-  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
-  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
-
-  /* Dropdown Styles */
-  .eco-dropdown { position: relative; display: inline-block; }
-  .eco-dropbtn {
-    background: transparent; border: none; color: var(--text-dim);
-    font-family: inherit; font-size: 12.5px; font-weight: 600;
-    padding: 4px 8px; border-radius: 6px; cursor: pointer;
-    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
-  }
-  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
-    color: var(--accent); background: var(--accent-soft);
-  }
-  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
-  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
-  .eco-menu {
-    display: none; position: absolute; top: 100%; left: 0;
-    padding: 6px; min-width: 220px;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-    z-index: 2000; backdrop-filter: blur(12px);
-  }
-  .eco-menu::before {
-    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
-  }
-  [data-theme="light"] .eco-menu { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12); }
-  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu { display: block; }
-  .eco-menu a {
-    display: block; padding: 7px 10px; border-radius: 6px;
-    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
-    transition: all 0.12s ease;
-  }
-  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
-  .eco-menu a.current { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
-  .eco-tokenomics {
-    color: var(--accent2) !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
-    padding: 3px 8px; border-radius: 6px; background: var(--accent2-soft);
-  }
-
-  /* Main Container */
-  .container { max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }
-
-  /* Top App Bar */
-  .app-header {
-    margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px solid var(--border-soft);
-  }
-  .header-main-row {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    gap: 20px;
-  }
-  .header-left {
-    flex: 1; min-width: 0;
-  }
-  .header-left .eyebrow {
-    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
-    color: var(--accent); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
-  }
-  .header-left h1 { font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; }
-  .header-left .sub {
-    font-size: 13.5px; color: var(--text-dim); margin: 0; max-width: 820px; line-height: 1.5;
-  }
-  .header-presets { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
-  .header-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
-  .theme-selector {
-    display: inline-flex;
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2px;
-    gap: 2px;
-  }
-  .theme-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-dim);
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 11px;
-    border-radius: 6px;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: all 0.15s ease;
-  }
-  .theme-btn:hover { color: var(--text); }
-  .theme-btn.active {
-    background: var(--accent);
-    color: var(--accent-ink);
-    font-weight: 600;
-  }
-  .preset-chip {
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
-    padding: 5px 11px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.15s ease;
-  }
-  .preset-chip:hover { border-color: var(--accent); color: var(--accent); }
-
-  /* Layout Grid */
-  .dashboard-grid {
-    display: grid; grid-template-columns: 460px 1fr; gap: 24px; align-items: start;
-  }
-  @media(max-width: 1024px) {
-    .dashboard-grid { grid-template-columns: 1fr; }
-  }
-  @media(max-width: 640px) {
-    .header-main-row { flex-wrap: wrap; }
-  }
-
-  /* Card */
-  .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 20px; margin-bottom: 18px; box-shadow: var(--shadow);
-  }
-  .card-title {
-    font-size: 15px; font-weight: 600; margin-bottom: 4px; display: flex; justify-content: space-between; align-items: center;
-  }
-  .card-desc { font-size: 12.5px; color: var(--text-faint); margin-bottom: 14px; line-height: 1.45; }
-  .field { margin-bottom: 14px; }
-  .field:last-child { margin-bottom: 0; }
-  .row2 { display: flex; gap: 10px; }
-  .row2 .field { flex: 1; }
-  .checkline {
-    display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--text-dim);
-    margin: 8px 0 14px; cursor: pointer;
-  }
-
-  /* Executive Score Hero */
-  .fhs-hero {
-    background: linear-gradient(145deg, var(--surface) 0%, var(--surface-2) 100%);
-    border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 20px;
-    box-shadow: var(--shadow); position: relative; overflow: hidden;
-  }
-  .fhs-hero::after {
-    content: ""; position: absolute; top: 0; right: 0; width: 140px; height: 140px;
-    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .fhs-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-  .fhs-score-wrap { display: flex; align-items: baseline; gap: 8px; }
-  .fhs-score { font-size: 48px; font-weight: 700; color: var(--text); font-family: 'IBM Plex Mono', monospace; line-height: 1; }
-  .fhs-max { font-size: 16px; color: var(--text-faint); }
-  .fhs-status { font-size: 12px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
-  .fhs-status.ok { background: var(--success-soft); color: var(--success); }
-  .fhs-status.warn { background: var(--accent-soft); color: var(--accent); }
-  .fhs-status.bad { background: var(--danger-soft); color: var(--danger); }
-  .fhs-sub { font-size: 13px; color: var(--text-dim); margin-bottom: 16px; }
-  .fhs-buckets { display: flex; flex-direction: column; gap: 8px; }
-  .fhs-bucket { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
-  .fhs-bucket .bname { width: 90px; color: var(--text-dim); flex-shrink: 0; }
-  .fhs-bucket .btrack { flex: 1; height: 8px; background: var(--border-soft); border-radius: 4px; overflow: hidden; }
-  .fhs-bucket .bfill { height: 100%; background: var(--accent); transition: width 0.3s ease; }
-  .fhs-bucket .bfill.dim { background: var(--text-faint); opacity: 0.6; }
-  .fhs-bucket .bval { width: 44px; text-align: right; color: var(--text-faint); font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; }
-  .fhs-note { font-size: 11.5px; color: var(--text-faint); margin-top: 12px; line-height: 1.45; border-top: 1px solid var(--border-soft); padding-top: 8px; }
-
-  /* Waterfall & Metrics */
-  .waterfall-bar {
-    height: 14px; border-radius: 7px; background: var(--surface-3); display: flex; overflow: hidden; margin: 12px 0 16px;
-  }
-  .wf-segment { height: 100%; transition: width 0.3s ease; }
-  .wf-housing { background: var(--danger); }
-  .wf-debt { background: var(--accent); }
-  .wf-essentials { background: var(--accent2); }
-  .wf-dependent { background: #8B5CF6; }
-  .wf-surplus { background: var(--success); }
-
-  .wf-legend { display: flex; flex-wrap: wrap; gap: 12px; font-size: 11.5px; margin-bottom: 16px; }
-  .wf-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 4px; }
-
-  /* Stat Rows */
-  .stat-row {
-    display: flex; justify-content: space-between; align-items: center; padding: 9px 0;
-    border-bottom: 1px solid var(--border-soft); font-size: 13.5px;
-  }
-  .stat-row:last-child { border-bottom: none; }
-  .stat-row .lbl { color: var(--text-dim); }
-  .stat-row .sub { font-size: 11.5px; color: var(--text-faint); margin-top: 2px; }
-  .stat-row .val { font-weight: 600; font-family: 'IBM Plex Mono', monospace; text-align: right; }
-  .stat-row .val.gap { color: var(--danger); }
-  .stat-row .val.met { color: var(--success); }
-
-  /* Surplus Routing Cards */
-  .routing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  @media(max-width: 640px) { .routing-grid { grid-template-columns: 1fr; } }
-  .route-card {
-    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 10px; padding: 12px;
-  }
-  .route-card .rhead { font-size: 11.5px; color: var(--text-dim); margin-bottom: 4px; font-weight: 500; }
-  .route-card .ramt { font-size: 18px; font-weight: 700; color: var(--text); font-family: 'IBM Plex Mono', monospace; }
-  .route-card .rdesc { font-size: 11px; color: var(--text-faint); margin-top: 4px; line-height: 1.35; }
-
-  .badge-tag {
-    display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 12px;
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim); font-weight: 500;
-  }
-  .badge-tag.gold { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
-  .badge-tag.teal { border-color: var(--accent2); color: var(--accent2); background: var(--accent2-soft); }
-  .badge-tag.green { border-color: var(--success); color: var(--success); background: var(--success-soft); }
-
-  .actions-bar {
-    display: flex; gap: 10px; margin-top: 16px; flex-wrap: wrap;
-  }
-  .actions-bar button { flex: 1; min-width: 130px; display: inline-flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 14px; font-size: 12.5px; }
-
-  /* Assumptions footer */
-  .assumptions-box {
-    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 12px; padding: 16px; margin-top: 24px;
-    font-size: 12px; color: var(--text-faint); line-height: 1.6;
-  }
-  .assumptions-box b { color: var(--text-dim); }
-
-  /* History Box */
-  .history-box {
-    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 24px;
-  }
-  .history-box-head {
-    display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;
-  }
-  .history-box-head h3 { font-size: 14px; margin: 0; display: flex; align-items: center; gap: 8px; color: var(--text); }
-  .history-list { display: flex; flex-direction: column; gap: 10px; max-height: 280px; overflow-y: auto; }
-  .history-item {
-    display: flex; justify-content: space-between; align-items: center; padding: 10px 14px;
-    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px; font-size: 13px;
-  }
-  .history-item .h-info { display: flex; flex-direction: column; gap: 2px; }
-  .history-item .h-title { font-weight: 600; color: var(--text); }
-  .history-item .h-meta { font-size: 11px; color: var(--text-faint); }
-  .history-item .h-actions { display: flex; align-items: center; gap: 8px; }
-  .h-btn { padding: 5px 10px; font-size: 11px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-3); color: var(--text-dim); cursor: pointer; }
-  .h-btn:hover { color: var(--accent); border-color: var(--accent); }
-  .h-btn.del { color: var(--danger); border-color: var(--danger-soft); }
-  .h-btn.del:hover { background: var(--danger-soft); }
-
-  /* Standardized Footer */
-  footer {
-    padding: 36px 0 16px;
-    text-align: center;
-    color: var(--text-faint);
-    font-size: 12px;
-    border-top: 1px solid var(--border-soft);
-    margin-top: 40px;
-    width: 100%;
-  }
-  footer a { color: var(--text-dim); text-decoration: none; }
-  footer a:hover { color: var(--accent); text-decoration: underline; }
-  footer p { margin: 4px 0; }
-  footer b { color: var(--text); }
-
-  /* Toast Notification */
-  #toast {
-    position: fixed; bottom: 24px; right: 24px; background: var(--surface-3); border: 1px solid var(--accent);
-    color: var(--text); padding: 10px 18px; border-radius: 8px; font-size: 13px; font-weight: 500;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.5); transform: translateY(100px); opacity: 0; transition: all 0.25s ease; z-index: 9999;
-  }
-  #toast.show { transform: translateY(0); opacity: 1; }
-
-  @media print {
-    .ecosystem-bar, .header-right, .header-presets, .actions-bar, .history-box, #toast, footer { display: none !important; }
-    body { background: #fff !important; color: #000 !important; }
-    .container { max-width: 100% !important; padding: 0 !important; }
-    .app-header { border-bottom: 2px solid #333 !important; }
-    .dashboard-grid { display: block !important; }
-    .inputs-col, .results-col { width: 100% !important; margin-bottom: 20px !important; }
-    .card, .scorecard-card { border: 1px solid #ccc !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
-    .field input, .field select { border: 1px solid #999 !important; background: #fff !important; color: #000 !important; }
-    .waterfall-bar { border: 1px solid #999 !important; }
-  }
-</style>
-</head>
-<body>
-
-<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<!-- Sarav's World Ecosystem Navigation Bar -->
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
       <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
       <span class="eco-divider">│</span>
       <div class="eco-dropdown">
-        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <button class="eco-dropbtn" aria-haspopup="true" style="color:var(--accent);">Apps <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
           <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
-          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ & Alpha Slang</a>
           <a href="https://iamsaravofficial.com/apps/salary-planner/" class="current">Salary Planner</a>
           <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
           <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
@@ -431,6 +56,24 @@
         </div>
       </div>
     </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
     <div style="display:flex; align-items:center; gap:12px;">
       <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
       <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>

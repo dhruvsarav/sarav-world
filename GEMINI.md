@@ -120,7 +120,13 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Features official brand icon `playground-square.png` in hero.
    - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
    - Reflects full live suite metrics: 9 Apps, 7 Engines, 10 Games, 3 Projects.
-   - Full 4-tier ecosystem navigation matching canonical inventories.
+15. **Centralized Two-Menubar Architecture & Sync Automation (`public/eco-nav.js` & `scripts/sync_ecosystem_nav.py`)**:
+    - **Architecture Standard**: The entire site navigation is segregated into two primary standardized menubar modes (plus a gateway mode for master hubs):
+      * **Mode 1: Enterprise Suite Bar (`mode: 'enterprise'`)**: Strictly ONE dropdown (`E-Apps ▾` with 8 items) + Digital Workplace Suite / Tokenomics version badge. Zero consumer calculators or games.
+      * **Mode 2: Consumer & Arcade Bar (`mode: 'consumer'`)**: Strictly THREE dropdowns (`Apps ▾` with 10 items | `Games ▾` with 11 items | `Projects ▾` with 4 items) + `🎪 Playground` link + `🧠 Enterprise AI Economics` badge.
+      * **Gateway Mode (`mode: 'gateway'`)**: For `/playground/` and `/projects/` master portals, rendering all 4 dropdowns.
+    - **Runtime Component (`public/eco-nav.js`)**: Lightweight client-side engine with auto-detection of mode, current URL active-page styling (`class="current"`), mobile touch toggle & ESC dismissal, and automatic insertion of `.eco-menu::before` anti-cursor-drop bridge.
+    - **Build/Stamping Automation (`scripts/sync_ecosystem_nav.py`)**: One-command Python synchronizer that scans all active pages (pruning heavy directories like `temples/` and `thirukkural/` to run in <1s) and stamps the exact standardized HTML into every page so menubars never drift.
 
 ---
 
@@ -138,6 +144,9 @@ On this Windows machine, the agent framework must execute commands using:
 ```powershell
 # Build verification
 npm --prefix "D:\Websites\SaravsWorld" run build
+
+# Synchronize all ecosystem menubars (One command, instant run)
+python "D:\Websites\SaravsWorld\scripts\sync_ecosystem_nav.py"
 
 # Git status & push
 git -C "D:\Websites\SaravsWorld" status

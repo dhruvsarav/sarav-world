@@ -7,318 +7,17 @@
 <meta name="description" content="Swipe to flip the bottle and land it upright on the dining table! Calibrated water physics, cap-landing bonus, streak records, and family championship rounds.">
 <link rel="canonical" href="https://iamsaravofficial.com/games/bottleflip/">
 
-<!-- Favicon -->
-<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
-
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-
-<style>
-  :root, [data-theme="dark"] {
-    --bg: #0A0D14;
-    --canvas: #121824;
-    --surface: #182030;
-    --surface-2: #212C42;
-    --border: #2D3B58;
-    --border-soft: #1E283C;
-    --text: #F1F5F9;
-    --text-dim: #94A3B8;
-    --text-faint: #64748B;
-    --accent: #38BDF8;
-    --accent-glow: rgba(56, 189, 248, 0.4);
-    --gold: #F59E0B;
-    --success: #10B981;
-    --shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-  }
-  [data-theme="light"] {
-    --bg: #F8FAFC;
-    --canvas: #FFFFFF;
-    --surface: #F1F5F9;
-    --surface-2: #E2E8F0;
-    --border: #CBD5E1;
-    --border-soft: #E2E8F0;
-    --text: #0F172A;
-    --text-dim: #475569;
-    --text-faint: #64748B;
-    --accent: #0284C7;
-    --accent-glow: rgba(2, 132, 199, 0.25);
-    --gold: #D97706;
-    --success: #059669;
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    background: var(--bg); color: var(--text);
-    font-family: 'Space Grotesk', system-ui, sans-serif;
-    line-height: 1.5; min-height: 100vh; overflow-x: hidden;
-  }
-  .mono { font-family: 'IBM Plex Mono', monospace; }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-
-  /* Ecosystem Menubar */
-  .ecosystem-bar {
-    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
-    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
-    position: relative; z-index: 1000;
-  }
-  .ecosystem-inner {
-    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-  }
-  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
-  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
-  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
-  .eco-dropdown { position: relative; display: inline-block; }
-  .eco-dropbtn {
-    background: transparent; border: none; color: var(--text-dim);
-    font-family: inherit; font-size: 12.5px; font-weight: 600;
-    padding: 4px 8px; border-radius: 6px; cursor: pointer;
-    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
-  }
-  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn {
-    color: var(--accent); background: rgba(245, 158, 11, 0.12);
-  }
-  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
-  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
-  .eco-menu {
-    display: none; position: absolute; top: 100%; left: 0;
-    padding: 6px; min-width: 220px; background: var(--surface);
-    border: 1px solid var(--border); border-radius: 10px;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
-    backdrop-filter: blur(12px);
-  }
-  .eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
-  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: block; }
-  .eco-menu a {
-    display: block; padding: 7px 10px; border-radius: 6px;
-    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
-    transition: all 0.12s ease;
-  }
-  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
-  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
-  .eco-tokenomics {
-    color: #14B8A6 !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
-    padding: 3px 8px; border-radius: 6px; background: rgba(20, 184, 166, 0.12); text-decoration: none; font-size: 12px;
-  }
-  .eco-tokenomics:hover { text-decoration: underline; }
-
-  /* Main Container */
-  .game-container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
-
-  /* Header */
-  .game-header {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
-  }
-  .game-title-wrap h1 { font-size: 28px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
-  .game-title-wrap p { font-size: 13.5px; color: var(--text-dim); margin-top: 4px; }
-  .theme-toggle-btn {
-    background: var(--surface-2); border: 1px solid var(--border);
-    color: var(--text-dim); padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600;
-  }
-
-  /* Roster Selector */
-  .roster-bar {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 12px 18px; margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
-  }
-  .roster-label { font-size: 12.5px; font-weight: 700; text-transform: uppercase; color: var(--accent); }
-  .roster-pills { display: flex; gap: 8px; flex-wrap: wrap; }
-  .player-pill {
-    background: var(--surface-2); border: 1.5px solid var(--border);
-    color: var(--text-dim); font-size: 12px; font-weight: 700;
-    padding: 6px 14px; border-radius: 20px; cursor: pointer; transition: all 0.15s ease;
-  }
-  .player-pill.active {
-    background: var(--accent); color: #000; border-color: var(--accent); box-shadow: 0 0 12px var(--accent-glow);
-  }
-
-  /* Scoreboard Strip */
-  .scoreboard-strip {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 20px;
-  }
-  @media(max-width: 600px) { .scoreboard-strip { grid-template-columns: repeat(2, 1fr); } }
-  .score-card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 12px 14px; text-align: center;
-  }
-  .score-card .val { font-size: 24px; font-weight: 800; color: var(--text); }
-  .score-card .lbl { font-size: 11px; text-transform: uppercase; font-weight: 600; color: var(--text-faint); margin-top: 2px; }
-
-  /* Arena */
-  .arena-card {
-    background: var(--canvas); border: 2px solid var(--border);
-    border-radius: 20px; overflow: hidden; position: relative; box-shadow: var(--shadow);
-    margin-bottom: 20px; touch-action: none;
-  }
-  #flipCanvas {
-    display: block; width: 100%; height: 480px; cursor: grab;
-  }
-  #flipCanvas:active { cursor: grabbing; }
-
-  /* Toast Notification */
-  .toast-overlay {
-    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
-    background: rgba(15, 23, 42, 0.92); border: 1.5px solid var(--accent);
-    color: #FFF; padding: 8px 24px; border-radius: 30px; font-size: 14px;
-    font-weight: 700; backdrop-filter: blur(8px); pointer-events: none;
-    opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease; z-index: 10;
-  }
-  .toast-overlay.show { opacity: 1; transform: translateX(-50%) translateY(4px); }
-
-  /* Water & Bottle Options Bar */
-  .options-bar {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 14px 20px; margin-bottom: 20px;
-    display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  }
-  .option-group { display: flex; align-items: center; gap: 10px; font-size: 12.5px; }
-  .option-label { font-weight: 700; color: var(--text-dim); }
-  .chip-btn {
-    background: var(--surface-2); border: 1px solid var(--border);
-    color: var(--text-dim); padding: 5px 11px; border-radius: 6px; font-size: 11.5px;
-    font-weight: 600; cursor: pointer; transition: all 0.15s ease;
-  }
-  .chip-btn.active {
-    background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700;
-  }
-
-  /* Actions Bar */
-  .actions-bar {
-    display: flex; align-items: center; justify-content: space-between;
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 14px; padding: 14px 20px; gap: 14px; flex-wrap: wrap;
-  }
-  .instructions { font-size: 13px; color: var(--text-dim); }
-  .btn {
-    font-family: inherit; font-size: 13px; font-weight: 700;
-    padding: 9px 18px; border-radius: 8px; border: none; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .btn-primary { background: var(--accent); color: #000; }
-  .btn-secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
-
-  #confettiCanvas {
-    position: fixed; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 9999;
-  }
-  /* Fullscreen Arena Mode */
-  body.is-fullscreen {
-    overflow: hidden !important;
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    touch-action: none !important;
-    overscroll-behavior: none !important;
-  }
-  body.is-fullscreen .ecosystem-bar,
-  body.is-fullscreen .game-header,
-  body.is-fullscreen .roster-bar,
-  body.is-fullscreen .scoreboard-strip,
-  body.is-fullscreen .options-bar,
-  body.is-fullscreen .actions-bar,
-  body.is-fullscreen footer {
-    display: none !important;
-  }
-  body.is-fullscreen .game-container {
-    padding: 0 !important;
-    margin: 0 !important;
-    max-width: 100vw !important;
-    height: 100dvh !important;
-  }
-  body.is-fullscreen .arena-card {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    border-radius: 0 !important;
-    border: none !important;
-    margin: 0 !important;
-    z-index: 10000 !important;
-  }
-  body.is-fullscreen #flipCanvas {
-    width: 100% !important;
-    height: 100% !important;
-  }
-  .fs-hud {
-    display: none;
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    right: 14px;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 100;
-    pointer-events: none;
-  }
-  body.is-fullscreen .fs-hud {
-    display: flex !important;
-  }
-  .fs-hud-left, .fs-hud-right {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    pointer-events: auto;
-  }
-  .fs-pill {
-    background: rgba(15, 23, 42, 0.88);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: #FFF;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    backdrop-filter: blur(8px);
-  }
-  .fs-btn {
-    background: rgba(15, 23, 42, 0.88);
-    border: 1.5px solid var(--accent);
-    color: #FFF;
-    padding: 6px 14px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    backdrop-filter: blur(8px);
-  }
-  .btn-fs-toggle {
-    background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
-    color: #FFF !important;
-    font-weight: 800;
-  }
-
-  footer {
-    border-top: 1px solid var(--border-soft); padding: 30px 0 10px;
-    text-align: center; font-size: 12.5px; color: var(--text-faint); margin-top: 50px;
-  }
-</style>
-</head>
-<body>
-
-<canvas id="confettiCanvas"></canvas>
-
-<!-- Ecosystem Menubar -->
+<!-- Sarav's World Ecosystem Navigation Bar -->
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
       <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
       <span class="eco-divider">│</span>
-      
-      <!-- Apps Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
           <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
-          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ & Alpha Slang</a>
           <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
           <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
           <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
@@ -329,10 +28,7 @@
           <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
         </div>
       </div>
-
       <span class="eco-divider">│</span>
-
-      <!-- Games Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
@@ -349,10 +45,7 @@
           <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
         </div>
       </div>
-
       <span class="eco-divider">│</span>
-
-      <!-- Projects Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
@@ -363,6 +56,24 @@
         </div>
       </div>
     </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
 
     <div style="display:flex; align-items:center; gap:12px;">
       <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
