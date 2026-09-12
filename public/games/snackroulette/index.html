@@ -7,17 +7,348 @@
 <meta name="description" content="Spin the carnival wheel for delicious evening snacks, hilarious family dares, or empty plates! The viral parlor game built for Hubby, Wifey, and Kids.">
 <link rel="canonical" href="https://iamsaravofficial.com/games/snackroulette/">
 
-<!-- Sarav's World Ecosystem Navigation Bar -->
+<!-- Favicon -->
+<link rel="icon" type="image/x-icon" href="https://iamsaravofficial.com/apps/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="https://iamsaravofficial.com/apps/favicon-32.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=IBM+Plex+Mono:wght@600;700&family=Bungee&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0A0D14;
+    --surface: #121824;
+    --surface-2: #1B2334;
+    --border: #2A364F;
+    --border-soft: #1E273A;
+    --text: #F8FAFC;
+    --text-dim: #94A3B8;
+    --accent: #F59E0B;
+    --accent-glow: rgba(245, 158, 11, 0.3);
+    --gold: #F59E0B;
+    --brand-gradient: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+  }
+  [data-theme="light"] {
+    --bg: #F8FAFC;
+    --surface: #FFFFFF;
+    --surface-2: #F1F5F9;
+    --border: #CBD5E1;
+    --border-soft: #E2E8F0;
+    --text: #0F172A;
+    --text-dim: #64748B;
+    --accent: #D97706;
+    --accent-glow: rgba(217, 119, 6, 0.2);
+    --gold: #D97706;
+    --brand-gradient: linear-gradient(135deg, #D97706 0%, #DC2626 100%);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    min-height: 100vh; overflow-x: hidden; touch-action: manipulation;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+  .bungee { font-family: 'Bungee', cursive; }
+
+  /* Ecosystem Menubar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn {
+    color: var(--accent); background: rgba(245, 158, 11, 0.12);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 220px; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000;
+    backdrop-filter: blur(12px);
+  }
+  .eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: block; }
+  .eco-menu a {
+    display: block; padding: 7px 10px; border-radius: 6px;
+    color: var(--text-dim); font-size: 12.5px; font-weight: 500; text-decoration: none;
+    transition: all 0.12s ease;
+  }
+  .eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+  .eco-menu a.current { color: var(--accent); font-weight: 600; background: rgba(245, 158, 11, 0.12); }
+  .eco-tokenomics {
+    color: #14B8A6 !important; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 6px; background: rgba(20, 184, 166, 0.12); text-decoration: none; font-size: 12px;
+  }
+  .eco-tokenomics:hover { text-decoration: underline; }
+
+  /* App Container */
+  .game-container { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* Header */
+  .game-header {
+    display: flex; justify-content: space-between; align-items: center;
+    gap: 16px; margin-bottom: 20px; flex-wrap: wrap;
+  }
+  .game-title-wrap h1 { font-size: 26px; font-weight: 800; color: var(--text); display: flex; align-items: center; gap: 10px; }
+  .game-title-wrap p { font-size: 13.5px; color: var(--text-dim); margin-top: 4px; }
+  .theme-toggle-btn {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; font-weight: 600;
+  }
+
+  /* Roster Selection */
+  .roster-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 12px 18px; margin-bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .roster-label { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); }
+  .roster-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+  .player-pill {
+    background: var(--surface-2); border: 1.5px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px; border-radius: 20px;
+    font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.15s ease;
+  }
+  .player-pill.active {
+    background: var(--accent); color: #000; border-color: var(--accent); font-weight: 700;
+    box-shadow: 0 4px 14px var(--accent-glow);
+  }
+
+  /* Preset Selector Tabs */
+  .preset-tabs {
+    display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 1px solid var(--border);
+    padding-bottom: 10px; overflow-x: auto;
+  }
+  .preset-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim); padding: 8px 16px; border-radius: 20px;
+    font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .preset-btn.active {
+    background: var(--surface-2); color: var(--text); border-color: var(--accent);
+  }
+
+  /* Wheel Stage */
+  .wheel-stage {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; margin: 10px 0 30px;
+  }
+  .wheel-wrapper {
+    position: relative; width: min(92vw, 440px); height: min(92vw, 440px);
+    display: flex; align-items: center; justify-content: center;
+  }
+  #wheelCanvas {
+    width: 100%; height: 100%; border-radius: 50%;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(0,0,0,0.5);
+  }
+
+  /* Top Ratchet Pointer (The flapper) */
+  .wheel-flapper {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    width: 32px; height: 42px; z-index: 100; pointer-events: none;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+    transition: transform 0.05s ease-out;
+    transform-origin: 50% 10%;
+  }
+  .wheel-flapper.tick {
+    transform: translateX(-50%) rotate(18deg);
+  }
+
+  /* Center Hub Button */
+  .center-spin-hub {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 86px; height: 86px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #F59E0B 0%, #B45309 100%);
+    border: 4px solid #FFF; color: #000; font-family: 'Bungee', cursive;
+    font-size: 15px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+    user-select: none; z-index: 50; transition: transform 0.1s ease, box-shadow 0.1s ease;
+  }
+  .center-spin-hub:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .center-spin-hub:active { transform: translate(-50%, -50%) scale(0.95); }
+  .center-spin-hub.disabled { pointer-events: none; opacity: 0.8; filter: grayscale(0.5); }
+
+  /* Big Spin Button on Mobile */
+  .spin-action-bar {
+    width: 100%; max-width: 440px; margin: 16px auto 0; display: flex; gap: 10px;
+  }
+  .spin-big-btn {
+    flex: 1; background: var(--brand-gradient); color: #FFF;
+    border: none; border-radius: 14px; padding: 16px; font-size: 18px;
+    font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em;
+    cursor: pointer; box-shadow: 0 8px 24px rgba(245, 158, 11, 0.4);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .spin-big-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Result Alert Card */
+  .result-banner {
+    background: var(--surface); border: 2px solid var(--accent);
+    border-radius: 16px; padding: 20px; margin-bottom: 24px;
+    text-align: center; display: none; animation: popIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .result-banner.active { display: block; }
+  .result-icon { font-size: 52px; margin-bottom: 6px; }
+  .result-player { font-size: 14px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; }
+  .result-title { font-size: 26px; font-weight: 800; margin: 4px 0 8px; }
+  .result-desc { font-size: 14.5px; color: var(--text-dim); max-width: 500px; margin: 0 auto 16px; }
+  .result-btns { display: flex; justify-content: center; gap: 10px; }
+  .btn-wa-share {
+    background: #25D366; color: #FFF; border: none; padding: 10px 18px;
+    border-radius: 10px; font-size: 13.5px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  /* Turn Ledger Log */
+  .ledger-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-bottom: 24px;
+  }
+  .ledger-header {
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;
+  }
+  .ledger-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); }
+  .ledger-clear { background: transparent; border: none; color: #EF4444; font-size: 12px; cursor: pointer; font-weight: 600; }
+  .ledger-list { display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto; }
+  .ledger-item {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface-2); padding: 10px 14px; border-radius: 10px;
+    font-size: 13.5px;
+  }
+  .item-player { font-weight: 700; color: var(--text); }
+  .item-outcome { font-weight: 600; color: var(--accent); }
+  .item-type { font-size: 11px; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; font-weight: 700; margin-left: 8px; }
+  .type-treat { background: rgba(16, 185, 129, 0.2); color: #10B981; }
+  .type-dare { background: rgba(239, 68, 68, 0.2); color: #EF4444; }
+  .type-empty { background: rgba(148, 163, 184, 0.2); color: var(--text-dim); }
+
+  /* Custom Slice Editor Modal */
+  .custom-editor-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px; margin-top: 24px;
+  }
+  .custom-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 10px; }
+  .editor-row { display: flex; gap: 8px; margin-bottom: 10px; }
+  .editor-input {
+    flex: 1; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 12px; color: var(--text); font-family: inherit; font-size: 13px;
+  }
+  .editor-add-btn {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer;
+  }
+  .editor-add-btn:hover { border-color: var(--accent); }
+
+  /* Mobile Fullscreen Immersive Stage */
+  body.is-fullscreen {
+    position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; overscroll-behavior: none; touch-action: none;
+  }
+  body.is-fullscreen .ecosystem-bar,
+  body.is-fullscreen .game-header,
+  body.is-fullscreen .preset-tabs,
+  body.is-fullscreen .roster-card,
+  body.is-fullscreen .ledger-card,
+  body.is-fullscreen .custom-editor-card,
+  body.is-fullscreen footer {
+    display: none !important;
+  }
+
+  body.is-fullscreen .game-container {
+    max-width: 100%; height: 100vh; height: 100dvh;
+    padding: calc(env(safe-area-inset-top, 10px) + 8px) 16px calc(env(safe-area-inset-bottom, 12px) + 8px);
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    box-sizing: border-box;
+  }
+
+  /* Floating HUD for Fullscreen */
+  .fs-hud {
+    display: none; width: 100%; max-width: 500px;
+    align-items: center; justify-content: space-between; gap: 8px;
+    background: rgba(18, 24, 36, 0.9); backdrop-filter: blur(14px);
+    border: 1px solid var(--border); border-radius: 30px; padding: 6px 12px;
+    z-index: 500;
+  }
+  body.is-fullscreen .fs-hud { display: flex; }
+
+  .fs-hud-players { display: flex; gap: 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .fs-player-pill {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 4px 10px; border-radius: 16px;
+    font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+  .fs-player-pill.active {
+    background: var(--accent); color: #000; border-color: var(--accent);
+  }
+  .fs-exit-btn {
+    background: rgba(255,255,255,0.12); border: 1px solid var(--border);
+    color: var(--text); padding: 5px 12px; border-radius: 16px;
+    font-size: 11.5px; font-weight: 700; cursor: pointer; white-space: nowrap;
+  }
+  .fs-exit-btn:active { background: rgba(239,68,68,0.4); }
+
+  body.is-fullscreen .wheel-stage {
+    margin: auto 0;
+  }
+  body.is-fullscreen .wheel-wrapper {
+    width: min(84vw, 55dvh, 400px);
+    height: min(84vw, 55dvh, 400px);
+  }
+  body.is-fullscreen .spin-action-bar {
+    margin: 10px auto 0;
+  }
+
+  /* Result Banner in Fullscreen */
+  body.is-fullscreen .result-banner {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: min(90vw, 420px); z-index: 2000;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.85); backdrop-filter: blur(16px);
+  }
+  .result-close-btn {
+    background: var(--accent); color: #000; border: none; padding: 10px 20px;
+    border-radius: 10px; font-size: 13.5px; font-weight: 800; cursor: pointer;
+  }
+
+  /* Confetti Canvas */
+  #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
 <div class="ecosystem-bar">
   <div class="ecosystem-inner">
     <div class="ecosystem-links">
       <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
       <span class="eco-divider">│</span>
+      
+      <!-- Apps Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
           <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
-          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">GenZ &amp; Alpha Slang</a>
           <a href="https://iamsaravofficial.com/apps/salary-planner/">Salary Planner</a>
           <a href="https://iamsaravofficial.com/apps/home-budget-planner/">Home Budget Planner</a>
           <a href="https://iamsaravofficial.com/apps/retirement-planner/">Retirement Planner</a>
@@ -28,7 +359,10 @@
           <a href="https://iamsaravofficial.com/apps/rd-calculator/">RD Calculator</a>
         </div>
       </div>
+
       <span class="eco-divider">│</span>
+
+      <!-- Games Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true" style="color:var(--accent);">Games <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
@@ -45,7 +379,10 @@
           <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
         </div>
       </div>
+
       <span class="eco-divider">│</span>
+
+      <!-- Projects Dropdown -->
       <div class="eco-dropdown">
         <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
         <div class="eco-menu">
@@ -56,24 +393,6 @@
         </div>
       </div>
     </div>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
-    </div>
-  </div>
-</div>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
-    </div>
-  </div>
-</div>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
-    </div>
-  </div>
-</div>
 
     <div style="display:flex; align-items:center; gap:12px;">
       <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
