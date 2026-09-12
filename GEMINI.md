@@ -59,7 +59,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      2. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
      3. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (1E, Nexthink, Riverbed), 3-year TCO modeling, and 4-phase SLA-to-XLA migration playbook.
    - All enterprise apps retain strict client-side zero-telemetry computation.
-   - Ecosystem Navigation Standard: `Apps ▾`, `E-Apps ▾`, `Projects ▾`, and right-anchored `🧠 Enterprise AI Economics` pill.
+    - Ecosystem Navigation Standard: `Apps ▾`, `E-Apps ▾`, `Projects ▾`, `Games ▾`, and right-anchored `🧠 Enterprise AI Economics` pill.
 10. **Official Brand Icon Systems for Apps & E-Apps Suites**:
    - **Apps Hub (`/apps/`)**:
      * Official Brand Icon: **The Cosmic Glass Cube** (Isometric frosted glass sandbox with floating cyber gold `#E3A63E` and digital teal `#4FB0A8` spheres).
@@ -68,6 +68,12 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * Official Brand Icon: **The Sovereign Hex Core** (Faceted titanium hexagonal core with precision gyroscopic telemetry rings and glowing amber/cyan dual-core neural processor).
      * Production assets: `eapps-full.png` (1024px), `eapps-square.png` (512px), `favicon-192.png`, `apple-touch-icon-180.png`, `favicon-32.png`, `favicon-16.png`, `favicon.ico`.
    - Both portals feature a responsive squircle brand badge in their respective hero headers.
+11. **Interactive Family Games Suite (`/games/`)**:
+   - Deployed at `https://iamsaravofficial.com/games/familywinner/`.
+   - 5-reel Amazon-style arcade slot machine household decider with 3D mechanical lever, chasing marquee bulbs, and canvas confetti.
+   - 5-letter name alignment across all 5 vertical reels: `DADDY` (35% odds), `MUMMY` (20%), `HUBBY` (15%), `WIFEY` (15%), `MYKID` (15%).
+   - Rich zero-dependency Web Audio API winning moment sounds: Vegas bell dings, brass victory fanfare, and coin cascade shower.
+   - Ecosystem Navigation Bar: `Games ▾` dropdown is anchored right after `Projects ▾`.
 
 ---
 
