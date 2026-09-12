@@ -285,7 +285,7 @@
     <div class="roster-pills" id="rosterPills">
       <button class="player-pill active" onclick="selectPlayer('Daddy')">👨 Daddy</button>
       <button class="player-pill" onclick="selectPlayer('Mummy')">👩 Mummy</button>
-      <button class="player-pill" onclick="selectPlayer('Kid 1')">👦 Dhruv (Kid 1)</button>
+      <button class="player-pill" onclick="selectPlayer('Kid 1')">👦 Kid 1</button>
       <button class="player-pill" onclick="selectPlayer('Kid 2')">👧 Kid 2</button>
       <button class="player-pill" onclick="selectPlayer('Guest')">🎉 Guest</button>
     </div>
@@ -344,7 +344,7 @@
         </tr>
       </thead>
       <tbody id="leaderboardBody">
-        <tr><td class="lb-rank">#1</td><td>Dhruv (Kid 1)</td><td>110</td><td>2 🔥</td></tr>
+        <tr><td class="lb-rank">#1</td><td>Kid 1</td><td>110</td><td>2 🔥</td></tr>
         <tr><td class="lb-rank">#2</td><td>Daddy</td><td>85</td><td>1</td></tr>
         <tr><td class="lb-rank">#3</td><td>Mummy</td><td>60</td><td>1</td></tr>
       </tbody>
@@ -763,7 +763,7 @@ gameLoop();
 // Leaderboard LocalStorage
 function getLeaderboard(){
   try { return JSON.parse(localStorage.getItem('cuptoss_scores')) || [
-    { name: 'Dhruv (Kid 1)', score: 110, streak: 2 },
+    { name: 'Kid 1', score: 110, streak: 2 },
     { name: 'Daddy', score: 85, streak: 1 },
     { name: 'Mummy', score: 60, streak: 1 }
   ]; } catch(e){ return []; }
