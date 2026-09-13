@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Study Sprint &amp; Exam Revision Matrix — Multi-Subject Planner &amp; Printable Study Desk Schedule | Sarav's World</title>
+<meta name="description" content="Free client-side multi-subject study sprint and exam revision matrix. Tracks 3-stage revision cycles (Learn, Active Recall, Mock), Pomodoro focus timer, stationery checklist, and 1-page printable desk timetable.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/study-sprint/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/study-sprint/">
+<meta property="og:title" content="Study Sprint &amp; Exam Revision Matrix | Sarav's World">
+<meta property="og:description" content="Multi-subject syllabus tracker, 3-stage revision cycles (Learn, Recall, Mock), Pomodoro timer, exam hall stationery check, and 1-page printable desk timetable.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/study-sprint/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Study Sprint &amp; Exam Revision Matrix | Sarav's World">
+<meta name="twitter:description" content="Multi-subject syllabus tracker, 3-stage revision cycles, Pomodoro timer, and printable desk timetable.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/study-sprint/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --card-hover-border: #4FB0A8;
+    --badge-gold: #E3A63E;
+    --badge-teal: #4FB0A8;
+    --badge-blue: #5C9DF5;
+    --badge-purple: #B784F5;
+  }
+  [data-theme="light"] {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F7;
+    --surface-3: #E4E9F0;
+    --border: #D1D8E2;
+    --border-soft: #E2E8F0;
+    --text: #1A202C;
+    --text-dim: #4A5568;
+    --text-faint: #718096;
+    --accent: #D97706;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(217, 119, 6, 0.14);
+    --accent2: #0D9488;
+    --accent2-soft: rgba(13, 148, 136, 0.14);
+    --danger: #DC2626;
+    --danger-soft: rgba(220, 38, 38, 0.14);
+    --success: #16A34A;
+    --success-soft: rgba(22, 163, 74, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    --card-hover-border: #0D9488;
+    --badge-gold: #D97706;
+    --badge-teal: #0D9488;
+    --badge-blue: #2563EB;
+    --badge-purple: #7C3AED;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+
+  /* Standardized Ecosystem Navigation Bar */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); margin: 0 2px; }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim); font-size: 12.5px; font-weight: 500;
+    cursor: pointer; padding: 4px 6px; display: inline-flex; align-items: center; gap: 4px;
+    font-family: inherit; transition: color 0.15s ease;
+  }
+  .eco-dropbtn:hover { color: var(--text); }
+  .eco-caret { font-size: 10px; transition: transform 0.2s ease; }
+  .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 6px; min-width: 230px; box-shadow: var(--shadow);
+    display: none; flex-direction: column; gap: 2px; z-index: 1001;
+  }
+  .eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: flex; }
+  .eco-menu a {
+    color: var(--text-dim); font-size: 12.5px; padding: 6px 10px; border-radius: 6px;
+    text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.15s ease;
+  }
+  .eco-menu a:hover { color: var(--text); background: var(--surface-2); text-decoration: none; }
+  .eco-menu a.current { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+  .eco-tokenomics {
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+    border-radius: 6px; background: var(--accent2-soft); color: var(--accent2) !important;
+    font-size: 12px; font-weight: 600; text-decoration: none; border: 1px solid rgba(79, 176, 168, 0.3);
+  }
+
+  /* App Container */
+  .container { max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* Hero & Header Section */
+  .hero-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px 28px; margin-bottom: 24px; box-shadow: var(--shadow);
+  }
+  .header-main-row {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+  }
+  .header-left {
+    display: flex; gap: 20px; align-items: center; flex: 1; min-width: 0;
+  }
+  .app-icon-box {
+    width: 68px; height: 68px; border-radius: 16px; background: var(--surface-2);
+    border: 1px solid var(--border); padding: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .app-icon-box img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+  .header-titles { flex: 1; min-width: 0; }
+  .eyebrow {
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent2); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .header-titles h1 { font-size: 25px; font-weight: 700; color: var(--text); line-height: 1.25; margin-bottom: 4px; }
+  .header-titles .sub { font-size: 13.5px; color: var(--text-dim); line-height: 1.5; margin: 0; }
+  .header-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+
+  /* Theme Switcher */
+  .theme-selector {
+    display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2px; gap: 2px;
+  }
+  .theme-btn {
+    background: transparent; border: none; color: var(--text-dim); font-size: 11.5px;
+    font-weight: 600; padding: 5px 10px; border-radius: 6px; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active { background: var(--accent); color: var(--accent-ink); }
+
+  /* Turnkey Presets Under Header */
+  .header-presets-wrap {
+    margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--border-soft);
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .preset-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); }
+  .preset-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .preset-chip {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    padding: 6px 12px; border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all 0.15s ease; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-chip:hover { border-color: var(--accent2); color: var(--accent2); transform: translateY(-1px); }
+  .preset-chip.active { background: var(--accent2-soft); border-color: var(--accent2); color: var(--accent2); }
+
+  /* Universal 4-Action Suite */
+  .action-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;
+  }
+  @media(max-width: 860px) { .action-bar { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 480px) { .action-bar { grid-template-columns: 1fr; } }
+  .btn-action {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; font-size: 13px; font-weight: 600; color: var(--text);
+    cursor: pointer; font-family: inherit; transition: all 0.15s ease; box-shadow: var(--shadow);
+  }
+  .btn-action:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .btn-action.btn-whatsapp { background: rgba(37, 211, 102, 0.12); border-color: rgba(37, 211, 102, 0.35); color: #25D366; }
+  .btn-action.btn-whatsapp:hover { background: #25D366; color: #0C0F14; border-color: #25D366; }
+  .btn-action.btn-print { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+  .btn-action.btn-print:hover { background: var(--accent); color: var(--accent-ink); }
+
+  /* Quick Summary Stats Ribbon */
+  .stats-ribbon {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px;
+  }
+  @media(max-width: 860px) { .stats-ribbon { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 480px) { .stats-ribbon { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 20px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 14px;
+  }
+  .stat-icon {
+    width: 46px; height: 46px; border-radius: 12px; background: var(--surface-2);
+    display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0;
+  }
+  .stat-data .stat-val { font-size: 22px; font-weight: 700; color: var(--text); line-height: 1.1; }
+  .stat-data .stat-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-dim); margin-top: 2px; }
+
+  /* Split Layout Grid: Left (Timetable & Pomodoro) vs Right (3-Stage Revision & Gear) */
+  .main-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px;
+  }
+  @media(max-width: 1040px) { .main-grid { grid-template-columns: 1fr; } }
+
+  .panel-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .panel-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  }
+  .panel-title { font-size: 16px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .panel-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 12px;
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
+  }
+
+  /* Exam Timetable List */
+  .exam-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+  .exam-item {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    transition: all 0.15s ease;
+  }
+  .exam-item:hover { border-color: var(--accent2); transform: translateX(2px); }
+  .exam-info { display: flex; flex-direction: column; gap: 3px; flex: 1; }
+  .exam-subject-row { display: flex; align-items: center; gap: 8px; }
+  .exam-name { font-size: 15px; font-weight: 700; color: var(--text); }
+  .exam-tag { font-size: 10.5px; padding: 2px 7px; border-radius: 8px; font-weight: 700; text-transform: uppercase; }
+  .exam-subtext { font-size: 12px; color: var(--text-dim); }
+  .exam-countdown-box { text-align: right; flex-shrink: 0; }
+  .exam-countdown {
+    font-size: 12px; font-weight: 700; padding: 4px 9px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .exam-countdown.urgent { background: var(--danger-soft); color: var(--danger); border: 1px solid var(--danger); }
+  .exam-countdown.soon { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent); }
+  .exam-countdown.normal { background: var(--accent2-soft); color: var(--accent2); border: 1px solid var(--accent2); }
+  .exam-countdown.done { background: var(--success-soft); color: var(--success); border: 1px solid var(--success); }
+
+  .btn-add-exam {
+    background: transparent; border: 1px dashed var(--border); color: var(--accent2);
+    width: 100%; padding: 10px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: inherit; transition: all 0.15s ease;
+  }
+  .btn-add-exam:hover { background: var(--accent2-soft); border-color: var(--accent2); }
+
+  /* Pomodoro Focus Station */
+  .pomodoro-box {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 20px; text-align: center; margin-top: 18px;
+  }
+  .pomo-modes { display: inline-flex; gap: 6px; background: var(--surface); padding: 4px; border-radius: 10px; margin-bottom: 16px; }
+  .pomo-mode-btn {
+    background: transparent; border: none; color: var(--text-dim); font-size: 12px; font-weight: 600;
+    padding: 6px 12px; border-radius: 6px; cursor: pointer; font-family: inherit; transition: all 0.15s ease;
+  }
+  .pomo-mode-btn.active { background: var(--accent2); color: #fff; }
+  .timer-display {
+    font-size: 54px; font-weight: 700; color: var(--text); line-height: 1;
+    margin-bottom: 16px; letter-spacing: 0.04em;
+  }
+  .pomo-controls { display: flex; justify-content: center; gap: 10px; }
+  .btn-pomo {
+    padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 700;
+    cursor: pointer; font-family: inherit; border: 1px solid transparent; transition: all 0.15s ease;
+  }
+  .btn-pomo.primary { background: var(--accent); color: var(--accent-ink); }
+  .btn-pomo.primary:hover { filter: brightness(1.1); }
+  .btn-pomo.secondary { background: var(--surface-3); border-color: var(--border); color: var(--text); }
+  .btn-pomo.secondary:hover { background: var(--border); }
+  .pomo-counter { margin-top: 12px; font-size: 12px; color: var(--text-dim); }
+
+  /* 3-Stage Chapter Revision Matrix */
+  .subject-tabs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; }
+  .subj-tab {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text-dim);
+    padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 600;
+    cursor: pointer; font-family: inherit; white-space: nowrap; transition: all 0.15s ease;
+  }
+  .subj-tab:hover { color: var(--text); border-color: var(--accent); }
+  .subj-tab.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+
+  .chapter-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  .chapter-table th {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+    color: var(--text-faint); padding: 8px 10px; border-bottom: 1px solid var(--border-soft); text-align: left;
+  }
+  .chapter-table td {
+    padding: 10px; border-bottom: 1px solid var(--border-soft); font-size: 13px; color: var(--text);
+  }
+  .chapter-table tr:hover td { background: var(--surface-2); }
+  .stage-chk {
+    display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px;
+    border-radius: 6px; background: var(--surface-2); border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.15s ease; font-size: 13px;
+  }
+  .stage-chk:hover { border-color: var(--accent2); transform: scale(1.1); }
+  .stage-chk.checked { background: var(--success-soft); border-color: var(--success); color: var(--success); }
+
+  .prog-bar-wrap { margin-top: 14px; }
+  .prog-label-row { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+  .prog-track { width: 100%; height: 8px; background: var(--surface-2); border-radius: 6px; overflow: hidden; }
+  .prog-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); transition: width 0.3s ease; }
+
+  /* Exam Hall Readiness Checklist */
+  .gear-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 16px; }
+  @media(max-width: 600px) { .gear-grid { grid-template-columns: 1fr; } }
+  .gear-item {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 10px 12px; display: flex; align-items: center; gap: 10px; cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gear-item:hover { border-color: var(--accent); }
+  .gear-item.packed { background: var(--success-soft); border-color: var(--success); text-decoration: line-through; opacity: 0.8; }
+  .gear-checkbox {
+    width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--text-dim);
+    display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0;
+  }
+  .gear-item.packed .gear-checkbox { background: var(--success); border-color: var(--success); color: #fff; text-decoration: none; }
+  .gear-title { font-size: 12.5px; font-weight: 500; color: var(--text); }
+
+  /* Modals */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; max-width: 480px; width: 100%; box-shadow: var(--shadow);
+  }
+  .modal-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .modal-head h3 { font-size: 18px; font-weight: 700; color: var(--text); }
+  .modal-close { background: transparent; border: none; color: var(--text-dim); font-size: 20px; cursor: pointer; }
+  .form-group { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 12px; font-weight: 600; color: var(--text-dim); margin-bottom: 6px; }
+  .form-input {
+    width: 100%; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 9px 12px; color: var(--text); font-size: 13.5px;
+    font-family: inherit; outline: none;
+  }
+  .form-input:focus { border-color: var(--accent2); }
+  .form-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+
+  /* Non-blocking Toast */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 3000;
+    background: var(--surface-3); border: 1px solid var(--accent); color: var(--text);
+    padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 8px;
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  /* Standard Footer */
+  footer {
+    padding: 36px 20px 48px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+    line-height: 1.6; border-top: 1px solid var(--border-soft); margin-top: 40px;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+
+  /* PRINT POSTER STYLES (A4 Desk / Fridge Layout) */
+  @media print {
+    body { background: #fff !important; color: #000 !important; font-size: 11pt; }
+    .ecosystem-bar, .theme-selector, .header-presets-wrap, .action-bar, .pomodoro-box,
+    .btn-add-exam, .modal-overlay, #toast, footer { display: none !important; }
+    .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .hero-card { border: none !important; box-shadow: none !important; padding: 0 0 12pt 0 !important; margin-bottom: 12pt !important; border-bottom: 2pt solid #000 !important; }
+    .app-icon-box { display: none !important; }
+    .main-grid { display: block !important; }
+    .panel-card { border: 1pt solid #444 !important; box-shadow: none !important; margin-bottom: 14pt !important; page-break-inside: avoid; }
+    .exam-item { border: 1pt solid #ccc !important; background: #fff !important; color: #000 !important; }
+    .chapter-table th, .chapter-table td { border-bottom: 1pt solid #bbb !important; color: #000 !important; }
+    .stage-chk { border: 1pt solid #000 !important; background: #fff !important; color: #000 !important; }
+    .stage-chk.checked { background: #eee !important; font-weight: bold; }
+    .gear-item { border: 1pt solid #bbb !important; background: #fff !important; color: #000 !important; }
+    .gear-item.packed { text-decoration: none !important; }
+    .gear-checkbox { border-color: #000 !important; }
+    .print-only-footer { display: block !important; margin-top: 16pt; font-size: 9pt; color: #666; text-align: center; }
+  }
+  .print-only-footer { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/">🌟 Glow Up Grid</a>
+          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/">🍱 Lunchbox & Meal Planner</a>
+          <a href="https://iamsaravofficial.com/apps/study-sprint/" class="current">🎒 Study Sprint & Exam Matrix</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--text-dim); font-size:12.5px; font-weight:600;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Hero Header Card -->
+  <div class="hero-card">
+    <div class="header-main-row">
+      <div class="header-left">
+        <div class="app-icon-box">
+          <img src="study-full.png" alt="Study Sprint App Icon">
+        </div>
+        <div class="header-titles">
+          <div class="eyebrow">🎒 Study Desk &amp; Exam Matrix</div>
+          <h1>Study Sprint &amp; Exam Revision Matrix</h1>
+          <p class="sub">Structured 3-stage syllabus revision cycles (Learn 📖, Active Recall 🧠, Mock Test ✍️), multi-subject exam countdown, gentle Pomodoro timer, exam hall stationery check, and 1-page printable desk posters.</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="theme-selector" id="themeSelector">
+          <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+          <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+          <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Turnkey Presets Bar -->
+    <div class="header-presets-wrap">
+      <span class="preset-label">🎯 Grade Presets:</span>
+      <div class="preset-chips">
+        <button type="button" class="preset-chip active" onclick="loadPreset('class10')">📘 Class 10 Board Sprint</button>
+        <button type="button" class="preset-chip" onclick="loadPreset('class12')">🔬 Class 12 Science (PCM)</button>
+        <button type="button" class="preset-chip" onclick="loadPreset('middle')">🎒 Middle School (Classes 6–8)</button>
+        <button type="button" class="preset-chip" onclick="loadPreset('primary')">🌟 Primary Fun (Classes 1–5)</button>
+        <button type="button" class="preset-chip" onclick="loadPreset('custom')">⚡ Clear / Custom Plan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Universal 4-Action Suite -->
+  <div class="action-bar">
+    <button type="button" class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
+      <span>📱</span> Share on WhatsApp
+    </button>
+    <button type="button" class="btn-action btn-print" onclick="window.print()">
+      <span>🖨️</span> Print Desk Timetable (A4)
+    </button>
+    <button type="button" class="btn-action" onclick="copySummary()">
+      <span>📋</span> Copy Revision Summary
+    </button>
+    <button type="button" class="btn-action" onclick="savePlan()">
+      <span>💾</span> Save Plan to Storage
+    </button>
+  </div>
+
+  <!-- Quick Stats Ribbon -->
+  <div class="stats-ribbon">
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-data">
+        <div class="stat-val mono" id="statExamsCount">5</div>
+        <div class="stat-lbl">Upcoming Exams</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">⏳</div>
+      <div class="stat-data">
+        <div class="stat-val mono" id="statNearestDays">3 Days</div>
+        <div class="stat-lbl">Nearest Exam Countdown</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📖</div>
+      <div class="stat-data">
+        <div class="stat-val mono" id="statTotalChapters">24</div>
+        <div class="stat-lbl">Syllabus Chapters</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🎯</div>
+      <div class="stat-data">
+        <div class="stat-val mono" id="statRevisionScore">58%</div>
+        <div class="stat-lbl">Overall Revision Mastery</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main 2-Column Split: Timetable + Pomodoro vs 3-Stage Revision & Stationery -->
+  <div class="main-grid">
+
+    <!-- LEFT COLUMN: Exam Timetable + Pomodoro Focus Station -->
+    <div style="display:flex; flex-direction:column; gap:24px;">
+
+      <!-- Exam Timetable Panel -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>🗓️ Exam Dates &amp; Hall Timetable</span>
+          </div>
+          <span class="panel-badge mono" id="badgeExamStatus">Active Sprint</span>
+        </div>
+
+        <div class="exam-list" id="examListContainer">
+          <!-- Populated by JS -->
+        </div>
+
+        <button type="button" class="btn-add-exam" onclick="openAddExamModal()">
+          + Add New Exam Paper
+        </button>
+      </div>
+
+      <!-- Pomodoro Focus Station -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>⏱️ Gentle Pomodoro Focus Station</span>
+          </div>
+          <span class="panel-badge mono">Web Audio Chime</span>
+        </div>
+
+        <div class="pomodoro-box">
+          <div class="pomo-modes">
+            <button type="button" class="pomo-mode-btn active" id="btnMode25" onclick="setPomoMode(25, 5)">25m Study / 5m Break</button>
+            <button type="button" class="pomo-mode-btn" id="btnMode45" onclick="setPomoMode(45, 10)">45m Marathon / 10m Break</button>
+          </div>
+
+          <div class="timer-display mono" id="timerDisplay">25:00</div>
+
+          <div class="pomo-controls">
+            <button type="button" class="btn-pomo primary" id="btnTimerToggle" onclick="toggleTimer()">▶ Start Focus</button>
+            <button type="button" class="btn-pomo secondary" onclick="resetTimer()">↺ Reset</button>
+          </div>
+
+          <div class="pomo-counter" id="pomoCounter">Today's Focus Sprints: 🍅 0 completed</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN: 3-Stage Revision Matrix + Stationery Checklist -->
+    <div style="display:flex; flex-direction:column; gap:24px;">
+
+      <!-- 3-Stage Revision Matrix -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>🧠 3-Stage Chapter Revision Matrix</span>
+          </div>
+          <span class="panel-badge mono">1. Learn • 2. Recall • 3. Mock</span>
+        </div>
+
+        <!-- Subject Tabs -->
+        <div class="subject-tabs" id="subjectTabsContainer">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Chapter Table for Active Subject -->
+        <div style="overflow-x:auto;">
+          <table class="chapter-table">
+            <thead>
+              <tr>
+                <th style="width:45%;">Chapter / Unit</th>
+                <th style="text-align:center;">1. Learn 📖</th>
+                <th style="text-align:center;">2. Recall 🧠</th>
+                <th style="text-align:center;">3. Mock ✍️</th>
+              </tr>
+            </thead>
+            <tbody id="chapterTableBody">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Progress Bar for Active Subject -->
+        <div class="prog-bar-wrap">
+          <div class="prog-label-row">
+            <span id="progSubjectTitle">Mathematics Revision Progress</span>
+            <span class="mono" id="progSubjectPercent">0%</span>
+          </div>
+          <div class="prog-track">
+            <div class="prog-fill" id="progSubjectFill" style="width: 0%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Exam Hall Readiness Checklist -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>🎒 Exam Hall Stationery &amp; Readiness</span>
+          </div>
+          <span class="panel-badge mono" id="gearBadge">0 / 8 Packed</span>
+        </div>
+
+        <div class="gear-grid" id="gearGridContainer">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Print Only Footer -->
+  <div class="print-only-footer">
+    <p><b>Study Sprint &amp; Exam Timetable</b> &bull; Generated from <a href="https://iamsaravofficial.com/apps/study-sprint/">https://iamsaravofficial.com/apps/study-sprint/</a></p>
+    <p><i>"Consistent daily revision beats last-night panic. Trust your preparation!"</i> &bull; Sarav's World</p>
+  </div>
+
+  <!-- Standardized Footer -->
+  <footer>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </footer>
+
+</div>
+
+<!-- Add Exam Modal -->
+<div class="modal-overlay" id="addExamModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>➕ Add Exam Paper</h3>
+      <button type="button" class="modal-close" onclick="closeAddExamModal()">&times;</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputExamSubject">Subject Name</label>
+      <input type="text" class="form-input" id="inputExamSubject" placeholder="e.g. Mathematics, Physics, English">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputExamDate">Exam Date</label>
+      <input type="date" class="form-input" id="inputExamDate">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputExamTime">Time / Slot</label>
+      <input type="text" class="form-input" id="inputExamTime" placeholder="e.g. 09:30 AM – 12:30 PM">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputExamHall">Room / Hall</label>
+      <input type="text" class="form-input" id="inputExamHall" placeholder="e.g. Hall 4, Seat 22">
+    </div>
+    <div class="form-actions">
+      <button type="button" class="btn-pomo secondary" onclick="closeAddExamModal()">Cancel</button>
+      <button type="button" class="btn-pomo primary" onclick="submitNewExam()">Save Exam</button>
+    </div>
+  </div>
+</div>
+
+<!-- Non-blocking Toast Element -->
+<div id="toast"></div>
+
+<script>
+// --- Standardized Theme Engine with Auto / Light / Dark ---
+function setTheme(choice){
+  localStorage.setItem('sw_theme', choice);
+  var activeTheme = choice;
+  if(choice === 'auto' || choice === 'system'){
+    activeTheme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  document.querySelectorAll('.theme-btn').forEach(function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === choice);
+  });
+}
+function initTheme(){
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  setTheme(saved);
+}
+initTheme();
+window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(){
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  if(saved === 'auto' || saved === 'system') setTheme('auto');
+});
+
+// Dropdown Handlers
+document.querySelectorAll('.eco-dropdown').forEach(function(drop){
+  var btn = drop.querySelector('.eco-dropbtn');
+  btn.addEventListener('click', function(e){
+    e.stopPropagation();
+    document.querySelectorAll('.eco-dropdown').forEach(function(d){ if(d!==drop) d.classList.remove('open'); });
+    drop.classList.toggle('open');
+  });
+});
+document.addEventListener('click', function(){
+  document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
+});
+
+// Non-blocking Toast
+var toastTimeout = null;
+function showToast(msg) {
+  var toast = document.getElementById('toast');
+  toast.innerHTML = '<span>✨</span> ' + msg;
+  toast.classList.add('show');
+  if(toastTimeout) clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(function(){
+    toast.classList.remove('show');
+  }, 2600);
+}
+
+// --- Audio Synthesizer (Web Audio API for gentle chimes) ---
+var audioCtx = null;
+function getAudioContext() {
+  if (!audioCtx) {
+    var AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) audioCtx = new AudioContext();
+  }
+  if (audioCtx && audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+function playChime(type) {
+  var ctx = getAudioContext();
+  if(!ctx) return;
+  try {
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    var now = ctx.currentTime;
+    if(type === 'check') {
+      osc.frequency.setValueAtTime(587.33, now); // D5
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.12); // A5
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } else if(type === 'complete') {
+      osc.frequency.setValueAtTime(523.25, now); // C5
+      osc.frequency.setValueAtTime(659.25, now + 0.1); // E5
+      osc.frequency.setValueAtTime(783.99, now + 0.2); // G5
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+      osc.start(now);
+      osc.stop(now + 0.45);
+    } else if(type === 'timer') {
+      osc.frequency.setValueAtTime(880, now);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+      osc.start(now);
+      osc.stop(now + 0.6);
+    }
+  } catch(e) {}
+}
+
+// --- Data Presets & Model Architecture ---
+var PRESETS = {
+  class10: {
+    name: "Class 10 Board Sprint",
+    exams: [
+      { id: "e1", subject: "Mathematics", date: getFutureDate(3), time: "09:30 AM – 12:30 PM", hall: "Hall A, Seat 12", color: "gold" },
+      { id: "e2", subject: "Science", date: getFutureDate(7), time: "09:30 AM – 12:30 PM", hall: "Hall A, Seat 12", color: "teal" },
+      { id: "e3", subject: "Social Science", date: getFutureDate(11), time: "09:30 AM – 12:30 PM", hall: "Hall A, Seat 12", color: "blue" },
+      { id: "e4", subject: "English Language", date: getFutureDate(15), time: "09:30 AM – 12:30 PM", hall: "Hall A, Seat 12", color: "purple" },
+      { id: "e5", subject: "Second Language", date: getFutureDate(19), time: "09:30 AM – 12:30 PM", hall: "Hall A, Seat 12", color: "teal" }
+    ],
+    subjects: {
+      "Mathematics": [
+        { id: "c1", title: "Real Numbers & Polynomials", learn: true, recall: true, mock: true },
+        { id: "c2", title: "Quadratic Equations", learn: true, recall: true, mock: false },
+        { id: "c3", title: "Arithmetic Progressions", learn: true, recall: false, mock: false },
+        { id: "c4", title: "Triangles & Coordinate Geometry", learn: true, recall: false, mock: false },
+        { id: "c5", title: "Trigonometry & Heights/Distances", learn: false, recall: false, mock: false },
+        { id: "c6", title: "Surface Areas, Volumes & Statistics", learn: false, recall: false, mock: false }
+      ],
+      "Science": [
+        { id: "c7", title: "Chemical Reactions & Acids/Bases", learn: true, recall: true, mock: false },
+        { id: "c8", title: "Metals & Non-Metals", learn: true, recall: false, mock: false },
+        { id: "c9", title: "Life Processes & Control/Coordination", learn: true, recall: true, mock: true },
+        { id: "c10", title: "Light: Reflection & Refraction", learn: true, recall: false, mock: false },
+        { id: "c11", title: "Electricity & Magnetic Effects", learn: false, recall: false, mock: false }
+      ],
+      "Social Science": [
+        { id: "c12", title: "Rise of Nationalism in Europe", learn: true, recall: true, mock: false },
+        { id: "c13", title: "Nationalism in India", learn: true, recall: false, mock: false },
+        { id: "c14", title: "Resources & Agriculture", learn: true, recall: false, mock: false },
+        { id: "c15", title: "Power Sharing & Federalism", learn: true, recall: true, mock: false },
+        { id: "c16", title: "Money & Credit, Globalization", learn: false, recall: false, mock: false }
+      ],
+      "English Language": [
+        { id: "c17", title: "Reading Comprehension Strategy", learn: true, recall: true, mock: true },
+        { id: "c18", title: "Letter Writing & Analytical Paragraph", learn: true, recall: true, mock: false },
+        { id: "c19", title: "First Flight: Prose & Poems Recap", learn: true, recall: false, mock: false },
+        { id: "c20", title: "Footprints Without Feet Supplementary", learn: false, recall: false, mock: false }
+      ],
+      "Second Language": [
+        { id: "c21", title: "Grammar Rules & Sandhi / Syntax", learn: true, recall: true, mock: false },
+        { id: "c22", title: "Poetry Explanations & Context", learn: true, recall: false, mock: false },
+        { id: "c23", title: "Letter & Essay Writing Practice", learn: false, recall: false, mock: false }
+      ]
+    }
+  },
+  class12: {
+    name: "Class 12 Science (PCM)",
+    exams: [
+      { id: "e1", subject: "Physics", date: getFutureDate(4), time: "09:30 AM – 12:30 PM", hall: "Lab Complex 2", color: "teal" },
+      { id: "e2", subject: "Chemistry", date: getFutureDate(8), time: "09:30 AM – 12:30 PM", hall: "Lab Complex 2", color: "gold" },
+      { id: "e3", subject: "Mathematics", date: getFutureDate(13), time: "09:30 AM – 12:30 PM", hall: "Lab Complex 2", color: "blue" },
+      { id: "e4", subject: "Computer Science", date: getFutureDate(17), time: "09:30 AM – 12:30 PM", hall: "Lab Complex 2", color: "purple" }
+    ],
+    subjects: {
+      "Physics": [
+        { id: "c1", title: "Electrostatics & Capacitance", learn: true, recall: true, mock: true },
+        { id: "c2", title: "Current Electricity & Magnetism", learn: true, recall: true, mock: false },
+        { id: "c3", title: "Electromagnetic Induction & AC", learn: true, recall: false, mock: false },
+        { id: "c4", title: "Ray & Wave Optics", learn: false, recall: false, mock: false },
+        { id: "c5", title: "Modern Physics & Semiconductors", learn: false, recall: false, mock: false }
+      ],
+      "Chemistry": [
+        { id: "c6", title: "Solutions & Electrochemistry", learn: true, recall: true, mock: false },
+        { id: "c7", title: "Chemical Kinetics", learn: true, recall: true, mock: true },
+        { id: "c8", title: "d & f Block Elements, Coordination", learn: true, recall: false, mock: false },
+        { id: "c9", title: "Organic: Haloalkanes, Alcohols, Ethers", learn: false, recall: false, mock: false },
+        { id: "c10", title: "Aldehydes, Ketones, Amines & Biomolecules", learn: false, recall: false, mock: false }
+      ],
+      "Mathematics": [
+        { id: "c11", title: "Relations, Functions & Matrices", learn: true, recall: true, mock: true },
+        { id: "c12", title: "Continuity, Differentiability & Derivatives", learn: true, recall: false, mock: false },
+        { id: "c13", title: "Integrals & Differential Equations", learn: false, recall: false, mock: false },
+        { id: "c14", title: "Vectors & 3D Geometry", learn: true, recall: true, mock: false },
+        { id: "c15", title: "Probability Distributions", learn: false, recall: false, mock: false }
+      ],
+      "Computer Science": [
+        { id: "c16", title: "Python Functions & File Handling", learn: true, recall: true, mock: true },
+        { id: "c17", title: "Data Structures: Stacks", learn: true, recall: true, mock: false },
+        { id: "c18", title: "Computer Networks & Topologies", learn: true, recall: false, mock: false },
+        { id: "c19", title: "SQL Queries & Database Connections", learn: false, recall: false, mock: false }
+      ]
+    }
+  },
+  middle: {
+    name: "Middle School (Classes 6–8)",
+    exams: [
+      { id: "e1", subject: "Maths", date: getFutureDate(2), time: "09:00 AM – 11:30 AM", hall: "Room 14", color: "gold" },
+      { id: "e2", subject: "Science", date: getFutureDate(5), time: "09:00 AM – 11:30 AM", hall: "Room 14", color: "teal" },
+      { id: "e3", subject: "English", date: getFutureDate(8), time: "09:00 AM – 11:30 AM", hall: "Room 14", color: "purple" },
+      { id: "e4", subject: "Social Studies", date: getFutureDate(12), time: "09:00 AM – 11:30 AM", hall: "Room 14", color: "blue" }
+    ],
+    subjects: {
+      "Maths": [
+        { id: "c1", title: "Fractions, Decimals & Integers", learn: true, recall: true, mock: true },
+        { id: "c2", title: "Simple Equations & Algebra", learn: true, recall: true, mock: false },
+        { id: "c3", title: "Lines, Angles & Triangles", learn: true, recall: false, mock: false },
+        { id: "c4", title: "Perimeter and Area", learn: false, recall: false, mock: false }
+      ],
+      "Science": [
+        { id: "c5", title: "Nutrition in Plants & Animals", learn: true, recall: true, mock: true },
+        { id: "c6", title: "Heat & Temperature", learn: true, recall: false, mock: false },
+        { id: "c7", title: "Acids, Bases and Salts", learn: false, recall: false, mock: false },
+        { id: "c8", title: "Respiration & Circulation", learn: false, recall: false, mock: false }
+      ],
+      "English": [
+        { id: "c9", title: "Grammar: Tenses & Conjunctions", learn: true, recall: true, mock: true },
+        { id: "c10", title: "Paragraph & Story Writing", learn: true, recall: false, mock: false },
+        { id: "c11", title: "Literature Chapters & Word Meanings", learn: false, recall: false, mock: false }
+      ],
+      "Social Studies": [
+        { id: "c12", title: "Medieval Kingdoms & Delhi Sultans", learn: true, recall: true, mock: false },
+        { id: "c13", title: "Environment & Interior of Earth", learn: true, recall: false, mock: false },
+        { id: "c14", title: "Democracy & State Government", learn: false, recall: false, mock: false }
+      ]
+    }
+  },
+  primary: {
+    name: "Primary Fun (Classes 1–5)",
+    exams: [
+      { id: "e1", subject: "Fun Maths", date: getFutureDate(2), time: "09:00 AM – 10:30 AM", hall: "Grade 3 Rose", color: "gold" },
+      { id: "e2", subject: "EVS (Our World)", date: getFutureDate(4), time: "09:00 AM – 10:30 AM", hall: "Grade 3 Rose", color: "teal" },
+      { id: "e3", subject: "English & Phonics", date: getFutureDate(7), time: "09:00 AM – 10:30 AM", hall: "Grade 3 Rose", color: "purple" }
+    ],
+    subjects: {
+      "Fun Maths": [
+        { id: "c1", title: "Multiplication Tables 2 to 12", learn: true, recall: true, mock: true },
+        { id: "c2", title: "Shapes, Patterns & Symmetry", learn: true, recall: true, mock: false },
+        { id: "c3", title: "Money & Word Problems", learn: true, recall: false, mock: false }
+      ],
+      "EVS (Our World)": [
+        { id: "c4", title: "Plants, Trees & Leaves", learn: true, recall: true, mock: true },
+        { id: "c5", title: "Animals & Their Habitats", learn: true, recall: true, mock: false },
+        { id: "c6", title: "Water Cycle & Cleanliness", learn: false, recall: false, mock: false }
+      ],
+      "English & Phonics": [
+        { id: "c7", title: "Spelling Rules & Sight Words", learn: true, recall: true, mock: true },
+        { id: "c8", title: "Reading Short Stories & Poems", learn: true, recall: false, mock: false },
+        { id: "c9", title: "Handwriting & Simple Sentences", learn: false, recall: false, mock: false }
+      ]
+    }
+  },
+  custom: {
+    name: "Custom Sprint",
+    exams: [],
+    subjects: {}
+  }
+};
+
+var DEFAULT_GEAR = [
+  { id: "g1", title: "🎟️ Hall Ticket / Admit Card (Signed)", packed: true },
+  { id: "g2", title: "📐 Transparent Geometry Box & 30cm Ruler", packed: true },
+  { id: "g3", title: "🖊️ 2x Blue & Black Ballpoint Pens (Tested)", packed: true },
+  { id: "g4", title: "✏️ 2x Dark HB Pencils, Eraser & Sharpener", packed: true },
+  { id: "g5", title: "⌚ Analogue Wristwatch (Smartwatch banned)", packed: false },
+  { id: "g6", title: "💧 Clear Transparent Water Bottle", packed: false },
+  { id: "g7", title: "🪪 School ID Card & Bus Pass", packed: true },
+  { id: "g8", title: "📋 Transparent Exam Writing Clipboard", packed: false }
+];
+
+function getFutureDate(daysAhead) {
+  var d = new Date();
+  d.setDate(d.getDate() + daysAhead);
+  return d.toISOString().split('T')[0];
+}
+
+// Current State
+var currentExams = [];
+var currentSubjects = {};
+var currentGear = [];
+var activeSubjectName = "";
+
+function initApp() {
+  var saved = localStorage.getItem('study_sprint_data');
+  if(saved) {
+    try {
+      var data = JSON.parse(saved);
+      currentExams = data.exams || [];
+      currentSubjects = data.subjects || {};
+      currentGear = data.gear || DEFAULT_GEAR;
+    } catch(e) {
+      loadPreset('class10');
+      return;
+    }
+  } else {
+    loadPreset('class10');
+    return;
+  }
+  renderAll();
+}
+
+function loadPreset(key) {
+  var p = PRESETS[key] || PRESETS.class10;
+  currentExams = JSON.parse(JSON.stringify(p.exams));
+  currentSubjects = JSON.parse(JSON.stringify(p.subjects));
+  currentGear = JSON.parse(JSON.stringify(DEFAULT_GEAR));
+
+  document.querySelectorAll('.preset-chip').forEach(function(c){
+    c.classList.remove('active');
+  });
+  if(event && event.target) {
+    event.target.classList.add('active');
+  }
+
+  renderAll();
+  showToast('Loaded preset: ' + p.name);
+}
+
+function renderAll() {
+  renderExams();
+  renderSubjectsTabs();
+  renderActiveChapters();
+  renderGear();
+  updateStatsRibbon();
+}
+
+function renderExams() {
+  var container = document.getElementById('examListContainer');
+  if(!container) return;
+  if(currentExams.length === 0) {
+    container.innerHTML = '<div style="text-align:center; padding:20px; color:var(--text-dim); font-size:13px;">No exams scheduled yet. Click "+ Add New Exam Paper" below!</div>';
+    return;
+  }
+
+  // Sort exams by date ascending
+  currentExams.sort(function(a, b){
+    return new Date(a.date) - new Date(b.date);
+  });
+
+  var html = '';
+  var today = new Date();
+  today.setHours(0,0,0,0);
+
+  currentExams.forEach(function(ex, idx){
+    var exDate = new Date(ex.date);
+    exDate.setHours(0,0,0,0);
+    var diffTime = exDate - today;
+    var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+    var cdClass = 'normal';
+    var cdText = diffDays + ' Days';
+    if(diffDays < 0) {
+      cdClass = 'done';
+      cdText = 'Done ✅';
+    } else if(diffDays === 0) {
+      cdClass = 'urgent';
+      cdText = '🚨 Today!';
+    } else if(diffDays === 1) {
+      cdClass = 'urgent';
+      cdText = '🚨 Tomorrow!';
+    } else if(diffDays <= 3) {
+      cdClass = 'soon';
+      cdText = '⏳ ' + diffDays + ' Days';
+    }
+
+    var badgeStyle = 'background:var(--accent2-soft); color:var(--accent2); border:1px solid var(--accent2);';
+    if(ex.color === 'gold') badgeStyle = 'background:var(--accent-soft); color:var(--accent); border:1px solid var(--accent);';
+    if(ex.color === 'purple') badgeStyle = 'background:rgba(183,132,245,0.15); color:var(--badge-purple); border:1px solid var(--badge-purple);';
+
+    html += '<div class="exam-item">';
+    html += '  <div class="exam-info">';
+    html += '    <div class="exam-subject-row">';
+    html += '      <span class="exam-name">' + ex.subject + '</span>';
+    html += '      <span class="exam-tag" style="' + badgeStyle + '">' + (ex.color || 'core') + '</span>';
+    html += '    </div>';
+    html += '    <div class="exam-subtext mono">📅 ' + ex.date + ' &bull; ⏰ ' + (ex.time || 'Morning') + ' &bull; 📍 ' + (ex.hall || 'Desk') + '</div>';
+    html += '  </div>';
+    html += '  <div class="exam-countdown-box">';
+    html += '    <span class="exam-countdown mono ' + cdClass + '">' + cdText + '</span>';
+    html += '    <button type="button" onclick="deleteExam(' + idx + ')" style="background:transparent; border:none; color:var(--text-faint); cursor:pointer; font-size:12px; margin-left:8px;" title="Delete Exam">&times;</button>';
+    html += '  </div>';
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+}
+
+function renderSubjectsTabs() {
+  var container = document.getElementById('subjectTabsContainer');
+  if(!container) return;
+  var keys = Object.keys(currentSubjects);
+  if(keys.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+  if(!activeSubjectName || !currentSubjects[activeSubjectName]) {
+    activeSubjectName = keys[0];
+  }
+
+  var html = '';
+  keys.forEach(function(k){
+    var activeClass = (k === activeSubjectName) ? ' active' : '';
+    html += '<button type="button" class="subj-tab' + activeClass + '" onclick="selectSubject(\'' + k.replace(/'/g, "\\'") + '\')">' + k + '</button>';
+  });
+  container.innerHTML = html;
+}
+
+function selectSubject(name) {
+  activeSubjectName = name;
+  renderSubjectsTabs();
+  renderActiveChapters();
+}
+
+function renderActiveChapters() {
+  var tbody = document.getElementById('chapterTableBody');
+  var titleEl = document.getElementById('progSubjectTitle');
+  var percentEl = document.getElementById('progSubjectPercent');
+  var fillEl = document.getElementById('progSubjectFill');
+  if(!tbody) return;
+
+  var chapters = currentSubjects[activeSubjectName] || [];
+  if(chapters.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px; color:var(--text-dim);">No chapters registered for ' + activeSubjectName + '.</td></tr>';
+    if(titleEl) titleEl.textContent = activeSubjectName + ' Revision Progress';
+    if(percentEl) percentEl.textContent = '0%';
+    if(fillEl) fillEl.style.width = '0%';
+    return;
+  }
+
+  var totalStages = chapters.length * 3;
+  var doneStages = 0;
+
+  var html = '';
+  chapters.forEach(function(ch, idx){
+    if(ch.learn) doneStages++;
+    if(ch.recall) doneStages++;
+    if(ch.mock) doneStages++;
+
+    html += '<tr>';
+    html += '  <td><b>' + (idx + 1) + '.</b> ' + ch.title + '</td>';
+    html += '  <td style="text-align:center;"><button type="button" class="stage-chk' + (ch.learn ? ' checked' : '') + '" onclick="toggleStage(\'' + activeSubjectName.replace(/'/g, "\\'") + '\', ' + idx + ', \'learn\')">' + (ch.learn ? '✓' : '') + '</button></td>';
+    html += '  <td style="text-align:center;"><button type="button" class="stage-chk' + (ch.recall ? ' checked' : '') + '" onclick="toggleStage(\'' + activeSubjectName.replace(/'/g, "\\'") + '\', ' + idx + ', \'recall\')">' + (ch.recall ? '✓' : '') + '</button></td>';
+    html += '  <td style="text-align:center;"><button type="button" class="stage-chk' + (ch.mock ? ' checked' : '') + '" onclick="toggleStage(\'' + activeSubjectName.replace(/'/g, "\\'") + '\', ' + idx + ', \'mock\')">' + (ch.mock ? '✓' : '') + '</button></td>';
+    html += '</tr>';
+  });
+
+  tbody.innerHTML = html;
+
+  var pct = totalStages > 0 ? Math.round((doneStages / totalStages) * 100) : 0;
+  if(titleEl) titleEl.textContent = activeSubjectName + ' Revision (' + doneStages + '/' + totalStages + ' Stages)';
+  if(percentEl) percentEl.textContent = pct + '%';
+  if(fillEl) fillEl.style.width = pct + '%';
+}
+
+function toggleStage(subj, idx, stage) {
+  if(!currentSubjects[subj] || !currentSubjects[subj][idx]) return;
+  var was = currentSubjects[subj][idx][stage];
+  currentSubjects[subj][idx][stage] = !was;
+
+  if(!was) {
+    playChime('check');
+  }
+  renderActiveChapters();
+  updateStatsRibbon();
+}
+
+function renderGear() {
+  var container = document.getElementById('gearGridContainer');
+  var badge = document.getElementById('gearBadge');
+  if(!container) return;
+
+  var packedCount = 0;
+  var html = '';
+  currentGear.forEach(function(g, idx){
+    if(g.packed) packedCount++;
+    var packedClass = g.packed ? ' packed' : '';
+    html += '<div class="gear-item' + packedClass + '" onclick="toggleGear(' + idx + ')">';
+    html += '  <div class="gear-checkbox">' + (g.packed ? '✓' : '') + '</div>';
+    html += '  <span class="gear-title">' + g.title + '</span>';
+    html += '</div>';
+  });
+
+  container.innerHTML = html;
+  if(badge) badge.textContent = packedCount + ' / ' + currentGear.length + ' Packed';
+}
+
+function toggleGear(idx) {
+  if(!currentGear[idx]) return;
+  currentGear[idx].packed = !currentGear[idx].packed;
+  playChime('check');
+  renderGear();
+}
+
+function updateStatsRibbon() {
+  var countEl = document.getElementById('statExamsCount');
+  var nearestEl = document.getElementById('statNearestDays');
+  var chaptersEl = document.getElementById('statTotalChapters');
+  var scoreEl = document.getElementById('statRevisionScore');
+
+  if(countEl) countEl.textContent = currentExams.length;
+
+  var today = new Date();
+  today.setHours(0,0,0,0);
+  var minDays = Infinity;
+  currentExams.forEach(function(ex){
+    var exDate = new Date(ex.date);
+    exDate.setHours(0,0,0,0);
+    var d = Math.ceil((exDate - today) / (1000 * 60 * 60 * 24));
+    if(d >= 0 && d < minDays) minDays = d;
+  });
+
+  if(nearestEl) {
+    if(minDays === Infinity) nearestEl.textContent = "None";
+    else if(minDays === 0) nearestEl.textContent = "Today!";
+    else if(minDays === 1) nearestEl.textContent = "Tomorrow!";
+    else nearestEl.textContent = minDays + " Days";
+  }
+
+  var totalCh = 0;
+  var totalStages = 0;
+  var doneStages = 0;
+  Object.keys(currentSubjects).forEach(function(k){
+    var list = currentSubjects[k];
+    totalCh += list.length;
+    list.forEach(function(c){
+      totalStages += 3;
+      if(c.learn) doneStages++;
+      if(c.recall) doneStages++;
+      if(c.mock) doneStages++;
+    });
+  });
+
+  if(chaptersEl) chaptersEl.textContent = totalCh;
+  var pct = totalStages > 0 ? Math.round((doneStages / totalStages) * 100) : 0;
+  if(scoreEl) scoreEl.textContent = pct + "%";
+}
+
+// Add Exam Modal
+function openAddExamModal() {
+  document.getElementById('inputExamDate').value = getFutureDate(7);
+  document.getElementById('addExamModal').classList.add('open');
+}
+function closeAddExamModal() {
+  document.getElementById('addExamModal').classList.remove('open');
+}
+function submitNewExam() {
+  var subj = document.getElementById('inputExamSubject').value.trim();
+  var date = document.getElementById('inputExamDate').value;
+  var time = document.getElementById('inputExamTime').value.trim() || "09:30 AM – 12:30 PM";
+  var hall = document.getElementById('inputExamHall').value.trim() || "Main Hall";
+
+  if(!subj || !date) {
+    showToast('Please enter both Subject and Date!');
+    return;
+  }
+
+  currentExams.push({
+    id: "e_" + Date.now(),
+    subject: subj,
+    date: date,
+    time: time,
+    hall: hall,
+    color: "teal"
+  });
+
+  if(!currentSubjects[subj]) {
+    currentSubjects[subj] = [
+      { id: "c_" + Date.now() + "_1", title: "Unit 1: Fundamentals & Theory", learn: false, recall: false, mock: false },
+      { id: "c_" + Date.now() + "_2", title: "Unit 2: Key Concepts & Problem Solving", learn: false, recall: false, mock: false },
+      { id: "c_" + Date.now() + "_3", title: "Unit 3: Past Papers & Sample Questions", learn: false, recall: false, mock: false }
+    ];
+  }
+
+  closeAddExamModal();
+  document.getElementById('inputExamSubject').value = '';
+  playChime('complete');
+  showToast('Exam paper scheduled: ' + subj);
+  renderAll();
+}
+
+function deleteExam(idx) {
+  var ex = currentExams[idx];
+  currentExams.splice(idx, 1);
+  showToast('Removed exam: ' + ex.subject);
+  renderAll();
+}
+
+// --- Gentle Pomodoro Timer Logic ---
+var timerDuration = 25 * 60;
+var timerRemaining = 25 * 60;
+var timerInterval = null;
+var timerRunning = false;
+var completedSprints = 0;
+
+function setPomoMode(studyMin, breakMin) {
+  if(timerInterval) clearInterval(timerInterval);
+  timerRunning = false;
+  timerDuration = studyMin * 60;
+  timerRemaining = timerDuration;
+  document.getElementById('btnTimerToggle').textContent = '▶ Start Focus';
+  document.getElementById('btnMode25').classList.toggle('active', studyMin === 25);
+  document.getElementById('btnMode45').classList.toggle('active', studyMin === 45);
+  updateTimerDisplay();
+}
+
+function updateTimerDisplay() {
+  var m = Math.floor(timerRemaining / 60);
+  var s = timerRemaining % 60;
+  document.getElementById('timerDisplay').textContent = (m < 10 ? '0' : '') + m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function toggleTimer() {
+  if(timerRunning) {
+    clearInterval(timerInterval);
+    timerRunning = false;
+    document.getElementById('btnTimerToggle').textContent = '▶ Resume Focus';
+  } else {
+    timerRunning = true;
+    document.getElementById('btnTimerToggle').textContent = '⏸ Pause';
+    playChime('check');
+    timerInterval = setInterval(function(){
+      if(timerRemaining > 0) {
+        timerRemaining--;
+        updateTimerDisplay();
+      } else {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        completedSprints++;
+        document.getElementById('btnTimerToggle').textContent = '▶ Start Focus';
+        document.getElementById('pomoCounter').textContent = "Today's Focus Sprints: " + "🍅 ".repeat(completedSprints) + completedSprints + " completed";
+        playChime('timer');
+        showToast('🎉 Focus Sprint Finished! Take a well-deserved stretch break.');
+        timerRemaining = timerDuration;
+        updateTimerDisplay();
+      }
+    }, 1000);
+  }
+}
+
+function resetTimer() {
+  if(timerInterval) clearInterval(timerInterval);
+  timerRunning = false;
+  timerRemaining = timerDuration;
+  document.getElementById('btnTimerToggle').textContent = '▶ Start Focus';
+  updateTimerDisplay();
+}
+
+// --- Universal Action Handlers ---
+function shareWhatsApp() {
+  var text = "🎒 *Study Sprint & Exam Timetable* — Sarav's World\n\n";
+
+  text += "🗓️ *Upcoming Exam Schedule:*\n";
+  currentExams.forEach(function(ex){
+    text += "• *" + ex.subject + "*: " + ex.date + " (" + (ex.time || "Morning") + ") @ " + (ex.hall || "Hall") + "\n";
+  });
+
+  text += "\n🧠 *Current Revision Progress:*\n";
+  Object.keys(currentSubjects).forEach(function(k){
+    var list = currentSubjects[k];
+    var done = 0;
+    list.forEach(function(c){
+      if(c.learn) done++;
+      if(c.recall) done++;
+      if(c.mock) done++;
+    });
+    var pct = list.length > 0 ? Math.round((done / (list.length * 3)) * 100) : 0;
+    text += "• " + k + ": " + pct + "% revised (" + done + "/" + (list.length*3) + " stages)\n";
+  });
+
+  var packed = 0;
+  currentGear.forEach(function(g){ if(g.packed) packed++; });
+  text += "\n🎒 *Exam Hall Gear Packed:* " + packed + " / " + currentGear.length + " items ready.\n\n";
+  text += "🔗 *Open Planner:* https://iamsaravofficial.com/apps/study-sprint/";
+
+  var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(text);
+  window.open(url, '_blank');
+}
+
+function copySummary() {
+  var text = "Study Sprint & Exam Timetable (Sarav's World)\n\n";
+  text += "Exam Schedule:\n";
+  currentExams.forEach(function(ex){
+    text += "- " + ex.subject + ": " + ex.date + " [" + (ex.time || "Morning") + "]\n";
+  });
+  text += "\nRevision Progress:\n";
+  Object.keys(currentSubjects).forEach(function(k){
+    var list = currentSubjects[k];
+    var done = 0;
+    list.forEach(function(c){
+      if(c.learn) done++;
+      if(c.recall) done++;
+      if(c.mock) done++;
+    });
+    var pct = list.length > 0 ? Math.round((done / (list.length * 3)) * 100) : 0;
+    text += "- " + k + ": " + pct + "%\n";
+  });
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){
+      showToast('Revision summary copied to clipboard!');
+    }).catch(function(){ fallbackCopy(text); });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function fallbackCopy(text) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast('Revision summary copied to clipboard!');
+  } catch(e) {
+    showToast('Unable to copy text.');
+  }
+  document.body.removeChild(ta);
+}
+
+function savePlan() {
+  var payload = {
+    exams: currentExams,
+    subjects: currentSubjects,
+    gear: currentGear,
+    savedAt: new Date().toISOString()
+  };
+  localStorage.setItem('study_sprint_data', JSON.stringify(payload));
+  playChime('complete');
+  showToast('Study Sprint & Timetable saved locally!');
+}
+
+// Startup
+initApp();
+</script>
+</body>
+</html>

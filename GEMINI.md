@@ -9,9 +9,9 @@
 ### 7. Universal Web App Architecture & Design Standards (STRICT MEMORIZED RULES)
 Every web app hosted under `public/apps/` must adhere strictly to these rules:
 1. **Playground Hub Section Nomenclature (`/apps/`)**:
-   - Section 1: `⚡ Family & Interactive Web Apps Suite` (11 Live Apps)
+   - Section 1: `⚡ Family & Interactive Web Apps Suite` (12 Live Apps)
    - Section 2: `❤️ Close to Heart Ecosystem`
-2. **Canonical Suite Sequence (Strict 1–11 Standard across Hub and Ecosystem Dropdowns)**:
+2. **Canonical Suite Sequence (Strict 1–12 Standard across Hub and Ecosystem Dropdowns)**:
    1. `genzalphaslang` (GenZ & Alpha Slang Decoder)
    2. `salary-planner` (Salary Planner)
    3. `home-budget-planner` (Home Budget Planner)
@@ -23,6 +23,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    9. `rd-calculator` (RD Calculator)
    10. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
    11. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
+   12. `study-sprint` (Study Sprint & Exam Revision Matrix)
 3. **Footer Distinction**:
    - **Consumer Retail Web Apps (All Calculators & Utility Apps)**:
      `Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
@@ -38,7 +39,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - `📋 Copy Summary`: Structured text summary copied to clipboard using `navigator.clipboard.writeText` with automatic hidden textarea fallback (`fallbackCopy`). Displays non-blocking floating toast.
    - `💾 Save to History / Favorites / Backup`: Client-side `localStorage` persistence with timestamp, load, delete, backup/restore JSON, and clear actions, accompanied by non-blocking toast feedback.
 6. **Zero Blocking Alert/Prompt Modals & Toast Standard (Gold Price Estimator Benchmark)**:
-   - **All 11 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
+   - **All 12 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
    - Standardized `showToast(msg)` float element (`#toast`, 2.6s auto-dismiss) styled cleanly to match each app's palette.
     - **No Reset Button Policy**: Destructive global Reset buttons are removed from workflow calculators (e.g. Salary Planner) to prevent accidental data loss and keep the unified 4-button action bar clean.
 7. **Strict Two-Family Color Palette Standard**:
@@ -46,7 +47,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * **Light Mode (Physical Gold)**: Outer canvas `#E6DFD5`, App canvas `#FFFBF0`, White cards `#FFFFFF`, Espresso headings `#3D2B00`, Muted text `#8A7554`, Primary Gold `#C1810A`, Dark Gold `#8B5E00`, Header banner `linear-gradient(180deg, #F9D77E, #F0B429)`, Gold leaf border `#E0B84B`, Chips `#F6E3B0`, Gains `#1B8A3D`, Risk `#D32F2F`.
      * **Dark Mode (Obsidian & Liquid Gold)**: Outer canvas `#0A0907`, App canvas `#12100C`, Dark bronze cards `#1D1913`, Ivory white text `#F7F2E8`, Sandstone muted text `#B0A28E`, Radiant gold accent `#E5A93C`, Bright gold `#FFC04D`, Header banner `linear-gradient(180deg, #38290E, #251A07)`, Bronze border `#52411E`, Chips `#2E2412`, Gains `#4CAF50`, Risk `#EF5350`.
      * **OG Card Theme**: **Light Mode Physical Gold** (`#F7F3EB` soft gold canvas, `#FFFFFF` card, `#E0B84B` border, `#2E1E05` deep espresso title, `#8B5E00` badge text).
-   - **Family B & C — Family & Interactive Apps Suite (7 Apps Unified + Hub)**: `/apps/genzalphaslang/`, `/apps/salary-planner/`, `/apps/home-budget-planner/`, `/apps/retirement-planner/`, `/apps/fd-calculator/`, `/apps/rd-calculator/`, `/apps/glow-up-grid/`, `/apps/lunchbox-planner/`, and `/apps/` (Playground Hub)
+   - **Family B & C — Family & Interactive Apps Suite (8 Apps Unified + Hub)**: `/apps/genzalphaslang/`, `/apps/salary-planner/`, `/apps/home-budget-planner/`, `/apps/retirement-planner/`, `/apps/fd-calculator/`, `/apps/rd-calculator/`, `/apps/glow-up-grid/`, `/apps/lunchbox-planner/`, `/apps/study-sprint/`, and `/apps/` (Playground Hub)
      * **Light Mode (Crisp Financial Slate)**: Canvas `#F5F7FA`, Level 1 Cards `#FFFFFF`, Level 2 Inputs `#F0F3F7`, Level 3 Elevated `#E4E9F0`, Headings `#1A202C`, Dim text `#4A5568`, Faint text `#718096`, Primary Amber Accent `#D97706`, Accent Ink `#FFFFFF`, Secondary Teal Accent `#0D9488`, Steel border `#D1D8E2`, Soft border `#E2E8F0`, Surplus/Liquid `#16A34A`, Deficit/TDS `#DC2626`, Shadow `0 8px 32px rgba(0,0,0,0.08)`.
      * **Dark Mode (Deep Space Navy)**: Canvas `#0C0F14`, Level 1 Cards `#141922`, Level 2 Inputs `#1B222D`, Level 3 Elevated `#222B39`, Headings `#EAEFF5`, Dim text `#94A0B2`, Faint text `#5C6B80`, Primary Amber Accent `#E3A63E`, Accent Ink `#141005`, Secondary Teal Accent `#4FB0A8`, Navy border `#2A3545`, Soft border `#1E2633`, Surplus/Liquid `#5FBF77`, Deficit/TDS `#E2665A`, Shadow `0 8px 32px rgba(0,0,0,0.40)`.
      * **OG Card Theme**: **Dark Mode Deep Space Navy** (`#0C0F14` canvas, `#141922` slate card, `#FFFFFF` title, `#E3A63E` & `#4FB0A8` accents).
@@ -108,10 +109,10 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
     - **Header & Footer Standards**: Header is named strictly `Family Games Arcade` (no personal names). Standard footer: `Games crafted for Sarav... Engineered with zero external trackers, zero ads, and pure client-side code`.
     - **Universal Mobile Arcade Fullscreen Architecture**: Dual-layer fullscreen combining native `requestFullscreen()` with `.is-fullscreen` on body (`100dvh`, fixed inset 0), non-passive touch listeners (`{ passive: false }` + `e.preventDefault()`), floating top HUDs with quick `🗗 Exit`, and non-blocking in-game modal cards.
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
-   - All Consumer Apps & Games pages (`/apps/`, 11 live tools, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
+   - All Consumer Apps & Games pages (`/apps/`, 12 live tools, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
    - **Canonical Dropdown Items (Strict Standards)**:
-     * `Apps ▾` (12 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`, `Glow Up Grid`, `Lunchbox & Meal Planner`.
+     * `Apps ▾` (13 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`, `Glow Up Grid`, `Lunchbox & Meal Planner`, `Study Sprint & Exam Matrix`.
      * `Games ▾` (11 items): `🎰 Games Arcade Hub`, `🎰 Family Jackpot`, `💖 Senti-Meter`, `🎁 Secret Box`, `🏓 Ping-Pong Cup Toss`, `🍾 Bottle Flip Showdown`, `⚡ Samosa Snatch`, `🗣️ Chit-Charades`, `🎡 Snack Roulette`, `🎙️ Dialogue Detective`, `🎯 Desi Gulel Strike`.
      * `Projects ▾` (4 items): `🏛️ Projects Hub`, `Temples of Tamil Gods`, `FactDrop`, `Thirukkural Hub`.
      * **Right Side**: `🎪 Playground` link + `🧠 Enterprise AI Economics` badge.
@@ -125,7 +126,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
    - Features official brand icon `playground-square.png` in hero.
    - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
-   - Reflects full live suite metrics: 11 Apps, 10 Engines, 10 Games, 3 Projects (34 Interactive Destinations across 36 Synchronized Ecosystem Pages).
+   - Reflects full live suite metrics: 12 Apps, 10 Engines, 10 Games, 3 Projects (35 Interactive Destinations across 37 Synchronized Ecosystem Pages).
    - Full 4-tier ecosystem navigation matching canonical inventories.
 
 ---
@@ -171,5 +172,5 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
 
 ### 2. Apps Hub (`/apps/` - `public/apps/index.html`)
 - **Clean Structure:** Laser-focused exclusively on web applications.
-- **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (11 live consumer tools) → Zero-telemetry footer.
+- **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (12 live consumer tools) → Zero-telemetry footer.
 - Cultural platforms (*Temples of Tamil Gods*, *Thirukkural*, *FactDrop*) live strictly on the dedicated [`/projects/`](https://iamsaravofficial.com/projects/) hub.

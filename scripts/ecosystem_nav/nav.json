@@ -25,7 +25,8 @@
     {"id": "fd-calculator",        "name": "FD Calculator",          "url": "https://iamsaravofficial.com/apps/fd-calculator/",         "icon": "🔒"},
     {"id": "rd-calculator",        "name": "RD Calculator",          "url": "https://iamsaravofficial.com/apps/rd-calculator/",         "icon": "🔁"},
     {"id": "glow-up-grid",         "name": "Glow Up Grid",           "url": "https://iamsaravofficial.com/apps/glow-up-grid/",          "icon": "🌟"},
-    {"id": "lunchbox-planner",     "name": "Lunchbox & Meal Planner", "url": "https://iamsaravofficial.com/apps/lunchbox-planner/",     "icon": "🍱"}
+    {"id": "lunchbox-planner",     "name": "Lunchbox & Meal Planner", "url": "https://iamsaravofficial.com/apps/lunchbox-planner/",     "icon": "🍱"},
+    {"id": "study-sprint",         "name": "Study Sprint & Exam Matrix", "url": "https://iamsaravofficial.com/apps/study-sprint/",   "icon": "🎒"}
   ],
   "games": [
     {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},
