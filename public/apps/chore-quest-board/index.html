@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Kids' Chore &amp; Quest Board — Gamified Daily Chores, Habit XP &amp; Printable Fridge Poster | Sarav's World</title>
+<meta name="description" content="Free gamified RPG chore and habit tracker for kids. Turn daily household routines into adventure quests with XP points, shields, hero levels, streak multipliers, and high-res printable fridge posters.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/chore-quest-board/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/chore-quest-board/">
+<meta property="og:title" content="Kids' Chore &amp; Quest Board | Sarav's World">
+<meta property="og:description" content="Turn daily chores into epic RPG quests with XP points, shields, hero levels, and printable A4 fridge quest posters.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/chore-quest-board/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kids' Chore &amp; Quest Board | Sarav's World">
+<meta name="twitter:description" content="Gamified chore and habit adventure for kids with XP, shields, and printable fridge posters.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/chore-quest-board/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --indigo: #6366F1;
+    --indigo-soft: rgba(99, 102, 241, 0.14);
+    --gold: #F59E0B;
+    --gold-soft: rgba(245, 158, 11, 0.14);
+    --emerald: #10B981;
+    --emerald-soft: rgba(16, 185, 129, 0.14);
+    --cyan: #06B6D4;
+    --cyan-soft: rgba(6, 182, 212, 0.14);
+    --rose: #F43F5E;
+    --rose-soft: rgba(244, 63, 94, 0.14);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --card-radius: 16px;
+  }
+
+  [data-theme="light"] {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F7;
+    --surface-3: #E4E9F0;
+    --border: #D1D8E2;
+    --border-soft: #E2E8F0;
+    --text: #1A202C;
+    --text-dim: #4A5568;
+    --text-faint: #718096;
+    --accent: #D97706;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(217, 119, 6, 0.12);
+    --indigo: #4F46E5;
+    --indigo-soft: rgba(79, 70, 229, 0.1);
+    --gold: #D97706;
+    --gold-soft: rgba(217, 119, 6, 0.12);
+    --emerald: #059669;
+    --emerald-soft: rgba(5, 150, 105, 0.12);
+    --cyan: #0891B2;
+    --cyan-soft: rgba(8, 145, 178, 0.12);
+    --rose: #E11D48;
+    --rose-soft: rgba(225, 29, 72, 0.12);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; }
+
+  /* Ecosystem Bar */
+  .ecosystem-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    padding: 0 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
+  .eco-brand { font-weight: 700; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .eco-divider { color: var(--border); }
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim); font-size: 13px; font-weight: 500;
+    font-family: inherit; padding: 8px 10px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; gap: 4px;
+  }
+  .eco-dropbtn:hover { color: var(--text); background: var(--surface-2); }
+  .eco-menu {
+    display: none; position: absolute; top: calc(100% + 4px); left: 0;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: var(--shadow); min-width: 250px; z-index: 1010; padding: 6px;
+  }
+  .eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+  .eco-dropdown:hover .eco-menu { display: block; }
+  .eco-menu a {
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px; color: var(--text-dim);
+    text-decoration: none; border-radius: 6px; font-size: 12.5px;
+  }
+  .eco-menu a:hover, .eco-menu a.current { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+  .eco-right { display: flex; align-items: center; gap: 10px; }
+  .eco-badge {
+    background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-dim);
+    padding: 3px 8px; border-radius: 6px; font-size: 11px; text-decoration: none;
+  }
+  .eco-badge:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Layout Container */
+  .container { max-width: 1120px; margin: 0 auto; padding: 24px 20px 60px; }
+
+  /* Header Main Row */
+  .header-main-row {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 20px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .header-left { flex: 1; min-width: 280px; }
+  .brand-chip {
+    display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px;
+    background: var(--indigo-soft); border: 1px solid var(--indigo); border-radius: 20px;
+    font-size: 12px; font-weight: 600; color: var(--indigo); margin-bottom: 12px;
+  }
+  .main-title {
+    font-size: clamp(26px, 4vw, 36px); font-weight: 700; letter-spacing: -0.02em;
+    color: var(--text); line-height: 1.15; margin-bottom: 8px;
+  }
+  .main-subtitle { font-size: 15px; color: var(--text-dim); max-width: 680px; }
+
+  /* Theme Switcher Top-Right */
+  .header-right { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
+  .theme-selector {
+    display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 3px; gap: 2px;
+  }
+  .theme-btn {
+    background: transparent; border: none; color: var(--text-dim); padding: 5px 10px;
+    border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer;
+  }
+  .theme-btn.active { background: var(--surface); color: var(--text); font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+
+  /* Hero Quest Card (Profile & Level) */
+  .hero-card {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+    border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 24px; box-shadow: var(--shadow); margin-bottom: 24px;
+    position: relative; overflow: hidden;
+  }
+  .hero-card::before {
+    content: ""; position: absolute; top: -50px; right: -50px; width: 180px; height: 180px;
+    background: radial-gradient(circle, var(--indigo-soft) 0%, transparent 70%); pointer-events: none;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center;
+  }
+  @media (max-width: 768px) {
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  }
+  .avatar-wrap {
+    position: relative; width: 84px; height: 84px; border-radius: 20px;
+    background: var(--surface-3); border: 2px solid var(--indigo);
+    display: flex; align-items: center; justify-content: center; font-size: 42px;
+    box-shadow: 0 4px 16px var(--indigo-soft); margin: 0 auto;
+  }
+  .avatar-level-badge {
+    position: absolute; bottom: -8px; right: -8px; background: var(--gold);
+    color: #141005; font-size: 11px; font-weight: 700; padding: 2px 8px;
+    border-radius: 10px; border: 2px solid var(--surface);
+  }
+  .hero-details { display: flex; flex-direction: column; gap: 6px; }
+  .hero-name-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .hero-name-input {
+    background: transparent; border: none; border-bottom: 2px dashed var(--border);
+    color: var(--text); font-size: 22px; font-weight: 700; font-family: inherit;
+    padding: 2px 4px; outline: none; max-width: 260px;
+  }
+  .hero-name-input:focus { border-color: var(--accent); }
+  .hero-title-tag {
+    background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold);
+    font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 12px;
+  }
+  .xp-bar-wrap { margin-top: 8px; }
+  .xp-label-row { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; color: var(--text-dim); }
+  .xp-track {
+    height: 12px; background: var(--surface-3); border-radius: 6px; overflow: hidden;
+    position: relative; border: 1px solid var(--border-soft);
+  }
+  .xp-fill {
+    height: 100%; background: linear-gradient(90deg, var(--indigo) 0%, var(--emerald) 100%);
+    border-radius: 6px; width: 0%; transition: width 0.4s ease;
+  }
+  .hero-stats-panel {
+    display: flex; gap: 16px; justify-content: center; align-items: center;
+  }
+  .stat-chip {
+    background: var(--surface-3); border: 1px solid var(--border); border-radius: 12px;
+    padding: 10px 16px; text-align: center; min-width: 90px;
+  }
+  .stat-val { font-size: 20px; font-weight: 700; color: var(--text); }
+  .stat-lbl { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Avatar Picker Modal / Drawer */
+  .avatar-options {
+    display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap;
+  }
+  .btn-avatar-opt {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    font-size: 20px; padding: 4px 8px; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-avatar-opt:hover, .btn-avatar-opt.active {
+    border-color: var(--indigo); background: var(--indigo-soft); transform: scale(1.1);
+  }
+
+  /* Weekly Chest / Goal Box */
+  .weekly-reward-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; box-shadow: var(--shadow);
+  }
+  .reward-left { display: flex; align-items: center; gap: 12px; }
+  .reward-icon { font-size: 32px; }
+  .reward-text h4 { font-size: 15px; font-weight: 600; color: var(--text); }
+  .reward-text p { font-size: 12.5px; color: var(--text-dim); }
+  .reward-input-wrap { display: flex; align-items: center; gap: 8px; }
+  .reward-input {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    font-size: 13px; padding: 6px 12px; border-radius: 8px; font-family: inherit; width: 220px;
+  }
+  .reward-target-chip {
+    background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold);
+    font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 8px;
+  }
+
+  /* Main Split: Quests & Fridge Preview */
+  .content-grid {
+    display: grid; grid-template-columns: 1fr 340px; gap: 24px; margin-bottom: 30px;
+  }
+  @media (max-width: 960px) {
+    .content-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Quest Board Column */
+  .quest-board-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 20px; box-shadow: var(--shadow);
+  }
+  .board-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 16px; flex-wrap: wrap; gap: 12px;
+  }
+  .board-header h3 { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .category-filter { display: flex; gap: 6px; flex-wrap: wrap; }
+  .cat-btn {
+    background: var(--surface-2); border: 1px solid var(--border-soft); color: var(--text-dim);
+    font-size: 12px; font-weight: 500; padding: 4px 10px; border-radius: 6px; cursor: pointer;
+  }
+  .cat-btn.active { background: var(--indigo); color: #fff; border-color: var(--indigo); }
+
+  /* Quests List */
+  .quests-list { display: flex; flex-direction: column; gap: 10px; }
+  .quest-item {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; transition: all 0.2s;
+  }
+  .quest-item:hover { border-color: var(--indigo); transform: translateY(-1px); }
+  .quest-item.completed {
+    opacity: 0.65; background: var(--surface-3); border-color: var(--emerald);
+  }
+  .quest-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+  .quest-checkbox {
+    width: 24px; height: 24px; border-radius: 6px; border: 2px solid var(--border);
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    background: var(--surface); transition: all 0.2s; flex-shrink: 0;
+  }
+  .quest-item.completed .quest-checkbox {
+    background: var(--emerald); border-color: var(--emerald); color: #fff;
+  }
+  .quest-title-wrap { display: flex; flex-direction: column; }
+  .quest-title { font-size: 14.5px; font-weight: 600; color: var(--text); }
+  .quest-item.completed .quest-title { text-decoration: line-through; color: var(--text-dim); }
+  .quest-meta { font-size: 11.5px; color: var(--text-faint); display: flex; align-items: center; gap: 8px; }
+  .quest-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .badge-xp {
+    background: var(--indigo-soft); color: var(--indigo); border: 1px solid var(--indigo);
+    font-size: 12px; font-weight: 700; padding: 2px 8px; border-radius: 6px;
+  }
+  .badge-shields { font-size: 12px; letter-spacing: -2px; }
+  .btn-del-quest {
+    background: transparent; border: none; color: var(--text-faint); cursor: pointer;
+    font-size: 14px; padding: 4px; border-radius: 4px;
+  }
+  .btn-del-quest:hover { color: var(--rose); background: var(--rose-soft); }
+
+  /* Add Custom Quest Card */
+  .add-quest-card {
+    background: var(--surface-2); border: 1px dashed var(--border); border-radius: 12px;
+    padding: 14px 16px; margin-top: 16px;
+  }
+  .add-quest-title { font-size: 13.5px; font-weight: 600; color: var(--text-dim); margin-bottom: 10px; }
+  .add-quest-inputs { display: grid; grid-template-columns: 1fr auto auto auto; gap: 8px; align-items: center; }
+  @media (max-width: 600px) {
+    .add-quest-inputs { grid-template-columns: 1fr 1fr; }
+  }
+  .input-quest-name {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    font-size: 13px; padding: 8px 12px; border-radius: 8px; font-family: inherit;
+  }
+  .select-xp, .select-shields {
+    background: var(--surface); border: 1px solid var(--border); color: var(--text);
+    font-size: 13px; padding: 8px 10px; border-radius: 8px; font-family: inherit;
+  }
+  .btn-add-quest {
+    background: var(--indigo); color: #fff; border: none; font-size: 13px; font-weight: 600;
+    padding: 8px 14px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 4px;
+  }
+  .btn-add-quest:hover { opacity: 0.9; }
+
+  /* Right Sidebar: Quick Actions & Fridge Blueprint */
+  .sidebar-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 20px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 20px;
+  }
+  .sidebar-card h4 { font-size: 16px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }
+  .poster-preview-box {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; text-align: center;
+  }
+  .poster-preview-icon { font-size: 38px; margin-bottom: 6px; }
+  .poster-preview-box p { font-size: 12px; color: var(--text-dim); margin-bottom: 12px; }
+  .btn-print-poster {
+    width: 100%; background: var(--gold); color: #141005; border: none; font-size: 13.5px;
+    font-weight: 700; padding: 10px; border-radius: 8px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-print-poster:hover { filter: brightness(1.08); }
+
+  /* Hero Levels Explainer */
+  .ranks-grid { display: flex; flex-direction: column; gap: 8px; }
+  .rank-pill {
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px;
+    padding: 8px 12px; display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px;
+  }
+  .rank-pill.active { border-color: var(--gold); background: var(--gold-soft); font-weight: 700; }
+  .rank-name { color: var(--text); display: flex; align-items: center; gap: 6px; }
+  .rank-req { color: var(--text-faint); font-size: 11px; }
+
+  /* 4-Action Utility Bar */
+  .action-bar {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--card-radius);
+    padding: 16px 20px; box-shadow: var(--shadow); margin-bottom: 30px;
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: space-between; align-items: center;
+  }
+  .action-group { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-action {
+    background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+    font-size: 13px; font-weight: 600; padding: 8px 16px; border-radius: 8px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; font-family: inherit;
+    transition: all 0.2s;
+  }
+  .btn-action:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .btn-action.primary { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+  .btn-action.primary:hover { opacity: 0.9; }
+
+  /* Non-blocking Toast */
+  #toast {
+    position: fixed; bottom: 24px; right: 24px; background: var(--surface-3);
+    color: var(--text); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 20px; font-size: 13.5px; font-weight: 500; box-shadow: var(--shadow);
+    opacity: 0; transform: translateY(12px); transition: all 0.25s ease; pointer-events: none; z-index: 2000;
+  }
+  #toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+  /* Standard Footer */
+  footer {
+    padding: 36px 20px 48px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+    line-height: 1.6; border-top: 1px solid var(--border-soft); margin-top: 40px;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+
+  /* PRINTABLE A4 FRIDGE POSTER STYLES */
+  @media print {
+    body { background: #fff !important; color: #000 !important; font-size: 10pt; }
+    .ecosystem-bar, .theme-selector, .action-bar, .avatar-options,
+    .add-quest-card, .sidebar-card, #toast, footer, .category-filter { display: none !important; }
+    .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+    .header-main-row { margin-bottom: 8pt !important; border-bottom: 2pt solid #000 !important; padding-bottom: 8pt !important; }
+    .hero-card { border: 1.5pt solid #000 !important; background: #fff !important; box-shadow: none !important; padding: 10pt !important; margin-bottom: 12pt !important; }
+    .avatar-wrap { border: 1.5pt solid #000 !important; background: #fff !important; color: #000 !important; box-shadow: none !important; }
+    .content-grid { display: block !important; }
+    .quest-board-card { border: none !important; box-shadow: none !important; padding: 0 !important; }
+    .print-fridge-sheet { display: block !important; }
+    .screen-quests { display: none !important; }
+  }
+  .print-fridge-sheet { display: none; margin-top: 12pt; }
+  .print-table {
+    width: 100%; border-collapse: collapse; margin-top: 10pt; font-size: 9.5pt;
+  }
+  .print-table th, .print-table td {
+    border: 1pt solid #000; padding: 6pt 8pt; text-align: left;
+  }
+  .print-table th { background: #eee; font-weight: bold; text-align: center; }
+  .day-bubble {
+    display: inline-block; width: 14pt; height: 14pt; border: 1pt solid #333;
+    border-radius: 50%; text-align: center; line-height: 14pt; margin: 0 1pt;
+  }
+  .print-signature-box {
+    margin-top: 16pt; display: flex; justify-content: space-between; border: 1pt dashed #000;
+    padding: 10pt 16pt; border-radius: 6pt;
+  }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/">🌟 Glow Up Grid</a>
+          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/">🍱 Lunchbox & Meal Planner</a>
+          <a href="https://iamsaravofficial.com/apps/study-sprint/">🎒 Study Sprint & Exam Matrix</a>
+          <a href="https://iamsaravofficial.com/apps/piggy-bank-ledger/">🪙 Piggy Bank & Money Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/chore-quest-board/" class="current">⚔️ Chore & Quest Board</a>
+          <a href="https://iamsaravofficial.com/apps/screen-time-passes/">🎟️ Screen-Time Passes</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="eco-right">
+      <a href="https://iamsaravofficial.com/playground/" class="eco-badge">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-badge">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Header Main Row -->
+  <div class="header-main-row">
+    <div class="header-left">
+      <div class="brand-chip">⚔️ RPG CHORE ADVENTURE · VERSION 2026.09</div>
+      <h1 class="main-title">Kids' Chore &amp; Quest Board</h1>
+      <p class="main-subtitle">
+        Turn daily chores and household habits into an epic RPG quest with XP points, shields, hero levels, streak multipliers, and printable fridge charts.
+      </p>
+    </div>
+    <div class="header-right">
+      <div class="theme-selector" role="group" aria-label="Theme selector">
+        <button type="button" class="theme-btn" data-theme="auto" onclick="setTheme('auto')">Auto</button>
+        <button type="button" class="theme-btn" data-theme="light" onclick="setTheme('light')">☀️ Light</button>
+        <button type="button" class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙 Dark</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Profile & Level Card -->
+  <div class="hero-card">
+    <div class="hero-grid">
+      <div class="avatar-wrap" id="avatarDisplay" title="Click an avatar below to change">
+        ⚔️
+        <div class="avatar-level-badge mono" id="heroLevelBadge">LVL 1</div>
+      </div>
+      <div class="hero-details">
+        <div class="hero-name-row">
+          <input type="text" id="heroNameInput" class="hero-name-input" value="Brave Scout Dhruv" placeholder="Hero Name" onchange="updateHeroProfile()">
+          <span class="hero-title-tag" id="heroTitleTag">Novice Wanderer</span>
+        </div>
+        <div class="avatar-options">
+          <span style="font-size: 11px; color: var(--text-faint); align-self: center;">Class:</span>
+          <button type="button" class="btn-avatar-opt active" onclick="selectAvatar('⚔️', 'Brave Knight')">⚔️</button>
+          <button type="button" class="btn-avatar-opt" onclick="selectAvatar('🧙', 'Wizard Apprentice')">🧙</button>
+          <button type="button" class="btn-avatar-opt" onclick="selectAvatar('🏹', 'Ranger Scout')">🏹</button>
+          <button type="button" class="btn-avatar-opt" onclick="selectAvatar('🦄', 'Mythic Explorer')">🦄</button>
+          <button type="button" class="btn-avatar-opt" onclick="selectAvatar('🦸', 'Superhero Guardian')">🦸</button>
+        </div>
+        <div class="xp-bar-wrap">
+          <div class="xp-label-row">
+            <span id="xpCountText" class="mono">Total XP: 0</span>
+            <span id="xpNextTierText" class="mono">Next: Level 2 at 100 XP</span>
+          </div>
+          <div class="xp-track">
+            <div class="xp-fill" id="xpFillBar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats-panel">
+        <div class="stat-chip">
+          <div class="stat-val mono" id="statQuestsDone">0</div>
+          <div class="stat-lbl">Done Today</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val mono" id="statStreak">🔥 1</div>
+          <div class="stat-lbl">Day Streak</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val mono" id="statShields">🛡️ 0</div>
+          <div class="stat-lbl">Shields</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weekly Chest / Reward Goal -->
+  <div class="weekly-reward-card">
+    <div class="reward-left">
+      <div class="reward-icon">🎁</div>
+      <div class="reward-text">
+        <h4>Weekly Quest Bounty &amp; Goal</h4>
+        <p>Set a weekly XP target to unlock this parent-approved prize!</p>
+      </div>
+    </div>
+    <div class="reward-input-wrap">
+      <input type="text" id="rewardInput" class="reward-input" value="Weekend Ice Cream Treat" placeholder="e.g. Choose Movie, Ice Cream" onchange="saveState()">
+      <span class="reward-target-chip mono" id="rewardTargetChip">🎯 Target: 250 XP</span>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="content-grid">
+
+    <!-- Quest Board Column -->
+    <div class="quest-board-card">
+      <div class="board-header">
+        <h3><span>📋 Daily Quests Roster</span></h3>
+        <div class="category-filter">
+          <button type="button" class="cat-btn active" onclick="filterCategory('all', this)">All</button>
+          <button type="button" class="cat-btn" onclick="filterCategory('morning', this)">Morning</button>
+          <button type="button" class="cat-btn" onclick="filterCategory('school', this)">School</button>
+          <button type="button" class="cat-btn" onclick="filterCategory('chores', this)">Chores</button>
+          <button type="button" class="cat-btn" onclick="filterCategory('night', this)">Night</button>
+        </div>
+      </div>
+
+      <!-- Screen Quests List -->
+      <div class="quests-list screen-quests" id="questsList">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Add Custom Quest Form -->
+      <div class="add-quest-card">
+        <div class="add-quest-title">➕ Add Custom Adventure Quest</div>
+        <div class="add-quest-inputs">
+          <input type="text" id="newQuestName" class="input-quest-name" placeholder="Quest name (e.g. Water plants, Feed fish)">
+          <select id="newQuestCat" class="select-xp">
+            <option value="morning">Morning</option>
+            <option value="school">School</option>
+            <option value="chores" selected>Chores</option>
+            <option value="night">Night</option>
+          </select>
+          <select id="newQuestXP" class="select-xp mono">
+            <option value="10">+10 XP</option>
+            <option value="15" selected>+15 XP</option>
+            <option value="20">+20 XP</option>
+            <option value="25">+25 XP</option>
+            <option value="30">+30 XP</option>
+            <option value="50">+50 XP</option>
+          </select>
+          <button type="button" class="btn-add-quest" onclick="addCustomQuest()">Add Quest</button>
+        </div>
+      </div>
+
+      <!-- PRINTABLE A4 FRIDGE SHEET (Appears only on @media print) -->
+      <div class="print-fridge-sheet" id="printFridgeSheet">
+        <div style="text-align: center; margin-bottom: 12pt;">
+          <h2 style="font-size: 18pt; margin-bottom: 4pt;">⚔️ <span id="printHeroName">Brave Scout Dhruv</span>'s Weekly Quest Board</h2>
+          <p style="font-size: 11pt; color: #444;">Rank: <b id="printHeroTitle">Novice Wanderer</b> · Weekly Target: <b id="printWeeklyTarget">250 XP</b> · Reward: <b id="printRewardGoal">Weekend Ice Cream Treat</b></p>
+        </div>
+
+        <table class="print-table">
+          <thead>
+            <tr>
+              <th style="width: 45%;">Quest Description</th>
+              <th style="width: 12%;">XP &amp; Shield</th>
+              <th>Mon</th>
+              <th>Tue</th>
+              <th>Wed</th>
+              <th>Thu</th>
+              <th>Fri</th>
+              <th>Sat</th>
+              <th>Sun</th>
+            </tr>
+          </thead>
+          <tbody id="printTableBody">
+            <!-- Rendered dynamically -->
+          </tbody>
+        </table>
+
+        <div class="print-signature-box">
+          <div>
+            <b>Hero's Pledge:</b> "I promise to complete my quests honorably without nagging!"<br>
+            <span style="font-size: 9pt; color: #666; margin-top: 14pt; display: block;">Hero's Signature: _______________________</span>
+          </div>
+          <div style="text-align: right;">
+            <b>Parent Knightmaster Seal:</b><br>
+            <span style="font-size: 9pt; color: #666; margin-top: 14pt; display: block;">Parent's Signature: _______________________</span>
+          </div>
+        </div>
+        <div style="text-align: center; font-size: 8pt; color: #666; margin-top: 14pt;">
+          Crafted with Sarav's World Kids' Chore &amp; Quest Board · https://iamsaravofficial.com/apps/chore-quest-board/
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="sidebar-card">
+      <div>
+        <h4>🖨️ Printable Fridge Poster</h4>
+        <div class="poster-preview-box">
+          <div class="poster-preview-icon">📜</div>
+          <p>Generate a high-contrast A4 weekly chart for your refrigerator door with punch-out checkbox circles!</p>
+          <button type="button" class="btn-print-poster" onclick="triggerPrint()">
+            <span>🖨️ Print Fridge Poster</span>
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <h4>🛡️ Hero Rank Progression</h4>
+        <div class="ranks-grid">
+          <div class="rank-pill" id="rankPill1">
+            <span class="rank-name">🌱 Novice Wanderer</span>
+            <span class="rank-req mono">0–100 XP</span>
+          </div>
+          <div class="rank-pill" id="rankPill2">
+            <span class="rank-name">🏹 Apprentice Scout</span>
+            <span class="rank-req mono">101–250 XP</span>
+          </div>
+          <div class="rank-pill" id="rankPill3">
+            <span class="rank-name">⚔️ Valiant Knight</span>
+            <span class="rank-req mono">251–500 XP</span>
+          </div>
+          <div class="rank-pill" id="rankPill4">
+            <span class="rank-name">🛡️ Realm Champion</span>
+            <span class="rank-req mono">501–850 XP</span>
+          </div>
+          <div class="rank-pill" id="rankPill5">
+            <span class="rank-name">👑 Master Legend</span>
+            <span class="rank-req mono">850+ XP</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-faint); line-height: 1.5; border-top: 1px solid var(--border-soft); pt: 12px;">
+        💡 <b>Pro Tip:</b> Every completed quest earns XP toward character leveling and weekly rewards. Consecutive days maintain your 🔥 streak multiplier!
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Unified 4-Action Utility Suite -->
+  <div class="action-bar">
+    <div class="action-group">
+      <button type="button" class="btn-action primary" onclick="shareWhatsApp()">
+        <span>📱 Share on WhatsApp</span>
+      </button>
+      <button type="button" class="btn-action" onclick="triggerPrint()">
+        <span>🖨️ Print / Save PDF</span>
+      </button>
+      <button type="button" class="btn-action" onclick="copySummary()">
+        <span>📋 Copy Summary</span>
+      </button>
+    </div>
+    <div class="action-group">
+      <button type="button" class="btn-action" onclick="saveState(true)">
+        <span>💾 Save Progress</span>
+      </button>
+      <button type="button" class="btn-action" onclick="exportJSON()">
+        <span>📥 Backup JSON</span>
+      </button>
+      <button type="button" class="btn-action" onclick="resetDayQuests()">
+        <span>🔄 New Day</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Standardized Footer -->
+<footer>
+  Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).<br>
+  &copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.
+</footer>
+
+<!-- Floating Toast -->
+<div id="toast">Progress saved!</div>
+
+<script>
+  /* -------------------------------------------------------------
+     THEME MANAGEMENT
+  ------------------------------------------------------------- */
+  function getSystemTheme() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+  function applyTheme(theme) {
+    var eff = theme === 'auto' ? getSystemTheme() : theme;
+    document.documentElement.setAttribute('data-theme', eff);
+    document.querySelectorAll('.theme-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-theme') === theme);
+    });
+  }
+  function setTheme(t) {
+    localStorage.setItem('sarav_theme', t);
+    applyTheme(t);
+  }
+  var savedTheme = localStorage.getItem('sarav_theme') || 'dark';
+  applyTheme(savedTheme);
+
+  /* -------------------------------------------------------------
+     WEB AUDIO API SOUND SYNTHESIZER
+  ------------------------------------------------------------- */
+  var audioCtx = null;
+  function initAudio() {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+  }
+
+  // Sword swipe / quest sparkle chime
+  function playQuestCompleteSound() {
+    try {
+      initAudio();
+      var now = audioCtx.currentTime;
+      var osc = audioCtx.createOscillator();
+      var gain = audioCtx.createGain();
+
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } catch(e) {}
+  }
+
+  // Level up brass fanfare
+  function playLevelUpSound() {
+    try {
+      initAudio();
+      var now = audioCtx.currentTime;
+      var notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+      notes.forEach(function(freq, idx) {
+        var osc = audioCtx.createOscillator();
+        var gain = audioCtx.createGain();
+        var noteStart = now + (idx * 0.12);
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, noteStart);
+
+        gain.gain.setValueAtTime(0.25, noteStart);
+        gain.gain.exponentialRampToValueAtTime(0.001, noteStart + 0.4);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(noteStart);
+        osc.stop(noteStart + 0.4);
+      });
+    } catch(e) {}
+  }
+
+  /* -------------------------------------------------------------
+     CORE QUEST DATA & STATE
+  ------------------------------------------------------------- */
+  var defaultQuests = [
+    { id: 'q1', name: '🛏️ Make Bed & Tidy Room', cat: 'morning', xp: 15, shields: 1, done: false },
+    { id: 'q2', name: '🎒 Pack School Bag & Shoes', cat: 'morning', xp: 15, shields: 1, done: false },
+    { id: 'q3', name: '📚 30 Mins Focused Homework', cat: 'school', xp: 25, shields: 2, done: false },
+    { id: 'q4', name: '📖 20 Mins Reading Favorite Book', cat: 'school', xp: 20, shields: 1, done: false },
+    { id: 'q5', name: '🍽️ Clear Dining Table & Rinse Plate', cat: 'chores', xp: 20, shields: 1, done: false },
+    { id: 'q6', name: '🦷 Brush Teeth Morning & Night', cat: 'morning', xp: 15, shields: 1, done: false },
+    { id: 'q7', name: '🚰 Drink 4 Full Glasses of Water', cat: 'morning', xp: 10, shields: 1, done: false },
+    { id: 'q8', name: '👕 Fold Clothes / Laundry', cat: 'chores', xp: 15, shields: 1, done: false },
+    { id: 'q9', name: '🚲 1 Hour Outdoor Play / No Screen', cat: 'chores', xp: 25, shields: 2, done: false },
+    { id: 'q10', name: '🤝 Help Sibling or Kindness Act', cat: 'chores', xp: 30, shields: 3, done: false },
+    { id: 'q11', name: '🧹 Tidy Study Desk After Work', cat: 'school', xp: 15, shields: 1, done: false },
+    { id: 'q12', name: '🌙 In Bed On Time Without Nagging', cat: 'night', xp: 20, shields: 1, done: false }
+  ];
+
+  var state = {
+    heroName: 'Brave Scout Dhruv',
+    heroAvatar: '⚔️',
+    heroClass: 'Brave Knight',
+    totalXP: 0,
+    streak: 1,
+    weeklyReward: 'Weekend Ice Cream Treat',
+    weeklyTarget: 250,
+    quests: JSON.parse(JSON.stringify(defaultQuests)),
+    activeFilter: 'all'
+  };
+
+  var RANKS = [
+    { lvl: 1, title: 'Novice Wanderer', minXP: 0, maxXP: 100 },
+    { lvl: 2, title: 'Apprentice Scout', minXP: 101, maxXP: 250 },
+    { lvl: 3, title: 'Valiant Knight', minXP: 251, maxXP: 500 },
+    { lvl: 4, title: 'Realm Champion', minXP: 501, maxXP: 850 },
+    { lvl: 5, title: 'Master Legend', minXP: 851, maxXP: 99999 }
+  ];
+
+  function getRank(xp) {
+    for (var i = 0; i < RANKS.length; i++) {
+      if (xp <= RANKS[i].maxXP) return RANKS[i];
+    }
+    return RANKS[RANKS.length - 1];
+  }
+
+  /* -------------------------------------------------------------
+     RENDER QUEST BOARD & HERO
+  ------------------------------------------------------------- */
+  function renderAll() {
+    // 1. Hero Avatar & Name
+    document.getElementById('avatarDisplay').innerHTML = state.heroAvatar + '<div class="avatar-level-badge mono" id="heroLevelBadge">LVL ' + getRank(state.totalXP).lvl + '</div>';
+    document.getElementById('heroNameInput').value = state.heroName;
+    document.getElementById('rewardInput').value = state.weeklyReward;
+
+    // 2. Rank & XP Progress
+    var rank = getRank(state.totalXP);
+    document.getElementById('heroTitleTag').innerText = rank.title;
+    document.getElementById('xpCountText').innerText = 'Total XP: ' + state.totalXP;
+
+    var nextText = rank.lvl < 5 ? ('Next: Level ' + (rank.lvl + 1) + ' at ' + (rank.maxXP + 1) + ' XP') : 'Max Rank Reached!';
+    document.getElementById('xpNextTierText').innerText = nextText;
+
+    var pct = 0;
+    if (rank.lvl < 5) {
+      var range = rank.maxXP - rank.minXP;
+      var cur = state.totalXP - rank.minXP;
+      pct = Math.min(100, Math.max(0, Math.round((cur / range) * 100)));
+    } else {
+      pct = 100;
+    }
+    document.getElementById('xpFillBar').style.width = pct + '%';
+
+    // 3. Stats Strip
+    var completedCount = state.quests.filter(function(q) { return q.done; }).length;
+    document.getElementById('statQuestsDone').innerText = completedCount + '/' + state.quests.length;
+    document.getElementById('statStreak').innerText = '🔥 ' + state.streak;
+
+    var totalShields = state.quests.filter(function(q) { return q.done; }).reduce(function(acc, q) { return acc + q.shields; }, 0);
+    document.getElementById('statShields').innerText = '🛡️ ' + totalShields;
+
+    // Highlight rank pill
+    for (var r = 1; r <= 5; r++) {
+      var pill = document.getElementById('rankPill' + r);
+      if (pill) pill.classList.toggle('active', r === rank.lvl);
+    }
+
+    // 4. Render Quests
+    var list = document.getElementById('questsList');
+    list.innerHTML = '';
+
+    var filtered = state.quests.filter(function(q) {
+      if (state.activeFilter === 'all') return true;
+      return q.cat === state.activeFilter;
+    });
+
+    if (filtered.length === 0) {
+      list.innerHTML = '<div style="text-align: center; color: var(--text-faint); padding: 20px;">No quests in this category yet!</div>';
+    } else {
+      filtered.forEach(function(q) {
+        var item = document.createElement('div');
+        item.className = 'quest-item' + (q.done ? ' completed' : '');
+
+        var shieldsHtml = '🛡️'.repeat(q.shields);
+
+        item.innerHTML =
+          '<div class="quest-left">' +
+            '<div class="quest-checkbox" onclick="toggleQuest(\'' + q.id + '\')">' + (q.done ? '✓' : '') + '</div>' +
+            '<div class="quest-title-wrap">' +
+              '<span class="quest-title">' + q.name + '</span>' +
+              '<span class="quest-meta">' + q.cat.toUpperCase() + ' · ' + shieldsHtml + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<div class="quest-right">' +
+            '<span class="badge-xp mono">+' + q.xp + ' XP</span>' +
+            '<button type="button" class="btn-del-quest" title="Delete quest" onclick="deleteQuest(\'' + q.id + '\')">✕</button>' +
+          '</div>';
+
+        list.appendChild(item);
+      });
+    }
+
+    // 5. Update Printable Fridge Poster Elements
+    document.getElementById('printHeroName').innerText = state.heroName;
+    document.getElementById('printHeroTitle').innerText = rank.title;
+    document.getElementById('printWeeklyTarget').innerText = state.weeklyTarget + ' XP';
+    document.getElementById('printRewardGoal').innerText = state.weeklyReward;
+
+    var printBody = document.getElementById('printTableBody');
+    printBody.innerHTML = '';
+    state.quests.forEach(function(q) {
+      var row = document.createElement('tr');
+      row.innerHTML =
+        '<td><b>' + q.name + '</b></td>' +
+        '<td style="text-align: center;">+' + q.xp + ' XP (' + '🛡️'.repeat(q.shields) + ')</td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>' +
+        '<td style="text-align: center;"><span class="day-bubble">○</span></td>';
+      printBody.appendChild(row);
+    });
+  }
+
+  /* -------------------------------------------------------------
+     INTERACTIVE QUEST ACTIONS
+  ------------------------------------------------------------- */
+  function toggleQuest(id) {
+    var q = state.quests.find(function(x) { return x.id === id; });
+    if (!q) return;
+
+    var oldRank = getRank(state.totalXP).lvl;
+
+    q.done = !q.done;
+    if (q.done) {
+      state.totalXP += q.xp;
+      playQuestCompleteSound();
+      showToast('⚔️ ' + q.name + ' complete! (+' + q.xp + ' XP)');
+
+      var newRank = getRank(state.totalXP).lvl;
+      if (newRank > oldRank) {
+        setTimeout(function() {
+          playLevelUpSound();
+          showToast('🎉 LEVEL UP! You reached ' + getRank(state.totalXP).title + '!');
+        }, 300);
+      }
+    } else {
+      state.totalXP = Math.max(0, state.totalXP - q.xp);
+    }
+
+    saveState();
+    renderAll();
+  }
+
+  function addCustomQuest() {
+    var nameInput = document.getElementById('newQuestName');
+    var catSelect = document.getElementById('newQuestCat');
+    var xpSelect = document.getElementById('newQuestXP');
+
+    var name = nameInput.value.trim();
+    if (!name) {
+      showToast('⚠️ Please enter a quest description!');
+      return;
+    }
+
+    var newQ = {
+      id: 'custom_' + Date.now(),
+      name: '⭐ ' + name,
+      cat: catSelect.value,
+      xp: parseInt(xpSelect.value, 10),
+      shields: parseInt(xpSelect.value, 10) >= 30 ? 3 : (parseInt(xpSelect.value, 10) >= 20 ? 2 : 1),
+      done: false
+    };
+
+    state.quests.push(newQ);
+    nameInput.value = '';
+    saveState();
+    renderAll();
+    showToast('✨ Custom quest added to your board!');
+  }
+
+  function deleteQuest(id) {
+    state.quests = state.quests.filter(function(q) { return q.id !== id; });
+    saveState();
+    renderAll();
+    showToast('Quest removed.');
+  }
+
+  function filterCategory(cat, btn) {
+    state.activeFilter = cat;
+    document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    renderAll();
+  }
+
+  function selectAvatar(avatar, classTitle) {
+    state.heroAvatar = avatar;
+    state.heroClass = classTitle;
+    document.querySelectorAll('.btn-avatar-opt').forEach(function(btn) {
+      btn.classList.toggle('active', btn.innerText.includes(avatar));
+    });
+    saveState();
+    renderAll();
+    showToast('Hero class set to ' + classTitle + '!');
+  }
+
+  function updateHeroProfile() {
+    state.heroName = document.getElementById('heroNameInput').value.trim() || 'Brave Hero';
+    saveState();
+    renderAll();
+  }
+
+  function resetDayQuests() {
+    state.quests.forEach(function(q) { q.done = false; });
+    state.streak += 1;
+    saveState();
+    renderAll();
+    showToast('🌅 New day started! Quests refreshed, streak +1.');
+  }
+
+  /* -------------------------------------------------------------
+     STORAGE & UTILITY ACTIONS
+  ------------------------------------------------------------- */
+  var STORAGE_KEY = 'sarav_chore_quest_board_v1';
+
+  function saveState(notify) {
+    state.heroName = document.getElementById('heroNameInput').value.trim() || 'Brave Hero';
+    state.weeklyReward = document.getElementById('rewardInput').value.trim() || 'Weekend Treat';
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (notify) showToast('💾 Quest progress saved to browser!');
+  }
+
+  function loadState() {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      try {
+        var parsed = JSON.parse(raw);
+        state.heroName = parsed.heroName || state.heroName;
+        state.heroAvatar = parsed.heroAvatar || state.heroAvatar;
+        state.heroClass = parsed.heroClass || state.heroClass;
+        state.totalXP = typeof parsed.totalXP === 'number' ? parsed.totalXP : state.totalXP;
+        state.streak = typeof parsed.streak === 'number' ? parsed.streak : state.streak;
+        state.weeklyReward = parsed.weeklyReward || state.weeklyReward;
+        state.weeklyTarget = parsed.weeklyTarget || state.weeklyTarget;
+        if (Array.isArray(parsed.quests) && parsed.quests.length > 0) {
+          state.quests = parsed.quests;
+        }
+      } catch(e) {}
+    }
+  }
+
+  function showToast(msg) {
+    var t = document.getElementById('toast');
+    t.innerText = msg;
+    t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer = setTimeout(function() { t.classList.remove('show'); }, 2600);
+  }
+
+  function triggerPrint() {
+    window.print();
+  }
+
+  function copySummary() {
+    var rank = getRank(state.totalXP);
+    var doneCount = state.quests.filter(function(q) { return q.done; }).length;
+    var txt = '⚔️ Kids\' Chore & Quest Board — Hero Progress Report\n' +
+      '═══════════════════════════════════════\n' +
+      'Hero: ' + state.heroName + ' (' + state.heroAvatar + ' ' + rank.title + ')\n' +
+      'Level: LVL ' + rank.lvl + ' | Total XP: ' + state.totalXP + '\n' +
+      'Daily Streak: ' + state.streak + ' Days 🔥\n' +
+      'Quests Done Today: ' + doneCount + ' / ' + state.quests.length + '\n' +
+      'Weekly Goal: ' + state.weeklyReward + ' (Target: ' + state.weeklyTarget + ' XP)\n' +
+      '═══════════════════════════════════════\n' +
+      'Free RPG Chore Tracker: https://iamsaravofficial.com/apps/chore-quest-board/';
+
+    navigator.clipboard.writeText(txt).then(function() {
+      showToast('📋 Quest report copied to clipboard!');
+    }).catch(function() {
+      showToast('⚠️ Could not copy summary.');
+    });
+  }
+
+  function shareWhatsApp() {
+    var rank = getRank(state.totalXP);
+    var doneCount = state.quests.filter(function(q) { return q.done; }).length;
+    var txt = '⚔️ *' + state.heroName + '* is leveling up on the Quest Board!\n\n' +
+      '🛡️ *Rank:* ' + rank.title + ' (Level ' + rank.lvl + ')\n' +
+      '✨ *Total XP:* ' + state.totalXP + ' XP\n' +
+      '🔥 *Streak:* ' + state.streak + ' Days\n' +
+      '✅ *Quests Done Today:* ' + doneCount + '/' + state.quests.length + '\n' +
+      '🎁 *Current Bounty:* ' + state.weeklyReward + '\n\n' +
+      'Track chores like an RPG hero:\n' +
+      'https://iamsaravofficial.com/apps/chore-quest-board/';
+
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(txt), '_blank');
+  }
+
+  function exportJSON() {
+    saveState();
+    var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(state, null, 2));
+    var dl = document.createElement('a');
+    dl.setAttribute('href', dataStr);
+    dl.setAttribute('download', 'quest-board-backup-' + Date.now() + '.json');
+    dl.click();
+    showToast('📥 Backup file downloaded!');
+  }
+
+  // Initialize
+  loadState();
+  renderAll();
+</script>
+</body>
+</html>

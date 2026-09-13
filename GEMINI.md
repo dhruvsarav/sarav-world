@@ -9,9 +9,9 @@
 ### 7. Universal Web App Architecture & Design Standards (STRICT MEMORIZED RULES)
 Every web app hosted under `public/apps/` must adhere strictly to these rules:
 1. **Playground Hub Section Nomenclature (`/apps/`)**:
-   - Section 1: `⚡ Family & Interactive Web Apps Suite` (13 Live Apps)
+   - Section 1: `⚡ Family & Interactive Web Apps Suite` (15 Live Apps)
    - Section 2: `❤️ Close to Heart Ecosystem`
-2. **Canonical Suite Sequence (Strict 1–13 Standard across Hub and Ecosystem Dropdowns)**:
+2. **Canonical Suite Sequence (Strict 1–15 Standard across Hub and Ecosystem Dropdowns)**:
    1. `genzalphaslang` (GenZ & Alpha Slang Decoder)
    2. `salary-planner` (Salary Planner)
    3. `home-budget-planner` (Home Budget Planner)
@@ -25,6 +25,8 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    11. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
    12. `study-sprint` (Study Sprint & Exam Revision Matrix)
    13. `piggy-bank-ledger` (Kids' First Pocket Money & Piggy Bank Ledger)
+   14. `chore-quest-board` (Kids' Chore & Quest Board — Gamified RPG Chores)
+   15. `screen-time-passes` (Screen-Time Swap Tickets & Family Reward Passes)
 3. **Footer Distinction**:
    - **Consumer Retail Web Apps (All Calculators & Utility Apps)**:
      `Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
@@ -40,7 +42,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - `📋 Copy Summary`: Structured text summary copied to clipboard using `navigator.clipboard.writeText` with automatic hidden textarea fallback (`fallbackCopy`). Displays non-blocking floating toast.
    - `💾 Save to History / Favorites / Backup`: Client-side `localStorage` persistence with timestamp, load, delete, backup/restore JSON, and clear actions, accompanied by non-blocking toast feedback.
 6. **Zero Blocking Alert/Prompt Modals & Toast Standard (Gold Price Estimator Benchmark)**:
-   - **All 13 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
+   - **All 15 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
    - Standardized `showToast(msg)` float element (`#toast`, 2.6s auto-dismiss) styled cleanly to match each app's palette.
     - **No Reset Button Policy**: Destructive global Reset buttons are removed from workflow calculators (e.g. Salary Planner) to prevent accidental data loss and keep the unified 4-button action bar clean.
 7. **Strict Two-Family Color Palette Standard**:
@@ -48,7 +50,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * **Light Mode (Physical Gold)**: Outer canvas `#E6DFD5`, App canvas `#FFFBF0`, White cards `#FFFFFF`, Espresso headings `#3D2B00`, Muted text `#8A7554`, Primary Gold `#C1810A`, Dark Gold `#8B5E00`, Header banner `linear-gradient(180deg, #F9D77E, #F0B429)`, Gold leaf border `#E0B84B`, Chips `#F6E3B0`, Gains `#1B8A3D`, Risk `#D32F2F`.
      * **Dark Mode (Obsidian & Liquid Gold)**: Outer canvas `#0A0907`, App canvas `#12100C`, Dark bronze cards `#1D1913`, Ivory white text `#F7F2E8`, Sandstone muted text `#B0A28E`, Radiant gold accent `#E5A93C`, Bright gold `#FFC04D`, Header banner `linear-gradient(180deg, #38290E, #251A07)`, Bronze border `#52411E`, Chips `#2E2412`, Gains `#4CAF50`, Risk `#EF5350`.
      * **OG Card Theme**: **Light Mode Physical Gold** (`#F7F3EB` soft gold canvas, `#FFFFFF` card, `#E0B84B` border, `#2E1E05` deep espresso title, `#8B5E00` badge text).
-   - **Family B & C — Family & Interactive Apps Suite (9 Apps Unified + Hub)**: `/apps/genzalphaslang/`, `/apps/salary-planner/`, `/apps/home-budget-planner/`, `/apps/retirement-planner/`, `/apps/fd-calculator/`, `/apps/rd-calculator/`, `/apps/glow-up-grid/`, `/apps/lunchbox-planner/`, `/apps/study-sprint/`, `/apps/piggy-bank-ledger/`, and `/apps/` (Playground Hub)
+   - **Family B & C — Family & Interactive Apps Suite (11 Apps Unified + Hub)**: `/apps/genzalphaslang/`, `/apps/salary-planner/`, `/apps/home-budget-planner/`, `/apps/retirement-planner/`, `/apps/fd-calculator/`, `/apps/rd-calculator/`, `/apps/glow-up-grid/`, `/apps/lunchbox-planner/`, `/apps/study-sprint/`, `/apps/piggy-bank-ledger/`, `/apps/chore-quest-board/`, `/apps/screen-time-passes/`, and `/apps/` (Playground Hub)
      * **Light Mode (Crisp Financial Slate)**: Canvas `#F5F7FA`, Level 1 Cards `#FFFFFF`, Level 2 Inputs `#F0F3F7`, Level 3 Elevated `#E4E9F0`, Headings `#1A202C`, Dim text `#4A5568`, Faint text `#718096`, Primary Amber Accent `#D97706`, Accent Ink `#FFFFFF`, Secondary Teal Accent `#0D9488`, Steel border `#D1D8E2`, Soft border `#E2E8F0`, Surplus/Liquid `#16A34A`, Deficit/TDS `#DC2626`, Shadow `0 8px 32px rgba(0,0,0,0.08)`.
      * **Dark Mode (Deep Space Navy)**: Canvas `#0C0F14`, Level 1 Cards `#141922`, Level 2 Inputs `#1B222D`, Level 3 Elevated `#222B39`, Headings `#EAEFF5`, Dim text `#94A0B2`, Faint text `#5C6B80`, Primary Amber Accent `#E3A63E`, Accent Ink `#141005`, Secondary Teal Accent `#4FB0A8`, Navy border `#2A3545`, Soft border `#1E2633`, Surplus/Liquid `#5FBF77`, Deficit/TDS `#E2665A`, Shadow `0 8px 32px rgba(0,0,0,0.40)`.
      * **OG Card Theme**: **Dark Mode Deep Space Navy** (`#0C0F14` canvas, `#141922` slate card, `#FFFFFF` title, `#E3A63E` & `#4FB0A8` accents).
@@ -110,10 +112,10 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
     - **Header & Footer Standards**: Header is named strictly `Family Games Arcade` (no personal names). Standard footer: `Games crafted for Sarav... Engineered with zero external trackers, zero ads, and pure client-side code`.
     - **Universal Mobile Arcade Fullscreen Architecture**: Dual-layer fullscreen combining native `requestFullscreen()` with `.is-fullscreen` on body (`100dvh`, fixed inset 0), non-passive touch listeners (`{ passive: false }` + `e.preventDefault()`), floating top HUDs with quick `🗗 Exit`, and non-blocking in-game modal cards.
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
-   - All Consumer Apps & Games pages (`/apps/`, 13 live tools, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
+   - All Consumer Apps & Games pages (`/apps/`, 15 live tools, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
    - **Canonical Dropdown Items (Strict Standards)**:
-     * `Apps ▾` (14 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`, `Glow Up Grid`, `Lunchbox & Meal Planner`, `Study Sprint & Exam Matrix`, `Piggy Bank & Money Ledger`.
+     * `Apps ▾` (16 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`, `Glow Up Grid`, `Lunchbox & Meal Planner`, `Study Sprint & Exam Matrix`, `Piggy Bank & Money Ledger`, `Chore & Quest Board`, `Screen-Time Passes`.
      * `Games ▾` (11 items): `🎰 Games Arcade Hub`, `🎰 Family Jackpot`, `💖 Senti-Meter`, `🎁 Secret Box`, `🏓 Ping-Pong Cup Toss`, `🍾 Bottle Flip Showdown`, `⚡ Samosa Snatch`, `🗣️ Chit-Charades`, `🎡 Snack Roulette`, `🎙️ Dialogue Detective`, `🎯 Desi Gulel Strike`.
      * `Projects ▾` (4 items): `🏛️ Projects Hub`, `Temples of Tamil Gods`, `FactDrop`, `Thirukkural Hub`.
      * **Right Side**: `🎪 Playground` link + `🧠 Enterprise AI Economics` badge.
@@ -127,7 +129,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
    - Features official brand icon `playground-square.png` in hero.
    - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
-   - Reflects full live suite metrics: 13 Apps, 10 Engines, 10 Games, 3 Projects (36 Interactive Destinations across 38 Synchronized Ecosystem Pages).
+   - Reflects full live suite metrics: 15 Apps, 10 Engines, 10 Games, 3 Projects (38 Interactive Destinations across 40 Synchronized Ecosystem Pages).
    - Full 4-tier ecosystem navigation matching canonical inventories.
 
 ---
