@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>AI-in-ITSM Business Case Builder — NPV, Payback &amp; ROI | Sarav's World</title>
+<meta name="description" content="Roll up your suite's scenario exports into one NPV, payback period, and ROI business case for an AI-in-ITSM investment — with a real recomputed SD Optimizer labor-savings import.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/aiinitsm/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/aiinitsm/">
+<meta property="og:title" content="AI-in-ITSM Business Case Builder — Sarav's World">
+<meta property="og:description" content="NPV, payback period, and ROI business case builder that imports real numbers from your other Digital Workplace Services apps.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/aiinitsm/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap between button and menu */
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+  .btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+  .btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+
+  /* Non-blocking Toast Notification */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+    padding: 12px 18px; font-size: 13px; font-weight: 500;
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, .toast, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+
+
+/* DEX Advisor additions */
+.slider-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border-soft); }
+.slider-row:last-child { border-bottom: none; }
+.slider-row .s-label { font-size: 13px; color: var(--text); flex: 1; min-width: 0; }
+.slider-row .s-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.slider-row .slider-control { width: 220px; flex: none; }
+.weight-bar-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.weight-bar-label { width: 220px; flex: none; font-size: 12.5px; color: var(--text-dim); }
+.weight-bar-track { flex: 1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.weight-bar-fill { height: 100%; background: var(--accent2); }
+.weight-bar-val { width: 46px; flex: none; text-align: right; font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-dim); }
+.vendor-row { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; background: var(--surface); }
+.vendor-row.top { border-color: var(--accent); }
+.vendor-head { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+.vendor-rank { font-family: 'IBM Plex Mono'; color: var(--text-faint); font-size: 13px; width: 22px; }
+.vendor-name-wrap { flex: 1; min-width: 0; }
+.vendor-name-wrap .vname { font-weight: 600; font-size: 15px; }
+.vendor-name-wrap .vtier { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); }
+.vendor-bar-wrap { flex: 2; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; min-width: 100px; }
+.vendor-bar-fill { height: 100%; background: var(--accent2); }
+.vendor-row.top .vendor-bar-fill { background: var(--accent); }
+.vendor-fit-num { font-family: 'IBM Plex Mono'; font-size: 15px; width: 50px; text-align: right; }
+.best-match-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 3px; margin-left: 8px; white-space: nowrap; }
+.vendor-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border-soft); }
+.vendor-row.open .vendor-body { display: block; }
+.vendor-body .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; }
+.vendor-body h4 { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); margin: 0 0 8px; font-weight: 500; }
+.vendor-body ul { margin: 0; padding-left: 16px; font-size: 13.5px; }
+.vendor-body li { margin-bottom: 4px; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+@media (max-width: 640px) {
+  .slider-row { flex-direction: column; align-items: flex-start; }
+  .slider-row .slider-control { width: 100%; }
+  .weight-bar-label { width: 140px; }
+}
+
+
+/* ITSM Advisor additions: comparison matrix, TCO envelope, playbook */
+.matrix-wrap { overflow-x: auto; margin-top: 16px; }
+.matrix-wrap table { width: 100%; border-collapse: collapse; }
+.matrix-wrap th, .matrix-wrap td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border-soft); font-size: 12.5px; }
+.matrix-wrap th:first-child, .matrix-wrap td:first-child { text-align: left; color: var(--text-dim); }
+.matrix-wrap thead th { color: var(--text-faint); font-family: 'IBM Plex Mono'; font-size: 11px; font-weight: 500; }
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); }
+.dot.on { background: var(--accent2); }
+.playbook-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+.playbook-step:last-child { border-bottom: none; }
+.playbook-num { font-family: 'IBM Plex Mono'; font-size: 20px; color: var(--accent); font-weight: 600; width: 32px; flex: none; }
+.playbook-body h4 { margin: 0 0 4px; font-size: 14px; }
+.playbook-body p { margin: 0; font-size: 13.5px; color: var(--text-dim); }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+
+
+/* RFP Scorer additions: dynamic tables, add/remove rows, score grid, gate grid */
+.dyn-table { width: 100%; border-collapse: collapse; }
+.dyn-table th, .dyn-table td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); font-size: 13px; }
+.dyn-table thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); text-align: left; font-weight: 500; }
+.dyn-table input[type="text"], .dyn-table input[type="number"] { width: 100%; }
+.dyn-table .rm-btn { background: transparent; border: 1px solid var(--border); color: var(--danger); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1; }
+.rm-btn:hover { border-color: var(--danger); }
+.add-row-btn { margin-top: 12px; background: transparent; border: 1px dashed var(--border); color: var(--text-dim); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 12.5px; }
+.add-row-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.grid-wrap { overflow-x: auto; }
+.grid-wrap table { border-collapse: collapse; min-width: 100%; }
+.grid-wrap th, .grid-wrap td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); text-align: center; white-space: nowrap; }
+.grid-wrap thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); font-weight: 500; }
+.grid-wrap th:first-child, .grid-wrap td:first-child { text-align: left; white-space: normal; min-width: 160px; color: var(--text-dim); }
+.grid-wrap input[type="number"] { width: 56px; text-align: center; }
+.gate-check { width: 20px; height: 20px; accent-color: var(--accent2); cursor: pointer; }
+.dq-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--danger); border: 1px solid var(--danger); padding: 2px 6px; border-radius: 3px; margin-left: 8px; }
+.weight-status { font-family: 'IBM Plex Mono'; font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+.normalize-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 4px 10px; border-radius: 5px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 11px; }
+
+
+/* Business Case additions */
+.import-slot { border: 1px dashed var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.import-slot.loaded { border-style: solid; border-color: var(--accent2); }
+.import-slot-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.import-slot-title { font-weight: 600; font-size: 14px; }
+.import-slot-sub { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+.import-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 7px 14px; border-radius: 6px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 12px; }
+.import-status { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--success); margin-top: 8px; }
+.manual-note { font-size: 11.5px; color: var(--text-faint); margin-top: 8px; border-left: 2px solid var(--border); padding-left: 10px; }
+.risk-row { display: grid; grid-template-columns: 2fr 1fr 1fr 100px; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.risk-row:last-child { border-bottom: none; }
+.risk-name { font-size: 13px; }
+.risk-badge { font-family: 'IBM Plex Mono'; font-size: 11px; padding: 3px 8px; border-radius: 4px; text-align: center; }
+.risk-badge.Low { color: var(--success); border: 1px solid var(--success); }
+.risk-badge.Medium { color: var(--accent); border: 1px solid var(--accent); }
+.risk-badge.High { color: var(--danger); border: 1px solid var(--danger); }
+.phase-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.phase-card h4 { margin: 0 0 6px; font-size: 15px; }
+.phase-card textarea { width: 100%; min-height: 60px; resize: vertical; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+</style>
+</head>
+<body>
+
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/itsmadvisor/">🎫 ITSM Platform Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/rfpscorer/">⚖️ Vendor RFP Weighted Scorer</a>
+          <a href="https://iamsaravofficial.com/apps/aiinitsm/" class="current">📈 AI-in-ITSM Business Case</a>
+          <a href="https://iamsaravofficial.com/apps/automationscore/">🎛️ Automation Potential Advisor</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="eco-tokenomics">📈 Digital Workplace Services · Version 2026.09</span></div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="AI-in-ITSM Business Case Logo"></div>
+        <div>
+          <h1>Business Case <span class="badge gold">NPV · Payback · ROI</span></h1>
+          <span class="tagline">Rolls Up Your Suite's Exports Into One Investment Case</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="currency-toggle" id="currencyToggle">
+          <button data-curr="USD" class="active">USD ($)</button>
+          <button data-curr="INR">INR (₹)</button>
+          <button data-curr="EUR">EUR (€)</button>
+          <button data-curr="GBP">GBP (£)</button>
+        </div>
+        <div class="live-total-pill">NPV: <b id="liveTotal" class="mono">$0</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">01</span> Profile</a>
+      <a href="#problem" class="sec-nav-link"><span class="sn-num">02</span> Problem</a>
+      <a href="#investment" class="sec-nav-link"><span class="sn-num">03</span> Investment</a>
+      <a href="#sdimport" class="sec-nav-link"><span class="sn-num">04</span> SD Import</a>
+      <a href="#platformimport" class="sec-nav-link"><span class="sn-num">05</span> Platform Import</a>
+      <a href="#risk" class="sec-nav-link"><span class="sn-num">06</span> Risk Register</a>
+      <a href="#finance" class="sec-nav-link"><span class="sn-num">07</span> NPV &amp; ROI</a>
+      <a href="#roadmap" class="sec-nav-link"><span class="sn-num">08</span> Roadmap</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">09</span> Report &amp; Export</a>
+    </div>
+  </nav>
+</div>
+
+<!-- One-Click Enterprise Presets Bar -->
+<div class="presets-bar">
+  <div class="presets-inner">
+    <span class="presets-title">Instant Presets:</span>
+    <button class="preset-btn" data-preset="global">🌐 Global Financial (50,000 Users)</button>
+    <button class="preset-btn" data-preset="healthcare">🏥 Healthcare System (25,000 Users)</button>
+    <button class="preset-btn" data-preset="saas">⚡ Cloud SaaS (15,000 Users)</button>
+    <button class="preset-btn" data-preset="midmarket">🏢 Mid-Market Core (8,000 Users)</button>
+    <button class="preset-btn" data-preset="reset" style="margin-left: auto;">🔄 Reset Defaults</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 01 Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Business Case Profile</h2></div>
+    <p class="sec-desc">What this investment case is for.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="bc_title">Initiative name</label><input id="bc_title" type="text" value="AI-in-ITSM Investment"></div>
+        <div class="field"><label for="bc_preparedby">Prepared by</label><input id="bc_preparedby" type="text" placeholder="Your name"></div>
+        <div class="field">
+          <label>Analysis term</label>
+          <div class="term-row" style="margin:0;">
+            <div class="pillrow" id="termToggle">
+              <div class="pill" data-term="3">3 yr</div>
+              <div class="pill on" data-term="5">5 yr</div>
+              <div class="pill" data-term="7">7 yr</div>
+            </div>
+            <input id="term_custom" class="term-input mono" type="number" min="1" max="7" value="5">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Problem Statement -->
+  <section class="block" id="problem">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Problem Statement</h2></div>
+    <p class="sec-desc">Today's pain, in numbers &mdash; feeds the executive narrative.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="prob_volume">Current monthly ticket volume</label><input id="prob_volume" type="number" min="0" value="40000"></div>
+        <div class="field"><label for="prob_costtoserve">Current cost-to-serve / ticket</label><input id="prob_costtoserve" type="number" min="0" step="0.1" value="18"></div>
+        <div class="field"><label for="prob_mttr">Current MTTR (hours)</label><input id="prob_mttr" type="number" min="0" step="0.1" value="6"></div>
+        <div class="field"><label for="prob_attrition">Agent attrition % / year</label><input id="prob_attrition" type="number" min="0" max="100" value="28"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Proposed Investment -->
+  <section class="block" id="investment">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Proposed Investment</h2></div>
+    <p class="sec-desc">One-time and recurring costs. AI run cost is manual &mdash; paste your Tokenomics Month-1 AI Run Cost figure ×12.</p>
+    <div class="panel">
+      <div class="grid grid-3">
+        <div class="field"><label for="inv_aicost">Annual AI run cost (from Tokenomics)</label><input id="inv_aicost" type="number" min="0" value="4260"></div>
+        <div class="field"><label for="inv_implementation">Implementation cost (one-time)</label><input id="inv_implementation" type="number" min="0" value="85000"></div>
+        <div class="field"><label for="inv_changemgmt">Change management / training (one-time)</label><input id="inv_changemgmt" type="number" min="0" value="35000"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 SD Optimizer Import -->
+  <section class="block" id="sdimport">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>SD Optimizer &mdash; Labor Savings Import</h2></div>
+    <p class="sec-desc">Fully automatic &mdash; SD Optimizer's own staffing engine is embedded here, so its scenario file recomputes the real Year-1..N cost avoidance, not just a re-typed number.</p>
+    <div class="panel">
+      <div class="import-slot" id="sdSlot">
+        <div class="import-slot-head">
+          <div><div class="import-slot-title">SD Optimizer scenario</div><div class="import-slot-sub">Load a .json saved from SD Optimizer's Section 09</div></div>
+          <button class="import-btn" id="btnImportSD">📂 Load SD Scenario</button>
+          <input type="file" id="fileSD" accept="application/json" style="display:none;">
+        </div>
+        <div class="import-status" id="sdStatus">Not loaded &mdash; labor savings benefit will be $0 until you load a scenario.</div>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>Automation %</th><th>Annual Cost Avoidance</th></tr></thead>
+          <tbody id="sdResultBody"><tr><td colspan="3" class="hint">No scenario loaded yet.</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Platform Import (DEX / ITSM) -->
+  <section class="block" id="platformimport">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>DEX &amp; ITSM Platform Investment</h2></div>
+    <p class="sec-desc">Partially automatic &mdash; the Urgency Score reads straight from the file, but the $ software cost and efficiency value need the vendor dataset those apps keep internally, so those two numbers are manual (check that app's Section 09 report).</p>
+
+    <div class="panel">
+      <div class="import-slot" id="dexSlot">
+        <div class="import-slot-head">
+          <div><div class="import-slot-title">DEX Advisor scenario</div><div class="import-slot-sub">Load a .json saved from DEX Advisor's Section 09</div></div>
+          <button class="import-btn" id="btnImportDEX">📂 Load DEX Scenario</button>
+          <input type="file" id="fileDEX" accept="application/json" style="display:none;">
+        </div>
+        <div class="import-status" id="dexStatus">Not loaded.</div>
+        <div class="grid grid-2" style="margin-top:12px;">
+          <div class="field"><label for="dex_swcost">Est. Annual Software Budget (manual, from DEX report)</label><input id="dex_swcost" type="number" min="0" value="0"></div>
+          <div class="field"><label for="dex_effvalue">Projected Efficiency/XPI Value (manual, from DEX report)</label><input id="dex_effvalue" type="number" min="0" value="0"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="import-slot" id="itsmSlot">
+        <div class="import-slot-head">
+          <div><div class="import-slot-title">ITSM Advisor scenario</div><div class="import-slot-sub">Load a .json saved from ITSM Advisor's Section 09</div></div>
+          <button class="import-btn" id="btnImportITSM">📂 Load ITSM Scenario</button>
+          <input type="file" id="fileITSM" accept="application/json" style="display:none;">
+        </div>
+        <div class="import-status" id="itsmStatus">Not loaded.</div>
+        <div class="grid grid-2" style="margin-top:12px;">
+          <div class="field"><label for="itsm_swcost">Est. Annual Software Budget (manual, from ITSM report)</label><input id="itsm_swcost" type="number" min="0" value="0"></div>
+          <div class="field"><label for="itsm_effvalue">Projected Efficiency Value (manual, from ITSM report)</label><input id="itsm_effvalue" type="number" min="0" value="0"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Risk Register -->
+  <section class="block" id="risk">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Risk Register</h2></div>
+    <p class="sec-desc">Likelihood × Impact, both 1&ndash;5.</p>
+    <div class="panel" id="riskPanel"></div>
+  </section>
+
+  <!-- 07 NPV & ROI -->
+  <section class="block" id="finance">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>NPV, Payback &amp; ROI</h2></div>
+    <p class="sec-desc">Aggregates every cost and benefit above across the analysis term.</p>
+    <div class="panel">
+      <div class="field" style="max-width:280px;"><label for="fin_discount">Discount rate % / year</label><input id="fin_discount" type="number" min="0" max="50" step="0.5" value="10"></div>
+      <div class="kpi-row">
+        <div class="kpi accent2"><div class="label">Net Present Value</div><div class="value mono" id="kpi_npv">$0</div></div>
+        <div class="kpi"><div class="label">Payback Period</div><div class="value mono" id="kpi_payback">—</div></div>
+        <div class="kpi accent2"><div class="label">ROI (term total)</div><div class="value mono" id="kpi_roi">0%</div></div>
+      </div>
+      <div class="overflow-x">
+        <table>
+          <thead><tr><th>Year</th><th>SD Labor Savings</th><th>DEX+ITSM Value</th><th>AI Run Cost</th><th>Net Cash Flow</th><th>Cumulative</th></tr></thead>
+          <tbody id="cashflowBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Roadmap -->
+  <section class="block" id="roadmap">
+    <div class="sec-head"><div class="sec-num mono">08</div><h2>Phased Roadmap</h2></div>
+    <p class="sec-desc">Pilot → scale, editable.</p>
+    <div class="panel">
+      <div class="phase-card"><h4>Phase 1 — Pilot</h4><textarea id="phase1">One business unit, 90 days. Validate accuracy and adoption before wider rollout.</textarea></div>
+      <div class="phase-card"><h4>Phase 2 — Expand</h4><textarea id="phase2">Roll out to remaining Tier 1 queues. Begin Tier 2 automation exploration.</textarea></div>
+      <div class="phase-card"><h4>Phase 3 — Optimize</h4><textarea id="phase3">Tune automation thresholds against real deflection data. Retrain on local ticket patterns.</textarea></div>
+      <div class="phase-card"><h4>Phase 4 — Scale</h4><textarea id="phase4">Full estate rollout. Shift KPI ownership from project team to steady-state operations.</textarea></div>
+    </div>
+  </section>
+
+  <!-- 09 Executive Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Executive Report &amp; Export</h2></div>
+    <p class="sec-desc">Full investment case rollup.</p>
+
+    <div class="kpi-row">
+      <div class="kpi accent2"><div class="label">Net Present Value</div><div class="value mono" id="kpi_r_npv">$0</div></div>
+      <div class="kpi"><div class="label">Payback Period</div><div class="value mono" id="kpi_r_payback">—</div></div>
+      <div class="kpi accent2"><div class="label">ROI</div><div class="value mono" id="kpi_r_roi">0%</div></div>
+      <div class="kpi"><div class="label">Total Upfront Investment</div><div class="value mono" id="kpi_r_upfront">$0</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Risk Summary</h3>
+      <ul id="report_risks"></ul>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnShareWhatsApp" class="btn-whatsapp">💬 Share on WhatsApp</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+    </div>
+  </section>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  <div class="container">
+    <p>AI-in-ITSM Business Case Builder crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// AI-IN-ITSM BUSINESS CASE BUILDER — NPV/Payback/ROI rollup + real SD Optimizer import
+// ============================================================================================
+
+const $ = (id) => document.getElementById(id);
+const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast(successMsg);
+  } catch (err) {
+    showToast('Copy failed. Please copy manually.');
+  }
+  document.body.removeChild(ta);
+}
+
+const CURRENCIES = {
+  USD: { symbol: '$', rate: 1.00, locale: 'en-US', decimals: 0 },
+  INR: { symbol: '₹', rate: 85.00, locale: 'en-IN', decimals: 0 },
+  EUR: { symbol: '€', rate: 0.92, locale: 'de-DE', decimals: 0 },
+  GBP: { symbol: '£', rate: 0.78, locale: 'en-GB', decimals: 0 }
+};
+let currentCurrency = 'USD';
+function fmtMoney(usdVal) {
+  const c = CURRENCIES[currentCurrency];
+  const converted = (usdVal || 0) * c.rate;
+  const sign = converted < 0 ? '-' : '';
+  return sign + c.symbol + Math.abs(converted).toLocaleString(c.locale, { minimumFractionDigits: c.decimals, maximumFractionDigits: c.decimals });
+}
+
+const state = {
+  themeChoice: 'dark',
+  projTerm: 5,
+  sdScenario: null,
+  sdYearRows: null,
+  dexScenario: null,
+  itsmScenario: null,
+  risks: [
+    { id: 'r1', name: 'Adoption Risk — staff resistance to AI-assisted workflows', likelihood: 3, impact: 3 },
+    { id: 'r2', name: 'Data Privacy & Governance — sensitive ticket data exposure', likelihood: 2, impact: 4 },
+    { id: 'r3', name: 'Vendor Lock-In — switching cost if platform underperforms', likelihood: 3, impact: 3 },
+    { id: 'r4', name: 'Model Drift — automation accuracy degrades over time', likelihood: 2, impact: 3 },
+    { id: 'r5', name: 'Security Exposure — expanded attack surface from AI integrations', likelihood: 2, impact: 4 }
+  ]
+};
+
+// ---------------- ENGINE (identical to tested engine.js) ----------------
+function erlangBRecursive(A, N) { let B = 1.0; for (let i = 1; i <= N; i++) { B = (A * B) / (i + A * B); } return B; }
+function erlangC(A, N) { if (N <= A) return 1; const B = erlangBRecursive(A, N); const C = (N * B) / (N - A * (1 - B)); return Math.max(0, Math.min(1, C)); }
+function serviceLevel(A, N, ahtSec, targetAnswerSec) { if (N <= A) return 0; const C = erlangC(A, N); const sl = 1 - C * Math.exp(-(N - A) * (targetAnswerSec / ahtSec)); return Math.max(0, Math.min(1, sl)); }
+function requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec, maxAgents = 3000) {
+  if (erlangs <= 0) return { agents: 0, achievedSL: 1, erlangs: 0 };
+  let N = Math.max(1, Math.ceil(erlangs) + 1);
+  let sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec);
+  while (sl < targetSLFrac && N < maxAgents) { N++; sl = serviceLevel(erlangs, N, ahtSec, targetAnswerSec); }
+  return { agents: N, achievedSL: sl, erlangs };
+}
+function volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay) { const arrivalPerHour = monthlyVolume / (workingDaysPerMonth * hoursPerDay); return (arrivalPerHour * ahtSec) / 3600; }
+function channelFTE_realtime(monthlyVolume, ahtSec, targetSLFrac, targetAnswerSec, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  const erlangs = volumeToErlangs(monthlyVolume, ahtSec, workingDaysPerMonth, hoursPerDay);
+  const r = requiredAgents(erlangs, ahtSec, targetSLFrac, targetAnswerSec);
+  const fte = shrinkageFrac < 1 ? r.agents / (1 - shrinkageFrac) : r.agents;
+  return { fte, achievedSL: r.achievedSL, erlangs, agents: r.agents };
+}
+function channelFTE_throughput(monthlyVolume, ahtMinutes, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  const availableMin = workingDaysPerMonth * hoursPerDay * 60;
+  const effectiveMin = availableMin * (1 - shrinkageFrac);
+  const fte = effectiveMin > 0 ? (monthlyVolume * ahtMinutes) / effectiveMin : 0;
+  return { fte };
+}
+function automationPropensity(inputs, weights, maturityScores) {
+  const kbPct = inputs.kbTotal > 0 ? Math.min(100, (inputs.kbReady / inputs.kbTotal) * 100) : 0;
+  const maturityScore = maturityScores[inputs.maturity] ?? 0;
+  const score = weights.kb_readiness * kbPct + weights.tooling_penetration * inputs.toolingPct +
+    weights.digital_split * inputs.digitalPct + weights.complexity_simple * inputs.complexitySimplePct +
+    weights.maturity_stage * maturityScore;
+  return { score: Math.max(0, Math.min(100, score)), kbPct };
+}
+function computedAutomationForYear(year, propensityScore, bounds) {
+  const S = propensityScore / 100;
+  const year1 = bounds.year1_cap * S;
+  if (year === 1) return Math.round(year1);
+  let target = year1;
+  for (let y = 2; y <= year; y++) { target = Math.min(bounds.max_cap, target + bounds.annual_growth_cap * S); }
+  return Math.round(target);
+}
+function tier2Throughput(escalatedVolumeByChannel, ahtByChannelMin, t2Mult, shrinkageFrac, workingDaysPerMonth, hoursPerDay) {
+  let totalMinutes = 0;
+  Object.keys(escalatedVolumeByChannel).forEach(ch => { totalMinutes += escalatedVolumeByChannel[ch] * ahtByChannelMin[ch] * t2Mult; });
+  const availableMin = workingDaysPerMonth * hoursPerDay * 60;
+  const effectiveMin = availableMin * (1 - shrinkageFrac);
+  return effectiveMin > 0 ? totalMinutes / effectiveMin : 0;
+}
+const SD_BENCH_DEFAULTS = {
+  automation_driver_weights: { kb_readiness: 0.30, tooling_penetration: 0.20, digital_split: 0.20, complexity_simple: 0.15, maturity_stage: 0.15 },
+  maturity_stage_scores: { none: 0, pilot: 30, scaled: 65, advanced: 90 },
+  automation_curve_bounds: { year1_cap: 20, annual_growth_cap: 12, max_cap: 75 },
+  staffing_defaults: { working_days_per_month: 21, hours_per_day: 8 },
+  shift_coverage_multipliers: { '8x5': 1.00, '16x5': 1.55, '24x7': 2.85 }
+};
+function recomputeSDAvoidance(sdScenario, term) {
+  const m = sdScenario.moduleData;
+  const shrinkage = m.sla.shrinkagePct / 100;
+  const WD = SD_BENCH_DEFAULTS.staffing_defaults.working_days_per_month;
+  const HD = SD_BENCH_DEFAULTS.staffing_defaults.hours_per_day;
+  const targetSL = m.sla.targetSLPct / 100;
+  function staffingForPct(pct) {
+    const factor = 1 - pct / 100;
+    const volVoice = m.volTotal * (sdScenario.channelMix.voice / 100) * m.peakMult * factor;
+    const volChat = m.volTotal * (sdScenario.channelMix.chat / 100) * m.peakMult * factor;
+    const volEmail = m.volTotal * (sdScenario.channelMix.email / 100) * m.peakMult * factor;
+    const voice = channelFTE_realtime(volVoice, m.sla.ahtVoiceSec, targetSL, m.sla.targetAnswerSec, shrinkage, WD, HD);
+    const chatAHTEff = m.sla.ahtChatSec / m.staffing.chatConcurrency;
+    const chat = channelFTE_realtime(volChat, chatAHTEff, targetSL, m.sla.targetAnswerSec, shrinkage, WD, HD);
+    const email = channelFTE_throughput(volEmail, m.sla.ahtEmailMin, shrinkage, WD, HD);
+    const t1FTE = voice.fte + chat.fte + email.fte;
+    const escalatedVol = { voice: volVoice * (1 - m.tiering.nestingPct / 100), chat: volChat * (1 - m.tiering.nestingPct / 100), email: volEmail * (1 - m.tiering.nestingPct / 100) };
+    const ahtByChannelMin = { voice: m.sla.ahtVoiceSec / 60, chat: m.sla.ahtChatSec / 60, email: m.sla.ahtEmailMin };
+    const t2FTE = tier2Throughput(escalatedVol, ahtByChannelMin, m.tiering.t2Mult, shrinkage, WD, HD);
+    const shiftMult = SD_BENCH_DEFAULTS.shift_coverage_multipliers[sdScenario.orgProfile.shiftModel] || 1;
+    const totalFTE = (t1FTE + t2FTE) * shiftMult;
+    let blendedCost = 0;
+    Object.keys(m.region.blend).forEach(key => { blendedCost += (m.region.blend[key] / 100) * (m.region.rates[key] || 0); });
+    return { totalFTE, laborCostAnnual: totalFTE * blendedCost };
+  }
+  const propensity = automationPropensity(
+    { kbReady: m.drivers.kbReady, kbTotal: m.drivers.kbTotal, toolingPct: m.drivers.toolingPct, digitalPct: sdScenario.channelMix.digital, complexitySimplePct: m.drivers.complexitySimplePct, maturity: m.drivers.maturity },
+    SD_BENCH_DEFAULTS.automation_driver_weights, SD_BENCH_DEFAULTS.maturity_stage_scores
+  );
+  const baseline0 = staffingForPct(0);
+  const yearRows = [];
+  for (let y = 1; y <= term; y++) {
+    const overridePct = (m.automationOverride && m.automationOverride[y] !== undefined) ? m.automationOverride[y] : computedAutomationForYear(y, propensity.score, SD_BENCH_DEFAULTS.automation_curve_bounds);
+    const yr = staffingForPct(overridePct);
+    const avoidance = Math.max(0, baseline0.laborCostAnnual - yr.laborCostAnnual);
+    yearRows.push({ year: y, automationPct: overridePct, avoidance });
+  }
+  return { propensityScore: propensity.score, baselineCost: baseline0.laborCostAnnual, yearRows };
+}
+
+function computeNPV(initialInvestment, annualCashFlows, discountRatePct) {
+  const r = discountRatePct / 100;
+  let npv = -initialInvestment;
+  annualCashFlows.forEach((cf, i) => { npv += cf / Math.pow(1 + r, i + 1); });
+  return npv;
+}
+function computePaybackPeriod(initialInvestment, annualCashFlows) {
+  let cumulative = -initialInvestment;
+  for (let i = 0; i < annualCashFlows.length; i++) {
+    const prevCum = cumulative;
+    cumulative += annualCashFlows[i];
+    if (cumulative >= 0) { const fraction = prevCum < 0 ? (-prevCum) / annualCashFlows[i] : 0; return i + fraction; }
+  }
+  return null;
+}
+function computeROI(initialInvestment, annualCashFlows) {
+  const totalCF = annualCashFlows.reduce((s, cf) => s + cf, 0);
+  return initialInvestment > 0 ? (totalCF - initialInvestment) / initialInvestment : 0;
+}
+function computeRiskScore(l, i) { return l * i; }
+function riskLevel(score) { if (score >= 15) return 'High'; if (score >= 8) return 'Medium'; return 'Low'; }
+
+// ---------------- RENDER ----------------
+function renderSDResult() {
+  if (!state.sdYearRows) {
+    $('sdResultBody').innerHTML = `<tr><td colspan="3" class="hint">No scenario loaded yet.</td></tr>`;
+    return;
+  }
+  $('sdResultBody').innerHTML = state.sdYearRows.map(r => `
+    <tr><td><b>Year ${r.year}</b></td><td class="num-cell mono">${r.automationPct}%</td><td class="num-cell mono">${fmtMoney(r.avoidance)}</td></tr>`).join('');
+}
+
+function renderRisks() {
+  $('riskPanel').innerHTML = `
+    <div class="risk-row" style="font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); border-bottom:1px solid var(--border);">
+      <div>RISK</div><div>LIKELIHOOD</div><div>IMPACT</div><div>LEVEL</div>
+    </div>` + state.risks.map(r => {
+    const score = computeRiskScore(r.likelihood, r.impact);
+    const level = riskLevel(score);
+    const opts = (val, dataAttr) => [1, 2, 3, 4, 5].map(n => `<option value="${n}" ${n === val ? 'selected' : ''}>${n}</option>`).join('');
+    return `<div class="risk-row" data-id="${r.id}">
+      <div class="risk-name">${r.name}</div>
+      <div><select data-risk-likelihood="${r.id}">${opts(r.likelihood)}</select></div>
+      <div><select data-risk-impact="${r.id}">${opts(r.impact)}</select></div>
+      <div class="risk-badge ${level}">${level} (${score})</div>
+    </div>`;
+  }).join('');
+
+  $('riskPanel').querySelectorAll('[data-risk-likelihood]').forEach(el => el.addEventListener('change', (e) => {
+    const r = state.risks.find(x => x.id === e.target.dataset.riskLikelihood);
+    if (r) r.likelihood = +e.target.value;
+    renderRisks(); recalcAll();
+  }));
+  $('riskPanel').querySelectorAll('[data-risk-impact]').forEach(el => el.addEventListener('change', (e) => {
+    const r = state.risks.find(x => x.id === e.target.dataset.riskImpact);
+    if (r) r.impact = +e.target.value;
+    renderRisks(); recalcAll();
+  }));
+}
+
+function getAnnualCashFlows() {
+  const flows = [];
+  const aiCost = num('inv_aicost');
+  const dexVal = num('dex_effvalue'), dexCost = num('dex_swcost');
+  const itsmVal = num('itsm_effvalue'), itsmCost = num('itsm_swcost');
+  for (let y = 1; y <= state.projTerm; y++) {
+    const sdBenefit = (state.sdYearRows && state.sdYearRows[y - 1]) ? state.sdYearRows[y - 1].avoidance : 0;
+    const platformBenefit = dexVal + itsmVal; // flat across term (directional, disclosed)
+    const platformCost = dexCost + itsmCost;
+    const netCF = sdBenefit + platformBenefit - aiCost - platformCost;
+    flows.push({ year: y, sdBenefit, platformBenefit, aiCost, netCF });
+  }
+  return flows;
+}
+
+function renderCashflowAndFinance() {
+  const flows = getAnnualCashFlows();
+  const upfront = num('inv_implementation') + num('inv_changemgmt');
+  const discountRate = num('fin_discount');
+  const netCFs = flows.map(f => f.netCF);
+
+  let cumulative = -upfront;
+  $('cashflowBody').innerHTML = flows.map(f => {
+    cumulative += f.netCF;
+    return `<tr><td><b>Year ${f.year}</b></td><td class="num-cell mono">${fmtMoney(f.sdBenefit)}</td><td class="num-cell mono">${fmtMoney(f.platformBenefit)}</td>
+      <td class="num-cell mono" style="color:var(--danger);">-${fmtMoney(f.aiCost).replace('-','')}</td>
+      <td class="num-cell mono" style="color:${f.netCF >= 0 ? 'var(--success)' : 'var(--danger)'};">${fmtMoney(f.netCF)}</td>
+      <td class="num-cell mono">${fmtMoney(cumulative)}</td></tr>`;
+  }).join('');
+
+  const npv = computeNPV(upfront, netCFs, discountRate);
+  const payback = computePaybackPeriod(upfront, netCFs);
+  const roi = computeROI(upfront, netCFs);
+
+  $('kpi_npv').textContent = fmtMoney(npv);
+  $('kpi_payback').textContent = payback === null ? 'Beyond term' : payback.toFixed(1) + ' yrs';
+  $('kpi_roi').textContent = (roi * 100).toFixed(0) + '%';
+
+  $('kpi_r_npv').textContent = fmtMoney(npv);
+  $('kpi_r_payback').textContent = payback === null ? 'Beyond term' : payback.toFixed(1) + ' yrs';
+  $('kpi_r_roi').textContent = (roi * 100).toFixed(0) + '%';
+  $('kpi_r_upfront').textContent = fmtMoney(upfront);
+
+  $('liveTotal').textContent = fmtMoney(npv);
+
+  $('report_risks').innerHTML = state.risks.map(r => {
+    const score = computeRiskScore(r.likelihood, r.impact);
+    return `<li>${r.name} — <b>${riskLevel(score)}</b> (${r.likelihood}×${r.impact}=${score})</li>`;
+  }).join('');
+}
+
+function recalcAll() { renderSDResult(); renderCashflowAndFinance(); }
+
+// ---------------- EVENT WIRING ----------------
+['bc_title', 'bc_preparedby', 'prob_volume', 'prob_costtoserve', 'prob_mttr', 'prob_attrition',
+  'inv_aicost', 'inv_implementation', 'inv_changemgmt', 'dex_swcost', 'dex_effvalue',
+  'itsm_swcost', 'itsm_effvalue', 'fin_discount'].forEach(id => {
+  const el = $(id); if (el) el.addEventListener('input', recalcAll);
+});
+
+$('termToggle').addEventListener('click', (e) => {
+  const pill = e.target.closest('.pill'); if (!pill) return;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.remove('on'));
+  pill.classList.add('on');
+  state.projTerm = +pill.dataset.term;
+  $('term_custom').value = state.projTerm;
+  if (state.sdScenario) state.sdYearRows = recomputeSDAvoidance(state.sdScenario, state.projTerm).yearRows;
+  recalcAll();
+});
+$('term_custom').addEventListener('input', (e) => {
+  let v = Math.round(parseFloat(e.target.value) || 1);
+  v = Math.max(1, Math.min(7, v));
+  state.projTerm = v;
+  document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === v));
+  if (state.sdScenario) state.sdYearRows = recomputeSDAvoidance(state.sdScenario, state.projTerm).yearRows;
+  recalcAll();
+});
+
+// ---------------- IMPORTS ----------------
+$('btnImportSD').addEventListener('click', () => $('fileSD').click());
+$('fileSD').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.appId !== 'sd-optimizer') { showToast('That file is not an SD Optimizer scenario export.'); return; }
+      state.sdScenario = data;
+      const result = recomputeSDAvoidance(data, state.projTerm);
+      state.sdYearRows = result.yearRows;
+      $('sdSlot').classList.add('loaded');
+      $('sdStatus').textContent = `Loaded — automation propensity score ${result.propensityScore.toFixed(1)}/100, recomputed live from the imported scenario.`;
+      showToast('Loaded SD Optimizer scenario.');
+      recalcAll();
+    } catch (err) { showToast('Could not read that file as a valid SD Optimizer scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+function wirePlatformImport(btnId, fileId, slotId, statusId, appId, label) {
+  $(btnId).addEventListener('click', () => $(fileId).click());
+  $(fileId).addEventListener('change', (e) => {
+    const file = e.target.files[0]; if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try {
+        const data = JSON.parse(evt.target.result);
+        if (data.appId !== appId) { showToast(`That file is not a ${label} scenario export.`); return; }
+        const triggerValues = data.moduleData && data.moduleData.triggerValues ? data.moduleData.triggerValues : {};
+        const vals = Object.values(triggerValues);
+        const urgency = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+        $(slotId).classList.add('loaded');
+        $(statusId).textContent = `Loaded — Urgency Score ${urgency.toFixed(1)}/100 (read directly from the file). Software cost & efficiency value still need the vendor dataset that lives in ${label} itself — enter them manually below from its Section 09 report.`;
+        showToast(`Loaded ${label} scenario.`);
+      } catch (err) { showToast('Could not read that file as a valid scenario JSON.'); }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+}
+wirePlatformImport('btnImportDEX', 'fileDEX', 'dexSlot', 'dexStatus', 'dex-advisor', 'DEX Advisor');
+wirePlatformImport('btnImportITSM', 'fileITSM', 'itsmSlot', 'itsmStatus', 'itsm-advisor', 'ITSM Advisor');
+
+// ---------------- THEME / CURRENCY / NAV ----------------
+document.querySelectorAll('#currencyToggle button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#currencyToggle button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCurrency = btn.dataset.curr;
+    recalcAll();
+  });
+});
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('aiitsm_case_theme', choice); } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => { const btn = e.target.closest('button'); if (!btn) return; applyTheme(btn.dataset.themeChoice); });
+
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = drop.classList.contains('open'); document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); if (!isOpen) drop.classList.add('open'); });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.id; document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`)); } });
+}, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+
+// ---------------- EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  const flows = getAnnualCashFlows();
+  const upfront = num('inv_implementation') + num('inv_changemgmt');
+  const npv = computeNPV(upfront, flows.map(f => f.netCF), num('fin_discount'));
+  const payback = computePaybackPeriod(upfront, flows.map(f => f.netCF));
+  const roi = computeROI(upfront, flows.map(f => f.netCF));
+
+  let csv = 'AI-IN-ITSM BUSINESS CASE — MODEL EXPORT\n';
+  csv += `Initiative,${$('bc_title').value}\nPrepared By,${$('bc_preparedby').value}\nTerm (years),${state.projTerm}\nCurrency,${currentCurrency}\n\n`;
+  csv += `NPV,${npv.toFixed(2)}\nPayback (years),${payback === null ? 'Beyond term' : payback.toFixed(2)}\nROI,${(roi * 100).toFixed(1)}%\nUpfront Investment,${upfront.toFixed(2)}\n\n`;
+  csv += 'CASH FLOW\nYear,SD Labor Savings,DEX+ITSM Value,AI Run Cost,Net Cash Flow\n';
+  flows.forEach(f => { csv += `${f.year},${f.sdBenefit.toFixed(2)},${f.platformBenefit.toFixed(2)},${f.aiCost.toFixed(2)},${f.netCF.toFixed(2)}\n`; });
+  csv += '\nRISK REGISTER\nRisk,Likelihood,Impact,Score,Level\n';
+  state.risks.forEach(r => { const s = computeRiskScore(r.likelihood, r.impact); csv += `${r.name},${r.likelihood},${r.impact},${s},${riskLevel(s)}\n`; });
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `AI_ITSM_Business_Case_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  const text = `# 📈 AI-in-ITSM Business Case — Executive Briefing
+**Initiative:** ${$('bc_title').value} | **Prepared by:** ${$('bc_preparedby').value || 'Not specified'}
+**Term:** ${state.projTerm} years | **Generated:** ${new Date().toLocaleDateString()}
+
+### Financial Case
+- **NPV:** ${$('kpi_r_npv').textContent}
+- **Payback Period:** ${$('kpi_r_payback').textContent}
+- **ROI:** ${$('kpi_r_roi').textContent}
+- **Total Upfront Investment:** ${$('kpi_r_upfront').textContent}
+
+### Problem
+- Monthly ticket volume: ${$('prob_volume').value} | Cost/ticket: ${$('prob_costtoserve').value} | MTTR: ${$('prob_mttr').value}h | Attrition: ${$('prob_attrition').value}%
+
+### Risk Summary
+${state.risks.map(r => `- ${r.name} — ${riskLevel(computeRiskScore(r.likelihood, r.impact))}`).join('\n')}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    showToast('Executive briefing copied to clipboard.');
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch (e) {
+    fallbackCopy(text, 'Executive briefing copied to clipboard.');
+  }
+});
+
+// WhatsApp Sharing
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const npv = $('kpi_r_npv').textContent;
+  const payback = $('kpi_r_payback').textContent;
+  const roi = $('kpi_r_roi').textContent;
+  const upfront = $('kpi_r_upfront').textContent;
+  const title = $('bc_title').value || 'AI-in-ITSM Investment';
+
+  const text = `📈 *AI-in-ITSM Business Case — Executive Summary*
+*Initiative:* ${title}
+*Term:* ${state.projTerm} Years | *Currency:* ${currentCurrency}
+
+*Financial Return:*
+• Net Present Value (NPV): ${npv}
+• Payback Period: ${payback}
+• Return on Investment (ROI): ${roi}
+• Total Upfront Investment: ${upfront}
+
+Explore and simulate: https://iamsaravofficial.com/apps/aiinitsm/
+_Calculated via Sarav's World Digital Workplace Suite._`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+// Presets Engine
+const PRESETS = {
+  global: {
+    title: "Global Financial Services (50k Users)",
+    preparedBy: "Chief AI Architect",
+    term: 5,
+    prob_volume: 55000,
+    prob_costtoserve: 24.5,
+    prob_mttr: 6.0,
+    prob_attrition: 24,
+    inv_aicost: 185000,
+    inv_implementation: 240000,
+    inv_changemgmt: 80000,
+    dex_swcost: 95000,
+    dex_effvalue: 320000,
+    itsm_swcost: 140000,
+    itsm_effvalue: 410000,
+    fin_discount: 8.5
+  },
+  healthcare: {
+    title: "Integrated Healthcare System (25k Users)",
+    preparedBy: "Digital Workplace Architect",
+    term: 5,
+    prob_volume: 28000,
+    prob_costtoserve: 22.0,
+    prob_mttr: 5.0,
+    prob_attrition: 19,
+    inv_aicost: 115000,
+    inv_implementation: 150000,
+    inv_changemgmt: 55000,
+    dex_swcost: 65000,
+    dex_effvalue: 210000,
+    itsm_swcost: 90000,
+    itsm_effvalue: 270000,
+    fin_discount: 7.5
+  },
+  saas: {
+    title: "High-Growth Cloud SaaS (15k Users)",
+    preparedBy: "Head of Employee Experience",
+    term: 3,
+    prob_volume: 16000,
+    prob_costtoserve: 29.0,
+    prob_mttr: 3.5,
+    prob_attrition: 15,
+    inv_aicost: 88000,
+    inv_implementation: 95000,
+    inv_changemgmt: 40000,
+    dex_swcost: 45000,
+    dex_effvalue: 175000,
+    itsm_swcost: 60000,
+    itsm_effvalue: 190000,
+    fin_discount: 9.0
+  },
+  midmarket: {
+    title: "Mid-Market Enterprise (8k Users)",
+    preparedBy: "IT Service Delivery Lead",
+    term: 3,
+    prob_volume: 8500,
+    prob_costtoserve: 21.0,
+    prob_mttr: 5.5,
+    prob_attrition: 21,
+    inv_aicost: 48000,
+    inv_implementation: 55000,
+    inv_changemgmt: 22000,
+    dex_swcost: 28000,
+    dex_effvalue: 85000,
+    itsm_swcost: 38000,
+    itsm_effvalue: 110000,
+    fin_discount: 8.0
+  },
+  reset: {
+    title: "AI-in-ITSM Investment",
+    preparedBy: "",
+    term: 5,
+    prob_volume: 40000,
+    prob_costtoserve: 18,
+    prob_mttr: 6,
+    prob_attrition: 28,
+    inv_aicost: 4260,
+    inv_implementation: 85000,
+    inv_changemgmt: 35000,
+    dex_swcost: 0,
+    dex_effvalue: 0,
+    itsm_swcost: 0,
+    itsm_effvalue: 0,
+    fin_discount: 10
+  }
+};
+
+function applyPreset(key) {
+  const p = PRESETS[key];
+  if (!p) return;
+  $('bc_title').value = p.title;
+  $('bc_preparedby').value = p.preparedBy;
+  $('prob_volume').value = p.prob_volume;
+  $('prob_costtoserve').value = p.prob_costtoserve;
+  $('prob_mttr').value = p.prob_mttr;
+  $('prob_attrition').value = p.prob_attrition;
+  $('inv_aicost').value = p.inv_aicost;
+  $('inv_implementation').value = p.inv_implementation;
+  $('inv_changemgmt').value = p.inv_changemgmt;
+  $('dex_swcost').value = p.dex_swcost;
+  $('dex_effvalue').value = p.dex_effvalue;
+  $('itsm_swcost').value = p.itsm_swcost;
+  $('itsm_effvalue').value = p.itsm_effvalue;
+  $('fin_discount').value = p.fin_discount;
+
+  state.projTerm = p.term;
+  $('term_custom').value = p.term;
+  document.querySelectorAll('#termToggle .pill').forEach(pill => pill.classList.toggle('on', +pill.dataset.term === p.term));
+
+  document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.preset === key));
+  recalcAll();
+  showToast(key === 'reset' ? 'Defaults restored.' : `Loaded preset: ${p.title}`);
+}
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+});
+
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '1.0', appId: 'ai-itsm-business-case', timestamp: new Date().toISOString(), currency: currentCurrency,
+    orgProfile: { employees: 0, industry: $('bc_title').value, languages: 1, shiftModel: '' },
+    channelMix: { voice: 0, chat: 0, email: 0, digital: 0 },
+    moduleData: {
+      preparedBy: $('bc_preparedby').value, projTerm: state.projTerm,
+      problem: { volume: num('prob_volume'), costToServe: num('prob_costtoserve'), mttr: num('prob_mttr'), attrition: num('prob_attrition') },
+      investment: { aiCost: num('inv_aicost'), implementation: num('inv_implementation'), changeMgmt: num('inv_changemgmt') },
+      dex: { swcost: num('dex_swcost'), effvalue: num('dex_effvalue') },
+      itsm: { swcost: num('itsm_swcost'), effvalue: num('itsm_effvalue') },
+      discountRate: num('fin_discount'),
+      risks: state.risks,
+      phases: { p1: $('phase1').value, p2: $('phase2').value, p3: $('phase3').value, p4: $('phase4').value },
+      sdScenario: state.sdScenario
+    }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `ai_itsm_business_case_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  showToast('Scenario saved as JSON.');
+});
+
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile && data.orgProfile.industry) $('bc_title').value = data.orgProfile.industry;
+      if (data.appId === 'ai-itsm-business-case' && data.moduleData) {
+        const m = data.moduleData;
+        if (m.preparedBy) $('bc_preparedby').value = m.preparedBy;
+        if (m.problem) { $('prob_volume').value = m.problem.volume; $('prob_costtoserve').value = m.problem.costToServe; $('prob_mttr').value = m.problem.mttr; $('prob_attrition').value = m.problem.attrition; }
+        if (m.investment) { $('inv_aicost').value = m.investment.aiCost; $('inv_implementation').value = m.investment.implementation; $('inv_changemgmt').value = m.investment.changeMgmt; }
+        if (m.dex) { $('dex_swcost').value = m.dex.swcost; $('dex_effvalue').value = m.dex.effvalue; }
+        if (m.itsm) { $('itsm_swcost').value = m.itsm.swcost; $('itsm_effvalue').value = m.itsm.effvalue; }
+        if (m.discountRate !== undefined) $('fin_discount').value = m.discountRate;
+        if (m.risks) state.risks = m.risks;
+        if (m.phases) { $('phase1').value = m.phases.p1 || ''; $('phase2').value = m.phases.p2 || ''; $('phase3').value = m.phases.p3 || ''; $('phase4').value = m.phases.p4 || ''; }
+        if (m.projTerm) { state.projTerm = m.projTerm; $('term_custom').value = m.projTerm; document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm)); }
+        if (m.sdScenario) { state.sdScenario = m.sdScenario; state.sdYearRows = recomputeSDAvoidance(m.sdScenario, state.projTerm).yearRows; $('sdSlot').classList.add('loaded'); $('sdStatus').textContent = 'Loaded from saved business case.'; }
+        renderRisks();
+        showToast('Loaded full Business Case scenario.');
+      } else {
+        showToast('Loaded shared profile field only.');
+      }
+      recalcAll();
+    } catch (err) { showToast('Could not read that file as a valid scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- BOOT ----------------
+(function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('aiitsm_case_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+  renderRisks();
+  recalcAll();
+})();
+
+</script>
+</body>
+</html>

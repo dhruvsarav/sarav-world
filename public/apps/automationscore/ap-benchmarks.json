@@ -1,0 +1,6 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-13" },
+  "pacing_weights": { "kb_readiness": 0.30, "tooling_penetration": 0.20, "digital_culture": 0.20, "complexity_simple": 0.15, "maturity_stage": 0.15 },
+  "maturity_stage_scores": { "none": 0, "pilot": 30, "scaled": 65, "advanced": 90 },
+  "ramp_bounds": { "year1_pct_of_ceiling": 25, "annual_growth_pct_of_ceiling": 15 }
+}

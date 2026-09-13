@@ -7,7 +7,9 @@
     {"id": "desksidestaffing",   "name": "Deskside Support Staffing",   "url": "https://iamsaravofficial.com/apps/desksidestaffing/",    "icon": "🖥️"},
     {"id": "dexadvisor",         "name": "DEX Advisor",                 "url": "https://iamsaravofficial.com/apps/dexadvisor/",          "icon": "🧭"},
     {"id": "itsmadvisor",        "name": "ITSM Platform Advisor",       "url": "https://iamsaravofficial.com/apps/itsmadvisor/",         "icon": "🎫"},
-    {"id": "rfpscorer",          "name": "Vendor RFP Weighted Scorer",  "url": "https://iamsaravofficial.com/apps/rfpscorer/",           "icon": "⚖️"}
+    {"id": "rfpscorer",          "name": "Vendor RFP Weighted Scorer",  "url": "https://iamsaravofficial.com/apps/rfpscorer/",           "icon": "⚖️"},
+    {"id": "aiinitsm",           "name": "AI-in-ITSM Business Case",    "url": "https://iamsaravofficial.com/apps/aiinitsm/",            "icon": "📈"},
+    {"id": "automationscore",    "name": "Automation Potential Advisor", "url": "https://iamsaravofficial.com/apps/automationscore/",     "icon": "🎛️"}
   ],
   "apps": [
     {"id": "apps-hub",             "name": "Playground Hub",         "url": "https://iamsaravofficial.com/apps/",                       "icon": "🎡"},

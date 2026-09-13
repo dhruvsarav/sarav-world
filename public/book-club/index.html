@@ -69,73 +69,80 @@
                 5. That's it. Submissions land in your Google Form's Responses tab.
             -->
             <form
-              action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse"
+              action="https://docs.google.com/forms/d/e/1FAIpQLSfVjwHjeFmMp5dZ27S6dLrKpYGhG1GmTZ1k8DTZk9egicvKOA/formResponse"
               method="POST"
-              target="_blank"
-              novalidate
+              target="bc_hidden_iframe"
+              id="bcForm"
             >
               <div class="bc-field">
                 <label for="bc-name">Name</label>
-                <input id="bc-name" name="entry.111111111" type="text" autocomplete="name" required />
+                <input id="bc-name" name="entry.1978215915" type="text" autocomplete="name" placeholder="Your name" required />
               </div>
 
               <div class="bc-field">
                 <label for="bc-email">Email</label>
-                <input id="bc-email" name="entry.222222222" type="email" autocomplete="email" required />
+                <input id="bc-email" name="entry.253112080" type="email" autocomplete="email" placeholder="name@example.com" required />
               </div>
 
               <div class="bc-field">
-                <label for="bc-mobile">Mobile <span style="color:var(--soft);text-transform:none;letter-spacing:normal;">(optional)</span></label>
-                <input id="bc-mobile" name="entry.333333333" type="tel" autocomplete="tel" />
+                <label for="bc-mobile">Mobile</label>
+                <input id="bc-mobile" name="entry.269663592" type="tel" autocomplete="tel" placeholder="+91 98765 43210" required />
               </div>
 
               <div class="bc-field">
                 <label for="bc-message">A note for Sarav</label>
-                <textarea id="bc-message" name="entry.444444444" placeholder="Share what brought you here — a book, a story, or a thought."></textarea>
+                <textarea id="bc-message" name="entry.199373807" placeholder="Share what brought you here — a book, a story, or a thought."></textarea>
               </div>
 
               <div class="bc-field">
                 <label for="bc-books">Books you've read</label>
-                <select id="bc-books" name="entry.555555555" multiple>
-                  <option value="How (Not) to Irritate Your Wife">How (Not) to Irritate Your Wife</option>
-                  <option value="Purposeful Busyness">Purposeful Busyness</option>
+                <select id="bc-books" name="entry.52708143" multiple required>
                   <option value="Coffee Date">Coffee Date</option>
-                  <option value="Believe in Miracles">Believe in Miracles</option>
-                  <option value="Searching Her: Home Was You">Searching Her: Home Was You</option>
+                  <option value="Believe In Miracles">Believe In Miracles</option>
+                  <option value="Searching Her: Home was You">Searching Her: Home was You</option>
                   <option value="Searching Her">Searching Her</option>
-                  <option value="Letters to My Son">Letters to My Son</option>
-                  <option value="Are You Game?">Are You Game?</option>
+                  <option value="Letters To My Son">Letters To My Son</option>
+                  <option value="Are You Game">Are You Game</option>
                   <option value="Orange Orchard">Orange Orchard</option>
                   <option value="Raneet The Gift">Raneet The Gift</option>
-                  <option value="The First Call">The First Call</option>
-                  <option value="Sixteen & Half">Sixteen & Half</option>
-                  <option value="A Wild Wish">A Wild Wish</option>
                   <option value="Love at 18">Love at 18</option>
-                  <option value="A Day With You">A Day With You</option>
-                  <option value="One Hundred Years">One Hundred Years</option>
                   <option value="P.S. Serendipity">P.S. Serendipity</option>
                 </select>
                 <p style="margin:8px 0 0; color: var(--soft); font-size: 0.86rem; line-height: 1.6;">
-                  Ctrl / Cmd-click to select more than one. Skip if you haven't read any yet — every reader starts somewhere.
+                  Ctrl / Cmd-click to select more than one. Select at least one book to continue.
                 </p>
               </div>
 
               <div class="bc-field">
                 <label>Subscribe to WhatsApp updates?</label>
                 <div class="bc-field-toggle">
-                  <label><input type="radio" name="entry.666666666" value="Yes" /> Yes</label>
-                  <label><input type="radio" name="entry.666666666" value="No" defaultChecked /> No</label>
+                  <label><input type="radio" name="entry.1240881661" value="YES" checked /> YES</label>
+                  <label><input type="radio" name="entry.1240881661" value="NO" /> NO</label>
                 </div>
               </div>
 
-              <button type="submit" class="bc-submit">Join the Book Club</button>
+              <div class="bc-field">
+                <label>How excited are you to join? (1 to 5)</label>
+                <div class="bc-field-toggle">
+                  <label><input type="radio" name="entry.1566811502" value="1" /> 1</label>
+                  <label><input type="radio" name="entry.1566811502" value="2" /> 2</label>
+                  <label><input type="radio" name="entry.1566811502" value="3" /> 3</label>
+                  <label><input type="radio" name="entry.1566811502" value="4" /> 4</label>
+                  <label><input type="radio" name="entry.1566811502" value="5" checked /> 5 🌟</label>
+                </div>
+              </div>
+
+              <button type="submit" class="bc-submit" id="bcSubmitBtn">Join the Book Club</button>
             </form>
 
-            <div class="bc-note">
-              <strong>Setup pending:</strong> the form posts to a Google Form for free, forever
-              submissions. Until the form is created and the entry IDs are wired in (see the
-              HTML comment above), this button posts to a placeholder URL. See the
-              <code>README.md</code> in <code>production/public/</code> for the 4-step setup.
+            <iframe name="bc_hidden_iframe" id="bc_hidden_iframe" style="display:none;"></iframe>
+
+            <div id="bcSuccess" style="display:none; padding:32px 24px; border-radius:20px; border:1px solid rgba(71,200,255,0.4); background:rgba(4,24,36,0.7); text-align:center; margin-top:14px;">
+              <div style="font-size:2.4rem; margin-bottom:10px;">🎉</div>
+              <h3 style="margin:0 0 10px; font-size:1.35rem; color:#ebffff;">Welcome to the Book Club!</h3>
+              <p style="margin:0; color:var(--soft); font-size:0.96rem; line-height:1.7;">
+                Your note and details have reached Sarav. Thank you for reading and being part of this circle of stories.
+              </p>
             </div>
           </div>
         </div>
@@ -202,6 +209,31 @@
         });
       }, { threshold: 0.18, rootMargin: "0px 0px -10% 0px" });
       document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+    })();
+
+    (function() {
+      var submitted = false;
+      var form = document.getElementById('bcForm');
+      var iframe = document.getElementById('bc_hidden_iframe');
+      var success = document.getElementById('bcSuccess');
+      var btn = document.getElementById('bcSubmitBtn');
+
+      if (form && iframe && success) {
+        form.addEventListener('submit', function() {
+          submitted = true;
+          if (btn) {
+            btn.disabled = true;
+            btn.textContent = 'Submitting to Book Club...';
+          }
+        });
+        iframe.addEventListener('load', function() {
+          if (submitted) {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        });
+      }
     })();
   </script>
 </body>

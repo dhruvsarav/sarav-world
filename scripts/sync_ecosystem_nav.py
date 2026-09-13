@@ -28,12 +28,13 @@ PAGES = []
 def add(path, mode, sections=None, current_id=None):
     PAGES.append({"path": path, "mode": mode, "sections": sections or [], "current_id": current_id})
 
-# 1. EApps section (8 pages) — mode=['eapps'], single E-Apps dropdown
+# 1. EApps section (10 pages) — mode=['eapps'], single E-Apps dropdown
 add("eapps/index.html", ["eapps"], current_id="eapps-hub")
 for app_id, dirn in [("tokenomics","tokenomics"), ("sdoptimizer","sdoptimizer"),
                       ("fsoptimizer","fsoptimizer"), ("desksidestaffing","desksidestaffing"),
                       ("dexadvisor","dexadvisor"), ("itsmadvisor","itsmadvisor"),
-                      ("rfpscorer","rfpscorer")]:
+                      ("rfpscorer","rfpscorer"), ("aiinitsm","aiinitsm"),
+                      ("automationscore","automationscore")]:
     add(f"apps/{dirn}/index.html", ["eapps"], current_id=app_id)
 
 # 2. Apps section (10 pages) — mode=['group'], sections=[apps,games,projects]
@@ -56,7 +57,7 @@ for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
 add("projects/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id="projects-hub")
 
-assert len(PAGES) == 30, f"expected 30 pages, got {len(PAGES)}"
+assert len(PAGES) == 32, f"expected 32 pages, got {len(PAGES)}"
 
 # Build the set of internally-resolvable URLs
 INTERNAL_OK = set()
