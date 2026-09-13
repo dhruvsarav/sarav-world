@@ -9,9 +9,9 @@
 ### 7. Universal Web App Architecture & Design Standards (STRICT MEMORIZED RULES)
 Every web app hosted under `public/apps/` must adhere strictly to these rules:
 1. **Playground Hub Section Nomenclature (`/apps/`)**:
-   - Section 1: `⚡ Family & Interactive Web Apps Suite` (9 Live Apps)
+   - Section 1: `⚡ Family & Interactive Web Apps Suite` (10 Live Apps)
    - Section 2: `❤️ Close to Heart Ecosystem`
-2. **Canonical Suite Sequence (Strict 1–9 Standard across Hub and Ecosystem Dropdowns)**:
+2. **Canonical Suite Sequence (Strict 1–10 Standard across Hub and Ecosystem Dropdowns)**:
    1. `genzalphaslang` (GenZ & Alpha Slang Decoder)
    2. `salary-planner` (Salary Planner)
    3. `home-budget-planner` (Home Budget Planner)
@@ -21,6 +21,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    7. `digigold-calculator` (DigiGold SIP Calculator)
    8. `fd-calculator` (FD Calculator)
    9. `rd-calculator` (RD Calculator)
+   10. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
 3. **Footer Distinction**:
    - **Consumer Retail Web Apps (All Calculators & Utility Apps)**:
      `Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
@@ -104,10 +105,10 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
     - **Header & Footer Standards**: Header is named strictly `Family Games Arcade` (no personal names). Standard footer: `Games crafted for Sarav... Engineered with zero external trackers, zero ads, and pure client-side code`.
     - **Universal Mobile Arcade Fullscreen Architecture**: Dual-layer fullscreen combining native `requestFullscreen()` with `.is-fullscreen` on body (`100dvh`, fixed inset 0), non-passive touch listeners (`{ passive: false }` + `e.preventDefault()`), floating top HUDs with quick `🗗 Exit`, and non-blocking in-game modal cards.
 12. **Ecosystem Navigation Rules for Consumer Apps & Games**:
-   - All Consumer Apps & Games pages (`/apps/`, 9 live calculators, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
+   - All Consumer Apps & Games pages (`/apps/`, 10 live tools, `/games/`, and 10 arcade games) feature **strictly THREE** dropdowns in canonical sequential order: `Apps ▾` | `Games ▾` | `Projects ▾`.
    - `E-Apps ▾` dropdown is completely excluded from consumer apps and games.
    - **Canonical Dropdown Items (Strict Standards)**:
-     * `Apps ▾` (10 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`.
+     * `Apps ▾` (11 items): `🎡 Playground Hub`, `GenZ & Alpha Slang`, `Salary Planner`, `Home Budget Planner`, `Retirement Planner`, `Gold Price Estimator`, `Gold Loan Calculator`, `DigiGold Calculator`, `FD Calculator`, `RD Calculator`, `Glow Up Grid`.
      * `Games ▾` (11 items): `🎰 Games Arcade Hub`, `🎰 Family Jackpot`, `💖 Senti-Meter`, `🎁 Secret Box`, `🏓 Ping-Pong Cup Toss`, `🍾 Bottle Flip Showdown`, `⚡ Samosa Snatch`, `🗣️ Chit-Charades`, `🎡 Snack Roulette`, `🎙️ Dialogue Detective`, `🎯 Desi Gulel Strike`.
      * `Projects ▾` (4 items): `🏛️ Projects Hub`, `Temples of Tamil Gods`, `FactDrop`, `Thirukkural Hub`.
      * **Right Side**: `🎪 Playground` link + `🧠 Enterprise AI Economics` badge.
@@ -121,7 +122,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
    - Features official brand icon `playground-square.png` in hero.
    - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
-   - Reflects full live suite metrics: 9 Apps, 7 Engines, 10 Games, 3 Projects.
+   - Reflects full live suite metrics: 10 Apps, 9 Engines, 10 Games, 3 Projects (32 Interactive Destinations across 33 Synchronized Ecosystem Pages).
    - Full 4-tier ecosystem navigation matching canonical inventories.
 
 ---
@@ -167,5 +168,5 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
 
 ### 2. Apps Hub (`/apps/` - `public/apps/index.html`)
 - **Clean Structure:** Laser-focused exclusively on web applications.
-- **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (9 live consumer tools) → Zero-telemetry footer.
+- **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (10 live consumer tools) → Zero-telemetry footer.
 - Cultural platforms (*Temples of Tamil Gods*, *Thirukkural*, *FactDrop*) live strictly on the dedicated [`/projects/`](https://iamsaravofficial.com/projects/) hub.
