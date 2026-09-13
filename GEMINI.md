@@ -139,6 +139,9 @@ On this Windows machine, the agent framework must execute commands using:
 # Build verification
 npm --prefix "D:\Websites\SaravsWorld" run build
 
+# Synchronize all ecosystem menubars (Maker-checker depth parser, dry-run or --write)
+python "D:\Websites\SaravsWorld\scripts\sync_ecosystem_nav.py" --write
+
 # Git status & push
 git -C "D:\Websites\SaravsWorld" status
 git -C "D:\Websites\SaravsWorld" push origin main
