@@ -1,0 +1,43 @@
+{
+  "eapps": [
+    {"id": "eapps-hub",          "name": "Executive Suite Hub",         "url": "https://iamsaravofficial.com/eapps/",                    "icon": "🏢"},
+    {"id": "tokenomics",         "name": "Tokenomics (AI Economics)",   "url": "https://iamsaravofficial.com/apps/tokenomics/",          "icon": "🧠"},
+    {"id": "sdoptimizer",        "name": "SD Optimizer",                "url": "https://iamsaravofficial.com/apps/sdoptimizer/",         "icon": "👷"},
+    {"id": "fsoptimizer",        "name": "Field Services Hub-Spoke",    "url": "https://iamsaravofficial.com/apps/fsoptimizer/",         "icon": "🗺️"},
+    {"id": "desksidestaffing",   "name": "Deskside Support Staffing",   "url": "https://iamsaravofficial.com/apps/desksidestaffing/",    "icon": "🖥️"},
+    {"id": "dexadvisor",         "name": "DEX Advisor",                 "url": "https://iamsaravofficial.com/apps/dexadvisor/",          "icon": "🧭"},
+    {"id": "itsmadvisor",        "name": "ITSM Platform Advisor",       "url": "https://iamsaravofficial.com/apps/itsmadvisor/",         "icon": "🎫"},
+    {"id": "rfpscorer",          "name": "Vendor RFP Weighted Scorer",  "url": "https://iamsaravofficial.com/apps/rfpscorer/",           "icon": "⚖️"}
+  ],
+  "apps": [
+    {"id": "apps-hub",             "name": "Playground Hub",         "url": "https://iamsaravofficial.com/apps/",                       "icon": "🎡"},
+    {"id": "genzalphaslang",       "name": "GenZ & Alpha Slang",     "url": "https://iamsaravofficial.com/apps/genzalphaslang/",        "icon": "🗣️"},
+    {"id": "salary-planner",       "name": "Salary Planner",         "url": "https://iamsaravofficial.com/apps/salary-planner/",        "icon": "💰"},
+    {"id": "home-budget-planner",  "name": "Home Budget Planner",    "url": "https://iamsaravofficial.com/apps/home-budget-planner/",   "icon": "🏠"},
+    {"id": "retirement-planner",   "name": "Retirement Planner",     "url": "https://iamsaravofficial.com/apps/retirement-planner/",    "icon": "🌴"},
+    {"id": "gold-price-estimator", "name": "Gold Price Estimator",   "url": "https://iamsaravofficial.com/apps/gold-price-estimator/",  "icon": "🥇"},
+    {"id": "gold-loan-calculator", "name": "Gold Loan Calculator",   "url": "https://iamsaravofficial.com/apps/gold-loan-calculator/",  "icon": "🏦"},
+    {"id": "digigold-calculator",  "name": "DigiGold Calculator",    "url": "https://iamsaravofficial.com/apps/digigold-calculator/",   "icon": "🪙"},
+    {"id": "fd-calculator",        "name": "FD Calculator",          "url": "https://iamsaravofficial.com/apps/fd-calculator/",         "icon": "🔒"},
+    {"id": "rd-calculator",        "name": "RD Calculator",          "url": "https://iamsaravofficial.com/apps/rd-calculator/",         "icon": "🔁"}
+  ],
+  "games": [
+    {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},
+    {"id": "familywinner",      "name": "Family Jackpot",       "url": "https://iamsaravofficial.com/games/familywinner/",    "icon": "🎰"},
+    {"id": "sentimeter",        "name": "Senti-Meter",          "url": "https://iamsaravofficial.com/games/sentimeter/",      "icon": "💖"},
+    {"id": "secretbox",         "name": "Secret Box",           "url": "https://iamsaravofficial.com/games/secretbox/",       "icon": "🎁"},
+    {"id": "cuptoss",           "name": "Ping-Pong Cup Toss",    "url": "https://iamsaravofficial.com/games/cuptoss/",         "icon": "🏓"},
+    {"id": "bottleflip",        "name": "Bottle Flip Showdown",  "url": "https://iamsaravofficial.com/games/bottleflip/",      "icon": "🍾"},
+    {"id": "samosasnatch",      "name": "Samosa Snatch",         "url": "https://iamsaravofficial.com/games/samosasnatch/",    "icon": "⚡"},
+    {"id": "chitcharades",      "name": "Chit-Charades",         "url": "https://iamsaravofficial.com/games/chitcharades/",    "icon": "🗣️"},
+    {"id": "snackroulette",     "name": "Snack Roulette",        "url": "https://iamsaravofficial.com/games/snackroulette/",   "icon": "🎡"},
+    {"id": "dialoguedetective", "name": "Dialogue Detective",    "url": "https://iamsaravofficial.com/games/dialoguedetective/","icon": "🎙️"},
+    {"id": "gulelstrike",       "name": "Desi Gulel Strike",     "url": "https://iamsaravofficial.com/games/gulelstrike/",     "icon": "🎯"}
+  ],
+  "projects": [
+    {"id": "projects-hub", "name": "Projects Hub",          "url": "https://iamsaravofficial.com/projects/",   "icon": "🏛️", "external": false},
+    {"id": "temples",      "name": "Temples of Tamil Gods", "url": "https://iamsaravofficial.com/temples/",    "icon": "🛕", "external": true},
+    {"id": "factdrop",     "name": "FactDrop",              "url": "https://iamsaravofficial.com/factdrop/",   "icon": "💡", "external": true},
+    {"id": "thirukkural",  "name": "Thirukkural Hub",       "url": "https://iamsaravofficial.com/thirukkural/","icon": "📜", "external": true}
+  ]
+}

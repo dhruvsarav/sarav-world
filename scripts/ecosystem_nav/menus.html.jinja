@@ -1,0 +1,65 @@
+{#- ============================================================
+    COMPONENT 1: eapps_menu
+    Renders the single "E-Apps" dropdown. Used alone on all 8
+    Enterprise pages, and composed alongside ecosystem_menu on
+    the Playground and Projects pages (4-dropdown pages).
+   ============================================================ #}
+{% macro eapps_menu(nav, current_id) -%}
+<div class="eco-dropdown">
+  <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+  <div class="eco-menu">
+    {%- for item in nav.eapps %}
+    <a href="{{ item.url }}"{% if item.id == current_id %} class="current"{% endif %}>{{ item.icon }} {{ item.name }}</a>
+    {%- endfor %}
+  </div>
+</div>
+{%- endmacro %}
+
+{#- ============================================================
+    COMPONENT 2: ecosystem_menu
+    Renders 1-3 dropdowns (Apps / Games / Projects) depending on
+    `sections`. Same macro serves:
+      - Apps section pages    -> sections=['apps','games','projects']
+      - Games section pages   -> sections=['apps','games','projects']
+      - Projects hub          -> composed with eapps_menu
+      - Playground            -> composed with eapps_menu
+    `active_dropdown` optionally bolds/accents a dropdown button
+    itself (not just the link inside it) when the page IS that
+    section's hub, matching the existing "Games" accent-color
+    convention seen on games/index.html.
+   ============================================================ #}
+{% macro ecosystem_menu(nav, sections, current_id, active_dropdown=None) -%}
+{%- set labels = {'apps': 'Apps', 'games': 'Games', 'projects': 'Projects'} -%}
+{%- for sec in sections %}
+{%- if loop.index > 1 %}
+<span class="eco-divider">│</span>
+{% endif %}
+<div class="eco-dropdown">
+  <button class="eco-dropbtn" aria-haspopup="true"{% if sec == active_dropdown %} style="color:var(--accent);"{% endif %}>{{ labels[sec] }} <span class="eco-caret">▾</span></button>
+  <div class="eco-menu">
+    {%- for item in nav[sec] %}
+    <a href="{{ item.url }}"{% if item.id == current_id %} class="current"{% endif %}>{{ item.icon }} {{ item.name }}</a>
+    {%- endfor %}
+  </div>
+</div>
+{%- endfor %}
+{%- endmacro %}
+
+{#- ============================================================
+    WRAPPER: full .ecosystem-links inner content.
+    Fixed brand link + divider is identical on every page, so it
+    lives here once. Composes component 1 and/or component 2
+    based on `mode`.
+   ============================================================ #}
+{% macro ecosystem_links(nav, mode, sections=[], current_id=None, active_dropdown=None) -%}
+<a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+<span class="eco-divider">│</span>
+{%- set parts = [] %}
+{%- if 'eapps' in mode %}
+{%- set _ = parts.append(eapps_menu(nav, current_id)) %}
+{%- endif %}
+{%- if 'group' in mode %}
+{%- set _ = parts.append(ecosystem_menu(nav, sections, current_id, active_dropdown)) %}
+{%- endif %}
+{{ parts | join('\n<span class="eco-divider">│</span>\n') }}
+{%- endmacro %}

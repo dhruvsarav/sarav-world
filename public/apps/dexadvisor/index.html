@@ -311,9 +311,23 @@
   footer a { color: var(--text-dim); }
   .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
   .overflow-x { overflow-x: auto; }
+  .btn-whatsapp { background: #15803d !important; color: #ffffff !important; border-color: #16a34a !important; font-weight: 600; }
+  .btn-whatsapp:hover { background: #16a34a !important; box-shadow: 0 2px 10px rgba(22, 163, 74, 0.3); }
+
+  /* Non-blocking Toast Notification */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: var(--surface); color: var(--text); border: 1px solid var(--accent);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45); border-radius: 8px;
+    padding: 12px 18px; font-size: 13px; font-weight: 500;
+    opacity: 0; pointer-events: none; transform: translateY(10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { opacity: 1; pointer-events: auto; transform: translateY(0); }
 
   @media print {
-    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, .toast, #offeringsAdd, #otAdd { display: none !important; }
     section.block { padding: 12px 0; break-inside: avoid; border: none; }
     body { background: #fff !important; color: #111 !important; }
     .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
@@ -633,16 +647,19 @@
     </div>
 
     <div class="actionbar">
-      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnShareWhatsApp" class="btn-whatsapp">📱 Share on WhatsApp</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
       <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
       <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
       <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
       <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
-      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
     </div>
   </section>
 
 </div>
+
+<div id="toast" class="toast"></div>
 
 <footer>
   <div class="container">
@@ -1020,6 +1037,33 @@ let BENCH = null;
 
 const $ = (id) => document.getElementById(id);
 const num = (id) => { const el = $(id); if (!el) return 0; const v = parseFloat(el.value); return isNaN(v) ? 0 : v; };
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function fallbackCopy(text, successMsg) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showToast(successMsg);
+  } catch (err) {
+    showToast('Copy failed. Please copy manually.');
+  }
+  document.body.removeChild(ta);
+}
+
 const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
 
 const PAIN_DIMS = [
@@ -1388,29 +1432,66 @@ $('btnExportCSV').addEventListener('click', () => {
   link.click();
 });
 
-$('btnCopyBrief').addEventListener('click', async () => {
-  const text = `# 🧭 DEX Platform Advisor — Executive Briefing
-**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/dexadvisor/
-**Term:** ${state.projTerm} years
+// 1. Share on WhatsApp
+$('btnShareWhatsApp').addEventListener('click', () => {
+  const topFit = $('kpi_r_fit').textContent;
+  const vendor = $('kpi_r_vendorname').textContent;
+  const uplift = $('kpi_r_uplift').textContent;
+  const avoidance = $('kpi_r_costavoidance').textContent;
 
-### XPI Scorecard
-- **Baseline XPI (Today):** ${$('xpi_r_baseline').textContent}
-- **Top Vendor Fit:** ${$('xpi_r_fit').textContent} (${$('xpi_r_vendorname').textContent})
-- **Urgency Score:** ${$('xpi_r_urgency').textContent}
-- **Final-Year XPI:** ${$('xpi_r_finalxpi').textContent}
+  const text = `🧭 *Digital Employee Experience (DEX) Advisor — Summary*
+🔗 https://iamsaravofficial.com/apps/dexadvisor/
+
+🏆 *Top Platform Match:*
+• Recommended Vendor: *${vendor}* (${topFit} Fit)
+• Projected XPI Uplift: *${uplift}*
+• ${state.projTerm}-Yr Avoided Dispatch/Outage Cost: *${avoidance}*
+
+⚡ *Estate Diagnostics:*
+• Managed Endpoints: ${$('diag_endpoints').textContent}
+• Ecosystem: ${$('diag_ecosystem').textContent}
+• Deployment Pref: ${$('diag_deploy').textContent}
+• Existing Tooling: ${$('diag_tooling').textContent}
+
+Calculated via Sarav's World Digital Workplace Suite.`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+});
+
+// 2. Copy Executive Briefing (Markdown)
+$('btnCopyBrief').addEventListener('click', async () => {
+  const top = getTopVendor();
+  const text = `# 🧭 DEX Platform Architecture Advisor — Executive Briefing
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/dexadvisor/
+**Top Recommendation:** ${top ? top.name : '—'} (${$('kpi_r_fit').textContent} fit score)
+**Urgency Score:** ${Math.round(computeUrgencyScore(state.triggerValues, BENCH.trigger_drivers))}/100
+
+### Executive Recommendation
+- **Top Platform Match:** ${top ? top.name : '—'} (${top ? top.tier : ''})
+- **Overall Fit:** ${$('kpi_r_fit').textContent}
+- **Projected Fleet XPI Uplift:** ${$('kpi_r_uplift').textContent}
+- **${state.projTerm}-Year Value Delivered:** ${$('kpi_r_costavoidance').textContent} (avoided deskside visits & downtime)
 
 ### Estate
 - **Managed Endpoints:** ${$('diag_endpoints').textContent}
 - **Ecosystem:** ${$('diag_ecosystem').textContent}
 - **Deployment Requirement:** ${$('diag_deploy').textContent}
 - **Existing Tooling:** ${$('diag_tooling').textContent}`;
-  try {
-    await navigator.clipboard.writeText(text);
-    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
-    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
-  } catch (e) { alert('Clipboard copy failed. Please grant permission.'); }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('Executive briefing copied to clipboard.');
+    } catch (e) {
+      fallbackCopy(text, 'Executive briefing copied to clipboard.');
+    }
+  } else {
+    fallbackCopy(text, 'Executive briefing copied to clipboard.');
+  }
 });
 
+// 3. Save Scenario JSON
 $('btnSaveScenario').addEventListener('click', () => {
   const scenario = {
     schemaVersion: '1.0',
@@ -1433,8 +1514,10 @@ $('btnSaveScenario').addEventListener('click', () => {
   link.href = URL.createObjectURL(blob);
   link.download = `dex_advisor_scenario_${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
+  showToast('Scenario saved as JSON.');
 });
 
+// 4. Load Scenario JSON
 $('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
 $('fileLoadScenario').addEventListener('change', (e) => {
   const file = e.target.files[0]; if (!file) return;
@@ -1471,17 +1554,18 @@ $('fileLoadScenario').addEventListener('change', (e) => {
         if (m.deployPref) $('deploy_pref').value = m.deployPref;
         if (m.toolingMaturity) $('tooling_maturity').value = m.toolingMaturity;
         if (m.projTerm) { state.projTerm = m.projTerm; $('term_custom').value = m.projTerm; document.querySelectorAll('#termToggle .pill').forEach(p => p.classList.toggle('on', +p.dataset.term === m.projTerm)); }
-        alert('Loaded full DEX Advisor scenario.');
+        showToast('Loaded full DEX Advisor scenario.');
       } else {
-        alert('Loaded shared org profile from an external scenario. App-specific fields (pain points, triggers) were left as-is.');
+        showToast('Loaded shared org profile.');
       }
       recalcAll();
-    } catch (err) { alert('Could not read that file as a valid scenario JSON.'); }
+    } catch (err) { showToast('Could not read that file as valid scenario JSON.'); }
   };
   reader.readAsText(file);
   e.target.value = '';
 });
 
+// 5. Print PDF
 $('btnPrint').addEventListener('click', () => window.print());
 
 // ---------------- BOOT ----------------
