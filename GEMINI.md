@@ -55,21 +55,23 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Home Budget Planner features 3 GenZ vibe presets: `💀 No Cap YOLO (95% Burn)`, `✨ Soft Life (65% Burn)`, `🗿 Monk Mode (35% Burn)`.
 9. **Executive Digital Workplace & Enterprise AI Economics Suite Architecture (`/eapps/`)**:
    - Executive portal at `/eapps/` (`https://iamsaravofficial.com/eapps/`) crafted for CXOs, Directors of IT and DWP, Heads of EUC, Chief AI Architects, Sales Heads, Pre-Sales Heads, Solution Directors, and strategic pursuit teams.
-   - Houses 9 deterministic decision engines in canonical sequence:
-     1. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
-     2. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
-     3. `fsoptimizer` (`/apps/fsoptimizer/`): Field Services hub-and-spoke dispatch optimization using square-root travel law, AI remote deflection, and vehicle OPEX modeling.
-     4. `desksidestaffing` (`/apps/desksidestaffing/`): Deskside, Tech Bar, and smart locker staffing capacity engine with dual-tier Erlang C queueing and hybrid office attendance factors.
-     5. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (Nexthink, ControlUp, Lakeside, 1E, ServiceNow), 7-year XPI projections, and XLA playbook.
-     6. `itsmadvisor` (`/apps/itsmadvisor/`): Trigger-weighted ITSM platform fit (ServiceNow, Jira, Freshservice, BMC Helix, Ivanti), urgency scoring, directional TCO envelope, and phased migration playbook.
-     7. `rfpscorer` (`/apps/rfpscorer/`): Generic multi-attribute decision matrix with disqualifying must-have gates, custom weights, and built-in templates (DWP MSP, ITSM, DEX).
-     8. `aiinitsm` (`/apps/aiinitsm/`): AI-in-ITSM Business Case Builder (Discounted cash flows, NPV/payback/ROI rollup, live SD Optimizer scenario recomputation, 5x5 risk register).
-     9. `automationscore` (`/apps/automationscore/`): Automation Potential Advisor (Bottom-up tech stack ceiling across 50 call drivers, digital reachability bounds, 5–7 year realization curve).
-   - All enterprise apps retain strict client-side zero-telemetry computation and zero blocking alerts (`showToast()` standard).
-   - **Topbar Badging Standards**:
-     * `/apps/tokenomics/`: `🧠 Enterprise AI Economics · Version 2026.09`
-     * All other 8 engines + `/eapps/` hub: `<img src="https://iamsaravofficial.com/eapps/eapps-square.png" ...>Digital Workplace Suite · Version 2026.09`
-   - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/` and all 9 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
+    - Houses 10 deterministic decision engines plus the Universal Shared Workspace in canonical sequence:
+      1. `dwssharedworkspace` (`/apps/dwssharedworkspace/`): Universal Enterprise Shared Workspace (Configure once, 5 architecture pillars, unlimited named custom presets + 4 archetypes, real-time client-side sync across all 10 engines).
+      2. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
+      3. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
+      4. `fsoptimizer` (`/apps/fsoptimizer/`): Field Services hub-and-spoke dispatch optimization using square-root travel law, AI remote deflection, and vehicle OPEX modeling.
+      5. `desksidestaffing` (`/apps/desksidestaffing/`): Deskside, Tech Bar, and smart locker staffing capacity engine with dual-tier Erlang C queueing and hybrid office attendance factors.
+      6. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (Nexthink, ControlUp, Lakeside, 1E, ServiceNow), 7-year XPI projections, and XLA playbook.
+      7. `itsmadvisor` (`/apps/itsmadvisor/`): Trigger-weighted ITSM platform fit (ServiceNow, Jira, Freshservice, BMC Helix, Ivanti), urgency scoring, directional TCO envelope, and phased migration playbook.
+      8. `rfpscorer` (`/apps/rfpscorer/`): Generic multi-attribute decision matrix with disqualifying must-have gates, custom weights, and built-in templates (DWP MSP, ITSM, DEX).
+      9. `aiinitsm` (`/apps/aiinitsm/`): AI-in-ITSM Business Case Builder (Discounted cash flows, NPV/payback/ROI rollup, live SD Optimizer scenario recomputation, 5x5 risk register).
+      10. `automationscore` (`/apps/automationscore/`): Automation Potential Advisor (Bottom-up tech stack ceiling across 50 call drivers, digital reachability bounds, 5–7 year realization curve).
+      11. `dwpassessment` (`/apps/dwpassessment/`): Digital Workplace Maturity Assessment (8 operational pillars, 48 capabilities, SVG radar spider chart, priority gap auto-routing).
+    - All enterprise apps retain strict client-side zero-telemetry computation and zero blocking alerts (`showToast()` standard).
+    - **Topbar Badging Standards**:
+      * `/apps/tokenomics/`: `🧠 Enterprise AI Economics · Version 2026.09`
+      * All other 9 engines + Shared Workspace + `/eapps/` hub: `<img src="https://iamsaravofficial.com/eapps/eapps-square.png" ...>Digital Workplace Suite · Version 2026.09`
+    - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/`, Universal Shared Workspace, and all 10 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
    - **Footer Standard for Enterprise Apps**:
      `Executive Design Engine Suite crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.`
      `&copy; 2009–2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All calculations run strictly client-side.`

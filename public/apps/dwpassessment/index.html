@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Digital Workplace Maturity Assessment — 8 Pillars, 48 Questions | Sarav's World</title>
+<meta name="description" content="A complete capability maturity assessment across 8 Digital Workplace pillars — 48 diagnostic questions, 5-level scoring, a radar chart, and a routed action plan into the tools that fix your biggest gaps.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/dwpassessment/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/dwpassessment/">
+<meta property="og:title" content="Digital Workplace Maturity Assessment — Sarav's World">
+<meta property="og:description" content="8-pillar capability maturity model with a radar chart and routed action plan into the Digital Workplace Services suite.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/dwpassessment/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+
+
+
+
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #E3A63E;
+    --accent-ink: #141005;
+    --accent-soft: rgba(227, 166, 62, 0.14);
+    --accent2: #4FB0A8;
+    --accent2-soft: rgba(79, 176, 168, 0.14);
+    --danger: #E2665A;
+    --danger-soft: rgba(226, 102, 90, 0.14);
+    --success: #5FBF77;
+    --success-soft: rgba(95, 191, 119, 0.14);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4;
+    --surface: #FFFFFF;
+    --surface-2: #F0ECE4;
+    --surface-3: #E8E2D7;
+    --border: #D8D1C4;
+    --border-soft: #E5DFC4;
+    --text: #191E24;
+    --text-dim: #555E6B;
+    --text-faint: #858E9B;
+    --accent: #B9791F;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(185, 121, 31, 0.12);
+    --accent2: #2E7F78;
+    --accent2-soft: rgba(46, 127, 120, 0.12);
+    --danger: #C6483C;
+    --danger-soft: rgba(198, 72, 60, 0.12);
+    --success: #3E9457;
+    --success-soft: rgba(62, 148, 87, 0.12);
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }
+  .mono { font-family: 'IBM Plex Mono', ui-monospace, monospace; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }
+  p { margin: 0 0 0.6em; }
+  input, select, button, textarea { font-family: inherit; font-size: 13.5px; color: var(--text); }
+  input, select, textarea {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; width: 100%; outline: none; transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width: auto; accent-color: var(--accent); cursor: pointer; }
+  input[type="range"] { accent-color: var(--accent); cursor: pointer; padding: 0; }
+  label { display: block; font-size: 12px; color: var(--text-dim); margin-bottom: 5px; font-weight: 500; }
+  button {
+    cursor: pointer; border-radius: 6px; border: 1px solid var(--border); background: var(--surface-2);
+    padding: 8px 14px; font-weight: 500; transition: all 0.15s ease;
+  }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  button.primary:hover { filter: brightness(1.08); box-shadow: 0 2px 10px var(--accent-soft); }
+  button.ghost { background: transparent; }
+  button.small { padding: 5px 10px; font-size: 12px; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+  .field { margin-bottom: 14px; }
+  .grid { display: grid; gap: 14px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  .grid-5 { grid-template-columns: repeat(5, 1fr); }
+  @media(max-width: 900px) { .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 640px) { .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; } }
+  .hint { font-size: 11.5px; color: var(--text-faint); margin-top: 4px; line-height: 1.4; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 2px 8px; border-radius: 20px; border: 1px solid var(--border); color: var(--text-dim); font-weight: 500; }
+  .badge.ok { color: var(--success); border-color: var(--success); background: var(--success-soft); }
+  .badge.warn { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
+  .badge.info { color: var(--accent2); border-color: var(--accent2); background: var(--accent2-soft); }
+  .badge.gold { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
+
+  /* Subheader / Ecosystem banner with Hover Dropdowns */
+  .ecosystem-bar {
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 6px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .ecosystem-links { display: flex; align-items: center; gap: 8px; }
+  .eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+  .eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+  .eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; user-select: none; }
+
+  /* Dropdown Styles */
+  .eco-dropdown { position: relative; display: inline-block; }
+  .eco-dropbtn {
+    background: transparent; border: none; color: var(--text-dim);
+    font-family: inherit; font-size: 12.5px; font-weight: 600;
+    padding: 4px 8px; border-radius: 6px; cursor: pointer;
+    display: flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .eco-dropbtn:hover, .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn, .eco-dropdown:focus-within .eco-dropbtn {
+    color: var(--accent); background: var(--accent-soft);
+  }
+  .eco-caret { font-size: 9px; transition: transform 0.2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    padding: 6px; min-width: 210px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    z-index: 2000; backdrop-filter: blur(12px);
+  }
+  /* Invisible hover bridge to eliminate gap between button and menu */
+  .eco-menu::before {
+    content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; background: transparent;
+  }
+  [data-theme="light"] .eco-menu {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu, .eco-dropdown:focus-within .eco-menu {
+    display: block; animation: ecoFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes ecoFadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .eco-menu a {
+    display: block; color: var(--text); text-decoration: none;
+    padding: 8px 12px; border-radius: 6px; font-size: 12.5px;
+    font-weight: 500; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .eco-menu a:hover {
+    background: var(--accent-soft); color: var(--accent); text-decoration: none;
+  }
+  .eco-tokenomics {
+    color: var(--accent) !important; font-weight: 600; font-size: 12px;
+  }
+
+  /* Sticky Header Wrapper */
+  .sticky-header-wrapper {
+    position: sticky; top: 0; z-index: 50;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  }
+  [data-theme="light"] .sticky-header-wrapper {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Header */
+  header.topbar {
+    background: rgba(12, 15, 20, 0.96);
+    backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-soft);
+  }
+  [data-theme="light"] header.topbar { background: rgba(248, 247, 244, 0.96); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 20px; max-width: 1240px; margin: 0 auto; }
+  .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+  .brand .mark { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .brand .mark img { width: 100%; height: 100%; object-fit: contain; }
+  .brand h1 { font-size: 18px; letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px; }
+  .brand .tagline { font-size: 11px; color: var(--text-faint); display: block; }
+  .topbar-controls { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .currency-toggle, .theme-toggle { display: flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+  .currency-toggle button, .theme-toggle button {
+    border: none; border-radius: 0; background: var(--surface-2); padding: 5px 8px; font-size: 11.5px; font-family: 'IBM Plex Mono', monospace;
+  }
+  .currency-toggle button.active, .theme-toggle button.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .live-total-pill {
+    font-family: 'IBM Plex Mono'; font-size: 12px; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 6px; padding: 5px 10px; white-space: nowrap;
+  }
+  .live-total-pill b { color: var(--accent); }
+
+  /* Dedicated Section Navigation Bar (Option 1) */
+  .sec-nav-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  [data-theme="light"] .sec-nav-bar { background: var(--surface-2); }
+  .sec-nav-inner {
+    max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+    display: flex; align-items: center; gap: 6px; overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sec-nav-inner::-webkit-scrollbar { display: none; }
+  .sec-nav-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;
+    color: var(--text-dim); text-decoration: none; white-space: nowrap;
+    transition: all 0.15s ease; border: 1px solid transparent;
+  }
+  .sec-nav-link:hover {
+    background: var(--surface-2); color: var(--text); border-color: var(--border); text-decoration: none;
+  }
+  .sec-nav-link.active {
+    background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+  .sec-nav-link .sn-num {
+    font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8;
+  }
+  .sec-nav-link.report-link {
+    margin-left: auto; background: var(--accent-soft); color: var(--accent); border-color: var(--accent); font-weight: 600;
+  }
+
+  /* Presets Bar */
+  .presets-bar {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+  }
+  .presets-inner {
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  }
+  .presets-title { font-size: 11.5px; font-weight: 600; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; }
+  .preset-btn {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 20px;
+    padding: 4px 12px; font-size: 12px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  }
+  .preset-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .preset-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
+  /* Sections */
+  section.block { padding: 42px 0; border-bottom: 1px solid var(--border-soft); }
+  .sec-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .sec-num {
+    font-family: 'IBM Plex Mono'; font-weight: 600; font-size: 13px; color: var(--accent);
+    border: 1px solid var(--accent); width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: var(--accent-soft);
+  }
+  .sec-head h2 { font-size: 20px; letter-spacing: -0.01em; }
+  .sec-desc { color: var(--text-dim); font-size: 13.5px; margin: -10px 0 20px 46px; max-width: 780px; }
+
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 20px; }
+  .panel + .panel { margin-top: 14px; }
+  .panel h3 { font-size: 13.5px; margin-bottom: 14px; color: var(--text-dim); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left; font-size: 11.5px; color: var(--text-faint); font-weight: 600;
+    padding: 8px 10px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.03em;
+  }
+  td { padding: 7px 10px; border-bottom: 1px solid var(--border-soft); vertical-align: middle; }
+  td input, td select { padding: 6px 8px; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+  .num-cell { text-align: right; font-family: 'IBM Plex Mono'; }
+  .row-actions { width: 36px; text-align: center; }
+
+  /* KPI Cards */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 16px; }
+  @media(max-width: 900px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  @media(max-width: 500px) { .kpi-row { grid-template-columns: 1fr; } }
+  .kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 18px; position: relative; overflow: hidden; }
+  .kpi::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+  .kpi.accent2::before { background: var(--accent2); }
+  .kpi.success::before { background: var(--success); }
+  .kpi .label { font-size: 11.5px; color: var(--text-faint); margin-bottom: 6px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.03em; }
+  .kpi .value { font-family: 'IBM Plex Mono'; font-size: 24px; font-weight: 700; color: var(--accent); }
+  .kpi .sub { font-size: 11.5px; color: var(--text-dim); margin-top: 4px; line-height: 1.3; }
+  .kpi.accent2 .value { color: var(--accent2); }
+  .kpi.success .value { color: var(--success); }
+
+  .pillrow { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill {
+    border: 1px solid var(--border); border-radius: 20px; padding: 5px 12px; font-size: 12px;
+    cursor: pointer; user-select: none; transition: all 0.15s ease;
+  }
+  .pill:hover { border-color: var(--accent); }
+  .pill.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .checkline { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text); margin-bottom: 0; cursor: pointer; }
+
+  /* Sliders & range rows */
+  .slider-control { display: flex; align-items: center; gap: 14px; }
+  .slider-control input[type="range"] { flex: 1; }
+  .slider-val { font-family: 'IBM Plex Mono'; font-size: 13px; font-weight: 600; min-width: 50px; text-align: right; color: var(--accent); }
+
+  /* Footer & Action Bar */
+  footer { padding: 40px 0 60px; text-align: center; color: var(--text-faint); font-size: 12px; border-top: 1px solid var(--border-soft); }
+  footer a { color: var(--text-dim); }
+  .actionbar { display: flex; gap: 10px; justify-content: flex-end; margin-top: 18px; flex-wrap: wrap; }
+  .overflow-x { overflow-x: auto; }
+
+  @media print {
+    header.topbar, .sticky-header-wrapper, .sec-nav-bar, .ecosystem-bar, .presets-bar, .actionbar, #offeringsAdd, #otAdd { display: none !important; }
+    section.block { padding: 12px 0; break-inside: avoid; border: none; }
+    body { background: #fff !important; color: #111 !important; }
+    .panel, .kpi { border: 1px solid #ccc !important; background: #fff !important; color: #111 !important; box-shadow: none !important; }
+    .mono, .value { color: #111 !important; }
+  }
+
+
+/* DEX Advisor additions */
+.slider-row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 0; border-bottom: 1px solid var(--border-soft); }
+.slider-row:last-child { border-bottom: none; }
+.slider-row .s-label { font-size: 13px; color: var(--text); flex: 1; min-width: 0; }
+.slider-row .s-sub { font-size: 11px; color: var(--text-faint); margin-top: 2px; }
+.slider-row .slider-control { width: 220px; flex: none; }
+.weight-bar-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.weight-bar-label { width: 220px; flex: none; font-size: 12.5px; color: var(--text-dim); }
+.weight-bar-track { flex: 1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.weight-bar-fill { height: 100%; background: var(--accent2); }
+.weight-bar-val { width: 46px; flex: none; text-align: right; font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-dim); }
+.vendor-row { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px; overflow: hidden; background: var(--surface); }
+.vendor-row.top { border-color: var(--accent); }
+.vendor-head { display: flex; align-items: center; gap: 14px; padding: 14px 16px; cursor: pointer; }
+.vendor-rank { font-family: 'IBM Plex Mono'; color: var(--text-faint); font-size: 13px; width: 22px; }
+.vendor-name-wrap { flex: 1; min-width: 0; }
+.vendor-name-wrap .vname { font-weight: 600; font-size: 15px; }
+.vendor-name-wrap .vtier { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); }
+.vendor-bar-wrap { flex: 2; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; min-width: 100px; }
+.vendor-bar-fill { height: 100%; background: var(--accent2); }
+.vendor-row.top .vendor-bar-fill { background: var(--accent); }
+.vendor-fit-num { font-family: 'IBM Plex Mono'; font-size: 15px; width: 50px; text-align: right; }
+.best-match-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--accent); border: 1px solid var(--accent); padding: 2px 6px; border-radius: 3px; margin-left: 8px; white-space: nowrap; }
+.vendor-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border-soft); }
+.vendor-row.open .vendor-body { display: block; }
+.vendor-body .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px; }
+.vendor-body h4 { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); margin: 0 0 8px; font-weight: 500; }
+.vendor-body ul { margin: 0; padding-left: 16px; font-size: 13.5px; }
+.vendor-body li { margin-bottom: 4px; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+@media (max-width: 640px) {
+  .slider-row { flex-direction: column; align-items: flex-start; }
+  .slider-row .slider-control { width: 100%; }
+  .weight-bar-label { width: 140px; }
+}
+
+
+/* ITSM Advisor additions: comparison matrix, TCO envelope, playbook */
+.matrix-wrap { overflow-x: auto; margin-top: 16px; }
+.matrix-wrap table { width: 100%; border-collapse: collapse; }
+.matrix-wrap th, .matrix-wrap td { padding: 10px 12px; text-align: center; border-bottom: 1px solid var(--border-soft); font-size: 12.5px; }
+.matrix-wrap th:first-child, .matrix-wrap td:first-child { text-align: left; color: var(--text-dim); }
+.matrix-wrap thead th { color: var(--text-faint); font-family: 'IBM Plex Mono'; font-size: 11px; font-weight: 500; }
+.dots { display: inline-flex; gap: 3px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--surface-2); }
+.dot.on { background: var(--accent2); }
+.playbook-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--border-soft); }
+.playbook-step:last-child { border-bottom: none; }
+.playbook-num { font-family: 'IBM Plex Mono'; font-size: 20px; color: var(--accent); font-weight: 600; width: 32px; flex: none; }
+.playbook-body h4 { margin: 0 0 4px; font-size: 14px; }
+.playbook-body p { margin: 0; font-size: 13.5px; color: var(--text-dim); }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+
+
+/* RFP Scorer additions: dynamic tables, add/remove rows, score grid, gate grid */
+.dyn-table { width: 100%; border-collapse: collapse; }
+.dyn-table th, .dyn-table td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); font-size: 13px; }
+.dyn-table thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); text-align: left; font-weight: 500; }
+.dyn-table input[type="text"], .dyn-table input[type="number"] { width: 100%; }
+.dyn-table .rm-btn { background: transparent; border: 1px solid var(--border); color: var(--danger); width: 28px; height: 28px; border-radius: 6px; cursor: pointer; font-size: 14px; line-height: 1; }
+.rm-btn:hover { border-color: var(--danger); }
+.add-row-btn { margin-top: 12px; background: transparent; border: 1px dashed var(--border); color: var(--text-dim); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 12.5px; }
+.add-row-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+.grid-wrap { overflow-x: auto; }
+.grid-wrap table { border-collapse: collapse; min-width: 100%; }
+.grid-wrap th, .grid-wrap td { padding: 8px 10px; border-bottom: 1px solid var(--border-soft); text-align: center; white-space: nowrap; }
+.grid-wrap thead th { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); font-weight: 500; }
+.grid-wrap th:first-child, .grid-wrap td:first-child { text-align: left; white-space: normal; min-width: 160px; color: var(--text-dim); }
+.grid-wrap input[type="number"] { width: 56px; text-align: center; }
+.gate-check { width: 20px; height: 20px; accent-color: var(--accent2); cursor: pointer; }
+.dq-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--danger); border: 1px solid var(--danger); padding: 2px 6px; border-radius: 3px; margin-left: 8px; }
+.weight-status { font-family: 'IBM Plex Mono'; font-size: 12px; margin-top: 8px; display: flex; align-items: center; gap: 10px; }
+.normalize-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 4px 10px; border-radius: 5px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 11px; }
+
+
+/* Business Case additions */
+.import-slot { border: 1px dashed var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+.import-slot.loaded { border-style: solid; border-color: var(--accent2); }
+.import-slot-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.import-slot-title { font-weight: 600; font-size: 14px; }
+.import-slot-sub { font-size: 12px; color: var(--text-faint); margin-top: 2px; }
+.import-btn { background: transparent; border: 1px solid var(--accent2); color: var(--accent2); padding: 7px 14px; border-radius: 6px; cursor: pointer; font-family: 'IBM Plex Mono'; font-size: 12px; }
+.import-status { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--success); margin-top: 8px; }
+.manual-note { font-size: 11.5px; color: var(--text-faint); margin-top: 8px; border-left: 2px solid var(--border); padding-left: 10px; }
+.risk-row { display: grid; grid-template-columns: 2fr 1fr 1fr 100px; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border-soft); }
+.risk-row:last-child { border-bottom: none; }
+.risk-name { font-size: 13px; }
+.risk-badge { font-family: 'IBM Plex Mono'; font-size: 11px; padding: 3px 8px; border-radius: 4px; text-align: center; }
+.risk-badge.Low { color: var(--success); border: 1px solid var(--success); }
+.risk-badge.Medium { color: var(--accent); border: 1px solid var(--accent); }
+.risk-badge.High { color: var(--danger); border: 1px solid var(--danger); }
+.phase-card { border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.phase-card h4 { margin: 0 0 6px; font-size: 15px; }
+.phase-card textarea { width: 100%; min-height: 60px; resize: vertical; }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+
+
+/* Automation Potential additions */
+.tool-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: 10px; }
+.tool-card { display: flex; align-items: center; gap: 10px; border: 1px solid var(--border); border-radius: 8px; padding: 12px; cursor: pointer; background: var(--surface-2); }
+.tool-card.on { border-color: var(--accent2); background: #16302c; }
+.tool-card input { width: 18px; height: 18px; accent-color: var(--accent2); }
+.driver-category-head { font-family: 'IBM Plex Mono'; font-size: 11px; color: var(--text-faint); text-transform: uppercase; letter-spacing: 1px; margin: 18px 0 6px; }
+.driver-category-head:first-child { margin-top: 0; }
+.driver-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid var(--border-soft); }
+.driver-row input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent2); flex: none; }
+.driver-name { flex: 1; font-size: 13px; }
+.driver-tool-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--text-faint); width: 130px; flex: none; }
+.driver-tool-tag.none { color: var(--danger); opacity: 0.7; }
+.driver-tool-tag.aht { color: var(--accent); }
+.driver-vol { width: 70px; flex: none; }
+.driver-vol input { width: 60px; text-align: right; }
+.pace-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; }
+.selection-status { font-family: 'IBM Plex Mono'; font-size: 12px; margin-top: 10px; color: var(--text-dim); }
+.ceiling-hero { text-align: center; padding: 24px; }
+.ceiling-hero .big-num { font-family: 'IBM Plex Mono'; font-size: 56px; font-weight: 600; color: var(--accent); }
+.ceiling-hero .big-label { font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-faint); margin-top: 6px; }
+.category-bar-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
+.category-bar-label { width: 140px; flex: none; font-size: 12.5px; color: var(--text-dim); }
+.category-bar-track { flex: 1; height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; }
+.category-bar-fill { height: 100%; background: var(--accent2); }
+.category-bar-val { width: 50px; flex: none; text-align: right; font-family: 'IBM Plex Mono'; font-size: 12px; }
+.aht-note { margin-top: 16px; border-left: 2px solid var(--accent); padding-left: 12px; font-size: 13px; color: var(--text-dim); }
+.term-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.term-input { width: 70px; flex: none; }
+
+
+/* Maturity Assessment additions */
+.pillar-intro { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+.pillar-intro .picon { font-size: 28px; }
+.pillar-progress { font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-faint); margin-bottom: 20px; }
+.mq-block { border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 14px; background: var(--surface); }
+.mq-text { font-weight: 600; font-size: 14px; margin-bottom: 12px; }
+.mq-option { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border: 1px solid var(--border-soft); border-radius: 8px; margin-bottom: 6px; cursor: pointer; background: var(--surface-2); }
+.mq-option:hover { border-color: var(--text-faint); }
+.mq-option.selected { border-color: var(--accent2); background: #16302c; }
+.mq-option input { margin-top: 2px; accent-color: var(--accent2); flex: none; }
+.mq-option .mq-level-tag { font-family: 'IBM Plex Mono'; font-size: 10px; color: var(--text-faint); flex: none; width: 78px; }
+.mq-option.selected .mq-level-tag { color: var(--accent2); }
+.mq-option .mq-opt-text { font-size: 13px; flex: 1; }
+.pillar-score-badge { font-family: 'IBM Plex Mono'; font-size: 12px; padding: 4px 10px; border-radius: 6px; border: 1px solid var(--accent2); color: var(--accent2); float: right; }
+.radar-wrap { display: flex; justify-content: center; padding: 10px 0 20px; }
+.overall-hero { text-align: center; padding: 10px 0 24px; }
+.overall-hero .big-num { font-family: 'IBM Plex Mono'; font-size: 52px; font-weight: 600; color: var(--accent); }
+.overall-hero .big-level { font-size: 20px; font-weight: 600; margin-top: 4px; }
+.overall-hero .big-label { font-family: 'IBM Plex Mono'; font-size: 12px; color: var(--text-faint); margin-top: 6px; }
+.gap-row { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--border-soft); }
+.gap-row:last-child { border-bottom: none; }
+.gap-rank { font-family: 'IBM Plex Mono'; color: var(--text-faint); font-size: 13px; width: 24px; flex: none; }
+.gap-name-wrap { flex: 1; min-width: 0; }
+.gap-name-wrap .gname { font-weight: 600; font-size: 14px; }
+.gap-name-wrap .glevel { font-size: 12px; color: var(--text-dim); }
+.gap-score { font-family: 'IBM Plex Mono'; font-size: 15px; width: 50px; text-align: right; flex: none; }
+.gap-route-btn { font-family: 'IBM Plex Mono'; font-size: 11px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--accent); color: var(--accent); text-decoration: none; flex: none; white-space: nowrap; }
+.gap-route-btn.disabled { border-color: var(--border); color: var(--text-faint); pointer-events: none; }
+
+.ws-status-bar {
+  background: linear-gradient(90deg, rgba(79, 176, 168, 0.12) 0%, rgba(227, 166, 62, 0.08) 100%);
+  border-bottom: 1px solid var(--accent2);
+  padding: 8px 20px; font-size: 12px; color: var(--text-dim);
+}
+.ws-status-inner {
+  max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.ws-info { display: flex; align-items: center; gap: 8px; }
+.ws-info b { color: var(--text); }
+.ws-time { font-family: 'IBM Plex Mono', monospace; font-size: 11px; opacity: 0.8; }
+.ws-actions { display: flex; align-items: center; gap: 8px; }
+.ws-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--accent);
+  padding: 4px 10px; border-radius: 5px; font-size: 11.5px; font-weight: 600; cursor: pointer;
+  transition: all 0.15s ease;
+}
+.ws-btn:hover { background: var(--accent); color: var(--accent-ink); }
+.ws-link {
+  color: var(--accent2); font-weight: 600; font-size: 11.5px; text-decoration: none;
+}
+.ws-link:hover { text-decoration: underline; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--surface); color: var(--text); font-weight: 600; font-size: 13.5px;
+  padding: 10px 20px; border-radius: 30px; box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--accent); z-index: 2500; opacity: 0; pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 8px;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/dwssharedworkspace/">🗄️ Universal Shared Workspace</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/itsmadvisor/">🎫 ITSM Platform Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/rfpscorer/">⚖️ Vendor RFP Weighted Scorer</a>
+          <a href="https://iamsaravofficial.com/apps/aiinitsm/">📈 AI-in-ITSM Business Case</a>
+          <a href="https://iamsaravofficial.com/apps/automationscore/">🎛️ Automation Potential Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/dwpassessment/" class="current">🧬 DWP Maturity Assessment</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="eco-tokenomics">🧬 Digital Workplace Services · Version 2026.09</span></div>
+  </div>
+</div>
+
+<div class="ws-status-bar" id="wsStatusBar" style="display:none;">
+  <div class="ws-status-inner">
+    <div class="ws-info">
+      <span>🗄️ Shared Workspace: <b id="wsActiveName">Default</b></span>
+      <span class="ws-time" id="wsLastUpdated"></span>
+    </div>
+    <div class="ws-actions">
+      <button type="button" class="ws-btn" id="wsSyncBtn">⚡ Load from Workspace</button>
+      <a href="https://iamsaravofficial.com/apps/dwssharedworkspace/" class="ws-link">Open Workspace ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark"><img src="favicon-192.png" alt="Digital Workplace Maturity Assessment Logo"></div>
+        <div>
+          <h1>Maturity Assessment <span class="badge gold">8 Pillars · 48 Questions</span></h1>
+          <span class="tagline">Complete Capability Model, Routed to Your Biggest Gaps</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="live-total-pill">Overall: <b id="liveTotal" class="mono">—</b></div>
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner" id="secNavInner">
+      <a href="#profile" class="sec-nav-link active"><span class="sn-num">00</span> Profile</a>
+    </div>
+  </nav>
+
+  <div class="presets-bar">
+    <div class="presets-inner">
+      <span class="presets-title">Archetype Presets:</span>
+      <button type="button" class="preset-btn" data-preset="legacy">🏛️ Legacy Enterprise (L1–L2)</button>
+      <button type="button" class="preset-btn" data-preset="transition">⚙️ Standard Transitioning (L2–L3)</button>
+      <button type="button" class="preset-btn" data-preset="aifirst">🚀 AI-First Modern Workplace (L4–L5)</button>
+      <button type="button" class="preset-btn" data-preset="adhoc">🧹 Ad Hoc Baseline (L1)</button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 00 Organization Profile -->
+  <section class="block" id="profile">
+    <div class="sec-head"><div class="sec-num mono">00</div><h2>Organization Profile</h2></div>
+    <p class="sec-desc">Who this assessment is for.</p>
+    <div class="panel">
+      <div class="grid grid-2">
+        <div class="field"><label for="org_name">Organization / initiative name</label><input id="org_name" type="text" value="Digital Workplace Assessment"></div>
+        <div class="field"><label for="org_assessor">Assessed by</label><input id="org_assessor" type="text" placeholder="Your name"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pillar sections injected here at boot -->
+  <div id="pillarSections"></div>
+
+  <!-- Results -->
+  <section class="block" id="results">
+    <div class="sec-head"><div class="sec-num mono">09</div><h2>Results &amp; Radar</h2></div>
+    <p class="sec-desc">Your maturity profile across all 8 pillars.</p>
+    <div class="panel">
+      <div class="overall-hero">
+        <div class="big-num" id="overallBigNum">1.0</div>
+        <div class="big-level" id="overallBigLevel">Ad Hoc</div>
+        <div class="big-label">OVERALL DIGITAL WORKPLACE MATURITY (1&ndash;5 SCALE)</div>
+      </div>
+      <div class="radar-wrap"><svg id="radarSvg" width="500" height="500" viewBox="0 0 500 500"></svg></div>
+    </div>
+  </section>
+
+  <!-- Action Plan -->
+  <section class="block" id="actionplan">
+    <div class="sec-head"><div class="sec-num mono">10</div><h2>Routed Action Plan</h2></div>
+    <p class="sec-desc">Your lowest-scoring pillars first &mdash; each one links straight to the suite tool built for it.</p>
+    <div class="panel" id="gapList"></div>
+  </section>
+
+  <!-- Report -->
+  <section class="block" id="report">
+    <div class="sec-head"><div class="sec-num mono">11</div><h2>Executive Report &amp; Export</h2></div>
+    <p class="sec-desc">Full pillar-by-pillar breakdown.</p>
+    <div class="panel" id="pillarSummaryTable"></div>
+    <div class="actionbar">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveScenario" class="ghost">💾 Save Scenario (JSON)</button>
+      <button id="btnLoadScenario" class="ghost">📂 Load Scenario (JSON)</button>
+      <input type="file" id="fileLoadScenario" accept="application/json" style="display:none;">
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>Digital Workplace Maturity Assessment crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All scoring runs client-side.</p>
+  </div>
+</footer>
+
+<script>
+// ============================================================================================
+// DIGITAL WORKPLACE MATURITY ASSESSMENT — 8 pillars, 48 questions, radar chart, routed action plan
+// ============================================================================================
+
+const FALLBACK_DATA = {
+  "version": "2026.09",
+  "disclaimer": "Level descriptions are Nalkudil Studio's independent maturity-model design, following the standard 5-level structure used in capability maturity frameworks (Ad Hoc \u2192 Managed \u2192 Defined \u2192 Quantified \u2192 Optimized). Not a certified or licensed framework \u2014 use as a structured self-assessment starting point.",
+  "levelLabels": [
+    "Ad Hoc",
+    "Managed",
+    "Defined",
+    "Quantified",
+    "Optimized"
+  ],
+  "pillars": [
+    {
+      "id": "itsm",
+      "name": "ITSM & Service Management Governance",
+      "icon": "\ud83c\udfab",
+      "routeApp": "ITSM Advisor",
+      "routeUrl": "https://iamsaravofficial.com/apps/itsmadvisor/",
+      "questions": [
+        {
+          "id": "itsm1",
+          "text": "How is incident management handled?",
+          "levels": [
+            "Incidents handled informally via email/chat, no ticketing system",
+            "Ticketing system in place but categorization is inconsistent",
+            "Standardized incident categorization and priority matrix documented and followed",
+            "Incident MTTR and SLA compliance tracked and reported monthly",
+            "Incident trends analyzed to proactively prevent recurrence; AI-assisted triage live"
+          ]
+        },
+        {
+          "id": "itsm2",
+          "text": "How are changes to production systems managed?",
+          "levels": [
+            "Changes made ad hoc with no approval process",
+            "Basic change requests logged but approval is informal",
+            "Formal Change Advisory Board (CAB) process with risk assessment",
+            "Change success/failure rates tracked, correlated to incident spikes",
+            "Automated change risk scoring with predictive rollback triggers"
+          ]
+        },
+        {
+          "id": "itsm3",
+          "text": "How mature is your CMDB / asset management?",
+          "levels": [
+            "No centralized asset inventory",
+            "Spreadsheet-based asset tracking, updated irregularly",
+            "Dedicated CMDB with defined CI relationships",
+            "CMDB accuracy audited regularly, drives capacity planning",
+            "CMDB auto-discovers and reconciles assets in real time"
+          ]
+        },
+        {
+          "id": "itsm4",
+          "text": "How is knowledge management run?",
+          "levels": [
+            "No knowledge base; tribal knowledge only",
+            "Informal KB articles exist but are outdated/unmaintained",
+            "KB is structured, reviewed on a schedule, tied to ticket resolution",
+            "KB usage and deflection rate measured against ticket volume",
+            "AI-curated KB auto-suggests and auto-updates from resolved tickets"
+          ]
+        },
+        {
+          "id": "itsm5",
+          "text": "How are SLAs/OLAs defined and used?",
+          "levels": [
+            "No formal SLAs defined",
+            "SLAs exist but are generic/not tiered by severity",
+            "SLAs tiered by priority/service, documented in contracts",
+            "SLA performance tracked and reported to stakeholders regularly",
+            "SLAs dynamically adjusted based on business-impact analytics"
+          ]
+        },
+        {
+          "id": "itsm6",
+          "text": "How is your ITSM platform utilized?",
+          "levels": [
+            "Multiple disconnected tools, no single system of record",
+            "Single ITSM tool adopted but only for ticketing",
+            "ITSM tool used across incident/change/problem/asset modules",
+            "ITSM data feeds executive dashboards and capacity decisions",
+            "ITSM platform is the automation backbone (workflows, AI, orchestration)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "servicedesk",
+      "name": "Service Desk & Support Operations",
+      "icon": "\ud83d\udc77",
+      "routeApp": "SD Optimizer",
+      "routeUrl": "https://iamsaravofficial.com/apps/sdoptimizer/",
+      "questions": [
+        {
+          "id": "sd1",
+          "text": "What's your support channel strategy?",
+          "levels": [
+            "Phone-only support",
+            "Phone + email, no unified queue",
+            "Omnichannel (phone/chat/email/portal) with unified queue",
+            "Channel performance (AHT, CSAT) tracked per channel",
+            "AI dynamically routes contacts to optimal channel based on complexity"
+          ]
+        },
+        {
+          "id": "sd2",
+          "text": "How is service desk staffing planned?",
+          "levels": [
+            "Staffing based on gut feel / headcount inherited from budget",
+            "Basic headcount planning based on historical ticket counts",
+            "Erlang-based or similar workforce-management staffing model in use",
+            "Staffing model incorporates shrinkage, tiering, and forecasted volume",
+            "Staffing dynamically re-optimized using real-time automation-adjusted demand"
+          ]
+        },
+        {
+          "id": "sd3",
+          "text": "How is your tiering structure defined?",
+          "levels": [
+            "Single-tier support, everyone handles everything",
+            "Informal L1/L2 split, unclear escalation criteria",
+            "Documented tiering with defined escalation/nesting ratio",
+            "Tier performance (FCR, escalation rate) tracked by tier",
+            "Tiering dynamically adjusts based on skill-based routing and AI triage"
+          ]
+        },
+        {
+          "id": "sd4",
+          "text": "How is First Contact Resolution (FCR) managed?",
+          "levels": [
+            "FCR not measured",
+            "FCR estimated informally, not systematically tracked",
+            "FCR tracked as a formal KPI",
+            "FCR trends drive coaching and process improvement",
+            "FCR optimized via AI-assisted agent guidance in real time"
+          ]
+        },
+        {
+          "id": "sd5",
+          "text": "How is quality assurance and coaching run?",
+          "levels": [
+            "No call/ticket quality review process",
+            "Ad hoc spot-checks by supervisors",
+            "Structured QA scorecards and regular coaching cycles",
+            "QA scores correlated with CSAT/FCR to guide targeted coaching",
+            "AI-assisted quality scoring across 100% of interactions"
+          ]
+        },
+        {
+          "id": "sd6",
+          "text": "How visible is your cost-to-serve?",
+          "levels": [
+            "No visibility into cost per ticket/contact",
+            "Rough annual budget known, not broken down per ticket",
+            "Cost per ticket calculated by channel/tier",
+            "Cost-to-serve tracked against automation-driven savings targets",
+            "Real-time cost-to-serve dashboard drives staffing and tooling decisions"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dex",
+      "name": "Digital Employee Experience",
+      "icon": "\ud83e\udded",
+      "routeApp": "DEX Advisor",
+      "routeUrl": "https://iamsaravofficial.com/apps/dexadvisor/",
+      "questions": [
+        {
+          "id": "dex1",
+          "text": "How visible is employee device/app experience?",
+          "levels": [
+            "No visibility into employee device/app experience",
+            "Reactive visibility only via helpdesk complaints",
+            "DEX/telemetry tooling deployed on majority of the estate",
+            "DEX data correlated with ticket volume and sentiment surveys",
+            "DEX-driven proactive remediation resolves issues before users notice"
+          ]
+        },
+        {
+          "id": "dex2",
+          "text": "How is employee sentiment measured?",
+          "levels": [
+            "No employee sentiment data collected",
+            "Annual/occasional engagement surveys only",
+            "Regular XLA-style pulse surveys tied to IT services",
+            "Sentiment scores tracked as a governed KPI alongside SLAs",
+            "Sentiment predictively modeled from behavior/telemetry, not just surveys"
+          ]
+        },
+        {
+          "id": "dex3",
+          "text": "How proactive is issue remediation?",
+          "levels": [
+            "All issues are reactive (user reports, then IT responds)",
+            "Some scripted remediations exist but are manually triggered",
+            "Automated remediation triggers on defined device health thresholds",
+            "Remediation success rate tracked and tuned",
+            "Predictive remediation resolves issues before symptoms appear"
+          ]
+        },
+        {
+          "id": "dex4",
+          "text": "How is device health and refresh managed?",
+          "levels": [
+            "No visibility into device age/health across the estate",
+            "Device refresh based on fixed depreciation schedule only",
+            "Device health data informs refresh prioritization",
+            "Refresh ROI tracked against experience/productivity improvement",
+            "Refresh cycles dynamically optimized using DEX + cost data together"
+          ]
+        },
+        {
+          "id": "dex5",
+          "text": "How is SaaS/business app performance monitored?",
+          "levels": [
+            "No monitoring of business-critical SaaS/app performance",
+            "Monitoring limited to infrastructure, not the app experience itself",
+            "End-to-end app experience monitored for critical business apps",
+            "App performance data tied to business-impact reporting",
+            "AI correlates app degradation to root cause across the full stack"
+          ]
+        },
+        {
+          "id": "dex6",
+          "text": "How is experience reported to leadership?",
+          "levels": [
+            "No experience metrics reported to leadership",
+            "Ad hoc anecdotal reporting when issues escalate",
+            "Regular XPI/DEX scorecard presented to IT leadership",
+            "Experience scorecard tied to business outcomes (attrition, productivity)",
+            "Experience metrics are a standing board-level KPI"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "automation",
+      "name": "AI & Automation Adoption",
+      "icon": "\ud83c\udf9b\ufe0f",
+      "routeApp": "Automation Potential Advisor",
+      "routeUrl": "https://iamsaravofficial.com/apps/automationscore/",
+      "questions": [
+        {
+          "id": "auto1",
+          "text": "How formal is your automation strategy?",
+          "levels": [
+            "No automation strategy; automation is opportunistic/accidental",
+            "A few scripts/macros exist, undocumented and unowned",
+            "Formal automation roadmap tied to call-driver/ticket analysis",
+            "Automation ceiling and realized % tracked as a governed metric",
+            "Automation strategy dynamically re-prioritized using live ticket data"
+          ]
+        },
+        {
+          "id": "auto2",
+          "text": "How is self-service adopted?",
+          "levels": [
+            "No self-service portal or catalog",
+            "Self-service portal exists but is rarely used",
+            "Self-service catalog covers top call drivers, actively promoted",
+            "Self-service deflection rate tracked and targeted",
+            "AI-driven self-service adapts in real time to emerging issues"
+          ]
+        },
+        {
+          "id": "auto3",
+          "text": "How mature is RPA/workflow automation?",
+          "levels": [
+            "No RPA or workflow automation in use",
+            "A handful of isolated RPA bots, no governance",
+            "RPA/workflow automation governed with a CoE and reuse library",
+            "RPA ROI tracked per process automated",
+            "RPA orchestrated alongside AI agents in unified workflows"
+          ]
+        },
+        {
+          "id": "auto4",
+          "text": "How deployed is AI/Copilot in your operations?",
+          "levels": [
+            "No AI/Copilot tools deployed",
+            "Pilot/trial of an AI copilot in one team",
+            "AI copilot deployed broadly for specific use cases (triage, KB)",
+            "AI copilot adoption and impact measured (deflection, AHT reduction)",
+            "AI agents autonomously resolve tickets end-to-end for defined categories"
+          ]
+        },
+        {
+          "id": "auto5",
+          "text": "How ready is your data for AI consumption?",
+          "levels": [
+            "Ticket/KB data is messy, inconsistent, not AI-ready",
+            "Some data cleanup done, but no structured taxonomy",
+            "Data taxonomy standardized, KB structured for AI consumption",
+            "Data quality actively monitored and improved for AI accuracy",
+            "Data pipeline continuously feeds and retrains AI models"
+          ]
+        },
+        {
+          "id": "auto6",
+          "text": "How is automation governed?",
+          "levels": [
+            "No ownership of automation initiatives",
+            "Individual teams own automation ad hoc, no central visibility",
+            "Central automation governance body tracks all initiatives",
+            "Automation portfolio prioritized using ROI/ceiling analysis",
+            "Automation governance integrated into overall IT strategy planning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "field",
+      "name": "Field & Onsite Support Operations",
+      "icon": "\ud83d\uddfa\ufe0f",
+      "routeApp": "Field Services / Deskside",
+      "routeUrl": "https://iamsaravofficial.com/apps/fsoptimizer/",
+      "questions": [
+        {
+          "id": "field1",
+          "text": "How is field dispatch managed?",
+          "levels": [
+            "No formal dispatch process, ad hoc assignment",
+            "Manual dispatch based on technician availability only",
+            "Documented dispatch model with defined SLA windows (NBD, etc.)",
+            "Dispatch performance (SLA achievement, travel time) tracked",
+            "Dispatch dynamically optimized using hub-count/routing models"
+          ]
+        },
+        {
+          "id": "field2",
+          "text": "How is your hub/coverage strategy designed?",
+          "levels": [
+            "No defined coverage strategy, technicians assigned reactively",
+            "Coverage based on historical headcount, not modeled",
+            "Hub-and-spoke or coverage model formally designed",
+            "Coverage cost vs. SLA trade-off analyzed regularly",
+            "Coverage model re-optimized as volume/geography shifts"
+          ]
+        },
+        {
+          "id": "field3",
+          "text": "How is VIP/executive support handled?",
+          "levels": [
+            "No differentiated support for VIP/executive users",
+            "VIP support handled informally by whoever is available",
+            "Dedicated VIP queue/process with defined SLA",
+            "VIP SLA performance tracked separately from general queue",
+            "VIP support proactively monitored to prevent escalations"
+          ]
+        },
+        {
+          "id": "field4",
+          "text": "How is walk-up/deskside coverage staffed?",
+          "levels": [
+            "No walk-up support desk exists",
+            "Walk-up desk exists but coverage is inconsistent",
+            "Minimum staffing floor defined and maintained for walk-up desk",
+            "Walk-up demand vs. staffing floor tracked and adjusted",
+            "Walk-up coverage dynamically staffed based on real-time demand"
+          ]
+        },
+        {
+          "id": "field5",
+          "text": "How is parts/inventory managed?",
+          "levels": [
+            "No parts inventory tracking",
+            "Parts tracked informally, frequent stockouts",
+            "Parts/inventory carrying cost factored into hub economics",
+            "Inventory turns and stockout rate tracked as KPIs",
+            "Predictive inventory restocking tied to failure-rate analytics"
+          ]
+        },
+        {
+          "id": "field6",
+          "text": "How is field technician utilization tracked?",
+          "levels": [
+            "Technician utilization not tracked",
+            "Utilization estimated informally",
+            "Utilization tracked against a target occupancy benchmark",
+            "Utilization data drives headcount and territory adjustments",
+            "Utilization optimized in real time via dynamic routing"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "security",
+      "name": "Security & Patch Posture",
+      "icon": "\ud83d\udee1\ufe0f",
+      "routeApp": "DEX Advisor (Endpoint Health)",
+      "routeUrl": "https://iamsaravofficial.com/apps/dexadvisor/",
+      "questions": [
+        {
+          "id": "sec1",
+          "text": "How is patch management run?",
+          "levels": [
+            "Patching is manual and inconsistent",
+            "Patch cycles exist but SLA compliance isn't tracked",
+            "Patch compliance tracked as a formal KPI with defined SLA",
+            "Patch compliance correlated with vulnerability/breach risk data",
+            "Patching is automated and risk-prioritized in real time"
+          ]
+        },
+        {
+          "id": "sec2",
+          "text": "How mature is vulnerability management?",
+          "levels": [
+            "No formal vulnerability scanning",
+            "Vulnerability scans run occasionally, findings not tracked to closure",
+            "Regular scanning with tracked remediation SLAs",
+            "Vulnerability exposure quantified in business-risk/dollar terms",
+            "Vulnerability response is automated and continuously prioritized"
+          ]
+        },
+        {
+          "id": "sec3",
+          "text": "How complete is endpoint security coverage?",
+          "levels": [
+            "Inconsistent or missing endpoint protection across the estate",
+            "Endpoint protection deployed but coverage/compliance not verified",
+            "Endpoint protection coverage verified and reported regularly",
+            "Endpoint security posture is a tracked executive KPI",
+            "Endpoint security integrated with DEX/automation for auto-remediation"
+          ]
+        },
+        {
+          "id": "sec4",
+          "text": "How is access governance handled?",
+          "levels": [
+            "Access provisioned/revoked manually, no periodic review",
+            "Access reviews happen occasionally, inconsistently",
+            "Formal joiner-mover-leaver access governance process",
+            "Access governance audited and tracked against compliance standards",
+            "Access governance automated with continuous entitlement review"
+          ]
+        },
+        {
+          "id": "sec5",
+          "text": "How ready is your incident response process?",
+          "levels": [
+            "No documented security incident response plan",
+            "A plan exists but hasn't been tested",
+            "IR plan tested via regular tabletop exercises",
+            "IR performance (detection/response time) measured",
+            "IR is automated/orchestrated with real-time threat intelligence"
+          ]
+        },
+        {
+          "id": "sec6",
+          "text": "How is security awareness and reporting run?",
+          "levels": [
+            "No security awareness training program",
+            "Annual generic security training only",
+            "Regular, role-specific security awareness training",
+            "Security posture reported to leadership as a standing metric",
+            "Security posture is a board-level KPI tied to business risk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vendor",
+      "name": "Vendor & Sourcing Governance",
+      "icon": "\u2696\ufe0f",
+      "routeApp": "Vendor RFP Weighted Scorer",
+      "routeUrl": "https://iamsaravofficial.com/apps/rfpscorer/",
+      "questions": [
+        {
+          "id": "vend1",
+          "text": "How is vendor selection conducted?",
+          "levels": [
+            "Vendors selected informally/relationship-based",
+            "Basic RFP process exists but criteria are inconsistent",
+            "Formal weighted RFP/scoring process used for major decisions",
+            "Vendor selection outcomes tracked against post-implementation performance",
+            "Vendor scoring model continuously refined using realized ROI data"
+          ]
+        },
+        {
+          "id": "vend2",
+          "text": "How is contract management run?",
+          "levels": [
+            "Contracts tracked informally, renewal dates often missed",
+            "Central contract repository exists but isn't proactively managed",
+            "Contract renewals tracked with lead-time triggers for renegotiation",
+            "Contract terms benchmarked against market rates regularly",
+            "Contract portfolio optimized proactively across the vendor estate"
+          ]
+        },
+        {
+          "id": "vend3",
+          "text": "How is vendor performance managed?",
+          "levels": [
+            "No formal vendor performance tracking",
+            "Vendor issues addressed reactively as they arise",
+            "Vendor SLAs tracked via regular business reviews",
+            "Vendor performance scorecards tied to contractual consequences",
+            "Vendor performance data feeds future sourcing decisions automatically"
+          ]
+        },
+        {
+          "id": "vend4",
+          "text": "How is multi-vendor coordination handled?",
+          "levels": [
+            "No coordination between vendors supporting different towers",
+            "Vendors coordinate informally, gaps/overlaps common",
+            "Defined RACI/governance model across multi-vendor landscape",
+            "Cross-vendor performance measured against end-to-end SLAs",
+            "Multi-vendor ecosystem orchestrated via shared tooling/data"
+          ]
+        },
+        {
+          "id": "vend5",
+          "text": "How visible is total cost of ownership (TCO)?",
+          "levels": [
+            "No visibility into full TCO of vendor relationships",
+            "Direct license/contract cost known, hidden costs not tracked",
+            "TCO modeled including implementation, support, and exit costs",
+            "TCO tracked over time against value delivered",
+            "TCO modeling drives dynamic sourcing/renewal decisions"
+          ]
+        },
+        {
+          "id": "vend6",
+          "text": "How prepared are you for vendor exit/transition?",
+          "levels": [
+            "No exit strategy for critical vendors",
+            "Exit considered only reactively when a relationship fails",
+            "Exit/transition plans documented for critical vendors upfront",
+            "Exit readiness tested/reviewed periodically",
+            "Vendor portfolio actively hedged to minimize lock-in risk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "finance",
+      "name": "Financial Governance & Business Case Discipline",
+      "icon": "\ud83d\udcc8",
+      "routeApp": "AI-in-ITSM Business Case",
+      "routeUrl": "https://iamsaravofficial.com/apps/aiinitsm/",
+      "questions": [
+        {
+          "id": "fin1",
+          "text": "How are IT investments justified?",
+          "levels": [
+            "IT investments approved without formal business cases",
+            "Basic cost estimates provided, benefits rarely quantified",
+            "Formal business cases with cost/benefit required for major investments",
+            "Business cases include NPV/ROI/payback analysis",
+            "Business case outcomes tracked post-launch and fed back into future cases"
+          ]
+        },
+        {
+          "id": "fin2",
+          "text": "How is IT budget tracked?",
+          "levels": [
+            "IT budget tracked at a high level only, no line-item detail",
+            "Line-item budget exists but variance isn't analyzed",
+            "Budget vs. actual tracked and reviewed regularly",
+            "Budget variance root-caused and tied to specific initiatives",
+            "Budget dynamically reforecast using real-time cost/usage data"
+          ]
+        },
+        {
+          "id": "fin3",
+          "text": "How is cost avoidance measured?",
+          "levels": [
+            "Cost avoidance from automation/efficiency isn't measured",
+            "Cost avoidance estimated informally, not validated",
+            "Cost avoidance calculated using a defined baseline methodology",
+            "Cost avoidance tracked against target and reported to finance",
+            "Cost avoidance modeling is continuously validated against actuals"
+          ]
+        },
+        {
+          "id": "fin4",
+          "text": "How is investment risk quantified?",
+          "levels": [
+            "Project risks discussed informally, not quantified",
+            "Risks listed but not scored or prioritized",
+            "Risk register with likelihood/impact scoring used for major initiatives",
+            "Risk-adjusted ROI used in investment decisions",
+            "Risk models continuously updated using real incident/outcome data"
+          ]
+        },
+        {
+          "id": "fin5",
+          "text": "How is stakeholder financial reporting run?",
+          "levels": [
+            "No regular financial reporting on IT initiatives to stakeholders",
+            "Ad hoc updates provided when asked",
+            "Regular financial/status reporting cadence established",
+            "Reporting includes leading indicators, not just lagging spend",
+            "Real-time financial dashboards available to all stakeholders"
+          ]
+        },
+        {
+          "id": "fin6",
+          "text": "How is the IT investment portfolio managed?",
+          "levels": [
+            "Each IT initiative evaluated in isolation",
+            "Some awareness of overlapping initiatives, not formally managed",
+            "Portfolio view maintained across all major IT investments",
+            "Portfolio prioritized using consistent ROI/impact criteria",
+            "Portfolio dynamically rebalanced as new data/initiatives emerge"
+          ]
+        }
+      ]
+    }
+  ]
+};
+let DATA = null;
+
+const $ = (id) => document.getElementById(id);
+const fmtInt = (v) => Math.round(v || 0).toLocaleString('en-US');
+
+const state = { themeChoice: 'dark', answers: {} }; // answers[questionId] = 0-4 (level index)
+
+// ---------------- ENGINE (identical to tested engine.js) ----------------
+function computePillarScore(pillar, answers) {
+  let sum = 0, count = 0;
+  pillar.questions.forEach(q => { sum += (answers[q.id] !== undefined ? answers[q.id] : 0) + 1; count++; });
+  return count > 0 ? sum / count : 1;
+}
+function computeAllPillarScores(pillars, answers) {
+  return pillars.map(p => ({ id: p.id, name: p.name, icon: p.icon, routeApp: p.routeApp, routeUrl: p.routeUrl, score: computePillarScore(p, answers) }));
+}
+function computeOverallScore(pillarScores) {
+  const sum = pillarScores.reduce((s, p) => s + p.score, 0);
+  return pillarScores.length > 0 ? sum / pillarScores.length : 1;
+}
+function levelLabelForScore(score, levelLabels) {
+  if (score < 1.8) return levelLabels[0];
+  if (score < 2.6) return levelLabels[1];
+  if (score < 3.4) return levelLabels[2];
+  if (score < 4.2) return levelLabels[3];
+  return levelLabels[4];
+}
+function rankGaps(pillarScores) { return [...pillarScores].sort((a, b) => (5 - b.score) - (5 - a.score)); }
+function radarPoints(scores, cx, cy, maxRadius, minScore = 1, maxScore = 5) {
+  const n = scores.length;
+  return scores.map((s, i) => {
+    const angle = (Math.PI * 2 * i) / n - Math.PI / 2;
+    const normalized = (s - minScore) / (maxScore - minScore);
+    const r = normalized * maxRadius;
+    return { x: cx + r * Math.cos(angle), y: cy + r * Math.sin(angle), angle };
+  });
+}
+
+// ---------------- BUILD DYNAMIC UI (once, at boot) ----------------
+function buildNav() {
+  const nav = $('secNavInner');
+  let html = `<a href="#profile" class="sec-nav-link active"><span class="sn-num">00</span> Profile</a>`;
+  DATA.pillars.forEach((p, i) => {
+    html += `<a href="#pillar-${p.id}" class="sec-nav-link"><span class="sn-num">${String(i + 1).padStart(2, '0')}</span> ${p.icon} ${p.name.split(' ')[0]}</a>`;
+  });
+  html += `<a href="#results" class="sec-nav-link"><span class="sn-num">09</span> Results</a>`;
+  html += `<a href="#actionplan" class="sec-nav-link"><span class="sn-num">10</span> Action Plan</a>`;
+  html += `<a href="#report" class="sec-nav-link report-link"><span class="sn-num">11</span> Report</a>`;
+  nav.innerHTML = html;
+}
+
+function buildPillarSections() {
+  const container = $('pillarSections');
+  let html = '';
+  DATA.pillars.forEach((p, pIdx) => {
+    html += `<section class="block" id="pillar-${p.id}">
+      <div class="sec-head"><div class="sec-num mono">${String(pIdx + 1).padStart(2, '0')}</div><h2>${p.name}</h2></div>
+      <div class="pillar-intro"><span class="picon">${p.icon}</span><span class="pillar-score-badge" id="badge-${p.id}">Score: 1.0</span></div>
+      <p class="sec-desc">${p.routeApp ? `Maps to <b>${p.routeApp}</b> in the suite.` : `No dedicated suite tool for this pillar yet &mdash; a known gap.`}</p>
+      <div class="pillar-progress" id="progress-${p.id}"></div>`;
+    p.questions.forEach(q => {
+      html += `<div class="mq-block" data-question="${q.id}">
+        <div class="mq-text">${q.text}</div>`;
+      q.levels.forEach((levelText, lIdx) => {
+        html += `<div class="mq-option" data-q="${q.id}" data-level="${lIdx}">
+          <input type="radio" name="${q.id}" value="${lIdx}" ${lIdx === 0 ? 'checked' : ''}>
+          <span class="mq-level-tag">${DATA.levelLabels[lIdx]}</span>
+          <span class="mq-opt-text">${levelText}</span>
+        </div>`;
+      });
+      html += `</div>`;
+    });
+    html += `</section>`;
+  });
+  container.innerHTML = html;
+
+  // Default every question to level 0 (Ad Hoc) so the tool always shows a live score
+  DATA.pillars.forEach(p => p.questions.forEach(q => { state.answers[q.id] = 0; }));
+
+  container.querySelectorAll('.mq-option').forEach(opt => {
+    opt.addEventListener('click', () => {
+      const qId = opt.dataset.q, level = +opt.dataset.level;
+      state.answers[qId] = level;
+      const block = opt.closest('.mq-block');
+      block.querySelectorAll('.mq-option').forEach(o => o.classList.remove('selected'));
+      opt.classList.add('selected');
+      block.querySelector(`input[value="${level}"]`).checked = true;
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      recalcAll();
+      if (typeof wsSaveCurrent === 'function') wsSaveCurrent();
+    });
+  });
+  // Mark initial selections
+  container.querySelectorAll('.mq-block').forEach(block => {
+    block.querySelector('.mq-option[data-level="0"]').classList.add('selected');
+  });
+}
+
+// ---------------- RENDER ----------------
+function renderPillarBadgesAndProgress(pillarScores) {
+  DATA.pillars.forEach(p => {
+    const score = pillarScores.find(s => s.id === p.id).score;
+    $('badge-' + p.id).textContent = `Score: ${score.toFixed(1)} — ${levelLabelForScore(score, DATA.levelLabels)}`;
+    const answeredCount = p.questions.filter(q => state.answers[q.id] !== undefined).length;
+    $('progress-' + p.id).textContent = `${answeredCount} of ${p.questions.length} questions answered in this pillar.`;
+  });
+}
+
+function renderOverall(overall) {
+  $('overallBigNum').textContent = overall.toFixed(2);
+  const label = levelLabelForScore(overall, DATA.levelLabels);
+  $('overallBigLevel').textContent = label;
+  $('liveTotal').textContent = overall.toFixed(2) + ' — ' + label;
+}
+
+function renderRadar(pillarScores) {
+  const svg = $('radarSvg');
+  const cx = 250, cy = 250, maxR = 190;
+  const n = pillarScores.length;
+  let content = '';
+
+  for (let lvl = 1; lvl <= 5; lvl++) {
+    const ringPts = radarPoints(new Array(n).fill(1 + (lvl - 1)), cx, cy, maxR);
+    const pointsStr = ringPts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    content += `<polygon points="${pointsStr}" fill="none" stroke="var(--border)" stroke-width="1"/>`;
+  }
+  const axisEnds = radarPoints(new Array(n).fill(5), cx, cy, maxR);
+  axisEnds.forEach(p => { content += `<line x1="${cx}" y1="${cy}" x2="${p.x.toFixed(1)}" y2="${p.y.toFixed(1)}" stroke="var(--border)" stroke-width="1"/>`; });
+
+  const scorePts = radarPoints(pillarScores.map(s => s.score), cx, cy, maxR);
+  const scorePolyStr = scorePts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  content += `<polygon points="${scorePolyStr}" fill="var(--accent2)" fill-opacity="0.25" stroke="var(--accent2)" stroke-width="2.5"/>`;
+  scorePts.forEach(p => { content += `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="4" fill="var(--accent)"/>`; });
+
+  const labelPts = radarPoints(new Array(n).fill(5.55), cx, cy, maxR);
+  labelPts.forEach((p, i) => {
+    content += `<text x="${p.x.toFixed(1)}" y="${p.y.toFixed(1)}" text-anchor="middle" font-size="20" dominant-baseline="middle">${pillarScores[i].icon}</text>`;
+  });
+
+  svg.innerHTML = content;
+}
+
+function renderGapList(pillarScores) {
+  const gaps = rankGaps(pillarScores);
+  $('gapList').innerHTML = gaps.map((g, idx) => {
+    const level = levelLabelForScore(g.score, DATA.levelLabels);
+    const btn = g.routeUrl
+      ? `<a class="gap-route-btn" href="${g.routeUrl}" target="_blank" rel="noopener">Open ${g.routeApp} →</a>`
+      : `<span class="gap-route-btn disabled">No tool yet</span>`;
+    return `<div class="gap-row">
+      <div class="gap-rank">${String(idx + 1).padStart(2, '0')}</div>
+      <div class="gap-name-wrap"><div class="gname">${g.icon} ${g.name}</div><div class="glevel">${level}</div></div>
+      <div class="gap-score mono">${g.score.toFixed(1)}</div>
+      ${btn}
+    </div>`;
+  }).join('');
+}
+
+function renderPillarSummaryTable(pillarScores, overall) {
+  const rows = pillarScores.map(p => `<tr><td>${p.icon} ${p.name}</td><td class="num-cell mono">${p.score.toFixed(2)}</td><td>${levelLabelForScore(p.score, DATA.levelLabels)}</td></tr>`).join('');
+  $('pillarSummaryTable').innerHTML = `
+    <table><thead><tr><th>Pillar</th><th style="width:100px;">Score</th><th style="width:140px;">Level</th></tr></thead>
+    <tbody>${rows}<tr style="border-top:2px solid var(--border);"><td><b>Overall</b></td><td class="num-cell mono"><b>${overall.toFixed(2)}</b></td><td><b>${levelLabelForScore(overall, DATA.levelLabels)}</b></td></tr></tbody></table>`;
+}
+
+// ---------------- MASTER RECALC ----------------
+function recalcAll() {
+  if (!DATA) return;
+  const pillarScores = computeAllPillarScores(DATA.pillars, state.answers);
+  const overall = computeOverallScore(pillarScores);
+  renderPillarBadgesAndProgress(pillarScores);
+  renderOverall(overall);
+  renderRadar(pillarScores);
+  renderGapList(pillarScores);
+  renderPillarSummaryTable(pillarScores, overall);
+}
+
+// ---------------- NAV / THEME ----------------
+function applyTheme(choice) {
+  state.themeChoice = choice;
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try {
+    localStorage.setItem('sw_theme', choice);
+    localStorage.setItem('maturity_assessment_theme', choice);
+  } catch (e) {}
+}
+$('themeToggle').addEventListener('click', (e) => { const btn = e.target.closest('button'); if (!btn) return; applyTheme(btn.dataset.themeChoice); });
+
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => { e.stopPropagation(); const isOpen = drop.classList.contains('open'); document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); if (!isOpen) drop.classList.add('open'); });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); });
+
+function wireScrollspy() {
+  const secObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.id; document.querySelectorAll('.sec-nav-link').forEach(link => link.classList.toggle('active', link.getAttribute('href') === `#${id}`)); } });
+  }, { threshold: 0.15, rootMargin: "-80px 0px -50% 0px" });
+  document.querySelectorAll('section.block').forEach(sec => secObserver.observe(sec));
+}
+
+// ---------------- TOAST NOTIFICATION ----------------
+let toastTimer = null;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ---------------- ARCHETYPE PRESETS ----------------
+const ARCHETYPES = {
+  legacy: {
+    name: 'Legacy Enterprise (L1–L2)',
+    defaultLevel: 1,
+    custom: {
+      sd1: 1, sd2: 1, sd3: 0, sd4: 1, sd5: 0, sd6: 0,
+      dex1: 0, dex2: 1, dex3: 0, dex4: 0, dex5: 0, dex6: 0,
+      field1: 1, field2: 1, field3: 0, field4: 1, field5: 0, field6: 0,
+      desk1: 1, desk2: 1, desk3: 0, desk4: 1, desk5: 0, desk6: 0,
+      auto1: 0, auto2: 1, auto3: 0, auto4: 0, auto5: 0, auto6: 0,
+      itsm1: 1, itsm2: 1, itsm3: 1, itsm4: 0, itsm5: 1, itsm6: 0,
+      sec1: 1, sec2: 1, sec3: 0, sec4: 1, sec5: 0, sec6: 0,
+      vend1: 1, vend2: 1, vend3: 0, vend4: 1, vend5: 0, vend6: 0,
+      fin1: 0, fin2: 1, fin3: 0, fin4: 0, fin5: 0, fin6: 0
+    }
+  },
+  transition: {
+    name: 'Standard Transitioning (L2–L3)',
+    defaultLevel: 2,
+    custom: {
+      sd1: 2, sd2: 2, sd3: 2, sd4: 1, sd5: 2, sd6: 1,
+      dex1: 2, dex2: 2, dex3: 1, dex4: 2, dex5: 1, dex6: 2,
+      field1: 2, field2: 2, field3: 1, field4: 2, field5: 2, field6: 1,
+      desk1: 2, desk2: 2, desk3: 2, desk4: 2, desk5: 1, desk6: 1,
+      auto1: 2, auto2: 2, auto3: 2, auto4: 1, auto5: 1, auto6: 1,
+      itsm1: 2, itsm2: 2, itsm3: 2, itsm4: 2, itsm5: 2, itsm6: 1,
+      sec1: 2, sec2: 2, sec3: 2, sec4: 2, sec5: 2, sec6: 1,
+      vend1: 2, vend2: 2, vend3: 2, vend4: 2, vend5: 1, vend6: 2,
+      fin1: 2, fin2: 2, fin3: 2, fin4: 1, fin5: 1, fin6: 1
+    }
+  },
+  aifirst: {
+    name: 'AI-First Modern Workplace (L4–L5)',
+    defaultLevel: 4,
+    custom: {
+      sd1: 4, sd2: 4, sd3: 3, sd4: 4, sd5: 4, sd6: 4,
+      dex1: 4, dex2: 4, dex3: 4, dex4: 4, dex5: 3, dex6: 4,
+      field1: 3, field2: 4, field3: 4, field4: 4, field5: 4, field6: 3,
+      desk1: 4, desk2: 4, desk3: 4, desk4: 4, desk5: 3, desk6: 4,
+      auto1: 4, auto2: 4, auto3: 4, auto4: 4, auto5: 4, auto6: 4,
+      itsm1: 4, itsm2: 4, itsm3: 4, itsm4: 4, itsm5: 4, itsm6: 4,
+      sec1: 4, sec2: 4, sec3: 4, sec4: 4, sec5: 4, sec6: 4,
+      vend1: 4, vend2: 4, vend3: 4, vend4: 4, vend5: 4, vend6: 4,
+      fin1: 4, fin2: 4, fin3: 4, fin4: 4, fin5: 4, fin6: 3
+    }
+  },
+  adhoc: {
+    name: 'Ad Hoc Baseline (L1)',
+    defaultLevel: 0,
+    custom: {}
+  }
+};
+
+function applyPreset(key) {
+  const preset = ARCHETYPES[key];
+  if (!preset || !DATA) return;
+
+  DATA.pillars.forEach(p => {
+    p.questions.forEach(q => {
+      const lvl = (preset.custom && preset.custom[q.id] !== undefined) ? preset.custom[q.id] : preset.defaultLevel;
+      state.answers[q.id] = lvl;
+      const block = document.querySelector(`.mq-block[data-question="${q.id}"]`);
+      if (block) {
+        block.querySelectorAll('.mq-option').forEach(o => o.classList.remove('selected'));
+        const opt = block.querySelector(`.mq-option[data-level="${lvl}"]`);
+        if (opt) {
+          opt.classList.add('selected');
+          const radio = opt.querySelector('input');
+          if (radio) radio.checked = true;
+        }
+      }
+    });
+  });
+
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.preset === key);
+  });
+
+  recalcAll();
+  wsSaveCurrent();
+  showToast(`Applied preset: ${preset.name}`);
+}
+
+document.querySelectorAll('.preset-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyPreset(btn.dataset.preset));
+});
+
+// ---------------- SHARED WORKSPACE ----------------
+const WORKSPACE_KEY = 'dws_workspace_v1';
+const WS_APP_ID = 'dwpassessment';
+const WS_APP_NAME = 'DWP Maturity Assessment';
+
+function wsEnsure(ws) {
+  if (!ws) ws = { schemaVersion: '1.0', activePreset: 'Default', orgProfile: {}, supportOps: {}, techStack: {}, perApp: {}, savedPresets: {} };
+  if (!ws.perApp) ws.perApp = {};
+  if (!ws.orgProfile) ws.orgProfile = {};
+  return ws;
+}
+function wsLoad() {
+  try {
+    const raw = localStorage.getItem(WORKSPACE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+function wsWrite(ws) {
+  try { localStorage.setItem(WORKSPACE_KEY, JSON.stringify(ws)); } catch (e) {}
+}
+
+function wsRelativeTime(iso) {
+  if (!iso) return 'recently';
+  try {
+    const diffMs = Date.now() - new Date(iso).getTime();
+    const mins = Math.round(diffMs / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    const hrs = Math.round(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    return Math.round(hrs / 24) + 'd ago';
+  } catch (e) { return 'earlier'; }
+}
+
+function wsSaveCurrent() {
+  if (!DATA) return;
+  const ws = wsEnsure(wsLoad());
+  const pillarScores = computeAllPillarScores(DATA.pillars, state.answers);
+  const overall = computeOverallScore(pillarScores);
+  const gaps = rankGaps(pillarScores).slice(0, 3);
+
+  if ($('org_name').value && $('org_name').value !== 'Digital Workplace Assessment') {
+    ws.orgProfile.name = $('org_name').value;
+  }
+  if ($('org_assessor').value) {
+    ws.orgProfile.assessor = $('org_assessor').value;
+  }
+
+  ws.perApp[WS_APP_ID] = {
+    appName: WS_APP_NAME,
+    savedAt: new Date().toISOString(),
+    overallScore: Number(overall.toFixed(2)),
+    overallLevel: levelLabelForScore(overall, DATA.levelLabels),
+    topGaps: gaps.map(g => ({ id: g.id, name: g.name, score: Number(g.score.toFixed(2)), routeApp: g.routeApp, routeUrl: g.routeUrl })),
+    answers: state.answers,
+    orgName: $('org_name').value,
+    assessor: $('org_assessor').value
+  };
+  ws.lastUpdatedBy = WS_APP_NAME;
+  ws.lastUpdatedAt = new Date().toISOString();
+  wsWrite(ws);
+  updateWsBar();
+}
+
+function updateWsBar() {
+  const ws = wsLoad();
+  const bar = document.getElementById('wsStatusBar');
+  if (!bar) return;
+  if (ws && (ws.orgProfile?.name || ws.perApp?.[WS_APP_ID] || ws.activePreset)) {
+    bar.style.display = 'block';
+    const nameEl = document.getElementById('wsActiveName');
+    const timeEl = document.getElementById('wsLastUpdated');
+    if (nameEl) nameEl.textContent = ws.activePreset || ws.orgProfile?.name || 'Enterprise Workspace';
+    if (timeEl) timeEl.textContent = `• Updated ${wsRelativeTime(ws.lastUpdatedAt)}`;
+  }
+}
+
+function wsSyncFromWorkspace() {
+  const ws = wsLoad();
+  if (!ws) {
+    showToast('No active workspace found yet. Open Workspace to configure.');
+    return;
+  }
+  let changes = 0;
+  if (ws.orgProfile?.name && ws.orgProfile.name !== $('org_name').value) {
+    $('org_name').value = ws.orgProfile.name;
+    changes++;
+  }
+  if (ws.orgProfile?.assessor && ws.orgProfile.assessor !== $('org_assessor').value) {
+    $('org_assessor').value = ws.orgProfile.assessor;
+    changes++;
+  }
+  const appData = ws.perApp?.[WS_APP_ID] || ws.perApp?.['maturity-assessment'];
+  if (appData && appData.answers) {
+    state.answers = appData.answers;
+    Object.keys(appData.answers).forEach(qId => {
+      const level = appData.answers[qId];
+      const block = document.querySelector(`.mq-block[data-question="${qId}"]`);
+      if (block) {
+        block.querySelectorAll('.mq-option').forEach(o => o.classList.remove('selected'));
+        const opt = block.querySelector(`.mq-option[data-level="${level}"]`);
+        if (opt) {
+          opt.classList.add('selected');
+          const r = opt.querySelector('input');
+          if (r) r.checked = true;
+        }
+      }
+    });
+    changes++;
+  }
+  recalcAll();
+  showToast(changes > 0 ? '✓ Synced with Shared Workspace' : 'Workspace profile already aligned');
+}
+
+const syncBtn = document.getElementById('wsSyncBtn');
+if (syncBtn) syncBtn.addEventListener('click', wsSyncFromWorkspace);
+
+$('org_name').addEventListener('input', wsSaveCurrent);
+$('org_assessor').addEventListener('input', wsSaveCurrent);
+
+// ---------------- EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  const pillarScores = computeAllPillarScores(DATA.pillars, state.answers);
+  const overall = computeOverallScore(pillarScores);
+  let csv = 'DIGITAL WORKPLACE MATURITY ASSESSMENT — MODEL EXPORT\n';
+  csv += `Organization,${$('org_name').value}\nAssessed By,${$('org_assessor').value}\n\n`;
+  csv += 'PILLAR SCORES\nPillar,Score,Level,Routes To\n';
+  pillarScores.forEach(p => { csv += `${p.name},${p.score.toFixed(2)},${levelLabelForScore(p.score, DATA.levelLabels)},${p.routeApp || 'N/A'}\n`; });
+  csv += `\nOverall,${overall.toFixed(2)},${levelLabelForScore(overall, DATA.levelLabels)}\n\n`;
+  csv += 'QUESTION-LEVEL ANSWERS\nPillar,Question,Selected Level,Level Label\n';
+  DATA.pillars.forEach(p => p.questions.forEach(q => {
+    const lvl = state.answers[q.id] || 0;
+    csv += `${p.name},"${q.text}",${lvl + 1},${DATA.levelLabels[lvl]}\n`;
+  }));
+
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `Maturity_Assessment_${new Date().toISOString().slice(0, 10)}.csv`;
+  link.click();
+  showToast('✓ CSV exported');
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  const pillarScores = computeAllPillarScores(DATA.pillars, state.answers);
+  const overall = computeOverallScore(pillarScores);
+  const gaps = rankGaps(pillarScores).slice(0, 3);
+  const text = `# 🧬 Digital Workplace Maturity Assessment — Executive Briefing
+**Organization:** ${$('org_name').value} | **Assessed by:** ${$('org_assessor').value || 'Not specified'}
+**Generated:** ${new Date().toLocaleDateString()} via https://iamsaravofficial.com/apps/dwpassessment/
+
+### Overall Maturity: ${overall.toFixed(2)} / 5.0 — ${levelLabelForScore(overall, DATA.levelLabels)}
+
+### Pillar Scores
+${pillarScores.map(p => `- ${p.icon} ${p.name}: ${p.score.toFixed(2)} (${levelLabelForScore(p.score, DATA.levelLabels)})`).join('\n')}
+
+### Top 3 Priority Gaps
+${gaps.map((g, i) => `${i + 1}. ${g.name} (${g.score.toFixed(2)}) — ${g.routeApp ? `start with ${g.routeApp} (${g.routeUrl})` : 'no dedicated tool yet'}`).join('\n')}`;
+  try {
+    await navigator.clipboard.writeText(text);
+    $('btnCopyBrief').textContent = '✓ Copied to Clipboard';
+    showToast('Executive Briefing copied to clipboard');
+    setTimeout(() => $('btnCopyBrief').textContent = '📋 Copy Executive Briefing (Markdown)', 2000);
+  } catch (e) { showToast('Clipboard copy failed. Please grant permission.'); }
+});
+
+$('btnSaveScenario').addEventListener('click', () => {
+  const scenario = {
+    schemaVersion: '1.0', appId: 'maturity-assessment', timestamp: new Date().toISOString(),
+    orgProfile: { employees: 0, industry: $('org_name').value, languages: 1, shiftModel: '' },
+    channelMix: { voice: 0, chat: 0, email: 0, digital: 0 },
+    moduleData: { assessor: $('org_assessor').value, answers: state.answers }
+  };
+  const blob = new Blob([JSON.stringify(scenario, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = `maturity_assessment_scenario_${new Date().toISOString().slice(0, 10)}.json`;
+  link.click();
+  showToast('Scenario JSON downloaded');
+});
+
+$('btnLoadScenario').addEventListener('click', () => $('fileLoadScenario').click());
+$('fileLoadScenario').addEventListener('change', (e) => {
+  const file = e.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.orgProfile && data.orgProfile.industry) $('org_name').value = data.orgProfile.industry;
+      if (data.appId === 'maturity-assessment' && data.moduleData) {
+        const m = data.moduleData;
+        if (m.assessor) $('org_assessor').value = m.assessor;
+        if (m.answers) {
+          state.answers = m.answers;
+          Object.keys(m.answers).forEach(qId => {
+            const level = m.answers[qId];
+            const block = document.querySelector(`.mq-block[data-question="${qId}"]`);
+            if (block) {
+              block.querySelectorAll('.mq-option').forEach(o => o.classList.remove('selected'));
+              const opt = block.querySelector(`.mq-option[data-level="${level}"]`);
+              if (opt) { opt.classList.add('selected'); opt.querySelector('input').checked = true; }
+            }
+          });
+        }
+        showToast('Loaded full Maturity Assessment scenario.');
+      } else {
+        showToast('Loaded shared profile field — scenario answers left as-is.');
+      }
+      recalcAll();
+      wsSaveCurrent();
+    } catch (err) { showToast('Could not read file as valid scenario JSON.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- BOOT ----------------
+async function loadData() {
+  try {
+    const res = await fetch('ma-data.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('fetch failed');
+    DATA = await res.json();
+  } catch (e) {
+    console.warn('Using embedded fallback data.', e);
+    DATA = JSON.parse(JSON.stringify(FALLBACK_DATA));
+  }
+}
+
+(async function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('sw_theme') || localStorage.getItem('maturity_assessment_theme') || 'dark'; } catch (e) {}
+  applyTheme(savedTheme);
+
+  await loadData();
+  buildNav();
+  buildPillarSections();
+  wireScrollspy();
+
+  // Auto-fill from workspace if present
+  const ws = wsLoad();
+  if (ws && ws.orgProfile) {
+    if (ws.orgProfile.name && $('org_name').value === 'Digital Workplace Assessment') {
+      $('org_name').value = ws.orgProfile.name;
+    }
+    if (ws.orgProfile.assessor && !$('org_assessor').value) {
+      $('org_assessor').value = ws.orgProfile.assessor;
+    }
+  }
+  updateWsBar();
+  recalcAll();
+})();
+
+</script>
+<div id="toast" class="toast"></div>
+</body>
+</html>

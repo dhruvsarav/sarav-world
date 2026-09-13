@@ -1,0 +1,383 @@
+{
+  "version": "2026.09",
+  "disclaimer": "Level descriptions are Nalkudil Studio's independent maturity-model design, following the standard 5-level structure used in capability maturity frameworks (Ad Hoc \u2192 Managed \u2192 Defined \u2192 Quantified \u2192 Optimized). Not a certified or licensed framework \u2014 use as a structured self-assessment starting point.",
+  "levelLabels": ["Ad Hoc", "Managed", "Defined", "Quantified", "Optimized"],
+  "pillars": [
+    {
+      "id": "itsm", "name": "ITSM & Service Management Governance", "icon": "🎫", "routeApp": "ITSM Advisor", "routeUrl": "https://iamsaravofficial.com/apps/itsmadvisor/",
+      "questions": [
+        { "id": "itsm1", "text": "How is incident management handled?", "levels": [
+          "Incidents handled informally via email/chat, no ticketing system",
+          "Ticketing system in place but categorization is inconsistent",
+          "Standardized incident categorization and priority matrix documented and followed",
+          "Incident MTTR and SLA compliance tracked and reported monthly",
+          "Incident trends analyzed to proactively prevent recurrence; AI-assisted triage live"
+        ]},
+        { "id": "itsm2", "text": "How are changes to production systems managed?", "levels": [
+          "Changes made ad hoc with no approval process",
+          "Basic change requests logged but approval is informal",
+          "Formal Change Advisory Board (CAB) process with risk assessment",
+          "Change success/failure rates tracked, correlated to incident spikes",
+          "Automated change risk scoring with predictive rollback triggers"
+        ]},
+        { "id": "itsm3", "text": "How mature is your CMDB / asset management?", "levels": [
+          "No centralized asset inventory",
+          "Spreadsheet-based asset tracking, updated irregularly",
+          "Dedicated CMDB with defined CI relationships",
+          "CMDB accuracy audited regularly, drives capacity planning",
+          "CMDB auto-discovers and reconciles assets in real time"
+        ]},
+        { "id": "itsm4", "text": "How is knowledge management run?", "levels": [
+          "No knowledge base; tribal knowledge only",
+          "Informal KB articles exist but are outdated/unmaintained",
+          "KB is structured, reviewed on a schedule, tied to ticket resolution",
+          "KB usage and deflection rate measured against ticket volume",
+          "AI-curated KB auto-suggests and auto-updates from resolved tickets"
+        ]},
+        { "id": "itsm5", "text": "How are SLAs/OLAs defined and used?", "levels": [
+          "No formal SLAs defined",
+          "SLAs exist but are generic/not tiered by severity",
+          "SLAs tiered by priority/service, documented in contracts",
+          "SLA performance tracked and reported to stakeholders regularly",
+          "SLAs dynamically adjusted based on business-impact analytics"
+        ]},
+        { "id": "itsm6", "text": "How is your ITSM platform utilized?", "levels": [
+          "Multiple disconnected tools, no single system of record",
+          "Single ITSM tool adopted but only for ticketing",
+          "ITSM tool used across incident/change/problem/asset modules",
+          "ITSM data feeds executive dashboards and capacity decisions",
+          "ITSM platform is the automation backbone (workflows, AI, orchestration)"
+        ]}
+      ]
+    },
+    {
+      "id": "servicedesk", "name": "Service Desk & Support Operations", "icon": "👷", "routeApp": "SD Optimizer", "routeUrl": "https://iamsaravofficial.com/apps/sdoptimizer/",
+      "questions": [
+        { "id": "sd1", "text": "What's your support channel strategy?", "levels": [
+          "Phone-only support",
+          "Phone + email, no unified queue",
+          "Omnichannel (phone/chat/email/portal) with unified queue",
+          "Channel performance (AHT, CSAT) tracked per channel",
+          "AI dynamically routes contacts to optimal channel based on complexity"
+        ]},
+        { "id": "sd2", "text": "How is service desk staffing planned?", "levels": [
+          "Staffing based on gut feel / headcount inherited from budget",
+          "Basic headcount planning based on historical ticket counts",
+          "Erlang-based or similar workforce-management staffing model in use",
+          "Staffing model incorporates shrinkage, tiering, and forecasted volume",
+          "Staffing dynamically re-optimized using real-time automation-adjusted demand"
+        ]},
+        { "id": "sd3", "text": "How is your tiering structure defined?", "levels": [
+          "Single-tier support, everyone handles everything",
+          "Informal L1/L2 split, unclear escalation criteria",
+          "Documented tiering with defined escalation/nesting ratio",
+          "Tier performance (FCR, escalation rate) tracked by tier",
+          "Tiering dynamically adjusts based on skill-based routing and AI triage"
+        ]},
+        { "id": "sd4", "text": "How is First Contact Resolution (FCR) managed?", "levels": [
+          "FCR not measured",
+          "FCR estimated informally, not systematically tracked",
+          "FCR tracked as a formal KPI",
+          "FCR trends drive coaching and process improvement",
+          "FCR optimized via AI-assisted agent guidance in real time"
+        ]},
+        { "id": "sd5", "text": "How is quality assurance and coaching run?", "levels": [
+          "No call/ticket quality review process",
+          "Ad hoc spot-checks by supervisors",
+          "Structured QA scorecards and regular coaching cycles",
+          "QA scores correlated with CSAT/FCR to guide targeted coaching",
+          "AI-assisted quality scoring across 100% of interactions"
+        ]},
+        { "id": "sd6", "text": "How visible is your cost-to-serve?", "levels": [
+          "No visibility into cost per ticket/contact",
+          "Rough annual budget known, not broken down per ticket",
+          "Cost per ticket calculated by channel/tier",
+          "Cost-to-serve tracked against automation-driven savings targets",
+          "Real-time cost-to-serve dashboard drives staffing and tooling decisions"
+        ]}
+      ]
+    },
+    {
+      "id": "dex", "name": "Digital Employee Experience", "icon": "🧭", "routeApp": "DEX Advisor", "routeUrl": "https://iamsaravofficial.com/apps/dexadvisor/",
+      "questions": [
+        { "id": "dex1", "text": "How visible is employee device/app experience?", "levels": [
+          "No visibility into employee device/app experience",
+          "Reactive visibility only via helpdesk complaints",
+          "DEX/telemetry tooling deployed on majority of the estate",
+          "DEX data correlated with ticket volume and sentiment surveys",
+          "DEX-driven proactive remediation resolves issues before users notice"
+        ]},
+        { "id": "dex2", "text": "How is employee sentiment measured?", "levels": [
+          "No employee sentiment data collected",
+          "Annual/occasional engagement surveys only",
+          "Regular XLA-style pulse surveys tied to IT services",
+          "Sentiment scores tracked as a governed KPI alongside SLAs",
+          "Sentiment predictively modeled from behavior/telemetry, not just surveys"
+        ]},
+        { "id": "dex3", "text": "How proactive is issue remediation?", "levels": [
+          "All issues are reactive (user reports, then IT responds)",
+          "Some scripted remediations exist but are manually triggered",
+          "Automated remediation triggers on defined device health thresholds",
+          "Remediation success rate tracked and tuned",
+          "Predictive remediation resolves issues before symptoms appear"
+        ]},
+        { "id": "dex4", "text": "How is device health and refresh managed?", "levels": [
+          "No visibility into device age/health across the estate",
+          "Device refresh based on fixed depreciation schedule only",
+          "Device health data informs refresh prioritization",
+          "Refresh ROI tracked against experience/productivity improvement",
+          "Refresh cycles dynamically optimized using DEX + cost data together"
+        ]},
+        { "id": "dex5", "text": "How is SaaS/business app performance monitored?", "levels": [
+          "No monitoring of business-critical SaaS/app performance",
+          "Monitoring limited to infrastructure, not the app experience itself",
+          "End-to-end app experience monitored for critical business apps",
+          "App performance data tied to business-impact reporting",
+          "AI correlates app degradation to root cause across the full stack"
+        ]},
+        { "id": "dex6", "text": "How is experience reported to leadership?", "levels": [
+          "No experience metrics reported to leadership",
+          "Ad hoc anecdotal reporting when issues escalate",
+          "Regular XPI/DEX scorecard presented to IT leadership",
+          "Experience scorecard tied to business outcomes (attrition, productivity)",
+          "Experience metrics are a standing board-level KPI"
+        ]}
+      ]
+    },
+    {
+      "id": "automation", "name": "AI & Automation Adoption", "icon": "🎛️", "routeApp": "Automation Potential Advisor", "routeUrl": "https://iamsaravofficial.com/apps/automationscore/",
+      "questions": [
+        { "id": "auto1", "text": "How formal is your automation strategy?", "levels": [
+          "No automation strategy; automation is opportunistic/accidental",
+          "A few scripts/macros exist, undocumented and unowned",
+          "Formal automation roadmap tied to call-driver/ticket analysis",
+          "Automation ceiling and realized % tracked as a governed metric",
+          "Automation strategy dynamically re-prioritized using live ticket data"
+        ]},
+        { "id": "auto2", "text": "How is self-service adopted?", "levels": [
+          "No self-service portal or catalog",
+          "Self-service portal exists but is rarely used",
+          "Self-service catalog covers top call drivers, actively promoted",
+          "Self-service deflection rate tracked and targeted",
+          "AI-driven self-service adapts in real time to emerging issues"
+        ]},
+        { "id": "auto3", "text": "How mature is RPA/workflow automation?", "levels": [
+          "No RPA or workflow automation in use",
+          "A handful of isolated RPA bots, no governance",
+          "RPA/workflow automation governed with a CoE and reuse library",
+          "RPA ROI tracked per process automated",
+          "RPA orchestrated alongside AI agents in unified workflows"
+        ]},
+        { "id": "auto4", "text": "How deployed is AI/Copilot in your operations?", "levels": [
+          "No AI/Copilot tools deployed",
+          "Pilot/trial of an AI copilot in one team",
+          "AI copilot deployed broadly for specific use cases (triage, KB)",
+          "AI copilot adoption and impact measured (deflection, AHT reduction)",
+          "AI agents autonomously resolve tickets end-to-end for defined categories"
+        ]},
+        { "id": "auto5", "text": "How ready is your data for AI consumption?", "levels": [
+          "Ticket/KB data is messy, inconsistent, not AI-ready",
+          "Some data cleanup done, but no structured taxonomy",
+          "Data taxonomy standardized, KB structured for AI consumption",
+          "Data quality actively monitored and improved for AI accuracy",
+          "Data pipeline continuously feeds and retrains AI models"
+        ]},
+        { "id": "auto6", "text": "How is automation governed?", "levels": [
+          "No ownership of automation initiatives",
+          "Individual teams own automation ad hoc, no central visibility",
+          "Central automation governance body tracks all initiatives",
+          "Automation portfolio prioritized using ROI/ceiling analysis",
+          "Automation governance integrated into overall IT strategy planning"
+        ]}
+      ]
+    },
+    {
+      "id": "field", "name": "Field & Onsite Support Operations", "icon": "🗺️", "routeApp": "Field Services / Deskside", "routeUrl": "https://iamsaravofficial.com/apps/fsoptimizer/",
+      "questions": [
+        { "id": "field1", "text": "How is field dispatch managed?", "levels": [
+          "No formal dispatch process, ad hoc assignment",
+          "Manual dispatch based on technician availability only",
+          "Documented dispatch model with defined SLA windows (NBD, etc.)",
+          "Dispatch performance (SLA achievement, travel time) tracked",
+          "Dispatch dynamically optimized using hub-count/routing models"
+        ]},
+        { "id": "field2", "text": "How is your hub/coverage strategy designed?", "levels": [
+          "No defined coverage strategy, technicians assigned reactively",
+          "Coverage based on historical headcount, not modeled",
+          "Hub-and-spoke or coverage model formally designed",
+          "Coverage cost vs. SLA trade-off analyzed regularly",
+          "Coverage model re-optimized as volume/geography shifts"
+        ]},
+        { "id": "field3", "text": "How is VIP/executive support handled?", "levels": [
+          "No differentiated support for VIP/executive users",
+          "VIP support handled informally by whoever is available",
+          "Dedicated VIP queue/process with defined SLA",
+          "VIP SLA performance tracked separately from general queue",
+          "VIP support proactively monitored to prevent escalations"
+        ]},
+        { "id": "field4", "text": "How is walk-up/deskside coverage staffed?", "levels": [
+          "No walk-up support desk exists",
+          "Walk-up desk exists but coverage is inconsistent",
+          "Minimum staffing floor defined and maintained for walk-up desk",
+          "Walk-up demand vs. staffing floor tracked and adjusted",
+          "Walk-up coverage dynamically staffed based on real-time demand"
+        ]},
+        { "id": "field5", "text": "How is parts/inventory managed?", "levels": [
+          "No parts inventory tracking",
+          "Parts tracked informally, frequent stockouts",
+          "Parts/inventory carrying cost factored into hub economics",
+          "Inventory turns and stockout rate tracked as KPIs",
+          "Predictive inventory restocking tied to failure-rate analytics"
+        ]},
+        { "id": "field6", "text": "How is field technician utilization tracked?", "levels": [
+          "Technician utilization not tracked",
+          "Utilization estimated informally",
+          "Utilization tracked against a target occupancy benchmark",
+          "Utilization data drives headcount and territory adjustments",
+          "Utilization optimized in real time via dynamic routing"
+        ]}
+      ]
+    },
+    {
+      "id": "security", "name": "Security & Patch Posture", "icon": "🛡️", "routeApp": "DEX & Patch Posture", "routeUrl": "https://iamsaravofficial.com/apps/dexadvisor/",
+      "questions": [
+        { "id": "sec1", "text": "How is patch management run?", "levels": [
+          "Patching is manual and inconsistent",
+          "Patch cycles exist but SLA compliance isn't tracked",
+          "Patch compliance tracked as a formal KPI with defined SLA",
+          "Patch compliance correlated with vulnerability/breach risk data",
+          "Patching is automated and risk-prioritized in real time"
+        ]},
+        { "id": "sec2", "text": "How mature is vulnerability management?", "levels": [
+          "No formal vulnerability scanning",
+          "Vulnerability scans run occasionally, findings not tracked to closure",
+          "Regular scanning with tracked remediation SLAs",
+          "Vulnerability exposure quantified in business-risk/dollar terms",
+          "Vulnerability response is automated and continuously prioritized"
+        ]},
+        { "id": "sec3", "text": "How complete is endpoint security coverage?", "levels": [
+          "Inconsistent or missing endpoint protection across the estate",
+          "Endpoint protection deployed but coverage/compliance not verified",
+          "Endpoint protection coverage verified and reported regularly",
+          "Endpoint security posture is a tracked executive KPI",
+          "Endpoint security integrated with DEX/automation for auto-remediation"
+        ]},
+        { "id": "sec4", "text": "How is access governance handled?", "levels": [
+          "Access provisioned/revoked manually, no periodic review",
+          "Access reviews happen occasionally, inconsistently",
+          "Formal joiner-mover-leaver access governance process",
+          "Access governance audited and tracked against compliance standards",
+          "Access governance automated with continuous entitlement review"
+        ]},
+        { "id": "sec5", "text": "How ready is your incident response process?", "levels": [
+          "No documented security incident response plan",
+          "A plan exists but hasn't been tested",
+          "IR plan tested via regular tabletop exercises",
+          "IR performance (detection/response time) measured",
+          "IR is automated/orchestrated with real-time threat intelligence"
+        ]},
+        { "id": "sec6", "text": "How is security awareness and reporting run?", "levels": [
+          "No security awareness training program",
+          "Annual generic security training only",
+          "Regular, role-specific security awareness training",
+          "Security posture reported to leadership as a standing metric",
+          "Security posture is a board-level KPI tied to business risk"
+        ]}
+      ]
+    },
+    {
+      "id": "vendor", "name": "Vendor & Sourcing Governance", "icon": "⚖️", "routeApp": "Vendor RFP Weighted Scorer", "routeUrl": "https://iamsaravofficial.com/apps/rfpscorer/",
+      "questions": [
+        { "id": "vend1", "text": "How is vendor selection conducted?", "levels": [
+          "Vendors selected informally/relationship-based",
+          "Basic RFP process exists but criteria are inconsistent",
+          "Formal weighted RFP/scoring process used for major decisions",
+          "Vendor selection outcomes tracked against post-implementation performance",
+          "Vendor scoring model continuously refined using realized ROI data"
+        ]},
+        { "id": "vend2", "text": "How is contract management run?", "levels": [
+          "Contracts tracked informally, renewal dates often missed",
+          "Central contract repository exists but isn't proactively managed",
+          "Contract renewals tracked with lead-time triggers for renegotiation",
+          "Contract terms benchmarked against market rates regularly",
+          "Contract portfolio optimized proactively across the vendor estate"
+        ]},
+        { "id": "vend3", "text": "How is vendor performance managed?", "levels": [
+          "No formal vendor performance tracking",
+          "Vendor issues addressed reactively as they arise",
+          "Vendor SLAs tracked via regular business reviews",
+          "Vendor performance scorecards tied to contractual consequences",
+          "Vendor performance data feeds future sourcing decisions automatically"
+        ]},
+        { "id": "vend4", "text": "How is multi-vendor coordination handled?", "levels": [
+          "No coordination between vendors supporting different towers",
+          "Vendors coordinate informally, gaps/overlaps common",
+          "Defined RACI/governance model across multi-vendor landscape",
+          "Cross-vendor performance measured against end-to-end SLAs",
+          "Multi-vendor ecosystem orchestrated via shared tooling/data"
+        ]},
+        { "id": "vend5", "text": "How visible is total cost of ownership (TCO)?", "levels": [
+          "No visibility into full TCO of vendor relationships",
+          "Direct license/contract cost known, hidden costs not tracked",
+          "TCO modeled including implementation, support, and exit costs",
+          "TCO tracked over time against value delivered",
+          "TCO modeling drives dynamic sourcing/renewal decisions"
+        ]},
+        { "id": "vend6", "text": "How prepared are you for vendor exit/transition?", "levels": [
+          "No exit strategy for critical vendors",
+          "Exit considered only reactively when a relationship fails",
+          "Exit/transition plans documented for critical vendors upfront",
+          "Exit readiness tested/reviewed periodically",
+          "Vendor portfolio actively hedged to minimize lock-in risk"
+        ]}
+      ]
+    },
+    {
+      "id": "finance", "name": "Financial Governance & Business Case Discipline", "icon": "📈", "routeApp": "AI-in-ITSM Business Case", "routeUrl": "https://iamsaravofficial.com/apps/aiinitsm/",
+      "questions": [
+        { "id": "fin1", "text": "How are IT investments justified?", "levels": [
+          "IT investments approved without formal business cases",
+          "Basic cost estimates provided, benefits rarely quantified",
+          "Formal business cases with cost/benefit required for major investments",
+          "Business cases include NPV/ROI/payback analysis",
+          "Business case outcomes tracked post-launch and fed back into future cases"
+        ]},
+        { "id": "fin2", "text": "How is IT budget tracked?", "levels": [
+          "IT budget tracked at a high level only, no line-item detail",
+          "Line-item budget exists but variance isn't analyzed",
+          "Budget vs. actual tracked and reviewed regularly",
+          "Budget variance root-caused and tied to specific initiatives",
+          "Budget dynamically reforecast using real-time cost/usage data"
+        ]},
+        { "id": "fin3", "text": "How is cost avoidance measured?", "levels": [
+          "Cost avoidance from automation/efficiency isn't measured",
+          "Cost avoidance estimated informally, not validated",
+          "Cost avoidance calculated using a defined baseline methodology",
+          "Cost avoidance tracked against target and reported to finance",
+          "Cost avoidance modeling is continuously validated against actuals"
+        ]},
+        { "id": "fin4", "text": "How is investment risk quantified?", "levels": [
+          "Project risks discussed informally, not quantified",
+          "Risks listed but not scored or prioritized",
+          "Risk register with likelihood/impact scoring used for major initiatives",
+          "Risk-adjusted ROI used in investment decisions",
+          "Risk models continuously updated using real incident/outcome data"
+        ]},
+        { "id": "fin5", "text": "How is stakeholder financial reporting run?", "levels": [
+          "No regular financial reporting on IT initiatives to stakeholders",
+          "Ad hoc updates provided when asked",
+          "Regular financial/status reporting cadence established",
+          "Reporting includes leading indicators, not just lagging spend",
+          "Real-time financial dashboards available to all stakeholders"
+        ]},
+        { "id": "fin6", "text": "How is the IT investment portfolio managed?", "levels": [
+          "Each IT initiative evaluated in isolation",
+          "Some awareness of overlapping initiatives, not formally managed",
+          "Portfolio view maintained across all major IT investments",
+          "Portfolio prioritized using consistent ROI/impact criteria",
+          "Portfolio dynamically rebalanced as new data/initiatives emerge"
+        ]}
+      ]
+    }
+  ]
+}
