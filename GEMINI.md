@@ -152,3 +152,18 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
 
 ---
 
+## 🌟 Flagship Homepage & Apps Hub Standards
+
+### 1. Root Flagship Homepage (`/` - `src/App.jsx` & `src/index.css`)
+- **Hero Kicker:** `Digital Workplace Technology Head · Author · Builder` (employer tag omitted for clean executive brand).
+- **Sticky Topbar:** Includes dedicated glowing `Playground ✦` pill (`.nav-playground-pill`) linking to `/playground/` with cyan/teal ambient aura and pulse animation.
+- **Typography & Descenders:** `.section-title` maintains `line-height: 1.25` and `.title-word` has vertical breathing clearance (`padding-bottom: 0.16em; margin-bottom: -0.16em;`) so letters with descenders (`g`, `y`, `p`, `j`, `q`) never clip.
+- **Builder Section (`#apps`):** Focuses on Enterprise AI & Workplace tools:
+  - Dual central action buttons: `Enterprise AI Suite →` (`/eapps/`) and `Explore Playground ✦` (`/playground/`).
+  - 3 flagship cards with official og-images: *Tokenomics* (`/apps/tokenomics/icons/brain-full.png`), *SD Optimizer* (`/apps/sdoptimizer/og-image.png`), *Deskside Staffing* (`/apps/desksidestaffing/og-image.png`).
+- **Footer Directory:** Comprehensive directory links: *Copyright* (`/copyright/`), *Privacy* (`/privacy-policy/`), *Terms* (`/terms/`), *Fact Sheet* (`/fact-sheet/`), *Feedback* (`/feedback/`), *Social* (`/social/`). Formatted as `Copyright © 2009–{currentYear} · Sarav`.
+
+### 2. Apps Hub (`/apps/` - `public/apps/index.html`)
+- **Clean Structure:** Laser-focused exclusively on web applications.
+- **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (9 live consumer tools) → Zero-telemetry footer.
+- Cultural platforms (*Temples of Tamil Gods*, *Thirukkural*, *FactDrop*) live strictly on the dedicated [`/projects/`](https://iamsaravofficial.com/projects/) hub.
