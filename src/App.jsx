@@ -38,13 +38,6 @@ import {
 import saravMain from "./assets/hero/sarav-main.png";
 import saravSignWhite from "./assets/brand/Sarav-Sign-White.png";
 
-import spouseShowcase from "./assets/aibuilder/spouse-showcase.png";
-import chessmasterShowcase from "./assets/aibuilder/chessmaster-showcase.png";
-import familyManagerShowcase from "./assets/aibuilder/family-manager-showcase.png";
-import appTrio from "./assets/aibuilder/app-trio.png";
-import ideaShipped from "./assets/aibuilder/idea-shipped.png";
-import controlRoomBg from "./assets/aibuilder/futuristic-control-room-bg.png";
-import androidBuildSuccess from "./assets/aibuilder/android-studio-build-success.png";
 import cognizantLatestRole from "./assets/aibuilder/cognizant-latest-role.png";
 import tcsOfficiallyTcser from "./assets/timeline/tcs-officially-tcser.png";
 
@@ -104,10 +97,34 @@ const workCards = [
   { title: "Author & Storyteller", text: "Novels, reflections, emotional universes, and quiet stories that stay with people long after reading." },
 ];
 
-const appCards = [
-  { title: "Spouse",                subtitle: "A daily emotional connection engine for couples.", image: spouseShowcase },
-  { title: "Chess Master for Kidz", subtitle: "Learning through challenge, pattern, and play.",   image: chessmasterShowcase },
-  { title: "Family Manager",        subtitle: "Money, home, family, and planning in one place.",  image: familyManagerShowcase },
+const enterpriseApps = [
+  {
+    title: "Enterprise AI Economics",
+    subtitle: "Tokenomics Simulator",
+    text: "Simulate multi-LLM token burn, 90% prompt caching savings, contingency buffers, and human labor arbitrage ROI.",
+    image: "/apps/tokenomics/icons/brain-full.png",
+    href: "https://iamsaravofficial.com/apps/tokenomics/",
+    badge: "Flagship",
+    badgeType: "gold",
+  },
+  {
+    title: "SD Optimizer",
+    subtitle: "Service Desk Capacity Engine",
+    text: "Erlang C queue modeling, multi-tier agent sizing, GenAI deflection savings, and 8x5 / 24x7 shift rosters.",
+    image: "/apps/sdoptimizer/og-image.png",
+    href: "https://iamsaravofficial.com/apps/sdoptimizer/",
+    badge: "Operations",
+    badgeType: "teal",
+  },
+  {
+    title: "Deskside Staffing",
+    subtitle: "Field Services Optimizer",
+    text: "Campus dispatch density, device-to-technician ratios, VIP white-glove coverage, and SLA buffer calculation.",
+    image: "/apps/desksidestaffing/og-image.png",
+    href: "https://iamsaravofficial.com/apps/desksidestaffing/",
+    badge: "Field Services",
+    badgeType: "purple",
+  },
 ];
 
 const journeyCards = [
@@ -237,6 +254,9 @@ function Header() {
               {item.label}
             </a>
           ))}
+          <a href="/playground/" className="nav-playground-pill">
+            Playground ✦
+          </a>
         </nav>
       </div>
     </motion.header>
@@ -285,7 +305,7 @@ function Hero() {
         <motion.p className="hero-kicker"
           initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}>
-          Digital Workplace Technology Head @ Tata Consultancy Services · Author · Builder
+          Digital Workplace Technology Head · Author · Builder
         </motion.p>
 
         <motion.h1 className="hero-title"
@@ -516,19 +536,8 @@ function Work() {
 // ──────────────────────────────────────────────────────────────
 
 function Builder() {
-  const sectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
-  });
-
-  const bgY = useTransform(scrollYProgress, [0, 1], ["8%", "-12%"]);
-  const trioY = useSpring(useTransform(scrollYProgress, [0, 1], [60, -60]), { stiffness: 60, damping: 18 });
-  const ideaY = useSpring(useTransform(scrollYProgress, [0, 1], [40, -40]), { stiffness: 60, damping: 18 });
-  const buildY = useSpring(useTransform(scrollYProgress, [0, 1], [80, -80]), { stiffness: 60, damping: 18 });
-
   return (
-    <section className="section" id="apps" ref={sectionRef}>
+    <section className="section" id="apps">
       <motion.p className="section-kicker center-copy"
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -541,53 +550,63 @@ function Builder() {
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 0.8 }}
       >
-        Actively vibe-coded with Vidhya using ChatGPT and Claude — turning ideas into
-        visible, usable experiences.
+        Enterprise-grade workplace simulators, capacity planning engines, and interactive tools — turning strategy and economics into visible, client-side experiences.
       </motion.p>
 
-      <div className="builder-hero">
-        <motion.img src={controlRoomBg} alt="" className="builder-bg"
-          style={{ y: bgY }} loading="lazy" />
-        <div className="builder-overlay">
-          <motion.div className="builder-panel" style={{ y: trioY }}
-            whileHover={{ scale: 1.02, rotate: -1, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-          >
-            <img src={appTrio} alt="App trio" loading="lazy" />
-          </motion.div>
-
-          <div className="builder-side-stack">
-            <motion.div className="mini-panel" style={{ y: ideaY }}
-              whileHover={{ scale: 1.04, rotate: 1, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-            >
-              <img src={ideaShipped} alt="Idea shipped" loading="lazy" />
-            </motion.div>
-            <motion.div className="mini-panel" style={{ y: buildY }}
-              whileHover={{ scale: 1.04, rotate: -1, transition: { type: "spring", stiffness: 300, damping: 22 } }}
-            >
-              <img src={androidBuildSuccess} alt="Android build success" loading="lazy" />
-            </motion.div>
-          </div>
-        </div>
-      </div>
+      {/* 2 Centered Buttons: Enterprise Apps first, then Playground */}
+      <motion.div className="builder-center-actions"
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.8, delay: 0.15 }}
+      >
+        <motion.a
+          href="/eapps/"
+          className="btn btn-primary builder-btn-enterprise"
+          whileHover={{ y: -2, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span>Enterprise AI Suite</span>
+          <span className="btn-arrow">→</span>
+        </motion.a>
+        <motion.a
+          href="/playground/"
+          className="btn btn-secondary builder-btn-playground"
+          whileHover={{ y: -2, scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          <span>Explore Playground</span>
+          <span className="btn-arrow">✦</span>
+        </motion.a>
+      </motion.div>
 
       <motion.div className="card-grid three app-grid"
         initial="hidden" whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
         variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
       >
-        {appCards.map((app) => (
-          <motion.article key={app.title} className="glass-card app-card"
+        {enterpriseApps.map((app) => (
+          <motion.article key={app.title} className="glass-card app-card enterprise-app-card"
             variants={{
               hidden: { opacity: 0, y: 32 },
               show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
             }}
-            whileHover={{ y: -5, transition: { type: "spring", stiffness: 300, damping: 22 } }}
+            whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
           >
-            <div className="app-shot-wrap">
-              <img src={app.image} alt={app.title} className="app-shot" loading="lazy" />
-            </div>
-            <h3 style={{ marginTop: 18 }}>{app.title}</h3>
-            <p>{app.subtitle}</p>
+            <a href={app.href} className="app-card-anchor">
+              <div className="app-shot-wrap">
+                <img src={app.image} alt={app.title} className="app-shot" loading="lazy" />
+                <span className={`enterprise-badge badge-${app.badgeType}`}>{app.badge}</span>
+              </div>
+              <div className="app-card-body">
+                <span className="app-card-subtitle">{app.subtitle}</span>
+                <h3 className="app-card-title">{app.title}</h3>
+                <p className="app-card-desc">{app.text}</p>
+                <div className="app-card-footer">
+                  <span className="launch-link">Launch Tool →</span>
+                </div>
+              </div>
+            </a>
           </motion.article>
         ))}
       </motion.div>
@@ -1109,13 +1128,15 @@ function Footer() {
 
         <div className="site-footer-bottom">
           <span className="copyright-line">
-            Copyright © 2009-{new Date().getFullYear()} · Sarav
+            Copyright © 2009–{new Date().getFullYear()} · Sarav
           </span>
           <div className="footer-links">
             <a href="/copyright/">Copyright</a>
             <a href="/privacy-policy/">Privacy</a>
             <a href="/terms/">Terms</a>
-            <a href="#contact">Feedback</a>
+            <a href="/fact-sheet/">Fact Sheet</a>
+            <a href="/feedback/">Feedback</a>
+            <a href="/social/">Social</a>
             <motion.a href="#home" className="back-to-top"
               whileHover={{ y: -2 }}
               transition={{ type: "spring", stiffness: 320, damping: 22 }}
