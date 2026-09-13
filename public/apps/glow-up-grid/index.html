@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Glow Up Grid — Colorful Weekly Routine Planner for Kids | Sarav's World</title>
+<meta name="description" content="Build a day-of-week routine chart for each kid, from wake-up to bedtime. Interactive Glow Mode habit tracker, quick activity chips, and printable fridge charts.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/glow-up-grid/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/glow-up-grid/">
+<meta property="og:title" content="Glow Up Grid — Colorful Weekly Routine Planner for Kids">
+<meta property="og:description" content="Build a day-of-week routine chart for each kid, wake-up to bedtime. Print a colorful weekly grid for the fridge or track habits with interactive Glow stars.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/glow-up-grid/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Glow Up Grid — Colorful Weekly Routine Planner for Kids">
+<meta name="twitter:description" content="Build a day-of-week routine chart for each kid, wake-up to bedtime. Print a colorful weekly grid for the fridge or track habits with interactive Glow stars.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/glow-up-grid/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg: #FFF8F0;
+    --surface: #FFFFFF;
+    --surface-2: #FFF1E4;
+    --border: #F0DFCB;
+    --border-soft: #F6EADA;
+    --ink: #2B1B12;
+    --ink-dim: #8A7563;
+    --sunrise: #FF7043;
+    --gold: #FFB300;
+    --gold-soft: rgba(255, 179, 0, 0.15);
+    --purple: #7C4DFF;
+    --success: #2E7D32;
+    --success-soft: rgba(46, 125, 50, 0.12);
+    --sunrise-soft: rgba(255, 112, 67, 0.12);
+    --shadow: 0 8px 24px rgba(43, 27, 18, 0.08);
+    --radius: 16px;
+    --day-mon: #FF7043;
+    --day-tue: #FFB300;
+    --day-wed: #7C4DFF;
+    --day-thu: #26A69A;
+    --day-fri: #FF6F91;
+    --day-sat: #29B6F6;
+    --day-sun: #EF5350;
+  }
+
+  [data-theme="dark"] {
+    --bg: #13121A;
+    --surface: #1E1C29;
+    --surface-2: #282537;
+    --border: #3A3550;
+    --border-soft: #2D293E;
+    --ink: #F0EDF6;
+    --ink-dim: #A8A1BA;
+    --sunrise: #FF7A52;
+    --gold: #FFC02A;
+    --gold-soft: rgba(255, 192, 42, 0.18);
+    --purple: #9575CD;
+    --success: #66BB6A;
+    --success-soft: rgba(102, 187, 106, 0.18);
+    --sunrise-soft: rgba(255, 122, 82, 0.18);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.5;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  a { color: inherit; }
+
+  /* ---------- Ecosystem bar (shared nav) ---------- */
+  .ecosystem-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 20px;
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .ecosystem-inner {
+    max-width: 1240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 10px;
+  }
+  .ecosystem-links { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .eco-brand { text-decoration: none; font-weight: 700; color: var(--sunrise); }
+  .eco-divider { color: var(--border); }
+  .eco-dropdown { position: relative; }
+  .eco-dropbtn { background: none; border: none; font: inherit; color: var(--ink); cursor: pointer; padding: 4px 2px; display: flex; align-items: center; gap: 4px; }
+  .eco-caret { font-size: 10px; transition: transform 0.15s; }
+  .eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+  .eco-menu {
+    display: none; position: absolute; top: 100%; left: 0; margin-top: 8px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    box-shadow: var(--shadow); min-width: 220px; padding: 6px; z-index: 200;
+  }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: block; }
+  .eco-menu a { display: block; padding: 8px 10px; border-radius: 8px; text-decoration: none; color: var(--ink); font-size: 13px; white-space: nowrap; }
+  .eco-menu a:hover { background: var(--surface-2); }
+  .eco-menu a.current { background: var(--sunrise-soft); font-weight: 700; }
+  .eco-tokenomics {
+    background: linear-gradient(135deg, rgba(79, 176, 168, 0.15), rgba(227, 166, 62, 0.15));
+    border: 1px solid rgba(79, 176, 168, 0.4);
+    color: var(--sunrise);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* ---------- Header & Theme Selector ---------- */
+  .hero {
+    max-width: 1240px; margin: 0 auto; padding: 24px 20px 8px;
+    display: flex; justify-content: space-between; align-items: flex-start;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .hero-left { flex: 1; min-width: 280px; }
+  .hero h1 { font-size: 32px; font-weight: 900; margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+  .hero p { margin: 0; color: var(--ink-dim); font-size: 15px; max-width: 720px; }
+
+  /* Standardized Segmented Theme Selector */
+  .theme-selector {
+    display: inline-flex;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3px;
+    gap: 3px;
+    align-self: center;
+  }
+  .theme-btn {
+    background: transparent;
+    border: none;
+    color: var(--ink-dim);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 7px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.15s ease;
+  }
+  .theme-btn:hover { color: var(--ink); }
+  .theme-btn.active {
+    background: var(--sunrise);
+    color: #FFFFFF;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout {
+    max-width: 1240px; margin: 0 auto; padding: 18px 20px 30px; display: grid;
+    grid-template-columns: 390px 1fr; gap: 24px; align-items: start;
+  }
+  @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+
+  /* ---------- Kid row ---------- */
+  .kid-row-wrap { margin-bottom: 14px; }
+  .kid-row-label { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+  .kid-row { display: flex; flex-wrap: wrap; gap: 8px; }
+  .kid-tab {
+    padding: 8px 14px; border-radius: 999px; border: 2px solid var(--border);
+    background: var(--surface); font: inherit; font-weight: 800; cursor: pointer; font-size: 14px;
+    color: var(--ink); display: inline-flex; align-items: center; gap: 6px; transition: all 0.15s ease;
+  }
+  .kid-tab:hover { border-color: var(--sunrise); }
+  .kid-tab.active { border-color: var(--sunrise); background: var(--sunrise-soft); color: var(--sunrise); box-shadow: 0 2px 8px rgba(255, 112, 67, 0.2); }
+  .kid-add {
+    padding: 8px 14px; border-radius: 999px; border: 2px dashed var(--border);
+    background: none; font: inherit; font-weight: 800; cursor: pointer; color: var(--ink-dim);
+    display: inline-flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .kid-add:hover { border-color: var(--sunrise); color: var(--sunrise); }
+
+  .kid-tools {
+    display: flex; gap: 8px; margin: 12px 0 18px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-soft); padding-bottom: 14px;
+  }
+  .tool-btn {
+    font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--surface-2); cursor: pointer;
+    color: var(--ink-dim); display: inline-flex; align-items: center; gap: 5px; transition: all 0.15s ease;
+  }
+  .tool-btn:hover { background: var(--border); color: var(--ink); }
+  .tool-btn.danger:hover { background: #ffebee; border-color: #ef5350; color: #c62828; }
+
+  /* ---------- Day tabs ---------- */
+  .day-row-wrap { margin-bottom: 14px; }
+  .day-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .day-tab {
+    flex: 1; min-width: 44px; padding: 9px 0; text-align: center; border-radius: 10px; border: none;
+    font: inherit; font-weight: 800; font-size: 13px; cursor: pointer; color: #fff; opacity: 0.42;
+    transition: all 0.15s ease;
+  }
+  .day-tab:hover { opacity: 0.8; transform: translateY(-1px); }
+  .day-tab.active { opacity: 1; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18); transform: translateY(-2px); }
+
+  /* ---------- Day stats / quick header ---------- */
+  .day-status-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--surface-2); border-radius: 10px; padding: 8px 12px; margin-bottom: 14px;
+    font-size: 12.5px; font-weight: 700; color: var(--ink-dim);
+  }
+  .day-status-bar span.active-day-name { color: var(--ink); font-weight: 800; }
+  .btn-sort {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+    padding: 3px 8px; font-size: 11.5px; font-weight: 700; cursor: pointer; color: var(--ink);
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .btn-sort:hover { background: var(--sunrise); color: #fff; border-color: var(--sunrise); }
+
+  /* ---------- Quick Activity Chips ---------- */
+  .chips-wrap { margin-bottom: 16px; background: var(--surface-2); border-radius: 12px; padding: 10px; }
+  .chips-label { font-size: 11.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--ink-dim); margin-bottom: 6px; }
+  .chips-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip-btn {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+    padding: 4px 10px; font-size: 12px; font-weight: 700; color: var(--ink); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 4px; transition: all 0.15s ease;
+  }
+  .chip-btn:hover { background: var(--sunrise); color: #fff; border-color: var(--sunrise); transform: scale(1.03); }
+
+  /* ---------- Block editor ---------- */
+  .block-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; max-height: 480px; overflow-y: auto; padding-right: 2px; }
+  .block-row {
+    display: flex; gap: 6px; align-items: center; background: var(--surface-2);
+    padding: 6px 8px; border-radius: 12px; border: 1px solid var(--border-soft);
+  }
+  .reorder-btns { display: flex; flex-direction: column; gap: 2px; }
+  .move-btn {
+    background: none; border: none; font-size: 9px; cursor: pointer; color: var(--ink-dim);
+    line-height: 1; padding: 2px; border-radius: 3px;
+  }
+  .move-btn:hover:not(:disabled) { color: var(--sunrise); background: var(--border); }
+  .move-btn:disabled { opacity: 0.2; cursor: default; }
+
+  .block-row input[type="text"] {
+    font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface); color: var(--ink); font-size: 13.5px;
+  }
+  .block-row .time-input { width: 96px; flex-shrink: 0; font-family: 'IBM Plex Mono', monospace; font-size: 12.5px; font-weight: 600; }
+  .block-row .task-input { flex: 1; min-width: 0; font-weight: 600; }
+  .block-row .del-btn {
+    background: none; border: none; color: var(--ink-dim); font-size: 15px;
+    cursor: pointer; flex-shrink: 0; padding: 4px 6px; border-radius: 6px;
+  }
+  .block-row .del-btn:hover { color: #fff; background: var(--day-sun); }
+
+  .add-block-btn {
+    width: 100%; padding: 11px; border-radius: 12px; border: 2px dashed var(--border);
+    background: none; font: inherit; font-weight: 800; color: var(--ink-dim); cursor: pointer;
+    margin-bottom: 18px; transition: all 0.15s ease;
+  }
+  .add-block-btn:hover { border-color: var(--sunrise); color: var(--sunrise); background: var(--sunrise-soft); }
+
+  /* ---------- Copy row ---------- */
+  .copy-row { border-top: 1px solid var(--border-soft); padding-top: 14px; margin-bottom: 18px; }
+  .copy-row p { margin: 0 0 8px; font-size: 12.5px; font-weight: 800; color: var(--ink-dim); }
+  .copy-days { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+  .copy-days label {
+    font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 4px;
+    background: var(--surface-2); padding: 5px 8px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border-soft);
+  }
+  .copy-btn {
+    font: inherit; font-weight: 800; font-size: 13px; padding: 8px 16px; border-radius: 8px;
+    border: none; background: var(--sunrise); color: #fff; cursor: pointer; transition: all 0.15s ease;
+  }
+  .copy-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
+
+  /* ---------- Action Suite Buttons ---------- */
+  .action-suite { border-top: 1px solid var(--border-soft); padding-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .print-btn {
+    width: 100%; padding: 13px; border-radius: 12px; border: none;
+    background: linear-gradient(135deg, var(--gold) 0%, #FFA000 100%); color: #2B1B12;
+    font: inherit; font-weight: 900; font-size: 15px; cursor: pointer;
+    box-shadow: 0 4px 14px rgba(255, 179, 0, 0.3); transition: all 0.15s ease;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .print-btn:hover { filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255, 179, 0, 0.4); }
+
+  .action-sub-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .action-sub-btn {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 6px; font-size: 12px; font-weight: 700; color: var(--ink); cursor: pointer;
+    display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;
+    transition: all 0.15s ease;
+  }
+  .action-sub-btn:hover { background: var(--border); color: var(--ink); }
+
+  /* ---------- Right Panel: Grid Preview & Glow Mode ---------- */
+  .preview-top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px; flex-wrap: wrap; gap: 12px;
+  }
+  .grid-title-wrap h2 { font-size: 22px; font-weight: 900; margin: 0; display: flex; align-items: center; gap: 8px; }
+  .grid-title-wrap p { margin: 2px 0 0; font-size: 13px; color: var(--ink-dim); }
+
+  /* Glow Mode Switch */
+  .glow-mode-toggle {
+    display: inline-flex; align-items: center; gap: 8px; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 20px; padding: 4px 10px; cursor: pointer;
+    user-select: none; font-size: 13px; font-weight: 800;
+  }
+  .glow-mode-toggle.active {
+    background: linear-gradient(135deg, rgba(255, 179, 0, 0.2), rgba(255, 112, 67, 0.2));
+    border-color: var(--gold); color: var(--gold);
+  }
+  .glow-indicator {
+    width: 10px; height: 10px; border-radius: 50%; background: var(--ink-dim);
+  }
+  .glow-mode-toggle.active .glow-indicator {
+    background: var(--gold); box-shadow: 0 0 10px var(--gold);
+  }
+
+  /* Progress Banner */
+  .progress-banner {
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 12px;
+    padding: 10px 14px; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; flex-wrap: wrap;
+  }
+  .progress-left { display: flex; align-items: center; gap: 10px; }
+  .progress-star-icon { font-size: 20px; animation: starPulse 2s infinite ease-in-out; }
+  @keyframes starPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.15); } }
+  .progress-info { font-size: 13px; font-weight: 700; color: var(--ink); }
+  .progress-info span.pct { color: var(--gold); font-weight: 900; font-family: 'IBM Plex Mono', monospace; }
+  .progress-bar-wrap { width: 140px; height: 8px; background: var(--border); border-radius: 999px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--sunrise)); width: 0%; transition: width 0.3s ease; }
+
+  /* Week Grid */
+  .week-grid {
+    display: grid; grid-template-columns: repeat(7, minmax(130px, 1fr)); gap: 10px;
+    overflow-x: auto; padding-bottom: 8px;
+  }
+  .day-col {
+    border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;
+    min-width: 130px; border: 1px solid var(--border-soft); background: var(--surface-2);
+  }
+  .day-col.highlight-today { border: 2px solid var(--sunrise); }
+  .day-head {
+    padding: 10px 8px; text-align: center; font-weight: 900; color: #fff; font-size: 13.5px;
+    display: flex; flex-direction: column; gap: 2px;
+  }
+  .day-head .sub-day { font-size: 11px; opacity: 0.9; font-weight: 600; text-transform: uppercase; }
+  .day-body {
+    background: var(--bg); flex: 1; padding: 8px; display: flex; flex-direction: column;
+    gap: 6px; min-height: 160px;
+  }
+  .day-block {
+    background: var(--surface); border-radius: 10px; padding: 8px; font-size: 12px;
+    border-left: 4px solid; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    display: flex; flex-direction: column; gap: 2px; transition: all 0.15s ease;
+    position: relative;
+  }
+  .day-block.completed {
+    background: var(--success-soft); border-left-color: var(--success) !important;
+  }
+  .day-block.completed .task { text-decoration: line-through; opacity: 0.7; }
+  .day-block-head { display: flex; justify-content: space-between; align-items: center; }
+  .day-block .t { font-weight: 800; font-family: 'IBM Plex Mono', monospace; font-size: 11.5px; }
+  .day-block .task { color: var(--ink); font-weight: 600; word-break: break-word; }
+
+  /* Glow Mode Item Star Checkbox */
+  .glow-check-btn {
+    background: none; border: none; font-size: 14px; cursor: pointer; padding: 0;
+    opacity: 0.35; transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+  .glow-check-btn:hover { opacity: 0.8; transform: scale(1.2); }
+  .day-block.completed .glow-check-btn { opacity: 1; }
+
+  .day-empty {
+    color: var(--ink-dim); font-size: 12px; text-align: center; padding-top: 24px; font-weight: 600;
+  }
+
+  /* Super Kid Reward Goal Banner */
+  .super-kid-banner {
+    margin-top: 18px; background: linear-gradient(135deg, rgba(255, 179, 0, 0.12), rgba(124, 77, 255, 0.1));
+    border: 2px dashed var(--gold); border-radius: 14px; padding: 14px 18px;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .goal-title-wrap { display: flex; align-items: center; gap: 10px; }
+  .goal-icon { font-size: 24px; }
+  .goal-text-input {
+    font: inherit; font-size: 14px; font-weight: 700; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 12px; min-width: 280px;
+  }
+  .goal-stars-display { display: flex; gap: 6px; font-size: 18px; }
+
+  /* ---------- Modal Dialog ---------- */
+  .modal-backdrop {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(19, 18, 26, 0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 1000; padding: 20px;
+  }
+  .modal-box {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); width: 100%; max-width: 440px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3); overflow: hidden;
+    animation: modalIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  .modal-header {
+    padding: 16px 20px; border-bottom: 1px solid var(--border-soft);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .modal-header h3 { margin: 0; font-size: 17px; font-weight: 800; color: var(--ink); }
+  .modal-close-btn { background: none; border: none; font-size: 20px; cursor: pointer; color: var(--ink-dim); }
+  .modal-body { padding: 20px; }
+  .modal-footer {
+    padding: 12px 20px; border-top: 1px solid var(--border-soft);
+    background: var(--surface-2); display: flex; justify-content: flex-end; gap: 10px;
+  }
+  .modal-btn {
+    font: inherit; font-weight: 800; font-size: 13.5px; padding: 8px 16px; border-radius: 8px;
+    cursor: pointer; border: none; transition: all 0.15s ease;
+  }
+  .modal-btn.secondary { background: var(--surface); border: 1px solid var(--border); color: var(--ink); }
+  .modal-btn.secondary:hover { background: var(--border-soft); }
+  .modal-btn.primary { background: var(--sunrise); color: #fff; }
+  .modal-btn.primary:hover { filter: brightness(1.1); }
+  .modal-btn.danger { background: #ef5350; color: #fff; }
+  .modal-btn.danger:hover { background: #d32f2f; }
+
+  /* Avatar selector */
+  .avatar-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 10px; }
+  .avatar-choice {
+    font-size: 24px; padding: 8px 0; text-align: center; border-radius: 10px;
+    border: 2px solid var(--border); background: var(--surface-2); cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .avatar-choice:hover { transform: scale(1.1); border-color: var(--sunrise); }
+  .avatar-choice.selected { border-color: var(--sunrise); background: var(--sunrise-soft); }
+
+  /* Preset selector in modal */
+  .preset-card {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; margin-bottom: 8px; cursor: pointer; transition: all 0.15s ease;
+  }
+  .preset-card:hover { border-color: var(--sunrise); transform: translateY(-1px); }
+  .preset-card-title { font-weight: 800; font-size: 14px; margin-bottom: 2px; color: var(--ink); }
+  .preset-card-desc { font-size: 12px; color: var(--ink-dim); }
+
+  /* Toast notification */
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: var(--ink); color: var(--bg); font-weight: 700; font-size: 13.5px;
+    padding: 10px 20px; border-radius: 30px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    z-index: 2000; opacity: 0; pointer-events: none; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* Standardized Consumer Footer */
+  footer {
+    text-align: center; padding: 36px 20px 44px; font-size: 12.5px;
+    color: var(--ink-dim); border-top: 1px solid var(--border-soft); margin-top: 40px;
+    line-height: 1.6;
+  }
+  footer a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  footer a:hover { color: var(--sunrise); text-decoration: underline; }
+  footer b { color: var(--ink); }
+
+  /* ---------- Landscape Print Styles ---------- */
+  @media print {
+    @page { size: landscape; margin: 8mm 10mm; }
+    body { background: #fff !important; color: #111 !important; font-size: 10pt; }
+    .ecosystem-bar, .hero, .layout > div:first-child, .theme-selector,
+    .glow-mode-toggle, .progress-banner, .action-suite, .chips-wrap,
+    .day-status-bar, footer, .modal-backdrop, .toast, .goal-stars-display { display: none !important; }
+    .layout { display: block; padding: 0; margin: 0; max-width: 100%; }
+    .panel { box-shadow: none; border: none; padding: 0; background: transparent; }
+    .preview-top-bar { margin-bottom: 8px; justify-content: center; text-align: center; }
+    .grid-title-wrap { text-align: center; width: 100%; }
+    .grid-title-wrap h2 { font-size: 18pt; justify-content: center; color: #000; }
+    .grid-title-wrap p { display: none; }
+    .week-grid {
+      display: grid !important; grid-template-columns: repeat(7, 1fr) !important;
+      gap: 5px !important; overflow: visible !important;
+    }
+    .day-col { border: 1px solid #ccc !important; background: #fff !important; min-width: 0 !important; border-radius: 6px; }
+    .day-head {
+      padding: 4px !important; color: #fff !important; font-size: 10pt !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .day-body { background: #fff !important; padding: 4px !important; min-height: 280px !important; gap: 4px !important; }
+    .day-block {
+      background: #fafafa !important; border: 1px solid #ddd !important;
+      border-left-width: 3px !important; border-radius: 4px !important;
+      padding: 3px 4px !important; font-size: 8.5pt !important;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .day-block-head { margin-bottom: 2px; }
+    .day-block-head::before {
+      content: "[   ] ";
+      font-family: monospace; font-weight: bold; font-size: 9pt; color: #555;
+    }
+    .day-block .t { font-size: 8pt !important; color: #333 !important; font-weight: bold; }
+    .day-block .task { color: #000 !important; font-size: 8.5pt !important; }
+    .glow-check-btn { display: none !important; }
+    .super-kid-banner {
+      display: block !important; border: 1px dashed #666 !important;
+      background: #fafafa !important; padding: 8px 12px !important; margin-top: 10px;
+      page-break-inside: avoid;
+    }
+    .super-kid-banner .goal-text-input {
+      border: none !important; border-bottom: 1px solid #333 !important;
+      border-radius: 0 !important; background: transparent !important; width: 60% !important;
+    }
+    .print-footer-signature {
+      display: flex !important; justify-content: space-between; margin-top: 8px; font-size: 8.5pt; color: #444;
+    }
+  }
+
+  .print-footer-signature { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/" class="current">🌟 Glow Up Grid</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <a href="https://iamsaravofficial.com/playground/" style="text-decoration:none; color:var(--ink-dim); font-size:12.5px; font-weight:700;">🎪 Playground</a>
+      <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">🧠 Enterprise AI Economics</a>
+    </div>
+  </div>
+</div>
+
+<!-- Hub Header -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>🌟 Glow Up Grid</h1>
+    <p>Build each kid's day, wake-up to bedtime. Practice daily routines with interactive Glow Mode stars, or print a colorful fridge chart.</p>
+  </div>
+  <!-- Standardized Theme Switcher -->
+  <div class="theme-selector">
+    <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+    <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+    <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+  </div>
+</div>
+
+<!-- Main App Layout -->
+<div class="layout">
+  <!-- Left Editor Panel -->
+  <div class="panel">
+    <!-- Kid Selector -->
+    <div class="kid-row-wrap">
+      <div class="kid-row-label">
+        <span>Kid Profiles</span>
+        <span id="kidCountLabel" style="font-family:'IBM Plex Mono',monospace;">1 Kid</span>
+      </div>
+      <div class="kid-row" id="kidRow"></div>
+    </div>
+
+    <!-- Kid Actions -->
+    <div class="kid-tools">
+      <button class="tool-btn" id="editKidBtn">✏️ Edit Profile</button>
+      <button class="tool-btn" id="presetsBtn">📋 Presets</button>
+      <button class="tool-btn danger" id="deleteKidBtn">🗑️ Delete</button>
+    </div>
+
+    <!-- Day Tabs -->
+    <div class="day-row-wrap">
+      <div class="day-row" id="dayRow"></div>
+    </div>
+
+    <!-- Day Status Bar -->
+    <div class="day-status-bar">
+      <span>Editing <span class="active-day-name" id="activeDayName">Monday</span></span>
+      <button class="btn-sort" id="sortDayBtn" title="Sort blocks chronologically by time">⏰ Auto-Sort</button>
+    </div>
+
+    <!-- Quick Activity Chips -->
+    <div class="chips-wrap">
+      <div class="chips-label">⚡ 1-Tap Quick Add:</div>
+      <div class="chips-list">
+        <button class="chip-btn" data-time="6:15 AM" data-task="🪥 Brush &amp; Wash">🪥 Brush</button>
+        <button class="chip-btn" data-time="6:45 AM" data-task="🍳 Healthy Breakfast">🍳 Breakfast</button>
+        <button class="chip-btn" data-time="7:15 AM" data-task="🎒 School Bus / Departure">🎒 School Bus</button>
+        <button class="chip-btn" data-time="4:00 PM" data-task="⚽ Play &amp; Sports">⚽ Sports</button>
+        <button class="chip-btn" data-time="5:00 PM" data-task="📚 Homework &amp; Study">📚 Homework</button>
+        <button class="chip-btn" data-time="6:00 PM" data-task="🎨 Creative Arts / Music">🎨 Creative</button>
+        <button class="chip-btn" data-time="7:00 PM" data-task="🛁 Evening Bath">🛁 Bath</button>
+        <button class="chip-btn" data-time="7:30 PM" data-task="🍽️ Family Dinner">🍽️ Dinner</button>
+        <button class="chip-btn" data-time="8:00 PM" data-task="📖 Reading Time">📖 Reading</button>
+        <button class="chip-btn" data-time="8:30 PM" data-task="🥛 Milk &amp; Wind Down">🥛 Wind Down</button>
+        <button class="chip-btn" data-time="9:00 PM" data-task="🌙 Bedtime &amp; Lights Out">🌙 Bedtime</button>
+        <button class="chip-btn" data-time="7:30 PM" data-task="🧸 Tidy Room &amp; Chores">🧸 Tidy Up</button>
+      </div>
+    </div>
+
+    <!-- Time Block List -->
+    <div class="block-list" id="blockList"></div>
+    <button class="add-block-btn" id="addBlockBtn">+ Add Time Block</button>
+
+    <!-- Copy Routine to Other Days -->
+    <div class="copy-row">
+      <p>Copy this day's routine to:</p>
+      <div class="copy-days" id="copyDays"></div>
+      <button class="copy-btn" id="copyBtn">Apply to Selected Days</button>
+    </div>
+
+    <!-- Action Suite -->
+    <div class="action-suite">
+      <button class="print-btn" id="printBtn">
+        <span>🖨️ Print Fridge Chart (Landscape)</span>
+      </button>
+      <div class="action-sub-row">
+        <button class="action-sub-btn" id="shareWhatsappBtn">
+          <span>💬</span>
+          <span>WhatsApp</span>
+        </button>
+        <button class="action-sub-btn" id="copyMarkdownBtn">
+          <span>📋</span>
+          <span>Markdown</span>
+        </button>
+        <button class="action-sub-btn" id="backupRestoreBtn">
+          <span>💾</span>
+          <span>Backup/Load</span>
+        </button>
+      </div>
+      <!-- Hidden file input for restore -->
+      <input type="file" id="jsonFileInput" accept=".json" style="display:none;">
+    </div>
+  </div>
+
+  <!-- Right Panel: Week Grid Preview & Interactive Habit Tracker -->
+  <div class="panel">
+    <div class="preview-top-bar">
+      <div class="grid-title-wrap">
+        <h2 id="gridTitle">🌟 Aarav's Glow Up Grid</h2>
+        <p>Your weekly master plan at a glance. Tap any star in Glow Mode to celebrate completion.</p>
+      </div>
+      <div class="glow-mode-toggle" id="glowToggleBtn" title="Toggle interactive habit completion mode">
+        <span class="glow-indicator"></span>
+        <span>⭐ Glow Mode</span>
+      </div>
+    </div>
+
+    <!-- Glow Progress Banner -->
+    <div class="progress-banner" id="progressBanner">
+      <div class="progress-left">
+        <span class="progress-star-icon">⭐</span>
+        <div class="progress-info">
+          <span id="activeDayProgressText">Today's Glow: 0 of 0 tasks completed</span>
+          <span class="pct" id="activeDayProgressPct">(0%)</span>
+        </div>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+      </div>
+    </div>
+
+    <!-- 7-Day Week Grid -->
+    <div class="week-grid" id="weekGrid"></div>
+
+    <!-- Super Kid Motivation & Weekly Reward Banner -->
+    <div class="super-kid-banner">
+      <div class="goal-title-wrap">
+        <span class="goal-icon">🏆</span>
+        <div>
+          <div style="font-size:11.5px; font-weight:800; text-transform:uppercase; color:var(--ink-dim);">Super Kid Weekly Goal:</div>
+          <input type="text" class="goal-text-input" id="goalInput" placeholder="e.g. Read 5 chapters &amp; morning smile!" maxlength="70">
+        </div>
+      </div>
+      <div class="goal-stars-display" id="goalStarsDisplay" title="Earn stars as you complete daily routines">
+        <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+      </div>
+      <div class="print-footer-signature">
+        <span>🌟 Weekly Target: Met / Exceeded</span>
+        <span>Parent / Coach Signature: ___________________________</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Standardized Custom Modal (Zero Blocking Dialogs) -->
+<div class="modal-backdrop" id="customModal" style="display:none;">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h3 id="modalTitle">Modal Title</h3>
+      <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter">
+      <button class="modal-btn secondary" id="modalCancelBtn">Cancel</button>
+      <button class="modal-btn primary" id="modalConfirmBtn">Save</button>
+    </div>
+  </div>
+</div>
+
+<!-- Non-blocking Toast Notification -->
+<div id="toast" class="toast"></div>
+
+<!-- Standardized Footer -->
+<footer>
+  <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+  <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All routines stored strictly client-side on this browser.</p>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var DAYS = [
+    { key: 'mon', label: 'Mon', full: 'Monday', color: 'var(--day-mon)' },
+    { key: 'tue', label: 'Tue', full: 'Tuesday', color: 'var(--day-tue)' },
+    { key: 'wed', label: 'Wed', full: 'Wednesday', color: 'var(--day-wed)' },
+    { key: 'thu', label: 'Thu', full: 'Thursday', color: 'var(--day-thu)' },
+    { key: 'fri', label: 'Fri', full: 'Friday', color: 'var(--day-fri)' },
+    { key: 'sat', label: 'Sat', full: 'Saturday', color: 'var(--day-sat)' },
+    { key: 'sun', label: 'Sun', full: 'Sunday', color: 'var(--day-sun)' }
+  ];
+
+  var AVATARS = ['🦁', '🚀', '🦄', '🦖', '🎨', '⚽', '🐬', '🐼', '🦸', '🦋', '🦊', '⭐'];
+
+  var PRESETS = {
+    school: {
+      name: '🏫 School Week Champion',
+      desc: 'Structured morning preparation, school bus, focused homework block, physical activity, and early bedtime.',
+      weekday: [
+        { time: '6:00 AM', task: 'Wake up & Stretch', done: false },
+        { time: '6:15 AM', task: 'Brush & Wash', done: false },
+        { time: '6:45 AM', task: 'Nutritious Breakfast', done: false },
+        { time: '7:15 AM', task: 'School Bus / Departure', done: false },
+        { time: '3:45 PM', task: 'Home & Healthy Snack', done: false },
+        { time: '4:15 PM', task: 'Outdoor Play / Sports', done: false },
+        { time: '5:30 PM', task: 'Homework & Study Time', done: false },
+        { time: '7:00 PM', task: 'Evening Bath', done: false },
+        { time: '7:30 PM', task: 'Family Dinner', done: false },
+        { time: '8:15 PM', task: 'Book Reading', done: false },
+        { time: '8:45 PM', task: 'Lights Out & Sleep', done: false }
+      ],
+      weekend: [
+        { time: '7:30 AM', task: 'Gentle Wake Up', done: false },
+        { time: '8:15 AM', task: 'Pancake / Weekend Breakfast', done: false },
+        { time: '9:30 AM', task: 'Outdoor Adventure / Park', done: false },
+        { time: '1:00 PM', task: 'Family Lunch', done: false },
+        { time: '2:30 PM', task: 'Creative Arts & Lego', done: false },
+        { time: '5:00 PM', task: 'Cycling / Play with Friends', done: false },
+        { time: '7:30 PM', task: 'Dinner & Movie Time', done: false },
+        { time: '9:15 PM', task: 'Bedtime Routine', done: false }
+      ]
+    },
+    holiday: {
+      name: '🏖️ Weekend & Holiday Freedom',
+      desc: 'Balanced fun, nature walks, creative exploration, family screen time, and restful recharge.',
+      weekday: [
+        { time: '7:30 AM', task: 'Wake up & Sunlight', done: false },
+        { time: '8:00 AM', task: 'Breakfast', done: false },
+        { time: '9:30 AM', task: 'Reading / Math Games', done: false },
+        { time: '11:00 AM', task: 'Swimming / Sports', done: false },
+        { time: '1:00 PM', task: 'Lunch', done: false },
+        { time: '2:30 PM', task: 'Quiet Time / Drawing', done: false },
+        { time: '4:30 PM', task: 'Playground / Park', done: false },
+        { time: '7:30 PM', task: 'Dinner', done: false },
+        { time: '9:00 PM', task: 'Sleep', done: false }
+      ],
+      weekend: [
+        { time: '8:00 AM', task: 'Wake up', done: false },
+        { time: '9:00 AM', task: 'Family Breakfast', done: false },
+        { time: '10:30 AM', task: 'Day Outing / Museum / Beach', done: false },
+        { time: '2:00 PM', task: 'Lunch & Ice Cream', done: false },
+        { time: '4:30 PM', task: 'Free Play', done: false },
+        { time: '7:30 PM', task: 'Dinner', done: false },
+        { time: '9:30 PM', task: 'Lights Out', done: false }
+      ]
+    },
+    sports: {
+      name: '🏆 Sports & Talent Focus',
+      desc: 'Early conditioning, musical instrument practice, core study blocks, and recovery rest.',
+      weekday: [
+        { time: '5:45 AM', task: 'Wake up & Warm-up', done: false },
+        { time: '6:15 AM', task: 'Morning Practice / Academy', done: false },
+        { time: '7:45 AM', task: 'High-Protein Breakfast', done: false },
+        { time: '8:15 AM', task: 'School', done: false },
+        { time: '4:00 PM', task: 'Evening Training / Drills', done: false },
+        { time: '6:00 PM', task: 'Shower & Rest Snack', done: false },
+        { time: '6:30 PM', task: 'Academics & Study', done: false },
+        { time: '8:00 PM', task: 'Dinner & Recovery', done: false },
+        { time: '8:45 PM', task: 'Stretching & Sleep', done: false }
+      ],
+      weekend: [
+        { time: '6:30 AM', task: 'Wake up', done: false },
+        { time: '7:15 AM', task: 'Weekend Match / Tournament', done: false },
+        { time: '11:30 AM', task: 'Hydration & Nutrition', done: false },
+        { time: '1:00 PM', task: 'Lunch & Afternoon Nap', done: false },
+        { time: '4:00 PM', task: 'Fun Play / Swimming', done: false },
+        { time: '7:30 PM', task: 'Celebration Dinner', done: false },
+        { time: '9:00 PM', task: 'Recovery Sleep', done: false }
+      ]
+    },
+    toddler: {
+      name: '🧸 Toddler Gentle Rhythm',
+      desc: 'Gentle sensory play, structured afternoon nap, nursery rhymes, outdoor park walk, and soothing sleep.',
+      weekday: [
+        { time: '7:00 AM', task: 'Wake up & Hugs', done: false },
+        { time: '7:30 AM', task: 'Warm Milk & Oatmeal', done: false },
+        { time: '8:30 AM', task: 'Morning Sensory Play', done: false },
+        { time: '10:00 AM', task: 'Park Walk / Stroller', done: false },
+        { time: '11:45 AM', task: 'Lunch', done: false },
+        { time: '12:30 PM', task: 'Afternoon Nap', done: false },
+        { time: '2:45 PM', task: 'Fruit Snack & Rhymes', done: false },
+        { time: '4:00 PM', task: 'Blocks & Puzzles', done: false },
+        { time: '6:00 PM', task: 'Warm Bubble Bath', done: false },
+        { time: '6:45 PM', task: 'Dinner', done: false },
+        { time: '7:30 PM', task: 'Bedtime Lullaby & Sleep', done: false }
+      ],
+      weekend: [
+        { time: '7:30 AM', task: 'Wake up', done: false },
+        { time: '8:00 AM', task: 'Milk & Breakfast', done: false },
+        { time: '9:30 AM', task: 'Playground Swing & Slides', done: false },
+        { time: '12:00 PM', task: 'Lunch', done: false },
+        { time: '1:00 PM', task: 'Afternoon Nap', done: false },
+        { time: '3:30 PM', task: 'Grandparents / Family Fun', done: false },
+        { time: '6:30 PM', task: 'Bath Time', done: false },
+        { time: '7:15 PM', task: 'Dinner', done: false },
+        { time: '8:00 PM', task: 'Story & Sleep', done: false }
+      ]
+    }
+  };
+
+  var STORE_KEY = 'glowupgrid_kids_v1';
+  var LAST_KEY = 'glowupgrid_last_v1';
+
+  function seedWeek() {
+    var def = PRESETS.school;
+    return {
+      mon: JSON.parse(JSON.stringify(def.weekday)),
+      tue: JSON.parse(JSON.stringify(def.weekday)),
+      wed: JSON.parse(JSON.stringify(def.weekday)),
+      thu: JSON.parse(JSON.stringify(def.weekday)),
+      fri: JSON.parse(JSON.stringify(def.weekday)),
+      sat: JSON.parse(JSON.stringify(def.weekend)),
+      sun: JSON.parse(JSON.stringify(def.weekend))
+    };
+  }
+
+  function newKid(name, avatar) {
+    return {
+      id: 'k_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+      name: name || 'Aarav',
+      avatar: avatar || '🦁',
+      goal: 'Read 5 books & morning smile!',
+      days: seedWeek()
+    };
+  }
+
+  function load() {
+    try {
+      var raw = localStorage.getItem(STORE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // ensure avatar, goal, and done properties exist
+          parsed.forEach(function (k) {
+            if (!k.avatar) k.avatar = '🦁';
+            if (!k.goal) k.goal = 'Read 5 books & morning smile!';
+            if (k.days) {
+              Object.keys(k.days).forEach(function (d) {
+                if (Array.isArray(k.days[d])) {
+                  k.days[d].forEach(function (b) {
+                    if (typeof b.done === 'undefined') b.done = false;
+                  });
+                }
+              });
+            }
+          });
+          return parsed;
+        }
+      }
+    } catch (e) {}
+    return [newKid('Aarav', '🦁')];
+  }
+
+  function save() {
+    localStorage.setItem(STORE_KEY, JSON.stringify(kids));
+    localStorage.setItem(LAST_KEY, JSON.stringify({ kidId: state.kidId, day: state.day, glowMode: state.glowMode }));
+  }
+
+  var kids = load();
+  var last = {};
+  try { last = JSON.parse(localStorage.getItem(LAST_KEY) || '{}'); } catch (e) {}
+  var state = {
+    kidId: (last.kidId && kids.some(function (k) { return k.id === last.kidId; })) ? last.kidId : kids[0].id,
+    day: last.day || 'mon',
+    glowMode: typeof last.glowMode !== 'undefined' ? !!last.glowMode : false
+  };
+
+  function currentKid() {
+    return kids.find(function (k) { return k.id === state.kidId; }) || kids[0];
+  }
+
+  // Pure Web Audio API Sound Chimes (Zero External Assets)
+  function playSound(type) {
+    try {
+      var AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      var ctx = new AudioCtx();
+      if (ctx.state === 'suspended') ctx.resume();
+      var now = ctx.currentTime;
+
+      if (type === 'star') {
+        // Bright marimba arpeggio (C5 -> E5 -> G5 -> C6)
+        var notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach(function (freq, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(freq, now + i * 0.07);
+          gain.gain.setValueAtTime(0.18, now + i * 0.07);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.28);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now + i * 0.07);
+          osc.stop(now + i * 0.07 + 0.3);
+        });
+      } else if (type === 'complete') {
+        // Grand Fanfare
+        var chord = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+        chord.forEach(function (freq, i) {
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          var t = now + i * 0.09;
+          osc.frequency.setValueAtTime(freq, t);
+          gain.gain.setValueAtTime(0.22, t);
+          gain.gain.exponentialRampToValueAtTime(0.001, t + (i === 4 ? 0.6 : 0.25));
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(t);
+          osc.stop(t + (i === 4 ? 0.65 : 0.28));
+        });
+      } else if (type === 'chip') {
+        // Crisp pop
+        var osc = ctx.createOscillator();
+        var gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, now);
+        osc.frequency.exponentialRampToValueAtTime(440, now + 0.06);
+        gain.gain.setValueAtTime(0.15, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.06);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(now);
+        osc.stop(now + 0.07);
+      }
+    } catch (e) {}
+  }
+
+  // Toast helper
+  var toastTimer = null;
+  function showToast(msg) {
+    var toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
+  // Custom Modal Helper
+  function openModal(options) {
+    var modal = document.getElementById('customModal');
+    var title = document.getElementById('modalTitle');
+    var body = document.getElementById('modalBody');
+    var footer = document.getElementById('modalFooter');
+    var closeBtn = document.getElementById('modalCloseBtn');
+    var cancelBtn = document.getElementById('modalCancelBtn');
+    var confirmBtn = document.getElementById('modalConfirmBtn');
+
+    title.textContent = options.title || 'Notice';
+    body.innerHTML = '';
+    if (typeof options.body === 'string') {
+      body.innerHTML = options.body;
+    } else if (options.body) {
+      body.appendChild(options.body);
+    }
+
+    confirmBtn.textContent = options.confirmText || 'Save';
+    confirmBtn.className = 'modal-btn ' + (options.danger ? 'danger' : 'primary');
+    cancelBtn.style.display = options.hideCancel ? 'none' : 'inline-block';
+
+    function close() {
+      modal.style.display = 'none';
+      cleanup();
+    }
+
+    function onConfirm() {
+      if (options.onConfirm) {
+        var res = options.onConfirm();
+        if (res === false) return; // validation failed
+      }
+      close();
+    }
+
+    function cleanup() {
+      confirmBtn.removeEventListener('click', onConfirm);
+      cancelBtn.removeEventListener('click', close);
+      closeBtn.removeEventListener('click', close);
+    }
+
+    confirmBtn.addEventListener('click', onConfirm);
+    cancelBtn.addEventListener('click', close);
+    closeBtn.addEventListener('click', close);
+
+    modal.style.display = 'flex';
+  }
+
+  // Time parsing for chronological sort
+  function parseTimeMinutes(str) {
+    if (!str) return 9999;
+    var s = str.trim().toUpperCase();
+    var match = s.match(/(\d{1,2})(?::(\d{2}))?\s*(AM|PM)?/);
+    if (!match) return 9999;
+    var hours = parseInt(match[1], 10);
+    var minutes = match[2] ? parseInt(match[2], 10) : 0;
+    var mer = match[3];
+    if (mer === 'PM' && hours < 12) hours += 12;
+    if (mer === 'AM' && hours === 12) hours = 0;
+    return hours * 60 + minutes;
+  }
+
+  function el(tag, attrs, children) {
+    var e = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      if (k === 'class') e.className = attrs[k];
+      else if (k === 'text') e.textContent = attrs[k];
+      else e.setAttribute(k, attrs[k]);
+    });
+    (children || []).forEach(function (c) {
+      if (typeof c === 'string') e.appendChild(document.createTextNode(c));
+      else if (c) e.appendChild(c);
+    });
+    return e;
+  }
+
+  // Render Kid Profiles
+  function renderKidTabs() {
+    var row = document.getElementById('kidRow');
+    row.innerHTML = '';
+    kids.forEach(function (k) {
+      var tab = el('button', { class: 'kid-tab' + (k.id === state.kidId ? ' active' : '') }, [
+        el('span', { text: k.avatar || '⭐' }),
+        el('span', { text: k.name })
+      ]);
+      tab.addEventListener('click', function () {
+        state.kidId = k.id;
+        save();
+        renderAll();
+      });
+      row.appendChild(tab);
+    });
+
+    var addBtn = el('button', { class: 'kid-add' }, [
+      el('span', { text: '➕' }),
+      el('span', { text: 'Add Kid' })
+    ]);
+    addBtn.addEventListener('click', function () {
+      showKidEditorModal(null);
+    });
+    row.appendChild(addBtn);
+
+    document.getElementById('kidCountLabel').textContent = kids.length + (kids.length === 1 ? ' Kid' : ' Kids');
+  }
+
+  // Kid Edit / Add Modal
+  function showKidEditorModal(kidToEdit) {
+    var isEditing = !!kidToEdit;
+    var selectedAvatar = isEditing ? (kidToEdit.avatar || '🦁') : '🦁';
+
+    var container = el('div', {});
+
+    var nameLabel = el('div', { class: 'chips-label', text: "Kid's Name" });
+    var nameInput = el('input', {
+      type: 'text',
+      class: 'goal-text-input',
+      placeholder: 'e.g. Aarav or Ananya',
+      value: isEditing ? kidToEdit.name : ''
+    });
+    nameInput.style.width = '100%';
+    nameInput.style.marginBottom = '16px';
+    container.appendChild(nameLabel);
+    container.appendChild(nameInput);
+
+    var avatarLabel = el('div', { class: 'chips-label', text: 'Choose Avatar' });
+    var avatarGrid = el('div', { class: 'avatar-grid' });
+
+    AVATARS.forEach(function (av) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'avatar-choice' + (av === selectedAvatar ? ' selected' : ''),
+        text: av
+      });
+      btn.addEventListener('click', function () {
+        selectedAvatar = av;
+        avatarGrid.querySelectorAll('.avatar-choice').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+      });
+      avatarGrid.appendChild(btn);
+    });
+
+    container.appendChild(avatarLabel);
+    container.appendChild(avatarGrid);
+
+    openModal({
+      title: isEditing ? 'Edit Kid Profile' : 'Add New Kid',
+      body: container,
+      confirmText: isEditing ? 'Save Changes' : 'Create Profile',
+      onConfirm: function () {
+        var name = nameInput.value.trim().slice(0, 24);
+        if (!name) {
+          nameInput.focus();
+          return false;
+        }
+        if (isEditing) {
+          kidToEdit.name = name;
+          kidToEdit.avatar = selectedAvatar;
+          showToast('Updated profile for ' + name + '!');
+        } else {
+          var k = newKid(name, selectedAvatar);
+          kids.push(k);
+          state.kidId = k.id;
+          showToast('Added ' + name + ' to Glow Up Grid!');
+        }
+        save();
+        renderAll();
+        return true;
+      }
+    });
+
+    setTimeout(function () { nameInput.focus(); }, 100);
+  }
+
+  // Presets Modal
+  function showPresetsModal() {
+    var container = el('div', {});
+    var desc = el('p', {
+      text: 'Select a structured routine preset to instantly populate ' + currentKid().name + "'s schedule:",
+      style: 'margin-top:0; font-size:13px; color:var(--ink-dim);'
+    });
+    container.appendChild(desc);
+
+    Object.keys(PRESETS).forEach(function (key) {
+      var p = PRESETS[key];
+      var card = el('div', { class: 'preset-card' }, [
+        el('div', { class: 'preset-card-title', text: p.name }),
+        el('div', { class: 'preset-card-desc', text: p.desc })
+      ]);
+      card.addEventListener('click', function () {
+        var kid = currentKid();
+        kid.days.mon = JSON.parse(JSON.stringify(p.weekday));
+        kid.days.tue = JSON.parse(JSON.stringify(p.weekday));
+        kid.days.wed = JSON.parse(JSON.stringify(p.weekday));
+        kid.days.thu = JSON.parse(JSON.stringify(p.weekday));
+        kid.days.fri = JSON.parse(JSON.stringify(p.weekday));
+        kid.days.sat = JSON.parse(JSON.stringify(p.weekend));
+        kid.days.sun = JSON.parse(JSON.stringify(p.weekend));
+        save();
+        renderAll();
+        playSound('complete');
+        showToast('Applied ' + p.name + '!');
+        document.getElementById('customModal').style.display = 'none';
+      });
+      container.appendChild(card);
+    });
+
+    openModal({
+      title: 'Choose Routine Preset',
+      body: container,
+      hideCancel: false,
+      confirmText: 'Close'
+    });
+  }
+
+  // Render Day Selector
+  function renderDayTabs() {
+    var row = document.getElementById('dayRow');
+    row.innerHTML = '';
+    DAYS.forEach(function (d) {
+      var btn = el('button', {
+        class: 'day-tab' + (d.key === state.day ? ' active' : ''),
+        text: d.label
+      });
+      btn.style.background = d.color;
+      btn.addEventListener('click', function () {
+        state.day = d.key;
+        save();
+        renderBlocks();
+        renderDayTabs();
+        renderCopyRow();
+        updateDayStatusBar();
+        renderGrid();
+      });
+      row.appendChild(btn);
+    });
+  }
+
+  function updateDayStatusBar() {
+    var currentDayObj = DAYS.find(function (d) { return d.key === state.day; }) || DAYS[0];
+    document.getElementById('activeDayName').textContent = currentDayObj.full;
+  }
+
+  // Render Time Block Editor
+  function renderBlocks() {
+    var list = document.getElementById('blockList');
+    list.innerHTML = '';
+    var kid = currentKid();
+    var blocks = kid.days[state.day];
+
+    if (!blocks || !blocks.length) {
+      var empty = el('div', { class: 'day-empty', text: 'No blocks yet for this day. Click "+ Add Time Block" or select a Quick Chip above.' });
+      list.appendChild(empty);
+      return;
+    }
+
+    blocks.forEach(function (b, i) {
+      var row = el('div', { class: 'block-row' });
+
+      // Reorder buttons
+      var reorder = el('div', { class: 'reorder-btns' });
+      var upBtn = el('button', { class: 'move-btn', text: '▲', title: 'Move Up' });
+      if (i === 0) upBtn.disabled = true;
+      upBtn.addEventListener('click', function () {
+        var temp = blocks[i - 1];
+        blocks[i - 1] = blocks[i];
+        blocks[i] = temp;
+        save();
+        renderBlocks();
+        renderGrid();
+      });
+
+      var dnBtn = el('button', { class: 'move-btn', text: '▼', title: 'Move Down' });
+      if (i === blocks.length - 1) dnBtn.disabled = true;
+      dnBtn.addEventListener('click', function () {
+        var temp = blocks[i + 1];
+        blocks[i + 1] = blocks[i];
+        blocks[i] = temp;
+        save();
+        renderBlocks();
+        renderGrid();
+      });
+
+      reorder.appendChild(upBtn);
+      reorder.appendChild(dnBtn);
+      row.appendChild(reorder);
+
+      // Time Input
+      var timeInput = el('input', { type: 'text', class: 'time-input', placeholder: '6:00 AM', value: b.time });
+      timeInput.value = b.time;
+      timeInput.addEventListener('input', function () {
+        b.time = timeInput.value;
+        save();
+        renderGrid();
+      });
+      row.appendChild(timeInput);
+
+      // Task Input
+      var taskInput = el('input', { type: 'text', class: 'task-input', placeholder: 'Activity name', value: b.task });
+      taskInput.value = b.task;
+      taskInput.addEventListener('input', function () {
+        b.task = taskInput.value;
+        save();
+        renderGrid();
+      });
+      row.appendChild(taskInput);
+
+      // Delete Button
+      var del = el('button', { class: 'del-btn', text: '✕', title: 'Delete block' });
+      del.addEventListener('click', function () {
+        blocks.splice(i, 1);
+        save();
+        renderBlocks();
+        renderGrid();
+      });
+      row.appendChild(del);
+
+      list.appendChild(row);
+    });
+  }
+
+  // Render Copy Days Checkboxes
+  function renderCopyRow() {
+    var wrap = document.getElementById('copyDays');
+    wrap.innerHTML = '';
+    DAYS.forEach(function (d) {
+      if (d.key === state.day) return;
+      var label = el('label', {});
+      var cb = el('input', { type: 'checkbox' });
+      cb.dataset.day = d.key;
+      label.appendChild(cb);
+      label.appendChild(document.createTextNode(d.label));
+      wrap.appendChild(label);
+    });
+  }
+
+  // Render Week Grid & Glow Mode
+  function renderGrid() {
+    var kid = currentKid();
+    document.getElementById('gridTitle').textContent = (kid.avatar || '⭐') + " " + kid.name + "'s Glow Up Grid";
+
+    // Update goal input
+    var goalInput = document.getElementById('goalInput');
+    goalInput.value = kid.goal || 'Read 5 books & morning smile!';
+
+    var grid = document.getElementById('weekGrid');
+    grid.innerHTML = '';
+
+    // Calculate progress for current active day
+    var activeBlocks = kid.days[state.day] || [];
+    var doneCount = activeBlocks.filter(function (b) { return b.done; }).length;
+    var totalCount = activeBlocks.length;
+    var pct = totalCount > 0 ? Math.round((doneCount / totalCount) * 100) : 0;
+
+    var activeDayObj = DAYS.find(function (d) { return d.key === state.day; }) || DAYS[0];
+    document.getElementById('activeDayProgressText').textContent = activeDayObj.full + ': ' + doneCount + ' of ' + totalCount + ' tasks completed';
+    document.getElementById('activeDayProgressPct').textContent = '(' + pct + '%)';
+    document.getElementById('progressBarFill').style.width = pct + '%';
+
+    DAYS.forEach(function (d) {
+      var col = el('div', { class: 'day-col' + (d.key === state.day ? ' highlight-today' : '') });
+      var head = el('div', { class: 'day-head' }, [
+        el('span', { text: d.label }),
+        el('span', { class: 'sub-day', text: d.full })
+      ]);
+      head.style.background = d.color;
+      col.appendChild(head);
+
+      var body = el('div', { class: 'day-body' });
+      var blocks = kid.days[d.key] || [];
+
+      if (!blocks.length) {
+        body.appendChild(el('div', { class: 'day-empty', text: 'Free Day ✨' }));
+      } else {
+        blocks.forEach(function (b) {
+          var card = el('div', { class: 'day-block' + (b.done ? ' completed' : '') });
+          card.style.borderLeftColor = d.color;
+
+          var blockHead = el('div', { class: 'day-block-head' });
+          blockHead.appendChild(el('span', { class: 't', text: b.time || 'Anytime' }));
+
+          // Glow Star Button
+          var starBtn = el('button', {
+            type: 'button',
+            class: 'glow-check-btn',
+            text: b.done ? '⭐' : '☆',
+            title: b.done ? 'Mark as incomplete' : 'Complete task & earn glow star!'
+          });
+
+          starBtn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            b.done = !b.done;
+            save();
+            if (b.done) {
+              playSound('star');
+              // Check if all are complete
+              var nowDone = blocks.filter(function (x) { return x.done; }).length;
+              if (nowDone === blocks.length) {
+                playSound('complete');
+                showToast('🎉 All ' + d.full + ' tasks completed! Super Star!');
+              } else {
+                showToast('⭐ Star earned: ' + (b.task || 'Task'));
+              }
+            }
+            renderGrid();
+          });
+
+          blockHead.appendChild(starBtn);
+          card.appendChild(blockHead);
+          card.appendChild(el('span', { class: 'task', text: b.task || 'Activity' }));
+
+          // In Glow Mode, tapping whole card toggles it
+          if (state.glowMode) {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function () {
+              starBtn.click();
+            });
+          }
+
+          body.appendChild(card);
+        });
+      }
+
+      col.appendChild(body);
+      grid.appendChild(col);
+    });
+  }
+
+  function renderAll() {
+    renderKidTabs();
+    renderDayTabs();
+    updateDayStatusBar();
+    renderBlocks();
+    renderCopyRow();
+    renderGrid();
+  }
+
+  // --- Event Listeners ---
+
+  // Add Time Block
+  document.getElementById('addBlockBtn').addEventListener('click', function () {
+    currentKid().days[state.day].push({ time: '', task: '', done: false });
+    save();
+    renderBlocks();
+    renderGrid();
+  });
+
+  // Quick Activity Chips Click
+  document.querySelectorAll('.chip-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var time = btn.dataset.time;
+      var task = btn.dataset.task;
+      currentKid().days[state.day].push({ time: time, task: task, done: false });
+      save();
+      renderBlocks();
+      renderGrid();
+      playSound('chip');
+      showToast('Added ' + task + '!');
+    });
+  });
+
+  // Auto-Sort Chronologically
+  document.getElementById('sortDayBtn').addEventListener('click', function () {
+    var kid = currentKid();
+    kid.days[state.day].sort(function (a, b) {
+      return parseTimeMinutes(a.time) - parseTimeMinutes(b.time);
+    });
+    save();
+    renderBlocks();
+    renderGrid();
+    showToast('Sorted ' + DAYS.find(function (d) { return d.key === state.day; }).full + ' chronologically!');
+  });
+
+  // Copy Schedule to other days
+  document.getElementById('copyBtn').addEventListener('click', function () {
+    var targets = Array.prototype.slice.call(document.querySelectorAll('#copyDays input:checked')).map(function (cb) {
+      return cb.dataset.day;
+    });
+    if (!targets.length) {
+      showToast('Select at least one day to copy to.');
+      return;
+    }
+    var kid = currentKid();
+    var source = kid.days[state.day].map(function (b) {
+      return { time: b.time, task: b.task, done: false };
+    });
+    targets.forEach(function (dayKey) {
+      kid.days[dayKey] = JSON.parse(JSON.stringify(source));
+    });
+    save();
+    renderCopyRow();
+    renderGrid();
+    showToast('Copied routine to ' + targets.length + ' day(s)!');
+  });
+
+  // Edit Kid Profile
+  document.getElementById('editKidBtn').addEventListener('click', function () {
+    showKidEditorModal(currentKid());
+  });
+
+  // Presets Button
+  document.getElementById('presetsBtn').addEventListener('click', function () {
+    showPresetsModal();
+  });
+
+  // Delete Kid Profile
+  document.getElementById('deleteKidBtn').addEventListener('click', function () {
+    if (kids.length <= 1) {
+      openModal({
+        title: 'Cannot Delete Profile',
+        body: '<p style="margin:0; font-size:14px; color:var(--ink);">Keep at least one kid profile in Glow Up Grid.</p>',
+        hideCancel: true,
+        confirmText: 'OK'
+      });
+      return;
+    }
+    var kid = currentKid();
+    openModal({
+      title: 'Delete ' + kid.name + "'s Profile?",
+      body: '<p style="margin:0; font-size:14px; color:var(--ink);">Are you sure you want to delete <b>' + kid.name + "</b>'s entire weekly schedule? This action cannot be undone.</p>",
+      danger: true,
+      confirmText: 'Delete Profile',
+      onConfirm: function () {
+        kids = kids.filter(function (k) { return k.id !== state.kidId; });
+        state.kidId = kids[0].id;
+        save();
+        renderAll();
+        showToast('Profile deleted.');
+        return true;
+      }
+    });
+  });
+
+  // Goal input auto-save
+  document.getElementById('goalInput').addEventListener('input', function () {
+    currentKid().goal = this.value;
+    save();
+  });
+
+  // Glow Mode Toggle
+  var glowToggleBtn = document.getElementById('glowToggleBtn');
+  if (state.glowMode) glowToggleBtn.classList.add('active');
+  glowToggleBtn.addEventListener('click', function () {
+    state.glowMode = !state.glowMode;
+    glowToggleBtn.classList.toggle('active', state.glowMode);
+    save();
+    renderGrid();
+    if (state.glowMode) {
+      playSound('star');
+      showToast('⭐ Glow Mode activated! Tap tasks to mark completion.');
+    } else {
+      showToast('Grid View restored.');
+    }
+  });
+
+  // Print Chart
+  document.getElementById('printBtn').addEventListener('click', function () {
+    window.print();
+  });
+
+  // WhatsApp Share
+  document.getElementById('shareWhatsappBtn').addEventListener('click', function () {
+    var kid = currentKid();
+    var currentDayObj = DAYS.find(function (d) { return d.key === state.day; }) || DAYS[0];
+    var blocks = kid.days[state.day] || [];
+
+    var text = '🌟 *' + kid.name + "'s " + currentDayObj.full + " Routine* 🌟\n";
+    text += '(Glow Up Grid • Sarav\'s World)\n\n';
+    if (kid.goal) {
+      text += '🎯 *Goal:* ' + kid.goal + '\n\n';
+    }
+    if (blocks.length === 0) {
+      text += '✨ Free day!\n';
+    } else {
+      blocks.forEach(function (b) {
+        text += '⏰ ' + (b.time || 'Anytime') + ' — ' + (b.task || 'Activity') + '\n';
+      });
+    }
+    text += '\n✨ Weekly Planner: https://iamsaravofficial.com/apps/glow-up-grid/';
+
+    window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+  });
+
+  // Markdown Copy
+  document.getElementById('copyMarkdownBtn').addEventListener('click', function () {
+    var kid = currentKid();
+    var md = '# 🌟 ' + kid.name + "'s Glow Up Grid\n\n";
+    if (kid.goal) md += '**Weekly Goal:** ' + kid.goal + '\n\n';
+
+    DAYS.forEach(function (d) {
+      md += '### ' + d.full + '\n';
+      var blocks = kid.days[d.key] || [];
+      if (!blocks.length) {
+        md += '*Free day*\n\n';
+      } else {
+        md += '| Time | Activity | Status |\n|---|---|---|\n';
+        blocks.forEach(function (b) {
+          md += '| ' + (b.time || '-') + ' | ' + (b.task || '-') + ' | ' + (b.done ? '⭐ Done' : '[ ] Pending') + ' |\n';
+        });
+        md += '\n';
+      }
+    });
+    md += '---\n*Created with [Glow Up Grid](https://iamsaravofficial.com/apps/glow-up-grid/) on Sarav\'s World.*';
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(md).then(function () {
+        showToast('📋 Weekly Markdown copied to clipboard!');
+      });
+    } else {
+      showToast('Clipboard access not available.');
+    }
+  });
+
+  // Backup & Restore
+  document.getElementById('backupRestoreBtn').addEventListener('click', function () {
+    var container = el('div', {});
+    var p = el('p', {
+      text: 'Export your schedule as a backup JSON file, or restore from a previously downloaded plan:',
+      style: 'margin-top:0; font-size:13px; color:var(--ink-dim);'
+    });
+    container.appendChild(p);
+
+    var exportBtn = el('button', {
+      class: 'modal-btn primary',
+      text: '📥 Export Backup (JSON)',
+      style: 'width:100%; margin-bottom:10px;'
+    });
+    exportBtn.addEventListener('click', function () {
+      var dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(kids, null, 2));
+      var dl = document.createElement('a');
+      dl.setAttribute('href', dataStr);
+      dl.setAttribute('download', 'glow-up-grid-backup-' + new Date().toISOString().slice(0, 10) + '.json');
+      dl.click();
+      showToast('💾 Backup file downloaded!');
+      document.getElementById('customModal').style.display = 'none';
+    });
+    container.appendChild(exportBtn);
+
+    var importBtn = el('button', {
+      class: 'modal-btn secondary',
+      text: '📤 Restore from JSON File',
+      style: 'width:100%;'
+    });
+    importBtn.addEventListener('click', function () {
+      document.getElementById('jsonFileInput').click();
+      document.getElementById('customModal').style.display = 'none';
+    });
+    container.appendChild(importBtn);
+
+    openModal({
+      title: 'Backup & Restore',
+      body: container,
+      hideCancel: false,
+      confirmText: 'Close'
+    });
+  });
+
+  // JSON File input handler
+  document.getElementById('jsonFileInput').addEventListener('change', function (e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (evt) {
+      try {
+        var imported = JSON.parse(evt.target.result);
+        if (Array.isArray(imported) && imported.length > 0 && imported[0].days) {
+          kids = imported;
+          state.kidId = kids[0].id;
+          save();
+          renderAll();
+          playSound('complete');
+          showToast('✅ Successfully restored ' + kids.length + ' kid profile(s)!');
+        } else {
+          showToast('Invalid backup file format.');
+        }
+      } catch (err) {
+        showToast('Error parsing JSON backup file.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  // Dropdown click-toggle (mobile-friendly, matches suite convention)
+  document.querySelectorAll('.eco-dropdown').forEach(function (drop) {
+    var btn = drop.querySelector('.eco-dropbtn');
+    btn.addEventListener('click', function (ev) {
+      ev.stopPropagation();
+      var isOpen = drop.classList.contains('open');
+      document.querySelectorAll('.eco-dropdown').forEach(function (d) { d.classList.remove('open'); });
+      if (!isOpen) drop.classList.add('open');
+    });
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.eco-dropdown').forEach(function (d) { d.classList.remove('open'); });
+  });
+
+  // Initial render
+  renderAll();
+})();
+
+// Standardized Theme Engine with Auto / Light / Dark
+function setTheme(choice) {
+  localStorage.setItem('sw_theme', choice);
+  var activeTheme = choice;
+  if (choice === 'auto' || choice === 'system') {
+    activeTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  document.documentElement.setAttribute('data-theme', activeTheme);
+  document.querySelectorAll('.theme-btn').forEach(function (btn) {
+    btn.classList.toggle('active', btn.getAttribute('data-theme-choice') === choice);
+  });
+}
+
+function initTheme() {
+  var saved = localStorage.getItem('sw_theme') || 'light';
+  setTheme(saved);
+}
+initTheme();
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+  var saved = localStorage.getItem('sw_theme') || 'auto';
+  if (saved === 'auto' || saved === 'system') setTheme('auto');
+});
+</script>
+
+</body>
+</html>

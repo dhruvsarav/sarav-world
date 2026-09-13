@@ -21,7 +21,8 @@
     {"id": "gold-loan-calculator", "name": "Gold Loan Calculator",   "url": "https://iamsaravofficial.com/apps/gold-loan-calculator/",  "icon": "🏦"},
     {"id": "digigold-calculator",  "name": "DigiGold Calculator",    "url": "https://iamsaravofficial.com/apps/digigold-calculator/",   "icon": "🪙"},
     {"id": "fd-calculator",        "name": "FD Calculator",          "url": "https://iamsaravofficial.com/apps/fd-calculator/",         "icon": "🔒"},
-    {"id": "rd-calculator",        "name": "RD Calculator",          "url": "https://iamsaravofficial.com/apps/rd-calculator/",         "icon": "🔁"}
+    {"id": "rd-calculator",        "name": "RD Calculator",          "url": "https://iamsaravofficial.com/apps/rd-calculator/",         "icon": "🔁"},
+    {"id": "glow-up-grid",         "name": "Glow Up Grid",           "url": "https://iamsaravofficial.com/apps/glow-up-grid/",          "icon": "🌟"}
   ],
   "games": [
     {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},

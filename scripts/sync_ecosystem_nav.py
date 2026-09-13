@@ -37,13 +37,13 @@ for app_id, dirn in [("tokenomics","tokenomics"), ("sdoptimizer","sdoptimizer"),
                       ("automationscore","automationscore")]:
     add(f"apps/{dirn}/index.html", ["eapps"], current_id=app_id)
 
-# 2. Apps section (10 pages) — mode=['group'], sections=[apps,games,projects]
+# 2. Apps section (11 pages) — mode=['group'], sections=[apps,games,projects]
 add("apps/index.html", ["group"], GROUP_SECTIONS, current_id="apps-hub")
 for app_id, dirn in [("genzalphaslang","genzalphaslang"), ("salary-planner","salary-planner"),
                       ("home-budget-planner","home-budget-planner"), ("retirement-planner","retirement-planner"),
                       ("gold-price-estimator","gold-price-estimator"), ("gold-loan-calculator","gold-loan-calculator"),
                       ("digigold-calculator","digigold-calculator"), ("fd-calculator","fd-calculator"),
-                      ("rd-calculator","rd-calculator")]:
+                      ("rd-calculator","rd-calculator"), ("glow-up-grid","glow-up-grid")]:
     add(f"apps/{dirn}/index.html", ["group"], GROUP_SECTIONS, current_id=app_id)
 
 # 3. Games section (10 pages with navbar) — mode=['group'], sections=[apps,games,projects]
@@ -57,7 +57,7 @@ for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
 add("projects/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id="projects-hub")
 
-assert len(PAGES) == 32, f"expected 32 pages, got {len(PAGES)}"
+assert len(PAGES) == 33, f"expected 33 pages, got {len(PAGES)}"
 
 # Build the set of internally-resolvable URLs
 INTERNAL_OK = set()
