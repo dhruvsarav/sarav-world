@@ -1,0 +1,1414 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Tiffin &amp; Family Lunchbox Planner | Sarav's World</title>
+<meta name="description" content="Visual 7-day school tiffin &amp; family meal matrix with 100+ kid-friendly recipes, auto-categorized grocery checklist sorter, WhatsApp dispatch, and 1-click high-contrast printable fridge poster. 100% private, zero telemetry.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/lunchbox-planner/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/lunchbox-planner/">
+<meta property="og:title" content="School Tiffin &amp; Family Lunchbox Planner · Sarav's World">
+<meta property="og:description" content="Plan a week of healthy school tiffins, kid-friendly lunchboxes, and family dinners in 2 minutes. Auto-generates smart grocery lists and printable fridge posters. Zero telemetry.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/lunchbox-planner/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="School Tiffin &amp; Family Lunchbox Planner · Sarav's World">
+<meta name="twitter:description" content="Plan school tiffins &amp; family dinners in 2 minutes. Auto-generate grocery lists and 1-click printable fridge posters.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/lunchbox-planner/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root, [data-theme="dark"] {
+  --bg: #0C0F14;
+  --surface: #141922;
+  --surface-2: #1B222D;
+  --surface-3: #222B39;
+  --border: #2A3545;
+  --border-soft: #1E2633;
+  --text: #EAEFF5;
+  --text-dim: #94A0B2;
+  --text-faint: #5C6B80;
+  --accent: #F59E0B;
+  --accent-ink: #1F1300;
+  --accent-soft: rgba(245, 158, 11, 0.15);
+  --accent-coral: #F43F5E;
+  --coral-soft: rgba(244, 63, 94, 0.15);
+  --accent-teal: #10B981;
+  --teal-soft: rgba(16, 185, 129, 0.15);
+  --accent-purple: #8B5CF6;
+  --purple-soft: rgba(139, 92, 246, 0.15);
+  --radius: 12px;
+  --shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  --font-main: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+[data-theme="light"] {
+  --bg: #F8F7F4;
+  --surface: #FFFFFF;
+  --surface-2: #F0ECE4;
+  --surface-3: #E8E2D7;
+  --border: #D8D1C4;
+  --border-soft: #E5DFC4;
+  --text: #191E24;
+  --text-dim: #555E6B;
+  --text-faint: #858E9B;
+  --accent: #D97706;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgba(217, 119, 6, 0.12);
+  --accent-coral: #E11D48;
+  --coral-soft: rgba(225, 29, 72, 0.12);
+  --accent-teal: #059669;
+  --teal-soft: rgba(5, 150, 105, 0.12);
+  --accent-purple: #7C3AED;
+  --purple-soft: rgba(124, 58, 237, 0.12);
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.mono { font-family: var(--font-mono); }
+
+/* Ecosystem Bar */
+.ecosystem-bar {
+  background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+  padding: 7px 20px; font-size: 12.5px; color: var(--text-dim); position: relative; z-index: 1000;
+}
+.ecosystem-inner {
+  max-width: 1360px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.eco-brand { font-weight: 700 !important; color: var(--text) !important; }
+.eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+.eco-divider { color: var(--border); font-weight: 300; margin: 0 4px; }
+.eco-dropdown { position: relative; display: inline-block; }
+.eco-dropbtn {
+  background: transparent; border: none; color: var(--text-dim); font-family: inherit;
+  font-size: 12.5px; font-weight: 600; padding: 4px 8px; border-radius: 6px; cursor: pointer;
+  display: flex; align-items: center; gap: 4px;
+}
+.eco-dropbtn:hover, .eco-dropdown.open .eco-dropbtn { color: var(--accent); background: var(--accent-soft); }
+.eco-caret { font-size: 9px; }
+.eco-menu {
+  display: none; position: absolute; top: 100%; left: 0; padding: 6px; min-width: 230px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45); z-index: 2000; backdrop-filter: blur(12px);
+}
+.eco-dropdown.open .eco-menu { display: block; }
+.eco-menu a {
+  display: block; padding: 7px 10px; border-radius: 6px; color: var(--text-dim);
+  font-size: 12.5px; font-weight: 500; text-decoration: none;
+}
+.eco-menu a:hover { background: var(--surface-2); color: var(--accent); }
+.eco-menu a.current { color: var(--accent); font-weight: 600; background: var(--accent-soft); }
+.eco-tag {
+  color: var(--accent-coral) !important; font-weight: 600; font-family: var(--font-mono); font-size: 11.5px;
+  display: inline-flex; align-items: center; gap: 4px;
+}
+
+/* Header Container */
+.container { max-width: 1360px; margin: 0 auto; padding: 24px 20px 80px; }
+
+.header-main-row {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 20px; flex-wrap: wrap; margin-bottom: 20px;
+}
+.header-left { display: flex; align-items: center; gap: 18px; flex: 1; min-width: 320px; }
+.app-avatar {
+  width: 68px; height: 68px; border-radius: 16px; background: var(--surface-2);
+  border: 1px solid var(--border); padding: 6px; box-shadow: var(--shadow); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.app-avatar img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }
+.header-text h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.header-text p { color: var(--text-dim); font-size: 14.5px; font-family: var(--font-sans); }
+.badge {
+  font-family: var(--font-mono); font-size: 11px; font-weight: 600; text-transform: uppercase;
+  padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border);
+}
+.badge.gold { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.badge.coral { border-color: var(--accent-coral); color: var(--accent-coral); background: var(--coral-soft); }
+
+.header-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.theme-selector {
+  display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 2px; gap: 2px;
+}
+.theme-btn {
+  background: transparent; border: none; padding: 6px 12px; font-size: 11.5px; font-weight: 600;
+  color: var(--text-dim); border-radius: 6px; cursor: pointer; transition: all 0.15s ease;
+  font-family: var(--font-mono);
+}
+.theme-btn:hover { color: var(--text); }
+.theme-btn.active { background: var(--accent); color: var(--accent-ink); }
+
+/* Routine Presets Strip */
+.presets-strip {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 12px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;
+  gap: 14px; flex-wrap: wrap;
+}
+.presets-group { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.presets-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-faint); margin-right: 4px; }
+.chip-btn {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 20px;
+  padding: 5px 12px; font-size: 12px; color: var(--text); cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.15s ease; font-family: var(--font-sans); font-weight: 500;
+}
+.chip-btn:hover { border-color: var(--accent); color: var(--accent); }
+.chip-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.btn-action {
+  background: var(--accent); color: var(--accent-ink); border: none; border-radius: 8px;
+  padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+  transition: all 0.15s ease; text-decoration: none;
+}
+.btn-action:hover { filter: brightness(1.1); text-decoration: none; }
+.btn-action.coral { background: var(--accent-coral); color: #FFF; }
+.btn-action.secondary {
+  background: var(--surface-2); border: 1px solid var(--border); color: var(--text);
+}
+.btn-action.secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Main Layout Grid: 7-Day Matrix + Grocery Sorter Sidebar */
+.layout-split {
+  display: grid; grid-template-columns: 1fr 340px; gap: 24px; align-items: start; margin-bottom: 32px;
+}
+@media (max-width: 1100px) {
+  .layout-split { grid-template-columns: 1fr; }
+}
+
+/* 7-Day Matrix */
+.matrix-container { display: flex; flex-direction: column; gap: 14px; }
+.days-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
+}
+.day-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.day-card:hover { border-color: rgba(245, 158, 11, 0.4); }
+.day-card.today-card { border-color: var(--accent); }
+
+.day-header {
+  background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+  padding: 10px 14px; display: flex; align-items: center; justify-content: space-between;
+}
+.day-title-wrap { display: flex; align-items: center; gap: 8px; }
+.day-name { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.day-tag { font-family: var(--font-mono); font-size: 10.5px; color: var(--accent); text-transform: uppercase; }
+.day-controls { display: flex; align-items: center; gap: 4px; }
+.icon-mini-btn {
+  background: transparent; border: none; color: var(--text-faint); cursor: pointer; padding: 3px 5px;
+  border-radius: 4px; font-size: 12px;
+}
+.icon-mini-btn:hover { color: var(--text); background: var(--surface-3); }
+
+.meal-slots { padding: 12px; display: flex; flex-direction: column; gap: 10px; }
+.meal-slot {
+  background: var(--surface-2); border: 1px dashed var(--border); border-radius: 8px;
+  padding: 10px 12px; cursor: pointer; transition: all 0.15s ease; position: relative;
+}
+.meal-slot:hover { border-color: var(--accent); background: var(--surface-3); }
+.meal-slot.filled { border-style: solid; border-color: var(--border-soft); }
+.slot-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.slot-badge {
+  font-family: var(--font-mono); font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.05em; display: inline-flex; align-items: center; gap: 4px;
+}
+.slot-badge.tiffin { color: var(--accent-coral); }
+.slot-badge.lunch { color: var(--accent); }
+.slot-badge.dinner { color: var(--accent-teal); }
+.slot-time { font-family: var(--font-mono); font-size: 10.5px; color: var(--text-faint); }
+
+.slot-dish-title {
+  font-size: 13.5px; font-weight: 600; color: var(--text); display: flex; align-items: center; gap: 6px;
+  min-height: 22px;
+}
+.slot-dish-empty { color: var(--text-faint); font-style: italic; font-size: 12.5px; }
+.slot-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 5px; }
+.mini-pill {
+  font-size: 10px; font-family: var(--font-mono); background: var(--surface);
+  border: 1px solid var(--border-soft); padding: 1px 6px; border-radius: 4px; color: var(--text-dim);
+}
+
+.day-note-row {
+  border-top: 1px solid var(--border-soft); padding: 8px 12px; background: rgba(0,0,0,0.15);
+  display: flex; align-items: center; gap: 6px; font-size: 11.5px; color: var(--text-dim);
+}
+.day-note-input {
+  background: transparent; border: none; color: var(--text-dim); font-size: 11.5px; font-family: var(--font-sans);
+  flex: 1; outline: none;
+}
+.day-note-input:focus { color: var(--text); }
+
+/* Auto-Categorized Grocery Sorter Sidebar */
+.grocery-sidebar {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow); position: sticky; top: 20px; display: flex; flex-direction: column; gap: 16px;
+}
+.grocery-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.grocery-head h3 { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.grocery-badge {
+  font-family: var(--font-mono); font-size: 11px; background: var(--accent-soft); color: var(--accent);
+  padding: 2px 8px; border-radius: 20px; border: 1px solid var(--accent); white-space: nowrap;
+}
+.grocery-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+
+.grocery-actions-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--border-soft); padding-bottom: 12px;
+}
+.grocery-btn {
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 5px 10px; font-size: 11.5px; font-weight: 600; color: var(--text-dim); cursor: pointer;
+  display: inline-flex; align-items: center; gap: 5px;
+}
+.grocery-btn:hover { color: var(--text); border-color: var(--accent); }
+.grocery-btn.whatsapp { background: #166534; color: #FFF; border-color: #22C55E; }
+.grocery-btn.whatsapp:hover { background: #15803D; }
+
+.grocery-sections-list { display: flex; flex-direction: column; gap: 14px; max-height: 520px; overflow-y: auto; padding-right: 4px; }
+.grocery-section-card {
+  background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px; padding: 10px 12px;
+}
+.sec-title {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;
+}
+.sec-title span.count { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); font-weight: 500; }
+.sec-items { display: flex; flex-direction: column; gap: 5px; }
+.item-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12.5px;
+  font-family: var(--font-sans); cursor: pointer; padding: 3px 0; user-select: none;
+}
+.item-row:hover { color: var(--accent); }
+.item-left { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
+.item-left input[type="checkbox"] { accent-color: var(--accent-teal); cursor: pointer; width: 15px; height: 15px; flex-shrink: 0; }
+.item-name { flex: 1; word-break: break-word; }
+.item-row.checked .item-name { text-decoration: line-through; opacity: 0.45; }
+.item-use-count {
+  font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); background: var(--surface-3);
+  padding: 1px 6px; border-radius: 10px; flex-shrink: 0;
+}
+
+.add-custom-item-box {
+  display: flex; gap: 6px; margin-top: 4px; border-top: 1px solid var(--border-soft); padding-top: 10px;
+}
+.add-custom-item-box input {
+  flex: 1; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 10px; font-size: 12px; color: var(--text); font-family: var(--font-sans); outline: none;
+}
+.add-custom-item-box input:focus { border-color: var(--accent); }
+
+/* Universal 4-Action Utility Bar */
+.bottom-utility-bar {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 18px 24px; display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap; box-shadow: var(--shadow);
+}
+.utility-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.utility-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Modal for Meal Selection */
+.modal-backdrop {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(4px); z-index: 5000;
+  display: none; align-items: center; justify-content: center; padding: 20px;
+}
+.modal-backdrop.open { display: flex; }
+.modal-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  width: 100%; max-width: 680px; max-height: 85vh; display: flex; flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); overflow: hidden;
+}
+.modal-head {
+  padding: 16px 20px; border-bottom: 1px solid var(--border-soft);
+  display: flex; align-items: center; justify-content: space-between; background: var(--surface-2);
+}
+.modal-head h3 { font-size: 17px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.modal-close-btn {
+  background: transparent; border: none; font-size: 20px; color: var(--text-faint); cursor: pointer; padding: 4px;
+}
+.modal-close-btn:hover { color: var(--text); }
+
+.modal-search-row {
+  padding: 12px 20px; border-bottom: 1px solid var(--border-soft); display: flex; gap: 10px;
+}
+.modal-search-row input {
+  flex: 1; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; color: var(--text); font-size: 13.5px; font-family: var(--font-sans); outline: none;
+}
+.modal-search-row input:focus { border-color: var(--accent); }
+
+.modal-tabs {
+  display: flex; gap: 6px; padding: 8px 20px; border-bottom: 1px solid var(--border-soft);
+  overflow-x: auto; scrollbar-width: none; background: rgba(0, 0, 0, 0.1);
+}
+.modal-tabs::-webkit-scrollbar { display: none; }
+.tab-btn {
+  background: transparent; border: 1px solid transparent; border-radius: 20px;
+  padding: 4px 12px; font-size: 12px; font-weight: 600; color: var(--text-dim); cursor: pointer; white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text); background: var(--surface-2); }
+.tab-btn.active { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+.modal-meal-list {
+  padding: 14px 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; flex: 1;
+}
+.meal-pick-item {
+  background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 8px;
+  padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  cursor: pointer; transition: all 0.15s ease;
+}
+.meal-pick-item:hover { border-color: var(--accent); background: var(--surface-3); transform: translateX(2px); }
+.pick-info { display: flex; align-items: center; gap: 12px; flex: 1; }
+.pick-icon { font-size: 24px; flex-shrink: 0; }
+.pick-title { font-size: 14px; font-weight: 600; color: var(--text); }
+.pick-ingredients { font-size: 11.5px; color: var(--text-dim); font-family: var(--font-sans); margin-top: 2px; }
+.pick-time { font-family: var(--font-mono); font-size: 11.5px; color: var(--accent); flex-shrink: 0; }
+
+.modal-custom-row {
+  padding: 12px 20px; border-top: 1px solid var(--border-soft); background: var(--surface-2);
+  display: flex; gap: 8px; align-items: center;
+}
+.modal-custom-row input {
+  flex: 1; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  padding: 7px 10px; color: var(--text); font-size: 12.5px; outline: none;
+}
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--surface); color: var(--text); font-weight: 600; font-size: 13.5px;
+  padding: 10px 22px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--accent); z-index: 6000; opacity: 0; pointer-events: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1); display: flex; align-items: center; gap: 8px;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+/* Standard Footer */
+footer {
+  margin-top: 50px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+  border-top: 1px solid var(--border-soft); padding-top: 28px; line-height: 1.6;
+}
+footer a { color: var(--text-dim); }
+footer b { color: var(--text); }
+
+/* High-Contrast Print Styles (Optimized for Refrigerator Magnet Hanging) */
+@media print {
+  body { background: #FFFFFF !important; color: #111827 !important; font-size: 11pt; }
+  .ecosystem-bar, .header-right, .presets-strip, .bottom-utility-bar, .modal-backdrop, #toast, .grocery-actions-bar, .add-custom-item-box, .icon-mini-btn, .day-controls {
+    display: none !important;
+  }
+  .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+  .header-main-row { margin-bottom: 12px !important; border-bottom: 2px solid #000; padding-bottom: 8px; }
+  .app-avatar { display: none !important; }
+  .header-text h1 { font-size: 18pt !important; color: #000 !important; }
+  .header-text p { font-size: 10pt !important; color: #4B5563 !important; }
+  
+  .layout-split { display: block !important; }
+  .days-grid {
+    display: grid !important; grid-template-columns: repeat(7, 1fr) !important; gap: 6px !important;
+    page-break-inside: avoid;
+  }
+  .day-card {
+    border: 1.5px solid #374151 !important; border-radius: 6px !important; box-shadow: none !important;
+    background: #FFFFFF !important;
+  }
+  .day-header { background: #F3F4F6 !important; border-bottom: 1.5px solid #374151 !important; padding: 6px 8px !important; }
+  .day-name { font-size: 10pt !important; color: #000 !important; font-weight: 700 !important; }
+  .meal-slots { padding: 6px !important; gap: 6px !important; }
+  .meal-slot {
+    border: 1px solid #D1D5DB !important; background: #FAFAFA !important; padding: 6px 8px !important;
+    border-radius: 4px !important;
+  }
+  .slot-top { margin-bottom: 2px !important; }
+  .slot-badge { font-size: 7.5pt !important; color: #1F2937 !important; font-weight: 700 !important; }
+  .slot-time { display: none !important; }
+  .slot-dish-title { font-size: 9pt !important; color: #000 !important; font-weight: 600 !important; line-height: 1.2 !important; }
+  .mini-pill { display: none !important; }
+  .day-note-row { font-size: 8pt !important; padding: 4px 6px !important; border-top: 1px solid #E5E7EB !important; color: #374151 !important; }
+  
+  /* Grocery list on print */
+  .grocery-sidebar {
+    page-break-before: always; border: 2px solid #000 !important; box-shadow: none !important;
+    background: #FFF !important; margin-top: 20px;
+  }
+  .grocery-head h3 { color: #000 !important; font-size: 14pt !important; }
+  .grocery-sections-list { max-height: none !important; overflow: visible !important; display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 14px !important; }
+  .grocery-section-card { border: 1px solid #9CA3AF !important; background: #FFF !important; }
+  .sec-title { color: #000 !important; border-bottom: 1px solid #E5E7EB; padding-bottom: 4px; }
+  .item-row { font-size: 9.5pt !important; color: #000 !important; }
+  .item-row.checked { display: none !important; }
+  footer { display: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/">🌟 Glow Up Grid</a>
+          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/" class="current">🍱 Lunchbox & Meal Planner</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+    <div>
+      <span class="eco-tag">🍱 Tiffins &amp; Family Meals · Version 2026.09</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Header Section -->
+  <div class="header-main-row">
+    <div class="header-left">
+      <div class="app-avatar">
+        <img src="lunchbox-full.png" alt="School Tiffin &amp; Lunchbox Planner Icon">
+      </div>
+      <div class="header-text">
+        <h1>School Tiffin &amp; Lunchbox Planner <span class="badge coral">Weekly Maestro</span></h1>
+        <p>Visual 7-day school snack &amp; dinner matrix with 100+ kid-friendly recipes, auto-compiled grocery lists, and 1-click fridge printouts.</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="theme-selector" id="themeSelector">
+        <button type="button" class="theme-btn" data-theme-choice="auto" onclick="setTheme('auto')">Auto</button>
+        <button type="button" class="theme-btn" data-theme-choice="light" onclick="setTheme('light')">☀️ Light</button>
+        <button type="button" class="theme-btn" data-theme-choice="dark" onclick="setTheme('dark')">🌙 Dark</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Archetype Presets & Shuffle Strip -->
+  <div class="presets-strip">
+    <div class="presets-group">
+      <span class="presets-lbl">Quick Menus:</span>
+      <button type="button" class="chip-btn active" data-preset="standard">🎒 School Term Standard</button>
+      <button type="button" class="chip-btn" data-preset="protein">💪 High Protein &amp; Greens</button>
+      <button type="button" class="chip-btn" data-preset="rush">⚡ 15-Min Rush (Busy Week)</button>
+      <button type="button" class="chip-btn" data-preset="favorites">🍕 Fussy Eater Favorites</button>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <button type="button" class="btn-action" id="btnSmartShuffle">🎲 Smart Shuffle Week</button>
+      <button type="button" class="btn-action secondary" id="btnClearWeek" title="Clear All Slots">🧹 Clear</button>
+    </div>
+  </div>
+
+  <!-- Main Split Layout -->
+  <div class="layout-split">
+
+    <!-- Left: 7-Day Matrix -->
+    <div class="matrix-container">
+      <div class="days-grid" id="daysGrid">
+        <!-- 7 Day Cards Injected Dynamically -->
+      </div>
+    </div>
+
+    <!-- Right: Auto-Categorized Grocery Sorter -->
+    <aside class="grocery-sidebar">
+      <div class="grocery-head">
+        <div>
+          <h3>🛒 Auto Grocery Sorter</h3>
+          <div class="grocery-sub" id="grocerySubText">Ingredients dynamically compiled from scheduled meals</div>
+        </div>
+        <span class="grocery-badge" id="groceryCountBadge">0 to buy</span>
+      </div>
+
+      <div class="grocery-actions-bar">
+        <button type="button" class="grocery-btn whatsapp" id="btnWhatsAppGrocery" title="Send un-checked items to WhatsApp">📱 Send via WhatsApp</button>
+        <button type="button" class="grocery-btn" id="btnToggleAllPantry">✓ All in Pantry</button>
+      </div>
+
+      <div class="grocery-sections-list" id="grocerySectionsList">
+        <!-- Injected Dynamically by Category -->
+      </div>
+
+      <div class="add-custom-item-box">
+        <input type="text" id="inputCustomGrocery" placeholder="+ Add extra grocery item..." maxlength="40">
+        <button type="button" class="chip-btn" id="btnAddCustomGrocery">Add</button>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Universal 4-Action Utility Bar -->
+  <div class="bottom-utility-bar">
+    <div class="utility-left">
+      <button type="button" class="btn-action coral" id="btnPrintFridge">🖨️ Print Fridge Poster (A4)</button>
+      <button type="button" class="btn-action secondary" id="btnCopyMenuBrief">📋 Copy Weekly Menu</button>
+      <button type="button" class="btn-action secondary" id="btnSaveRoutinePreset">💾 Save Week as Preset</button>
+    </div>
+    <div class="utility-right">
+      <button type="button" class="chip-btn" id="btnExportJson">📥 Export Backup</button>
+      <button type="button" class="chip-btn" id="btnImportJson">📤 Restore</button>
+      <input type="file" id="fileImportJson" accept=".json" style="display:none;">
+    </div>
+  </div>
+
+  <!-- Standardized Footer -->
+  <footer>
+    <p>School Tiffin &amp; Family Lunchbox Planner crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009&ndash;2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All meal calculations run strictly client-side.</p>
+  </footer>
+
+</div>
+
+<!-- Meal Selection Modal -->
+<div class="modal-backdrop" id="mealModal">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="modalTitle">Select Meal</h3>
+      <button type="button" class="modal-close-btn" id="btnCloseModal">&times;</button>
+    </div>
+    <div class="modal-search-row">
+      <input type="text" id="modalSearch" placeholder="🔍 Search recipes, ingredients (e.g. paneer, paratha, pasta)...">
+    </div>
+    <div class="modal-tabs" id="modalCategoryTabs">
+      <button type="button" class="tab-btn active" data-cat="all">All Recipes (100+)</button>
+      <button type="button" class="tab-btn" data-cat="quick">⚡ 15-Min Rush</button>
+      <button type="button" class="tab-btn" data-cat="lunchbox">🎒 Lunchbox Safe</button>
+      <button type="button" class="tab-btn" data-cat="protein">💪 Protein Boost</button>
+      <button type="button" class="tab-btn" data-cat="fun">🍕 Friday Fun</button>
+      <button type="button" class="tab-btn" data-cat="snack">🍎 Healthy Bites</button>
+    </div>
+    <div class="modal-meal-list" id="modalMealList">
+      <!-- Recipe Items Injected -->
+    </div>
+    <div class="modal-custom-row">
+      <input type="text" id="customDishName" placeholder="Or type custom dish (e.g., Grandma's Lemon Sevai)...">
+      <button type="button" class="btn-action" id="btnApplyCustomDish">Use This</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script>
+// ============================================================================================
+// LUNCHBOX & TIFFIN PLANNER ENGINE (ZERO TELEMETRY)
+// ============================================================================================
+const $ = id => document.getElementById(id);
+const STORAGE_KEY = 'lunchbox_planner_state_v1';
+const PRESETS_STORAGE_KEY = 'lunchbox_planner_saved_presets_v1';
+
+const DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+const SLOTS = [
+  { id: 'tiffin', name: 'Morning Tiffin / Snack', badgeClass: 'tiffin', icon: '🥪' },
+  { id: 'lunch', name: 'Main Lunch / School Dabba', badgeClass: 'lunch', icon: '🍱' },
+  { id: 'dinner', name: 'Family Dinner', badgeClass: 'dinner', icon: '🍲' }
+];
+
+// Curated 100+ Kid-Friendly & Desi Recipe Database
+const RECIPES = [
+  // 15-Minute Morning Rushes
+  { id: 'poha', name: 'Kanda Poha with Peanuts', category: 'quick', time: '12m', icon: '🥣', tags: ['Gluten-Free', 'Fast'], ingredients: ['Poha', 'Onions', 'Peanuts', 'Mustard Seeds', 'Curry Leaves', 'Turmeric', 'Lemons', 'Fresh Coriander'] },
+  { id: 'upma', name: 'Vegetable Rava Upma', category: 'quick', time: '15m', icon: '🍲', tags: ['Warm', 'Filling'], ingredients: ['Rava / Sooji', 'Carrots', 'Green Peas', 'Onions', 'Mustard Seeds', 'Curry Leaves', 'Ghee'] },
+  { id: 'podi_idli', name: 'Mini Podi Idli Toss', category: 'quick', time: '10m', icon: '🧆', tags: ['Finger Food', 'Kid-Favorite'], ingredients: ['Idli Batter / Idlis', 'Idli Podi', 'Ghee', 'Curry Leaves'] },
+  { id: 'veg_semiya', name: 'Vegetable Semiya Upma', category: 'quick', time: '15m', icon: '🍜', tags: ['Colorful', 'Fast'], ingredients: ['Vermicelli / Semiya', 'Carrots', 'Beans', 'Onions', 'Mustard Seeds', 'Ghee'] },
+  { id: 'bread_besan_toast', name: 'Crispy Besan Bread Toast', category: 'quick', time: '12m', icon: '🍞', tags: ['Protein', 'Crispy'], ingredients: ['Bread', 'Besan (Gram Flour)', 'Onions', 'Tomatoes', 'Fresh Coriander', 'Turmeric'] },
+  { id: 'moong_chilla', name: 'Moong Dal Chilla Roll', category: 'quick', time: '15m', icon: '🌯', tags: ['High Protein', 'Gluten-Free'], ingredients: ['Yellow Moong Dal', 'Paneer', 'Ginger', 'Fresh Coriander', 'Ghee'] },
+  { id: 'curd_bread_upma', name: 'Quick Curd Bread Upma', category: 'quick', time: '10m', icon: '🥪', tags: ['Tangy', 'Comfort'], ingredients: ['Bread', 'Curd / Yogurt', 'Mustard Seeds', 'Curry Leaves', 'Onions', 'Turmeric'] },
+  { id: 'oats_chilla', name: 'Vegetable Oats Pancake', category: 'quick', time: '12m', icon: '🥞', tags: ['Fiber Rich', 'Healthy'], ingredients: ['Rolled Oats', 'Besan (Gram Flour)', 'Carrots', 'Capsicum', 'Curd / Yogurt'] },
+  { id: 'egg_bhurji_roll', name: 'Egg Bhurji Frankie Roll', category: 'quick', time: '12m', icon: '🌯', tags: ['High Protein', 'Grab & Go'], ingredients: ['Eggs', 'Wheat Atta', 'Onions', 'Tomatoes', 'Butter', 'Fresh Coriander'] },
+  { id: 'masala_french_toast', name: 'Desi Masala French Toast', category: 'quick', time: '10m', icon: '🍞', tags: ['Savory', 'Fast'], ingredients: ['Bread', 'Eggs', 'Onions', 'Fresh Coriander', 'Butter', 'Black Pepper'] },
+  { id: 'methi_thepla_quick', name: 'Warm Methi Thepla & Butter', category: 'quick', time: '15m', icon: '🫓', tags: ['Iron Rich', 'Soft'], ingredients: ['Wheat Atta', 'Fresh Methi Leaves', 'Curd / Yogurt', 'Ghee', 'Turmeric', 'Sesame Seeds'] },
+  { id: 'vermicelli_kheer', name: 'Mild Semiya Payasam', category: 'quick', time: '15m', icon: '🥣', tags: ['Sweet Treat', 'Warm'], ingredients: ['Vermicelli / Semiya', 'Milk', 'Cardamom', 'Cashews', 'Ghee'] },
+
+  // Non-Soggy Lunchbox Classics
+  { id: 'aloo_paratha', name: 'Aloo Paratha + Curd Dip', category: 'lunchbox', time: '25m', icon: '🫓', tags: ['Stays Soft', 'Kid-Favorite'], ingredients: ['Wheat Atta', 'Potatoes', 'Ghee', 'Curd / Yogurt', 'Garam Masala', 'Fresh Coriander'] },
+  { id: 'paneer_paratha', name: 'Stuffed Paneer Paratha', category: 'lunchbox', time: '20m', icon: '🫓', tags: ['Protein', 'Stays Soft'], ingredients: ['Wheat Atta', 'Paneer', 'Ghee', 'Fresh Coriander', 'Cumin Seeds'] },
+  { id: 'veg_pulao', name: 'Mild Garden Veggie Pulao', category: 'lunchbox', time: '25m', icon: '🍚', tags: ['One-Pot', 'Colorful'], ingredients: ['Basmati Rice', 'Carrots', 'Beans', 'Green Peas', 'Ghee', 'Whole Spices'] },
+  { id: 'curd_rice_tadka', name: 'Creamy Curd Rice with Tadka', category: 'lunchbox', time: '15m', icon: '🥣', tags: ['Cooling', 'No-Spill'], ingredients: ['Basmati Rice', 'Curd / Yogurt', 'Milk', 'Mustard Seeds', 'Pomegranate', 'Curry Leaves', 'Ginger'] },
+  { id: 'lemon_rice', name: 'Tangy Lemon Peanut Rice', category: 'lunchbox', time: '18m', icon: '🍋', tags: ['Stays Fresh', 'Crunchy'], ingredients: ['Basmati Rice', 'Lemons', 'Peanuts', 'Mustard Seeds', 'Turmeric', 'Curry Leaves', 'Ghee'] },
+  { id: 'corn_cheese_sandwich', name: 'Grilled Corn & Cheese Sandwich', category: 'lunchbox', time: '15m', icon: '🥪', tags: ['Kid-Favorite', 'Cheesy'], ingredients: ['Bread', 'Sweet Corn', 'Cheese Cubes', 'Butter', 'Black Pepper', 'Oregano'] },
+  { id: 'beetroot_poori', name: 'Pink Beetroot Pooris + Aloo Bhaji', category: 'lunchbox', time: '25m', icon: '🫓', tags: ['Vibrant Pink', 'Fun'], ingredients: ['Wheat Atta', 'Beetroot', 'Potatoes', 'Cumin Seeds', 'Oil'] },
+  { id: 'jeera_rice_dal', name: 'Jeera Rice + Mild Dal Tadka', category: 'lunchbox', time: '25m', icon: '🍛', tags: ['Comfort', 'Classic'], ingredients: ['Basmati Rice', 'Toor Dal', 'Cumin Seeds', 'Ghee', 'Tomatoes', 'Turmeric'] },
+  { id: 'paneer_kathi_roll', name: 'Paneer Tikka Frankie Wrap', category: 'lunchbox', time: '20m', icon: '🌯', tags: ['Wrap', 'No Mess'], ingredients: ['Wheat Atta', 'Paneer', 'Onions', 'Capsicum', 'Tomato Ketchup', 'Chaat Masala', 'Butter'] },
+  { id: 'tomato_bath', name: 'Spiced Tomato Rice (Thakkali Sadam)', category: 'lunchbox', time: '20m', icon: '🍅', tags: ['Tangy', 'Savory'], ingredients: ['Basmati Rice', 'Tomatoes', 'Onions', 'Mustard Seeds', 'Curry Leaves', 'Whole Spices'] },
+  { id: 'spinach_roti_roll', name: 'Green Palak Roti Rolls with Cheese', category: 'lunchbox', time: '20m', icon: '🌯', tags: ['Hidden Greens', 'Soft'], ingredients: ['Wheat Atta', 'Fresh Spinach (Palak)', 'Cheese Cubes', 'Ghee', 'Cumin Seeds'] },
+  { id: 'coconut_rice', name: 'Mild Coconut Rice with Cashews', category: 'lunchbox', time: '20m', icon: '🥥', tags: ['Mild', 'Aromatic'], ingredients: ['Basmati Rice', 'Grated Coconut', 'Cashews', 'Mustard Seeds', 'Curry Leaves', 'Ghee'] },
+
+  // Protein & Nutrition Boosters
+  { id: 'rajma_chawal', name: 'Mild Rajma Masala + Jeera Rice', category: 'protein', time: '35m', icon: '🍲', tags: ['Iron & Protein', 'Classic'], ingredients: ['Rajma (Kidney Beans)', 'Basmati Rice', 'Tomatoes', 'Onions', 'Ginger', 'Garam Masala'] },
+  { id: 'chana_sundal', name: 'South Indian Chana Sundal', category: 'protein', time: '15m', icon: '🥗', tags: ['High Protein', 'Gluten-Free'], ingredients: ['White / Black Chana', 'Grated Coconut', 'Mustard Seeds', 'Curry Leaves', 'Ghee'] },
+  { id: 'sprout_moong_cutlet', name: 'Crispy Sprouted Moong Cutlets', category: 'protein', time: '20m', icon: '🧆', tags: ['Sprouts', 'Crunchy'], ingredients: ['Sprouted Moong', 'Potatoes', 'Bread', 'Fresh Coriander', 'Chaat Masala', 'Oil'] },
+  { id: 'paneer_bhurji_pav', name: 'Paneer Bhurji with Whole Wheat Pav', category: 'protein', time: '18m', icon: '🧀', tags: ['High Protein', 'Rich'], ingredients: ['Paneer', 'Whole Wheat Pav / Buns', 'Onions', 'Tomatoes', 'Capsicum', 'Butter', 'Turmeric'] },
+  { id: 'soya_pulao', name: 'Nutri Soya Chunk Pulao', category: 'protein', time: '25m', icon: '🍚', tags: ['Plant Protein', 'Chewy'], ingredients: ['Soya Chunks', 'Basmati Rice', 'Onions', 'Tomatoes', 'Garam Masala', 'Ghee'] },
+  { id: 'egg_curry_appam', name: 'Mild Egg Curry + Appam / Rice', category: 'protein', time: '25m', icon: '🍳', tags: ['Protein', 'Coconut Gravy'], ingredients: ['Eggs', 'Basmati Rice', 'Coconut Milk', 'Onions', 'Tomatoes', 'Curry Leaves'] },
+  { id: 'dal_khichdi', name: 'Moong Dal Khichdi + Ghee Tadka', category: 'protein', time: '22m', icon: '🍲', tags: ['Easy Digest', 'Comfort'], ingredients: ['Basmati Rice', 'Yellow Moong Dal', 'Cumin Seeds', 'Ghee', 'Turmeric', 'Black Pepper'] },
+  { id: 'millet_pongal', name: 'Foxtail Millet Ghee Pongal', category: 'protein', time: '20m', icon: '🥣', tags: ['Millet', 'Iron-Rich'], ingredients: ['Foxtail / Kodo Millet', 'Yellow Moong Dal', 'Black Pepper', 'Cumin Seeds', 'Cashews', 'Ghee'] },
+  { id: 'kala_chana_gravy', name: 'Kala Chana Curry with Phulkas', category: 'protein', time: '30m', icon: '🥘', tags: ['Rich Iron', 'Fibre'], ingredients: ['Black Chana', 'Wheat Atta', 'Tomatoes', 'Onions', 'Fresh Coriander', 'Garam Masala'] },
+  { id: 'tofu_veggie_stirfry', name: 'Mild Sesame Tofu Stir-Fry & Noodles', category: 'protein', time: '20m', icon: '🥢', tags: ['Vegan Protein', 'Asian'], ingredients: ['Firm Tofu', 'Capsicum', 'Carrots', 'Hakka Noodles', 'Sesame Seeds', 'Soy Sauce'] },
+
+  // Friday Fun & Weekend Treats
+  { id: 'mini_pita_pizza', name: 'Mini Pita Veggie Pizzas', category: 'fun', time: '15m', icon: '🍕', tags: ['Kid-Favorite', 'Friday Special'], ingredients: ['Bread / Pita', 'Tomato Ketchup', 'Cheese Cubes', 'Capsicum', 'Sweet Corn', 'Oregano'] },
+  { id: 'white_sauce_pasta', name: 'Creamy Broccoli & Corn Pasta', category: 'fun', time: '20m', icon: '🍝', tags: ['Cheesy', 'Italian'], ingredients: ['Pasta (Penne / Fusilli)', 'Milk', 'Butter', 'Cheese Cubes', 'Broccoli', 'Sweet Corn', 'Black Pepper'] },
+  { id: 'red_sauce_pasta', name: 'Rich Tomato Basil Veg Pasta', category: 'fun', time: '20m', icon: '🍝', tags: ['Tangy', 'Italian'], ingredients: ['Pasta (Penne / Fusilli)', 'Tomatoes', 'Garlic', 'Butter', 'Cheese Cubes', 'Oregano'] },
+  { id: 'pav_bhaji', name: 'Loaded Veg Pav Bhaji', category: 'fun', time: '30m', icon: '🧈', tags: ['Street Food', 'Hidden Veggies'], ingredients: ['Whole Wheat Pav / Buns', 'Potatoes', 'Cauliflower', 'Green Peas', 'Tomatoes', 'Butter', 'Pav Bhaji Masala'] },
+  { id: 'hakka_noodles', name: 'Rainbow Veg Hakka Noodles', category: 'fun', time: '20m', icon: '🥢', tags: ['Asian', 'Crisp Veggies'], ingredients: ['Hakka Noodles', 'Cabbage', 'Carrots', 'Capsicum', 'Spring Onions', 'Soy Sauce'] },
+  { id: 'dosa_tacos', name: 'Crispy Dosa Tacos with Potato & Cheese', category: 'fun', time: '20m', icon: '🌮', tags: ['Fusion', 'Crunchy'], ingredients: ['Idli Batter / Idlis', 'Potatoes', 'Cheese Cubes', 'Tomatoes', 'Onions', 'Ghee'] },
+  { id: 'aloo_tikki_burger', name: 'Mini Aloo Tikki Sliders', category: 'fun', time: '25m', icon: '🍔', tags: ['Burger Night', 'Fun'], ingredients: ['Whole Wheat Pav / Buns', 'Potatoes', 'Bread', 'Cheese Cubes', 'Tomatoes', 'Cucumber'] },
+  { id: 'vegetable_biryani', name: 'Fragrant Dum Veg Biryani', category: 'fun', time: '40m', icon: '🍚', tags: ['Royal Feast', 'Aromatic'], ingredients: ['Basmati Rice', 'Paneer', 'Carrots', 'Beans', 'Curd / Yogurt', 'Ghee', 'Whole Spices', 'Fresh Coriander'] },
+  { id: 'garlic_naan_paneer', name: 'Garlic Roti + Shahi Paneer', category: 'fun', time: '35m', icon: '🫓', tags: ['Restaurant Style', 'Weekend'], ingredients: ['Wheat Atta', 'Paneer', 'Tomatoes', 'Cashews', 'Milk', 'Butter', 'Garlic'] },
+
+  // Healthy Snacks & Add-on Bites
+  { id: 'roasted_makhana', name: 'Crunchy Ghee Roasted Makhana', category: 'snack', time: '8m', icon: '🍿', tags: ['Crunchy', 'Superfood'], ingredients: ['Foxnuts (Makhana)', 'Ghee', 'Turmeric', 'Chaat Masala'] },
+  { id: 'apple_peanut_butter', name: 'Apple Slices with Peanut Butter Dip', category: 'snack', time: '5m', icon: '🍏', tags: ['Natural Sweet', 'Healthy Fat'], ingredients: ['Apples', 'Peanut Butter'] },
+  { id: 'cucumber_carrot_sticks', name: 'Carrot & Cucumber Sticks + Hung Curd', category: 'snack', time: '7m', icon: '🥕', tags: ['Hydrating', 'Raw Veg'], ingredients: ['Carrots', 'Cucumbers', 'Curd / Yogurt', 'Lemons'] },
+  { id: 'boiled_sweet_corn', name: 'Buttery Sweet Corn Chaat', category: 'snack', time: '10m', icon: '🌽', tags: ['Sweet', 'Warm'], ingredients: ['Sweet Corn', 'Butter', 'Chaat Masala', 'Lemons'] },
+  { id: 'dry_fruit_laddu', name: 'Date & Almond Energy Bites', category: 'snack', time: '5m', icon: '🍬', tags: ['No Sugar', 'Energy Booster'], ingredients: ['Dates', 'Almonds', 'Ghee', 'Cardamom'] }
+];
+
+// Ingredient Categorization Lexicon
+const GROCERY_CATEGORIES = {
+  produce: {
+    name: '🥦 Fresh Produce & Herbs',
+    items: ['Onions', 'Tomatoes', 'Potatoes', 'Carrots', 'Beans', 'Green Peas', 'Capsicum', 'Fresh Coriander', 'Curry Leaves', 'Lemons', 'Fresh Spinach (Palak)', 'Fresh Methi Leaves', 'Cucumbers', 'Broccoli', 'Sweet Corn', 'Beetroot', 'Cauliflower', 'Cabbage', 'Spring Onions', 'Garlic', 'Ginger', 'Apples', 'Pomegranate']
+  },
+  dairy: {
+    name: '🥛 Dairy, Eggs & Fresh Protein',
+    items: ['Paneer', 'Curd / Yogurt', 'Milk', 'Butter', 'Cheese Cubes', 'Eggs', 'Firm Tofu']
+  },
+  pantry: {
+    name: '🌾 Grains, Flours & Pantry Staples',
+    items: ['Wheat Atta', 'Basmati Rice', 'Poha', 'Rava / Sooji', 'Vermicelli / Semiya', 'Yellow Moong Dal', 'Toor Dal', 'Bread', 'Idli Batter / Idlis', 'Besan (Gram Flour)', 'Rolled Oats', 'Rajma (Kidney Beans)', 'White / Black Chana', 'Sprouted Moong', 'Soya Chunks', 'Foxtail / Kodo Millet', 'Whole Wheat Pav / Buns', 'Pasta (Penne / Fusilli)', 'Hakka Noodles', 'Foxnuts (Makhana)', 'Peanuts', 'Cashews', 'Almonds', 'Dates', 'Grated Coconut']
+  },
+  spices: {
+    name: '🧂 Spices, Oils & Condiments',
+    items: ['Ghee', 'Mustard Seeds', 'Cumin Seeds', 'Turmeric', 'Garam Masala', 'Whole Spices', 'Black Pepper', 'Chaat Masala', 'Pav Bhaji Masala', 'Idli Podi', 'Tomato Ketchup', 'Soy Sauce', 'Sesame Seeds', 'Oregano', 'Cardamom', 'Peanut Butter', 'Oil']
+  }
+};
+
+// State Object
+let state = {
+  schedule: {}, // { 'Monday': { tiffin: recipeId, lunch: recipeId, dinner: recipeId, note: '' } }
+  pantryChecked: {}, // { 'Onions': true }
+  customGroceries: [], // ['Dish Soap', 'Dark Chocolate']
+  activePreset: 'standard'
+};
+
+let activeModalTarget = { day: null, slot: null };
+let toastTimer = null;
+
+function showToast(msg) {
+  const t = $('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// Helper to find recipe
+function getRecipe(id) {
+  return RECIPES.find(r => r.id === id) || null;
+}
+
+// Built-in Weekly Menu Presets
+const PRESET_PLANS = {
+  standard: {
+    name: 'School Term Standard',
+    schedule: {
+      Monday:    { tiffin: 'poha', lunch: 'aloo_paratha', dinner: 'jeera_rice_dal', note: 'Start week energetic' },
+      Tuesday:   { tiffin: 'podi_idli', lunch: 'lemon_rice', dinner: 'chapati_egg_roll', note: '' },
+      Wednesday: { tiffin: 'upma', lunch: 'paneer_paratha', dinner: 'dal_khichdi', note: 'Midweek comfort' },
+      Thursday:  { tiffin: 'bread_besan_toast', lunch: 'curd_rice_tadka', dinner: 'rajma_chawal', note: '' },
+      Friday:    { tiffin: 'corn_cheese_sandwich', lunch: 'veg_pulao', dinner: 'mini_pita_pizza', note: 'Friday Fun Night!' },
+      Saturday:  { tiffin: 'masala_french_toast', lunch: 'sprout_moong_cutlet', dinner: 'pav_bhaji', note: 'Weekend special' },
+      Sunday:    { tiffin: 'moong_chilla', lunch: 'vegetable_biryani', dinner: 'white_sauce_pasta', note: 'Family movie night' }
+    }
+  },
+  protein: {
+    name: 'High Protein & Greens',
+    schedule: {
+      Monday:    { tiffin: 'moong_chilla', lunch: 'paneer_paratha', dinner: 'rajma_chawal', note: 'Sprouts & Paneer' },
+      Tuesday:   { tiffin: 'egg_bhurji_roll', lunch: 'soya_pulao', dinner: 'spinach_roti_roll', note: '' },
+      Wednesday: { tiffin: 'oats_chilla', lunch: 'chana_sundal', dinner: 'millet_pongal', note: 'Millet day' },
+      Thursday:  { tiffin: 'bread_besan_toast', lunch: 'paneer_kathi_roll', dinner: 'kala_chana_gravy', note: '' },
+      Friday:    { tiffin: 'poha', lunch: 'tofu_veggie_stirfry', dinner: 'dal_khichdi', note: 'Plant protein' },
+      Saturday:  { tiffin: 'masala_french_toast', lunch: 'sprout_moong_cutlet', dinner: 'egg_curry_appam', note: '' },
+      Sunday:    { tiffin: 'methi_thepla_quick', lunch: 'vegetable_biryani', dinner: 'garlic_naan_paneer', note: '' }
+    }
+  },
+  rush: {
+    name: '15-Min Rush (Busy Week)',
+    schedule: {
+      Monday:    { tiffin: 'poha', lunch: 'lemon_rice', dinner: 'dal_khichdi', note: '15 min prep max' },
+      Tuesday:   { tiffin: 'podi_idli', lunch: 'curd_rice_tadka', dinner: 'corn_cheese_sandwich', note: '' },
+      Wednesday: { tiffin: 'upma', lunch: 'tomato_bath', dinner: 'bread_besan_toast', note: '' },
+      Thursday:  { tiffin: 'curd_bread_upma', lunch: 'methi_thepla_quick', dinner: 'jeera_rice_dal', note: '' },
+      Friday:    { tiffin: 'corn_cheese_sandwich', lunch: 'veg_semiya', dinner: 'red_sauce_pasta', note: '' },
+      Saturday:  { tiffin: 'masala_french_toast', lunch: 'poha', dinner: 'mini_pita_pizza', note: '' },
+      Sunday:    { tiffin: 'roasted_makhana', lunch: 'veg_pulao', dinner: 'white_sauce_pasta', note: '' }
+    }
+  },
+  favorites: {
+    name: 'Fussy Eater Favorites',
+    schedule: {
+      Monday:    { tiffin: 'corn_cheese_sandwich', lunch: 'aloo_paratha', dinner: 'hakka_noodles', note: 'Kids favorites' },
+      Tuesday:   { tiffin: 'podi_idli', lunch: 'paneer_kathi_roll', dinner: 'mini_pita_pizza', note: '' },
+      Wednesday: { tiffin: 'masala_french_toast', lunch: 'beetroot_poori', dinner: 'white_sauce_pasta', note: 'Pink poori magic' },
+      Thursday:  { tiffin: 'bread_besan_toast', lunch: 'corn_cheese_sandwich', dinner: 'pav_bhaji', note: '' },
+      Friday:    { tiffin: 'poha', lunch: 'veg_pulao', dinner: 'mini_pita_pizza', note: 'Pizza Friday' },
+      Saturday:  { tiffin: 'aloo_tikki_burger', lunch: 'dosa_tacos', dinner: 'hakka_noodles', note: 'Sliders & Tacos' },
+      Sunday:    { tiffin: 'vermicelli_kheer', lunch: 'vegetable_biryani', dinner: 'garlic_naan_paneer', note: 'Sunday treat' }
+    }
+  }
+};
+
+// Storage Load / Save
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state.schedule = parsed.schedule || {};
+      state.pantryChecked = parsed.pantryChecked || {};
+      state.customGroceries = parsed.customGroceries || [];
+      state.activePreset = parsed.activePreset || 'standard';
+      return;
+    }
+  } catch (e) { console.error(e); }
+
+  // Default to standard preset
+  applyPreset('standard');
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {}
+}
+
+// Preset Handler
+function applyPreset(presetKey) {
+  const p = PRESET_PLANS[presetKey];
+  if (!p) return;
+  state.activePreset = presetKey;
+  state.schedule = JSON.parse(JSON.stringify(p.schedule));
+  document.querySelectorAll('.chip-btn[data-preset]').forEach(b => {
+    b.classList.toggle('active', b.dataset.preset === presetKey);
+  });
+  saveState();
+  renderDaysGrid();
+  renderGroceryList();
+  showToast(`Applied ${p.name} menu`);
+}
+
+// Smart Shuffle Generator
+function smartShuffleWeek() {
+  const quickDishes = RECIPES.filter(r => r.category === 'quick').map(r => r.id);
+  const lunchDishes = RECIPES.filter(r => r.category === 'lunchbox' || r.category === 'protein').map(r => r.id);
+  const dinnerDishes = RECIPES.filter(r => r.category === 'protein' || r.category === 'fun' || r.category === 'lunchbox').map(r => r.id);
+
+  function pickRandom(arr, exclude) {
+    const filtered = arr.filter(item => item !== exclude);
+    return filtered[Math.floor(Math.random() * filtered.length)] || arr[0];
+  }
+
+  let lastTiffin = '', lastLunch = '', lastDinner = '';
+
+  DAYS.forEach((day, idx) => {
+    if (!state.schedule[day]) state.schedule[day] = {};
+    const t = pickRandom(quickDishes, lastTiffin);
+    const l = pickRandom(lunchDishes, lastLunch);
+    let d = pickRandom(dinnerDishes, lastDinner);
+
+    // Ensure Friday/Saturday gets a fun treat
+    if (day === 'Friday' || day === 'Saturday') {
+      const funs = RECIPES.filter(r => r.category === 'fun').map(r => r.id);
+      d = funs[Math.floor(Math.random() * funs.length)];
+    }
+
+    state.schedule[day].tiffin = t;
+    state.schedule[day].lunch = l;
+    state.schedule[day].dinner = d;
+
+    lastTiffin = t;
+    lastLunch = l;
+    lastDinner = d;
+  });
+
+  document.querySelectorAll('.chip-btn[data-preset]').forEach(b => b.classList.remove('active'));
+  state.activePreset = 'custom';
+  saveState();
+  renderDaysGrid();
+  renderGroceryList();
+  showToast('🎲 Smart shuffled week with balanced variety!');
+}
+
+function clearWeek() {
+  DAYS.forEach(d => {
+    state.schedule[d] = { tiffin: '', lunch: '', dinner: '', note: '' };
+  });
+  state.activePreset = 'cleared';
+  saveState();
+  renderDaysGrid();
+  renderGroceryList();
+  showToast('Cleared weekly meal schedule');
+}
+
+// Render 7-Day Matrix Grid
+function renderDaysGrid() {
+  const container = $('daysGrid');
+  const todayName = new Date().toLocaleDateString('en-US', { weekday: 'long' });
+
+  container.innerHTML = DAYS.map((day, idx) => {
+    const dayData = state.schedule[day] || { tiffin: '', lunch: '', dinner: '', note: '' };
+    const isToday = day === todayName;
+
+    return `
+      <div class="day-card ${isToday ? 'today-card' : ''}" data-day="${day}">
+        <div class="day-header">
+          <div class="day-title-wrap">
+            <span class="day-name">${day}</span>
+            ${isToday ? '<span class="day-tag">Today</span>' : ''}
+          </div>
+          <div class="day-controls">
+            <button type="button" class="icon-mini-btn" onclick="copyDayMeals('${day}')" title="Copy Day Menu">📋</button>
+            <button type="button" class="icon-mini-btn" onclick="clearDayMeals('${day}')" title="Clear Day">×</button>
+          </div>
+        </div>
+        <div class="meal-slots">
+          ${SLOTS.map(slot => {
+            const recipeId = dayData[slot.id];
+            const recipe = getRecipe(recipeId);
+            const isCustom = recipeId && !recipe;
+            const dishName = recipe ? recipe.name : (isCustom ? recipeId : '');
+            const dishIcon = recipe ? recipe.icon : (isCustom ? '🍽️' : '');
+            const prepTime = recipe ? recipe.time : '';
+            const tags = recipe ? recipe.tags : [];
+
+            return `
+              <div class="meal-slot ${dishName ? 'filled' : ''}" onclick="openMealModal('${day}', '${slot.id}')">
+                <div class="slot-top">
+                  <span class="slot-badge ${slot.badgeClass}">${slot.icon} ${slot.name}</span>
+                  ${prepTime ? `<span class="slot-time">${prepTime}</span>` : ''}
+                </div>
+                <div class="slot-dish-title">
+                  ${dishName ? `${dishIcon} ${dishName}` : `<span class="slot-dish-empty">+ Select or type dish...</span>`}
+                </div>
+                ${tags.length ? `
+                  <div class="slot-tags">
+                    ${tags.map(t => `<span class="mini-pill">${t}</span>`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+        <div class="day-note-row">
+          <span>📝</span>
+          <input type="text" class="day-note-input" placeholder="Add school reminder / note..." value="${dayData.note || ''}" onchange="updateDayNote('${day}', this.value)">
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateDayNote(day, note) {
+  if (!state.schedule[day]) state.schedule[day] = {};
+  state.schedule[day].note = note.trim();
+  saveState();
+}
+
+function clearDayMeals(day) {
+  if (state.schedule[day]) {
+    state.schedule[day].tiffin = '';
+    state.schedule[day].lunch = '';
+    state.schedule[day].dinner = '';
+    saveState();
+    renderDaysGrid();
+    renderGroceryList();
+    showToast(`Cleared ${day}`);
+  }
+}
+
+function copyDayMeals(day) {
+  const d = state.schedule[day];
+  if (!d) return;
+  const t = getRecipe(d.tiffin)?.name || d.tiffin || 'None';
+  const l = getRecipe(d.lunch)?.name || d.lunch || 'None';
+  const dn = getRecipe(d.dinner)?.name || d.dinner || 'None';
+  const text = `🍱 ${day} Meals:\n• Morning Tiffin: ${t}\n• Lunchbox: ${l}\n• Dinner: ${dn}${d.note ? `\n• Note: ${d.note}` : ''}`;
+  navigator.clipboard.writeText(text).then(() => showToast(`Copied ${day}'s menu!`));
+}
+
+// Modal Handler
+function openMealModal(day, slot) {
+  activeModalTarget = { day, slot };
+  const slotObj = SLOTS.find(s => s.id === slot);
+  $('modalTitle').textContent = `Choose ${slotObj ? slotObj.name : 'Meal'} for ${day}`;
+  $('modalSearch').value = '';
+  $('customDishName').value = '';
+  filterModalRecipes('all', '');
+  $('mealModal').classList.add('open');
+  $('modalSearch').focus();
+}
+
+function closeModal() {
+  $('mealModal').classList.remove('open');
+  activeModalTarget = { day: null, slot: null };
+}
+
+function filterModalRecipes(category, query) {
+  const q = query.toLowerCase().trim();
+  const listEl = $('modalMealList');
+
+  const filtered = RECIPES.filter(r => {
+    const matchesCat = (category === 'all') || (r.category === category);
+    const matchesQuery = !q || r.name.toLowerCase().includes(q) || r.ingredients.some(ing => ing.toLowerCase().includes(q)) || r.tags.some(t => t.toLowerCase().includes(q));
+    return matchesCat && matchesQuery;
+  });
+
+  if (filtered.length === 0) {
+    listEl.innerHTML = `<div style="text-align:center; padding:24px; color:var(--text-faint);">No recipes found matching "${query}". Use custom dish below!</div>`;
+    return;
+  }
+
+  listEl.innerHTML = filtered.map(r => `
+    <div class="meal-pick-item" onclick="selectRecipe('${r.id}')">
+      <div class="pick-info">
+        <span class="pick-icon">${r.icon}</span>
+        <div>
+          <div class="pick-title">${r.name}</div>
+          <div class="pick-ingredients">Includes: ${r.ingredients.slice(0, 5).join(', ')}${r.ingredients.length > 5 ? '...' : ''}</div>
+        </div>
+      </div>
+      <span class="pick-time">${r.time}</span>
+    </div>
+  `).join('');
+}
+
+function selectRecipe(recipeId) {
+  const { day, slot } = activeModalTarget;
+  if (!day || !slot) return;
+  if (!state.schedule[day]) state.schedule[day] = {};
+  state.schedule[day][slot] = recipeId;
+  saveState();
+  closeModal();
+  renderDaysGrid();
+  renderGroceryList();
+  showToast(`Updated ${day} ${slot}`);
+}
+
+function applyCustomDish() {
+  const dish = $('customDishName').value.trim();
+  if (!dish) return;
+  const { day, slot } = activeModalTarget;
+  if (!day || !slot) return;
+  if (!state.schedule[day]) state.schedule[day] = {};
+  state.schedule[day][slot] = dish;
+  saveState();
+  closeModal();
+  renderDaysGrid();
+  renderGroceryList();
+  showToast(`Added custom meal: "${dish}"`);
+}
+
+// Auto-Categorized Grocery Compiler
+function compileGroceries() {
+  const ingredientCounts = {}; // { 'Onions': 4, 'Paneer': 2 }
+
+  // Extract from scheduled recipes
+  DAYS.forEach(d => {
+    const dayData = state.schedule[d];
+    if (!dayData) return;
+    SLOTS.forEach(slot => {
+      const recId = dayData[slot.id];
+      if (!recId) return;
+      const rec = getRecipe(recId);
+      if (rec && rec.ingredients) {
+        rec.ingredients.forEach(ing => {
+          ingredientCounts[ing] = (ingredientCounts[ing] || 0) + 1;
+        });
+      }
+    });
+  });
+
+  // Organize by category
+  const categorized = {
+    produce: [],
+    dairy: [],
+    pantry: [],
+    spices: [],
+    other: []
+  };
+
+  Object.keys(ingredientCounts).forEach(ing => {
+    let placed = false;
+    for (const [catKey, catData] of Object.entries(GROCERY_CATEGORIES)) {
+      if (catData.items.includes(ing)) {
+        categorized[catKey].push({ name: ing, count: ingredientCounts[ing] });
+        placed = true;
+        break;
+      }
+    }
+    if (!placed) {
+      categorized.other.push({ name: ing, count: ingredientCounts[ing] });
+    }
+  });
+
+  // Append custom added grocery items to 'other'
+  state.customGroceries.forEach(c => {
+    categorized.other.push({ name: c, count: 1, isCustom: true });
+  });
+
+  return categorized;
+}
+
+function renderGroceryList() {
+  const categorized = compileGroceries();
+  const listEl = $('grocerySectionsList');
+
+  let totalItems = 0;
+  let unCheckedItems = 0;
+
+  let html = '';
+  const catEntries = [
+    { key: 'produce', title: '🥦 Fresh Produce & Herbs' },
+    { key: 'dairy',   title: '🥛 Dairy & Fresh Proteins' },
+    { key: 'pantry',  title: '🌾 Grains & Pantry Staples' },
+    { key: 'spices',  title: '🧂 Spices & Condiments' },
+    { key: 'other',   title: '🧺 Extra / Custom Items' }
+  ];
+
+  catEntries.forEach(cat => {
+    const items = categorized[cat.key] || [];
+    if (items.length === 0) return;
+
+    html += `
+      <div class="grocery-section-card">
+        <div class="sec-title">
+          <span>${cat.title}</span>
+          <span class="count">${items.length} items</span>
+        </div>
+        <div class="sec-items">
+          ${items.map(it => {
+            totalItems++;
+            const isChecked = !!state.pantryChecked[it.name];
+            if (!isChecked) unCheckedItems++;
+
+            return `
+              <div class="item-row ${isChecked ? 'checked' : ''}" onclick="toggleGroceryPantry('${it.name}')">
+                <div class="item-left">
+                  <input type="checkbox" ${isChecked ? 'checked' : ''} onclick="event.stopPropagation(); toggleGroceryPantry('${it.name}')">
+                  <span class="item-name">${it.name}</span>
+                </div>
+                ${it.count > 1 ? `<span class="item-use-count">${it.count}x</span>` : ''}
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    `;
+  });
+
+  if (totalItems === 0) {
+    html = `<div style="text-align:center; padding:30px 10px; color:var(--text-faint); font-size:12.5px;">Schedule meals in the 7-day matrix to auto-populate your shopping checklist.</div>`;
+  }
+
+  listEl.innerHTML = html;
+  $('groceryCountBadge').textContent = `${unCheckedItems} to buy`;
+  $('grocerySubText').textContent = totalItems > 0 ? `${totalItems} total ingredients · ${totalItems - unCheckedItems} marked in pantry` : 'Ingredients dynamically compiled from scheduled meals';
+}
+
+function toggleGroceryPantry(name) {
+  state.pantryChecked[name] = !state.pantryChecked[name];
+  saveState();
+  renderGroceryList();
+}
+
+function toggleAllPantry() {
+  const categorized = compileGroceries();
+  let allNames = [];
+  Object.values(categorized).forEach(arr => arr.forEach(it => allNames.push(it.name)));
+  const allAlreadyChecked = allNames.length > 0 && allNames.every(n => state.pantryChecked[n]);
+
+  allNames.forEach(n => {
+    state.pantryChecked[n] = !allAlreadyChecked;
+  });
+
+  saveState();
+  renderGroceryList();
+  showToast(allAlreadyChecked ? 'Unchecked all grocery items' : 'Marked all items as in pantry');
+}
+
+function addCustomGrocery() {
+  const input = $('inputCustomGrocery');
+  const val = input.value.trim();
+  if (!val) return;
+  if (!state.customGroceries.includes(val)) {
+    state.customGroceries.push(val);
+    saveState();
+    renderGroceryList();
+    showToast(`Added "${val}" to grocery list`);
+  }
+  input.value = '';
+}
+
+// 📱 WhatsApp Exporter
+function shareOnWhatsApp() {
+  const categorized = compileGroceries();
+  const d = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+  let text = `🍱 *Weekly Family Grocery Checklist — Week of ${d}*\n`;
+  text += `_Auto-generated via Sarav's World Lunchbox Planner_\n\n`;
+
+  let itemCount = 0;
+  const catEntries = [
+    { key: 'produce', title: '🥦 Fresh Produce & Herbs' },
+    { key: 'dairy',   title: '🥛 Dairy & Proteins' },
+    { key: 'pantry',  title: '🌾 Grains & Pantry Staples' },
+    { key: 'spices',  title: '🧂 Spices & Condiments' },
+    { key: 'other',   title: '🧺 Extra Items' }
+  ];
+
+  catEntries.forEach(cat => {
+    const items = categorized[cat.key] || [];
+    const needed = items.filter(it => !state.pantryChecked[it.name]);
+    if (needed.length > 0) {
+      text += `*${cat.title}:*\n`;
+      needed.forEach(it => {
+        text += `• [ ] ${it.name}${it.count > 1 ? ` (${it.count}x)` : ''}\n`;
+        itemCount++;
+      });
+      text += `\n`;
+    }
+  });
+
+  if (itemCount === 0) {
+    showToast('All items are marked as already in pantry!');
+    return;
+  }
+
+  text += `👉 _Plan your school tiffins: https://iamsaravofficial.com/apps/lunchbox-planner/_`;
+
+  const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  window.open(url, '_blank');
+}
+
+// 📋 Copy Weekly Menu
+function copyWeeklyMenu() {
+  let text = `# 🍱 Weekly School Tiffin & Family Meal Plan\n`;
+  text += `Generated via Sarav's World: https://iamsaravofficial.com/apps/lunchbox-planner/\n\n`;
+
+  DAYS.forEach(d => {
+    const dayData = state.schedule[d] || {};
+    const t = getRecipe(dayData.tiffin)?.name || dayData.tiffin || 'Not planned';
+    const l = getRecipe(dayData.lunch)?.name || dayData.lunch || 'Not planned';
+    const dn = getRecipe(dayData.dinner)?.name || dayData.dinner || 'Not planned';
+
+    text += `### ${d}\n`;
+    text += `- 🥪 Tiffin/Snack: ${t}\n`;
+    text += `- 🍱 Lunchbox: ${l}\n`;
+    text += `- 🍲 Dinner: ${dn}\n`;
+    if (dayData.note) text += `- 📝 Note: ${dayData.note}\n`;
+    text += `\n`;
+  });
+
+  navigator.clipboard.writeText(text).then(() => showToast('✓ Weekly menu copied to clipboard!'));
+}
+
+// 💾 Custom Routine Presets
+function saveRoutinePreset() {
+  const now = new Date();
+  const name = `Week of ${now.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} (${now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })})`;
+
+  let presets = {};
+  try { presets = JSON.parse(localStorage.getItem(PRESETS_STORAGE_KEY)) || {}; } catch (e) {}
+  presets[name] = {
+    name,
+    savedAt: new Date().toISOString(),
+    schedule: JSON.parse(JSON.stringify(state.schedule))
+  };
+  try {
+    localStorage.setItem(PRESETS_STORAGE_KEY, JSON.stringify(presets));
+    showToast(`✓ Saved routine "${name}" to browser storage!`);
+  } catch (e) {
+    showToast('Could not save routine to local storage.');
+  }
+}
+
+// JSON Backup / Restore
+function exportJson() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `lunchbox_planner_backup_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  showToast('✓ Backup downloaded');
+}
+
+function importJson() {
+  $('fileImportJson').click();
+}
+
+$('fileImportJson').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (evt) => {
+    try {
+      const data = JSON.parse(evt.target.result);
+      if (data.schedule) {
+        state.schedule = data.schedule;
+        state.pantryChecked = data.pantryChecked || {};
+        state.customGroceries = data.customGroceries || [];
+        saveState();
+        renderDaysGrid();
+        renderGroceryList();
+        showToast('✓ Successfully restored weekly meal backup!');
+      }
+    } catch (err) { showToast('Invalid JSON file.'); }
+  };
+  reader.readAsText(file);
+  e.target.value = '';
+});
+
+// Theme Selector
+function setTheme(choice) {
+  try { localStorage.setItem('sw_theme', choice); } catch (e) {}
+  let active = choice;
+  if (choice === 'auto') active = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', active);
+  document.querySelectorAll('#themeSelector button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+}
+
+// Ecosystem Dropdowns
+document.querySelectorAll('.eco-dropdown').forEach(drop => {
+  const btn = drop.querySelector('.eco-dropbtn');
+  if (!btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = drop.classList.contains('open');
+    document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open'));
+    if (!isOpen) drop.classList.add('open');
+  });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); closeModal(); } });
+
+// Event Listeners
+document.querySelectorAll('.chip-btn[data-preset]').forEach(b => {
+  b.addEventListener('click', () => applyPreset(b.dataset.preset));
+});
+
+$('btnSmartShuffle').addEventListener('click', smartShuffleWeek);
+$('btnClearWeek').addEventListener('click', clearWeek);
+$('btnToggleAllPantry').addEventListener('click', toggleAllPantry);
+$('btnAddCustomGrocery').addEventListener('click', addCustomGrocery);
+$('inputCustomGrocery').addEventListener('keydown', (e) => { if (e.key === 'Enter') addCustomGrocery(); });
+$('btnWhatsAppGrocery').addEventListener('click', shareOnWhatsApp);
+$('btnPrintFridge').addEventListener('click', () => window.print());
+$('btnCopyMenuBrief').addEventListener('click', copyWeeklyMenu);
+$('btnSaveRoutinePreset').addEventListener('click', saveRoutinePreset);
+$('btnExportJson').addEventListener('click', exportJson);
+$('btnImportJson').addEventListener('click', importJson);
+
+// Modal Listeners
+$('btnCloseModal').addEventListener('click', closeModal);
+$('mealModal').addEventListener('click', (e) => { if (e.target === $('mealModal')) closeModal(); });
+$('btnApplyCustomDish').addEventListener('click', applyCustomDish);
+$('customDishName').addEventListener('keydown', (e) => { if (e.key === 'Enter') applyCustomDish(); });
+
+$('modalSearch').addEventListener('input', (e) => {
+  const activeTab = document.querySelector('.tab-btn.active')?.dataset.cat || 'all';
+  filterModalRecipes(activeTab, e.target.value);
+});
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    filterModalRecipes(btn.dataset.cat, $('modalSearch').value);
+  });
+});
+
+// Boot
+(function init() {
+  let savedTheme = 'dark';
+  try { savedTheme = localStorage.getItem('sw_theme') || 'dark'; } catch (e) {}
+  setTheme(savedTheme);
+
+  loadState();
+  renderDaysGrid();
+  renderGroceryList();
+})();
+
+</script>
+</body>
+</html>
