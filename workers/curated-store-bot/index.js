@@ -33,13 +33,22 @@ function detectCategory(text) {
 // Extract Amazon URL from message text
 function extractAmazonUrl(text) {
   const match = (text || '').match(/https?:\/\/(?:www\.)?(?:amazon\.in|amzn\.in|amzn\.to|amazon\.com)\/[^\s]+/i);
-  return match ? match[0] : null;
+  if (!match) return null;
+  return match[0].replace(/[,)>]+$/, '');
 }
 
 // Extract ASIN from URL
 function extractAsin(url) {
-  const match = url.match(/(?:dp|gp\/product|\/d\/|ASIN=)([A-Z0-9]{10})/i);
-  return match ? match[1] : null;
+  if (!url) return null;
+  const patterns = [
+    /(?:dp\/|gp\/product\/|\/d\/|product\/|ASIN=)([A-Z0-9]{10})/i,
+    /\/([A-Z0-9]{10})(?:[/?&]|$)/i
+  ];
+  for (const p of patterns) {
+    const m = url.match(p);
+    if (m && m[1]) return m[1].toUpperCase();
+  }
+  return null;
 }
 
 // Send Telegram Message
@@ -229,25 +238,39 @@ export default {
 
         // Extract Title
         let title = '';
-        const titleMatch = html.match(/<meta\s+property=["']og:title["']\s+content=["'](.*?)["']/i) ||
-                           html.match(/<span\s+id=["']productTitle["'][^>]*>(.*?)<\/span>/i);
-        if (titleMatch) {
-          title = titleMatch[1].trim().replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"');
+        const pTitle = html.match(/<span\s+id=["']productTitle["'][^>]*>(.*?)<\/span>/is);
+        const ogTitle = html.match(/<meta\s+property=["']og:title["']\s+content=["'](.*?)["']/i);
+        const titleTag = html.match(/<title>(.*?)<\/title>/i);
+
+        if (pTitle && pTitle[1]) {
+          title = pTitle[1].trim();
+        } else if (ogTitle && ogTitle[1]) {
+          title = ogTitle[1].trim();
+        } else if (titleTag && titleTag[1]) {
+          title = titleTag[1].replace(/: Amazon\.in.*$/i, '').trim();
         } else {
           title = `Curated Amazon Product (${asin})`;
         }
+        title = title.replace(/&amp;/g, '&').replace(/&#39;/g, "'").replace(/&quot;/g, '"');
 
         // Clean up overly long titles
-        if (title.length > 80) {
-          title = title.slice(0, 80) + '...';
+        if (title.length > 90) {
+          title = title.slice(0, 90) + '...';
         }
 
         // Extract Image
         let imageUrl = '';
-        const imgMatch = html.match(/<meta\s+property=["']og:image["']\s+content=["'](.*?)["']/i) ||
-                         html.match(/"large":"(https:\/\/[^"]+\.jpg)"/i);
-        if (imgMatch) {
-          imageUrl = imgMatch[1];
+        const landingImg = html.match(/id=["']landingImage["'][^>]*data-old-hires=["'](.*?)["']/i) || 
+                           html.match(/id=["']landingImage["'][^>]*src=["'](.*?)["']/i);
+        const ogImg = html.match(/<meta\s+property=["']og:image["']\s+content=["'](.*?)["']/i);
+        const jsonImg = html.match(/"large":"(https:\/\/[^"]+\.jpg)"/i);
+
+        if (landingImg && landingImg[1]) {
+          imageUrl = landingImg[1];
+        } else if (ogImg && ogImg[1]) {
+          imageUrl = ogImg[1];
+        } else if (jsonImg && jsonImg[1]) {
+          imageUrl = jsonImg[1];
         }
 
         // Extract Note from user message (strip the URL)
@@ -258,14 +281,15 @@ export default {
 
         // Detect Category
         const catInfo = detectCategory(note + ' ' + title);
-        const affiliateUrl = `https://www.amazon.in/dp/${asin}?tag=${AMAZON_TAG}`;
+        const hasTh = targetUrl.includes('th=1');
+        const affiliateUrl = `https://www.amazon.in/dp/${asin}?tag=${AMAZON_TAG}&linkCode=ll2${hasTh ? '&th=1' : ''}`;
 
         const newProduct = {
           id: `prod_${asin}`,
           title: title,
           category: catInfo.category,
           categoryName: catInfo.categoryName,
-          image: imageUrl || '/store/images/default-product.png',
+          image: imageUrl || '/store/images/default-product.svg',
           asin: asin,
           amazonUrl: affiliateUrl,
           curatorNote: note,
