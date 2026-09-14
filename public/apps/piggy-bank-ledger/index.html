@@ -276,7 +276,7 @@
   }
   .btn-jar:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-  /* DREAM GOAL SPOTLIGHT CARD */
+  /* DREAM GOAL SPOTLIGHT CARD ENHANCEMENTS */
   .goal-card {
     background: linear-gradient(135deg, rgba(79, 176, 168, 0.08) 0%, rgba(227, 166, 62, 0.08) 100%), var(--surface);
     border: 2px solid var(--accent2); border-radius: 18px; padding: 24px 28px; margin-bottom: 28px;
@@ -285,10 +285,34 @@
   .goal-head-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 16px; flex-wrap: wrap; }
   .goal-info h2 { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
   .goal-sub { font-size: 13.5px; color: var(--text-dim); }
+  .goal-head-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
   .goal-level-badge {
     padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;
     background: var(--accent2-soft); color: var(--accent2); border: 1px solid var(--accent2);
     display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-amazon-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(227, 166, 62, 0.15); border: 1.5px solid var(--accent);
+    color: var(--accent); padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 700; text-decoration: none;
+    transition: all 0.15s ease;
+  }
+  .btn-amazon-pill:hover {
+    background: var(--accent); color: var(--accent-ink);
+    transform: translateY(-1px); box-shadow: 0 4px 12px rgba(227, 166, 62, 0.35);
+    text-decoration: none;
+  }
+  .btn-catalog-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 5px 12px; border-radius: 20px;
+    font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }
+  .btn-catalog-pill:hover {
+    color: var(--accent2); border-color: var(--accent2);
+    background: var(--accent2-soft); transform: translateY(-1px);
   }
 
   .goal-progress-wrap { margin-bottom: 12px; }
@@ -296,6 +320,186 @@
   .goal-track { width: 100%; height: 16px; background: var(--surface-2); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
   .goal-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); transition: width 0.4s ease; }
   .goal-footer-row { display: flex; justify-content: space-between; font-size: 12.5px; color: var(--text-dim); }
+
+  /* Goal Unlocked Celebration Banner */
+  .goal-unlocked-banner {
+    margin-top: 18px; padding: 18px 22px;
+    background: linear-gradient(135deg, rgba(95, 191, 119, 0.16) 0%, rgba(227, 166, 62, 0.16) 100%);
+    border: 2px solid var(--success); border-radius: 14px;
+    animation: pulseGlow 2.5s infinite ease-in-out;
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 15px rgba(95, 191, 119, 0.2); }
+    50% { box-shadow: 0 0 25px rgba(227, 166, 62, 0.35); }
+  }
+  .unlocked-heading {
+    font-size: 16px; font-weight: 700; color: var(--success);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
+  }
+  .unlocked-sub {
+    font-size: 13px; color: var(--text); margin-bottom: 14px; line-height: 1.5;
+  }
+  .unlocked-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-amazon-primary {
+    background: var(--accent); color: var(--accent-ink);
+    font-weight: 700; font-size: 13px; padding: 9px 18px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 6px; text-decoration: none;
+    border: none; cursor: pointer; transition: all 0.15s ease;
+    box-shadow: 0 4px 14px rgba(227, 166, 62, 0.4);
+  }
+  .btn-amazon-primary:hover {
+    filter: brightness(1.1); transform: translateY(-2px); text-decoration: none;
+  }
+  .btn-claim-next {
+    background: var(--surface-2); color: var(--text);
+    font-weight: 600; font-size: 12.5px; padding: 9px 16px; border-radius: 8px;
+    display: inline-flex; align-items: center; gap: 6px;
+    border: 1px solid var(--border); cursor: pointer; font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .btn-claim-next:hover {
+    border-color: var(--success); color: var(--success); transform: translateY(-1px);
+  }
+
+  .goal-affiliate-note {
+    font-size: 11.5px; color: var(--text-faint); margin-top: 14px;
+    display: flex; align-items: center; gap: 6px; line-height: 1.4;
+  }
+  .goal-affiliate-note code {
+    font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 700;
+  }
+
+  /* CATALOG & WISHLIST MODAL */
+  .modal-card.catalog-modal {
+    max-width: 860px; width: 100%; max-height: 88vh;
+    display: flex; flex-direction: column; padding: 24px;
+  }
+  .catalog-toolbar {
+    display: flex; gap: 10px; align-items: center; margin-bottom: 14px; flex-wrap: wrap;
+  }
+  .search-wrap {
+    flex: 1; min-width: 220px; position: relative;
+  }
+  .search-icon {
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    font-size: 14px; color: var(--text-faint); pointer-events: none;
+  }
+  .form-input.catalog-search {
+    padding-left: 36px; width: 100%;
+  }
+  .btn-new-custom {
+    background: var(--accent2-soft); color: var(--accent2);
+    border: 1px solid var(--accent2); border-radius: 8px;
+    padding: 9px 14px; font-size: 12.5px; font-weight: 700;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
+    transition: all 0.15s ease;
+  }
+  .btn-new-custom:hover {
+    background: var(--accent2); color: #0C0F14;
+  }
+  .catalog-tabs {
+    display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px;
+    margin-bottom: 12px; border-bottom: 1px solid var(--border-soft);
+  }
+  .catalog-tab {
+    background: var(--surface-2); border: 1px solid var(--border);
+    color: var(--text-dim); padding: 5px 12px; border-radius: 16px;
+    font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit;
+    white-space: nowrap; transition: all 0.15s ease;
+  }
+  .catalog-tab:hover { color: var(--text); }
+  .catalog-tab.active {
+    background: var(--accent-soft); border-color: var(--accent); color: var(--accent);
+  }
+  .catalog-scroll-area {
+    flex: 1; overflow-y: auto; padding-right: 4px; margin-bottom: 14px; min-height: 240px;
+  }
+  .catalog-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px;
+  }
+  .catalog-item-card {
+    background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px; display: flex; flex-direction: column; transition: all 0.15s ease;
+  }
+  .catalog-item-card:hover {
+    border-color: var(--accent2); transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+  .catalog-item-card.is-active {
+    border-color: var(--accent); background: linear-gradient(180deg, var(--accent-soft) 0%, var(--surface-2) 100%);
+  }
+  .item-head {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;
+  }
+  .item-icon { font-size: 26px; }
+  .item-cat-badge {
+    font-size: 10.5px; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+    background: var(--surface-3); color: var(--text-dim); border: 1px solid var(--border-soft);
+  }
+  .item-price { font-size: 15px; font-weight: 700; color: var(--accent); }
+  .item-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; line-height: 1.3; }
+  .item-desc { font-size: 11.5px; color: var(--text-dim); margin-bottom: 10px; line-height: 1.4; flex: 1; }
+  .item-progress-track {
+    width: 100%; height: 6px; background: var(--surface-3); border-radius: 4px; overflow: hidden; margin-bottom: 4px;
+  }
+  .item-progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); }
+  .item-progress-row {
+    display: flex; justify-content: space-between; font-size: 11px; color: var(--text-faint); margin-bottom: 10px;
+  }
+  .item-actions {
+    display: flex; gap: 6px; align-items: center; margin-top: auto;
+  }
+  .btn-item-select {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    color: var(--text); font-size: 11.5px; font-weight: 600; padding: 6px 10px;
+    border-radius: 6px; cursor: pointer; font-family: inherit; transition: all 0.15s ease;
+  }
+  .btn-item-select:hover {
+    background: var(--accent2); color: #0C0F14; border-color: var(--accent2);
+  }
+  .btn-item-active {
+    flex: 1; background: var(--accent); border: 1px solid var(--accent);
+    color: var(--accent-ink); font-size: 11.5px; font-weight: 700; padding: 6px 10px;
+    border-radius: 6px; cursor: default;
+  }
+  .btn-item-buy {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(227, 166, 62, 0.12); border: 1px solid rgba(227, 166, 62, 0.4);
+    color: var(--accent); font-size: 11px; font-weight: 700; padding: 6px 9px;
+    border-radius: 6px; text-decoration: none; transition: all 0.15s ease; white-space: nowrap;
+  }
+  .btn-item-buy:hover {
+    background: var(--accent); color: var(--accent-ink); text-decoration: none;
+  }
+  .btn-item-del {
+    background: transparent; border: none; color: var(--text-faint);
+    font-size: 14px; cursor: pointer; padding: 4px; border-radius: 4px; transition: color 0.15s ease;
+  }
+  .btn-item-del:hover { color: var(--danger); }
+  .catalog-footer {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding-top: 12px; border-top: 1px solid var(--border-soft); flex-wrap: wrap;
+  }
+  .affiliate-notice {
+    display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-faint); line-height: 1.4; flex: 1; min-width: 240px;
+  }
+  .affiliate-notice code {
+    font-family: 'IBM Plex Mono', monospace; color: var(--accent); font-weight: 700;
+  }
+  .emoji-quick-row {
+    display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px;
+  }
+  .emoji-chip {
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px;
+    padding: 4px 8px; font-size: 16px; cursor: pointer; transition: transform 0.1s;
+  }
+  .emoji-chip:hover { transform: scale(1.15); border-color: var(--accent); }
+  .preset-chip.btn-browse-goals {
+    background: var(--accent2-soft); border-color: var(--accent2); color: var(--accent2); font-weight: 700;
+  }
+  .preset-chip.btn-browse-goals:hover {
+    background: var(--accent2); color: #0C0F14;
+  }
 
   /* MAIN 2-COLUMN: Inflow/Outflow Studio + Passbook Ledger */
   .main-split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 36px; }
@@ -393,7 +597,8 @@
   @media print {
     body { background: #fff !important; color: #000 !important; font-size: 11pt; }
     .ecosystem-bar, .theme-selector, .header-presets-wrap, .action-bar, .main-split,
-    .btn-jar, .ratio-selector, .modal-overlay, #toast, footer { display: none !important; }
+    .btn-jar, .ratio-selector, .modal-overlay, #toast, footer,
+    .btn-amazon-pill, .btn-catalog-pill, .goal-unlocked-banner, .goal-affiliate-note { display: none !important; }
     .container { max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
     .hero-card { border: none !important; box-shadow: none !important; padding: 0 0 12pt 0 !important; margin-bottom: 14pt !important; border-bottom: 2pt solid #000 !important; }
     .app-icon-box { display: none !important; }
@@ -506,13 +711,17 @@
     <!-- Turnkey Goal Presets -->
     <div class="header-presets-wrap">
       <span class="preset-label">🎯 Dream Goals:</span>
-      <div class="preset-chips">
-        <button type="button" class="preset-chip active" onclick="loadGoalPreset('bicycle')">🚲 Hero Mountain Bicycle (₹3,500)</button>
-        <button type="button" class="preset-chip" onclick="loadGoalPreset('lego')">🧱 Lego Technic Race Car (₹2,400)</button>
-        <button type="button" class="preset-chip" onclick="loadGoalPreset('books')">📚 Harry Potter Complete Set (₹1,800)</button>
-        <button type="button" class="preset-chip" onclick="loadGoalPreset('cricket')">🏏 English Willow Cricket Bat (₹1,500)</button>
-        <button type="button" class="preset-chip" onclick="loadGoalPreset('telescope')">🔭 Space Star Telescope (₹2,900)</button>
-        <button type="button" class="preset-chip" onclick="openCustomGoalModal()">✨ Custom Goal</button>
+      <div class="preset-chips" id="headerPresetChips">
+        <button type="button" class="preset-chip btn-browse-goals" onclick="openGoalCatalogModal()">
+          <span>🎯</span> Wishlist Catalog (20+ Goals)
+        </button>
+        <button type="button" class="preset-chip active" onclick="loadGoalPreset('bicycle')">🚲 Mountain Bicycle (₹3,500)</button>
+        <button type="button" class="preset-chip" onclick="loadGoalPreset('lego')">🧱 Lego Technic (₹2,400)</button>
+        <button type="button" class="preset-chip" onclick="loadGoalPreset('telescope')">🔭 Star Telescope (₹2,900)</button>
+        <button type="button" class="preset-chip" onclick="loadGoalPreset('harrypotter')">📚 Harry Potter (₹1,800)</button>
+        <button type="button" class="preset-chip" onclick="loadGoalPreset('cricket')">🏏 Cricket Bat (₹1,500)</button>
+        <button type="button" class="preset-chip" onclick="loadGoalPreset('keyboard')">🎹 Piano Keyboard (₹3,200)</button>
+        <button type="button" class="preset-chip" onclick="openCustomGoalModal()">✨ + Custom Goal</button>
       </div>
     </div>
   </div>
@@ -598,8 +807,16 @@
         <h2><span id="goalIcon">🚲</span> <span id="goalTitle">Hero Mountain Bicycle</span></h2>
         <div class="goal-sub">Save Jar funds are dedicated to this dream goal. Every rupee saved counts!</div>
       </div>
-      <div class="goal-level-badge" id="goalLevelBadge">
-        <span>⭐</span> Level 2: Vault Starter
+      <div class="goal-head-actions">
+        <div class="goal-level-badge" id="goalLevelBadge">
+          <span>⭐</span> Level 2: Vault Starter
+        </div>
+        <a href="https://www.amazon.in/s?k=hero+mountain+bicycle+for+kids&tag=dhrav-21" id="goalAmazonBuyLink" target="_blank" rel="noopener noreferrer" class="btn-amazon-pill" title="View product or price on Amazon (Affiliate Link)">
+          <span>🛒</span> View on Amazon ↗
+        </a>
+        <button type="button" class="btn-catalog-pill" onclick="openGoalCatalogModal()" title="Browse 20+ goal catalog & wishlist">
+          <span>🎯</span> Wishlist (20+)
+        </button>
       </div>
     </div>
 
@@ -616,6 +833,28 @@
     <div class="goal-footer-row">
       <span id="goalPercentText">41% Reached</span>
       <span id="goalRemainingText">₹2,050 left to unlock your dream!</span>
+    </div>
+
+    <!-- Goal Unlocked Celebration Banner -->
+    <div id="goalUnlockedBanner" class="goal-unlocked-banner" style="display:none;">
+      <div class="unlocked-heading">
+        <span>🎉</span> DREAM GOAL UNLOCKED! Ready for Mom &amp; Dad to Order!
+      </div>
+      <p class="unlocked-sub">
+        Incredible discipline! You saved the full <b class="mono" id="unlockedTargetAmount">₹3,500</b> for <b id="unlockedGoalTitle">Hero Mountain Bicycle</b>!
+      </p>
+      <div class="unlocked-btns">
+        <a id="unlockedAmazonBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn-amazon-primary">
+          <span>🛍️</span> Order on Amazon (dhrav-21) ↗
+        </a>
+        <button type="button" class="btn-claim-next" onclick="claimGoalAndPickNext()">
+          <span>✅</span> Mark as Bought &amp; Pick Next Goal
+        </button>
+      </div>
+    </div>
+
+    <div class="goal-affiliate-note">
+      <span>🛍️</span> <span>Parent Note: When you purchase your child's goal reward via Amazon, you support Sarav's World (tag <code>dhrav-21</code>) at zero extra cost to you!</span>
     </div>
   </div>
 
@@ -737,28 +976,114 @@
 
 </div>
 
+<!-- Wishlist & Goal Catalog Modal -->
+<div class="modal-overlay" id="goalCatalogModal">
+  <div class="modal-card catalog-modal">
+    <div class="modal-head">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="font-size:24px;">🎯</span>
+        <div>
+          <h3 style="margin:0; font-size:18px;">Dream Goal Wishlist &amp; Catalog</h3>
+          <span style="font-size:12px; color:var(--text-dim);">20+ kid-approved goals with live Amazon links (tag <code>dhrav-21</code>)</span>
+        </div>
+      </div>
+      <button type="button" class="modal-close" onclick="closeGoalCatalogModal()">&times;</button>
+    </div>
+
+    <!-- Toolbar: Search + Add Custom Goal -->
+    <div class="catalog-toolbar">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="catalogSearchInput" class="form-input catalog-search" placeholder="Search goals (e.g. bicycle, telescope, lego, book)..." oninput="filterCatalog()">
+      </div>
+      <button type="button" class="btn-new-custom" onclick="openCustomGoalFromCatalog()">+ Add Custom Goal</button>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="catalog-tabs" id="catalogTabs">
+      <button type="button" class="catalog-tab active" data-cat="all" onclick="selectCatalogCategory('all')">All (20+)</button>
+      <button type="button" class="catalog-tab" data-cat="Sports & Outdoors" onclick="selectCatalogCategory('Sports & Outdoors')">🚲 Sports</button>
+      <button type="button" class="catalog-tab" data-cat="STEM & Science" onclick="selectCatalogCategory('STEM & Science')">🔭 STEM</button>
+      <button type="button" class="catalog-tab" data-cat="Books & Wisdom" onclick="selectCatalogCategory('Books & Wisdom')">📚 Books</button>
+      <button type="button" class="catalog-tab" data-cat="Creative Arts" onclick="selectCatalogCategory('Creative Arts')">🎨 Creative</button>
+      <button type="button" class="catalog-tab" data-cat="Music & Tech" onclick="selectCatalogCategory('Music & Tech')">🎧 Tech</button>
+      <button type="button" class="catalog-tab" data-cat="custom" onclick="selectCatalogCategory('custom')">⭐ My Goals (<span id="customGoalsCount">0</span>)</button>
+    </div>
+
+    <!-- Catalog Cards Grid -->
+    <div class="catalog-scroll-area">
+      <div class="catalog-grid" id="catalogGrid">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="catalog-footer">
+      <div class="affiliate-notice">
+        <span>🛍️</span>
+        <span><b>Parent Note:</b> Product links open verified Amazon searches with tracking tag <code>dhrav-21</code>. When you buy your child's goal reward, you support Sarav's World at zero extra cost to you!</span>
+      </div>
+      <button type="button" class="btn-jar" onclick="closeGoalCatalogModal()">Close</button>
+    </div>
+  </div>
+</div>
+
 <!-- Custom Goal Modal -->
 <div class="modal-overlay" id="customGoalModal">
   <div class="modal-card">
     <div class="modal-head">
-      <h3>🎯 Set Custom Dream Goal</h3>
+      <h3>🎯 Add Custom Dream Goal</h3>
       <button type="button" class="modal-close" onclick="closeCustomGoalModal()">&times;</button>
     </div>
     <div class="form-group">
-      <label class="form-label" for="inputGoalTitle">Dream Goal Name</label>
-      <input type="text" class="form-input" id="inputGoalTitle" placeholder="e.g. Telescope, Drone, Badminton Racket">
+      <label class="form-label" for="inputGoalTitle">Dream Goal Name *</label>
+      <input type="text" class="form-input" id="inputGoalTitle" placeholder="e.g. Telescope, Drone, Badminton Kit">
     </div>
     <div class="form-group">
-      <label class="form-label" for="inputGoalAmount">Target Amount (₹)</label>
+      <label class="form-label" for="inputGoalCategory">Category</label>
+      <select class="form-input" id="inputGoalCategory">
+        <option value="Sports & Outdoors">🚲 Sports &amp; Outdoors</option>
+        <option value="STEM & Science">🔭 STEM &amp; Science</option>
+        <option value="Books & Wisdom">📚 Books &amp; Wisdom</option>
+        <option value="Creative Arts">🎨 Creative Arts &amp; Craft</option>
+        <option value="Music & Tech">🎧 Music &amp; Tech Gadgets</option>
+        <option value="Other">⭐ Other Dream Goal</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputGoalAmount">Target Amount (₹) *</label>
       <input type="number" class="form-input" id="inputGoalAmount" placeholder="e.g. 2500">
     </div>
     <div class="form-group">
       <label class="form-label" for="inputGoalEmoji">Goal Emoji</label>
       <input type="text" class="form-input" id="inputGoalEmoji" placeholder="e.g. 🔭 or 🏸 or 🎮" value="🎯">
+      <div class="emoji-quick-row">
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🚲')">🚲</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🧱')">🧱</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('📚')">📚</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🔭')">🔭</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🎨')">🎨</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🎮')">🎮</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🏸')">🏸</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('⚽')">⚽</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🎸')">🎸</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('⌚')">⌚</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('📷')">📷</button>
+        <button type="button" class="emoji-chip" onclick="selectQuickEmoji('🎁')">🎁</button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputGoalBuyUrl">Amazon Product Link or Search Keyword (Optional)</label>
+      <input type="text" class="form-input" id="inputGoalBuyUrl" placeholder="Paste Amazon product link or search phrase">
+      <span style="font-size:11px; color:var(--text-faint); margin-top:4px; display:block;">Leave blank to auto-create an Amazon search link with tag <code>dhrav-21</code>!</span>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="inputGoalDesc">Short Kid Note (Optional)</label>
+      <input type="text" class="form-input" id="inputGoalDesc" placeholder="e.g. For our weekend cycling trips with friends">
     </div>
     <div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
       <button type="button" class="btn-jar" onclick="closeCustomGoalModal()">Cancel</button>
-      <button type="button" class="btn-submit" onclick="saveCustomGoal()">Save Goal</button>
+      <button type="button" class="btn-submit" onclick="saveCustomGoal()">Save Goal to Wishlist</button>
     </div>
   </div>
 </div>
@@ -898,21 +1223,76 @@ function playCelebration() {
   } catch(e) {}
 }
 
-// --- App State Architecture ---
-var GOAL_PRESETS = {
-  bicycle: { title: "Hero Mountain Bicycle", target: 3500, icon: "🚲" },
-  lego: { title: "Lego Technic Race Car", target: 2400, icon: "🧱" },
-  books: { title: "Harry Potter Complete Set", target: 1800, icon: "📚" },
-  cricket: { title: "English Willow Cricket Bat", target: 1500, icon: "🏏" },
-  telescope: { title: "Space Star Telescope", target: 2900, icon: "🔭" }
-};
+// --- Amazon Associates & Dynamic Goal Pool Architecture ---
+var AMAZON_AFFILIATE_TAG = "dhrav-21";
+
+// Curated Defined Pool of 20 Kids' Goals across 5 Categories
+var DEFAULT_GOAL_POOL = [
+  // 🚲 Sports & Outdoors
+  { id: "bicycle", title: "Hero Mountain Bicycle", category: "Sports & Outdoors", target: 3500, icon: "🚲", desc: "Geared mountain bike with mudguards and bell for outdoor adventures.", searchQuery: "hero mountain bicycle for kids" },
+  { id: "cricket", title: "English Willow Cricket Bat & Kit", category: "Sports & Outdoors", target: 1500, icon: "🏏", desc: "Grade willow cricket bat with practice ball, batting gloves, and grip.", searchQuery: "english willow cricket bat junior" },
+  { id: "badminton", title: "Yonex Badminton Racquet & Shuttle Set", category: "Sports & Outdoors", target: 1200, icon: "🏸", desc: "Dual aluminium racquets with full protective cover and shuttle tube.", searchQuery: "yonex badminton racket set with cover" },
+  { id: "skateboard", title: "Pro Maple Skateboard / Inline Skates", category: "Sports & Outdoors", target: 1800, icon: "🛹", desc: "7-ply Canadian maple deck with smooth PU wheels and safety pads.", searchQuery: "skateboard for kids beginner with helmet pads" },
+  { id: "football", title: "FIFA Size 4 Match Football & Shin Guards", category: "Sports & Outdoors", target: 950, icon: "⚽", desc: "All-weather training soccer ball with ergonomic ankle-guard shins.", searchQuery: "football size 4 for kids with shin guards" },
+
+  // 🔭 STEM & Science
+  { id: "telescope", title: "Space Star Astronomical Telescope", category: "STEM & Science", target: 2900, icon: "🔭", desc: "70mm refractor aperture with moon filter for observing lunar craters.", searchQuery: "astronomical telescope for kids astronomy science" },
+  { id: "microscope", title: "Beginner 1200x Science Microscope Lab", category: "STEM & Science", target: 1600, icon: "🔬", desc: "Compound optical microscope with prepared specimen slides and LED.", searchQuery: "student microscope kit kids with slides" },
+  { id: "snapcircuits", title: "Electronic Snap Circuits Discovery Kit", category: "STEM & Science", target: 2200, icon: "⚡", desc: "100+ DIY electronic sound, light, and motor experiments without soldering.", searchQuery: "electronic snap circuits kit for kids" },
+  { id: "solarrobot", title: "12-in-1 Solar Powered DIY Robot Kit", category: "STEM & Science", target: 1100, icon: "🤖", desc: "Solar-driven robotic engineering kit that crawls, rolls, and floats.", searchQuery: "12 in 1 solar robot kit for kids stem" },
+
+  // 📚 Books & Wisdom
+  { id: "harrypotter", title: "Harry Potter Complete Boxed Set (7 Books)", category: "Books & Wisdom", target: 1800, icon: "📚", desc: "J.K. Rowling's legendary Hogwarts collection in a keepsake boxed slipcase.", searchQuery: "harry potter complete collection boxed set" },
+  { id: "percyjackson", title: "Percy Jackson Olympians 5-Book Series", category: "Books & Wisdom", target: 1400, icon: "📖", desc: "Rick Riordan's thrilling Greek mythology fantasy adventure box set.", searchQuery: "percy jackson complete collection box set" },
+  { id: "amarchitrakatha", title: "Amar Chitra Katha Heritage Mahabharata Box", category: "Books & Wisdom", target: 2100, icon: "📜", desc: "3-volume illustrated classic Indian epic graphic collection.", searchQuery: "amar chitra katha mahabharata 3 volume box set" },
+  { id: "roalddahl", title: "Roald Dahl Magical Treasury Collection", category: "Books & Wisdom", target: 1250, icon: "🍫", desc: "Matilda, Charlie, BFG, and classic illustrated stories in slipcase.", searchQuery: "roald dahl box set collection for children" },
+
+  // 🎨 Creative Arts & Craft
+  { id: "lego", title: "Lego Technic Race Car / Off-Roader", category: "Creative Arts", target: 2400, icon: "🧱", desc: "High-speed mechanical steering and piston engine building challenge.", searchQuery: "lego technic race car building kit" },
+  { id: "artcase", title: "150-Piece Deluxe Wooden Art & Sketch Studio", category: "Creative Arts", target: 1350, icon: "🎨", desc: "Watercolors, oil pastels, acrylics, and sketching pencils in wooden case.", searchQuery: "kids art set 150 piece deluxe wooden case" },
+  { id: "pottery", title: "Motorized Pottery Wheel Craft Studio", category: "Creative Arts", target: 1750, icon: "🏺", desc: "Electric pottery wheel with sculpting clay, modeling tools, and paints.", searchQuery: "kids electric pottery wheel craft kit" },
+  { id: "pen3d", title: "3D Printing Pen with 10-Color Filament", category: "Creative Arts", target: 1950, icon: "🖊️", desc: "OLED display 3D drawing pen with non-toxic PLA filaments and stencils.", searchQuery: "3d printing pen for kids with filament refills" },
+
+  // 🎧 Music & Tech Gadgets
+  { id: "keyboard", title: "61-Key Electronic Piano Keyboard with Mic", category: "Music & Tech", target: 3200, icon: "🎹", desc: "Full-sized keys, 100 rhythms, lesson mode, and plug-in singing mic.", searchQuery: "61 key electronic piano keyboard for kids with mic" },
+  { id: "smartwatch", title: "Kids' Touchscreen Fitness Smartwatch", category: "Music & Tech", target: 1800, icon: "⌚", desc: "Step counter, alarm, habit reminders, and splash-proof colorful band.", searchQuery: "kids fitness smartwatch step tracker" },
+  { id: "headphones", title: "Safe 85dB Volume-Limited Wireless Headphones", category: "Music & Tech", target: 1400, icon: "🎧", desc: "Ear-cushioned Bluetooth headset with 85dB safe volume hearing guard.", searchQuery: "kids wireless headphones 85db volume limited" }
+];
+
+function buildAmazonAffiliateUrl(item) {
+  if (!item) return "https://www.amazon.in/?tag=" + AMAZON_AFFILIATE_TAG;
+  if (item.customUrl && item.customUrl.trim()) {
+    var raw = item.customUrl.trim();
+    if (raw.indexOf('amazon.') !== -1) {
+      try {
+        var u = new URL(raw);
+        u.searchParams.set('tag', AMAZON_AFFILIATE_TAG);
+        return u.toString();
+      } catch(e) {
+        return raw + (raw.indexOf('?') !== -1 ? '&' : '?') + 'tag=' + AMAZON_AFFILIATE_TAG;
+      }
+    }
+    return raw;
+  }
+  var query = item.searchQuery || (item.title + ' for kids');
+  return 'https://www.amazon.in/s?k=' + encodeURIComponent(query) + '&tag=' + AMAZON_AFFILIATE_TAG;
+}
 
 var state = {
   spend: 540,
   save: 1450,
   give: 260,
   ratios: { spend: 50, save: 40, give: 10 },
-  goal: { title: "Hero Mountain Bicycle", target: 3500, icon: "🚲" },
+  goal: {
+    id: "bicycle",
+    title: "Hero Mountain Bicycle",
+    category: "Sports & Outdoors",
+    target: 3500,
+    icon: "🚲",
+    desc: "Geared mountain bike with mudguards and bell for outdoor adventures.",
+    searchQuery: "hero mountain bicycle for kids"
+  },
+  customGoals: [],
   ledger: [
     { date: "12 Sep 2026", type: "in", jar: "All Jars", note: "Weekly Pocket Money", amount: 200 },
     { date: "09 Sep 2026", type: "in", jar: "All Jars", note: "Grandma Birthday Blessing", amount: 500 },
@@ -921,14 +1301,42 @@ var state = {
   ]
 };
 
+function getAllGoals() {
+  return DEFAULT_GOAL_POOL.concat(state.customGoals || []);
+}
+
 function initPiggyApp() {
   var saved = localStorage.getItem('piggy_bank_data');
   if(saved) {
     try {
-      state = JSON.parse(saved);
+      var parsed = JSON.parse(saved);
+      if (parsed) {
+        if (parsed.spend !== undefined) state.spend = parsed.spend;
+        if (parsed.save !== undefined) state.save = parsed.save;
+        if (parsed.give !== undefined) state.give = parsed.give;
+        if (parsed.ratios) state.ratios = parsed.ratios;
+        if (parsed.goal) state.goal = parsed.goal;
+        if (Array.isArray(parsed.customGoals)) state.customGoals = parsed.customGoals;
+        if (Array.isArray(parsed.ledger)) state.ledger = parsed.ledger;
+      }
+    } catch(e) {}
+  }
+  // Dedicated custom goals fallback / synchronization
+  var savedCustom = localStorage.getItem('piggy_bank_custom_goals');
+  if (savedCustom) {
+    try {
+      var arr = JSON.parse(savedCustom);
+      if (Array.isArray(arr) && arr.length > 0) {
+        var existing = {};
+        (state.customGoals || []).forEach(function(g){ existing[g.id] = true; });
+        arr.forEach(function(g){
+          if (!existing[g.id]) state.customGoals.push(g);
+        });
+      }
     } catch(e) {}
   }
   renderAll();
+  renderCatalog();
 }
 
 function renderAll() {
@@ -953,13 +1361,34 @@ function renderGoal() {
   document.getElementById('goalSavedAmount').textContent = "₹" + state.save;
   document.getElementById('goalTargetAmount').textContent = "₹" + state.goal.target;
 
+  var buyUrl = buildAmazonAffiliateUrl(state.goal);
+  var amazonLink = document.getElementById('goalAmazonBuyLink');
+  if (amazonLink) amazonLink.href = buyUrl;
+
   var pct = Math.min(100, Math.round((state.save / state.goal.target) * 100));
   document.getElementById('goalProgressBar').style.width = pct + "%";
   document.getElementById('goalPercentText').textContent = pct + "% Reached";
 
   var remaining = state.goal.target - state.save;
-  var remText = remaining > 0 ? ("₹" + remaining + " left to unlock your dream!") : "🎉 Goal Unlocked! You did it!";
+  var isUnlocked = remaining <= 0;
+  var remText = isUnlocked ? "🎉 Goal Unlocked! Ready for Mom & Dad to order!" : ("₹" + remaining + " left to unlock your dream!");
   document.getElementById('goalRemainingText').textContent = remText;
+
+  // Celebration Banner toggle
+  var banner = document.getElementById('goalUnlockedBanner');
+  if (banner) {
+    if (isUnlocked) {
+      banner.style.display = 'block';
+      var unAmt = document.getElementById('unlockedTargetAmount');
+      if (unAmt) unAmt.textContent = "₹" + state.goal.target;
+      var unTitle = document.getElementById('unlockedGoalTitle');
+      if (unTitle) unTitle.textContent = state.goal.title;
+      var unlockedAmazonBtn = document.getElementById('unlockedAmazonBtn');
+      if (unlockedAmazonBtn) unlockedAmazonBtn.href = buyUrl;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
 
   var badge = document.getElementById('goalLevelBadge');
   if(pct < 25) {
@@ -973,6 +1402,179 @@ function renderGoal() {
   } else {
     badge.innerHTML = "<span>🏆</span> Level 5: Goal Champion! 🎉";
   }
+
+  updateHeaderChipsActiveState();
+}
+
+function updateHeaderChipsActiveState() {
+  document.querySelectorAll('#headerPresetChips .preset-chip').forEach(function(chip) {
+    var onclickAttr = chip.getAttribute('onclick') || '';
+    if (state.goal && state.goal.id && onclickAttr.indexOf("'" + state.goal.id + "'") !== -1) {
+      chip.classList.add('active');
+    } else if (chip.classList.contains('btn-browse-goals')) {
+      // keep browse button styled
+    } else {
+      chip.classList.remove('active');
+    }
+  });
+}
+
+function claimGoalAndPickNext() {
+  var today = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var todayStr = ("0" + today.getDate()).slice(-2) + " " + months[today.getMonth()] + " " + today.getFullYear();
+  var cost = state.goal.target;
+
+  state.ledger.unshift({
+    date: todayStr,
+    type: "out",
+    jar: "Save",
+    note: "🏆 Purchased Dream Goal: " + state.goal.title,
+    amount: -cost
+  });
+
+  state.save = Math.max(0, state.save - cost);
+  saveData();
+  playCelebration();
+  showToast('🎉 Milestone Achieved! Saved ' + state.goal.title + ' to Passbook!');
+  renderAll();
+  openGoalCatalogModal();
+}
+
+// --- Wishlist & Catalog Modal Logic ---
+var catalogCurrentCategory = 'all';
+var catalogCurrentSearch = '';
+
+function openGoalCatalogModal() {
+  catalogCurrentSearch = '';
+  var searchInput = document.getElementById('catalogSearchInput');
+  if (searchInput) searchInput.value = '';
+  document.getElementById('goalCatalogModal').classList.add('open');
+  renderCatalog();
+}
+
+function closeGoalCatalogModal() {
+  document.getElementById('goalCatalogModal').classList.remove('open');
+}
+
+function selectCatalogCategory(cat) {
+  catalogCurrentCategory = cat;
+  document.querySelectorAll('.catalog-tab').forEach(function(t) {
+    t.classList.toggle('active', t.getAttribute('data-cat') === cat);
+  });
+  renderCatalog();
+}
+
+function filterCatalog() {
+  var input = document.getElementById('catalogSearchInput');
+  catalogCurrentSearch = input ? input.value.trim().toLowerCase() : '';
+  renderCatalog();
+}
+
+function renderCatalog() {
+  var grid = document.getElementById('catalogGrid');
+  if (!grid) return;
+
+  var customCountEl = document.getElementById('customGoalsCount');
+  if (customCountEl) {
+    customCountEl.textContent = (state.customGoals || []).length;
+  }
+
+  var all = getAllGoals();
+  var filtered = all.filter(function(item) {
+    // Category filter
+    if (catalogCurrentCategory === 'custom') {
+      if (!item.isCustom) return false;
+    } else if (catalogCurrentCategory !== 'all') {
+      if (item.category !== catalogCurrentCategory) return false;
+    }
+    // Search filter
+    if (catalogCurrentSearch) {
+      var matchTitle = (item.title || '').toLowerCase().indexOf(catalogCurrentSearch) !== -1;
+      var matchDesc = (item.desc || '').toLowerCase().indexOf(catalogCurrentSearch) !== -1;
+      var matchCat = (item.category || '').toLowerCase().indexOf(catalogCurrentSearch) !== -1;
+      if (!matchTitle && !matchDesc && !matchCat) return false;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:32px 16px; color:var(--text-dim);">' +
+      '<div style="font-size:32px; margin-bottom:8px;">🔍</div>' +
+      '<div style="font-size:14px; font-weight:600;">No matching goals found</div>' +
+      '<div style="font-size:12px; margin-top:4px;">Try another search or add your own custom dream goal!</div>' +
+      '</div>';
+    return;
+  }
+
+  var html = '';
+  filtered.forEach(function(item) {
+    var isActive = (state.goal && (state.goal.id === item.id || state.goal.title === item.title));
+    var pct = Math.min(100, Math.round((state.save / item.target) * 100));
+    var buyUrl = buildAmazonAffiliateUrl(item);
+    var savedText = state.save >= item.target ? 'Ready to buy!' : ('₹' + state.save + ' / ₹' + item.target);
+
+    html += '<div class="catalog-item-card ' + (isActive ? 'is-active' : '') + '">';
+    html += '  <div class="item-head">';
+    html += '    <span class="item-icon">' + (item.icon || '🎯') + '</span>';
+    html += '    <span class="item-cat-badge">' + (item.category || 'Goal') + '</span>';
+    html += '    <span class="item-price mono">₹' + item.target + '</span>';
+    html += '  </div>';
+    html += '  <div class="item-title">' + item.title + '</div>';
+    html += '  <div class="item-desc">' + (item.desc || 'Dream savings goal for kids.') + '</div>';
+    html += '  <div class="item-progress-track">';
+    html += '    <div class="item-progress-fill" style="width: ' + pct + '%;"></div>';
+    html += '  </div>';
+    html += '  <div class="item-progress-row">';
+    html += '    <span class="mono">' + savedText + '</span>';
+    html += '    <span class="mono">' + pct + '%</span>';
+    html += '  </div>';
+    html += '  <div class="item-actions">';
+    if (isActive) {
+      html += '    <button type="button" class="btn-item-active" disabled>✓ Active Dream</button>';
+    } else {
+      html += '    <button type="button" class="btn-item-select" data-goal-id="' + item.id + '" onclick="setGoalFromCatalog(this.dataset.goalId)">🎯 Set as Goal</button>';
+    }
+    html += '    <a href="' + buyUrl + '" target="_blank" rel="noopener noreferrer" class="btn-item-buy" title="View on Amazon (Tag: dhrav-21)">';
+    html += '      <span>🛒</span> View ↗';
+    html += '    </a>';
+    if (item.isCustom) {
+      html += '    <button type="button" class="btn-item-del" data-goal-id="' + item.id + '" onclick="deleteCustomGoal(this.dataset.goalId)" title="Delete custom goal">🗑️</button>';
+    }
+    html += '  </div>';
+    html += '</div>';
+  });
+
+  grid.innerHTML = html;
+}
+
+function setGoalFromCatalog(id) {
+  var all = getAllGoals();
+  var found = null;
+  for (var i = 0; i < all.length; i++) {
+    if (all[i].id === id) { found = all[i]; break; }
+  }
+  if (!found) return;
+  state.goal = JSON.parse(JSON.stringify(found));
+  renderGoal();
+  renderCatalog();
+  saveData();
+  closeGoalCatalogModal();
+  showToast('Dream goal set: ' + found.title + ' (₹' + found.target + ')');
+}
+
+function loadGoalPreset(id) {
+  setGoalFromCatalog(id);
+}
+
+function openCustomGoalFromCatalog() {
+  closeGoalCatalogModal();
+  openCustomGoalModal();
+}
+
+function selectQuickEmoji(emoji) {
+  var el = document.getElementById('inputGoalEmoji');
+  if (el) el.value = emoji;
 }
 
 function renderLedger() {
@@ -1008,17 +1610,6 @@ function setRatio(sp, sa, gi) {
   showToast('Updated allocation ratio: ' + sp + '/' + sa + '/' + gi);
 }
 
-function loadGoalPreset(key) {
-  var p = GOAL_PRESETS[key] || GOAL_PRESETS.bicycle;
-  state.goal = JSON.parse(JSON.stringify(p));
-
-  document.querySelectorAll('.preset-chip').forEach(function(c){ c.classList.remove('active'); });
-  if(event && event.target) event.target.classList.add('active');
-
-  renderGoal();
-  showToast('Dream goal set: ' + p.title + ' (₹' + p.target + ')');
-}
-
 // --- Deposit Flow ---
 function applyQuickAmount(amt, note) {
   document.getElementById('inputDepositAmount').value = amt;
@@ -1052,7 +1643,10 @@ function executeSmartDeposit() {
   state.save += sa;
   state.give += gi;
 
-  var todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  var today = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var todayStr = ("0" + today.getDate()).slice(-2) + " " + months[today.getMonth()] + " " + today.getFullYear();
+
   state.ledger.unshift({
     date: todayStr,
     type: "in",
@@ -1061,39 +1655,45 @@ function executeSmartDeposit() {
     amount: val
   });
 
-  playCoinClink();
-  if(state.save >= state.goal.target) {
-    playCelebration();
-  }
-
-  showToast('Deposited ₹' + val + ' into your 3 Jars!');
   document.getElementById('inputDepositAmount').value = '';
   document.getElementById('inputDepositNote').value = '';
   updateSplitPreview();
+
+  playCoinSound();
+  showToast('Deposited ₹' + val + ' (Spend: ₹' + sp + ', Save: ₹' + sa + ', Give: ₹' + gi + ')');
   renderAll();
+  renderCatalog();
 }
 
 function quickJarDeposit(jar, amt) {
-  state[jar] += amt;
-  var todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+  if(jar === 'spend') state.spend += amt;
+  if(jar === 'save') state.save += amt;
+  if(jar === 'give') state.give += amt;
+
+  var today = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var todayStr = ("0" + today.getDate()).slice(-2) + " " + months[today.getMonth()] + " " + today.getFullYear();
+
   var jarName = jar === 'spend' ? 'Spend' : (jar === 'save' ? 'Save' : 'Give');
   state.ledger.unshift({
     date: todayStr,
     type: "in",
     jar: jarName,
-    note: "Quick Add",
+    note: "Quick Add to " + jarName + " Jar",
     amount: amt
   });
-  playCoinClink();
-  renderAll();
+
+  playCoinSound();
   showToast('Added ₹' + amt + ' to ' + jarName + ' Jar!');
+  renderAll();
+  renderCatalog();
 }
 
-// --- Spend / Withdraw Modal ---
+// --- Spend / Withdraw Flow ---
 function openSpendWithdrawModal(jar) {
-  var jarName = jar === 'spend' ? 'Spend' : (jar === 'save' ? 'Save' : 'Give');
   document.getElementById('spendModalJar').value = jar;
-  document.getElementById('spendModalTitle').textContent = '🛍️ Spend / Withdraw from ' + jarName + ' Jar';
+  var jarName = jar === 'spend' ? 'Spend' : (jar === 'save' ? 'Save' : 'Give');
+  document.getElementById('spendModalTitle').textContent = '🛍️ Withdraw from ' + jarName + ' Jar';
   document.getElementById('spendModal').classList.add('open');
 }
 function closeSpendModal() {
@@ -1102,20 +1702,28 @@ function closeSpendModal() {
 function executeSpendWithdraw() {
   var jar = document.getElementById('spendModalJar').value;
   var amt = parseFloat(document.getElementById('inputSpendAmount').value);
-  var reason = document.getElementById('inputSpendReason').value.trim() || "Item Purchase";
+  var reason = document.getElementById('inputSpendReason').value.trim() || "Jar Withdrawal";
 
   if(!amt || amt <= 0) {
-    showToast('Please enter an amount!');
-    return;
-  }
-  if(state[jar] < amt) {
-    showToast('Not enough balance in this jar!');
+    showToast('Please enter an amount to withdraw!');
     return;
   }
 
-  state[jar] -= amt;
+  var currentBalance = jar === 'spend' ? state.spend : (jar === 'save' ? state.save : state.give);
+  if(amt > currentBalance) {
+    showToast('Cannot spend more than current jar balance (₹' + currentBalance + ')!');
+    return;
+  }
+
+  if(jar === 'spend') state.spend -= amt;
+  if(jar === 'save') state.save -= amt;
+  if(jar === 'give') state.give -= amt;
+
+  var today = new Date();
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var todayStr = ("0" + today.getDate()).slice(-2) + " " + months[today.getMonth()] + " " + today.getFullYear();
+
   var jarName = jar === 'spend' ? 'Spend' : (jar === 'save' ? 'Save' : 'Give');
-  var todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
   state.ledger.unshift({
     date: todayStr,
     type: "out",
@@ -1129,6 +1737,7 @@ function executeSpendWithdraw() {
   document.getElementById('inputSpendReason').value = '';
   showToast('Spent ₹' + amt + ' from ' + jarName + ' Jar.');
   renderAll();
+  renderCatalog();
 }
 
 // --- Custom Goal Modal ---
@@ -1140,17 +1749,47 @@ function closeCustomGoalModal() {
 }
 function saveCustomGoal() {
   var title = document.getElementById('inputGoalTitle').value.trim();
+  var category = document.getElementById('inputGoalCategory').value || "Other";
   var target = parseFloat(document.getElementById('inputGoalAmount').value);
   var icon = document.getElementById('inputGoalEmoji').value.trim() || "🎯";
+  var customUrl = document.getElementById('inputGoalBuyUrl').value.trim();
+  var desc = document.getElementById('inputGoalDesc').value.trim();
 
   if(!title || !target || target <= 0) {
-    showToast('Please enter goal title and target amount!');
+    showToast('Please enter goal name and target amount!');
     return;
   }
-  state.goal = { title: title, target: target, icon: icon };
+
+  var newGoal = {
+    id: "custom_" + Date.now(),
+    title: title,
+    category: category,
+    target: target,
+    icon: icon,
+    desc: desc || ("Custom savings goal for " + title),
+    customUrl: customUrl,
+    isCustom: true
+  };
+
+  state.customGoals = state.customGoals || [];
+  state.customGoals.push(newGoal);
+  localStorage.setItem('piggy_bank_custom_goals', JSON.stringify(state.customGoals));
+
+  state.goal = newGoal;
+  saveData();
+
   closeCustomGoalModal();
-  renderGoal();
-  showToast('New Dream Goal set: ' + title);
+  renderAll();
+  renderCatalog();
+  showToast('✓ Saved "' + title + '" to Wishlist & set as active goal!');
+}
+
+function deleteCustomGoal(id) {
+  state.customGoals = (state.customGoals || []).filter(function(g){ return g.id !== id; });
+  localStorage.setItem('piggy_bank_custom_goals', JSON.stringify(state.customGoals));
+  saveData();
+  renderCatalog();
+  showToast('Removed custom goal from Wishlist.');
 }
 
 function clearPassbook() {
@@ -1162,9 +1801,11 @@ function clearPassbook() {
 // --- Universal Action Handlers ---
 function shareWhatsApp() {
   var pct = Math.min(100, Math.round((state.save / state.goal.target) * 100));
+  var buyUrl = buildAmazonAffiliateUrl(state.goal);
   var text = "🪙 *Young Saver's Piggy Bank & Ledger* — Sarav's World\n\n";
-  text += "🎯 *Dream Goal:* " + state.goal.icon + " *" + state.goal.title + "*\n";
-  text += "📊 *Progress:* ₹" + state.save + " / ₹" + state.goal.target + " (" + pct + "% Reached!)\n\n";
+  text += "🎯 *Dream Goal:* " + (state.goal.icon || '🎯') + " *" + state.goal.title + "*\n";
+  text += "📊 *Progress:* ₹" + state.save + " / ₹" + state.goal.target + " (" + pct + "% Reached!)\n";
+  text += "🛒 *View on Amazon (Affiliate):* " + buyUrl + "\n\n";
   text += "🏺 *Current 3-Jar Balances:*\n";
   text += "• 🛍️ *Spend Jar:* ₹" + state.spend + "\n";
   text += "• 🏦 *Save Jar:* ₹" + state.save + "\n";
@@ -1178,8 +1819,10 @@ function shareWhatsApp() {
 
 function copySummary() {
   var pct = Math.min(100, Math.round((state.save / state.goal.target) * 100));
+  var buyUrl = buildAmazonAffiliateUrl(state.goal);
   var text = "Young Saver's Piggy Bank & Ledger (Sarav's World)\n\n";
   text += "Goal: " + state.goal.title + " (₹" + state.save + " / ₹" + state.goal.target + " - " + pct + "%)\n";
+  text += "Buy on Amazon: " + buyUrl + "\n";
   text += "Spend Jar: ₹" + state.spend + "\n";
   text += "Save Jar: ₹" + state.save + "\n";
   text += "Give Jar: ₹" + state.give + "\n";
@@ -1212,11 +1855,11 @@ function fallbackCopy(text) {
 
 function saveData() {
   localStorage.setItem('piggy_bank_data', JSON.stringify(state));
+  localStorage.setItem('piggy_bank_custom_goals', JSON.stringify(state.customGoals || []));
   playCelebration();
   showToast('Piggy Bank & Ledger saved locally!');
 }
 
-// Startup
 initPiggyApp();
 </script>
 </body>
