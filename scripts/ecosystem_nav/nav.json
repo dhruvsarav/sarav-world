@@ -30,7 +30,8 @@
     {"id": "piggy-bank-ledger",    "name": "Piggy Bank & Money Ledger",  "url": "https://iamsaravofficial.com/apps/piggy-bank-ledger/", "icon": "🪙"},
     {"id": "chore-quest-board",    "name": "Chore & Quest Board",        "url": "https://iamsaravofficial.com/apps/chore-quest-board/", "icon": "⚔️"},
     {"id": "screen-time-passes",   "name": "Screen-Time Passes",         "url": "https://iamsaravofficial.com/apps/screen-time-passes/", "icon": "🎟️"},
-    {"id": "boredom-buster",       "name": "Boredom Buster Wheel",       "url": "https://iamsaravofficial.com/apps/boredom-buster/",      "icon": "🎡"}
+    {"id": "boredom-buster",       "name": "Boredom Buster Wheel",       "url": "https://iamsaravofficial.com/apps/boredom-buster/",      "icon": "🎡"},
+    {"id": "family-movie-night",   "name": "Family Movie & Game Night",  "url": "https://iamsaravofficial.com/apps/family-movie-night/",  "icon": "🎬"}
   ],
   "games": [
     {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},

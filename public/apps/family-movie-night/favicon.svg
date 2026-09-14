@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141922"/>
+      <stop offset="100%" stop-color="#0C0F14"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="28" fill="url(#bg)" stroke="#F59E0B" stroke-width="2.5" stroke-opacity="0.4"/>
+  <rect x="26" y="52" width="76" height="50" rx="8" fill="#1E2633" stroke="#FFF" stroke-width="2" stroke-opacity="0.8"/>
+  <rect x="26" y="30" width="76" height="16" rx="4" fill="url(#gold)"/>
+  <!-- Clapper stripes -->
+  <polygon points="36,30 44,30 38,46 30,46" fill="#141922"/>
+  <polygon points="56,30 64,30 58,46 50,46" fill="#141922"/>
+  <polygon points="76,30 84,30 78,46 70,46" fill="#141922"/>
+  <polygon points="96,30 102,30 98,46 90,46" fill="#141922"/>
+  <circle cx="64" cy="77" r="15" fill="url(#gold)"/>
+  <polygon points="61,70 61,84 71,77" fill="#141922"/>
+</svg>

@@ -50,7 +50,8 @@ for app_id, dirn in [("genzalphaslang","genzalphaslang"), ("salary-planner","sal
                       ("piggy-bank-ledger","piggy-bank-ledger"),
                       ("chore-quest-board","chore-quest-board"),
                       ("screen-time-passes","screen-time-passes"),
-                      ("boredom-buster","boredom-buster")]:
+                      ("boredom-buster","boredom-buster"),
+                      ("family-movie-night","family-movie-night")]:
     add(f"apps/{dirn}/index.html", ["group"], GROUP_SECTIONS, current_id=app_id)
 
 # 3. Games section (10 pages with navbar) — mode=['group'], sections=[apps,games,projects]
@@ -64,7 +65,7 @@ for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
 add("projects/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id="projects-hub")
 
-assert len(PAGES) == 41, f"expected 41 pages, got {len(PAGES)}"
+assert len(PAGES) == 42, f"expected 42 pages, got {len(PAGES)}"
 
 # Build the set of internally-resolvable URLs
 INTERNAL_OK = set()
