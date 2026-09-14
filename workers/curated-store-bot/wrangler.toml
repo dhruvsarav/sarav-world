@@ -1,0 +1,17 @@
+name = "curated-store-bot"
+main = "index.js"
+compatibility_date = "2024-09-01"
+
+# Bind Cloudflare KV Namespace for products
+# Run: npx wrangler kv:namespace create STORE_KV
+# Then paste the generated id below:
+[[kv_namespaces]]
+binding = "STORE_KV"
+id = "YOUR_KV_NAMESPACE_ID_HERE"
+
+# Environment Variables / Secrets
+# Run:
+#   npx wrangler secret put TELEGRAM_BOT_TOKEN
+#   npx wrangler secret put ALLOWED_USER_IDS
+[vars]
+AMAZON_TAG = "dhrav-21"
