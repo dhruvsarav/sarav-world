@@ -32,7 +32,8 @@
     {"id": "screen-time-passes",   "name": "Screen-Time Passes",         "url": "https://iamsaravofficial.com/apps/screen-time-passes/", "icon": "🎟️"},
     {"id": "boredom-buster",       "name": "Boredom Buster Wheel",       "url": "https://iamsaravofficial.com/apps/boredom-buster/",      "icon": "🎡"},
     {"id": "family-movie-night",   "name": "Family Movie & Game Night",  "url": "https://iamsaravofficial.com/apps/family-movie-night/",  "icon": "🎬"},
-    {"id": "book-nook",             "name": "Kids' Book Nook & Quest",    "url": "https://iamsaravofficial.com/apps/book-nook/",            "icon": "📚"}
+    {"id": "book-nook",             "name": "Kids' Book Nook & Quest",    "url": "https://iamsaravofficial.com/apps/book-nook/",            "icon": "📚"},
+    {"id": "birthday-gift-matrix",  "name": "Birthday & Milestone Matrix", "url": "https://iamsaravofficial.com/apps/birthday-gift-matrix/", "icon": "🎁"}
   ],
   "games": [
     {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},

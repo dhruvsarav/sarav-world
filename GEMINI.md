@@ -11,8 +11,8 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
 1. **Playground Hub Section Nomenclature (`/apps/`)**:
    - Top Flagship Spotlight: `🧠 Tokenomics (Enterprise AI Economics)`
    - Section 1: `⚡ Family & Interactive Web Suite` (9 Live Apps)
-   - Section 2: `🌟 Family Planner Suite` (6 Live Planners)
-2. **Canonical Suite Sequence (Strict 1–15 Standard across Hub and Ecosystem Dropdowns)**:
+   - Section 2: `🌟 Family Planner Suite` (10 Live Planners)
+2. **Canonical Suite Sequence (Strict 1–19 Standard across Hub and Ecosystem Dropdowns)**:
    *Section 1: Family & Interactive Web Suite (9 Apps)*:
    1. `genzalphaslang` (GenZ & Alpha Slang Decoder)
    2. `salary-planner` (Salary Planner)
@@ -23,13 +23,18 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    7. `digigold-calculator` (DigiGold SIP Calculator)
    8. `fd-calculator` (FD Calculator)
    9. `rd-calculator` (RD Calculator)
-   *Section 2: Family Planner Suite (6 Apps)*:
+   *Section 2: Family Planner Suite (10 Planners)*:
    10. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
    11. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
    12. `study-sprint` (Study Sprint & Exam Revision Matrix)
    13. `piggy-bank-ledger` (Kids' First Pocket Money & Piggy Bank Ledger)
    14. `chore-quest-board` (Kids' Chore & Quest Board — Gamified RPG Chores)
    15. `screen-time-passes` (Screen-Time Swap Tickets & Family Reward Passes)
+   16. `boredom-buster` (Kids' Screen-Free Boredom Buster Adventure Wheel)
+   17. `family-movie-night` (Family Movie & Board Game Night Decider)
+   18. `book-nook` (Kids' Book Nook & 100-Book Quest)
+   19. `birthday-gift-matrix` (Family Birthday & Milestone Gift Wishlist Matrix)
+   *Amazon Associates Tracking ID*: `dhrav-21` strictly applied to curated shopping links across relevant planners (`piggy-bank-ledger`, `family-movie-night`, `book-nook`, `birthday-gift-matrix`).
 3. **Footer Distinction**:
    - **Consumer Retail Web Apps (All Calculators & Utility Apps)**:
      `Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
