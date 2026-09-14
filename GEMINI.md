@@ -9,9 +9,11 @@
 ### 7. Universal Web App Architecture & Design Standards (STRICT MEMORIZED RULES)
 Every web app hosted under `public/apps/` must adhere strictly to these rules:
 1. **Playground Hub Section Nomenclature (`/apps/`)**:
-   - Section 1: `⚡ Family & Interactive Web Apps Suite` (15 Live Apps)
-   - Section 2: `❤️ Close to Heart Ecosystem`
+   - Top Flagship Spotlight: `🧠 Tokenomics (Enterprise AI Economics)`
+   - Section 1: `⚡ Family & Interactive Web Suite` (9 Live Apps)
+   - Section 2: `🌟 Family Planner Suite` (6 Live Planners)
 2. **Canonical Suite Sequence (Strict 1–15 Standard across Hub and Ecosystem Dropdowns)**:
+   *Section 1: Family & Interactive Web Suite (9 Apps)*:
    1. `genzalphaslang` (GenZ & Alpha Slang Decoder)
    2. `salary-planner` (Salary Planner)
    3. `home-budget-planner` (Home Budget Planner)
@@ -21,6 +23,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    7. `digigold-calculator` (DigiGold SIP Calculator)
    8. `fd-calculator` (FD Calculator)
    9. `rd-calculator` (RD Calculator)
+   *Section 2: Family Planner Suite (6 Apps)*:
    10. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
    11. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
    12. `study-sprint` (Study Sprint & Exam Revision Matrix)
@@ -72,6 +75,12 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
       9. `aiinitsm` (`/apps/aiinitsm/`): AI-in-ITSM Business Case Builder (Discounted cash flows, NPV/payback/ROI rollup, live SD Optimizer scenario recomputation, 5x5 risk register).
       10. `automationscore` (`/apps/automationscore/`): Automation Potential Advisor (Bottom-up tech stack ceiling across 50 call drivers, digital reachability bounds, 5–7 year realization curve).
       11. `dwpassessment` (`/apps/dwpassessment/`): Digital Workplace Maturity Assessment (8 operational pillars, 48 capabilities, SVG radar spider chart, priority gap auto-routing).
+    - **Universal Shared Workspace Client Bridge (`/dws-workspace-client.js`)**:
+      * Injected across all 10 enterprise decision engines via `<script src="/dws-workspace-client.js" defer></script>`.
+      * Connects reactively to `localStorage` key `dws_workspace_v1`.
+      * Renders `.dws-ws-bridge` sub-bar allowing instant selection of Active profile, Custom named presets saved from `dwssharedworkspace`, or 4 Built-In Enterprise Archetypes (Global Enterprise, Mid-Market Growth, Regional Public Sector, AI-First Modern Org).
+      * `[⚡ Load into Engine]` automatically maps 4 pillars (`orgProfile`, `supportOps`, `financials`, `techStack`) to each app's native form fields and calls `recalcAll()` or native render function with non-blocking `#toast` feedback.
+      * Multi-tab sync via `window.addEventListener('storage', ...)`.
     - All enterprise apps retain strict client-side zero-telemetry computation and zero blocking alerts (`showToast()` standard).
     - **Topbar Badging Standards**:
       * `/apps/tokenomics/`: `🧠 Enterprise AI Economics · Version 2026.09`
