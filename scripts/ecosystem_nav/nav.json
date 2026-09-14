@@ -29,7 +29,8 @@
     {"id": "study-sprint",         "name": "Study Sprint & Exam Matrix", "url": "https://iamsaravofficial.com/apps/study-sprint/",   "icon": "🎒"},
     {"id": "piggy-bank-ledger",    "name": "Piggy Bank & Money Ledger",  "url": "https://iamsaravofficial.com/apps/piggy-bank-ledger/", "icon": "🪙"},
     {"id": "chore-quest-board",    "name": "Chore & Quest Board",        "url": "https://iamsaravofficial.com/apps/chore-quest-board/", "icon": "⚔️"},
-    {"id": "screen-time-passes",   "name": "Screen-Time Passes",         "url": "https://iamsaravofficial.com/apps/screen-time-passes/", "icon": "🎟️"}
+    {"id": "screen-time-passes",   "name": "Screen-Time Passes",         "url": "https://iamsaravofficial.com/apps/screen-time-passes/", "icon": "🎟️"},
+    {"id": "boredom-buster",       "name": "Boredom Buster Wheel",       "url": "https://iamsaravofficial.com/apps/boredom-buster/",      "icon": "🎡"}
   ],
   "games": [
     {"id": "games-hub",         "name": "Games Arcade Hub",     "url": "https://iamsaravofficial.com/games/",                  "icon": "🎰"},
