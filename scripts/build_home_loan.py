@@ -1,0 +1,2053 @@
+import os
+
+def generate_home_loan_app():
+    out_dir = os.path.join("public", "apps", "home-loan-accelerometer")
+    os.makedirs(out_dir, exist_ok=True)
+    out_file = os.path.join(out_dir, "index.html")
+
+    html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Loan Prepayment & Debt-Free Accelerometer | Sarav's Playground</title>
+<meta name="description" content="Free Indian home loan prepayment & debt-free accelerator. Calculate exact reducing-balance interest savings, model extra monthly EMIs, annual step-ups, lump-sum bonuses, and discover your principal crossover point.">
+<meta name="keywords" content="home loan prepayment calculator, part payment calculator, home loan emi prepayment, reduce home loan tenure, debt free accelerator, reducing balance amortization, indian home loan calculator">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/home-loan-accelerometer/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/home-loan-accelerometer/">
+<meta property="og:title" content="Home Loan Prepayment & Debt-Free Accelerometer | Sarav's Playground">
+<meta property="og:description" content="Simulate reducing-balance prepayments, extra annual EMIs, 5% step-ups, and shave off 8–12 years & lakhs of bank interest. 100% client-side privacy.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/home-loan-accelerometer/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://iamsaravofficial.com/apps/home-loan-accelerometer/">
+<meta name="twitter:title" content="Home Loan Prepayment & Debt-Free Accelerometer | Sarav's Playground">
+<meta name="twitter:description" content="Simulate reducing-balance prepayments, extra annual EMIs, 5% step-ups, and shave off 8–12 years & lakhs of bank interest. 100% client-side privacy.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/home-loan-accelerometer/og-image.png">
+
+<!-- Favicon & Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+<meta name="theme-color" content="#0C0F14">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --canvas: #0C0F14;
+  --card: #141922;
+  --card-elevated: #1B222D;
+  --card-higher: #222B39;
+  --border: #2A3545;
+  --border-soft: #1E2633;
+  --text: #EAEFF5;
+  --text-dim: #94A0B2;
+  --text-faint: #5C6B80;
+  --accent: #E3A63E;
+  --accent-soft: rgba(227, 166, 62, 0.12);
+  --accent-ink: #141005;
+  --secondary: #4FB0A8;
+  --secondary-soft: rgba(79, 176, 168, 0.12);
+  --green: #5FBF77;
+  --green-soft: rgba(95, 191, 119, 0.12);
+  --red: #E2665A;
+  --red-soft: rgba(226, 102, 90, 0.12);
+  --shadow: 0 8px 32px rgba(0,0,0,0.40);
+  --radius: 14px;
+}
+
+[data-theme="light"] {
+  --canvas: #F5F7FA;
+  --card: #FFFFFF;
+  --card-elevated: #F0F3F7;
+  --card-higher: #E4E9F0;
+  --border: #D1D8E2;
+  --border-soft: #E2E8F0;
+  --text: #1A202C;
+  --text-dim: #4A5568;
+  --text-faint: #718096;
+  --accent: #D97706;
+  --accent-soft: rgba(217, 119, 6, 0.12);
+  --accent-ink: #FFFFFF;
+  --secondary: #0D9488;
+  --secondary-soft: rgba(13, 148, 136, 0.12);
+  --green: #16A34A;
+  --green-soft: rgba(22, 163, 74, 0.12);
+  --red: #DC2626;
+  --red-soft: rgba(220, 38, 38, 0.12);
+  --shadow: 0 8px 32px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background-color: var(--canvas);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.55;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.container {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* Ecosystem Bar */
+.ecosystem-bar {
+  background: var(--card-elevated); border-bottom: 1px solid var(--border-soft);
+  padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+  position: relative; z-index: 1000;
+}
+.ecosystem-inner {
+  max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.ecosystem-links { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.eco-brand { font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }
+.eco-brand:hover { color: var(--accent) !important; text-decoration: none; }
+.eco-divider { color: var(--border); margin: 0 2px; }
+.eco-dropdown { position: relative; display: inline-block; }
+.eco-dropbtn {
+  background: transparent; border: none; color: var(--text-dim); font-size: 12.5px; font-weight: 500;
+  cursor: pointer; padding: 4px 6px; display: inline-flex; align-items: center; gap: 4px;
+  font-family: inherit; transition: color 0.15s ease;
+}
+.eco-dropbtn:hover { color: var(--text); }
+.eco-caret { font-size: 10px; transition: transform 0.2s ease; }
+.eco-dropdown.open .eco-caret { transform: rotate(180deg); }
+.eco-menu {
+  position: absolute; top: calc(100% + 8px); left: 0;
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 8px 6px; min-width: 230px; box-shadow: var(--shadow);
+  display: none; flex-direction: column; gap: 2px; z-index: 1001;
+}
+.eco-menu::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+.eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display: flex; }
+.eco-menu a {
+  color: var(--text-dim); font-size: 12.5px; padding: 6px 10px; border-radius: 6px;
+  text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.15s ease;
+}
+.eco-menu a:hover { color: var(--text); background: var(--card-elevated); text-decoration: none; }
+.eco-menu a.current { color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+.eco-tokenomics {
+  display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+  border-radius: 6px; background: var(--accent-soft); color: var(--accent) !important;
+  font-size: 12px; font-weight: 600; text-decoration: none; border: 1px solid rgba(227, 166, 62, 0.3);
+}
+
+/* Header Row */
+.header-wrap {
+  padding: 24px 0 16px;
+}
+.header-main-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex: 1;
+  min-width: 280px;
+}
+.app-brand-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  padding: 6px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow);
+}
+.app-brand-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.eyebrow {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.app-title {
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text);
+}
+.app-desc {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin-top: 4px;
+  max-width: 760px;
+}
+.header-right {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* Segmented Theme Selector */
+.theme-selector {
+  display: inline-flex;
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+.theme-btn {
+  background: none;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.theme-btn:hover {
+  color: var(--text);
+}
+.theme-btn.active {
+  background: var(--card);
+  color: var(--accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Presets Bar */
+.presets-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 14px 0;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-soft);
+  scrollbar-width: thin;
+}
+.presets-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  margin-right: 4px;
+}
+.preset-chip {
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.preset-chip:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
+/* 4-Action Bar */
+.action-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+@media (max-width: 768px) {
+  .action-bar { grid-template-columns: repeat(2, 1fr); }
+}
+.btn-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-action:hover {
+  border-color: var(--accent);
+  background: var(--card-elevated);
+  transform: translateY(-1px);
+}
+.btn-whatsapp {
+  border-color: rgba(95, 191, 119, 0.4);
+  background: var(--green-soft);
+  color: var(--green);
+}
+.btn-whatsapp:hover {
+  background: var(--green);
+  color: #FFFFFF;
+  border-color: var(--green);
+}
+
+/* Main Split Grid */
+.main-grid {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .main-grid { grid-template-columns: 1fr; }
+}
+
+/* Left Panel: Inputs & Prepayment Controls */
+.left-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.panel-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.badge-subtle {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: var(--card-elevated);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+
+.input-field-group {
+  margin-bottom: 18px;
+}
+.input-field-group:last-child {
+  margin-bottom: 0;
+}
+.input-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+.input-val-display {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.input-prefix {
+  position: absolute;
+  left: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+.num-input {
+  width: 100%;
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 10px 14px 10px 32px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.num-input:focus {
+  border-color: var(--accent);
+}
+.range-slider {
+  width: 100%;
+  margin-top: 8px;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+.quick-chips-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+.quick-chip {
+  background: var(--card-higher);
+  border: 1px solid var(--border-soft);
+  color: var(--text-dim);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.quick-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Accelerator Toggle Sections */
+.strategy-box {
+  background: var(--card-elevated);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 12px;
+  transition: border-color 0.2s;
+}
+.strategy-box:hover {
+  border-color: var(--border);
+}
+.strategy-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.strategy-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.strategy-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* Lump Sums Dynamic List */
+.lump-sum-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.btn-del-lump {
+  background: var(--red-soft);
+  color: var(--red);
+  border: 1px solid rgba(226, 102, 90, 0.3);
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Right Panel: Accelerated Dashboard */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Headline Hero Banner */
+.hero-results-banner {
+  background: linear-gradient(135deg, rgba(227, 166, 62, 0.15) 0%, rgba(79, 176, 168, 0.15) 100%);
+  border: 1px solid rgba(227, 166, 62, 0.35);
+  border-radius: var(--radius);
+  padding: 24px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  box-shadow: var(--shadow);
+}
+@media (max-width: 768px) {
+  .hero-results-banner { grid-template-columns: 1fr; }
+}
+.hero-metric {
+  display: flex;
+  flex-direction: column;
+}
+.hero-metric-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+.hero-metric-val {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+.hero-metric-sub {
+  font-size: 12px;
+  color: var(--text-faint);
+  margin-top: 4px;
+}
+.val-accent { color: var(--accent); }
+.val-green { color: var(--green); }
+.val-secondary { color: var(--secondary); }
+
+/* Comparison Table Card */
+.comparison-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+  margin-top: 10px;
+}
+.comp-table th, .comp-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+}
+.comp-table th {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.comp-table td.mono {
+  font-size: 13px;
+}
+.comp-table tr:last-child td {
+  border-bottom: none;
+  font-weight: 700;
+}
+.td-baseline { color: var(--text-dim); }
+.td-accelerated { color: var(--accent); font-weight: 700; }
+.td-diff { color: var(--green); font-weight: 700; }
+
+/* Chart & Crossover Studio */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 900px) {
+  .analytics-grid { grid-template-columns: 1fr; }
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  margin-top: 12px;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Insight Cards */
+.insight-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  display: flex;
+  gap: 14px;
+}
+.insight-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.insight-body h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.insight-body p {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+/* Amortization Schedule Card */
+.schedule-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-top: 24px;
+}
+.schedule-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.schedule-tabs {
+  display: flex;
+  background: var(--card-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+}
+.sched-tab-btn {
+  background: none;
+  border: none;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-dim);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.sched-tab-btn.active {
+  background: var(--card);
+  color: var(--accent);
+}
+.table-scroll {
+  overflow-x: auto;
+  max-height: 480px;
+  scrollbar-width: thin;
+}
+.sched-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+}
+.sched-table th {
+  position: sticky;
+  top: 0;
+  background: var(--card-elevated);
+  padding: 8px 12px;
+  text-align: right;
+  font-size: 11.5px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--border);
+  z-index: 2;
+}
+.sched-table th:first-child, .sched-table td:first-child {
+  text-align: left;
+}
+.sched-table td {
+  padding: 8px 12px;
+  text-align: right;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text);
+}
+.sched-table tr:hover td {
+  background: var(--card-elevated);
+}
+
+/* Toast */
+#toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--card-higher);
+  color: var(--text);
+  border: 1px solid var(--accent);
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(100px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 9999;
+}
+#toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Footer */
+footer {
+  margin-top: 60px;
+  padding: 30px 0;
+  border-top: 1px solid var(--border-soft);
+  text-align: center;
+  font-size: 12.5px;
+  color: var(--text-faint);
+}
+footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Printable A4 Stylesheet */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10pt;
+  }
+  .ecosystem-bar, .theme-selector, .presets-bar, .action-bar, .left-panel,
+  .chart-card, .sched-tab-btn, footer, #toast {
+    display: none !important;
+  }
+  .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .main-grid {
+    display: block !important;
+  }
+  .right-panel {
+    display: block !important;
+  }
+  .hero-results-banner {
+    border: 1pt solid #333 !important;
+    background: #FAFAFA !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 16pt;
+  }
+  .hero-metric-val, .hero-metric-label {
+    color: #000000 !important;
+  }
+  .comparison-card, .schedule-card {
+    border: 1pt solid #DDD !important;
+    background: #FFFFFF !important;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    margin-bottom: 16pt;
+  }
+  .comp-table, .sched-table {
+    color: #000000 !important;
+  }
+  .comp-table th, .sched-table th {
+    background: #F0F0F0 !important;
+    color: #000000 !important;
+    border-bottom: 1pt solid #000 !important;
+  }
+  .comp-table td, .sched-table td {
+    border-bottom: 1pt solid #EEE !important;
+    color: #000000 !important;
+  }
+  .print-only-header {
+    display: block !important;
+    margin-bottom: 20pt;
+    text-align: center;
+  }
+}
+.print-only-header { display: none; }
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ &amp; Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/home-loan-accelerometer/" class="current">🏠 Home Loan Accelerometer</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/">🌟 Glow Up Grid</a>
+          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/">🍱 Lunchbox &amp; Meal Planner</a>
+          <a href="https://iamsaravofficial.com/apps/study-sprint/">🎒 Study Sprint &amp; Exam Matrix</a>
+          <a href="https://iamsaravofficial.com/apps/piggy-bank-ledger/">🪙 Piggy Bank &amp; Money Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/chore-quest-board/">⚔️ Chore &amp; Quest Board</a>
+          <a href="https://iamsaravofficial.com/apps/screen-time-passes/">🎟️ Screen-Time Passes</a>
+          <a href="https://iamsaravofficial.com/apps/boredom-buster/">🎡 Boredom Buster Wheel</a>
+          <a href="https://iamsaravofficial.com/apps/family-movie-night/">🎬 Family Movie &amp; Game Night</a>
+          <a href="https://iamsaravofficial.com/apps/book-nook/">📚 Kids' Book Nook &amp; Quest</a>
+          <a href="https://iamsaravofficial.com/apps/birthday-gift-matrix/">🎁 Birthday &amp; Milestone Matrix</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">
+      <span>🧠 Tokenomics</span>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PRINT ONLY HEADER -->
+  <div class="print-only-header">
+    <h1 style="font-size: 20pt; margin-bottom: 4pt;">Home Loan Prepayment &amp; Debt-Free Certificate</h1>
+    <p style="font-size: 11pt; color: #444;">Generated on Sarav's World • https://iamsaravofficial.com/apps/home-loan-accelerometer/</p>
+  </div>
+
+  <!-- HEADER SECTION -->
+  <div class="header-wrap">
+    <div class="header-main-row">
+      <div class="header-left">
+        <div class="app-brand-icon">
+          <img src="loan-full.png" alt="Home Loan Accelerometer Icon">
+        </div>
+        <div>
+          <div class="eyebrow">⚡ FINANCIAL ACCELERATOR &bull; ZERO TELEMETRY</div>
+          <h1 class="app-title">Home Loan Prepayment &amp; Debt-Free Accelerometer</h1>
+          <p class="app-desc">Calculate exact reducing-balance interest savings, model extra monthly/annual prepayments and step-ups, discover your principal crossover point, and accelerate your path to a mortgage-free life.</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="theme-selector" id="themeSelector">
+          <button type="button" class="theme-btn" data-theme="auto" onclick="setTheme('auto')">Auto</button>
+          <button type="button" class="theme-btn" data-theme="light" onclick="setTheme('light')">☀️ Light</button>
+          <button type="button" class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙 Dark</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUICK PRESETS ROW -->
+  <div class="presets-bar">
+    <span class="presets-label">⚡ Fast Scenarios:</span>
+    <button type="button" class="preset-chip" onclick="applyPreset('aggressive')">🚀 Aggressive Payoff (+1 EMI/yr + 5% Step-Up)</button>
+    <button type="button" class="preset-chip" onclick="applyPreset('balanced')">🛡️ Balanced Comfort (+₹5,000/mo Extra)</button>
+    <button type="button" class="preset-chip" onclick="applyPreset('bonus')">🪔 Festive Bonus (₹1 Lakh Annual Lump Sum)</button>
+    <button type="button" class="preset-chip" onclick="applyPreset('starter')">💼 Starter Home (₹35L @ 8.6%, 20 Yrs)</button>
+    <button type="button" class="preset-chip" onclick="applyPreset('metro')">🏙️ Metro Family Home (₹75L @ 8.5%, 25 Yrs)</button>
+    <button type="button" class="preset-chip" onclick="applyPreset('executive')">🏰 Executive Home (₹1.5 Cr @ 8.4%, 20 Yrs)</button>
+  </div>
+
+  <!-- 4-ACTION SUITE -->
+  <div class="action-bar">
+    <button type="button" class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
+      <span>💬</span>
+      <span>Share on WhatsApp</span>
+    </button>
+    <button type="button" class="btn-action" onclick="window.print()">
+      <span>🖨️</span>
+      <span>Print / Save PDF</span>
+    </button>
+    <button type="button" class="btn-action" onclick="copySummary()">
+      <span>📋</span>
+      <span>Copy Summary</span>
+    </button>
+    <button type="button" class="btn-action" onclick="saveToStorage()">
+      <span>💾</span>
+      <span>Save to Storage</span>
+    </button>
+  </div>
+
+  <!-- MAIN SPLIT GRID -->
+  <div class="main-grid">
+
+    <!-- LEFT PANEL: INPUTS & PREPAYMENT STRATEGIES -->
+    <div class="left-panel">
+
+      <!-- BASELINE LOAN CARD -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>🏠 1. Baseline Loan Parameters</span>
+          </div>
+          <span class="badge-subtle">Core Terms</span>
+        </div>
+
+        <!-- Loan Amount -->
+        <div class="input-field-group">
+          <div class="input-label-row">
+            <span>Principal Loan Amount</span>
+            <span class="input-val-display mono" id="dispLoanAmount">₹50,00,000</span>
+          </div>
+          <div class="input-wrap">
+            <span class="input-prefix">₹</span>
+            <input type="number" class="num-input mono" id="numLoanAmount" value="5000000" min="500000" max="30000000" step="50000" oninput="onAmountInput(this.value)">
+          </div>
+          <input type="range" class="range-slider" id="rngLoanAmount" min="500000" max="20000000" step="100000" value="5000000" oninput="onAmountSlider(this.value)">
+          <div class="quick-chips-row">
+            <button type="button" class="quick-chip" onclick="setLoanAmount(2500000)">₹25 Lakh</button>
+            <button type="button" class="quick-chip" onclick="setLoanAmount(5000000)">₹50 Lakh</button>
+            <button type="button" class="quick-chip" onclick="setLoanAmount(7500000)">₹75 Lakh</button>
+            <button type="button" class="quick-chip" onclick="setLoanAmount(10000000)">₹1 Crore</button>
+            <button type="button" class="quick-chip" onclick="setLoanAmount(15000000)">₹1.5 Crore</button>
+          </div>
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="input-field-group">
+          <div class="input-label-row">
+            <span>Interest Rate (% p.a.)</span>
+            <span class="input-val-display mono" id="dispRate">8.50%</span>
+          </div>
+          <div class="input-wrap">
+            <input type="number" class="num-input mono" id="numRate" style="padding-left: 14px;" value="8.50" min="6.0" max="15.0" step="0.05" oninput="onRateInput(this.value)">
+          </div>
+          <input type="range" class="range-slider" id="rngRate" min="6.5" max="13.0" step="0.05" value="8.50" oninput="onRateSlider(this.value)">
+          <div class="quick-chips-row">
+            <button type="button" class="quick-chip" onclick="setRate(8.35)">8.35% (SBI/HDFC Lowest)</button>
+            <button type="button" class="quick-chip" onclick="setRate(8.50)">8.50% (Standard)</button>
+            <button type="button" class="quick-chip" onclick="setRate(8.75)">8.75%</button>
+            <button type="button" class="quick-chip" onclick="setRate(9.10)">9.10%</button>
+          </div>
+        </div>
+
+        <!-- Loan Tenure -->
+        <div class="input-field-group">
+          <div class="input-label-row">
+            <span>Loan Tenure</span>
+            <span class="input-val-display mono" id="dispTenure">20 Years (240 Months)</span>
+          </div>
+          <div class="input-wrap">
+            <input type="number" class="num-input mono" id="numTenure" style="padding-left: 14px;" value="20" min="3" max="30" step="1" oninput="onTenureInput(this.value)">
+          </div>
+          <input type="range" class="range-slider" id="rngTenure" min="5" max="30" step="1" value="20" oninput="onTenureSlider(this.value)">
+          <div class="quick-chips-row">
+            <button type="button" class="quick-chip" onclick="setTenure(10)">10 Yrs</button>
+            <button type="button" class="quick-chip" onclick="setTenure(15)">15 Yrs</button>
+            <button type="button" class="quick-chip" onclick="setTenure(20)">20 Yrs</button>
+            <button type="button" class="quick-chip" onclick="setTenure(25)">25 Yrs</button>
+            <button type="button" class="quick-chip" onclick="setTenure(30)">30 Yrs</button>
+          </div>
+        </div>
+
+        <!-- Start Date -->
+        <div class="input-field-group">
+          <div class="input-label-row">
+            <span>Loan Start Month</span>
+            <span class="input-val-display" id="dispStartDate">October 2026</span>
+          </div>
+          <input type="month" class="num-input mono" id="loanStartDate" value="2026-10" style="padding-left: 14px;" onchange="recalcAll()">
+        </div>
+
+      </div>
+
+      <!-- PREPAYMENT ACCELERATOR CARD -->
+      <div class="panel-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>⚡ 2. Prepayment Accelerator Strategies</span>
+          </div>
+          <span class="badge-subtle">Combine Any</span>
+        </div>
+
+        <!-- Strategy 1: Extra Monthly Payment -->
+        <div class="strategy-box">
+          <div class="strategy-top">
+            <div class="strategy-title">
+              <span>💳 Strategy A: Extra Monthly Prepayment</span>
+            </div>
+            <span class="badge-subtle" id="dispMonthlyExtraBadge">+₹5,000/mo</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 8px;">
+            Pay an additional fixed amount along with your monthly EMI.
+          </div>
+          <div class="input-wrap">
+            <span class="input-prefix">₹</span>
+            <input type="number" class="num-input mono" id="extraMonthly" value="5000" min="0" step="1000" oninput="recalcAll()">
+          </div>
+          <div class="quick-chips-row">
+            <button type="button" class="quick-chip" onclick="setMonthlyExtra(0)">₹0</button>
+            <button type="button" class="quick-chip" onclick="setMonthlyExtra(2000)">+₹2,000</button>
+            <button type="button" class="quick-chip" onclick="setMonthlyExtra(5000)">+₹5,000</button>
+            <button type="button" class="quick-chip" onclick="setMonthlyExtra(10000)">+₹10,000</button>
+            <button type="button" class="quick-chip" onclick="setMonthlyExtra(20000)">+₹20,000</button>
+          </div>
+        </div>
+
+        <!-- Strategy 2: Annual Extra EMIs -->
+        <div class="strategy-box">
+          <div class="strategy-top">
+            <div class="strategy-title">
+              <span>🗓️ Strategy B: Annual Extra EMI(s)</span>
+            </div>
+            <span class="badge-subtle" id="dispAnnualEmisBadge">1 Extra EMI/Yr</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 8px;">
+            Deposit 1 or 2 extra complete EMIs once a year (e.g. during appraisal or festive bonus month).
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="num-input mono" id="annualExtraEmis" style="padding-left: 14px;" onchange="recalcAll()">
+              <option value="0">0 Extra EMIs per year</option>
+              <option value="1" selected>1 Extra EMI per year (Highly Recommended)</option>
+              <option value="2">2 Extra EMIs per year</option>
+              <option value="3">3 Extra EMIs per year</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Strategy 3: Annual Step-Up % -->
+        <div class="strategy-box">
+          <div class="strategy-top">
+            <div class="strategy-title">
+              <span>📈 Strategy C: Annual EMI Step-Up %</span>
+            </div>
+            <span class="badge-subtle" id="dispStepUpBadge">5% / Year</span>
+          </div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 8px;">
+            Increase your monthly EMI payment each year in tandem with salary increments.
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <select class="num-input mono" id="stepUpPercent" style="padding-left: 14px;" onchange="recalcAll()">
+              <option value="0">0% (Flat EMI)</option>
+              <option value="5" selected>5% Annual Increase</option>
+              <option value="8">8% Annual Increase</option>
+              <option value="10">10% Annual Increase (Fast Track)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Strategy 4: One-Time Lump Sum Prepayments -->
+        <div class="strategy-box" style="margin-bottom: 0;">
+          <div class="strategy-top">
+            <div class="strategy-title">
+              <span>💰 Strategy D: Specific Lump-Sum Payments</span>
+            </div>
+            <button type="button" class="quick-chip" onclick="addLumpSumPrompt()" style="color: var(--accent); border-color: var(--accent);">+ Add Lump Sum</button>
+          </div>
+          <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 10px;">
+            One-time payments at milestone months (e.g. maturing FD, ESOP liquidation, inheritance).
+          </div>
+          <div id="lumpSumList">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT PANEL: ACCELERATED DASHBOARD & ANALYTICS -->
+    <div class="right-panel">
+
+      <!-- HEADLINE HERO RESULTS BANNER -->
+      <div class="hero-results-banner">
+        <div class="hero-metric">
+          <span class="hero-metric-label">⚡ Debt-Free Sooner By</span>
+          <span class="hero-metric-val val-accent" id="resTenureCut">8 Yrs 6 Mos</span>
+          <span class="hero-metric-sub" id="resDebtFreeDate">Mortgage-Free by April 2038</span>
+        </div>
+        <div class="hero-metric">
+          <span class="hero-metric-label">💰 Total Interest Saved</span>
+          <span class="hero-metric-val val-green" id="resInterestSaved">₹24,82,410</span>
+          <span class="hero-metric-sub" id="resInterestSavedPercent">46.5% interest shaved off</span>
+        </div>
+        <div class="hero-metric">
+          <span class="hero-metric-label">📉 Base Monthly EMI</span>
+          <span class="hero-metric-val mono" id="resBaseEmi">₹43,391</span>
+          <span class="hero-metric-sub" id="resTotalPayment">Base Cost: ₹1.04 Crore</span>
+        </div>
+      </div>
+
+      <!-- COMPARISON MATRIX CARD -->
+      <div class="comparison-card">
+        <div class="panel-head">
+          <div class="panel-title">
+            <span>⚖️ Baseline Loan vs. Accelerated Prepayment</span>
+          </div>
+          <span class="badge-subtle">Direct Comparison</span>
+        </div>
+
+        <table class="comp-table">
+          <thead>
+            <tr>
+              <th>Loan Parameter</th>
+              <th>Regular Schedule</th>
+              <th>Accelerated Strategy</th>
+              <th>Your Family Benefit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Loan Payoff Duration</td>
+              <td class="mono td-baseline" id="tblBaseDuration">20 Years (240 Mos)</td>
+              <td class="mono td-accelerated" id="tblAccelDuration">11 Years 6 Months</td>
+              <td class="mono td-diff" id="tblDiffDuration">-8 Years 6 Months</td>
+            </tr>
+            <tr>
+              <td>Total Interest Payable</td>
+              <td class="mono td-baseline" id="tblBaseInterest">₹54,13,879</td>
+              <td class="mono td-accelerated" id="tblAccelInterest">₹29,31,469</td>
+              <td class="mono td-diff" id="tblDiffInterest">-₹24,82,410 Saved</td>
+            </tr>
+            <tr>
+              <td>Total Prepayments Paid</td>
+              <td class="mono td-baseline">₹0</td>
+              <td class="mono td-accelerated" id="tblAccelPrepaid">₹12,40,000</td>
+              <td class="mono" style="color: var(--text-dim);">Principal Reduction</td>
+            </tr>
+            <tr>
+              <td>Total Overall Cost (P + I)</td>
+              <td class="mono td-baseline" id="tblBaseTotalCost">₹1,04,13,879</td>
+              <td class="mono td-accelerated" id="tblAccelTotalCost">₹79,31,469</td>
+              <td class="mono td-diff" id="tblDiffTotalCost">₹24.82 Lakh Cheaper</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ANALYTICS & INSIGHTS GRID -->
+      <div class="analytics-grid">
+
+        <!-- DONUT CHART: TOTAL COST COMPOSITION -->
+        <div class="chart-card">
+          <div class="panel-head" style="margin-bottom: 4px;">
+            <div class="panel-title" style="font-size: 13.5px;">
+              <span>🥧 Cost Composition Comparison</span>
+            </div>
+          </div>
+          <div style="font-size: 11.5px; color: var(--text-dim);">
+            Notice how interest shrinks from over 52% of total outlay down to ~27%!
+          </div>
+          <div class="chart-container">
+            <canvas id="costCanvas"></canvas>
+          </div>
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 8px; font-size: 11px;">
+            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: var(--secondary); border-radius: 2px;"></span> Principal</span>
+            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: var(--red); border-radius: 2px;"></span> Regular Interest</span>
+            <span style="display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 10px; background: var(--green); border-radius: 2px;"></span> Accelerated Interest</span>
+          </div>
+        </div>
+
+        <!-- PRINCIPAL CROSSOVER & TAX INSIGHTS -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+
+          <!-- Crossover Insight -->
+          <div class="insight-card">
+            <div class="insight-icon">🎯</div>
+            <div class="insight-body">
+              <h4>Principal Crossover Milestone: <span id="txtCrossoverMonth" class="mono" style="color: var(--accent);">Month 26</span></h4>
+              <p id="txtCrossoverDesc">In regular loans, you pay more interest than principal for the first 8–9 years! With your accelerator, your EMI starts building more home equity than bank interest by Month 26.</p>
+            </div>
+          </div>
+
+          <!-- Guaranteed ROI Insight -->
+          <div class="insight-card">
+            <div class="insight-icon">💎</div>
+            <div class="insight-body">
+              <h4>Guaranteed 8.5% Risk-Free Return</h4>
+              <p>Every rupee prepaid provides a <b>guaranteed risk-free return equal to your loan rate</b>. Because it saves post-tax interest, it is equivalent to earning an ~11.5% pre-tax return on an equity fund!</p>
+            </div>
+          </div>
+
+          <!-- Section 24(b) Tax Insight -->
+          <div class="insight-card">
+            <div class="insight-icon">📜</div>
+            <div class="insight-body">
+              <h4>Income Tax Section 24(b) Optimization</h4>
+              <p>Under the Old Tax Regime, home loan interest is deductible up to ₹2,00,000/year. Your first-year interest is <b id="txtYear1Interest">₹4.2L</b>. Prepaying keeps your interest efficient without exceeding dead tax deductions.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- DETAILED AMORTIZATION SCHEDULE -->
+      <div class="schedule-card">
+        <div class="schedule-header">
+          <div class="panel-title">
+            <span>📅 Amortization &amp; Payoff Schedule</span>
+          </div>
+          <div class="schedule-tabs">
+            <button type="button" class="sched-tab-btn active" id="btnTabYearly" onclick="setScheduleView('yearly')">Yearly Summary</button>
+            <button type="button" class="sched-tab-btn" id="btnTabMonthly" onclick="setScheduleView('monthly')">Monthly Detail</button>
+          </div>
+        </div>
+
+        <div class="table-scroll">
+          <table class="sched-table" id="scheduleTable">
+            <thead id="scheduleThead">
+              <!-- Rendered via JS -->
+            </thead>
+            <tbody id="scheduleTbody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast"></div>
+
+  <!-- STANDARDIZED FOOTER -->
+  <footer>
+    <p>Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
+  </footer>
+
+</div>
+
+<!-- APPLICATION JAVASCRIPT -->
+<script>
+// STATE
+let state = {
+  loanAmount: 5000000,
+  rate: 8.50,
+  tenureYears: 20,
+  startDateStr: '2026-10',
+  extraMonthly: 5000,
+  annualExtraEmis: 1,
+  stepUpPercent: 5,
+  lumpSums: [
+    { month: 12, amount: 100000, note: 'Year 1 Diwali Bonus' }
+  ],
+  scheduleView: 'yearly' // 'yearly' or 'monthly'
+};
+
+// FORMATTERS
+function fmtCurr(val) {
+  if (isNaN(val)) return '₹0';
+  val = Math.round(val);
+  return '₹' + val.toLocaleString('en-IN');
+}
+
+function fmtLakhs(val) {
+  if (val >= 10000000) {
+    return '₹' + (val / 10000000).toFixed(2) + ' Cr';
+  }
+  if (val >= 100000) {
+    return '₹' + (val / 100000).toFixed(2) + ' Lakh';
+  }
+  return fmtCurr(val);
+}
+
+// TOAST
+let toastTimer = null;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.innerHTML = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
+
+// THEME TOGGLE
+function setTheme(mode) {
+  document.querySelectorAll('#themeSelector .theme-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.theme === mode);
+  });
+  if (mode === 'auto') {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    localStorage.removeItem('hla_theme');
+  } else {
+    document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('hla_theme', mode);
+  }
+  // Redraw canvas with new palette
+  drawCostChart();
+}
+
+// INPUT SYNCHRONIZATION
+function onAmountInput(val) {
+  val = parseFloat(val) || 0;
+  state.loanAmount = val;
+  document.getElementById('rngLoanAmount').value = val;
+  document.getElementById('dispLoanAmount').innerText = fmtCurr(val);
+  recalcAll();
+}
+
+function onAmountSlider(val) {
+  val = parseFloat(val) || 0;
+  state.loanAmount = val;
+  document.getElementById('numLoanAmount').value = val;
+  document.getElementById('dispLoanAmount').innerText = fmtCurr(val);
+  recalcAll();
+}
+
+function setLoanAmount(val) {
+  state.loanAmount = val;
+  document.getElementById('numLoanAmount').value = val;
+  document.getElementById('rngLoanAmount').value = val;
+  document.getElementById('dispLoanAmount').innerText = fmtCurr(val);
+  recalcAll();
+}
+
+function onRateInput(val) {
+  val = parseFloat(val) || 0;
+  state.rate = val;
+  document.getElementById('rngRate').value = val;
+  document.getElementById('dispRate').innerText = val.toFixed(2) + '%';
+  recalcAll();
+}
+
+function onRateSlider(val) {
+  val = parseFloat(val) || 0;
+  state.rate = val;
+  document.getElementById('numRate').value = val;
+  document.getElementById('dispRate').innerText = val.toFixed(2) + '%';
+  recalcAll();
+}
+
+function setRate(val) {
+  state.rate = val;
+  document.getElementById('numRate').value = val;
+  document.getElementById('rngRate').value = val;
+  document.getElementById('dispRate').innerText = val.toFixed(2) + '%';
+  recalcAll();
+}
+
+function onTenureInput(val) {
+  val = parseInt(val) || 0;
+  state.tenureYears = val;
+  document.getElementById('rngTenure').value = val;
+  document.getElementById('dispTenure').innerText = val + ' Years (' + (val * 12) + ' Months)';
+  recalcAll();
+}
+
+function onTenureSlider(val) {
+  val = parseInt(val) || 0;
+  state.tenureYears = val;
+  document.getElementById('numTenure').value = val;
+  document.getElementById('dispTenure').innerText = val + ' Years (' + (val * 12) + ' Months)';
+  recalcAll();
+}
+
+function setTenure(val) {
+  state.tenureYears = val;
+  document.getElementById('numTenure').value = val;
+  document.getElementById('rngTenure').value = val;
+  document.getElementById('dispTenure').innerText = val + ' Years (' + (val * 12) + ' Months)';
+  recalcAll();
+}
+
+function setMonthlyExtra(val) {
+  state.extraMonthly = val;
+  document.getElementById('extraMonthly').value = val;
+  recalcAll();
+}
+
+// PRESETS
+function applyPreset(type) {
+  if (type === 'aggressive') {
+    setLoanAmount(5000000);
+    setRate(8.50);
+    setTenure(20);
+    setMonthlyExtra(5000);
+    document.getElementById('annualExtraEmis').value = '1';
+    document.getElementById('stepUpPercent').value = '5';
+    state.lumpSums = [{ month: 12, amount: 100000, note: 'Annual Bonus' }];
+    showToast('🚀 Aggressive Payoff scenario applied!');
+  } else if (type === 'balanced') {
+    setLoanAmount(5000000);
+    setRate(8.50);
+    setTenure(20);
+    setMonthlyExtra(5000);
+    document.getElementById('annualExtraEmis').value = '0';
+    document.getElementById('stepUpPercent').value = '0';
+    state.lumpSums = [];
+    showToast('🛡️ Balanced Comfort scenario applied!');
+  } else if (type === 'bonus') {
+    setLoanAmount(5000000);
+    setRate(8.50);
+    setTenure(20);
+    setMonthlyExtra(0);
+    document.getElementById('annualExtraEmis').value = '0';
+    document.getElementById('stepUpPercent').value = '0';
+    state.lumpSums = [
+      { month: 12, amount: 100000, note: 'Diwali Yr 1' },
+      { month: 24, amount: 100000, note: 'Diwali Yr 2' },
+      { month: 36, amount: 100000, note: 'Diwali Yr 3' }
+    ];
+    showToast('🪔 Festive Bonus scenario applied!');
+  } else if (type === 'starter') {
+    setLoanAmount(3500000);
+    setRate(8.60);
+    setTenure(20);
+    setMonthlyExtra(3000);
+    document.getElementById('annualExtraEmis').value = '1';
+    document.getElementById('stepUpPercent').value = '5';
+    state.lumpSums = [];
+    showToast('💼 Starter Home scenario applied!');
+  } else if (type === 'metro') {
+    setLoanAmount(7500000);
+    setRate(8.50);
+    setTenure(25);
+    setMonthlyExtra(10000);
+    document.getElementById('annualExtraEmis').value = '1';
+    document.getElementById('stepUpPercent').value = '5';
+    state.lumpSums = [{ month: 12, amount: 200000, note: 'Appraisal Lump Sum' }];
+    showToast('🏙️ Metro Family Home scenario applied!');
+  } else if (type === 'executive') {
+    setLoanAmount(15000000);
+    setRate(8.40);
+    setTenure(20);
+    setMonthlyExtra(25000);
+    document.getElementById('annualExtraEmis').value = '1';
+    document.getElementById('stepUpPercent').value = '8';
+    state.lumpSums = [{ month: 12, amount: 500000, note: 'Executive Bonus' }];
+    showToast('🏰 Executive Home scenario applied!');
+  }
+  renderLumpSums();
+  recalcAll();
+}
+
+// LUMP SUM MANAGEMENT
+function addLumpSumPrompt() {
+  const m = prompt('Enter payment month number (e.g. 12 for 1 year in, 24 for 2 years in):', '12');
+  if (!m) return;
+  const monthNum = parseInt(m);
+  if (isNaN(monthNum) || monthNum <= 0) {
+    showToast('⚠️ Please enter a valid positive month number.');
+    return;
+  }
+  const a = prompt('Enter prepayment lump-sum amount in Rupees (e.g. 200000 for ₹2 Lakh):', '100000');
+  if (!a) return;
+  const amt = parseFloat(a);
+  if (isNaN(amt) || amt <= 0) {
+    showToast('⚠️ Please enter a valid amount.');
+    return;
+  }
+  const note = prompt('Optional note / label (e.g. Diwali Bonus, ESOP):', 'Bonus') || 'Lump Sum';
+
+  state.lumpSums.push({ month: monthNum, amount: amt, note: note });
+  state.lumpSums.sort((x, y) => x.month - y.month);
+  renderLumpSums();
+  recalcAll();
+  showToast('✨ Added ₹' + amt.toLocaleString('en-IN') + ' at Month ' + monthNum);
+}
+
+function removeLumpSum(idx) {
+  state.lumpSums.splice(idx, 1);
+  renderLumpSums();
+  recalcAll();
+  showToast('Removed lump-sum payment.');
+}
+
+function renderLumpSums() {
+  const list = document.getElementById('lumpSumList');
+  if (!list) return;
+  if (state.lumpSums.length === 0) {
+    list.innerHTML = '<div style="font-size: 12px; color: var(--text-faint); font-style: italic;">No lump-sum prepayments added yet. Tap "+ Add Lump Sum" above.</div>';
+    return;
+  }
+  let html = '';
+  state.lumpSums.forEach((item, idx) => {
+    html += '<div class="lump-sum-row">';
+    html += '  <div style="flex: 1; font-size: 12.5px; font-weight: 600;">';
+    html += '    <span class="mono" style="color: var(--accent);">Month ' + item.month + ':</span> ' + fmtCurr(item.amount) + ' <span style="font-size: 11px; color: var(--text-dim);">(' + item.note + ')</span>';
+    html += '  </div>';
+    html += '  <button type="button" class="btn-del-lump" onclick="removeLumpSum(' + idx + ')" title="Delete">&times;</button>';
+    html += '</div>';
+  });
+  list.innerHTML = html;
+}
+
+// CORE MATHEMATICAL CALCULATION ENGINE
+let calcResults = {};
+
+function calculateStandardEmi(p, rMonthly, n) {
+  if (rMonthly === 0) return p / n;
+  return p * rMonthly * Math.pow(1 + rMonthly, n) / (Math.pow(1 + rMonthly, n) - 1);
+}
+
+function recalcAll() {
+  const p = state.loanAmount;
+  const annualRate = state.rate;
+  const rMonthly = (annualRate / 100) / 12;
+  const totalMonths = state.tenureYears * 12;
+  const baseEmi = calculateStandardEmi(p, rMonthly, totalMonths);
+
+  state.extraMonthly = parseFloat(document.getElementById('extraMonthly').value) || 0;
+  state.annualExtraEmis = parseInt(document.getElementById('annualExtraEmis').value) || 0;
+  state.stepUpPercent = parseFloat(document.getElementById('stepUpPercent').value) || 0;
+  state.startDateStr = document.getElementById('loanStartDate').value || '2026-10';
+
+  // Badges update
+  document.getElementById('dispMonthlyExtraBadge').innerText = '+₹' + state.extraMonthly.toLocaleString('en-IN') + '/mo';
+  document.getElementById('dispAnnualEmisBadge').innerText = state.annualExtraEmis + ' Extra EMI/Yr';
+  document.getElementById('dispStepUpBadge').innerText = state.stepUpPercent + '% / Year';
+
+  // 1. BASELINE REGULAR SIMULATION
+  let baseBalance = p;
+  let baseTotalInterest = 0;
+  let baseMonthlySchedule = [];
+  let baseCrossoverMonth = null;
+
+  for (let m = 1; m <= totalMonths; m++) {
+    const interest = baseBalance * rMonthly;
+    let principal = baseEmi - interest;
+    if (principal > baseBalance) {
+      principal = baseBalance;
+    }
+    baseBalance -= principal;
+    baseTotalInterest += interest;
+
+    if (!baseCrossoverMonth && principal >= interest) {
+      baseCrossoverMonth = m;
+    }
+
+    baseMonthlySchedule.push({
+      month: m,
+      emi: baseEmi,
+      principal: principal,
+      interest: interest,
+      prepayment: 0,
+      balance: Math.max(0, baseBalance)
+    });
+
+    if (baseBalance <= 0) break;
+  }
+  const baseTotalPaid = p + baseTotalInterest;
+
+  // 2. ACCELERATED PREPAYMENT SIMULATION
+  let accelBalance = p;
+  let accelTotalInterest = 0;
+  let accelTotalPrepaid = 0;
+  let accelMonthlySchedule = [];
+  let accelCrossoverMonth = null;
+  let currentEmi = baseEmi;
+
+  const lumpMap = {};
+  state.lumpSums.forEach(ls => {
+    lumpMap[ls.month] = (lumpMap[ls.month] || 0) + ls.amount;
+  });
+
+  let m = 1;
+  const MAX_MONTHS = totalMonths + 120; // safety ceiling
+  while (accelBalance > 0.01 && m <= MAX_MONTHS) {
+    // Annual Step-Up applied every 12 months
+    if (m > 1 && (m - 1) % 12 === 0 && state.stepUpPercent > 0) {
+      currentEmi = currentEmi * (1 + (state.stepUpPercent / 100));
+    }
+
+    const interest = accelBalance * rMonthly;
+    let regularPrincipal = currentEmi - interest;
+    if (regularPrincipal > accelBalance) {
+      regularPrincipal = accelBalance;
+    }
+
+    // Extra monthly prepayment
+    let extraPrepay = state.extraMonthly;
+
+    // Annual extra full EMI applied at Month 12, 24, 36...
+    if (m % 12 === 0 && state.annualExtraEmis > 0) {
+      extraPrepay += (baseEmi * state.annualExtraEmis);
+    }
+
+    // Specific lump-sum if scheduled
+    if (lumpMap[m]) {
+      extraPrepay += lumpMap[m];
+    }
+
+    let actualPrepayment = extraPrepay;
+    const remainingAfterRegular = accelBalance - regularPrincipal;
+    if (actualPrepayment > remainingAfterRegular) {
+      actualPrepayment = remainingAfterRegular;
+    }
+
+    accelBalance -= (regularPrincipal + actualPrepayment);
+    accelTotalInterest += interest;
+    accelTotalPrepaid += actualPrepayment;
+
+    if (!accelCrossoverMonth && (regularPrincipal + actualPrepayment) >= interest) {
+      accelCrossoverMonth = m;
+    }
+
+    accelMonthlySchedule.push({
+      month: m,
+      emi: currentEmi,
+      principal: regularPrincipal,
+      interest: interest,
+      prepayment: actualPrepayment,
+      balance: Math.max(0, accelBalance)
+    });
+
+    m++;
+  }
+
+  const accelDurationMonths = accelMonthlySchedule.length;
+  const accelTotalPaid = p + accelTotalInterest;
+  const interestSaved = Math.max(0, baseTotalInterest - accelTotalInterest);
+  const monthsCut = Math.max(0, totalMonths - accelDurationMonths);
+
+  calcResults = {
+    p,
+    annualRate,
+    totalMonths,
+    baseEmi,
+    baseTotalInterest,
+    baseTotalPaid,
+    baseDurationMonths: totalMonths,
+    baseCrossoverMonth: baseCrossoverMonth || totalMonths,
+    accelTotalInterest,
+    accelTotalPrepaid,
+    accelTotalPaid,
+    accelDurationMonths,
+    accelCrossoverMonth: accelCrossoverMonth || 1,
+    interestSaved,
+    monthsCut,
+    baseSchedule: baseMonthlySchedule,
+    accelSchedule: accelMonthlySchedule
+  };
+
+  updateDOMResults();
+  drawCostChart();
+  renderScheduleTable();
+}
+
+function updateDOMResults() {
+  const res = calcResults;
+
+  // 1. Hero Metrics
+  const yrsCut = Math.floor(res.monthsCut / 12);
+  const mosCut = res.monthsCut % 12;
+  let tenureCutStr = '';
+  if (yrsCut > 0) tenureCutStr += yrsCut + ' Yr' + (yrsCut > 1 ? 's ' : ' ');
+  if (mosCut > 0 || yrsCut === 0) tenureCutStr += mosCut + ' Mo' + (mosCut > 1 ? 's' : '');
+  document.getElementById('resTenureCut').innerText = tenureCutStr || '0 Mos';
+
+  // Debt Free Date
+  const startParts = state.startDateStr.split('-');
+  const startYear = parseInt(startParts[0]) || 2026;
+  const startMonth = parseInt(startParts[1]) || 10;
+  const debtFreeDate = new Date(startYear, (startMonth - 1) + res.accelDurationMonths);
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('resDebtFreeDate').innerText = 'Mortgage-Free by ' + monthNames[debtFreeDate.getMonth()] + ' ' + debtFreeDate.getFullYear();
+
+  document.getElementById('resInterestSaved').innerText = fmtCurr(res.interestSaved);
+  const interestPct = (res.interestSaved / res.baseTotalInterest) * 100;
+  document.getElementById('resInterestSavedPercent').innerText = interestPct.toFixed(1) + '% bank interest shaved off';
+
+  document.getElementById('resBaseEmi').innerText = fmtCurr(res.baseEmi);
+  document.getElementById('resTotalPayment').innerText = 'Baseline Total Cost: ' + fmtLakhs(res.baseTotalPaid);
+
+  // 2. Comparison Table
+  document.getElementById('tblBaseDuration').innerText = state.tenureYears + ' Yrs (' + res.totalMonths + ' Mos)';
+  const aYrs = Math.floor(res.accelDurationMonths / 12);
+  const aMos = res.accelDurationMonths % 12;
+  document.getElementById('tblAccelDuration').innerText = aYrs + ' Yrs ' + (aMos > 0 ? aMos + ' Mos' : '');
+  document.getElementById('tblDiffDuration').innerText = '-' + tenureCutStr + ' Sooner';
+
+  document.getElementById('tblBaseInterest').innerText = fmtCurr(res.baseTotalInterest);
+  document.getElementById('tblAccelInterest').innerText = fmtCurr(res.accelTotalInterest);
+  document.getElementById('tblDiffInterest').innerText = '-' + fmtCurr(res.interestSaved) + ' Saved';
+
+  document.getElementById('tblAccelPrepaid').innerText = fmtCurr(res.accelTotalPrepaid);
+
+  document.getElementById('tblBaseTotalCost').innerText = fmtCurr(res.baseTotalPaid);
+  document.getElementById('tblAccelTotalCost').innerText = fmtCurr(res.accelTotalPaid);
+  document.getElementById('tblDiffTotalCost').innerText = fmtLakhs(res.interestSaved) + ' Cheaper';
+
+  // 3. Crossover & Insights
+  document.getElementById('txtCrossoverMonth').innerText = 'Month ' + res.accelCrossoverMonth;
+  const cYrs = Math.floor(res.baseCrossoverMonth / 12);
+  document.getElementById('txtCrossoverDesc').innerText = 'In regular loans, you pay more interest than principal until Year ' + cYrs + ' (Month ' + res.baseCrossoverMonth + '). With your accelerator, your EMI starts building more equity than interest by Month ' + res.accelCrossoverMonth + '!';
+
+  // Year 1 interest
+  let yr1Interest = 0;
+  for (let i = 0; i < Math.min(12, res.accelSchedule.length); i++) {
+    yr1Interest += res.accelSchedule[i].interest;
+  }
+  document.getElementById('txtYear1Interest').innerText = fmtCurr(yr1Interest);
+}
+
+// CANVAS DRAWING (Cost Composition Comparison)
+function drawCostChart() {
+  const canvas = document.getElementById('costCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const w = rect.width;
+  const h = rect.height;
+  ctx.clearRect(0, 0, w, h);
+
+  const res = calcResults;
+  if (!res || !res.baseTotalPaid) return;
+
+  // Side-by-side horizontal stacked bars
+  const barH = 34;
+  const barY1 = 45;
+  const barY2 = 125;
+  const maxVal = res.baseTotalPaid;
+
+  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  const textColor = isDark ? '#EAEFF5' : '#1A202C';
+  const dimColor = isDark ? '#94A0B2' : '#718096';
+
+  // Bar 1: Baseline Regular Loan
+  ctx.font = '600 12px "Space Grotesk", sans-serif';
+  ctx.fillStyle = textColor;
+  ctx.fillText('1. Baseline Regular Loan (' + fmtLakhs(res.baseTotalPaid) + ')', 10, barY1 - 10);
+
+  const pWidth1 = (res.p / maxVal) * (w - 20);
+  const iWidth1 = (res.baseTotalInterest / maxVal) * (w - 20);
+
+  // Principal (Teal)
+  ctx.fillStyle = '#0D9488';
+  ctx.beginPath();
+  ctx.roundRect(10, barY1, pWidth1, barH, [6, 0, 0, 6]);
+  ctx.fill();
+
+  // Interest (Red)
+  ctx.fillStyle = '#DC2626';
+  ctx.beginPath();
+  ctx.roundRect(10 + pWidth1, barY1, iWidth1, barH, [0, 6, 6, 0]);
+  ctx.fill();
+
+  // Labels inside Bar 1
+  ctx.font = '600 11px "IBM Plex Mono", monospace';
+  ctx.fillStyle = '#FFFFFF';
+  if (pWidth1 > 60) ctx.fillText('P: ' + Math.round((res.p/res.baseTotalPaid)*100) + '%', 16, barY1 + 22);
+  if (iWidth1 > 60) ctx.fillText('Interest: ' + Math.round((res.baseTotalInterest/res.baseTotalPaid)*100) + '%', 10 + pWidth1 + 10, barY1 + 22);
+
+  // Bar 2: Accelerated Strategy
+  ctx.font = '600 12px "Space Grotesk", sans-serif';
+  ctx.fillStyle = textColor;
+  ctx.fillText('2. Accelerated Strategy (' + fmtLakhs(res.accelTotalPaid) + ') — Shaved ' + fmtLakhs(res.interestSaved), 10, barY2 - 10);
+
+  const pWidth2 = (res.p / maxVal) * (w - 20);
+  const iWidth2 = (res.accelTotalInterest / maxVal) * (w - 20);
+
+  // Principal (Teal)
+  ctx.fillStyle = '#0D9488';
+  ctx.beginPath();
+  ctx.roundRect(10, barY2, pWidth2, barH, [6, 0, 0, 6]);
+  ctx.fill();
+
+  // Accelerated Interest (Green)
+  ctx.fillStyle = '#16A34A';
+  ctx.beginPath();
+  ctx.roundRect(10 + pWidth2, barY2, iWidth2, barH, [0, 6, 6, 0]);
+  ctx.fill();
+
+  // Labels inside Bar 2
+  ctx.fillStyle = '#FFFFFF';
+  if (pWidth2 > 60) ctx.fillText('P: ' + Math.round((res.p/res.accelTotalPaid)*100) + '%', 16, barY2 + 22);
+  if (iWidth2 > 50) ctx.fillText('Int: ' + Math.round((res.accelTotalInterest/res.accelTotalPaid)*100) + '%', 10 + pWidth2 + 10, barY2 + 22);
+}
+
+// AMORTIZATION SCHEDULE RENDERING
+function setScheduleView(view) {
+  state.scheduleView = view;
+  document.getElementById('btnTabYearly').classList.toggle('active', view === 'yearly');
+  document.getElementById('btnTabMonthly').classList.toggle('active', view === 'monthly');
+  renderScheduleTable();
+}
+
+function renderScheduleTable() {
+  const res = calcResults;
+  const thead = document.getElementById('scheduleThead');
+  const tbody = document.getElementById('scheduleTbody');
+  if (!thead || !tbody || !res.accelSchedule) return;
+
+  if (state.scheduleView === 'yearly') {
+    thead.innerHTML = `
+      <tr>
+        <th>Year</th>
+        <th>EMI Paid</th>
+        <th>Extra Prepayments</th>
+        <th>Principal Repaid</th>
+        <th>Interest Paid</th>
+        <th>Closing Balance</th>
+      </tr>
+    `;
+
+    // Group schedule by 12-month years
+    let html = '';
+    const sched = res.accelSchedule;
+    let yr = 1;
+    let yrEmi = 0, yrPrepay = 0, yrPrincipal = 0, yrInterest = 0;
+    let closingBal = res.p;
+
+    for (let i = 0; i < sched.length; i++) {
+      const row = sched[i];
+      yrEmi += row.emi;
+      yrPrepay += row.prepayment;
+      yrPrincipal += row.principal;
+      yrInterest += row.interest;
+      closingBal = row.balance;
+
+      if ((i + 1) % 12 === 0 || i === sched.length - 1) {
+        html += `
+          <tr>
+            <td class="mono" style="font-weight: 700; color: var(--accent);">Year ${yr}</td>
+            <td class="mono">${fmtCurr(yrEmi)}</td>
+            <td class="mono" style="color: var(--secondary); font-weight: 600;">${fmtCurr(yrPrepay)}</td>
+            <td class="mono">${fmtCurr(yrPrincipal)}</td>
+            <td class="mono" style="color: var(--red);">${fmtCurr(yrInterest)}</td>
+            <td class="mono" style="font-weight: 700;">${fmtCurr(closingBal)}</td>
+          </tr>
+        `;
+        yr++;
+        yrEmi = 0; yrPrepay = 0; yrPrincipal = 0; yrInterest = 0;
+      }
+    }
+    tbody.innerHTML = html;
+
+  } else {
+    // Monthly View
+    thead.innerHTML = `
+      <tr>
+        <th>Month</th>
+        <th>EMI Amount</th>
+        <th>Extra Prepayment</th>
+        <th>Principal</th>
+        <th>Interest</th>
+        <th>Remaining Balance</th>
+      </tr>
+    `;
+
+    let html = '';
+    res.accelSchedule.forEach(row => {
+      html += `
+        <tr>
+          <td class="mono" style="font-weight: 600;">Month ${row.month}</td>
+          <td class="mono">${fmtCurr(row.emi)}</td>
+          <td class="mono" style="color: var(--secondary);">${row.prepayment > 0 ? fmtCurr(row.prepayment) : '-'}</td>
+          <td class="mono">${fmtCurr(row.principal)}</td>
+          <td class="mono" style="color: var(--red);">${fmtCurr(row.interest)}</td>
+          <td class="mono" style="font-weight: 700;">${fmtCurr(row.balance)}</td>
+        </tr>
+      `;
+    });
+    tbody.innerHTML = html;
+  }
+}
+
+// 4-ACTION SUITE HANDLERS
+function shareWhatsApp() {
+  const res = calcResults;
+  const text = `🏠 *HOME LOAN PREPAYMENT ACCELERATOR BREAKDOWN*
+━━━━━━━━━━━━━━━━━━━━━━
+• Principal Borrowed: ${fmtCurr(res.p)} @ ${res.annualRate.toFixed(2)}%
+• Baseline Duration: ${state.tenureYears} Years (${res.totalMonths} Months)
+• Regular Interest: ${fmtCurr(res.baseTotalInterest)}
+
+⚡ *WITH ACCELERATED PREPAYMENT:*
+• Loan Free Duration: ${Math.floor(res.accelDurationMonths/12)} Yrs ${res.accelDurationMonths%12} Mos
+• 🚀 *Tenure Saved: ${Math.floor(res.monthsCut/12)} Years ${res.monthsCut%12} Months Sooner!*
+• 💰 *Interest Saved: ${fmtCurr(res.interestSaved)}* (${((res.interestSaved/res.baseTotalInterest)*100).toFixed(1)}% cut!)
+
+Simulate your custom debt-free roadmap on Sarav's World:
+https://iamsaravofficial.com/apps/home-loan-accelerometer/`;
+
+  const url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+}
+
+function copySummary() {
+  const res = calcResults;
+  const text = `🏠 Home Loan Prepayment Summary
+Principal: ${fmtCurr(res.p)} @ ${res.annualRate.toFixed(2)}%
+Baseline Duration: ${state.tenureYears} Years (EMI: ${fmtCurr(res.baseEmi)})
+Accelerated Duration: ${Math.floor(res.accelDurationMonths/12)} Yrs ${res.accelDurationMonths%12} Mos
+⚡ Tenure Shaved: ${Math.floor(res.monthsCut/12)} Yrs ${res.monthsCut%12} Mos Sooner
+💰 Interest Saved: ${fmtCurr(res.interestSaved)}
+https://iamsaravofficial.com/apps/home-loan-accelerometer/`;
+
+  navigator.clipboard.writeText(text).then(() => {
+    showToast('📋 Loan acceleration summary copied to clipboard!');
+  }).catch(() => {
+    showToast('⚠️ Could not copy to clipboard.');
+  });
+}
+
+function saveToStorage() {
+  try {
+    const dataToSave = {
+      loanAmount: state.loanAmount,
+      rate: state.rate,
+      tenureYears: state.tenureYears,
+      startDateStr: state.startDateStr,
+      extraMonthly: state.extraMonthly,
+      annualExtraEmis: state.annualExtraEmis,
+      stepUpPercent: state.stepUpPercent,
+      lumpSums: state.lumpSums,
+      savedAt: new Date().toISOString()
+    };
+    localStorage.setItem('sarav_home_loan_accel_v1', JSON.stringify(dataToSave));
+    showToast('💾 Loan scenario saved to browser storage!');
+  } catch (e) {
+    showToast('⚠️ Could not save to storage.');
+  }
+}
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem('sarav_home_loan_accel_v1');
+    if (raw) {
+      const s = JSON.parse(raw);
+      if (s.loanAmount) {
+        state.loanAmount = s.loanAmount;
+        state.rate = s.rate;
+        state.tenureYears = s.tenureYears;
+        state.startDateStr = s.startDateStr || '2026-10';
+        state.extraMonthly = s.extraMonthly || 0;
+        state.annualExtraEmis = s.annualExtraEmis || 0;
+        state.stepUpPercent = s.stepUpPercent || 0;
+        state.lumpSums = s.lumpSums || [];
+
+        // Sync inputs
+        setLoanAmount(state.loanAmount);
+        setRate(state.rate);
+        setTenure(state.tenureYears);
+        document.getElementById('loanStartDate').value = state.startDateStr;
+        document.getElementById('extraMonthly').value = state.extraMonthly;
+        document.getElementById('annualExtraEmis').value = state.annualExtraEmis;
+        document.getElementById('stepUpPercent').value = state.stepUpPercent;
+        renderLumpSums();
+      }
+    }
+  } catch (e) {}
+}
+
+// INITIALIZATION
+window.addEventListener('DOMContentLoaded', () => {
+  // Theme check
+  const savedTheme = localStorage.getItem('hla_theme') || 'auto';
+  setTheme(savedTheme);
+
+  // Storage check
+  loadFromStorage();
+  renderLumpSums();
+  recalcAll();
+
+  // Responsive chart redraw on resize
+  window.addEventListener('resize', () => {
+    drawCostChart();
+  });
+});
+</script>
+
+</body>
+</html>"""
+
+    with open(out_file, "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Generated {out_file} successfully ({len(html)} bytes).")
+
+if __name__ == "__main__":
+    generate_home_loan_app()

@@ -45,7 +45,9 @@ for app_id, dirn in [("genzalphaslang","genzalphaslang"), ("salary-planner","sal
                       ("home-budget-planner","home-budget-planner"), ("retirement-planner","retirement-planner"),
                       ("gold-price-estimator","gold-price-estimator"), ("gold-loan-calculator","gold-loan-calculator"),
                       ("digigold-calculator","digigold-calculator"), ("fd-calculator","fd-calculator"),
-                      ("rd-calculator","rd-calculator"), ("glow-up-grid","glow-up-grid"),
+                      ("rd-calculator","rd-calculator"),
+                      ("home-loan-accelerometer","home-loan-accelerometer"),
+                      ("glow-up-grid","glow-up-grid"),
                       ("lunchbox-planner","lunchbox-planner"), ("study-sprint","study-sprint"),
                       ("piggy-bank-ledger","piggy-bank-ledger"),
                       ("chore-quest-board","chore-quest-board"),
@@ -67,7 +69,7 @@ for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
 add("projects/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id="projects-hub")
 
-assert len(PAGES) == 44, f"expected 44 pages, got {len(PAGES)}"
+assert len(PAGES) == 45, f"expected 45 pages, got {len(PAGES)}"
 
 # Build the set of internally-resolvable URLs
 INTERNAL_OK = set()
