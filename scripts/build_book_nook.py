@@ -557,7 +557,7 @@ def generate_book_nook():
       <div class="hud-box">
         <span class="hud-label">Active Reader</span>
         <div class="hud-val" style="font-size: 15px;">
-          <span id="statReaderName">Dhrav</span>
+          <span id="statReaderName">Young Reader</span>
           <button type="button" class="preset-chip" onclick="openReaderModal()" style="margin: 0; padding: 2px 8px; font-size: 11px;">Edit</button>
         </div>
       </div>
@@ -759,7 +759,7 @@ def generate_book_nook():
     </div>
     <div class="form-group">
       <label class="form-label">Reader Name</label>
-      <input type="text" class="form-input" id="inputReaderName" value="Dhrav">
+      <input type="text" class="form-input" id="inputReaderName" value="Young Reader" placeholder="e.g. Young Reader or Star Explorer">
     </div>
     <div class="form-group">
       <label class="form-label">Reading Goal (Target Books)</label>
@@ -796,7 +796,7 @@ const DATA = {data_json_str};
 
 // STATE
 let state = {{
-  readerName: 'Dhrav',
+  readerName: 'Young Reader',
   targetBooks: 100,
   books: new Array(100).fill(null),
   selectedSlot: null,
@@ -1210,7 +1210,7 @@ function closeReaderModal() {{
 }}
 
 function saveReaderProfile() {{
-  state.readerName = document.getElementById('inputReaderName').value.trim() || 'Dhrav';
+  state.readerName = document.getElementById('inputReaderName').value.trim() || 'Young Reader';
   state.targetBooks = parseInt(document.getElementById('inputTargetBooks').value) || 100;
   closeReaderModal();
   updateHUDStats();

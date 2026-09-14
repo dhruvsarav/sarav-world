@@ -645,7 +645,7 @@ def generate_movie_night():
         <h2 style="font-size: 16px; font-weight: 700; color: var(--text);">Friday Harmony Turn Rotator</h2>
       </div>
       <div class="rotator-crown-badge" id="activePickerBadge">
-        <span>👑 Active Picker:</span> <span id="activePickerNameDisplay">Dhrav (Child 1)</span>
+        <span>👑 Active Picker:</span> <span id="activePickerNameDisplay">Kid 1 (Elder Child)</span>
       </div>
     </div>
 
@@ -885,8 +885,8 @@ let state = {{
   familyMembers: [
     {{ name: 'Dad', role: 'Parent', emoji: '👨', vetos: 1 }},
     {{ name: 'Mom', role: 'Parent', emoji: '👩', vetos: 1 }},
-    {{ name: 'Dhrav', role: 'Child 1', emoji: '👦', vetos: 1 }},
-    {{ name: 'Aadhya', role: 'Child 2', emoji: '👧', vetos: 1 }}
+    {{ name: 'Kid 1', role: 'Elder Child', emoji: '👦', vetos: 1 }},
+    {{ name: 'Kid 2', role: 'Younger Child', emoji: '👧', vetos: 1 }}
   ],
   watchHistory: []
 }};

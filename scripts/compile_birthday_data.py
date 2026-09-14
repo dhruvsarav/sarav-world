@@ -240,9 +240,9 @@ GIFT_IDEAS = [
 
 DEFAULT_OCCASIONS = [
     {
-        "id": "occ_dhrav_bday",
-        "person": "Dhrav",
-        "relationship": "Son (Child 1)",
+        "id": "occ_child1_bday",
+        "person": "Elder Child",
+        "relationship": "Child 1 / Son",
         "type": "Birthday",
         "date": "10-24", # MM-DD
         "displayDate": "October 24",
@@ -250,9 +250,9 @@ DEFAULT_OCCASIONS = [
         "emoji": "👦"
     },
     {
-        "id": "occ_aadhya_bday",
-        "person": "Aadhya",
-        "relationship": "Daughter (Child 2)",
+        "id": "occ_child2_bday",
+        "person": "Younger Child",
+        "relationship": "Child 2 / Daughter",
         "type": "Birthday",
         "date": "06-15",
         "displayDate": "June 15",
@@ -281,8 +281,8 @@ DEFAULT_OCCASIONS = [
     },
     {
         "id": "occ_anniversary",
-        "person": "Mom & Dad",
-        "relationship": "Parents",
+        "person": "Parents",
+        "relationship": "Mom & Dad",
         "type": "Wedding Anniversary",
         "date": "11-18",
         "displayDate": "November 18",
@@ -291,17 +291,17 @@ DEFAULT_OCCASIONS = [
     },
     {
         "id": "occ_grandpa_bday",
-        "person": "Thatha / Dadaji",
+        "person": "Grandpa",
         "relationship": "Grandfather",
         "type": "Birthday",
         "date": "01-14",
         "displayDate": "January 14",
-        "milestone": "Pongal Patriarch Milestone 👴",
+        "milestone": "Grandpa's Milestone Year 👴",
         "emoji": "👴"
     },
     {
         "id": "occ_grandma_bday",
-        "person": "Paati / Dadi",
+        "person": "Grandma",
         "relationship": "Grandmother",
         "type": "Birthday",
         "date": "05-20",

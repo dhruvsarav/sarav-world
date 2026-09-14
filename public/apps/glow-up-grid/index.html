@@ -721,7 +721,7 @@
   <div class="panel">
     <div class="preview-top-bar">
       <div class="grid-title-wrap">
-        <h2 id="gridTitle">🌟 Aarav's Glow Up Grid</h2>
+        <h2 id="gridTitle">🌟 Kid Champ's Glow Up Grid</h2>
         <p>Your weekly master plan at a glance. Tap any star in Glow Mode to celebrate completion.</p>
       </div>
       <div class="glow-mode-toggle" id="glowToggleBtn" title="Toggle interactive habit completion mode">
@@ -932,7 +932,7 @@
   function newKid(name, avatar) {
     return {
       id: 'k_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
-      name: name || 'Aarav',
+      name: name || 'Kid Champ',
       avatar: avatar || '🦁',
       goal: 'Read 5 books & morning smile!',
       days: seedWeek()
@@ -963,7 +963,7 @@
         }
       }
     } catch (e) {}
-    return [newKid('Aarav', '🦁')];
+    return [newKid('Kid Champ', '🦁')];
   }
 
   function save() {
@@ -1169,7 +1169,7 @@
     var nameInput = el('input', {
       type: 'text',
       class: 'goal-text-input',
-      placeholder: 'e.g. Aarav or Ananya',
+      placeholder: 'e.g. Kid 1 or Elder Child',
       value: isEditing ? kidToEdit.name : ''
     });
     nameInput.style.width = '100%';

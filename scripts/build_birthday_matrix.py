@@ -492,7 +492,7 @@ def generate_birthday_matrix():
       <div class="countdown-left">
         <div class="countdown-badge" id="cdIcon">🎂</div>
         <div>
-          <div class="countdown-title" id="cdTitle">Dhrav's 10th Birthday!</div>
+          <div class="countdown-title" id="cdTitle">Elder Child's 10th Birthday!</div>
           <div class="countdown-sub" id="cdSub">Double Digits Milestone • October 24</div>
         </div>
       </div>
@@ -546,7 +546,7 @@ def generate_birthday_matrix():
     <div class="card-box">
       <div class="card-box-header">
         <div class="card-box-title">
-          <span>🎁 <span id="activeWishlistPersonName">Dhrav</span>'s Gift Wishlist</span>
+          <span>🎁 <span id="activeWishlistPersonName">Elder Child</span>'s Gift Wishlist</span>
         </div>
         <button type="button" class="preset-chip" onclick="openCustomWishModal()" style="margin:0;">
           <span>➕ Add Custom Gift</span>
@@ -576,7 +576,7 @@ def generate_birthday_matrix():
         </div>
       </div>
       <div style="font-size: 12px; color: var(--text-dim); margin-bottom: 12px;">
-        Kid-tested favorites with direct Amazon buying links (Tag: <code>dhrav-21</code>). Tap <b>+ Wishlist</b> to add to <span id="activePersonLabel">Dhrav</span>'s list!
+        Kid-tested favorites with direct Amazon buying links (Tag: <code>dhrav-21</code>). Tap <b>+ Wishlist</b> to add to <span id="activePersonLabel">Elder Child</span>'s list!
       </div>
 
       <div class="ideas-grid" id="ideasGrid">
@@ -598,7 +598,7 @@ def generate_birthday_matrix():
     <form id="occasionForm" onsubmit="handleOccasionSubmit(event)">
       <div class="form-group">
         <label class="form-label">Person / Couple Name *</label>
-        <input type="text" class="form-input" id="occPerson" placeholder="e.g. Aadhya or Chacha & Chachi" required>
+        <input type="text" class="form-input" id="occPerson" placeholder="e.g. Younger Child or Uncle &amp; Aunt" required>
       </div>
       <div class="form-row">
         <div class="form-group">
@@ -745,9 +745,9 @@ let state = {{
   selectedTier: 'all',
   wishlists: {{
     // Person ID -> array of wish items
-    'occ_dhrav_bday': [
+    'occ_child1_bday': [
       {{ id: 'w1', title: 'LEGO Classic Medium Brick Box', tier: 'Tier 2: ₹1,000 – ₹2,500', price: '₹2,399', amazon: 'lego classic medium creative brick box', claimedBy: null, notes: 'For building houses and starships' }},
-      {{ id: 'w2', title: 'Harry Potter 7-Book Boxed Set', tier: 'Tier 3: ₹2,500 – ₹5,000', price: '₹2,899', amazon: 'harry potter complete box set bloomsbury', claimedBy: 'Priya Masi', notes: 'Loved book 1, wants the full series' }},
+      {{ id: 'w2', title: 'Harry Potter 7-Book Boxed Set', tier: 'Tier 3: ₹2,500 – ₹5,000', price: '₹2,899', amazon: 'harry potter complete box set bloomsbury', claimedBy: 'Family Member', notes: 'Loved book 1, wants the full series' }},
       {{ id: 'w3', title: 'Astronomical 70mm Refractor Telescope', tier: 'Tier 3: ₹2,500 – ₹5,000', price: '₹3,999', amazon: 'astronomical telescope 70mm aperture for kids', claimedBy: null, notes: 'For moon crater watching from balcony' }}
     ]
   }}

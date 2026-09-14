@@ -520,7 +520,7 @@
       <div>
         <div class="wallet-kid-row">
           <span style="font-size: 24px;">🎟️</span>
-          <input type="text" id="kidNameInput" class="kid-name-input" value="Dhruv" placeholder="Child's Name" onchange="updateWallet()">
+          <input type="text" id="kidNameInput" class="kid-name-input" value="Kid Explorer" placeholder="Child's Name" onchange="updateWallet()">
           <span style="font-size: 20px; font-weight: 700;">'s Reward Vault</span>
         </div>
         <div class="wallet-meta">Active unspent passes ready for redemption with parents.</div>
@@ -605,7 +605,7 @@
       <!-- PRINTABLE PERFORATED TICKET SHEET (Appears on @media print) -->
       <div class="print-ticket-sheet" id="printTicketSheet">
         <div style="text-align: center; margin-bottom: 12pt;">
-          <h2 style="font-size: 18pt; margin-bottom: 2pt;">🎟️ <span id="printKidTitle">Dhruv</span>'s Official Family Reward Passes</h2>
+          <h2 style="font-size: 18pt; margin-bottom: 2pt;">🎟️ <span id="printKidTitle">Kid Explorer</span>'s Official Family Reward Passes</h2>
           <p style="font-size: 10pt; color: #444;">Cut along the dashed lines (✂). Hand ticket to Mom/Dad to redeem privileges!</p>
         </div>
         <div class="print-sheet-grid" id="printSheetGrid">
@@ -750,7 +750,7 @@
   ];
 
   var state = {
-    kidName: 'Dhruv',
+    kidName: 'Kid Explorer',
     passes: JSON.parse(JSON.stringify(defaultPasses)),
     redeemed: [],
     activeFilter: 'all'
@@ -959,7 +959,7 @@
   var STORAGE_KEY = 'sarav_screen_time_passes_v1';
 
   function saveState(notify) {
-    state.kidName = document.getElementById('kidNameInput').value.trim() || 'Dhruv';
+    state.kidName = document.getElementById('kidNameInput').value.trim() || 'Kid Explorer';
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     if (notify) showToast('💾 Wallet saved to browser!');
   }
