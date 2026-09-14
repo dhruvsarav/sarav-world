@@ -531,6 +531,7 @@
       <button type="button" class="filter-chip" data-cat="tech">⚡ Tech &amp; Desk <span class="chip-count" id="countTech">0</span></button>
       <button type="button" class="filter-chip" data-cat="games">🧩 Toys &amp; Games <span class="chip-count" id="countGames">0</span></button>
       <button type="button" class="filter-chip" data-cat="home">🏠 Home &amp; Kitchen <span class="chip-count" id="countHome">0</span></button>
+      <button type="button" class="filter-chip" data-cat="lifestyle">🌿 Lifestyle &amp; Wellness <span class="chip-count" id="countLifestyle">0</span></button>
     </div>
   </div>
 
@@ -649,7 +650,7 @@ function showToast(msg){
   }
 
   function updateCounts(){
-    var counts = { all: products.length, lunchbox: 0, books: 0, tech: 0, games: 0, home: 0 };
+    var counts = { all: products.length, lunchbox: 0, books: 0, tech: 0, games: 0, home: 0, lifestyle: 0 };
     products.forEach(function(p){
       if(counts[p.category] !== undefined) counts[p.category]++;
     });
@@ -659,6 +660,7 @@ function showToast(msg){
     if(document.getElementById('countTech')) document.getElementById('countTech').textContent = counts.tech;
     if(document.getElementById('countGames')) document.getElementById('countGames').textContent = counts.games;
     if(document.getElementById('countHome')) document.getElementById('countHome').textContent = counts.home;
+    if(document.getElementById('countLifestyle')) document.getElementById('countLifestyle').textContent = counts.lifestyle;
   }
 
   function renderProducts(){

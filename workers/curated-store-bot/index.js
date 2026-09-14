@@ -18,7 +18,7 @@ function detectCategory(text) {
   if (t.includes('book') || t.includes('novel') || t.includes('story') || t.includes('read') || t.includes('author')) {
     return { category: 'books', categoryName: "Kids' Books" };
   }
-  if (t.includes('kitchen') || t.includes('home') || t.includes('pan') || t.includes('cook') || t.includes('fridge') || t.includes('organizer')) {
+  if (t.includes('kitchen') || t.includes('home') || t.includes('pan') || t.includes('cook') || t.includes('fridge') || t.includes('organizer') || t.includes('bed') || t.includes('sheet') || t.includes('blanket') || t.includes('pillow') || t.includes('cushion') || t.includes('curtain') || t.includes('towel') || t.includes('bath') || t.includes('decor')) {
     return { category: 'home', categoryName: 'Home & Kitchen' };
   }
   if (t.includes('tech') || t.includes('cable') || t.includes('usb') || t.includes('wifi') || t.includes('watch') || t.includes('gadget') || t.includes('stand') || t.includes('phone')) {
