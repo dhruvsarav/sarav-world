@@ -2,12 +2,12 @@ name = "curated-store-bot"
 main = "index.js"
 compatibility_date = "2024-09-01"
 
+account_id = "c37efe52fd944c09bbfe371b4ae944f1"
+
 # Bind Cloudflare KV Namespace for products
-# Run: npx wrangler kv:namespace create STORE_KV
-# Then paste the generated id below:
 [[kv_namespaces]]
 binding = "STORE_KV"
-id = "YOUR_KV_NAMESPACE_ID_HERE"
+id = "309e95eb480849caa8d912a8ec2a5c5f"
 
 # Environment Variables / Secrets
 # Run:

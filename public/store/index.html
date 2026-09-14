@@ -612,17 +612,41 @@ function showToast(msg){
   var noBox = document.getElementById('noProductsBox');
   var noMsg = document.getElementById('noProductsMsg');
 
-  // Load products from products.json
+  var API_URL = 'https://curated-store-bot.nalkudilstudio.workers.dev/api/products';
+
+  // 1. Initial instant load from static products.json
   fetch('/store/products.json')
     .then(function(r){ return r.json(); })
     .then(function(data){
       products = data;
       updateCounts();
       renderProducts();
+      // 2. Fetch live KV updates from Cloudflare Worker in background
+      fetchLiveWorkerProducts();
     })
     .catch(function(err){
-      console.warn('Could not load products.json, checking fallback...', err);
+      console.warn('Local catalog load error:', err);
+      fetchLiveWorkerProducts();
     });
+
+  function fetchLiveWorkerProducts(){
+    fetch(API_URL)
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if(res && res.ok && Array.isArray(res.products) && res.products.length > 0){
+          var existingIds = new Set(products.map(function(p){ return p.id; }));
+          var newItems = res.products.filter(function(p){ return !existingIds.has(p.id); });
+          if(newItems.length > 0){
+            products = newItems.concat(products);
+            updateCounts();
+            renderProducts();
+          }
+        }
+      })
+      .catch(function(err){
+        // Silently continue with local static catalog
+      });
+  }
 
   function updateCounts(){
     var counts = { all: products.length, lunchbox: 0, books: 0, tech: 0, games: 0, home: 0 };
