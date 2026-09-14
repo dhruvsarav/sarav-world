@@ -1,0 +1,1239 @@
+import os
+import json
+
+def generate_book_nook():
+    out_path = "public/apps/book-nook/index.html"
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+
+    with open('scripts/book_nook_data.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+
+    data_json_str = json.dumps(data, ensure_ascii=False)
+
+    html_content = f"""<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Kids' Book Nook &amp; 100-Book Quest — Visual Bookshelf Wall, Curated Books &amp; Box Set Recommendations | Sarav's World</title>
+<meta name="description" content="Free 100-book reading quest visualizer for kids ages 4–14. Track 100 books on an interactive wooden bookshelf, explore curated box set recommendations with Amazon buying links (tag: dhrav-21), conquer reading bingo, and print A4 color-in fridge posters.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/book-nook/">
+
+<!-- Open Graph / Social -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/book-nook/">
+<meta property="og:title" content="Kids' Book Nook &amp; 100-Book Quest | Sarav's World">
+<meta property="og:description" content="Visual 100-book reading shelf, curated children's box sets with Amazon links, reading genre bingo, and printable fridge coloring sheets.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/book-nook/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kids' Book Nook &amp; 100-Book Quest | Sarav's World">
+<meta name="twitter:description" content="Visual 100-book reading shelf, curated children's box sets, reading bingo, and printable coloring poster.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/book-nook/og-image.png">
+
+<!-- Icons -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {{
+    --bg: #0C0F14;
+    --surface: #141922;
+    --surface-2: #1B222D;
+    --surface-3: #222B39;
+    --border: #2A3545;
+    --border-soft: #1E2633;
+    --text: #EAEFF5;
+    --text-dim: #94A0B2;
+    --text-faint: #5C6B80;
+    --accent: #2EC4B6;
+    --accent-ink: #072623;
+    --accent-soft: rgba(46, 196, 182, 0.15);
+    --gold: #FF9F1C;
+    --gold-soft: rgba(255, 159, 28, 0.15);
+    --shelf-wood: #2D1E12;
+    --shelf-border: #4A3321;
+    --danger: #E2665A;
+    --purple: #9B5DE5;
+    --success: #20BF6B;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }}
+  [data-theme="light"] {{
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #F0F3F7;
+    --surface-3: #E4E9F0;
+    --border: #D1D8E2;
+    --border-soft: #E2E8F0;
+    --text: #1A202C;
+    --text-dim: #4A5568;
+    --text-faint: #718096;
+    --accent: #0D9488;
+    --accent-ink: #FFFFFF;
+    --accent-soft: rgba(13, 148, 136, 0.14);
+    --gold: #D97706;
+    --gold-soft: rgba(217, 119, 6, 0.14);
+    --shelf-wood: #D7C4B7;
+    --shelf-border: #B8A394;
+    --danger: #DC2626;
+    --purple: #7C3AED;
+    --success: #16A34A;
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  }}
+  * {{ box-sizing: border-box; }}
+  html {{ scroll-behavior: smooth; }}
+  body {{
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased; line-height: 1.5;
+  }}
+  .mono {{ font-family: 'IBM Plex Mono', ui-monospace, monospace; }}
+  a {{ color: var(--accent); text-decoration: none; }}
+  a:hover {{ text-decoration: underline; }}
+  h1, h2, h3, h4 {{ font-family: 'Space Grotesk', sans-serif; margin: 0; font-weight: 600; }}
+  p {{ margin: 0 0 0.6em; }}
+
+  /* Ecosystem Bar */
+  .ecosystem-bar {{
+    background: var(--surface-2); border-bottom: 1px solid var(--border-soft);
+    padding: 7px 20px; font-size: 12.5px; color: var(--text-dim);
+    position: relative; z-index: 1000;
+  }}
+  .ecosystem-inner {{
+    max-width: 1240px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }}
+  .ecosystem-links {{ display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }}
+  .eco-brand {{ font-weight: 700 !important; color: var(--text) !important; text-decoration: none; transition: color 0.15s ease; }}
+  .eco-brand:hover {{ color: var(--accent) !important; text-decoration: none; }}
+  .eco-divider {{ color: var(--border); margin: 0 2px; }}
+  .eco-dropdown {{ position: relative; display: inline-block; }}
+  .eco-dropbtn {{
+    background: transparent; border: none; color: var(--text-dim); font-size: 12.5px; font-weight: 500;
+    cursor: pointer; padding: 4px 6px; display: inline-flex; align-items: center; gap: 4px;
+    font-family: inherit; transition: color 0.15s ease;
+  }}
+  .eco-dropbtn:hover {{ color: var(--text); }}
+  .eco-caret {{ font-size: 10px; transition: transform 0.2s ease; }}
+  .eco-dropdown.open .eco-caret {{ transform: rotate(180deg); }}
+  .eco-menu {{
+    position: absolute; top: calc(100% + 8px); left: 0;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 8px 6px; min-width: 230px; box-shadow: var(--shadow);
+    display: none; flex-direction: column; gap: 2px; z-index: 1001;
+  }}
+  .eco-menu::before {{ content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }}
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu {{ display: flex; }}
+  .eco-menu a {{
+    color: var(--text-dim); font-size: 12.5px; padding: 6px 10px; border-radius: 6px;
+    text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.15s ease;
+  }}
+  .eco-menu a:hover {{ color: var(--text); background: var(--surface-2); text-decoration: none; }}
+  .eco-menu a.current {{ color: var(--accent); background: var(--accent-soft); font-weight: 600; }}
+  .eco-tokenomics {{
+    display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+    border-radius: 6px; background: var(--accent-soft); color: var(--accent) !important;
+    font-size: 12px; font-weight: 600; text-decoration: none; border: 1px solid rgba(46, 196, 182, 0.3);
+  }}
+
+  /* App Container */
+  .container {{ max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }}
+
+  /* Hero Section */
+  .hero-card {{
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px 28px; margin-bottom: 24px; box-shadow: var(--shadow);
+  }}
+  .header-main-row {{
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;
+  }}
+  .header-left {{
+    display: flex; gap: 20px; align-items: center; flex: 1; min-width: 0;
+  }}
+  .app-icon-box {{
+    width: 68px; height: 68px; border-radius: 16px; background: var(--surface-2);
+    border: 1px solid var(--border); padding: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }}
+  .app-icon-box img {{ width: 100%; height: 100%; object-fit: contain; border-radius: 10px; }}
+  .header-titles {{ flex: 1; min-width: 0; }}
+  .eyebrow {{
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--accent); margin-bottom: 4px; display: inline-flex; align-items: center; gap: 6px;
+  }}
+  .header-titles h1 {{ font-size: 25px; font-weight: 700; color: var(--text); line-height: 1.25; margin-bottom: 4px; }}
+  .header-titles .sub {{ font-size: 13.5px; color: var(--text-dim); line-height: 1.5; margin: 0; }}
+  .header-right {{ flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }}
+
+  /* Theme Switcher */
+  .theme-selector {{
+    display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2px; gap: 2px;
+  }}
+  .theme-btn {{
+    background: transparent; border: none; color: var(--text-dim); font-size: 11.5px;
+    font-weight: 600; padding: 5px 10px; border-radius: 6px; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }}
+  .theme-btn:hover {{ color: var(--text); }}
+  .theme-btn.active {{ background: var(--accent); color: var(--accent-ink); }}
+
+  /* Reading HUD Stats Row */
+  .reading-hud {{
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px;
+    padding-top: 18px; border-top: 1px solid var(--border-soft);
+  }}
+  @media(max-width: 840px) {{ .reading-hud {{ grid-template-columns: repeat(2, 1fr); }} }}
+  .hud-box {{
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 16px; display: flex; flex-direction: column;
+  }}
+  .hud-label {{ font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-faint); margin-bottom: 2px; }}
+  .hud-val {{ font-size: 20px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 6px; }}
+  .rank-badge {{
+    font-size: 11.5px; font-weight: 700; color: var(--gold); background: var(--gold-soft);
+    padding: 2px 8px; border-radius: 6px; border: 1px solid var(--gold); display: inline-flex; align-items: center; gap: 4px;
+  }}
+
+  /* Universal 4-Action Suite */
+  .action-bar {{
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px;
+  }}
+  @media(max-width: 860px) {{ .action-bar {{ grid-template-columns: repeat(2, 1fr); }} }}
+  @media(max-width: 480px) {{ .action-bar {{ grid-template-columns: 1fr; }} }}
+  .btn-action {{
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; font-size: 13px; font-weight: 600; color: var(--text);
+    cursor: pointer; font-family: inherit; transition: all 0.15s ease; box-shadow: var(--shadow);
+  }}
+  .btn-action:hover {{ border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }}
+  .btn-action.btn-whatsapp {{ background: rgba(37, 211, 102, 0.12); border-color: rgba(37, 211, 102, 0.35); color: #25D366; }}
+  .btn-action.btn-whatsapp:hover {{ background: #25D366; color: #0C0F14; border-color: #25D366; }}
+  .btn-action.btn-print {{ background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }}
+  .btn-action.btn-print:hover {{ background: var(--accent); color: var(--accent-ink); }}
+
+  /* INTERACTIVE 100-BOOK BOOKSHELF WALL */
+  .bookshelf-card {{
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px; margin-bottom: 28px; box-shadow: var(--shadow);
+  }}
+  .bookshelf-header {{
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    margin-bottom: 16px; flex-wrap: wrap;
+  }}
+  .bookshelf-title {{ font-size: 17px; font-weight: 700; color: var(--text); display: flex; align-items: center; gap: 8px; }}
+
+  .bookshelf-wall {{
+    background: var(--shelf-wood); border: 3px solid var(--shelf-border); border-radius: 12px;
+    padding: 18px 14px 8px; display: flex; flex-direction: column; gap: 14px;
+    box-shadow: inset 0 4px 18px rgba(0,0,0,0.6);
+  }}
+  .shelf-row {{
+    background: rgba(0,0,0,0.25); border-bottom: 10px solid var(--shelf-border);
+    padding: 8px 10px 4px; display: grid; grid-template-columns: repeat(20, 1fr); gap: 4px;
+    align-items: flex-end; min-height: 105px; border-radius: 4px 4px 0 0;
+  }}
+  @media(max-width: 900px) {{
+    .shelf-row {{ grid-template-columns: repeat(10, 1fr); min-height: 190px; gap: 6px; }}
+  }}
+  @media(max-width: 520px) {{
+    .shelf-row {{ grid-template-columns: repeat(5, 1fr); min-height: 380px; gap: 6px; }}
+  }}
+
+  .book-spine {{
+    height: 85px; border-radius: 3px 3px 0 0; border: 1px solid rgba(255,255,255,0.15);
+    background: #253342; cursor: pointer; transition: all 0.15s ease; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: space-between;
+    padding: 4px 2px; user-select: none;
+  }}
+  .book-spine:hover {{ transform: translateY(-8px) scale(1.08); z-index: 10; box-shadow: 0 8px 16px rgba(0,0,0,0.5); }}
+  .book-spine.empty {{
+    background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.2);
+  }}
+  .book-spine.empty .spine-num {{ color: var(--text-faint); font-size: 9px; font-weight: 700; }}
+  .book-spine.filled {{
+    box-shadow: inset -2px 0 5px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.3);
+  }}
+  .spine-ribbon {{
+    width: 4px; height: 12px; background: #FF5E7E; border-radius: 0 0 2px 2px;
+  }}
+  .spine-title-vertical {{
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 8.5px; font-weight: 700; color: #FFF; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis; max-height: 60px; line-height: 1;
+    letter-spacing: 0.02em;
+  }}
+  .spine-stars {{ font-size: 7px; color: #FFD166; line-height: 1; }}
+
+  /* COLOR PALETTE PRESETS FOR SPINES */
+  .spine-ruby {{ background: #E63946 !important; }}
+  .spine-emerald {{ background: #2A9D8F !important; }}
+  .spine-sapphire {{ background: #2563EB !important; }}
+  .spine-amethyst {{ background: #7C3AED !important; }}
+  .spine-amber {{ background: #D97706 !important; }}
+  .spine-coral {{ background: #FF5E7E !important; }}
+  .spine-teal {{ background: #0D9488 !important; }}
+  .spine-slate {{ background: #475569 !important; }}
+
+  /* SPOTLIGHT BOOK REVIEW CARD */
+  .spotlight-book-card {{
+    background: var(--surface-2); border: 1.5px solid var(--accent); border-radius: 14px;
+    padding: 20px; margin-top: 18px; display: none;
+  }}
+  .spotlight-book-card.show {{ display: block; }}
+  .spotlight-book-head {{
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 12px; flex-wrap: wrap;
+  }}
+  .spotlight-book-title {{ font-size: 19px; font-weight: 700; color: var(--text); line-height: 1.3; }}
+  .spotlight-book-author {{ font-size: 13px; color: var(--accent); font-weight: 600; margin-top: 2px; }}
+
+  /* CURATED RECOMMENDATIONS & BOX SET VAULT */
+  .recs-container {{
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px 28px; margin-bottom: 28px; box-shadow: var(--shadow);
+  }}
+  .recs-tabs-row {{
+    display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;
+    gap: 12px; flex-wrap: wrap;
+  }}
+  .recs-tabs {{
+    display: inline-flex; background: var(--surface-2); border: 1px solid var(--border);
+    border-radius: 10px; padding: 3px; gap: 3px;
+  }}
+  .recs-tab {{
+    background: transparent; border: none; color: var(--text-dim); font-size: 13px;
+    font-weight: 700; padding: 7px 16px; border-radius: 7px; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }}
+  .recs-tab:hover {{ color: var(--text); }}
+  .recs-tab.active {{ background: var(--accent); color: var(--accent-ink); }}
+
+  .recs-grid {{
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px;
+    max-height: 560px; overflow-y: auto; padding-right: 4px;
+  }}
+  .rec-card {{
+    background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 16px; display: flex; flex-direction: column; transition: all 0.15s ease;
+  }}
+  .rec-card:hover {{ border-color: var(--accent); transform: translateY(-2px); }}
+  .rec-card-top {{ display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }}
+  .rec-cover-icon {{ font-size: 32px; }}
+  .rec-title {{ font-size: 14.5px; font-weight: 700; color: var(--text); margin-bottom: 3px; line-height: 1.3; }}
+  .rec-author {{ font-size: 12px; color: var(--accent); font-weight: 600; margin-bottom: 8px; }}
+  .rec-desc {{ font-size: 12px; color: var(--text-dim); line-height: 1.45; margin-bottom: 14px; flex: 1; }}
+
+  .rec-card-actions {{
+    display: flex; gap: 8px; align-items: center; margin-top: auto;
+  }}
+  .btn-amazon-pill {{
+    flex: 1; background: #FF9900; color: #111; font-weight: 700; font-size: 12px;
+    padding: 8px 12px; border-radius: 6px; text-decoration: none; display: inline-flex;
+    align-items: center; justify-content: center; gap: 6px; transition: all 0.15s ease;
+  }}
+  .btn-amazon-pill:hover {{ filter: brightness(1.1); text-decoration: none; }}
+  .btn-shelf-pin {{
+    background: var(--surface-3); border: 1px solid var(--border); color: var(--text);
+    padding: 7px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
+    font-family: inherit; transition: all 0.15s ease;
+  }}
+  .btn-shelf-pin:hover {{ border-color: var(--accent); color: var(--accent); }}
+
+  /* 4x4 READING GENRE BINGO */
+  .bingo-card {{
+    background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
+    padding: 24px 28px; margin-bottom: 28px; box-shadow: var(--shadow);
+  }}
+  .bingo-grid {{
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 16px;
+  }}
+  @media(max-width: 720px) {{ .bingo-grid {{ grid-template-columns: repeat(2, 1fr); }} }}
+  .bingo-tile {{
+    background: var(--surface-2); border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 14px 10px; display: flex; flex-direction: column; align-items: center; text-align: center;
+    cursor: pointer; transition: all 0.15s ease; position: relative; min-height: 100px;
+    justify-content: center; user-select: none;
+  }}
+  .bingo-tile:hover {{ border-color: var(--accent); transform: translateY(-2px); }}
+  .bingo-tile.completed {{
+    background: linear-gradient(135deg, rgba(46, 196, 182, 0.15) 0%, var(--surface-2) 100%);
+    border-color: var(--accent); color: var(--text-dim);
+  }}
+  .bingo-tile.completed .bingo-text {{ text-decoration: line-through; opacity: 0.8; }}
+  .bingo-text {{ font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.35; }}
+
+  /* MODALS */
+  .modal-overlay {{
+    position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center; z-index: 2000; padding: 20px;
+  }}
+  .modal-overlay.open {{ display: flex; }}
+  .modal-card {{
+    background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; max-width: 500px; width: 100%; box-shadow: var(--shadow);
+    max-height: 90vh; overflow-y: auto;
+  }}
+  .modal-head {{ display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }}
+  .modal-head h3 {{ font-size: 18px; font-weight: 700; color: var(--text); }}
+  .modal-close {{ background: transparent; border: none; color: var(--text-dim); font-size: 22px; cursor: pointer; }}
+  .form-group {{ margin-bottom: 14px; }}
+  .form-label {{ display: block; font-size: 12px; font-weight: 600; color: var(--text-dim); margin-bottom: 5px; }}
+  .form-input {{
+    width: 100%; background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 9px 12px; color: var(--text); font-size: 13.5px; font-family: inherit; outline: none;
+  }}
+  .form-input:focus {{ border-color: var(--accent); }}
+  .form-row {{ display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }}
+
+  /* Non-blocking Toast */
+  #toast {{
+    position: fixed; bottom: 24px; right: 24px; z-index: 3000;
+    background: var(--surface-3); border: 1px solid var(--accent); color: var(--text);
+    padding: 12px 20px; border-radius: 10px; font-size: 13px; font-weight: 600;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 8px;
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }}
+  #toast.show {{ opacity: 1; transform: translateY(0); pointer-events: auto; }}
+
+  /* Standard Footer */
+  footer {{
+    padding: 36px 20px 48px; text-align: center; color: var(--text-faint); font-size: 12.5px;
+    line-height: 1.6; border-top: 1px solid var(--border-soft); margin-top: 40px;
+  }}
+  footer a {{ color: var(--text-dim); text-decoration: none; }}
+  footer a:hover {{ color: var(--accent); text-decoration: underline; }}
+  footer b {{ color: var(--text); }}
+
+  /* PRINTABLE COLORING BOOKSHELF POSTER */
+  @media print {{
+    body {{ background: #fff !important; color: #000 !important; font-size: 9pt; }}
+    .ecosystem-bar, .theme-selector, .header-presets-wrap, .action-bar,
+    .recs-container, .bingo-card, .modal-overlay, #toast, footer {{ display: none !important; }}
+    .container {{ max-width: 100% !important; padding: 0 !important; margin: 0 !important; }}
+    .hero-card {{ border: none !important; box-shadow: none !important; padding: 0 0 8pt 0 !important; margin-bottom: 10pt !important; border-bottom: 2pt solid #000 !important; }}
+    .app-icon-box {{ display: none !important; }}
+
+    .bookshelf-card {{ border: none !important; box-shadow: none !important; padding: 0 !important; }}
+    .bookshelf-wall {{
+      background: #fff !important; border: 2pt solid #000 !important; box-shadow: none !important;
+    }}
+    .shelf-row {{
+      background: #fff !important; border-bottom: 4pt solid #000 !important;
+      grid-template-columns: repeat(20, 1fr) !important; gap: 3pt !important; min-height: 85pt !important;
+    }}
+    .book-spine {{
+      background: #fff !important; border: 1.5pt solid #000 !important; color: #000 !important;
+      height: 75pt !important; box-shadow: none !important;
+    }}
+    .spine-title-vertical {{ color: #000 !important; font-size: 7pt !important; }}
+    .print-footer-rule {{ display: block !important; text-align: center; margin-top: 12pt; font-size: 8pt; color: #444; }}
+  }}
+  .print-footer-rule {{ display: none; }}
+</style>
+</head>
+<body>
+
+<!-- Sarav's World Standardized Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
+          <a href="https://iamsaravofficial.com/apps/genzalphaslang/">🗣️ GenZ & Alpha Slang</a>
+          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
+          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
+          <a href="https://iamsaravofficial.com/apps/retirement-planner/">🌴 Retirement Planner</a>
+          <a href="https://iamsaravofficial.com/apps/gold-price-estimator/">🥇 Gold Price Estimator</a>
+          <a href="https://iamsaravofficial.com/apps/gold-loan-calculator/">🏦 Gold Loan Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/digigold-calculator/">🪙 DigiGold Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/fd-calculator/">🔒 FD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/rd-calculator/">🔁 RD Calculator</a>
+          <a href="https://iamsaravofficial.com/apps/glow-up-grid/">🌟 Glow Up Grid</a>
+          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/">🍱 Lunchbox & Meal Planner</a>
+          <a href="https://iamsaravofficial.com/apps/study-sprint/">🎒 Study Sprint & Exam Matrix</a>
+          <a href="https://iamsaravofficial.com/apps/piggy-bank-ledger/">🪙 Piggy Bank & Money Ledger</a>
+          <a href="https://iamsaravofficial.com/apps/chore-quest-board/">⚔️ Chore & Quest Board</a>
+          <a href="https://iamsaravofficial.com/apps/screen-time-passes/">🎟️ Screen-Time Passes</a>
+          <a href="https://iamsaravofficial.com/apps/boredom-buster/">🎡 Boredom Buster Wheel</a>
+          <a href="https://iamsaravofficial.com/apps/family-movie-night/">🎬 Family Movie &amp; Game Night</a>
+          <a href="https://iamsaravofficial.com/apps/book-nook/" class="current">📚 Kids' Book Nook &amp; 100-Book Quest</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Games <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/games/">🎰 Games Arcade Hub</a>
+          <a href="https://iamsaravofficial.com/games/familywinner/">🎰 Family Jackpot</a>
+          <a href="https://iamsaravofficial.com/games/sentimeter/">💖 Senti-Meter</a>
+          <a href="https://iamsaravofficial.com/games/secretbox/">🎁 Secret Box</a>
+          <a href="https://iamsaravofficial.com/games/cuptoss/">🏓 Ping-Pong Cup Toss</a>
+          <a href="https://iamsaravofficial.com/games/bottleflip/">🍾 Bottle Flip Showdown</a>
+          <a href="https://iamsaravofficial.com/games/samosasnatch/">⚡ Samosa Snatch</a>
+          <a href="https://iamsaravofficial.com/games/chitcharades/">🗣️ Chit-Charades</a>
+          <a href="https://iamsaravofficial.com/games/snackroulette/">🎡 Snack Roulette</a>
+          <a href="https://iamsaravofficial.com/games/dialoguedetective/">🎙️ Dialogue Detective</a>
+          <a href="https://iamsaravofficial.com/games/gulelstrike/">🎯 Desi Gulel Strike</a>
+        </div>
+      </div>
+      <span class="eco-divider">│</span>
+
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">Projects <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/projects/">🏛️ Projects Hub</a>
+          <a href="https://iamsaravofficial.com/temples/">🛕 Temples of Tamil Gods</a>
+          <a href="https://iamsaravofficial.com/factdrop/">💡 FactDrop</a>
+          <a href="https://iamsaravofficial.com/thirukkural/">📜 Thirukkural Hub</a>
+        </div>
+      </div>
+    </div>
+
+    <a href="https://iamsaravofficial.com/apps/tokenomics/" class="eco-tokenomics">
+      <span>🧠 Tokenomics</span>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- HERO CARD -->
+  <div class="hero-card">
+    <div class="header-main-row">
+      <div class="header-left">
+        <div class="app-icon-box">
+          <img src="book-full.png" alt="Kids Book Nook Icon">
+        </div>
+        <div class="header-titles">
+          <div class="eyebrow">📚 Family Planner Suite #09 • Lifelong Reading Habit Studio</div>
+          <h1>Kids' Book Nook &amp; 100-Book Quest</h1>
+          <p class="sub">Inspire a lifelong love of reading. Track 100 books on an interactive wooden bookshelf, unlock reading milestone badges, explore curated books &amp; collectible box sets with Amazon buy links, and print a blank coloring fridge poster.</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="theme-selector" id="themeSelector">
+          <button type="button" class="theme-btn" data-theme="auto" onclick="setTheme('auto')">Auto</button>
+          <button type="button" class="theme-btn" data-theme="light" onclick="setTheme('light')">☀️ Light</button>
+          <button type="button" class="theme-btn" data-theme="dark" onclick="setTheme('dark')">🌙 Dark</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- READING HUD STATS -->
+    <div class="reading-hud">
+      <div class="hud-box">
+        <span class="hud-label">100-Book Quest Progress</span>
+        <div class="hud-val">
+          <span id="statBooksCount">0</span> <span style="font-size: 13px; color: var(--text-dim);">/ 100 Books</span>
+        </div>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Total Pages Logged</span>
+        <div class="hud-val">
+          <span id="statTotalPages">0</span> <span style="font-size: 13px; color: var(--text-dim);">Pages</span>
+        </div>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Current Reading Level</span>
+        <div class="hud-val" style="font-size: 14px;">
+          <span class="rank-badge" id="statRankBadge">🥉 Bronze Page-Turner</span>
+        </div>
+      </div>
+      <div class="hud-box">
+        <span class="hud-label">Active Reader</span>
+        <div class="hud-val" style="font-size: 15px;">
+          <span id="statReaderName">Dhrav</span>
+          <button type="button" class="preset-chip" onclick="openReaderModal()" style="margin: 0; padding: 2px 8px; font-size: 11px;">Edit</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- UNIVERSAL 4-ACTION SUITE -->
+  <div class="action-bar">
+    <button type="button" class="btn-action btn-whatsapp" onclick="shareMilestoneWhatsApp()">
+      <span>💬</span>
+      <span>Share Reading Milestone on WhatsApp</span>
+    </button>
+    <button type="button" class="btn-action btn-print" onclick="window.print()">
+      <span>🖨️</span>
+      <span>Print A4 Color-In Bookshelf Poster</span>
+    </button>
+    <button type="button" class="btn-action" onclick="copyReadingSummary()">
+      <span>📋</span>
+      <span>Copy Bookshelf Summary</span>
+    </button>
+    <button type="button" class="btn-action" onclick="saveAllToStorage()">
+      <span>💾</span>
+      <span>Save Progress to Storage</span>
+    </button>
+  </div>
+
+  <!-- 100-BOOK INTERACTIVE WOODEN BOOKSHELF -->
+  <div class="bookshelf-card">
+    <div class="bookshelf-header">
+      <div class="bookshelf-title">
+        <span>🪵 My 100-Book Library Wall</span>
+      </div>
+      <div style="font-size: 12.5px; color: var(--text-dim);">
+        Tap any empty spine to log a book • Tap a filled spine to review!
+      </div>
+    </div>
+
+    <div class="bookshelf-wall" id="bookshelfWall">
+      <!-- 5 Shelves x 20 Spines each generated by JS -->
+    </div>
+
+    <!-- Active Book Review Spotlight -->
+    <div class="spotlight-book-card" id="spotlightBookBox">
+      <div class="spotlight-book-head">
+        <div>
+          <div class="spotlight-book-title" id="spBookTitle">Harry Potter and the Philosopher's Stone</div>
+          <div class="spotlight-book-author" id="spBookAuthor">by J.K. Rowling</div>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <div id="spBookRating" style="color: #FFD166; font-size: 18px;">⭐⭐⭐⭐⭐</div>
+          <button type="button" class="preset-chip" style="color: var(--danger); margin:0;" onclick="deleteSelectedBook()">✕ Remove</button>
+        </div>
+      </div>
+      <div style="font-size: 12.5px; color: var(--text-dim); margin-bottom: 8px;" id="spBookMeta">
+        Slot #1 • Fantasy &amp; Magic • 352 Pages • Finished: 12/09/2026
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: var(--text); margin-bottom: 10px;" id="spBookQuote">
+        "It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends."
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <span style="font-size: 12px; color: var(--accent);" id="spBookCharacter">Favorite Character: Hermione Granger</span>
+        <a href="https://www.amazon.in/s?k=harry+potter&tag=dhrav-21" target="_blank" rel="noopener noreferrer" class="preset-chip" id="spBookAmazonLink" style="color: var(--gold); margin:0;">
+          <span>🛒 Buy on Amazon (Tag: dhrav-21)</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CURATED RECOMMENDATIONS & BOX SET VAULT -->
+  <div class="recs-container">
+    <div class="recs-tabs-row">
+      <div class="recs-tabs">
+        <button type="button" class="recs-tab active" id="tabBoxSets" onclick="switchRecsTab('box_sets')">
+          <span>📦 Collectible Box Sets (20 Bundles)</span>
+        </button>
+        <button type="button" class="recs-tab" id="tabBooks" onclick="switchRecsTab('books')">
+          <span>📖 Curated Books (36 Classics)</span>
+        </button>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-dim);">
+        Amazon Associates Tag: <code>dhrav-21</code>
+      </div>
+    </div>
+
+    <div class="recs-grid" id="recsGrid">
+      <!-- Populated via JS -->
+    </div>
+  </div>
+
+  <!-- 4x4 READING GENRE BINGO -->
+  <div class="bingo-card">
+    <div class="bookshelf-header">
+      <div>
+        <h2 style="font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 2px;">
+          🎯 4x4 Screen-Free Reading Bingo
+        </h2>
+        <p style="font-size: 13px; color: var(--text-dim); margin: 0;">
+          Conquer 16 diverse reading habits and challenges. Complete 4-in-a-row to claim your weekend library badge!
+        </p>
+      </div>
+      <button type="button" class="preset-chip" onclick="resetBingo()" style="margin:0;">
+        <span>🔄 Reset Bingo</span>
+      </button>
+    </div>
+
+    <div class="bingo-grid" id="bingoGrid">
+      <!-- 16 tiles populated by JS -->
+    </div>
+  </div>
+
+</div>
+
+<!-- LOG BOOK MODAL -->
+<div class="modal-overlay" id="logModal" onclick="if(event.target===this)closeLogModal()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3 id="logModalTitle">📖 Log Book to Slot #1</h3>
+      <button type="button" class="modal-close" onclick="closeLogModal()">&times;</button>
+    </div>
+    <form id="logForm" onsubmit="handleLogSubmit(event)">
+      <input type="hidden" id="logSlotIndex" value="0">
+      <div class="form-group">
+        <label class="form-label">Book Title *</label>
+        <input type="text" class="form-input" id="logTitle" placeholder="e.g. Charlie and the Chocolate Factory" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Author *</label>
+          <input type="text" class="form-input" id="logAuthor" placeholder="e.g. Roald Dahl" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Total Pages</label>
+          <input type="number" class="form-input" id="logPages" placeholder="190" value="150" min="1">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Genre</label>
+          <select class="form-input" id="logGenre">
+            <option value="Fantasy & Magic">Fantasy &amp; Magic</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Humor & School">Humor &amp; School</option>
+            <option value="Mystery">Mystery &amp; Detective</option>
+            <option value="Animal Tale">Animal Tale</option>
+            <option value="Indian Folk & Mythology">Indian Folk &amp; Mythology</option>
+            <option value="Science & STEM">Science &amp; STEM</option>
+            <option value="Biography">Biography</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Star Rating</label>
+          <select class="form-input" id="logRating">
+            <option value="5">⭐⭐⭐⭐⭐ (5 Stars)</option>
+            <option value="4">⭐⭐⭐⭐ (4 Stars)</option>
+            <option value="3">⭐⭐⭐ (3 Stars)</option>
+            <option value="2">⭐⭐ (2 Stars)</option>
+            <option value="1">⭐ (1 Star)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Favorite Character</label>
+          <input type="text" class="form-input" id="logCharacter" placeholder="e.g. Willy Wonka">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Spine Color</label>
+          <select class="form-input" id="logColor">
+            <option value="spine-ruby">Ruby Red</option>
+            <option value="spine-emerald">Emerald Green</option>
+            <option value="spine-sapphire">Sapphire Blue</option>
+            <option value="spine-amethyst">Amethyst Purple</option>
+            <option value="spine-amber">Amber Gold</option>
+            <option value="spine-coral">Coral Pink</option>
+            <option value="spine-teal">Teal Cyan</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Golden Quote or Key Takeaway</label>
+        <textarea class="form-input" id="logQuote" rows="2" placeholder="What was the most memorable moment or lesson?"></textarea>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+        <button type="button" class="preset-chip" onclick="closeLogModal()">Cancel</button>
+        <button type="submit" class="btn-action" style="background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700;">Save to Bookshelf</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- READER PROFILE MODAL -->
+<div class="modal-overlay" id="readerModal" onclick="if(event.target===this)closeReaderModal()">
+  <div class="modal-card">
+    <div class="modal-head">
+      <h3>👤 Edit Young Reader Profile</h3>
+      <button type="button" class="modal-close" onclick="closeReaderModal()">&times;</button>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Reader Name</label>
+      <input type="text" class="form-input" id="inputReaderName" value="Dhrav">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Reading Goal (Target Books)</label>
+      <input type="number" class="form-input" id="inputTargetBooks" value="100" min="10" max="100">
+    </div>
+    <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: 18px;">
+      <button type="button" class="btn-action" style="background: var(--accent); color: var(--accent-ink); font-weight: 700;" onclick="saveReaderProfile()">Save Profile</button>
+    </div>
+  </div>
+</div>
+
+<!-- NON-BLOCKING TOAST NOTIFICATION -->
+<div id="toast"></div>
+
+<!-- PRINT VIEW FOOTER -->
+<div class="print-footer-rule">
+  Sarav's World Book Nook • 100-Book Quest • https://iamsaravofficial.com/apps/book-nook/ • 100% Screen-Free Literacy
+</div>
+
+<footer>
+  <div style="max-width: 800px; margin: 0 auto;">
+    <p><b>Sarav's World — Kids' Book Nook &amp; 100-Book Quest</b></p>
+    <p>100% Client-Side Privacy • Zero Telemetry • LocalStorage Persistence</p>
+    <p style="font-size: 11.5px; color: var(--text-faint);">
+      Amazon Associates Disclosure: As an Amazon Associate, Sarav's World earns from qualifying purchases made via links featuring tracking ID <code>dhrav-21</code>.
+    </p>
+    <p><a href="https://iamsaravofficial.com/apps/">Back to Playground Hub</a> │ <a href="https://iamsaravofficial.com/">Sarav's World Home</a></p>
+  </div>
+</footer>
+
+<script>
+// RAW DATA INJECTION
+const DATA = {data_json_str};
+
+// STATE
+let state = {{
+  readerName: 'Dhrav',
+  targetBooks: 100,
+  books: new Array(100).fill(null),
+  selectedSlot: null,
+  activeRecTab: 'box_sets', // 'box_sets' or 'books'
+  bingoMarks: {{}}
+}};
+
+// Web Audio
+let audioCtx = null;
+function getAudioCtx() {{
+  if (!audioCtx) {{
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext) audioCtx = new AudioContext();
+  }}
+  if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+  return audioCtx;
+}}
+
+function playFanfare() {{
+  try {{
+    const ctx = getAudioCtx();
+    if (!ctx) return;
+    const notes = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+    notes.forEach((freq, idx) => {{
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime + idx * 0.08);
+      gain.gain.setValueAtTime(0, ctx.currentTime + idx * 0.08);
+      gain.gain.linearRampToValueAtTime(0.12, ctx.currentTime + idx * 0.08 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + idx * 0.08 + 0.28);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(ctx.currentTime + idx * 0.08);
+      osc.stop(ctx.currentTime + idx * 0.08 + 0.3);
+    }});
+  }} catch (e) {{}}
+}}
+
+// TOAST
+let toastTimer = null;
+function showToast(msg) {{
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  toast.innerHTML = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {{
+    toast.classList.remove('show');
+  }}, 2800);
+}}
+
+// THEME
+function setTheme(mode) {{
+  document.querySelectorAll('#themeSelector .theme-btn').forEach(b => {{
+    b.classList.toggle('active', b.dataset.theme === mode);
+  }});
+  if (mode === 'auto') {{
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    localStorage.removeItem('bn_theme');
+  }} else {{
+    document.documentElement.setAttribute('data-theme', mode);
+    localStorage.setItem('bn_theme', mode);
+  }}
+}}
+
+// LOAD / SAVE STORAGE
+function loadFromStorage() {{
+  try {{
+    const saved = localStorage.getItem('book_nook_v1');
+    if (saved) {{
+      const parsed = JSON.parse(saved);
+      if (parsed.readerName) state.readerName = parsed.readerName;
+      if (parsed.targetBooks) state.targetBooks = parsed.targetBooks;
+      if (Array.isArray(parsed.books)) {{
+        state.books = parsed.books;
+        while (state.books.length < 100) state.books.push(null);
+      }}
+      if (parsed.bingoMarks) state.bingoMarks = parsed.bingoMarks;
+    }}
+    const savedTheme = localStorage.getItem('bn_theme');
+    if (savedTheme) setTheme(savedTheme);
+  }} catch (e) {{}}
+}}
+
+function saveAllToStorage() {{
+  try {{
+    const toSave = {{
+      readerName: state.readerName,
+      targetBooks: state.targetBooks,
+      books: state.books,
+      bingoMarks: state.bingoMarks
+    }};
+    localStorage.setItem('book_nook_v1', JSON.stringify(toSave));
+    showToast('💾 Bookshelf &amp; reading logs saved to browser storage!');
+  }} catch (e) {{
+    showToast('⚠️ Storage error');
+  }}
+}}
+
+// BOOKSHELF RENDERING (5 Shelves x 20 Books)
+function renderBookshelf() {{
+  const wall = document.getElementById('bookshelfWall');
+  if (!wall) return;
+  wall.innerHTML = '';
+
+  for (let shelf = 0; shelf < 5; shelf++) {{
+    const shelfRow = document.createElement('div');
+    shelfRow.className = 'shelf-row';
+
+    for (let pos = 0; pos < 20; pos++) {{
+      const idx = shelf * 20 + pos;
+      const bk = state.books[idx];
+
+      const spine = document.createElement('div');
+      spine.className = 'book-spine ' + (bk ? 'filled ' + (bk.color || 'spine-ruby') : 'empty');
+      spine.dataset.index = idx;
+      spine.onclick = function() {{ onSpineClick(idx); }};
+
+      if (bk) {{
+        spine.innerHTML = `
+          <div class="spine-ribbon"></div>
+          <div class="spine-title-vertical">${{bk.title}}</div>
+          <div class="spine-stars">${{'★'.repeat(Math.min(bk.rating || 5, 5))}}</div>
+        `;
+      }} else {{
+        spine.innerHTML = `
+          <div class="spine-num">#${{idx + 1}}</div>
+          <div style="font-size: 14px; opacity: 0.3;">+</div>
+          <div></div>
+        `;
+      }}
+
+      shelfRow.appendChild(spine);
+    }}
+
+    wall.appendChild(shelfRow);
+  }}
+
+  updateHUDStats();
+}}
+
+function onSpineClick(idx) {{
+  const bk = state.books[idx];
+  if (bk) {{
+    // Show spotlight review
+    showBookSpotlight(idx);
+  }} else {{
+    // Open log modal
+    openLogModal(idx);
+  }}
+}}
+
+function showBookSpotlight(idx) {{
+  state.selectedSlot = idx;
+  const bk = state.books[idx];
+  if (!bk) return;
+
+  const card = document.getElementById('spotlightBookBox');
+  card.classList.add('show');
+
+  document.getElementById('spBookTitle').textContent = bk.title;
+  document.getElementById('spBookAuthor').textContent = 'by ' + bk.author;
+  document.getElementById('spBookRating').textContent = '⭐'.repeat(bk.rating || 5);
+  document.getElementById('spBookMeta').textContent = `Slot #${{idx + 1}} • ${{bk.genre || 'General'}} • ${{bk.pages || 150}} Pages • Finished: ${{bk.date || 'Recent'}}`;
+  document.getElementById('spBookQuote').textContent = bk.quote ? `"${{bk.quote}}"` : 'No quote logged yet.';
+  document.getElementById('spBookCharacter').textContent = bk.character ? 'Favorite Character: ' + bk.character : '';
+
+  const aLink = 'https://www.amazon.in/s?k=' + encodeURIComponent(bk.title + ' ' + bk.author) + '&tag=dhrav-21';
+  document.getElementById('spBookAmazonLink').href = aLink;
+
+  card.scrollIntoView({{ behavior: 'smooth', block: 'nearest' }});
+}}
+
+function deleteSelectedBook() {{
+  if (state.selectedSlot === null) return;
+  state.books[state.selectedSlot] = null;
+  document.getElementById('spotlightBookBox').classList.remove('show');
+  state.selectedSlot = null;
+  renderBookshelf();
+  saveAllToStorage();
+  showToast('Book removed from slot.');
+}}
+
+function openLogModal(idx) {{
+  state.selectedSlot = idx;
+  document.getElementById('logSlotIndex').value = idx;
+  document.getElementById('logModalTitle').textContent = `📖 Log Book to Slot #${{idx + 1}}`;
+  document.getElementById('logTitle').value = '';
+  document.getElementById('logAuthor').value = '';
+  document.getElementById('logPages').value = '150';
+  document.getElementById('logQuote').value = '';
+  document.getElementById('logCharacter').value = '';
+  document.getElementById('logModal').classList.add('open');
+}}
+
+function closeLogModal() {{
+  document.getElementById('logModal').classList.remove('open');
+}}
+
+function handleLogSubmit(e) {{
+  e.preventDefault();
+  const idx = parseInt(document.getElementById('logSlotIndex').value);
+  const title = document.getElementById('logTitle').value.trim();
+  const author = document.getElementById('logAuthor').value.trim();
+  const pages = parseInt(document.getElementById('logPages').value) || 150;
+  const genre = document.getElementById('logGenre').value;
+  const rating = parseInt(document.getElementById('logRating').value) || 5;
+  const color = document.getElementById('logColor').value;
+  const character = document.getElementById('logCharacter').value.trim();
+  const quote = document.getElementById('logQuote').value.trim();
+
+  state.books[idx] = {{
+    title,
+    author,
+    pages,
+    genre,
+    rating,
+    color,
+    character,
+    quote,
+    date: new Date().toLocaleDateString()
+  }};
+
+  closeLogModal();
+  renderBookshelf();
+  showBookSpotlight(idx);
+  saveAllToStorage();
+  playFanfare();
+  showToast(`🎉 <b>${{title}}</b> added to your 100-Book Wall!`);
+}}
+
+function updateHUDStats() {{
+  const filled = state.books.filter(b => b !== null);
+  const count = filled.length;
+  document.getElementById('statBooksCount').textContent = count;
+
+  const totalPages = filled.reduce((sum, b) => sum + (b.pages || 0), 0);
+  document.getElementById('statTotalPages').textContent = totalPages.toLocaleString();
+
+  const rankBadge = document.getElementById('statRankBadge');
+  if (count >= 50) {{
+    rankBadge.textContent = '💎 Diamond Literary Legend (50+)';
+    rankBadge.style.color = '#38BDF8';
+  }} else if (count >= 25) {{
+    rankBadge.textContent = '🥇 Gold Chapter Master (25+)';
+    rankBadge.style.color = '#F59E0B';
+  }} else if (count >= 10) {{
+    rankBadge.textContent = '🥈 Silver Bookworm (10+)';
+    rankBadge.style.color = '#E2E8F0';
+  }} else {{
+    rankBadge.textContent = '🥉 Bronze Page-Turner';
+    rankBadge.style.color = '#CD7F32';
+  }}
+
+  document.getElementById('statReaderName').textContent = state.readerName;
+}}
+
+// CURATED RECOMMENDATIONS
+function switchRecsTab(tab) {{
+  state.activeRecTab = tab;
+  document.getElementById('tabBoxSets').classList.toggle('active', tab === 'box_sets');
+  document.getElementById('tabBooks').classList.toggle('active', tab === 'books');
+  renderRecs();
+}}
+
+function renderRecs() {{
+  const grid = document.getElementById('recsGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const isBox = state.activeRecTab === 'box_sets';
+  const pool = isBox ? DATA.box_sets : DATA.curated_books;
+
+  pool.forEach(item => {{
+    const card = document.createElement('div');
+    card.className = 'rec-card';
+
+    const aQuery = encodeURIComponent(item.amazon || item.title);
+    const aLink = `https://www.amazon.in/s?k=${{aQuery}}&tag=dhrav-21`;
+    const sub = isBox ? `${{item.booksCount}} • ${{item.age}}` : `${{item.genre}} • ${{item.pages}} Pages`;
+
+    card.innerHTML = `
+      <div class="rec-card-top">
+        <span class="rec-cover-icon">${{item.coverEmoji || '📖'}}</span>
+        <span class="pill-badge" style="font-size: 10.5px; background: var(--surface-3);">${{item.age || item.band || 'All Ages'}}</span>
+      </div>
+      <div class="rec-title">${{item.title}}</div>
+      <div class="rec-author">by ${{item.author}}</div>
+      <div class="rec-desc">${{item.desc}}</div>
+      <div class="rec-card-actions">
+        <a href="${{aLink}}" target="_blank" rel="noopener noreferrer" class="btn-amazon-pill">
+          <span>🛒 Buy on Amazon</span>
+          <span>↗</span>
+        </a>
+        <button type="button" class="btn-shelf-pin" onclick="quickPinToShelf('${{encodeURIComponent(JSON.stringify(item))}}')">
+          <span>➕ Add</span>
+        </button>
+      </div>
+    `;
+    grid.appendChild(card);
+  }});
+}}
+
+function quickPinToShelf(itemJsonStr) {{
+  const item = JSON.parse(decodeURIComponent(itemJsonStr));
+  const firstEmpty = state.books.findIndex(b => b === null);
+  if (firstEmpty === -1) {{
+    showToast('⚠️ Your 100-book shelf is completely full!');
+    return;
+  }}
+
+  state.books[firstEmpty] = {{
+    title: item.title,
+    author: item.author,
+    pages: item.pages || 200,
+    genre: item.genre || 'Chapter Book',
+    rating: 5,
+    color: 'spine-emerald',
+    character: '',
+    quote: '',
+    date: new Date().toLocaleDateString()
+  }};
+
+  renderBookshelf();
+  showBookSpotlight(firstEmpty);
+  saveAllToStorage();
+  playFanfare();
+  showToast(`➕ Added <b>${{item.title}}</b> to Shelf slot #${{firstEmpty + 1}}!`);
+}}
+
+// 4x4 READING BINGO
+function renderBingo() {{
+  const grid = document.getElementById('bingoGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  DATA.bingo_prompts.forEach((prompt, idx) => {{
+    const isDone = !!state.bingoMarks[idx];
+    const tile = document.createElement('div');
+    tile.className = 'bingo-tile' + (isDone ? ' completed' : '');
+    tile.onclick = function() {{ toggleBingoTile(idx); }};
+
+    tile.innerHTML = `
+      <div class="bingo-text">${{prompt}}</div>
+    `;
+    grid.appendChild(tile);
+  }});
+}}
+
+function toggleBingoTile(idx) {{
+  state.bingoMarks[idx] = !state.bingoMarks[idx];
+  renderBingo();
+  saveAllToStorage();
+  if (state.bingoMarks[idx]) {{
+    playFanfare();
+    showToast('🌟 Reading Bingo prompt achieved!');
+  }}
+}}
+
+function resetBingo() {{
+  state.bingoMarks = {{}};
+  renderBingo();
+  saveAllToStorage();
+  showToast('🔄 Reading Bingo reset!');
+}}
+
+// 4-ACTION SUITE HANDLERS
+function shareMilestoneWhatsApp() {{
+  const filled = state.books.filter(b => b !== null);
+  const count = filled.length;
+  const lastBook = filled.length > 0 ? filled[filled.length - 1] : null;
+
+  const text = `📚 *READING QUEST MILESTONE ALERT!*
+━━━━━━━━━━━━━━━━━━━━━━
+👤 *Reader:* ${{state.readerName}}
+🏆 *Books Logged:* ${{count}} / ${{state.targetBooks}} Books Completed!
+${{lastBook ? `📖 *Latest Finished Book:* ${{lastBook.title}} by ${{lastBook.author}} (Rated ${{lastBook.rating}}/5 ⭐)\\n` : ''}}
+🌟 Join the 100-Book Quest & discover curated box sets at Sarav's World:
+https://iamsaravofficial.com/apps/book-nook/`;
+
+  const url = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(text);
+  window.open(url, '_blank');
+}}
+
+function copyReadingSummary() {{
+  const filled = state.books.filter(b => b !== null);
+  const count = filled.length;
+  const text = `📚 ${{state.readerName}}'s 100-Book Quest
+Progress: ${{count}} / ${{state.targetBooks}} Books Completed!
+Total Pages: ${{filled.reduce((sum, b) => sum + (b.pages || 0), 0)}}
+https://iamsaravofficial.com/apps/book-nook/`;
+
+  navigator.clipboard.writeText(text).then(() => {{
+    showToast('📋 Reading summary copied to clipboard!');
+  }}).catch(() => {{
+    showToast('⚠️ Could not copy');
+  }});
+}}
+
+// READER PROFILE MODAL
+function openReaderModal() {{
+  document.getElementById('inputReaderName').value = state.readerName;
+  document.getElementById('inputTargetBooks').value = state.targetBooks;
+  document.getElementById('readerModal').classList.add('open');
+}}
+
+function closeReaderModal() {{
+  document.getElementById('readerModal').classList.remove('open');
+}}
+
+function saveReaderProfile() {{
+  state.readerName = document.getElementById('inputReaderName').value.trim() || 'Dhrav';
+  state.targetBooks = parseInt(document.getElementById('inputTargetBooks').value) || 100;
+  closeReaderModal();
+  updateHUDStats();
+  saveAllToStorage();
+  showToast('👤 Reader profile updated!');
+}}
+
+// INITIALIZATION
+window.addEventListener('DOMContentLoaded', () => {{
+  loadFromStorage();
+  renderBookshelf();
+  renderRecs();
+  renderBingo();
+}});
+</script>
+
+</body>
+</html>"""
+
+    with open(out_path, 'w', encoding='utf-8') as f:
+        f.write(html_content)
+
+    print(f"Built {out_path} successfully ({len(html_content)} bytes).")
+
+if __name__ == "__main__":
+    generate_book_nook()
