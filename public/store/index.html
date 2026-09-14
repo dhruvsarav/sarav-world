@@ -12,14 +12,18 @@
 <meta property="og:url" content="https://iamsaravofficial.com/store/">
 <meta property="og:title" content="Curated Store &amp; Recommendations — Vidhya &amp; Sarav's Picks">
 <meta property="og:description" content="Handpicked lifestyle essentials, children's books, school gear, and tech recommendations. Personally tested at home.">
-<meta property="og:image" content="https://iamsaravofficial.com/apps/apps-full.png">
+<meta property="og:image" content="https://iamsaravofficial.com/store/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Curated Store &amp; Recommendations — Vidhya &amp; Sarav's Picks">
 <meta name="twitter:description" content="Handpicked lifestyle essentials, children's books, school gear, and tech recommendations.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/store/og-image.png">
 
 <!-- Icons -->
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/svg+xml" href="/store/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/store/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/store/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/store/apple-touch-icon-180.png">
+<link rel="shortcut icon" href="/store/favicon.ico">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -465,22 +469,25 @@
       <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
       <span class="eco-divider">│</span>
 
-      <div class="eco-dropdown">
-        <button class="eco-dropbtn" aria-haspopup="true">Apps <span class="eco-caret">▾</span></button>
-        <div class="eco-menu">
-          <a href="https://iamsaravofficial.com/apps/">🎡 Playground Hub</a>
-          <a href="https://iamsaravofficial.com/apps/salary-planner/">💰 Salary Planner</a>
-          <a href="https://iamsaravofficial.com/apps/home-budget-planner/">🏠 Home Budget Planner</a>
-          <a href="https://iamsaravofficial.com/apps/lunchbox-planner/">🍱 Lunchbox &amp; Meal Planner</a>
-          <a href="https://iamsaravofficial.com/apps/book-nook/">📚 Kids' Book Nook &amp; Quest</a>
-          <a href="https://iamsaravofficial.com/apps/family-movie-night/">🎬 Family Movie &amp; Game Night</a>
+      <div class="eco-dropdown" id="storeCatDropdown">
+        <button class="eco-dropbtn" aria-haspopup="true" style="color:var(--accent)!important; font-weight:700;">
+          🛍️ Curated Store <span class="eco-caret">▾</span>
+        </button>
+        <div class="eco-menu" id="storeNavMenu">
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('all')" data-nav-cat="all" class="current">🌟 All Curated Items</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('home')" data-nav-cat="home">🏠 Home &amp; Kitchen</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('tech')" data-nav-cat="tech">⚡ Tech &amp; Desk</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('lifestyle')" data-nav-cat="lifestyle">🌿 Lifestyle &amp; Wellness</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('lunchbox')" data-nav-cat="lunchbox">🍱 School &amp; Lunchbox</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('books')" data-nav-cat="books">📚 Kids &amp; Books</a>
+          <a href="javascript:void(0)" onclick="selectCategoryFromNav('games')" data-nav-cat="games">🧩 Toys &amp; Games</a>
         </div>
       </div>
-      <span class="eco-divider">│</span>
-      <a href="https://iamsaravofficial.com/store/" class="eco-brand" style="color:var(--accent)!important;">🛍️ Curated Store</a>
     </div>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <a href="https://iamsaravofficial.com/apps/tokenomics/" style="color:var(--accent2); font-weight:600; font-size:12px;">🧠 Enterprise AI Economics</a>
+    <div style="display:flex; align-items:center; gap:8px; font-size:12px; color:var(--text-faint);">
+      <span>✨ Tested &amp; Recommended at Home</span>
+      <span style="opacity:0.4;">•</span>
+      <span>Amazon Tag: <code style="color:var(--accent); font-family:'IBM Plex Mono',monospace; font-weight:600;">dhrav-21</code></span>
     </div>
   </div>
 </div>
@@ -490,7 +497,9 @@
   <!-- Header -->
   <div class="hero">
     <div class="hero-brand-wrap">
-      <div class="hero-icon-box">🛍️</div>
+      <div class="hero-icon-box">
+        <img src="/store/favicon.svg" alt="Curated Store" style="width:100%; height:100%; border-radius:10px;">
+      </div>
       <div class="hero-text">
         <div class="eyebrow">✨ Tested &amp; Recommended at Home</div>
         <h1>Curated Finds by Vidhya &amp; Sarav</h1>
@@ -715,6 +724,23 @@ function showToast(msg){
     grid.innerHTML = html;
   }
 
+  window.selectCategoryFromNav = function(cat){
+    currentCat = cat || 'all';
+    document.querySelectorAll('.filter-chip').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-cat') === currentCat);
+    });
+    document.querySelectorAll('#storeNavMenu a').forEach(function(a){
+      a.classList.toggle('current', a.getAttribute('data-nav-cat') === currentCat);
+    });
+    var drop = document.getElementById('storeCatDropdown');
+    if(drop) drop.classList.remove('open');
+    renderProducts();
+    var studio = document.querySelector('.store-filter-studio');
+    if(studio){
+      studio.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   window.copyProductLink = function(url){
     navigator.clipboard.writeText(url).then(function(){
       showToast('Copied Amazon affiliate link with tag dhrav-21!');
@@ -728,6 +754,9 @@ function showToast(msg){
     currentCat = 'all';
     document.querySelectorAll('.filter-chip').forEach(function(c){
       c.classList.toggle('active', c.getAttribute('data-cat') === 'all');
+    });
+    document.querySelectorAll('#storeNavMenu a').forEach(function(a){
+      a.classList.toggle('current', a.getAttribute('data-nav-cat') === 'all');
     });
     renderProducts();
     searchInput.focus();
@@ -747,9 +776,25 @@ function showToast(msg){
       currentCat = this.getAttribute('data-cat');
       document.querySelectorAll('.filter-chip').forEach(function(c){ c.classList.remove('active'); });
       this.classList.add('active');
+      document.querySelectorAll('#storeNavMenu a').forEach(function(a){
+        a.classList.toggle('current', a.getAttribute('data-nav-cat') === currentCat);
+      });
       renderProducts();
     });
   });
+
+  // URL Query Param Support (?cat=tech or #home)
+  var urlParams = new URLSearchParams(window.location.search);
+  var paramCat = urlParams.get('cat') || urlParams.get('category') || (window.location.hash ? window.location.hash.replace('#', '') : null);
+  if(paramCat && ['home', 'tech', 'lifestyle', 'lunchbox', 'books', 'games', 'all'].includes(paramCat)){
+    currentCat = paramCat;
+    document.querySelectorAll('.filter-chip').forEach(function(c){
+      c.classList.toggle('active', c.getAttribute('data-cat') === currentCat);
+    });
+    document.querySelectorAll('#storeNavMenu a').forEach(function(a){
+      a.classList.toggle('current', a.getAttribute('data-nav-cat') === currentCat);
+    });
+  }
 
   // Shortcut key '/'
   document.addEventListener('keydown', function(e){
