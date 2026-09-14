@@ -192,3 +192,25 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
 - **Clean Structure:** Laser-focused exclusively on web applications.
 - **Layout Flow:** Header & Ecosystem Bar → Hero → Featured Spotlight (*Enterprise AI Economics (Tokenomics)*) → Family & Interactive Suite (12 live consumer tools) → Zero-telemetry footer.
 - Cultural platforms (*Temples of Tamil Gods*, *Thirukkural*, *FactDrop*) live strictly on the dedicated [`/projects/`](https://iamsaravofficial.com/projects/) hub.
+
+---
+
+### 11. Curated Store Architecture & Live Telegram Ingestion Standards (`/store/`)
+- **Production Storefront URL**: `https://iamsaravofficial.com/store/`
+- **Purpose**: Handpicked, home-tested lifestyle, bedding, kitchen, tech, children's books, school gear, and family games curated by Vidhya & Sarav.
+- **Amazon Associates Tracking Standard**: Strictly encoded with `tag=dhrav-21&linkCode=ll2` across all Amazon outbound links and share buttons.
+- **Zero Local Product Image Policy**: Product images load directly from Amazon's high-speed CDN via scraped OpenGraph/product image URLs. Fallback placeholder is `/store/images/default-product.svg`.
+- **Live Curation Workflow via Telegram**:
+  - **Telegram Bot**: `@SaravVidhyaStoreBot` (used by Vidhya and Sarav to curate products instantly by sharing Amazon URLs).
+  - **Cloudflare Worker**: `https://curated-store-bot.nalkudilstudio.workers.dev` (source in `workers/curated-store-bot/index.js`).
+  - **Cloudflare KV**: `STORE_KV` (`309e95eb480849caa8d912a8ec2a5c5f`).
+  - **Automated Pipeline**: Resolves shortened/affiliate redirects (`amzn.to`, `amzn.in`), extracts ASIN, scrapes OpenGraph metadata and images, auto-classifies into categories (`home`, `tech`, `lifestyle`, `lunchbox`, `books`, `games`), formats modern affiliate URL, and writes to KV index (`products_index` + `product:{asin}`).
+  - **Hybrid Client-Side Rendering**: Instant initial render from `/store/products.json` fallback, followed immediately by background fetch to `/api/products` worker endpoint for real-time reactivity without redeploying the site.
+- **Storefront Navigation Architecture**:
+  - Top ecosystem bar features a streamlined two-link layout: `← Sarav's World` root link and `🛍️ Curated Store ▾` hover/click dropdown.
+  - Dropdown exposes all 7 canonical categories: `🌟 All Curated Items`, `🏠 Home & Kitchen`, `⚡ Tech & Desk`, `🌿 Lifestyle & Wellness`, `🍱 School & Lunchbox`, `📚 Kids & Books`, `🧩 Toys & Games`.
+  - Selecting any dropdown category syncs the filter studio chips, filters the product grid, highlights the active menu item, smoothly scrolls to the results, and supports deep linking via URL params (`?cat=tech` or `#home`).
+- **Official Brand Assets Suite (`/store/`)**:
+  - Generator script: `scripts/generate_store_assets.py` (Pillow + SVG with supersampling).
+  - Assets: `favicon.svg`, `favicon-32.png`, `favicon-192.png`, `apple-touch-icon-180.png`, `favicon.ico`, `store-full.png` (512x512), and `og-image.png` (1200x630 with category pills and Amazon tag disclosure).
+
