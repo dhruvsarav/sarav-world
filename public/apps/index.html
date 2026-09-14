@@ -307,7 +307,240 @@
     padding: 6px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600;
     transition: all 0.15s ease; text-decoration: none;
   }
-  .btn-launch:hover { background: var(--accent); color: var(--accent-ink); text-decoration: none; }
+  /* Playground Hub Search & Intent Filter Studio */
+  .hub-search-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .hub-search-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .hub-search-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.02em;
+  }
+  .hub-search-count {
+    font-size: 12px;
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface-2);
+    padding: 3px 10px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+  }
+  .hub-search-input-wrap {
+    position: relative;
+    width: 100%;
+    margin-bottom: 14px;
+  }
+  .hub-search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-faint);
+    font-size: 16px;
+    pointer-events: none;
+  }
+  .hub-search-input {
+    width: 100%;
+    padding: 12px 78px 12px 42px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14.5px;
+    outline: none;
+    transition: all 0.15s ease;
+  }
+  .hub-search-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+    background: var(--surface);
+  }
+  .hub-search-actions {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hub-search-clear {
+    background: transparent;
+    border: none;
+    color: var(--text-faint);
+    font-size: 15px;
+    cursor: pointer;
+    padding: 3px 7px;
+    border-radius: 4px;
+    display: none;
+    line-height: 1;
+  }
+  .hub-search-clear:hover { color: var(--text); background: var(--surface-3); }
+  .hub-search-kbd {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--text-faint);
+    background: var(--surface-3);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 6px;
+    user-select: none;
+  }
+
+  /* Autocomplete Suggestions Box */
+  .hub-autocomplete {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.55);
+    z-index: 500;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+  }
+  [data-theme="light"] .hub-autocomplete {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  }
+  .hub-autocomplete-item {
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-soft);
+    transition: background 0.12s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+  .hub-autocomplete-item:last-child { border-bottom: none; }
+  .hub-autocomplete-item:hover, .hub-autocomplete-item.focused {
+    background: var(--accent-soft);
+    text-decoration: none;
+  }
+  .hub-auto-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .hub-auto-icon { font-size: 16px; }
+  .hub-auto-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .hub-auto-cat {
+    font-size: 10.5px;
+    padding: 2px 7px;
+    border-radius: 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .hub-auto-action {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Intent Filter Chips */
+  .hub-filter-chips {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .hub-filter-chip {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .hub-filter-chip:hover {
+    color: var(--text);
+    border-color: var(--accent);
+  }
+  .hub-filter-chip.active {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .hub-filter-chip.active .hub-filter-count {
+    color: var(--accent-ink);
+    background: rgba(0, 0, 0, 0.15);
+  }
+  .hub-filter-count {
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--surface-3);
+    padding: 1px 6px;
+    border-radius: 10px;
+    color: var(--text-dim);
+  }
+
+  /* Empty State */
+  .hub-no-results {
+    display: none;
+    text-align: center;
+    padding: 48px 20px;
+    background: var(--surface);
+    border: 1px dashed var(--border);
+    border-radius: 14px;
+    margin-bottom: 40px;
+  }
+  .hub-no-results h3 { font-size: 18px; color: var(--text); margin-bottom: 8px; }
+  .hub-no-results p { color: var(--text-dim); font-size: 13.5px; margin-bottom: 18px; }
+  .btn-reset-search {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--accent);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn-reset-search:hover {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
 
   /* Standardized Footer */
   footer {
@@ -418,7 +651,7 @@
   </div>
 
   <!-- FEATURED SPOTLIGHT: Enterprise AI Economics (TOKENOMICS) AT THE TOP -->
-  <div class="spotlight-card">
+  <div class="spotlight-card" id="spotlightTokenomics" data-app-id="tokenomics" data-title="Enterprise AI Economics (Tokenomics)" data-category="enterprise" data-keywords="tokenomics enterprise ai llm economics gpt claude gemini prompt caching digital workplace roi simulator labor arbitrage contingency buffer tokens" data-url="https://iamsaravofficial.com/apps/tokenomics/">
     <div class="spotlight-badge-row">
       <span class="badge featured">Enterprise Flagship</span>
       <span class="badge gold">Tokenomics</span>
@@ -445,18 +678,53 @@
     </div>
   </div>
 
+  <!-- HUB SEARCH & INTENT FILTER STUDIO -->
+  <div class="hub-search-container" id="hubSearchStudio">
+    <div class="hub-search-header">
+      <div class="hub-search-title">
+        <span>🔍 Explore &amp; Launch Apps</span>
+      </div>
+      <div class="hub-search-count" id="hubSearchCount">Showing 20 of 20 apps</div>
+    </div>
+    <div class="hub-search-input-wrap">
+      <span class="hub-search-icon">🔍</span>
+      <input type="text" id="hubSearchInput" class="hub-search-input" placeholder="Search 20 apps by title, intent, or keywords (e.g. loan, budget, kids, gold)..." autocomplete="off" spellcheck="false">
+      <div class="hub-search-actions">
+        <button type="button" class="hub-search-clear" id="hubSearchClear" title="Clear search (Esc)">&times;</button>
+        <span class="hub-search-kbd" title="Press '/' anywhere to search">/</span>
+      </div>
+      <div class="hub-autocomplete" id="hubAutocomplete"></div>
+    </div>
+    <div class="hub-filter-chips" id="hubFilterChips">
+      <button type="button" class="hub-filter-chip active" data-filter="all">All <span class="hub-filter-count">20</span></button>
+      <button type="button" class="hub-filter-chip" data-filter="money">💰 Money &amp; Debt <span class="hub-filter-count">6</span></button>
+      <button type="button" class="hub-filter-chip" data-filter="gold">🥇 Gold &amp; Metals <span class="hub-filter-count">3</span></button>
+      <button type="button" class="hub-filter-chip" data-filter="kids">🌟 Kids &amp; Habits <span class="hub-filter-count">6</span></button>
+      <button type="button" class="hub-filter-chip" data-filter="family">🍿 Family Fun <span class="hub-filter-count">4</span></button>
+      <button type="button" class="hub-filter-chip" data-filter="slang">🗣️ Slang &amp; Culture <span class="hub-filter-count">1</span></button>
+    </div>
+  </div>
+
+  <!-- NO RESULTS PLACEHOLDER -->
+  <div class="hub-no-results" id="hubNoResults">
+    <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
+    <h3>No apps match your search</h3>
+    <p id="hubNoResultsMsg">We couldn't find any app matching your current search query or filter.</p>
+    <button type="button" class="btn-reset-search" onclick="resetHubSearch()">View All 20 Apps</button>
+  </div>
+
   <!-- SECTION 1: FAMILY & INTERACTIVE WEB SUITE (10 Live Apps) -->
-  <div class="section-title-wrap">
+  <div class="section-title-wrap" id="section1TitleWrap">
     <div class="section-title">
       <span>⚡ Family &amp; Interactive Web Suite</span>
     </div>
     <div class="section-count">10 Live Apps</div>
   </div>
 
-  <div class="app-grid">
+  <div class="app-grid" id="section1Grid">
 
     <!-- 1. GENZ & ALPHA SLANG DECODER -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="genzalphaslang" data-category="slang" data-title="GENZ & ALPHA SLANG DECODER" data-keywords="slang genz gen alpha youth words vocabulary idioms abbreviations neural audio flashcards language dictionary skibidi rizz no cap bet bussin" data-url="https://iamsaravofficial.com/apps/genzalphaslang/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/genzalphaslang/og-image.png" alt="GenZ and Alpha Slang Decoder Screenshot" loading="lazy">
       </div>
@@ -478,7 +746,7 @@
     </div>
 
     <!-- 2. SALARY PLANNER -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="salary-planner" data-category="money" data-title="SALARY PLANNER" data-keywords="salary paycheck cashflow budget savings emergency fund hlv life insurance fhs health score surplus take-home debt foir financial health" data-url="https://iamsaravofficial.com/apps/salary-planner/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/salary-planner/og-image.png" alt="Salary Planner Screenshot" loading="lazy">
       </div>
@@ -501,7 +769,7 @@
     </div>
 
     <!-- 3. HOME BUDGET PLANNER -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="home-budget-planner" data-category="money" data-title="HOME BUDGET PLANNER" data-keywords="home budget bills due dates expenses household 50 30 20 envelopes foir debt grocery rent utilities fhs cashflow" data-url="https://iamsaravofficial.com/apps/home-budget-planner/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/home-budget-planner/og-image.png" alt="Home Budget Planner Screenshot" loading="lazy">
       </div>
@@ -524,7 +792,7 @@
     </div>
 
     <!-- 4. RETIREMENT PLANNER -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="retirement-planner" data-category="money" data-title="RETIREMENT PLANNER" data-keywords="retirement pension epf nps annuity lump sum age 60 corpus step up inflation compounding rule 9d pf provident fund liquid locked" data-url="https://iamsaravofficial.com/apps/retirement-planner/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/retirement-planner/og-image.png" alt="Retirement Planner Screenshot" loading="lazy">
       </div>
@@ -546,7 +814,7 @@
     </div>
 
     <!-- 5. METAL PRICE ESTIMATOR -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="gold-price-estimator" data-category="gold" data-title="METAL PRICE ESTIMATOR" data-keywords="gold silver precious metals jewellery billing gross weight stone deduction wastage va making charges gst old gold exchange tola pavan kdm hallmark" data-url="https://iamsaravofficial.com/apps/gold-price-estimator/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/gold-price-estimator/og-image.png" alt="Metal Price Estimator Screenshot" loading="lazy">
       </div>
@@ -568,7 +836,7 @@
     </div>
 
     <!-- 6. GOLD LOAN CALCULATOR -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="gold-loan-calculator" data-category="gold" data-title="GOLD LOAN CALCULATOR" data-keywords="gold loan rbi ltv per gram jewellery pawn bullet monthly interest emi margin call pledge collateral ornaments pledge" data-url="https://iamsaravofficial.com/apps/gold-loan-calculator/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/gold-loan-calculator/og-image.png" alt="Gold Loan Calculator Screenshot" loading="lazy">
       </div>
@@ -590,7 +858,7 @@
     </div>
 
     <!-- 7. DIGIGOLD SIP CALCULATOR -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="digigold-calculator" data-category="gold" data-title="DIGIGOLD SIP CALCULATOR" data-keywords="digigold digital gold sip gst spread buyback capital gains ltcg stcg tax sovereign gold physical delivery 24k" data-url="https://iamsaravofficial.com/apps/digigold-calculator/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/digigold-calculator/og-image.png" alt="DigiGold Calculator Screenshot" loading="lazy">
       </div>
@@ -612,7 +880,7 @@
     </div>
 
     <!-- 8. FD CALCULATOR -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="fd-calculator" data-category="money" data-title="FD CALCULATOR" data-keywords="fixed deposit fd interest quarterly compounding cumulative payout tax saver 80c bank tds sec 194a maturity senior citizen term deposit" data-url="https://iamsaravofficial.com/apps/fd-calculator/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/fd-calculator/og-image.png" alt="FD Calculator Screenshot" loading="lazy">
       </div>
@@ -634,7 +902,7 @@
     </div>
 
     <!-- 9. RD CALCULATOR -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="rd-calculator" data-category="money" data-title="RD CALCULATOR" data-keywords="recurring deposit rd monthly installment iba compounding post office bank savings premature closure tds systematic savings" data-url="https://iamsaravofficial.com/apps/rd-calculator/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/rd-calculator/og-image.png" alt="RD Calculator Screenshot" loading="lazy">
       </div>
@@ -656,7 +924,7 @@
     </div>
 
     <!-- 10. HOME LOAN PREPAYMENT & DEBT-FREE ACCELEROMETER -->
-    <div class="app-card">
+    <div class="app-card" data-app-id="home-loan-accelerometer" data-category="money" data-title="HOME LOAN PREPAYMENT ACCELERATOR" data-keywords="home loan mortgage prepayment debt free emi tenure reduction interest saved crossover point amortization extra emi lump sum sec 24b housing loan" data-url="https://iamsaravofficial.com/apps/home-loan-accelerometer/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/home-loan-accelerometer/og-image.png" alt="Home Loan Prepayment and Debt-Free Accelerometer Screenshot" loading="lazy">
       </div>
@@ -681,17 +949,17 @@
   </div>
 
   <!-- SECTION 2: FAMILY PLANNER SUITE (10 Live Planners) -->
-  <div class="section-title-wrap" style="margin-top: 52px;">
+  <div class="section-title-wrap" id="section2TitleWrap" style="margin-top: 52px;">
     <div class="section-title">
       <span>🌟 Family Planner Suite</span>
     </div>
     <div class="section-count">10 Live Planners</div>
   </div>
 
-  <div class="app-grid">
+  <div class="app-grid" id="section2Grid">
 
-    <!-- 10. GLOW UP GRID -->
-    <div class="app-card">
+    <!-- 11. GLOW UP GRID -->
+    <div class="app-card" data-app-id="glow-up-grid" data-category="kids" data-title="GLOW UP GRID" data-keywords="glow up habits routine morning bedtime kids routine printable chart sound chimes stars tracker multi-child presets morning evening schedule chore" data-url="https://iamsaravofficial.com/apps/glow-up-grid/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/glow-up-grid/og-image.png" alt="Glow Up Grid Screenshot" loading="lazy">
       </div>
@@ -713,8 +981,8 @@
       </div>
     </div>
 
-    <!-- 11. SCHOOL TIFFIN & FAMILY LUNCHBOX PLANNER -->
-    <div class="app-card">
+    <!-- 12. SCHOOL TIFFIN & FAMILY LUNCHBOX PLANNER -->
+    <div class="app-card" data-app-id="lunchbox-planner" data-category="family" data-title="SCHOOL TIFFIN & LUNCHBOX PLANNER" data-keywords="lunchbox tiffin meals school breakfast dinner recipes grocery list whatsapp printable fridge menu nutrition weekly schedule food snack recipes" data-url="https://iamsaravofficial.com/apps/lunchbox-planner/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/lunchbox-planner/og-image.png" alt="School Tiffin and Family Lunchbox Planner Screenshot" loading="lazy">
       </div>
@@ -736,8 +1004,8 @@
       </div>
     </div>
 
-    <!-- 12. STUDY SPRINT & EXAM REVISION MATRIX -->
-    <div class="app-card">
+    <!-- 13. STUDY SPRINT & EXAM REVISION MATRIX -->
+    <div class="app-card" data-app-id="study-sprint" data-category="kids" data-title="STUDY SPRINT & EXAM REVISION MATRIX" data-keywords="study sprint exam revision matrix pomodoro timer countdown subjects cbse icse state board recall mock test stationery checklist desk poster homework test" data-url="https://iamsaravofficial.com/apps/study-sprint/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/study-sprint/og-image.png" alt="Study Sprint and Exam Revision Matrix Screenshot" loading="lazy">
       </div>
@@ -759,8 +1027,8 @@
       </div>
     </div>
 
-    <!-- 13. KIDS' FIRST POCKET MONEY & PIGGY BANK LEDGER -->
-    <div class="app-card">
+    <!-- 14. KIDS' FIRST POCKET MONEY & PIGGY BANK LEDGER -->
+    <div class="app-card" data-app-id="piggy-bank-ledger" data-category="kids" data-title="KIDS' POCKET MONEY & PIGGY BANK LEDGER" data-keywords="pocket money piggy bank savings ledger 3-jar spend save give dream goals coins passbook financial literacy kids allowance" data-url="https://iamsaravofficial.com/apps/piggy-bank-ledger/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/piggy-bank-ledger/og-image.png" alt="Kids First Pocket Money and Piggy Bank Ledger Screenshot" loading="lazy">
       </div>
@@ -782,8 +1050,8 @@
       </div>
     </div>
 
-    <!-- 14. KIDS' CHORE & QUEST BOARD -->
-    <div class="app-card">
+    <!-- 15. KIDS' CHORE & QUEST BOARD -->
+    <div class="app-card" data-app-id="chore-quest-board" data-category="kids" data-title="KIDS' CHORE & QUEST BOARD" data-keywords="chores quest board gamification xp shields hero levels streaks parenting daily tasks rewards printable chart cleaning tasks habit rpg" data-url="https://iamsaravofficial.com/apps/chore-quest-board/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/chore-quest-board/og-image.png" alt="Kids Chore and Quest Board Screenshot" loading="lazy">
       </div>
@@ -805,8 +1073,8 @@
       </div>
     </div>
 
-    <!-- 15. SCREEN-TIME SWAP TICKETS & PASSES -->
-    <div class="app-card">
+    <!-- 16. SCREEN-TIME SWAP TICKETS & PASSES -->
+    <div class="app-card" data-app-id="screen-time-passes" data-category="kids" data-title="SCREEN-TIME SWAP TICKETS & PASSES" data-keywords="screen time passes tickets reward tokens golden ticket delayed gratification digital wallet bedtime boon printable cutout sheets ipad tv gaming limits parent control" data-url="https://iamsaravofficial.com/apps/screen-time-passes/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/screen-time-passes/og-image.png" alt="Screen-Time Swap Tickets and Family Passes Screenshot" loading="lazy">
       </div>
@@ -828,8 +1096,8 @@
       </div>
     </div>
 
-    <!-- 16. KIDS' SCREEN-FREE BOREDOM BUSTER WHEEL -->
-    <div class="app-card">
+    <!-- 17. KIDS' SCREEN-FREE BOREDOM BUSTER WHEEL -->
+    <div class="app-card" data-app-id="boredom-buster" data-category="kids" data-title="BOREDOM BUSTER ADVENTURE WHEEL" data-keywords="boredom buster screen-free activities tactile spinning wheel missions weekend bingo crafts indoor games jar slips adventure fun kids games" data-url="https://iamsaravofficial.com/apps/boredom-buster/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/boredom-buster/og-image.png" alt="Kids Screen-Free Boredom Buster Adventure Wheel Screenshot" loading="lazy">
       </div>
@@ -851,8 +1119,8 @@
       </div>
     </div>
 
-    <!-- 17. FAMILY MOVIE & BOARD GAME NIGHT DECIDER -->
-    <div class="app-card">
+    <!-- 18. FAMILY MOVIE & BOARD GAME NIGHT DECIDER -->
+    <div class="app-card" data-app-id="family-movie-night" data-category="family" data-title="FAMILY MOVIE & GAME DECIDER" data-keywords="family movie night board games turn rotator fair pick snacks popcorn ott netflix hotstar prime video tickets 101 movies 40 games weekend cinema games" data-url="https://iamsaravofficial.com/apps/family-movie-night/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/family-movie-night/og-image.png" alt="Family Movie and Board Game Night Decider Screenshot" loading="lazy">
       </div>
@@ -874,8 +1142,8 @@
       </div>
     </div>
 
-    <!-- 18. KIDS' BOOK NOOK & 100-BOOK QUEST -->
-    <div class="app-card">
+    <!-- 19. KIDS' BOOK NOOK & 100-BOOK QUEST -->
+    <div class="app-card" data-app-id="book-nook" data-category="family" data-title="KIDS' BOOK NOOK & 100-BOOK QUEST" data-keywords="books reading book nook 100 books bookshelf library reading quest box sets roald dahl sudha murty geronimo stilton amazon buy printable poster bedtime stories novels" data-url="https://iamsaravofficial.com/apps/book-nook/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/book-nook/og-image.png" alt="Kids Book Nook and 100-Book Quest Screenshot" loading="lazy">
       </div>
@@ -897,8 +1165,8 @@
       </div>
     </div>
 
-    <!-- 19. FAMILY BIRTHDAY & MILESTONE GIFT MATRIX -->
-    <div class="app-card">
+    <!-- 20. FAMILY BIRTHDAY & MILESTONE GIFT MATRIX -->
+    <div class="app-card" data-app-id="birthday-gift-matrix" data-category="family" data-title="FAMILY BIRTHDAY & MILESTONE MATRIX" data-keywords="birthday milestone gift matrix wishlist size vault shoe dress clothes party planner budget duplicate prevent a4 checklist reminder celebrations anniversary gifts" data-url="https://iamsaravofficial.com/apps/birthday-gift-matrix/">
       <div class="card-preview">
         <img src="https://iamsaravofficial.com/apps/birthday-gift-matrix/og-image.png" alt="Family Birthday and Milestone Gift Wishlist Matrix Screenshot" loading="lazy">
       </div>
@@ -968,6 +1236,248 @@ document.querySelectorAll('.eco-dropdown').forEach(function(drop){
 document.addEventListener('click', function(){
   document.querySelectorAll('.eco-dropdown').forEach(function(d){ d.classList.remove('open'); });
 });
+
+// Hub Search, Autocomplete & Intent Filter Engine
+(function(){
+  var searchInput = document.getElementById('hubSearchInput');
+  var searchClear = document.getElementById('hubSearchClear');
+  var searchCount = document.getElementById('hubSearchCount');
+  var autocompleteBox = document.getElementById('hubAutocomplete');
+  var filterChips = document.querySelectorAll('.hub-filter-chip');
+  var noResultsBox = document.getElementById('hubNoResults');
+  var noResultsMsg = document.getElementById('hubNoResultsMsg');
+  var appCards = Array.from(document.querySelectorAll('.app-card'));
+  var spotlightCard = document.getElementById('spotlightTokenomics');
+  var section1Title = document.getElementById('section1TitleWrap');
+  var section2Title = document.getElementById('section2TitleWrap');
+
+  if(!searchInput) return;
+
+  var currentFilter = 'all';
+  var focusedAutoIndex = -1;
+
+  // App catalog items for autocomplete
+  var catalog = [
+    { id: 'tokenomics', title: 'Enterprise AI Economics (Tokenomics)', icon: '🧠', category: 'Enterprise AI', catKey: 'enterprise', url: 'https://iamsaravofficial.com/apps/tokenomics/', keywords: 'tokenomics enterprise ai llm economics gpt claude gemini prompt caching digital workplace roi simulator labor arbitrage contingency buffer tokens' },
+    { id: 'genzalphaslang', title: 'GenZ & Alpha Slang Decoder', icon: '🗣️', category: 'Slang & Culture', catKey: 'slang', url: 'https://iamsaravofficial.com/apps/genzalphaslang/', keywords: 'slang genz gen alpha youth words vocabulary idioms abbreviations neural audio flashcards language dictionary skibidi rizz no cap bet bussin' },
+    { id: 'salary-planner', title: 'Salary Planner', icon: '💰', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/salary-planner/', keywords: 'salary paycheck cashflow budget savings emergency fund hlv life insurance fhs health score surplus take-home debt foir financial health' },
+    { id: 'home-budget-planner', title: 'Home Budget Planner', icon: '🏠', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/home-budget-planner/', keywords: 'home budget bills due dates expenses household 50 30 20 envelopes foir debt grocery rent utilities fhs cashflow' },
+    { id: 'retirement-planner', title: 'Retirement Planner', icon: '🌴', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/retirement-planner/', keywords: 'retirement pension epf nps annuity lump sum age 60 corpus step up inflation compounding rule 9d pf provident fund liquid locked' },
+    { id: 'gold-price-estimator', title: 'Metal Price Estimator', icon: '🥇', category: 'Gold & Metals', catKey: 'gold', url: 'https://iamsaravofficial.com/apps/gold-price-estimator/', keywords: 'gold silver precious metals jewellery billing gross weight stone deduction wastage va making charges gst old gold exchange tola pavan kdm hallmark' },
+    { id: 'gold-loan-calculator', title: 'Gold Loan Calculator', icon: '🏦', category: 'Gold & Metals', catKey: 'gold', url: 'https://iamsaravofficial.com/apps/gold-loan-calculator/', keywords: 'gold loan rbi ltv per gram jewellery pawn bullet monthly interest emi margin call pledge collateral ornaments pledge' },
+    { id: 'digigold-calculator', title: 'DigiGold SIP Calculator', icon: '🪙', category: 'Gold & Metals', catKey: 'gold', url: 'https://iamsaravofficial.com/apps/digigold-calculator/', keywords: 'digigold digital gold sip gst spread buyback capital gains ltcg stcg tax sovereign gold physical delivery 24k' },
+    { id: 'fd-calculator', title: 'FD Calculator', icon: '🔒', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/fd-calculator/', keywords: 'fixed deposit fd interest quarterly compounding cumulative payout tax saver 80c bank tds sec 194a maturity senior citizen term deposit' },
+    { id: 'rd-calculator', title: 'RD Calculator', icon: '🔁', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/rd-calculator/', keywords: 'recurring deposit rd monthly installment iba compounding post office bank savings premature closure tds systematic savings' },
+    { id: 'home-loan-accelerometer', title: 'Home Loan Prepayment Accelerator', icon: '⚡', category: 'Money & Debt', catKey: 'money', url: 'https://iamsaravofficial.com/apps/home-loan-accelerometer/', keywords: 'home loan mortgage prepayment debt free emi tenure reduction interest saved crossover point amortization extra emi lump sum sec 24b housing loan' },
+    { id: 'glow-up-grid', title: 'Glow Up Grid', icon: '🌟', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/glow-up-grid/', keywords: 'glow up habits routine morning bedtime kids routine printable chart sound chimes stars tracker multi-child presets morning evening schedule chore' },
+    { id: 'lunchbox-planner', title: 'School Tiffin & Lunchbox Planner', icon: '🍱', category: 'Family Fun', catKey: 'family', url: 'https://iamsaravofficial.com/apps/lunchbox-planner/', keywords: 'lunchbox tiffin meals school breakfast dinner recipes grocery list whatsapp printable fridge menu nutrition weekly schedule food snack recipes' },
+    { id: 'study-sprint', title: 'Study Sprint & Exam Matrix', icon: '🎒', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/study-sprint/', keywords: 'study sprint exam revision matrix pomodoro timer countdown subjects cbse icse state board recall mock test stationery checklist desk poster homework test' },
+    { id: 'piggy-bank-ledger', title: 'Kids Pocket Money & Piggy Bank Ledger', icon: '🪙', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/piggy-bank-ledger/', keywords: 'pocket money piggy bank savings ledger 3-jar spend save give dream goals coins passbook financial literacy kids allowance' },
+    { id: 'chore-quest-board', title: 'Kids Chore & Quest Board', icon: '⚔️', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/chore-quest-board/', keywords: 'chores quest board gamification xp shields hero levels streaks parenting daily tasks rewards printable chart cleaning tasks habit rpg' },
+    { id: 'screen-time-passes', title: 'Screen-Time Swap Passes', icon: '🎟️', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/screen-time-passes/', keywords: 'screen time passes tickets reward tokens golden ticket delayed gratification digital wallet bedtime boon printable cutout sheets ipad tv gaming limits parent control' },
+    { id: 'boredom-buster', title: 'Boredom Buster Adventure Wheel', icon: '🎡', category: 'Kids & Habits', catKey: 'kids', url: 'https://iamsaravofficial.com/apps/boredom-buster/', keywords: 'boredom buster screen-free activities tactile spinning wheel missions weekend bingo crafts indoor games jar slips adventure fun kids games' },
+    { id: 'family-movie-night', title: 'Family Movie & Game Decider', icon: '🎬', category: 'Family Fun', catKey: 'family', url: 'https://iamsaravofficial.com/apps/family-movie-night/', keywords: 'family movie night board games turn rotator fair pick snacks popcorn ott netflix hotstar prime video tickets 101 movies 40 games weekend cinema games' },
+    { id: 'book-nook', title: "Kids' Book Nook & 100-Book Quest", icon: '📚', category: 'Family Fun', catKey: 'family', url: 'https://iamsaravofficial.com/apps/book-nook/', keywords: 'books reading book nook 100 books bookshelf library reading quest box sets roald dahl sudha murty geronimo stilton amazon buy printable poster bedtime stories novels' },
+    { id: 'birthday-gift-matrix', title: 'Family Birthday & Milestone Matrix', icon: '🎁', category: 'Family Fun', catKey: 'family', url: 'https://iamsaravofficial.com/apps/birthday-gift-matrix/', keywords: 'birthday milestone gift matrix wishlist size vault shoe dress clothes party planner budget duplicate prevent a4 checklist reminder celebrations anniversary gifts' }
+  ];
+
+  function filterApps(){
+    var q = searchInput.value.trim().toLowerCase();
+    searchClear.style.display = q ? 'block' : 'none';
+
+    var visibleCards = 0;
+    var sec1Visible = 0;
+    var sec2Visible = 0;
+
+    appCards.forEach(function(card){
+      var cat = card.getAttribute('data-category') || '';
+      var title = (card.getAttribute('data-title') || '').toLowerCase();
+      var kw = (card.getAttribute('data-keywords') || '').toLowerCase();
+      var desc = (card.querySelector('.card-desc') ? card.querySelector('.card-desc').textContent : '').toLowerCase();
+
+      var matchesCat = (currentFilter === 'all' || cat === currentFilter);
+      var matchesQuery = !q || title.includes(q) || kw.includes(q) || desc.includes(q);
+
+      if(matchesCat && matchesQuery){
+        card.style.display = '';
+        visibleCards++;
+        if(card.closest('#section1Grid')) sec1Visible++;
+        if(card.closest('#section2Grid')) sec2Visible++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Spotlight card visibility
+    if(spotlightCard){
+      if(!q && currentFilter === 'all'){
+        spotlightCard.style.display = '';
+      } else if(q){
+        var spKw = (spotlightCard.getAttribute('data-keywords') || '').toLowerCase();
+        var spTitle = (spotlightCard.getAttribute('data-title') || '').toLowerCase();
+        if(spKw.includes(q) || spTitle.includes(q)){
+          spotlightCard.style.display = '';
+        } else {
+          spotlightCard.style.display = 'none';
+        }
+      } else {
+        spotlightCard.style.display = 'none';
+      }
+    }
+
+    // Section title wraps
+    if(section1Title) section1Title.style.display = sec1Visible > 0 ? '' : 'none';
+    if(section2Title) section2Title.style.display = sec2Visible > 0 ? '' : 'none';
+
+    // Count text
+    if(!q && currentFilter === 'all'){
+      searchCount.textContent = 'Showing 20 of 20 apps';
+    } else {
+      searchCount.textContent = 'Showing ' + visibleCards + ' of 20 apps';
+    }
+
+    // Empty state
+    if(visibleCards === 0 && (!spotlightCard || spotlightCard.style.display === 'none')){
+      noResultsBox.style.display = 'block';
+      noResultsMsg.textContent = q ? 'No apps matched "' + q + '". Try searching for "loan", "budget", "kids", "gold", or click View All 20 Apps.' : 'No apps in this category match.';
+    } else {
+      noResultsBox.style.display = 'none';
+    }
+
+    // Autocomplete rendering
+    renderAutocomplete(q);
+  }
+
+  function renderAutocomplete(q){
+    if(!q || q.length < 2){
+      autocompleteBox.style.display = 'none';
+      autocompleteBox.innerHTML = '';
+      focusedAutoIndex = -1;
+      return;
+    }
+
+    var matches = catalog.filter(function(item){
+      return item.title.toLowerCase().includes(q) || item.keywords.toLowerCase().includes(q) || item.category.toLowerCase().includes(q);
+    }).slice(0, 5);
+
+    if(matches.length === 0){
+      autocompleteBox.style.display = 'none';
+      autocompleteBox.innerHTML = '';
+      focusedAutoIndex = -1;
+      return;
+    }
+
+    var html = '';
+    matches.forEach(function(item, idx){
+      html += '<a href="' + item.url + '" class="hub-autocomplete-item" data-index="' + idx + '">' +
+        '<div class="hub-auto-left">' +
+          '<span class="hub-auto-icon">' + item.icon + '</span>' +
+          '<div>' +
+            '<div class="hub-auto-title">' + item.title + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex; align-items:center; gap:8px;">' +
+          '<span class="hub-auto-cat">' + item.category + '</span>' +
+          '<span class="hub-auto-action">Launch &rarr;</span>' +
+        '</div>' +
+      '</a>';
+    });
+
+    autocompleteBox.innerHTML = html;
+    autocompleteBox.style.display = 'block';
+    focusedAutoIndex = -1;
+  }
+
+  window.resetHubSearch = function(){
+    searchInput.value = '';
+    currentFilter = 'all';
+    filterChips.forEach(function(chip){
+      chip.classList.toggle('active', chip.getAttribute('data-filter') === 'all');
+    });
+    filterApps();
+    searchInput.focus();
+  };
+
+  // Event Listeners
+  searchInput.addEventListener('input', filterApps);
+
+  searchClear.addEventListener('click', function(){
+    searchInput.value = '';
+    filterApps();
+    searchInput.focus();
+  });
+
+  filterChips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var filter = this.getAttribute('data-filter');
+      currentFilter = filter;
+      filterChips.forEach(function(c){ c.classList.remove('active'); });
+      this.classList.add('active');
+      filterApps();
+    });
+  });
+
+  // Global Keyboard Shortcuts
+  document.addEventListener('keydown', function(e){
+    // Press '/' to focus search (unless in an input, textarea, or contentEditable)
+    if(e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)){
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+    }
+  });
+
+  // Search Input Keydown (Arrow navigation, Enter to launch, Esc to clear)
+  searchInput.addEventListener('keydown', function(e){
+    var items = autocompleteBox.querySelectorAll('.hub-autocomplete-item');
+    if(e.key === 'Escape'){
+      if(autocompleteBox.style.display === 'block'){
+        autocompleteBox.style.display = 'none';
+      } else {
+        searchInput.value = '';
+        filterApps();
+        searchInput.blur();
+      }
+    } else if(e.key === 'ArrowDown'){
+      if(items.length > 0){
+        e.preventDefault();
+        focusedAutoIndex = (focusedAutoIndex + 1) % items.length;
+        items.forEach(function(it, i){ it.classList.toggle('focused', i === focusedAutoIndex); });
+      }
+    } else if(e.key === 'ArrowUp'){
+      if(items.length > 0){
+        e.preventDefault();
+        focusedAutoIndex = (focusedAutoIndex - 1 + items.length) % items.length;
+        items.forEach(function(it, i){ it.classList.toggle('focused', i === focusedAutoIndex); });
+      }
+    } else if(e.key === 'Enter'){
+      if(focusedAutoIndex >= 0 && items[focusedAutoIndex]){
+        e.preventDefault();
+        window.location.href = items[focusedAutoIndex].getAttribute('href');
+      } else if(items.length > 0){
+        e.preventDefault();
+        window.location.href = items[0].getAttribute('href');
+      } else {
+        // Find first visible card
+        var firstVis = appCards.find(function(c){ return c.style.display !== 'none'; });
+        if(firstVis){
+          var launchBtn = firstVis.querySelector('.btn-launch');
+          if(launchBtn){
+            e.preventDefault();
+            window.location.href = launchBtn.getAttribute('href');
+          }
+        }
+      }
+    }
+  });
+
+  // Close autocomplete on click outside
+  document.addEventListener('click', function(e){
+    if(!searchInput.contains(e.target) && !autocompleteBox.contains(e.target)){
+      autocompleteBox.style.display = 'none';
+    }
+  });
+})();
 </script>
 </body>
 </html>
