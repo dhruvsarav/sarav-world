@@ -58,12 +58,12 @@ for app_id, dirn in [("genzalphaslang","genzalphaslang"), ("salary-planner","sal
                       ("birthday-gift-matrix","birthday-gift-matrix")]:
     add(f"apps/{dirn}/index.html", ["group"], GROUP_SECTIONS, current_id=app_id)
 
-# 3. Games section (10 pages with navbar) — mode=['group'], sections=[apps,games,projects]
+# 3. Games section (10 pages with navbar) — mode=['group'], sections=['games']
 # Note: samosasnatch has no ecosystem bar (designed as 2-player split-screen tap battle)
-add("games/index.html", ["group"], GROUP_SECTIONS, current_id="games-hub")
+add("games/index.html", ["group"], ["games"], current_id="games-hub")
 for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
           "chitcharades","snackroulette","dialoguedetective","gulelstrike"]:
-    add(f"games/{g}/index.html", ["group"], GROUP_SECTIONS, current_id=g)
+    add(f"games/{g}/index.html", ["group"], ["games"], current_id=g)
 
 # 4. 4-quadrant gateways (2 pages: playground and projects) — all 4 dropdowns
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
@@ -122,6 +122,8 @@ def check_rendered(inner_html, cfg):
     if cfg["path"] in ("playground/index.html", "projects/index.html"):
         expected_dropdowns = 4
     elif "eapps" in cfg["mode"]:
+        expected_dropdowns = 1
+    elif cfg["sections"] == ["games"]:
         expected_dropdowns = 1
     else:
         expected_dropdowns = 3

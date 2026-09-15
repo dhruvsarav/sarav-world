@@ -106,6 +106,7 @@ const enterpriseApps = [
     href: "https://iamsaravofficial.com/apps/tokenomics/",
     badge: "Flagship",
     badgeType: "gold",
+    icon: "🧠",
   },
   {
     title: "SD Optimizer",
@@ -115,15 +116,87 @@ const enterpriseApps = [
     href: "https://iamsaravofficial.com/apps/sdoptimizer/",
     badge: "Operations",
     badgeType: "teal",
+    icon: "🎧",
+  },
+  {
+    title: "FS Optimizer",
+    subtitle: "Field Services Hub-Spoke",
+    text: "Square-root travel law, dispatch transit modeling, remote AI deflection, and vehicle OPEX optimization.",
+    image: "/apps/fsoptimizer/og-image.png",
+    href: "https://iamsaravofficial.com/apps/fsoptimizer/",
+    badge: "Field Services",
+    badgeType: "teal",
+    icon: "🚐",
   },
   {
     title: "Deskside Staffing",
-    subtitle: "Field Services Optimizer",
-    text: "Campus dispatch density, device-to-technician ratios, VIP white-glove coverage, and SLA buffer calculation.",
+    subtitle: "Tech Bar & Locker Sizing",
+    text: "Dual-tier Erlang C queueing, VIP priority queue, smart locker deflection, and hybrid office attendance surges.",
     image: "/apps/desksidestaffing/og-image.png",
     href: "https://iamsaravofficial.com/apps/desksidestaffing/",
-    badge: "Field Services",
+    badge: "Tech Bar",
     badgeType: "purple",
+    icon: "💻",
+  },
+  {
+    title: "DEX Advisor",
+    subtitle: "DEX Platform Evaluator",
+    text: "1E, Nexthink, and Riverbed MAUT utility scoring, 3-year TCO envelope, and SLA-to-XLA migration playbook.",
+    image: "/apps/dexadvisor/og-image.png",
+    href: "https://iamsaravofficial.com/apps/dexadvisor/",
+    badge: "Architecture",
+    badgeType: "gold",
+    icon: "📊",
+  },
+  {
+    title: "ITSM Advisor",
+    subtitle: "Platform Fit Evaluator",
+    text: "ServiceNow, Jira, Freshservice, BMC Helix, and Ivanti MAUT matrix, pain point scoring, and migration roadmap.",
+    image: "/apps/itsmadvisor/og-image.png",
+    href: "https://iamsaravofficial.com/apps/itsmadvisor/",
+    badge: "ITSM Fit",
+    badgeType: "purple",
+    icon: "🎯",
+  },
+  {
+    title: "Vendor RFP Scorer",
+    subtitle: "Procurement Matrix",
+    text: "Multi-attribute scoring matrix, non-negotiable compliance gatekeepers, and DWP/ITSM procurement templates.",
+    image: "/apps/rfpscorer/og-image.png",
+    href: "https://iamsaravofficial.com/apps/rfpscorer/",
+    badge: "Procurement",
+    badgeType: "teal",
+    icon: "⚖️",
+  },
+  {
+    title: "AI in ITSM",
+    subtitle: "Business Case Builder",
+    text: "Discounted Cash Flow (DCF), NPV, Payback period, SD scenario recomputation, and 5x5 quantitative risk matrix.",
+    image: "/apps/aiinitsm/og-image.png",
+    href: "https://iamsaravofficial.com/apps/aiinitsm/",
+    badge: "Financial Case",
+    badgeType: "gold",
+    icon: "📈",
+  },
+  {
+    title: "Automation Advisor",
+    subtitle: "Realization Ceiling Engine",
+    text: "Bottom-up toolchain ceiling, 50-call-driver ITIL library, digital reachability scaling, and 5-to-7 year realization.",
+    image: "/apps/automationscore/og-image.png",
+    href: "https://iamsaravofficial.com/apps/automationscore/",
+    badge: "Automation",
+    badgeType: "purple",
+    icon: "⚡",
+  },
+  {
+    title: "DWS Maturity",
+    subtitle: "Digital Workplace Assessment",
+    text: "8 operational pillars, 48 capabilities, SVG radar spider chart, maturity scoring, and gap auto-routing.",
+    image: "/apps/dwpassessment/og-image.png",
+    href: "https://iamsaravofficial.com/apps/dwpassessment/",
+    badge: "Maturity",
+    badgeType: "gold",
+    icon: "🕸️",
   },
 ];
 
@@ -536,6 +609,16 @@ function Work() {
 // ──────────────────────────────────────────────────────────────
 
 function Builder() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeApp = enterpriseApps[activeIdx];
+  const scrollerRef = useRef(null);
+
+  const scrollScroller = (dir) => {
+    if (scrollerRef.current) {
+      scrollerRef.current.scrollBy({ left: dir * 280, behavior: "smooth" });
+    }
+  };
+
   return (
     <section className="section" id="apps">
       <motion.p className="section-kicker center-copy"
@@ -580,36 +663,100 @@ function Builder() {
         </motion.a>
       </motion.div>
 
-      <motion.div className="card-grid three app-grid"
-        initial="hidden" whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.12 } } }}
-      >
-        {enterpriseApps.map((app) => (
-          <motion.article key={app.title} className="glass-card app-card enterprise-app-card"
-            variants={{
-              hidden: { opacity: 0, y: 32 },
-              show:   { opacity: 1, y: 0, transition: { duration: 0.7, ease } },
-            }}
-            whileHover={{ y: -6, transition: { type: "spring", stiffness: 300, damping: 22 } }}
+      {/* Interactive Tool Showcase Stage */}
+      <div className="tool-showcase-stage">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeApp.title}
+            className="tool-showcase-spotlight glass-card"
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -14 }}
+            transition={{ duration: 0.35, ease }}
           >
-            <a href={app.href} className="app-card-anchor">
-              <div className="app-shot-wrap">
-                <img src={app.image} alt={app.title} className="app-shot" loading="lazy" />
-                <span className={`enterprise-badge badge-${app.badgeType}`}>{app.badge}</span>
+            <div className="tool-spotlight-grid">
+              <div className="tool-spotlight-shot-wrap">
+                <img src={activeApp.image} alt={activeApp.title} className="tool-spotlight-shot" />
+                <span className={`enterprise-badge badge-${activeApp.badgeType}`}>{activeApp.badge}</span>
+                <div className="tool-spotlight-num">0{activeIdx + 1} / 10</div>
               </div>
-              <div className="app-card-body">
-                <span className="app-card-subtitle">{app.subtitle}</span>
-                <h3 className="app-card-title">{app.title}</h3>
-                <p className="app-card-desc">{app.text}</p>
-                <div className="app-card-footer">
-                  <span className="launch-link">Launch Tool →</span>
+              <div className="tool-spotlight-body">
+                <div className="tool-spotlight-meta">
+                  <span className="tool-spotlight-icon">{activeApp.icon}</span>
+                  <span className="app-card-subtitle">{activeApp.subtitle}</span>
+                </div>
+                <h3 className="tool-spotlight-title">{activeApp.title}</h3>
+                <p className="tool-spotlight-desc">{activeApp.text}</p>
+                <div className="tool-spotlight-actions">
+                  <a
+                    href={activeApp.href}
+                    className="btn btn-primary tool-launch-btn"
+                  >
+                    <span>Launch {activeApp.title}</span>
+                    <span className="btn-arrow">↗</span>
+                  </a>
+                  <a
+                    href="/eapps/"
+                    className="tool-view-all-link"
+                  >
+                    Executive Suite Portal →
+                  </a>
                 </div>
               </div>
-            </a>
-          </motion.article>
-        ))}
-      </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* 10-Tool Horizontal Scroller Bar at the Bottom */}
+        <div className="tool-scroller-wrap">
+          <div className="tool-scroller-header">
+            <span className="tool-scroller-label">
+              <span className="tool-scroller-dot"></span>
+              All 10 Enterprise Architecture Simulators &amp; Decision Engines
+            </span>
+            <div className="tool-scroller-nav">
+              <button
+                type="button"
+                className="tool-scroller-arrow"
+                onClick={() => scrollScroller(-1)}
+                aria-label="Scroll left"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                className="tool-scroller-arrow"
+                onClick={() => scrollScroller(1)}
+                aria-label="Scroll right"
+              >
+                ›
+              </button>
+            </div>
+          </div>
+
+          <div className="tool-scroller-track" ref={scrollerRef}>
+            {enterpriseApps.map((app, idx) => {
+              const isSelected = idx === activeIdx;
+              return (
+                <button
+                  key={app.title}
+                  type="button"
+                  onClick={() => setActiveIdx(idx)}
+                  className={`tool-scroller-pill ${isSelected ? "active" : ""}`}
+                >
+                  <span className="scroller-pill-idx">0{idx + 1}</span>
+                  <span className="scroller-pill-icon">{app.icon}</span>
+                  <div className="scroller-pill-info">
+                    <span className="scroller-pill-title">{app.title}</span>
+                    <span className="scroller-pill-sub">{app.subtitle}</span>
+                  </div>
+                  {isSelected && <span className="scroller-pill-check">●</span>}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

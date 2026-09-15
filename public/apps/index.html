@@ -302,10 +302,20 @@
   }
   .card-stats { font-size: 12px; color: var(--text-faint); font-family: 'IBM Plex Mono', monospace; }
   .btn-launch {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--surface-2); border: 1px solid var(--border); color: var(--accent);
-    padding: 6px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 5px;
+    background: #E3A63E; border: 1px solid #C1810A; color: #000000 !important;
+    padding: 7px 14px; border-radius: 8px; font-size: 12.5px; font-weight: 700;
     transition: all 0.15s ease; text-decoration: none;
+    box-shadow: 0 2px 8px rgba(227, 166, 62, 0.25);
+  }
+  .btn-launch:hover {
+    background: #F5B94E; color: #000000 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(227, 166, 62, 0.45);
+    text-decoration: none;
+  }
+  .app-card:hover .btn-launch {
+    background: #F5B94E; color: #000000 !important;
   }
   /* Playground Hub Search & Intent Filter Studio */
   .hub-search-container {
