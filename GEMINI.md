@@ -37,9 +37,16 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    20. `birthday-gift-matrix` (Family Birthday & Milestone Gift Wishlist Matrix)
    *Amazon Associates Tracking ID*: `dhrav-21` strictly applied to curated shopping links across relevant planners (`piggy-bank-ledger`, `boredom-buster`, `family-movie-night`, `book-nook`, `birthday-gift-matrix`).
 3. **Footer Distinction**:
-   - **Consumer Retail Web Apps (All Calculators & Utility Apps)**:
-     `Web Apps Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
+   - **Consumer Retail Web Apps (Non-Affiliate)**:
+     `[App Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
      `&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.`
+   - **Curated Planners with Amazon Affiliate (`dhrav-21`)**:
+     `[Planner Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
+     `&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. 100% Client-Side Privacy &bull; Zero Telemetry &bull; LocalStorage Persistence`
+     `Amazon Associates Disclosure: As an Amazon Associate, Sarav's World earns from qualifying purchases made via links featuring tracking ID <code>dhrav-21</code>.`
+   - **Family Games Arcade & Individual Games**:
+     `[Game Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).`
+     `&copy; 2009–2026 <a href="https://iamsaravofficial.com/">Sarav's World</a>. Engineered with zero external trackers, zero ads, and pure client-side code.`
    - **Enterprise AI Economics (Tokenomics — ALWAYS SEPARATE)**:
      `Tokenomics Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head</b>.`
      `&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.`
