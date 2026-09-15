@@ -332,6 +332,16 @@
 
   /* Confetti Canvas */
   #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 7000; }
+
+  footer {
+    text-align: center; padding: 30px 16px 10px; font-size: 12.5px;
+    color: var(--text-faint); border-top: 1px solid var(--border-soft);
+    margin-top: 40px; line-height: 1.6;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+  footer p { margin: 4px 0; }
 </style>
 </head>
 <body>
@@ -440,15 +450,14 @@
       <button class="editor-add-btn" id="addCustomBtn">+ Add to Wheel</button>
     </div>
   </div>
+
+  <footer>
+    <p>Snack Roulette Wheel Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
+    <p>&copy; 2009–2026 <a href="https://iamsaravofficial.com/">Sarav's World</a>. Engineered with zero external trackers, zero ads, and pure client-side code.</p>
+  </footer>
 </div>
 
 <canvas id="confettiCanvas"></canvas>
-
-
-<footer>
-  <p>Snack Roulette Wheel Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>).</p>
-  <p>&copy; 2009–2026 <a href="https://iamsaravofficial.com/">Sarav's World</a>. Engineered with zero external trackers, zero ads, and pure client-side code.</p>
-</footer>
 
 <script>
 /* ----------------------------------------------------
