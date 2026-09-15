@@ -100,8 +100,9 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
       * All other 9 engines + Shared Workspace + `/eapps/` hub: `<img src="https://iamsaravofficial.com/eapps/eapps-square.png" ...>Digital Workplace Suite · Version 2026.09`
     - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/`, Universal Shared Workspace, and all 10 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
    - **Footer Standard for Enterprise Apps**:
-     `Executive Design Engine Suite crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). <b>Digital Workplace Technology Head &amp; Chief AI Architect</b>.`
-     `&copy; 2009–2026 <a href="https://iamsaravofficial.com/eapps/">Executive Design Engines</a>. Zero telemetry. All calculations run strictly client-side.`
+      Line 1: `[App Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). Digital Workplace Technology Head &amp; Chief AI Architect.` (only `<b>Sarav</b>` in bold; title in normal font)
+      Line 2: `<a href="https://iamsaravofficial.com/eapps/">2026 Executive Design Engines</a>. Zero telemetry. [Engine tail: All calculations run strictly client-side / All scoring runs client-side / Independent assessment, not vendor-sponsored].` (copyright year range removed, strictly `2026 Executive Design Engines`)
+      Line 3 (for `dwpassessment`): `Level descriptions are Executive Design Engines' independent maturity-model design (Ad Hoc → Optimized). Not a certified or licensed framework — use as a structured self-assessment starting point.`
 10. **Official Brand Icon Systems across All 5 Portals**:
    - **Playground Gateway (`/playground/`)**:
      * Official Brand Icon: **The Celestial 4-Way Nexus Portal** (Isometric futuristic crystal nexus uniting cyber gold, digital cyan, neon magenta, and sacred gold beams converging on a quantum orb).
