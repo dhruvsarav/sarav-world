@@ -221,3 +221,27 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
   - Generator script: `scripts/generate_store_assets.py` (Pillow + SVG with supersampling).
   - Assets: `favicon.svg`, `favicon-32.png`, `favicon-192.png`, `apple-touch-icon-180.png`, `favicon.ico`, `store-full.png` (512x512), and `og-image.png` (1200x630 with category pills and Amazon tag disclosure).
 
+---
+
+### 12. Homepage `#apps` Interactive Showcase & Scroller Architecture
+- **Dual CSS Synchronization**: Both `src/index.css` and `src/App.css` are kept in sync and explicitly imported in `src/main.jsx`.
+- **Spotlight Preview Containment**: `.tool-spotlight-shot-wrap` is capped with `aspect-ratio: 16 / 9; max-height: 280px; overflow: hidden;` to ensure screenshots/brain graphics never blow up beyond their designed card boundaries regardless of viewport resolution.
+- **Scroller Mechanics**: `.tool-scroller-track` renders all 10 enterprise architecture engines with active selection state, smooth scrolling, left/right track nav arrows, and responsive mobile padding (`@media (max-width: 640px)`).
+
+### 13. Games 5 to 10 Canonical Footer Rules
+- **Containment Rule**: For arcade games with centered layouts (`cuptoss`, `bottleflip`, `chitcharades`, `snackroulette`, `dialoguedetective`, `gulelstrike`), `<footer>` must reside *inside* `<div class="game-container">` before its closing tag to preserve centered max-width alignment.
+- **Split-Screen Exception**: Full-screen 100dvh split-screen touch battle games like `samosasnatch` must NOT have an outer `<footer>` on the gameplay page, as this triggers vertical viewport scrolling on touch/tap. The footer attribution is placed inside the setup modal (`#setupModal .modal-box`).
+- **Fullscreen Invisibility**: All arcade games with fullscreen modes must declare `body.is-fullscreen footer { display: none !important; }`.
+- **Canonical Typography**:
+  ```css
+  footer {
+    text-align: center; padding: 30px 16px 10px; font-size: 12.5px;
+    color: var(--text-faint); border-top: 1px solid var(--border-soft);
+    margin-top: 40px; line-height: 1.6;
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); text-decoration: underline; }
+  footer b { color: var(--text); }
+  footer p { margin: 4px 0; }
+  ```
+
