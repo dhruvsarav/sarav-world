@@ -101,7 +101,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
     - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/`, Universal Shared Workspace, and all 10 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
    - **Footer Standard for Enterprise Apps**:
       Line 1: `[App Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). Digital Workplace Technology Head &amp; Chief AI Architect.` (only `<b>Sarav</b>` in bold; title in normal font)
-      Line 2: `<a href="https://iamsaravofficial.com/eapps/">2026 Executive Design Engines</a>. Zero telemetry. [Engine tail: All calculations run strictly client-side / All scoring runs client-side / Independent assessment, not vendor-sponsored].` (copyright year range removed, strictly `2026 Executive Design Engines`)
+      Line 2: `<a href="https://iamsaravofficial.com/eapps/">2026 Executive Design Engines</a>. Zero telemetry. [Engine tail: All calculations run strictly client-side / All scoring runs client-side / Independent assessment, not vendor-sponsored / Universal Shared Workspace: 100% Client-Side Private Local Storage · Zero Cloud Telemetry · Designed for Global Architects & CXOs].` (copyright year range removed, strictly `2026 Executive Design Engines`)
       Line 3 (for `dwpassessment`): `Level descriptions are Executive Design Engines' independent maturity-model design (Ad Hoc → Optimized). Not a certified or licensed framework — use as a structured self-assessment starting point.`
 10. **Official Brand Icon Systems across All 5 Portals**:
    - **Playground Gateway (`/playground/`)**:
