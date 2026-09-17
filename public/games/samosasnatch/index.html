@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700;800&family=IBM+Plex+Mono:wght@600;700&family=Bungee&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 
 <style>
   :root, [data-theme="dark"] {
@@ -224,7 +225,10 @@
   <div class="winner-trophy" id="winTrophy">🥟</div>
   <h2 class="winner-title bungee" id="winTitle">WIFEY SNATCHED IT!</h2>
   <div class="winner-score mono" id="winScore">Score: 1 — 0</div>
-  <button class="next-round-btn bungee" onclick="continueNextRound()">⚡ NEXT ROUND ⚡</button>
+  <div style="display:flex; flex-direction:column; gap:12px; width:100%; max-width:280px;">
+    <button class="next-round-btn bungee" onclick="continueNextRound()">⚡ NEXT ROUND ⚡</button>
+    <button type="button" class="preset-btn" style="background:#25D366; color:#000; font-weight:800; font-size:13.5px; padding:12px 20px; border-radius:12px; border:none; cursor:pointer;" onclick="shareSamosaVictorImage()">🖼️ SHARE VICTOR CARD</button>
+  </div>
 </div>
 
 <div class="battle-arena">
@@ -415,8 +419,11 @@ function checkWinner(){
   }
 }
 
+var lastRoundWinner = 1;
+
 function onRoundEnd(winnerNum){
   isPlaying = false;
+  lastRoundWinner = winnerNum;
   clearTimeout(freezeTimer);
   document.getElementById('freezeBanner').classList.remove('active');
 
@@ -435,6 +442,22 @@ function onRoundEnd(winnerNum){
   document.getElementById('winTitle').innerText = winner.toUpperCase() + ' SNATCHED IT!';
   document.getElementById('winScore').innerText = player1 + ' (' + p1Wins + ') — ' + player2 + ' (' + p2Wins + ')';
   overlay.classList.add('active');
+}
+
+function shareSamosaVictorImage() {
+  if (window.SaravShareCard && window.SaravShareCard.shareSamosaVictor) {
+    var winnerName = lastRoundWinner === 1 ? player1 : player2;
+    var loserName = lastRoundWinner === 1 ? player2 : player1;
+    window.SaravShareCard.shareSamosaVictor({
+      winner: winnerName,
+      loser: loserName,
+      p1Name: player1,
+      p2Name: player2,
+      p1Wins: p1Wins,
+      p2Wins: p2Wins,
+      prizeIcon: prizeIcon
+    });
+  }
 }
 
 function continueNextRound(){

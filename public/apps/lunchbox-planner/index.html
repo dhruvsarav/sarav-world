@@ -30,6 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 
 <style>
 :root, [data-theme="dark"] {
@@ -616,6 +617,7 @@ footer b { color: var(--text); }
   <!-- Universal 4-Action Utility Bar -->
   <div class="bottom-utility-bar">
     <div class="utility-left">
+      <button type="button" class="btn-action" style="background:#25D366; color:#000;" id="btnShareMenuImage">🖼️ Share Menu Card</button>
       <button type="button" class="btn-action coral" id="btnPrintFridge">🖨️ Print Fridge Poster (A4)</button>
       <button type="button" class="btn-action secondary" id="btnCopyMenuBrief">📋 Copy Weekly Menu</button>
       <button type="button" class="btn-action secondary" id="btnSaveRoutinePreset">💾 Save Week as Preset</button>
@@ -1382,6 +1384,21 @@ $('btnToggleAllPantry').addEventListener('click', toggleAllPantry);
 $('btnAddCustomGrocery').addEventListener('click', addCustomGrocery);
 $('inputCustomGrocery').addEventListener('keydown', (e) => { if (e.key === 'Enter') addCustomGrocery(); });
 $('btnWhatsAppGrocery').addEventListener('click', shareOnWhatsApp);
+$('btnShareMenuImage').addEventListener('click', () => {
+  if (window.SaravShareCard && window.SaravShareCard.shareLunchboxWeek) {
+    const pName = PRESET_PLANS[state.activePreset]?.name || 'Custom Week';
+    window.SaravShareCard.shareLunchboxWeek({
+      schedule: state.schedule,
+      presetName: pName,
+      resolveDish: (id) => {
+        const r = getRecipe(id);
+        return r ? r.name : (id || '—');
+      }
+    });
+  } else {
+    showToast('Loading share engine...');
+  }
+});
 $('btnPrintFridge').addEventListener('click', () => window.print());
 $('btnCopyMenuBrief').addEventListener('click', copyWeeklyMenu);
 $('btnSaveRoutinePreset').addEventListener('click', saveRoutinePreset);

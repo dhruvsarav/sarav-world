@@ -30,6 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&family=Bungee&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 
 <style>
   :root, [data-theme="dark"] {
@@ -757,6 +758,9 @@
       All hail the king! Today's coffee duty is officially excused!
     </div>
     <div class="win-actions">
+      <button type="button" class="btn-whatsapp" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: #000;" onclick="shareWinnerCardImage()">
+        <span>🖼️ Share as Winner Card</span>
+      </button>
       <a href="#" class="btn-whatsapp" id="winShareBtn" target="_blank">
         <span>📱 Share Verdict on WhatsApp</span>
       </a>
@@ -1132,8 +1136,11 @@
     });
   }
 
+  let lastJackpotWinner = null;
+
   // HANDLE WIN
   function handleJackpotWin(winner) {
+    lastJackpotWinner = winner;
     isSpinning = false;
     document.getElementById('spinBtn').disabled = false;
     document.getElementById('statusMessage').textContent = `🏆 JACKPOT! ${winner.name.toUpperCase()} WINS!`;
@@ -1188,6 +1195,30 @@
     document.getElementById('winShareBtn').href = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMsg)}`;
 
     document.getElementById('winnerOverlay').classList.add('active');
+  }
+
+  function shareWinnerCardImage() {
+    if (window.SaravShareCard && window.SaravShareCard.shareFamilyJackpotWinner) {
+      const scoreList = [
+        { role: '👨‍💼 Daddy', count: scores.daddy || 0 },
+        { role: '👩‍💼 Mummy', count: scores.mummy || 0 },
+        { role: '🤵 Hubby', count: scores.hubby || 0 },
+        { role: '👰 Wifey', count: scores.wifey || 0 },
+        { role: '🧒 MyKid', count: scores.mykid || 0 }
+      ];
+      const winLetters = lastJackpotWinner ? lastJackpotWinner.letters : ['D', 'A', 'D', 'D', 'Y'];
+      const winEmoji = lastJackpotWinner ? lastJackpotWinner.emoji : '👑';
+      const headerText = document.getElementById('winHeader').textContent;
+      const verdict = document.getElementById('winVerdictText').textContent;
+
+      window.SaravShareCard.shareFamilyJackpotWinner({
+        trophy: winEmoji,
+        headerText: headerText,
+        letters: winLetters,
+        verdict: verdict,
+        scores: scoreList
+      });
+    }
   }
 
   function closeWinnerModal() {

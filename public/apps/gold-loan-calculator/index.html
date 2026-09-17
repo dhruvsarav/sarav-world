@@ -24,6 +24,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 <style>
   :root {
     --gold-primary: #C1810A;
@@ -941,6 +942,9 @@
 
       <!-- Action Bar -->
       <div class="actionbar">
+        <button class="btn" style="background:#25D366; color:#000; font-weight:700;" onclick="shareQuoteImage()">
+          <span>🖼️ Share Quote Card</span>
+        </button>
         <button class="btn primary" onclick="shareQuote()">
           <span>📱 Share on WhatsApp</span>
         </button>
@@ -1253,6 +1257,16 @@
     // Risk Note
     document.getElementById('riskNote').innerHTML =
       '<b>Collateral Buffer Alert:</b> If 24K gold rate drops by <b>' + dropToTrigger85.toFixed(1) + '%</b> (to ₹' + Math.round(dropPrice24k).toLocaleString('en-IN') + '/gm), your LTV will exceed 85%, triggering a lender margin call (demanding immediate part-prepayment). Borrow with an adequate safety buffer.';
+  }
+
+  function shareQuoteImage(){
+    if(!lastLoanResult) calculate();
+    if(!lastLoanResult) return;
+    if(window.SaravShareCard && window.SaravShareCard.shareGoldLoanQuote){
+      window.SaravShareCard.shareGoldLoanQuote({ result: lastLoanResult });
+    } else {
+      showToast('Loading share engine...');
+    }
   }
 
   function shareQuote(){

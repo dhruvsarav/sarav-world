@@ -30,6 +30,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 
 <style>
   :root, [data-theme="dark"] {
@@ -733,6 +734,9 @@
 
   <!-- Universal 4-Action Suite -->
   <div class="action-bar">
+    <button type="button" class="btn-action" style="background:#25D366; color:#000; font-weight:700;" onclick="shareGoalCertificateImage()">
+      <span>🖼️</span> Share Milestone Card
+    </button>
     <button type="button" class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
       <span>📱</span> Share on WhatsApp
     </button>
@@ -1809,6 +1813,14 @@ function clearPassbook() {
 }
 
 // --- Universal Action Handlers ---
+function shareGoalCertificateImage() {
+  if (window.SaravShareCard && window.SaravShareCard.sharePiggyBankGoal) {
+    window.SaravShareCard.sharePiggyBankGoal({ state: state });
+  } else {
+    showToast('Loading share engine...');
+  }
+}
+
 function shareWhatsApp() {
   var pct = Math.min(100, Math.round((state.save / state.goal.target) * 100));
   var buyUrl = buildAmazonAffiliateUrl(state.goal);

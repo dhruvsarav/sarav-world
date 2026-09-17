@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="/share-card.js" defer></script>
 
 <style>
   :root, [data-theme="dark"] {
@@ -845,6 +846,7 @@
 
   <!-- Universal 4-Action Suite -->
   <div class="actions-bar">
+    <button type="button" class="action-btn" style="background:#25D366; color:#000; font-weight:700;" onclick="shareBudgetScorecardImage()">🖼️ Share Image Card</button>
     <button type="button" class="action-btn primary" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
     <button type="button" class="action-btn" onclick="copyMonthlySummary()">📋 Copy Summary</button>
     <button type="button" class="action-btn" onclick="exportBackupJson()">💾 Backup JSON</button>
@@ -1765,6 +1767,25 @@ document.querySelectorAll('.tabbtn').forEach(function(btn){
 // ============================================================================
 // UNIVERSAL 4-ACTION SUITE
 // ============================================================================
+function shareBudgetScorecardImage(){
+  if(window.SaravShareCard && window.SaravShareCard.shareBudgetScorecard){
+    var st = computeFinancialStatus();
+    var paidBills = (state.bills || []).filter(function(b){ return b.paid; }).length;
+    var pendingBills = (state.bills || []).filter(function(b){ return !b.paid; }).length;
+    window.SaravShareCard.shareBudgetScorecard({
+      monthName: monthLabel(currentMonth),
+      income: st.totalIncome,
+      fixed: st.totalFixedCommitted,
+      variable: st.variableSpent,
+      surplus: st.netSurplus,
+      billsPaidCount: paidBills,
+      billsPendingCount: pendingBills
+    });
+  } else {
+    showToast('Loading share engine...');
+  }
+}
+
 function shareWhatsApp(){
   var st = computeFinancialStatus();
   var text = [

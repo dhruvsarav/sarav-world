@@ -57,6 +57,12 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - `🖨️ Print / Save PDF`: Clean `window.print()` with `@media print` rules hiding menubars, themes, and action buttons.
    - `📋 Copy Summary`: Structured text summary copied to clipboard using `navigator.clipboard.writeText` with automatic hidden textarea fallback (`fallbackCopy`). Displays non-blocking floating toast.
    - `💾 Save to History / Favorites / Backup`: Client-side `localStorage` persistence with timestamp, load, delete, backup/restore JSON, and clear actions, accompanied by non-blocking toast feedback.
+   - `🖼️ Share as Image (Client-Side Canvas 2D Engine)`:
+     * Script: `<script src="/share-card.js"></script>` (`window.SaravShareCard`).
+     * Replicates native Sahi Android app's "Share as Image" feature in web apps and arcade games.
+     * High-DPI Canvas 2D rendering (2x Retina scale) with branded headers, metric badges, pill chips, and zero external dependencies (100% private, client-side).
+     * Invokes Web Share API Level 2 (`navigator.share({ files: [file] })`) on mobile devices (direct WhatsApp attachment) with seamless desktop fallbacks (`ClipboardItem` image copying and direct PNG download).
+     * **Scope Directive**: Strictly applied ONLY to curated consumer apps and family games (`lunchbox-planner`, `home-budget-planner`, `gold-loan-calculator`, `piggy-bank-ledger`, `familywinner`, `sentimeter`, `samosasnatch`). **Strictly excluded from `eapps`**.
 6. **Zero Blocking Alert/Prompt Modals & Toast Standard (Gold Price Estimator Benchmark)**:
    - **All 15 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
    - Standardized `showToast(msg)` float element (`#toast`, 2.6s auto-dismiss) styled cleanly to match each app's palette.
