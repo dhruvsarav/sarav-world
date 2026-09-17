@@ -1,0 +1,1078 @@
+{
+  "version": "2026.09",
+  "disclaimer": "Volume shares are computed from your uploaded ticket export. Tool feasibility, AI-assist, and DEX-prevention ratings are Nalkudil Studio's independent directional benchmarks, not analyst-sourced or client-verified. Edit any number to match your own environment before using this for a real business case.",
+  "tools": [
+    {
+      "id": "servicenow",
+      "name": "ServiceNow"
+    },
+    {
+      "id": "nexthink",
+      "name": "Nexthink"
+    },
+    {
+      "id": "intune",
+      "name": "Intune"
+    },
+    {
+      "id": "sccm",
+      "name": "SCCM"
+    },
+    {
+      "id": "automationanywhere",
+      "name": "Automation Anywhere"
+    },
+    {
+      "id": "azureai",
+      "name": "Azure AI"
+    },
+    {
+      "id": "gotoresolve",
+      "name": "GoTo Resolve"
+    }
+  ],
+  "industries": [
+    {
+      "id": "cmt",
+      "name": "Communications, Media & Technology",
+      "reachability": 75
+    },
+    {
+      "id": "bfsi",
+      "name": "BFSI",
+      "reachability": 60
+    },
+    {
+      "id": "pubsec",
+      "name": "Public Sector / Government",
+      "reachability": 60
+    },
+    {
+      "id": "profserv",
+      "name": "Professional Services",
+      "reachability": 60
+    },
+    {
+      "id": "healthcare",
+      "name": "Healthcare & Life Sciences",
+      "reachability": 55
+    },
+    {
+      "id": "retail",
+      "name": "Retail & Consumer",
+      "reachability": 45
+    },
+    {
+      "id": "energy",
+      "name": "Energy & Utilities",
+      "reachability": 45
+    },
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing",
+      "reachability": 40
+    }
+  ],
+  "drivers": [
+    {
+      "id": "d01",
+      "name": "Password Reset",
+      "category": "Identity",
+      "volShare": 15,
+      "tool": "intune",
+      "feasWith": 90,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 30,
+      "dexWithout": 4,
+      "symptoms": [
+        "forgot my password",
+        "can't log in password expired",
+        "need password reset"
+      ],
+      "matchText": "Password Reset. forgot my password. can't log in password expired. need password reset"
+    },
+    {
+      "id": "d02",
+      "name": "Account Lockout",
+      "category": "Identity",
+      "volShare": 6,
+      "tool": "intune",
+      "feasWith": 85,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 35,
+      "dexWithout": 5,
+      "symptoms": [
+        "account locked out",
+        "too many failed login attempts",
+        "locked out of my account"
+      ],
+      "matchText": "Account Lockout. account locked out. too many failed login attempts. locked out of my account"
+    },
+    {
+      "id": "d03",
+      "name": "MFA Enrollment / Reset",
+      "category": "Identity",
+      "volShare": 3,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 25,
+      "dexWithout": 4,
+      "symptoms": [
+        "mfa not working",
+        "lost my authenticator",
+        "need to reset multi factor authentication"
+      ],
+      "matchText": "MFA Enrollment / Reset. mfa not working. lost my authenticator. need to reset multi factor authentication"
+    },
+    {
+      "id": "d04",
+      "name": "New Access Request (app/folder)",
+      "category": "Identity",
+      "volShare": 4,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "need access to shared folder",
+        "request access to application",
+        "please grant permission to"
+      ],
+      "matchText": "New Access Request (app/folder). need access to shared folder. request access to application. please grant permission to"
+    },
+    {
+      "id": "d05",
+      "name": "Access Revocation Request",
+      "category": "Identity",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "remove access for departed user",
+        "revoke permission to system",
+        "take away access rights"
+      ],
+      "matchText": "Access Revocation Request. remove access for departed user. revoke permission to system. take away access rights"
+    },
+    {
+      "id": "d06",
+      "name": "VPN Account Setup",
+      "category": "Identity",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 15,
+      "dexWithout": 2,
+      "symptoms": [
+        "need vpn account created",
+        "set up vpn access",
+        "new vpn credentials request"
+      ],
+      "matchText": "VPN Account Setup. need vpn account created. set up vpn access. new vpn credentials request"
+    },
+    {
+      "id": "d07",
+      "name": "Laptop Slow Performance",
+      "category": "Device",
+      "volShare": 4,
+      "tool": "nexthink",
+      "feasWith": 65,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 70,
+      "dexWithout": 10,
+      "symptoms": [
+        "laptop running very slow",
+        "computer is sluggish",
+        "system takes forever to load"
+      ],
+      "matchText": "Laptop Slow Performance. laptop running very slow. computer is sluggish. system takes forever to load"
+    },
+    {
+      "id": "d08",
+      "name": "Laptop Hardware Failure",
+      "category": "Device",
+      "volShare": 2,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "laptop won't turn on",
+        "screen is cracked",
+        "hardware is dead won't boot"
+      ],
+      "matchText": "Laptop Hardware Failure. laptop won't turn on. screen is cracked. hardware is dead won't boot"
+    },
+    {
+      "id": "d09",
+      "name": "Battery Degradation Complaint",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "nexthink",
+      "feasWith": 55,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 60,
+      "dexWithout": 9,
+      "symptoms": [
+        "battery drains too fast",
+        "laptop battery not holding charge",
+        "battery life is terrible"
+      ],
+      "matchText": "Battery Degradation Complaint. battery drains too fast. laptop battery not holding charge. battery life is terrible"
+    },
+    {
+      "id": "d10",
+      "name": "Disk Space Warning",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 75,
+      "dexWithout": 11,
+      "symptoms": [
+        "low disk space warning",
+        "hard drive almost full",
+        "need more storage space on device"
+      ],
+      "matchText": "Disk Space Warning. low disk space warning. hard drive almost full. need more storage space on device"
+    },
+    {
+      "id": "d11",
+      "name": "New Device Provisioning",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "need a new laptop set up",
+        "provision new device for employee",
+        "new machine setup request"
+      ],
+      "matchText": "New Device Provisioning. need a new laptop set up. provision new device for employee. new machine setup request"
+    },
+    {
+      "id": "d12",
+      "name": "Device Compliance Policy Failure",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "device shows non compliant",
+        "compliance policy failed",
+        "device out of compliance"
+      ],
+      "matchText": "Device Compliance Policy Failure. device shows non compliant. compliance policy failed. device out of compliance"
+    },
+    {
+      "id": "d13",
+      "name": "Mobile Device Enrollment",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "enroll my phone in mdm",
+        "register mobile device",
+        "mobile device not enrolling"
+      ],
+      "matchText": "Mobile Device Enrollment. enroll my phone in mdm. register mobile device. mobile device not enrolling"
+    },
+    {
+      "id": "d14",
+      "name": "Remote Wipe Request",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "intune",
+      "feasWith": 85,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "wipe lost device remotely",
+        "need to remote wipe phone",
+        "erase data from stolen laptop"
+      ],
+      "matchText": "Remote Wipe Request. wipe lost device remotely. need to remote wipe phone. erase data from stolen laptop"
+    },
+    {
+      "id": "d15",
+      "name": "Docking Station Failure",
+      "category": "Device",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "dock not working",
+        "monitors not detected through docking station",
+        "docking station stopped working"
+      ],
+      "matchText": "Docking Station Failure. dock not working. monitors not detected through docking station. docking station stopped working"
+    },
+    {
+      "id": "d16",
+      "name": "Peripheral Issue (mouse/keyboard/monitor)",
+      "category": "Device",
+      "volShare": 2,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "mouse not working",
+        "keyboard not responding",
+        "monitor won't turn on"
+      ],
+      "matchText": "Peripheral Issue (mouse/keyboard/monitor). mouse not working. keyboard not responding. monitor won't turn on"
+    },
+    {
+      "id": "d17",
+      "name": "Software Install Request",
+      "category": "Software",
+      "volShare": 5,
+      "tool": "sccm",
+      "feasWith": 85,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "please install this software",
+        "need application installed",
+        "request new software install"
+      ],
+      "matchText": "Software Install Request. please install this software. need application installed. request new software install"
+    },
+    {
+      "id": "d18",
+      "name": "Software Update / Patch Failure",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "sccm",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 50,
+      "dexWithout": 8,
+      "symptoms": [
+        "update failed to install",
+        "patch keeps failing",
+        "software won't update"
+      ],
+      "matchText": "Software Update / Patch Failure. update failed to install. patch keeps failing. software won't update"
+    },
+    {
+      "id": "d19",
+      "name": "Application Crash",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 45,
+      "aiWithout": 11,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "application keeps crashing",
+        "program crashed unexpectedly",
+        "app freezes and closes"
+      ],
+      "matchText": "Application Crash. application keeps crashing. program crashed unexpectedly. app freezes and closes"
+    },
+    {
+      "id": "d20",
+      "name": "OS Reimage Request",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "sccm",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "need laptop reimaged",
+        "reinstall operating system",
+        "wipe and reimage machine"
+      ],
+      "matchText": "OS Reimage Request. need laptop reimaged. reinstall operating system. wipe and reimage machine"
+    },
+    {
+      "id": "d21",
+      "name": "License Activation Issue",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "license key not activating",
+        "software says license expired",
+        "cannot activate license"
+      ],
+      "matchText": "License Activation Issue. license key not activating. software says license expired. cannot activate license"
+    },
+    {
+      "id": "d22",
+      "name": "Application Access Request",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "request access to crm system",
+        "need login for application",
+        "grant access to software"
+      ],
+      "matchText": "Application Access Request. request access to crm system. need login for application. grant access to software"
+    },
+    {
+      "id": "d23",
+      "name": "Browser / Plugin Issue",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 45,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "browser keeps crashing",
+        "extension not working",
+        "plugin causing errors in browser"
+      ],
+      "matchText": "Browser / Plugin Issue. browser keeps crashing. extension not working. plugin causing errors in browser"
+    },
+    {
+      "id": "d24",
+      "name": "Driver Update Request",
+      "category": "Software",
+      "volShare": 1,
+      "tool": "sccm",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "printer driver outdated",
+        "need updated graphics driver",
+        "driver causing issues"
+      ],
+      "matchText": "Driver Update Request. printer driver outdated. need updated graphics driver. driver causing issues"
+    },
+    {
+      "id": "d25",
+      "name": "VPN Connection Issue",
+      "category": "Network",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 55,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "vpn keeps disconnecting",
+        "cannot connect to vpn",
+        "vpn connection failed"
+      ],
+      "matchText": "VPN Connection Issue. vpn keeps disconnecting. cannot connect to vpn. vpn connection failed"
+    },
+    {
+      "id": "d26",
+      "name": "Wi-Fi Connectivity Issue",
+      "category": "Network",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 60,
+      "dexWithout": 9,
+      "symptoms": [
+        "wifi keeps dropping",
+        "cannot connect to wireless network",
+        "weak wifi signal"
+      ],
+      "matchText": "Wi-Fi Connectivity Issue. wifi keeps dropping. cannot connect to wireless network. weak wifi signal"
+    },
+    {
+      "id": "d27",
+      "name": "Network Drive Access Issue",
+      "category": "Network",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 65,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "cannot access network drive",
+        "shared drive not mapping",
+        "network folder inaccessible"
+      ],
+      "matchText": "Network Drive Access Issue. cannot access network drive. shared drive not mapping. network folder inaccessible"
+    },
+    {
+      "id": "d28",
+      "name": "Slow Network Performance",
+      "category": "Network",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 45,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "internet is very slow",
+        "network performance degraded",
+        "slow file transfer speeds"
+      ],
+      "matchText": "Slow Network Performance. internet is very slow. network performance degraded. slow file transfer speeds"
+    },
+    {
+      "id": "d29",
+      "name": "General How-To / FAQ",
+      "category": "Collaboration",
+      "volShare": 4,
+      "tool": "azureai",
+      "feasWith": 75,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 80,
+      "aiWithout": 20,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "how do i set up email signature",
+        "how to use this feature",
+        "general question about process"
+      ],
+      "matchText": "General How-To / FAQ. how do i set up email signature. how to use this feature. general question about process"
+    },
+    {
+      "id": "d30",
+      "name": "Email / Mailbox Quota Issue",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "mailbox is full",
+        "email storage quota exceeded",
+        "cannot send email mailbox full"
+      ],
+      "matchText": "Email / Mailbox Quota Issue. mailbox is full. email storage quota exceeded. cannot send email mailbox full"
+    },
+    {
+      "id": "d31",
+      "name": "Shared Mailbox / Distribution List Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "create shared mailbox",
+        "add me to distribution list",
+        "new group email needed"
+      ],
+      "matchText": "Shared Mailbox / Distribution List Request. create shared mailbox. add me to distribution list. new group email needed"
+    },
+    {
+      "id": "d32",
+      "name": "Calendar / Scheduling Issue",
+      "category": "Collaboration",
+      "volShare": 1,
+      "tool": "azureai",
+      "feasWith": 60,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 50,
+      "aiWithout": 13,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "calendar not syncing",
+        "meeting invite not showing",
+        "scheduling conflict issue"
+      ],
+      "matchText": "Calendar / Scheduling Issue. calendar not syncing. meeting invite not showing. scheduling conflict issue"
+    },
+    {
+      "id": "d33",
+      "name": "Teams / Collaboration Tool Issue",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "teams call keeps dropping",
+        "cannot join teams meeting",
+        "collaboration tool not working"
+      ],
+      "matchText": "Teams / Collaboration Tool Issue. teams call keeps dropping. cannot join teams meeting. collaboration tool not working"
+    },
+    {
+      "id": "d34",
+      "name": "SharePoint Access Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "need access to sharepoint site",
+        "cannot open sharepoint folder",
+        "sharepoint permission denied"
+      ],
+      "matchText": "SharePoint Access Request. need access to sharepoint site. cannot open sharepoint folder. sharepoint permission denied"
+    },
+    {
+      "id": "d35",
+      "name": "Knowledge Article Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "azureai",
+      "feasWith": 80,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 85,
+      "aiWithout": 21,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "where is documentation for",
+        "need knowledge base article",
+        "looking for how to guide"
+      ],
+      "matchText": "Knowledge Article Request. where is documentation for. need knowledge base article. looking for how to guide"
+    },
+    {
+      "id": "d36",
+      "name": "New Hire Account Setup",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 85,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "new employee needs account",
+        "onboarding account creation",
+        "set up accounts for new hire"
+      ],
+      "matchText": "New Hire Account Setup. new employee needs account. onboarding account creation. set up accounts for new hire"
+    },
+    {
+      "id": "d37",
+      "name": "New Hire Equipment Provisioning",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "new hire needs laptop",
+        "equipment for new employee",
+        "provision hardware for onboarding"
+      ],
+      "matchText": "New Hire Equipment Provisioning. new hire needs laptop. equipment for new employee. provision hardware for onboarding"
+    },
+    {
+      "id": "d38",
+      "name": "Leaver Access Removal",
+      "category": "Offboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 90,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "employee left remove access",
+        "offboarding disable account",
+        "terminate access for departed employee"
+      ],
+      "matchText": "Leaver Access Removal. employee left remove access. offboarding disable account. terminate access for departed employee"
+    },
+    {
+      "id": "d39",
+      "name": "Leaver Equipment Recovery",
+      "category": "Offboarding",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "collect laptop from departed employee",
+        "retrieve equipment from leaver",
+        "recover hardware after termination"
+      ],
+      "matchText": "Leaver Equipment Recovery. collect laptop from departed employee. retrieve equipment from leaver. recover hardware after termination"
+    },
+    {
+      "id": "d40",
+      "name": "Role Change Access Update",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "employee changed roles update access",
+        "transfer department access change",
+        "update permissions for new role"
+      ],
+      "matchText": "Role Change Access Update. employee changed roles update access. transfer department access change. update permissions for new role"
+    },
+    {
+      "id": "d41",
+      "name": "Remote Desktop Troubleshoot",
+      "category": "Remote Support",
+      "volShare": 3,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 30,
+      "dexWithout": 5,
+      "symptoms": [
+        "need remote assistance",
+        "help me remotely on my screen",
+        "remote session to fix issue"
+      ],
+      "matchText": "Remote Desktop Troubleshoot. need remote assistance. help me remotely on my screen. remote session to fix issue"
+    },
+    {
+      "id": "d42",
+      "name": "Remote Software Install Assist",
+      "category": "Remote Support",
+      "volShare": 2,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 15,
+      "dexWithout": 2,
+      "symptoms": [
+        "help me install software remotely",
+        "need remote support to install app",
+        "assist install via remote session"
+      ],
+      "matchText": "Remote Software Install Assist. help me install software remotely. need remote support to install app. assist install via remote session"
+    },
+    {
+      "id": "d43",
+      "name": "Remote Printer Setup Assist",
+      "category": "Remote Support",
+      "volShare": 1,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "help set up printer remotely",
+        "remote printer configuration assist",
+        "need help connecting printer"
+      ],
+      "matchText": "Remote Printer Setup Assist. help set up printer remotely. remote printer configuration assist. need help connecting printer"
+    },
+    {
+      "id": "d44",
+      "name": "Ticket Routing / Triage",
+      "category": "Workflow",
+      "volShare": 2,
+      "tool": "servicenow",
+      "feasWith": 70,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 70,
+      "aiWithout": 18,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "ticket assigned wrong team",
+        "misrouted ticket needs reassignment",
+        "ticket sitting unassigned"
+      ],
+      "matchText": "Ticket Routing / Triage. ticket assigned wrong team. misrouted ticket needs reassignment. ticket sitting unassigned"
+    },
+    {
+      "id": "d45",
+      "name": "Approval Workflow Delay",
+      "category": "Workflow",
+      "volShare": 1,
+      "tool": "servicenow",
+      "feasWith": 65,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "approval stuck pending",
+        "waiting too long for approval",
+        "workflow approval delayed"
+      ],
+      "matchText": "Approval Workflow Delay. approval stuck pending. waiting too long for approval. workflow approval delayed"
+    },
+    {
+      "id": "d46",
+      "name": "SLA Escalation Handling",
+      "category": "Workflow",
+      "volShare": 1,
+      "tool": "servicenow",
+      "feasWith": 60,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 45,
+      "aiWithout": 11,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "ticket breaching sla",
+        "need to escalate this ticket",
+        "sla at risk please expedite"
+      ],
+      "matchText": "SLA Escalation Handling. ticket breaching sla. need to escalate this ticket. sla at risk please expedite"
+    },
+    {
+      "id": "d47",
+      "name": "Conference Room AV Issue",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "projector not working in conference room",
+        "av equipment failure meeting room",
+        "screen sharing not working in room"
+      ],
+      "matchText": "Conference Room AV Issue. projector not working in conference room. av equipment failure meeting room. screen sharing not working in room"
+    },
+    {
+      "id": "d48",
+      "name": "Badge / Physical Access Issue",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "badge not working door access",
+        "lost my access badge",
+        "cannot enter building badge failed"
+      ],
+      "matchText": "Badge / Physical Access Issue. badge not working door access. lost my access badge. cannot enter building badge failed"
+    },
+    {
+      "id": "d49",
+      "name": "Printer Hardware Jam",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "printer paper jam",
+        "printer not printing hardware issue",
+        "printer physically broken"
+      ],
+      "matchText": "Printer Hardware Jam. printer paper jam. printer not printing hardware issue. printer physically broken"
+    },
+    {
+      "id": "d50",
+      "name": "Certificate / Encryption (BitLocker) Issue",
+      "category": "Security",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "bitlocker recovery key needed",
+        "encryption certificate expired",
+        "device asking for bitlocker key"
+      ],
+      "matchText": "Certificate / Encryption (BitLocker) Issue. bitlocker recovery key needed. encryption certificate expired. device asking for bitlocker key"
+    }
+  ]
+}

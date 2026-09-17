@@ -1,0 +1,4502 @@
+[
+  {
+    "Ticket ID": "TCK-000001",
+    "Short Description": "Application keeps crashing - please advise",
+    "Description": "Hi team, application keeps crashing.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000002",
+    "Short Description": "Need to reset multi factor authentication - please advise",
+    "Description": "Requesting support: need to reset multi factor authentication ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000003",
+    "Short Description": "Encryption certificate expired",
+    "Description": "Hello, encryption certificate expired - please advise",
+    "Category": "Security",
+    "Priority": "P4",
+    "Assigned Group": "Security Operations",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000004",
+    "Short Description": "Battery life is terrible.",
+    "Description": "battery life is terrible.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000005",
+    "Short Description": "Please help - help set up printer remotely when you get a chance",
+    "Description": "help set up printer remotely when you get a chance",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000006",
+    "Short Description": "FYI - please install this software",
+    "Description": "Please install this software",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000007",
+    "Short Description": "Please help - request access to crm system - please advise",
+    "Description": "request access to crm system thanks",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000008",
+    "Short Description": "Need password reset",
+    "Description": "need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000009",
+    "Short Description": "Network performance degraded",
+    "Description": "Urgent: network performance degraded when you get a chance",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000010",
+    "Short Description": "Can't log in password expired",
+    "Description": "can't log in password expired.",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000011",
+    "Short Description": "Need vpn account created.",
+    "Description": "Need vpn account created when you get a chance",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000012",
+    "Short Description": "FYI - reinstall operating system thanks",
+    "Description": "Hello, reinstall operating system.",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000013",
+    "Short Description": "Badge not working door access - please advise",
+    "Description": "Hi team, Badge not working door access thanks",
+    "Category": "Physical",
+    "Priority": "P4",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000014",
+    "Short Description": "Requesting support: request access to application",
+    "Description": "request access to application thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000015",
+    "Short Description": "Request new software install",
+    "Description": "Hello, request new software install",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000016",
+    "Short Description": "Calendar not syncing",
+    "Description": "calendar not syncing",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000017",
+    "Short Description": "FYI - too many failed login attempts",
+    "Description": "Hello, too many failed login attempts ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000018",
+    "Short Description": "Request access to application",
+    "Description": "request access to application ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000019",
+    "Short Description": "Misrouted ticket needs reassignment.",
+    "Description": "Hello, misrouted ticket needs reassignment thanks",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000020",
+    "Short Description": "Need laptop reimaged.",
+    "Description": "FYI - Need laptop reimaged.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000021",
+    "Short Description": "FYI - driver causing issues - please advise",
+    "Description": "driver causing issues",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000022",
+    "Short Description": "Requesting support: need knowledge base article",
+    "Description": "need knowledge base article.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000023",
+    "Short Description": "FYI - Laptop running very slow",
+    "Description": "FYI - laptop running very slow",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000024",
+    "Short Description": "FYI - Equipment for new employee",
+    "Description": "equipment for new employee - please advise",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000025",
+    "Short Description": "Please help - software says license expired",
+    "Description": "software says license expired",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000026",
+    "Short Description": "Vpn keeps disconnecting when you get a chance",
+    "Description": "FYI - Vpn keeps disconnecting.",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000027",
+    "Short Description": "FYI - can't log in password expired",
+    "Description": "Please help - can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000028",
+    "Short Description": "Add me to distribution list.",
+    "Description": "Add me to distribution list.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000029",
+    "Short Description": "Hi team, Request access to crm system",
+    "Description": "Hello, request access to crm system.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000030",
+    "Short Description": "Mouse not working - please advise",
+    "Description": "FYI - mouse not working - please advise",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000031",
+    "Short Description": "Requesting support: remove access for departed user",
+    "Description": "Remove access for departed user thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000032",
+    "Short Description": "FYI - need password reset.",
+    "Description": "Hello, need password reset",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000033",
+    "Short Description": "Can't log in password expired.",
+    "Description": "Hello, Can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000034",
+    "Short Description": "Help me install software remotely",
+    "Description": "FYI - help me install software remotely",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000035",
+    "Short Description": "Please help - Forgot my password - please advise",
+    "Description": "Requesting support: forgot my password",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000036",
+    "Short Description": "Hi team, set up vpn access ASAP",
+    "Description": "set up vpn access.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000037",
+    "Short Description": "Hi team, provision hardware for onboarding ASAP",
+    "Description": "Hello, provision hardware for onboarding - please advise",
+    "Category": "Onboarding",
+    "Priority": "P1",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000038",
+    "Short Description": "New employee needs account - please advise",
+    "Description": "new employee needs account when you get a chance",
+    "Category": "Onboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000039",
+    "Short Description": "Please help - update permissions for new role",
+    "Description": "update permissions for new role",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000040",
+    "Short Description": "Hello, Cannot connect to vpn ASAP",
+    "Description": "Unable to connect to vpn",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000041",
+    "Short Description": "Set up accounts for new hire",
+    "Description": "Requesting support: set up accounts for new hire when you get a chance",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000042",
+    "Short Description": "Hi team, New vpn credentials request.",
+    "Description": "new vpn credentials request",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000043",
+    "Short Description": "Hi team, laptop won't turn on",
+    "Description": "FYI - laptop won't turn on ASAP",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000044",
+    "Short Description": "Please help - Wifi keeps dropping.",
+    "Description": "Hi team, Wifi keeps dropping",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000045",
+    "Short Description": "Update failed to install ASAP",
+    "Description": "Hello, Update failed to install - please advise",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000046",
+    "Short Description": "Sla at risk please expedite - please advise",
+    "Description": "Sla at risk please expedite.",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000047",
+    "Short Description": "Please help - grant access to software",
+    "Description": "Hi team, grant access to software ASAP",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000048",
+    "Short Description": "Hi team, email storage quota exceeded ASAP",
+    "Description": "FYI - Email storage quota exceeded.",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000049",
+    "Short Description": "FYI - Hardware is dead won't boot",
+    "Description": "Hello, Hardware is dead won't boot when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000050",
+    "Short Description": "Please help - please grant permission to thanks",
+    "Description": "FYI - please grant permission to",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000051",
+    "Short Description": "Urgent: employee changed roles update access when you get a chance",
+    "Description": "Urgent: Employee changed roles update access ASAP",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000052",
+    "Short Description": "Email currently down, nobody can send or receive mail",
+    "Description": "Email currently down, nobody can send or receive mail - multiple users affected, business impact.",
+    "Category": "Collaboration",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000053",
+    "Short Description": "New employee needs account.",
+    "Description": "FYI - New employee needs account",
+    "Category": "Onboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000054",
+    "Short Description": "Need application installed.",
+    "Description": "need application installed",
+    "Category": "Software",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000055",
+    "Short Description": "Can't log in password expired.",
+    "Description": "FYI - can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000056",
+    "Short Description": "FYI - network performance degraded.",
+    "Description": "Hi team, network performance degraded - please advise",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000057",
+    "Short Description": "Requesting support: too many failed login attempts",
+    "Description": "Hello, Too many failed login attempts when you get a chance",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000058",
+    "Short Description": "Please grant permission to",
+    "Description": "please grant permission to",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000059",
+    "Short Description": "Need a new laptop set up",
+    "Description": "FYI - need a new laptop set up when you get a chance",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000060",
+    "Short Description": "FYI - forgot my password",
+    "Description": "Requesting support: forgot my password.",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000061",
+    "Short Description": "Looking for how to guide",
+    "Description": "Looking for how to guide",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000062",
+    "Short Description": "Laptop running very slow ASAP",
+    "Description": "Urgent: laptop running very slow",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000063",
+    "Short Description": "Urgent: browser keeps crashing.",
+    "Description": "Hi team, browser keeps crashing.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000064",
+    "Short Description": "Request access to crm system",
+    "Description": "Hello, request access to crm system thanks",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000065",
+    "Short Description": "Hello, ticket assigned wrong team",
+    "Description": "Hello, ticket assigned wrong team",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000066",
+    "Short Description": "FYI - General question about process.",
+    "Description": "general question about process",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000067",
+    "Short Description": "Internet is very slow ASAP",
+    "Description": "Hello, internet is very slow ASAP",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000068",
+    "Short Description": "FYI - request new software install",
+    "Description": "Requesting support: request new software install when you get a chance",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000069",
+    "Short Description": "Hi team, need application installed",
+    "Description": "Urgent: need application installed - please advise",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000070",
+    "Short Description": "FYI - need access to sharepoint site thanks",
+    "Description": "Hi team, need access to sharepoint site ASAP",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000071",
+    "Short Description": "Hello, laptop running very slow - please advise",
+    "Description": "laptop running very slow ASAP",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000072",
+    "Short Description": "Hi team, Employee left remove access",
+    "Description": "employee left remove access",
+    "Category": "Offboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000073",
+    "Short Description": "Printer paper jam thanks",
+    "Description": "printer paper jam",
+    "Category": "Physical",
+    "Priority": "P4",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000074",
+    "Short Description": "FYI - Device out of compliance ASAP",
+    "Description": "Please help - device out of compliance thanks",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000075",
+    "Short Description": "Urgent: forgot my password ASAP",
+    "Description": "forgot my password when you get a chance",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000076",
+    "Short Description": "Hi team, need password reset.",
+    "Description": "need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000077",
+    "Short Description": "Please help - cannot connect to wireless network when you get a chance",
+    "Description": "Urgent: cannot connect to wireless network ASAP",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000078",
+    "Short Description": "Requesting support: need remote assistance thanks",
+    "Description": "Please help - Need remote assistance.",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000079",
+    "Short Description": "Urgent: need password reset - please advise",
+    "Description": "Hello, need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000080",
+    "Short Description": "FYI - forgot my password",
+    "Description": "Hello, Forgot my password.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000081",
+    "Short Description": "Requesting support: misrouted ticket needs reassignment ASAP",
+    "Description": "FYI - misrouted ticket needs reassignment.",
+    "Category": "Workflow",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000082",
+    "Short Description": "Can't open sharepoint folder",
+    "Description": "FYI - cannot open sharepoint folder when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000083",
+    "Short Description": "Requesting support: compliance policy failed",
+    "Description": "Requesting support: compliance policy failed",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000084",
+    "Short Description": "Need access to shared folder",
+    "Description": "Urgent: need access to shared folder.",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000085",
+    "Short Description": "Please help - mailbox is full.",
+    "Description": "mailbox is full.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000086",
+    "Short Description": "FYI - too many failed login attempts",
+    "Description": "Hello, Too many failed login attempts - please advise",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000087",
+    "Short Description": "Hi team, too many failed login attempts",
+    "Description": "too many failed login attempts ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000088",
+    "Short Description": "Urgent: Need application installed",
+    "Description": "Need application installed when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000089",
+    "Short Description": "Revoke permission to system ASAP",
+    "Description": "Please help - revoke permission to system.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000090",
+    "Short Description": "Hard drive almost full.",
+    "Description": "Hard drive almost full thanks",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000091",
+    "Short Description": "Please help - need access to shared folder",
+    "Description": "need access to shared folder",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000092",
+    "Short Description": "Can't log in password expired ASAP",
+    "Description": "Hi team, can't log in password expired thanks",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000093",
+    "Short Description": "FYI - Mobile device not enrolling",
+    "Description": "FYI - mobile device not enrolling when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000094",
+    "Short Description": "Urgent: application keeps crashing",
+    "Description": "Requesting support: application keeps crashing when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000095",
+    "Short Description": "Requesting support: general question about process.",
+    "Description": "Hi team, General question about process when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000096",
+    "Short Description": "Urgent: request new software install.",
+    "Description": "Hi team, request new software install ASAP",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000097",
+    "Short Description": "FYI - general question about process.",
+    "Description": "Requesting support: general question about process - please advise",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000098",
+    "Short Description": "How to use this feature",
+    "Description": "how to use this feature",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000099",
+    "Short Description": "Requesting support: need password reset",
+    "Description": "Hello, Need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000100",
+    "Short Description": "Update failed to install - please advise",
+    "Description": "update failed to install",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000101",
+    "Short Description": "Requesting support: retrieve equipment from leaver when you get a chance",
+    "Description": "Requesting support: retrieve equipment from leaver thanks",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000102",
+    "Short Description": "Cannot connect to vpn - please advise",
+    "Description": "Please help - cannot connect to vpn",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000103",
+    "Short Description": "Hi team, need access to shared folder",
+    "Description": "need access to shared folder",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000104",
+    "Short Description": "Hi team, need help connecting printer - please advise",
+    "Description": "need help connecting printer",
+    "Category": "Remote Support",
+    "Priority": "P2",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000105",
+    "Short Description": "Hello, need to remote wipe phone",
+    "Description": "Hello, need to remote wipe phone",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000106",
+    "Short Description": "Urgent: help me remotely on my screen thanks",
+    "Description": "Hello, help me remotely on my screen.",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000107",
+    "Short Description": "Hard drive almost full",
+    "Description": "Hi team, hard drive almost full",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000108",
+    "Short Description": "Internet is very slow",
+    "Description": "FYI - internet is very slow.",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000109",
+    "Short Description": "FYI - general question about process - please advise",
+    "Description": "Urgent: general question about process - please advise",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000110",
+    "Short Description": "Please help - where is documentation for",
+    "Description": "where is documentation for ASAP",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000111",
+    "Short Description": "Email storage quota exceeded - please advise",
+    "Description": "email storage quota exceeded.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000112",
+    "Short Description": "Provision hardware for onboarding.",
+    "Description": "Provision hardware for onboarding.",
+    "Category": "Onboarding",
+    "Priority": "P1",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000113",
+    "Short Description": "Cannot activate license.",
+    "Description": "Cannot activate license ASAP",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000114",
+    "Short Description": "Urgent: Cannot join teams meeting",
+    "Description": "Please help - cannot join teams meeting",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000115",
+    "Short Description": "Hi team, enroll my phone in mdm.",
+    "Description": "enroll my phone in mdm.",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000116",
+    "Short Description": "Hi team, Lost my access badge ASAP",
+    "Description": "lost my access badge thanks",
+    "Category": "Physical",
+    "Priority": "P2",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000117",
+    "Short Description": "Please help - device asking for bitlocker key.",
+    "Description": "FYI - device asking for bitlocker key",
+    "Category": "Security",
+    "Priority": "P4",
+    "Assigned Group": "Security Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000118",
+    "Short Description": "Requesting support: need password reset when you get a chance",
+    "Description": "Please help - need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000119",
+    "Short Description": "Program crashed unexpectedly thanks",
+    "Description": "Urgent: Program crashed unexpectedly",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000120",
+    "Short Description": "Urgent: monitors not detected through docking station.",
+    "Description": "FYI - Monitors not detected through docking station when you get a chance",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000121",
+    "Short Description": "Network performance degraded",
+    "Description": "network performance degraded when you get a chance",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000122",
+    "Short Description": "Please help - offboarding disable account thanks",
+    "Description": "FYI - offboarding disable account.",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000123",
+    "Short Description": "Hi team, lost my authenticator - please advise",
+    "Description": "Hello, lost my authenticator ASAP",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000124",
+    "Short Description": "Can't log in password expired",
+    "Description": "Urgent: Can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000125",
+    "Short Description": "Requesting support: Need a new laptop set up ASAP",
+    "Description": "need a new laptop set up.",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000126",
+    "Short Description": "Hi team, cannot send email mailbox full when you get a chance",
+    "Description": "Requesting support: Cannot send email mailbox full",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000127",
+    "Short Description": "Forgot my password - please advise",
+    "Description": "Hi team, Forgot my password",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000128",
+    "Short Description": "FYI - Docking station stopped working when you get a chance",
+    "Description": "FYI - docking station stopped working",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000129",
+    "Short Description": "Urgent: app freezes and closes",
+    "Description": "Requesting support: app freezes and closes",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000130",
+    "Short Description": "FYI - patch keeps failing",
+    "Description": "Urgent: patch keeps failing when you get a chance",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000131",
+    "Short Description": "Please install this software.",
+    "Description": "Urgent: please install this software ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000132",
+    "Short Description": "Hello, ticket breaching sla.",
+    "Description": "Hello, ticket breaching sla",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000133",
+    "Short Description": "FYI - need password reset.",
+    "Description": "Please help - Need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000134",
+    "Short Description": "Wipe and reimage machine when you get a chance",
+    "Description": "Wipe and reimage machine",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000135",
+    "Short Description": "Please help - compliance policy failed",
+    "Description": "Requesting support: compliance policy failed when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000136",
+    "Short Description": "Hi team, misrouted ticket needs reassignment",
+    "Description": "Please help - Misrouted ticket needs reassignment.",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000137",
+    "Short Description": "Help me remotely on my screen thanks",
+    "Description": "Help me remotely on my screen ASAP",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000138",
+    "Short Description": "Please help - assist install via remote session",
+    "Description": "Requesting support: Assist install via remote session.",
+    "Category": "Remote Support",
+    "Priority": "P2",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000139",
+    "Short Description": "Please help - system takes forever to load - please advise",
+    "Description": "Hello, System takes forever to load",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000140",
+    "Short Description": "Need vpn account created.",
+    "Description": "need vpn account created ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000141",
+    "Short Description": "Onboarding account creation",
+    "Description": "onboarding account creation",
+    "Category": "Onboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000142",
+    "Short Description": "Locked out of my account",
+    "Description": "Locked out of my account",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000143",
+    "Short Description": "Please help - badge not working door access.",
+    "Description": "Badge not working door access.",
+    "Category": "Physical",
+    "Priority": "P2",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000144",
+    "Short Description": "Please help - mfa not working thanks",
+    "Description": "Hello, mfa not working when you get a chance",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000145",
+    "Short Description": "How to use this feature ASAP",
+    "Description": "FYI - How to use this feature ASAP",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000146",
+    "Short Description": "Hello, printer not printing hardware issue",
+    "Description": "Please help - printer not printing hardware issue",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000147",
+    "Short Description": "Please help - Meeting invite not showing ASAP",
+    "Description": "Meeting invite not showing ASAP",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000148",
+    "Short Description": "New machine setup request",
+    "Description": "new machine setup request ASAP",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000149",
+    "Short Description": "Requesting support: cannot open sharepoint folder.",
+    "Description": "Cannot open sharepoint folder",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000150",
+    "Short Description": "Please help - need password reset ASAP",
+    "Description": "Hello, need password reset.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000151",
+    "Short Description": "Need a new laptop set up thanks",
+    "Description": "need a new laptop set up",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000152",
+    "Short Description": "Hi team, request new software install",
+    "Description": "Hello, Request new software install",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000153",
+    "Short Description": "Hello, mouse not working - please advise",
+    "Description": "Hi team, mouse not working",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000154",
+    "Short Description": "Printer driver outdated",
+    "Description": "Printer driver outdated.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000155",
+    "Short Description": "Hi team, need login for application",
+    "Description": "Hello, need login for application.",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000156",
+    "Short Description": "Lost my authenticator",
+    "Description": "Hi team, lost my authenticator - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000157",
+    "Short Description": "Requesting support: New hire needs laptop.",
+    "Description": "new hire needs laptop",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000158",
+    "Short Description": "Requesting support: equipment for new employee.",
+    "Description": "Equipment for new employee.",
+    "Category": "Onboarding",
+    "Priority": "P2",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000159",
+    "Short Description": "Urgent: Forgot my password ASAP",
+    "Description": "Forgot my password - please advise",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000160",
+    "Short Description": "FYI - laptop running very slow thanks",
+    "Description": "laptop running very slow",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000161",
+    "Short Description": "Lost my authenticator.",
+    "Description": "lost my authenticator",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000162",
+    "Short Description": "General question about process.",
+    "Description": "Please help - general question about process thanks",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000163",
+    "Short Description": "Wipe lost device remotely",
+    "Description": "Requesting support: wipe lost device remotely",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000164",
+    "Short Description": "Hi team, Locked out of my account.",
+    "Description": "Requesting support: locked out of my account ASAP",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000165",
+    "Short Description": "FYI - need password reset - please advise",
+    "Description": "Need password reset.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000166",
+    "Short Description": "Urgent: Unable to connect to vpn.",
+    "Description": "cannot connect to vpn.",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000167",
+    "Short Description": "Hi team, Extension not working",
+    "Description": "Extension not working",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000168",
+    "Short Description": "Requesting support: Shared drive not mapping ASAP",
+    "Description": "Hello, Shared drive not mapping ASAP",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000169",
+    "Short Description": "FYI - need remote assistance",
+    "Description": "FYI - need remote assistance.",
+    "Category": "Remote Support",
+    "Priority": "P1",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000170",
+    "Short Description": "Cannot connect to wireless network.",
+    "Description": "Please help - Cannot connect to wireless network - please advise",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000171",
+    "Short Description": "Can't log in password expired - please advise",
+    "Description": "Urgent: Can't log in password expired ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000172",
+    "Short Description": "Urgent: device shows non compliant",
+    "Description": "Requesting support: device shows non compliant",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000173",
+    "Short Description": "Vpn connection failed - please advise",
+    "Description": "vpn connection failed ASAP",
+    "Category": "Network",
+    "Priority": "P1",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000174",
+    "Short Description": "Urgent: locked out of my account.",
+    "Description": "Hi team, locked out of my account - please advise",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000175",
+    "Short Description": "Urgent: hard drive almost full - please advise",
+    "Description": "Hello, Hard drive almost full when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000176",
+    "Short Description": "System takes forever to load.",
+    "Description": "Requesting support: system takes forever to load.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000177",
+    "Short Description": "Hi team, Software says license expired.",
+    "Description": "software says license expired",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000178",
+    "Short Description": "Requesting support: help me remotely on my screen thanks",
+    "Description": "help me remotely on my screen",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000179",
+    "Short Description": "Please help - need password reset.",
+    "Description": "Please help - need password reset ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000180",
+    "Short Description": "Hi team, How to use this feature",
+    "Description": "Please help - how to use this feature.",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000181",
+    "Short Description": "Please help - request access to application",
+    "Description": "Request access to application when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000182",
+    "Short Description": "Urgent: new hire needs laptop",
+    "Description": "Please help - new hire needs laptop.",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000183",
+    "Short Description": "Please help - Computer is sluggish.",
+    "Description": "FYI - computer is sluggish",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000184",
+    "Short Description": "Please help - Need access to shared folder ASAP",
+    "Description": "need access to shared folder",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000185",
+    "Short Description": "Urgent: need knowledge base article.",
+    "Description": "Please help - need knowledge base article when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000186",
+    "Short Description": "Hello, forgot my password",
+    "Description": "Please help - Forgot my password - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000187",
+    "Short Description": "Remove access for departed user thanks",
+    "Description": "remove access for departed user",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000188",
+    "Short Description": "Hi team, Terminate access for departed employee.",
+    "Description": "Hi team, terminate access for departed employee thanks",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000189",
+    "Short Description": "FYI - grant access to software",
+    "Description": "grant access to software ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000190",
+    "Short Description": "Please help - forgot my password",
+    "Description": "Hi team, forgot my password.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000191",
+    "Short Description": "Hi team, weak wifi signal ASAP",
+    "Description": "weak wifi signal ASAP",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000192",
+    "Short Description": "Hi team, Take away access rights",
+    "Description": "Please help - take away access rights",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000193",
+    "Short Description": "Low disk space warning - please advise",
+    "Description": "FYI - low disk space warning when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000194",
+    "Short Description": "Hi team, locked out of my account when you get a chance",
+    "Description": "Please help - Locked out of my account",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000195",
+    "Short Description": "FYI - account locked out",
+    "Description": "Urgent: account locked out - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000196",
+    "Short Description": "Hello, Printer paper jam",
+    "Description": "Requesting support: printer paper jam",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000197",
+    "Short Description": "Hello, wipe and reimage machine",
+    "Description": "Requesting support: Wipe and reimage machine",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000198",
+    "Short Description": "Hi team, projector not working in conference room",
+    "Description": "projector not working in conference room",
+    "Category": "Physical",
+    "Priority": "P4",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000199",
+    "Short Description": "Urgent: Create shared mailbox",
+    "Description": "Hello, create shared mailbox",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000200",
+    "Short Description": "Browser keeps crashing",
+    "Description": "Urgent: browser keeps crashing when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000201",
+    "Short Description": "Please help - add me to distribution list.",
+    "Description": "add me to distribution list thanks",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000202",
+    "Short Description": "Requesting support: mfa not working thanks",
+    "Description": "Requesting support: Mfa not working",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000203",
+    "Short Description": "Hello, set up accounts for new hire ASAP",
+    "Description": "set up accounts for new hire",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000204",
+    "Short Description": "Requesting support: reinstall operating system",
+    "Description": "reinstall operating system - please advise",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000205",
+    "Short Description": "FYI - Provision new device for employee ASAP",
+    "Description": "FYI - provision new device for employee ASAP",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000206",
+    "Short Description": "Urgent: Recover hardware after termination",
+    "Description": "FYI - recover hardware after termination",
+    "Category": "Offboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000207",
+    "Short Description": "Slow file transfer speeds",
+    "Description": "slow file transfer speeds",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000208",
+    "Short Description": "New group email needed - please advise",
+    "Description": "Requesting support: new group email needed.",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000209",
+    "Short Description": "Hello, extension not working.",
+    "Description": "Urgent: Extension not working",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000210",
+    "Short Description": "License key not activating - please advise",
+    "Description": "Requesting support: License key not activating.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000211",
+    "Short Description": "Calendar not syncing",
+    "Description": "FYI - calendar not syncing thanks",
+    "Category": "Collaboration",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000212",
+    "Short Description": "How do i set up email signature thanks",
+    "Description": "Hi team, How do i set up email signature",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000213",
+    "Short Description": "Account locked out",
+    "Description": "FYI - Account locked out when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000214",
+    "Short Description": "Requesting support: Need password reset - please advise",
+    "Description": "need password reset.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000215",
+    "Short Description": "Hello, collect laptop from departed employee",
+    "Description": "Requesting support: collect laptop from departed employee",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000216",
+    "Short Description": "Please help - locked out of my account - please advise",
+    "Description": "Locked out of my account",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000217",
+    "Short Description": "Transfer department access change - please advise",
+    "Description": "Transfer department access change.",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000218",
+    "Short Description": "Hi team, New machine setup request",
+    "Description": "FYI - new machine setup request",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000219",
+    "Short Description": "Please help - forgot my password when you get a chance",
+    "Description": "FYI - forgot my password",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000220",
+    "Short Description": "Please help - please install this software thanks",
+    "Description": "Urgent: please install this software - please advise",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000221",
+    "Short Description": "Urgent: Network folder inaccessible.",
+    "Description": "network folder inaccessible ASAP",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000222",
+    "Short Description": "Forgot my password",
+    "Description": "Forgot my password.",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000223",
+    "Short Description": "Requesting support: laptop battery not holding charge",
+    "Description": "laptop battery not holding charge thanks",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000224",
+    "Short Description": "Hi team, Program crashed unexpectedly ASAP",
+    "Description": "program crashed unexpectedly.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000225",
+    "Short Description": "Computer is sluggish",
+    "Description": "computer is sluggish - please advise",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000226",
+    "Short Description": "Hi team, mfa not working when you get a chance",
+    "Description": "mfa not working",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000227",
+    "Short Description": "Onboarding account creation.",
+    "Description": "Hello, onboarding account creation thanks",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000228",
+    "Short Description": "Need password reset thanks",
+    "Description": "Hello, need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000229",
+    "Short Description": "Urgent: need access to shared folder thanks",
+    "Description": "need access to shared folder - please advise",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000230",
+    "Short Description": "Hi team, Vpn keeps disconnecting",
+    "Description": "Urgent: Vpn keeps disconnecting thanks",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000231",
+    "Short Description": "Workflow approval delayed",
+    "Description": "workflow approval delayed",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000232",
+    "Short Description": "Urgent: Monitor won't turn on",
+    "Description": "Requesting support: monitor won't turn on",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000233",
+    "Short Description": "Need password reset ASAP",
+    "Description": "FYI - need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000234",
+    "Short Description": "Hello, need application installed.",
+    "Description": "Urgent: need application installed when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000235",
+    "Short Description": "Urgent: Need access to sharepoint site",
+    "Description": "Please help - need access to sharepoint site.",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000236",
+    "Short Description": "Please help - Encryption certificate expired.",
+    "Description": "Please help - encryption certificate expired ASAP",
+    "Category": "Security",
+    "Priority": "P3",
+    "Assigned Group": "Security Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000237",
+    "Short Description": "Requesting support: equipment for new employee",
+    "Description": "equipment for new employee thanks",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000238",
+    "Short Description": "Please help - need remote assistance",
+    "Description": "need remote assistance",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000239",
+    "Short Description": "Please grant permission to.",
+    "Description": "Please grant permission to",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000240",
+    "Short Description": "Urgent: shared drive not mapping - please advise",
+    "Description": "Hello, shared drive not mapping",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000241",
+    "Short Description": "Hello, forgot my password.",
+    "Description": "forgot my password",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000242",
+    "Short Description": "Hello, Forgot my password - please advise",
+    "Description": "FYI - Forgot my password thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000243",
+    "Short Description": "Can't log in password expired.",
+    "Description": "Can't log in password expired ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000244",
+    "Short Description": "FYI - Wifi keeps dropping",
+    "Description": "FYI - wifi keeps dropping when you get a chance",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000245",
+    "Short Description": "Encryption certificate expired.",
+    "Description": "Urgent: encryption certificate expired",
+    "Category": "Security",
+    "Priority": "P3",
+    "Assigned Group": "Security Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000246",
+    "Short Description": "Please help - need password reset",
+    "Description": "Hello, need password reset.",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000247",
+    "Short Description": "Hardware is dead won't boot thanks",
+    "Description": "FYI - hardware is dead won't boot.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000248",
+    "Short Description": "Weak wifi signal",
+    "Description": "Urgent: weak wifi signal",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000249",
+    "Short Description": "Hello, help set up printer remotely when you get a chance",
+    "Description": "Help set up printer remotely - please advise",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000250",
+    "Short Description": "Keyboard not responding - please advise",
+    "Description": "Requesting support: keyboard not responding.",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000251",
+    "Short Description": "Requesting support: need remote support to install app",
+    "Description": "need remote support to install app.",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000252",
+    "Short Description": "Please help - Revoke permission to system ASAP",
+    "Description": "Hi team, Revoke permission to system.",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000253",
+    "Short Description": "Hi team, screen is cracked",
+    "Description": "Please help - screen is cracked.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000254",
+    "Short Description": "Compliance policy failed.",
+    "Description": "Hi team, compliance policy failed",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000255",
+    "Short Description": "New vpn credentials request.",
+    "Description": "Hi team, new vpn credentials request",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000256",
+    "Short Description": "Hello, network folder inaccessible",
+    "Description": "Hi team, network folder inaccessible",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000257",
+    "Short Description": "Account locked out.",
+    "Description": "Hello, account locked out",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000258",
+    "Short Description": "Provision new device for employee",
+    "Description": "Provision new device for employee thanks",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000259",
+    "Short Description": "Please help - Set up vpn access",
+    "Description": "FYI - set up vpn access",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000260",
+    "Short Description": "Urgent: battery drains too fast when you get a chance",
+    "Description": "Requesting support: battery drains too fast",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000261",
+    "Short Description": "Cannot access network drive when you get a chance",
+    "Description": "cannot access network drive",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000262",
+    "Short Description": "How do i set up email signature ASAP",
+    "Description": "How do i set up email signature.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000263",
+    "Short Description": "Urgent: app freezes and closes",
+    "Description": "App freezes and closes",
+    "Category": "Software",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000264",
+    "Short Description": "Urgent: need updated graphics driver ASAP",
+    "Description": "Requesting support: need updated graphics driver",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000265",
+    "Short Description": "Requesting support: Extension not working.",
+    "Description": "Requesting support: Extension not working",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000266",
+    "Short Description": "Hello, need password reset",
+    "Description": "need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000267",
+    "Short Description": "Software says license expired thanks",
+    "Description": "Please help - software says license expired when you get a chance",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000268",
+    "Short Description": "Please grant permission to - please advise",
+    "Description": "Hello, Please grant permission to",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000269",
+    "Short Description": "Email storage quota exceeded ASAP",
+    "Description": "email storage quota exceeded",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000270",
+    "Short Description": "Sharepoint permission denied",
+    "Description": "Sharepoint permission denied.",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000271",
+    "Short Description": "License key not activating - please advise",
+    "Description": "License key not activating.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000272",
+    "Short Description": "Need more storage space on device",
+    "Description": "FYI - Need more storage space on device ASAP",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000273",
+    "Short Description": "Urgent: computer is sluggish",
+    "Description": "Requesting support: computer is sluggish when you get a chance",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000274",
+    "Short Description": "Hello, need password reset",
+    "Description": "Need password reset when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000275",
+    "Short Description": "Outlook is completely down for everyone",
+    "Description": "Outlook is completely down for everyone - multiple users affected, business impact.",
+    "Category": "Collaboration",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000276",
+    "Short Description": "FYI - update failed to install",
+    "Description": "update failed to install",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000277",
+    "Short Description": "New hire needs pc",
+    "Description": "new hire needs laptop",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000278",
+    "Short Description": "Urgent: Ticket assigned wrong team when you get a chance",
+    "Description": "Requesting support: ticket assigned wrong team",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000279",
+    "Short Description": "Hi team, help me install software remotely - please advise",
+    "Description": "Urgent: help me install software remotely",
+    "Category": "Remote Support",
+    "Priority": "P2",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000280",
+    "Short Description": "Urgent: can't log in password expired ASAP",
+    "Description": "Can't log in password expired when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000281",
+    "Short Description": "How do i set up email signature",
+    "Description": "Please help - how do i set up email signature",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000282",
+    "Short Description": "Urgent: device shows non compliant - please advise",
+    "Description": "Requesting support: device shows non compliant thanks",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000283",
+    "Short Description": "Offboarding disable account.",
+    "Description": "Hi team, offboarding disable account",
+    "Category": "Offboarding",
+    "Priority": "P2",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000284",
+    "Short Description": "System takes forever to load",
+    "Description": "Requesting support: system takes forever to load",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000285",
+    "Short Description": "Urgent: need password reset ASAP",
+    "Description": "Urgent: need password reset ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000286",
+    "Short Description": "Cannot join teams meeting",
+    "Description": "Cannot join teams meeting",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000287",
+    "Short Description": "Hello, device out of compliance.",
+    "Description": "Hello, device out of compliance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000288",
+    "Short Description": "Update permissions for new role.",
+    "Description": "Requesting support: update permissions for new role.",
+    "Category": "Onboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000289",
+    "Short Description": "Ticket sitting unassigned",
+    "Description": "ticket sitting unassigned ASAP",
+    "Category": "Workflow",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000290",
+    "Short Description": "Please help - browser keeps crashing ASAP",
+    "Description": "FYI - browser keeps crashing",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000291",
+    "Short Description": "Laptop running very slow ASAP",
+    "Description": "laptop running very slow",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000292",
+    "Short Description": "Urgent: Too many failed login attempts.",
+    "Description": "Hi team, too many failed login attempts ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000293",
+    "Short Description": "Hello, how do i set up email signature.",
+    "Description": "Hello, How do i set up email signature when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000294",
+    "Short Description": "Please install this software",
+    "Description": "please install this software ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000295",
+    "Short Description": "Hi team, Transfer department access change",
+    "Description": "transfer department access change - please advise",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000296",
+    "Short Description": "Weak wifi signal",
+    "Description": "Requesting support: weak wifi signal - please advise",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000297",
+    "Short Description": "Hi team, need password reset",
+    "Description": "need password reset",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000298",
+    "Short Description": "Requesting support: low disk space warning thanks",
+    "Description": "Low disk space warning when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000299",
+    "Short Description": "Urgent: Computer is sluggish ASAP",
+    "Description": "computer is sluggish ASAP",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000300",
+    "Short Description": "Printer driver outdated",
+    "Description": "Urgent: Printer driver outdated.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000301",
+    "Short Description": "Please help - projector not working in conference room.",
+    "Description": "projector not working in conference room",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000302",
+    "Short Description": "How to use this feature when you get a chance",
+    "Description": "How to use this feature",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000303",
+    "Short Description": "Hi team, Forgot my password",
+    "Description": "forgot my password thanks",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000304",
+    "Short Description": "Provision new device for employee.",
+    "Description": "Provision new device for employee",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000305",
+    "Short Description": "Please help - Can't log in password expired ASAP",
+    "Description": "Please help - can't log in password expired ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000306",
+    "Short Description": "Account locked out.",
+    "Description": "Hello, account locked out.",
+    "Category": "Identity",
+    "Priority": "P1",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000307",
+    "Short Description": "Please help - bitlocker recovery key needed - please advise",
+    "Description": "bitlocker recovery key needed",
+    "Category": "Security",
+    "Priority": "P3",
+    "Assigned Group": "Security Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000308",
+    "Short Description": "FYI - employee left remove access when you get a chance",
+    "Description": "employee left remove access.",
+    "Category": "Offboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000309",
+    "Short Description": "Request access to application",
+    "Description": "FYI - request access to application ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000310",
+    "Short Description": "Hi team, transfer department access change thanks",
+    "Description": "Requesting support: transfer department access change.",
+    "Category": "Onboarding",
+    "Priority": "P1",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000311",
+    "Short Description": "FYI - Laptop running very slow thanks",
+    "Description": "FYI - Laptop running very slow.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000312",
+    "Short Description": "Request access to crm system when you get a chance",
+    "Description": "Please help - Request access to crm system ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000313",
+    "Short Description": "Collect laptop from departed employee thanks",
+    "Description": "Collect laptop from departed employee",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000314",
+    "Short Description": "Forgot my password when you get a chance",
+    "Description": "forgot my password thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000315",
+    "Short Description": "Requesting support: ticket sitting unassigned",
+    "Description": "Please help - ticket sitting unassigned",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000316",
+    "Short Description": "Vpn connection failed.",
+    "Description": "Requesting support: Vpn connection failed.",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000317",
+    "Short Description": "Can't log in password expired.",
+    "Description": "Hello, can't log in password expired ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000318",
+    "Short Description": "Hello, need application installed",
+    "Description": "Hello, need application installed",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000319",
+    "Short Description": "Urgent: screen sharing not working in room.",
+    "Description": "Requesting support: screen sharing not working in room.",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000320",
+    "Short Description": "Hi team, cannot join teams meeting",
+    "Description": "Please help - cannot join teams meeting.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000321",
+    "Short Description": "FYI - Software won't update",
+    "Description": "Requesting support: software won't update",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000322",
+    "Short Description": "Vpn connection failed",
+    "Description": "vpn connection failed.",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000323",
+    "Short Description": "Hi team, need access to shared folder thanks",
+    "Description": "FYI - need access to shared folder - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000324",
+    "Short Description": "Revoke permission to system - please advise",
+    "Description": "revoke permission to system - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000325",
+    "Short Description": "Please help - program crashed unexpectedly",
+    "Description": "Program crashed unexpectedly when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000326",
+    "Short Description": "Hello, assist install via remote session",
+    "Description": "Hello, Assist install via remote session thanks",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000327",
+    "Short Description": "Please help - need password reset",
+    "Description": "Need password reset thanks",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000328",
+    "Short Description": "Need login for application",
+    "Description": "Hello, need login for application.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000329",
+    "Short Description": "Requesting support: program crashed unexpectedly",
+    "Description": "Hello, program crashed unexpectedly",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000330",
+    "Short Description": "Hi team, application keeps crashing.",
+    "Description": "Hello, Application keeps crashing - please advise",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000331",
+    "Short Description": "Hello, Remote printer configuration assist.",
+    "Description": "Remote printer configuration assist.",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000332",
+    "Short Description": "Forgot my password ASAP",
+    "Description": "FYI - forgot my password - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000333",
+    "Short Description": "Hello, set up vpn access ASAP",
+    "Description": "Hi team, set up vpn access ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000334",
+    "Short Description": "Requesting support: wifi keeps dropping.",
+    "Description": "Hi team, wifi keeps dropping",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000335",
+    "Short Description": "Can't log in password expired",
+    "Description": "can't log in password expired - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000336",
+    "Short Description": "Hi team, need remote assistance - please advise",
+    "Description": "Requesting support: Need remote assistance",
+    "Category": "Remote Support",
+    "Priority": "P2",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000337",
+    "Short Description": "Requesting support: Too many failed login attempts thanks",
+    "Description": "Requesting support: too many failed login attempts when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000338",
+    "Short Description": "Forgot my password ASAP",
+    "Description": "Hi team, forgot my password ASAP",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000339",
+    "Short Description": "Urgent: Where is documentation for.",
+    "Description": "Please help - where is documentation for - please advise",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000340",
+    "Short Description": "Weak wifi signal - please advise",
+    "Description": "weak wifi signal ASAP",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000341",
+    "Short Description": "Hello, system takes forever to load",
+    "Description": "System takes forever to load.",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000342",
+    "Short Description": "FYI - please install this software",
+    "Description": "Hi team, please install this software",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000343",
+    "Short Description": "Requesting support: screen is cracked thanks",
+    "Description": "screen is cracked",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000344",
+    "Short Description": "Laptop won't turn on.",
+    "Description": "laptop won't turn on.",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000345",
+    "Short Description": "Hi team, need application installed when you get a chance",
+    "Description": "Urgent: need application installed",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000346",
+    "Short Description": "Need password reset thanks",
+    "Description": "Please help - need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000347",
+    "Short Description": "Hi team, teams call keeps dropping",
+    "Description": "FYI - Teams call keeps dropping",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000348",
+    "Short Description": "FYI - locked out of my account",
+    "Description": "Locked out of my account",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000349",
+    "Short Description": "FYI - create shared mailbox",
+    "Description": "Urgent: create shared mailbox - please advise",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000350",
+    "Short Description": "Hello, too many failed login attempts.",
+    "Description": "Requesting support: too many failed login attempts thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000351",
+    "Short Description": "Slow file transfer speeds.",
+    "Description": "Urgent: slow file transfer speeds",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000352",
+    "Short Description": "Plugin causing errors in browser",
+    "Description": "Urgent: Plugin causing errors in browser.",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000353",
+    "Short Description": "Need more storage space on device ASAP",
+    "Description": "need more storage space on device - please advise",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000354",
+    "Short Description": "Account locked out thanks",
+    "Description": "FYI - account locked out",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000355",
+    "Short Description": "Requesting support: can't log in password expired.",
+    "Description": "can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000356",
+    "Short Description": "Remote session to fix issue ASAP",
+    "Description": "Requesting support: Remote session to fix issue when you get a chance",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000357",
+    "Short Description": "FYI - Need login for application",
+    "Description": "Requesting support: Need login for application",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000358",
+    "Short Description": "Hello, enroll my phone in mdm.",
+    "Description": "enroll my phone in mdm - please advise",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000359",
+    "Short Description": "Please help - Account locked out when you get a chance",
+    "Description": "Hello, Account locked out",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000360",
+    "Short Description": "Urgent: onboarding account creation thanks",
+    "Description": "Please help - Onboarding account creation.",
+    "Category": "Onboarding",
+    "Priority": "P2",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000361",
+    "Short Description": "FYI - Need laptop reimaged ASAP",
+    "Description": "Requesting support: need laptop reimaged when you get a chance",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000362",
+    "Short Description": "FYI - Erase data from stolen laptop ASAP",
+    "Description": "Hello, erase data from stolen laptop",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000363",
+    "Short Description": "Remote session to fix issue.",
+    "Description": "FYI - remote session to fix issue.",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000364",
+    "Short Description": "Can't log in password expired - please advise",
+    "Description": "can't log in password expired - please advise",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000365",
+    "Short Description": "Urgent: device shows non compliant when you get a chance",
+    "Description": "Hello, device shows non compliant ASAP",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000366",
+    "Short Description": "Hello, Cannot access network drive",
+    "Description": "cannot access network drive",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000367",
+    "Short Description": "Need access to sharepoint site thanks",
+    "Description": "need access to sharepoint site thanks",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000368",
+    "Short Description": "FYI - Mailbox is full.",
+    "Description": "FYI - mailbox is full when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000369",
+    "Short Description": "Can't log in password expired thanks",
+    "Description": "can't log in password expired when you get a chance",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000370",
+    "Short Description": "Teams call keeps dropping.",
+    "Description": "Urgent: teams call keeps dropping ASAP",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000371",
+    "Short Description": "Requesting support: account locked out",
+    "Description": "Urgent: account locked out ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000372",
+    "Short Description": "Add me to distribution list thanks",
+    "Description": "Add me to distribution list - please advise",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000373",
+    "Short Description": "Cannot enter building badge failed.",
+    "Description": "Please help - cannot enter building badge failed",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000374",
+    "Short Description": "Teams call keeps dropping",
+    "Description": "FYI - teams call keeps dropping.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000375",
+    "Short Description": "Device asking for bitlocker key",
+    "Description": "Urgent: device asking for bitlocker key.",
+    "Category": "Security",
+    "Priority": "P3",
+    "Assigned Group": "Security Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000376",
+    "Short Description": "Hello, general question about process when you get a chance",
+    "Description": "Hello, general question about process",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000377",
+    "Short Description": "Approval stuck pending - please advise",
+    "Description": "Please help - Approval stuck pending",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000378",
+    "Short Description": "Need vpn account created when you get a chance",
+    "Description": "need vpn account created",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000379",
+    "Short Description": "Please help - need knowledge base article",
+    "Description": "Hi team, need knowledge base article thanks",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000380",
+    "Short Description": "Hi team, collaboration tool not working",
+    "Description": "collaboration tool not working.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000381",
+    "Short Description": "Requesting support: waiting too long for approval",
+    "Description": "Please help - Waiting too long for approval",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000382",
+    "Short Description": "Bitlocker recovery key needed - please advise",
+    "Description": "bitlocker recovery key needed ASAP",
+    "Category": "Security",
+    "Priority": "P4",
+    "Assigned Group": "Security Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000383",
+    "Short Description": "Requesting support: vpn keeps disconnecting",
+    "Description": "Vpn keeps disconnecting - please advise",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000384",
+    "Short Description": "Hello, update failed to install thanks",
+    "Description": "FYI - update failed to install",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000385",
+    "Short Description": "Need to reset multi factor authentication.",
+    "Description": "Hello, Need to reset multi factor authentication",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000386",
+    "Short Description": "FYI - Forgot my password.",
+    "Description": "FYI - forgot my password",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000387",
+    "Short Description": "Request new software install",
+    "Description": "request new software install",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000388",
+    "Short Description": "Hi team, battery drains too fast",
+    "Description": "Urgent: Battery drains too fast",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000389",
+    "Short Description": "Hello, Need to escalate this ticket",
+    "Description": "need to escalate this ticket.",
+    "Category": "Workflow",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000390",
+    "Short Description": "FYI - Remote session to fix issue.",
+    "Description": "remote session to fix issue when you get a chance",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000391",
+    "Short Description": "Account locked out.",
+    "Description": "FYI - account locked out",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000392",
+    "Short Description": "Hi team, grant access to software",
+    "Description": "Hi team, Grant access to software ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000393",
+    "Short Description": "Hi team, how to use this feature",
+    "Description": "How to use this feature",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000394",
+    "Short Description": "Requesting support: Vpn keeps disconnecting",
+    "Description": "Urgent: vpn keeps disconnecting.",
+    "Category": "Network",
+    "Priority": "P2",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000395",
+    "Short Description": "Requesting support: Mfa not working",
+    "Description": "Mfa not working ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000396",
+    "Short Description": "Urgent: forgot my password thanks",
+    "Description": "forgot my password thanks",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000397",
+    "Short Description": "Requesting support: App freezes and closes",
+    "Description": "Urgent: App freezes and closes ASAP",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000398",
+    "Short Description": "Please help - create shared mailbox when you get a chance",
+    "Description": "Create shared mailbox.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000399",
+    "Short Description": "Requesting support: can't log in password expired.",
+    "Description": "Hello, can't log in password expired - please advise",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000400",
+    "Short Description": "Bitlocker recovery key needed",
+    "Description": "Hello, bitlocker recovery key needed.",
+    "Category": "Security",
+    "Priority": "P4",
+    "Assigned Group": "Security Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000401",
+    "Short Description": "Requesting support: cannot access network drive.",
+    "Description": "Hello, cannot access network drive thanks",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000402",
+    "Short Description": "Please help - software won't update ASAP",
+    "Description": "Software won't update.",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000403",
+    "Short Description": "Urgent: Account locked out ASAP",
+    "Description": "Urgent: account locked out",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000404",
+    "Short Description": "Employee left remove access.",
+    "Description": "Employee left remove access",
+    "Category": "Offboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000405",
+    "Short Description": "How to use this feature when you get a chance",
+    "Description": "Hi team, how to use this feature thanks",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000406",
+    "Short Description": "FYI - Forgot my password ASAP",
+    "Description": "FYI - forgot my password",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000407",
+    "Short Description": "Hi team, help me remotely on my screen ASAP",
+    "Description": "Help me remotely on my screen ASAP",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000408",
+    "Short Description": "System takes forever to load.",
+    "Description": "Requesting support: system takes forever to load.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000409",
+    "Short Description": "Urgent: please install this software",
+    "Description": "Urgent: please install this software.",
+    "Category": "Software",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000410",
+    "Short Description": "Requesting support: Too many failed login attempts",
+    "Description": "Please help - too many failed login attempts when you get a chance",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000411",
+    "Short Description": "Please help - patch keeps failing ASAP",
+    "Description": "patch keeps failing",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000412",
+    "Short Description": "Computer is sluggish.",
+    "Description": "Requesting support: Computer is sluggish.",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000413",
+    "Short Description": "Looking for how to guide - please advise",
+    "Description": "looking for how to guide ASAP",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000414",
+    "Short Description": "Screen is cracked",
+    "Description": "screen is cracked",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000415",
+    "Short Description": "Keyboard not responding",
+    "Description": "Please help - keyboard not responding",
+    "Category": "Device",
+    "Priority": "P2",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000416",
+    "Short Description": "Please install this software.",
+    "Description": "FYI - please install this software",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000417",
+    "Short Description": "Hello, computer is sluggish",
+    "Description": "Urgent: Computer is sluggish thanks",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000418",
+    "Short Description": "Hello, need to reset multi factor authentication",
+    "Description": "Hi team, need to reset multi factor authentication.",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000419",
+    "Short Description": "Can't log in password expired - please advise",
+    "Description": "Hello, can't log in password expired when you get a chance",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000420",
+    "Short Description": "Cannot connect to wireless network thanks",
+    "Description": "Cannot connect to wireless network.",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000421",
+    "Short Description": "Av equipment failure meeting room",
+    "Description": "av equipment failure meeting room ASAP",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000422",
+    "Short Description": "Requesting support: need laptop reimaged",
+    "Description": "need laptop reimaged",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000423",
+    "Short Description": "Printer physically broken ASAP",
+    "Description": "printer physically broken when you get a chance",
+    "Category": "Physical",
+    "Priority": "P3",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000424",
+    "Short Description": "Requesting support: grant access to software - please advise",
+    "Description": "Urgent: grant access to software.",
+    "Category": "Software",
+    "Priority": "P1",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000425",
+    "Short Description": "FYI - Need password reset",
+    "Description": "Urgent: need password reset.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000426",
+    "Short Description": "Need remote support to install app - please advise",
+    "Description": "FYI - need remote support to install app.",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000427",
+    "Short Description": "Hi team, mouse not working when you get a chance",
+    "Description": "Please help - Mouse not working",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000428",
+    "Short Description": "Need login for application thanks",
+    "Description": "Please help - need login for application ASAP",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000429",
+    "Short Description": "Hello, reinstall operating system thanks",
+    "Description": "Reinstall operating system.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000430",
+    "Short Description": "Hi team, take away access rights - please advise",
+    "Description": "Hi team, take away access rights",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000431",
+    "Short Description": "Help me install software remotely",
+    "Description": "Hi team, Help me install software remotely ASAP",
+    "Category": "Remote Support",
+    "Priority": "P3",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000432",
+    "Short Description": "Terminate access for departed employee.",
+    "Description": "terminate access for departed employee",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000433",
+    "Short Description": "Patch keeps failing",
+    "Description": "Patch keeps failing",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000434",
+    "Short Description": "Hi team, please install this software ASAP",
+    "Description": "Please help - please install this software",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000435",
+    "Short Description": "Urgent: can't log in password expired when you get a chance",
+    "Description": "Please help - can't log in password expired.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000436",
+    "Short Description": "License key not activating thanks",
+    "Description": "Requesting support: License key not activating thanks",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000437",
+    "Short Description": "Urgent: Can't log in password expired - please advise",
+    "Description": "Please help - Can't log in password expired ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000438",
+    "Short Description": "Please help - new employee needs account when you get a chance",
+    "Description": "Requesting support: New employee needs account - please advise",
+    "Category": "Onboarding",
+    "Priority": "P2",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000439",
+    "Short Description": "FYI - cannot send email mailbox full",
+    "Description": "cannot send email mailbox full - please advise",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000440",
+    "Short Description": "FYI - shared drive not mapping.",
+    "Description": "Urgent: shared drive not mapping",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000441",
+    "Short Description": "Cannot activate license",
+    "Description": "Please help - Cannot activate license.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000442",
+    "Short Description": "Request access to crm system.",
+    "Description": "Request access to crm system",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000443",
+    "Short Description": "Hi team, Vpn connection failed",
+    "Description": "vpn connection failed",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000444",
+    "Short Description": "Plugin causing errors in browser when you get a chance",
+    "Description": "Hi team, plugin causing errors in browser when you get a chance",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000445",
+    "Short Description": "Please help - ticket breaching sla when you get a chance",
+    "Description": "ticket breaching sla thanks",
+    "Category": "Workflow",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000446",
+    "Short Description": "FYI - cannot connect to wireless network ASAP",
+    "Description": "Hi team, Cannot connect to wireless network",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000447",
+    "Short Description": "Dock not working",
+    "Description": "dock not working thanks",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000448",
+    "Short Description": "Urgent: laptop won't turn on thanks",
+    "Description": "Requesting support: laptop won't turn on thanks",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000449",
+    "Short Description": "New group email needed",
+    "Description": "new group email needed thanks",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000450",
+    "Short Description": "FYI - wipe lost device remotely",
+    "Description": "Please help - Wipe lost device remotely when you get a chance",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000451",
+    "Short Description": "Urgent: offboarding disable account",
+    "Description": "FYI - offboarding disable account",
+    "Category": "Offboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Offboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000452",
+    "Short Description": "Scheduling conflict issue",
+    "Description": "FYI - scheduling conflict issue",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000453",
+    "Short Description": "Vpn keeps disconnecting.",
+    "Description": "Hi team, vpn keeps disconnecting",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000454",
+    "Short Description": "Please help - forgot my password",
+    "Description": "Requesting support: Forgot my password ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000455",
+    "Short Description": "Requesting support: where is documentation for when you get a chance",
+    "Description": "FYI - where is documentation for thanks",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000456",
+    "Short Description": "Urgent: monitor won't turn on",
+    "Description": "Hello, Monitor won't turn on - please advise",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000457",
+    "Short Description": "Requesting support: request new software install when you get a chance",
+    "Description": "FYI - Request new software install when you get a chance",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000458",
+    "Short Description": "Hi team, Remove access for departed user",
+    "Description": "remove access for departed user",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000459",
+    "Short Description": "Please help - Need remote support to install app",
+    "Description": "Hello, need remote support to install app when you get a chance",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000460",
+    "Short Description": "Urgent: software won't update.",
+    "Description": "Please help - software won't update.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000461",
+    "Short Description": "Hi team, ticket assigned wrong team",
+    "Description": "Requesting support: Ticket assigned wrong team",
+    "Category": "Workflow",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000462",
+    "Short Description": "FYI - Low disk space warning ASAP",
+    "Description": "Hi team, low disk space warning",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000463",
+    "Short Description": "How do i set up email signature",
+    "Description": "Urgent: how do i set up email signature when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000464",
+    "Short Description": "App freezes and closes.",
+    "Description": "Hello, app freezes and closes.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000465",
+    "Short Description": "Requesting support: wifi keeps dropping thanks",
+    "Description": "Hello, wifi keeps dropping thanks",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000466",
+    "Short Description": "Remote session to fix issue.",
+    "Description": "Please help - remote session to fix issue.",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000467",
+    "Short Description": "Hi team, request new software install",
+    "Description": "request new software install",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000468",
+    "Short Description": "FYI - Lost my authenticator",
+    "Description": "Please help - lost my authenticator.",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000469",
+    "Short Description": "Urgent: Forgot my password.",
+    "Description": "forgot my password",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000470",
+    "Short Description": "Hi team, Please grant permission to when you get a chance",
+    "Description": "please grant permission to",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000471",
+    "Short Description": "Hi team, cannot open sharepoint folder thanks",
+    "Description": "cannot open sharepoint folder - please advise",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000472",
+    "Short Description": "Requesting support: Request access to application - please advise",
+    "Description": "Request access to application",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000473",
+    "Short Description": "Hello, How do i set up email signature - please advise",
+    "Description": "Please help - How do i set up email signature when you get a chance",
+    "Category": "Collaboration",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000474",
+    "Short Description": "Collaboration tool not working.",
+    "Description": "collaboration tool not working ASAP",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000475",
+    "Short Description": "Hi team, Please grant permission to thanks",
+    "Description": "please grant permission to.",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000476",
+    "Short Description": "Need application installed",
+    "Description": "Urgent: Need application installed ASAP",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000477",
+    "Short Description": "System takes forever to load.",
+    "Description": "Please help - system takes forever to load when you get a chance",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000478",
+    "Short Description": "Approval stuck pending",
+    "Description": "Hello, approval stuck pending",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000479",
+    "Short Description": "Can't log in password expired",
+    "Description": "Can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000480",
+    "Short Description": "Sharepoint permission denied",
+    "Description": "Sharepoint permission denied",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000481",
+    "Short Description": "Please help - keyboard not responding",
+    "Description": "Keyboard not responding",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000482",
+    "Short Description": "Can't log in password expired",
+    "Description": "Can't log in password expired - please advise",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000483",
+    "Short Description": "Urgent: request access to application.",
+    "Description": "Hi team, Request access to application",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000484",
+    "Short Description": "Mfa not working",
+    "Description": "mfa not working ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000485",
+    "Short Description": "Locked out of my account ASAP",
+    "Description": "locked out of my account when you get a chance",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000486",
+    "Short Description": "Hello, too many failed login attempts.",
+    "Description": "Hi team, too many failed login attempts - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000487",
+    "Short Description": "Patch keeps failing.",
+    "Description": "Patch keeps failing",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000488",
+    "Short Description": "Please help - application keeps crashing",
+    "Description": "application keeps crashing.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000489",
+    "Short Description": "Dock not working thanks",
+    "Description": "dock not working thanks",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000490",
+    "Short Description": "Employee changed roles update access",
+    "Description": "employee changed roles update access - please advise",
+    "Category": "Onboarding",
+    "Priority": "P4",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000491",
+    "Short Description": "Need to reset multi factor authentication.",
+    "Description": "Hello, need to reset multi factor authentication - please advise",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000492",
+    "Short Description": "Register mobile device when you get a chance",
+    "Description": "Hello, register mobile device",
+    "Category": "Device",
+    "Priority": "P1",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000493",
+    "Short Description": "Requesting support: internet is very slow.",
+    "Description": "internet is very slow - please advise",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000494",
+    "Short Description": "Hi team, Mailbox is full.",
+    "Description": "FYI - mailbox is full",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000495",
+    "Short Description": "Please help - software won't update ASAP",
+    "Description": "Software won't update",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000496",
+    "Short Description": "Requesting support: Cannot connect to vpn",
+    "Description": "Requesting support: cannot connect to vpn",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000497",
+    "Short Description": "Please help - employee changed roles update access",
+    "Description": "FYI - employee changed roles update access",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000498",
+    "Short Description": "Hi team, application keeps crashing - please advise",
+    "Description": "application keeps crashing.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000499",
+    "Short Description": "Hi team, Locked out of my account",
+    "Description": "locked out of my account.",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000500",
+    "Short Description": "Update failed to install",
+    "Description": "Hi team, Update failed to install thanks",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  }
+]

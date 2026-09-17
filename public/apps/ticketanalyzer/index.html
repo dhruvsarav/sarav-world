@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Ticket Analyzer — Automation, AI &amp; DEX Potential | Sarav's World</title>
+<meta name="description" content="Upload your ticket export. On-device AI dedupes, categorizes, and scores Automation, AI, and DEX potential — zero cost, zero telemetry, nothing leaves your browser.">
+<link rel="canonical" href="https://iamsaravofficial.com/apps/ticketanalyzer/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://iamsaravofficial.com/apps/ticketanalyzer/">
+<meta property="og:title" content="Ticket Analyzer — Automation, AI &amp; DEX Potential | Sarav's World">
+<meta property="og:description" content="On-device enterprise ITSM ticket clustering, deduplication, and tri-axis potential scoring (Automation, GenAI, DEX) with zero telemetry.">
+<meta property="og:image" content="https://iamsaravofficial.com/apps/ticketanalyzer/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ticket Analyzer — Automation, AI &amp; DEX Potential">
+<meta name="twitter:description" content="On-device enterprise ITSM ticket clustering and tri-axis potential scoring. Zero data leaves your browser.">
+<meta name="twitter:image" content="https://iamsaravofficial.com/apps/ticketanalyzer/og-image.png">
+
+<!-- Favicons -->
+<link rel="icon" type="image/x-icon" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon-180.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root, [data-theme="dark"] {
+    --bg: #0C0F14; --surface: #141922; --surface-2: #1B222D; --surface-3: #222B39;
+    --border: #2A3545; --border-soft: #1E2633; --text: #EAEFF5; --text-dim: #94A0B2; --text-faint: #5C6B80;
+    --accent: #E3A63E; --accent-ink: #141005; --accent-soft: rgba(227,166,62,0.14);
+    --accent2: #4FB0A8; --accent2-soft: rgba(79,176,168,0.14);
+    --danger: #E2665A; --danger-soft: rgba(226,102,90,0.14);
+    --success: #5FBF77; --success-soft: rgba(95,191,119,0.14);
+    --shadow: 0 4px 20px rgba(0,0,0,0.35);
+  }
+  [data-theme="light"] {
+    --bg: #F8F7F4; --surface: #FFFFFF; --surface-2: #F0ECE4; --surface-3: #E8E2D7;
+    --border: #D8D1C4; --border-soft: #E5DFC4; --text: #191E24; --text-dim: #555E6B; --text-faint: #858E9B;
+    --accent: #B9791F; --accent-ink: #FFFFFF; --accent-soft: rgba(185,121,31,0.12);
+    --accent2: #2E7F78; --accent2-soft: rgba(46,127,120,0.12);
+    --danger: #C6483C; --danger-soft: rgba(198,72,60,0.12);
+    --success: #3E9457; --success-soft: rgba(62,148,87,0.12);
+    --shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:'Space Grotesk',system-ui,-apple-system,sans-serif; -webkit-font-smoothing:antialiased; line-height:1.5; }
+  .mono { font-family:'IBM Plex Mono', ui-monospace, monospace; }
+  a { color:var(--accent); text-decoration:none; } a:hover { text-decoration:underline; }
+  h1,h2,h3,h4 { font-family:'Space Grotesk',sans-serif; margin:0; font-weight:600; }
+  p { margin:0 0 0.6em; }
+  input, select, button, textarea { font-family:inherit; font-size:13.5px; color:var(--text); }
+  input, select, textarea { background:var(--surface-2); border:1px solid var(--border); border-radius:6px; padding:8px 10px; width:100%; outline:none; transition:border-color .15s ease, box-shadow .15s ease; }
+  input:focus, select:focus, textarea:focus { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-soft); }
+  input[type="checkbox"], input[type="radio"] { width:auto; accent-color:var(--accent); cursor:pointer; }
+  input[type="range"] { accent-color:var(--accent2); cursor:pointer; padding:0; }
+  label { display:block; font-size:12px; color:var(--text-dim); margin-bottom:5px; font-weight:500; }
+  button { cursor:pointer; border-radius:6px; border:1px solid var(--border); background:var(--surface-2); padding:8px 14px; font-weight:500; transition:all .15s ease; }
+  button:hover { border-color:var(--accent); }
+  button.primary { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); font-weight:600; }
+  button.primary:hover { filter:brightness(1.08); box-shadow:0 2px 10px var(--accent-soft); }
+  button.primary:disabled { opacity:0.5; cursor:not-allowed; filter:none; box-shadow:none; }
+  button.teal { background:var(--accent2); color:#06201e; border-color:var(--accent2); font-weight:600; }
+  button.teal:hover { filter:brightness(1.1); box-shadow:0 2px 10px var(--accent2-soft); }
+  button.ghost { background:transparent; }
+  button.small { padding:5px 10px; font-size:12px; }
+  .container { max-width:1240px; margin:0 auto; padding:0 20px; }
+  .field { margin-bottom:14px; }
+  .grid { display:grid; gap:14px; }
+  .grid-2 { grid-template-columns:repeat(2,1fr); }
+  .grid-3 { grid-template-columns:repeat(3,1fr); }
+  .grid-4 { grid-template-columns:repeat(4,1fr); }
+  @media(max-width:900px){ .grid-4 { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:640px){ .grid-2,.grid-3,.grid-4 { grid-template-columns:1fr; } }
+  .hint { font-size:11.5px; color:var(--text-faint); margin-top:4px; line-height:1.4; }
+  .badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; padding:3px 9px; border-radius:20px; border:1px solid var(--border); color:var(--text-dim); font-weight:600; }
+  .badge.ok { color:var(--success); border-color:var(--success); background:var(--success-soft); }
+  .badge.warn { color:var(--danger); border-color:var(--danger); background:var(--danger-soft); }
+  .badge.info { color:var(--accent2); border-color:var(--accent2); background:var(--accent2-soft); }
+  .badge.teal { color:var(--accent2); border-color:var(--accent2); background:var(--accent2-soft); }
+  .badge.gold { color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+
+  /* Ecosystem Bar */
+  .ecosystem-bar { background:var(--surface-2); border-bottom:1px solid var(--border-soft); padding:6px 20px; font-size:12.5px; color:var(--text-dim); position:relative; z-index:1000; }
+  .ecosystem-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .ecosystem-links { display:flex; align-items:center; gap:8px; }
+  .eco-brand { font-weight:700 !important; color:var(--text) !important; }
+  .eco-brand:hover { color:var(--accent) !important; text-decoration:none; }
+  .eco-divider { color:var(--border); font-weight:300; margin:0 4px; }
+  .eco-dropdown { position:relative; display:inline-block; }
+  .eco-dropbtn { background:transparent; border:none; color:var(--text-dim); font-family:inherit; font-size:12.5px; font-weight:600; padding:4px 8px; border-radius:6px; cursor:pointer; display:flex; align-items:center; gap:4px; }
+  .eco-dropdown:hover .eco-dropbtn, .eco-dropdown.open .eco-dropbtn { color:var(--accent); background:var(--accent-soft); }
+  .eco-caret { font-size:9px; transition:transform .2s ease; }
+  .eco-dropdown:hover .eco-caret, .eco-dropdown.open .eco-caret { transform:rotate(180deg); }
+  .eco-menu { display:none; position:absolute; top:100%; left:0; padding:6px; min-width:240px; background:var(--surface); border:1px solid var(--border); border-radius:10px; box-shadow:0 12px 32px rgba(0,0,0,0.45); z-index:2000; }
+  .eco-dropdown:hover .eco-menu, .eco-dropdown.open .eco-menu { display:block; }
+  .eco-menu a { display:block; color:var(--text); padding:8px 12px; border-radius:6px; font-size:12.5px; font-weight:500; white-space:nowrap; }
+  .eco-menu a:hover { background:var(--accent-soft); color:var(--accent); text-decoration:none; }
+  .eco-menu a.current { color:var(--accent) !important; font-weight:600; background:var(--accent-soft); }
+
+  /* Sticky Header */
+  .sticky-header-wrapper { position:sticky; top:0; z-index:50; box-shadow:0 4px 20px rgba(0,0,0,0.25); }
+  header.topbar { background:rgba(12,15,20,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--border-soft); }
+  [data-theme="light"] header.topbar { background:rgba(248,247,244,0.96); }
+  .topbar-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px; max-width:1240px; margin:0 auto; }
+  .brand { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+  .brand .mark { width:38px; height:38px; border-radius:10px; background:var(--accent-soft); border:1px solid var(--accent); display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+  .brand h1 { font-size:18px; letter-spacing:-0.01em; display:flex; align-items:center; gap:8px; }
+  .brand .tagline { font-size:11.5px; color:var(--text-faint); display:block; }
+  .topbar-controls { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .theme-toggle { display:flex; border:1px solid var(--border); border-radius:6px; overflow:hidden; }
+  .theme-toggle button { border:none; border-radius:0; background:var(--surface-2); padding:5px 8px; font-size:11.5px; font-family:'IBM Plex Mono',monospace; }
+  .theme-toggle button.active { background:var(--accent); color:var(--accent-ink); font-weight:600; }
+
+  /* Nav Bar */
+  .sec-nav-bar { background:var(--surface); border-bottom:1px solid var(--border); }
+  [data-theme="light"] .sec-nav-bar { background:var(--surface-2); }
+  .sec-nav-inner { max-width:1240px; margin:0 auto; padding:6px 20px; display:flex; align-items:center; gap:6px; overflow-x:auto; scrollbar-width:none; }
+  .sec-nav-inner::-webkit-scrollbar { display:none; }
+  .sec-nav-link { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:6px; font-size:12px; font-weight:500; color:var(--text-dim); white-space:nowrap; border:1px solid transparent; }
+  .sec-nav-link:hover { background:var(--surface-2); color:var(--text); border-color:var(--border); text-decoration:none; }
+  .sec-nav-link.active { background:var(--accent-soft); color:var(--accent); border-color:var(--accent); font-weight:600; }
+  .sec-nav-link .sn-num { font-family:'IBM Plex Mono',monospace; font-size:11px; opacity:0.8; }
+  .sec-nav-link.report-link { margin-left:auto; background:var(--accent-soft); color:var(--accent); border-color:var(--accent); font-weight:600; }
+
+  /* Section Layout */
+  section.block { padding:38px 0; border-bottom:1px solid var(--border-soft); }
+  .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:14px; }
+  .sec-num { font-family:'IBM Plex Mono'; font-weight:600; font-size:13px; color:var(--accent); border:1px solid var(--accent); width:32px; height:32px; border-radius:8px; display:flex; align-items:center; justify-content:center; flex-shrink:0; background:var(--accent-soft); }
+  .sec-head h2 { font-size:20px; letter-spacing:-0.01em; }
+  .sec-desc { color:var(--text-dim); font-size:13.5px; margin:-6px 0 18px 46px; max-width:840px; }
+
+  .panel { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:22px; }
+  .panel + .panel { margin-top:14px; }
+  .panel h3 { font-size:13.5px; margin-bottom:14px; color:var(--text-dim); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; font-size:11.5px; color:var(--text-faint); font-weight:600; padding:8px 10px; border-bottom:1px solid var(--border); text-transform:uppercase; letter-spacing:0.03em; }
+  td { padding:8px 10px; border-bottom:1px solid var(--border-soft); vertical-align:middle; }
+  tr:last-child td { border-bottom:none; }
+  .num-cell { text-align:right; font-family:'IBM Plex Mono'; }
+  .overflow-x { overflow-x:auto; }
+
+  /* KPIs */
+  .kpi-row { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:16px; }
+  @media(max-width:900px){ .kpi-row { grid-template-columns:repeat(2,1fr); } }
+  @media(max-width:500px){ .kpi-row { grid-template-columns:1fr; } }
+  .kpi { background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:18px; position:relative; overflow:hidden; }
+  .kpi::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--accent); }
+  .kpi.accent2::before { background:var(--accent2); }
+  .kpi.success::before { background:var(--success); }
+  .kpi .label { font-size:11.5px; color:var(--text-faint); margin-bottom:6px; font-weight:500; text-transform:uppercase; letter-spacing:0.03em; }
+  .kpi .value { font-family:'IBM Plex Mono'; font-size:24px; font-weight:700; color:var(--accent); }
+  .kpi .sub { font-size:11.5px; color:var(--text-dim); margin-top:4px; line-height:1.3; }
+  .kpi.accent2 .value { color:var(--accent2); }
+  .kpi.success .value { color:var(--success); }
+
+  /* Dropzone & Demo */
+  .dropzone { border:2px dashed var(--border); border-radius:10px; padding:32px 20px; text-align:center; cursor:pointer; transition:all .15s ease; }
+  .dropzone:hover, .dropzone.drag { border-color:var(--accent2); background:var(--accent2-soft); }
+  .dropzone .dz-icon { font-size:32px; margin-bottom:8px; }
+  .dropzone .dz-main { font-weight:600; font-size:14.5px; }
+  .dropzone .dz-sub { font-size:12px; color:var(--text-faint); margin-top:4px; }
+  .demo-strip { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:14px; padding-top:14px; border-top:1px solid var(--border-soft); flex-wrap:wrap; }
+  .file-loaded-row { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--surface-2); border:1px solid var(--accent2); border-radius:8px; padding:12px 16px; }
+
+  /* Universal Shared Workspace Integration Banner */
+  .ws-sync-card {
+    background: linear-gradient(135deg, rgba(79,176,168,0.12) 0%, rgba(227,166,62,0.08) 100%), var(--surface-2);
+    border: 1px solid var(--accent2); border-radius: 8px; padding: 14px 18px; margin-bottom: 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  .ws-sync-info { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+  .ws-sync-title { font-weight: 600; color: var(--text); }
+  .ws-sync-sub { color: var(--text-dim); font-size: 12px; }
+
+  /* AI Engine Detection & Mode Selection */
+  .ai-status-banner {
+    border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; font-size: 13px;
+    display: flex; align-items: center; gap: 10px; line-height: 1.5;
+  }
+  .ai-status-banner.ok { background: var(--accent2-soft); border: 1px solid var(--accent2); color: var(--text); }
+  .ai-status-banner.info { background: var(--accent-soft); border: 1px solid var(--accent); color: var(--text); }
+  .engine-mode-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media(max-width: 680px) { .engine-mode-grid { grid-template-columns: 1fr; } }
+  .engine-mode-card {
+    border: 1px solid var(--border); border-radius: 8px; padding: 14px; background: var(--surface-2);
+    cursor: pointer; transition: all .15s ease; position: relative;
+  }
+  .engine-mode-card:hover { border-color: var(--accent2); }
+  .engine-mode-card.active { border-color: var(--accent2); background: rgba(79,176,168,0.1); box-shadow: 0 0 0 1px var(--accent2); }
+  .engine-mode-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+  .engine-mode-title { font-weight: 600; font-size: 13.5px; color: var(--text); }
+  .engine-mode-desc { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+
+  /* Tool Grid */
+  .tool-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+  .tool-card { display:flex; align-items:center; gap:10px; border:1px solid var(--border); border-radius:8px; padding:12px; cursor:pointer; background:var(--surface-2); }
+  .tool-card.on { border-color:var(--accent2); background:#16302c; }
+  [data-theme="light"] .tool-card.on { background:var(--accent2-soft); }
+  .tool-card input { width:18px; height:18px; accent-color:var(--accent2); }
+
+  /* Progress */
+  .progress-wrap { background:var(--surface-2); border-radius:6px; height:10px; overflow:hidden; border:1px solid var(--border); }
+  .progress-fill { height:100%; background:var(--accent2); width:0%; transition:width .2s ease; }
+  .progress-label { font-size:12px; color:var(--text-dim); margin-top:8px; font-family:'IBM Plex Mono'; }
+
+  /* Clusters Triage Controls */
+  .cluster-controls { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .cluster-search { flex:1; min-width:240px; }
+  .cluster-filter-pills { display:flex; gap:6px; flex-wrap:wrap; }
+  .filter-pill {
+    background:var(--surface-2); border:1px solid var(--border); border-radius:16px;
+    padding:3px 10px; font-size:11.5px; font-weight:500; cursor:pointer; color:var(--text-dim);
+  }
+  .filter-pill:hover, .filter-pill.active { background:var(--accent-soft); border-color:var(--accent); color:var(--accent); }
+
+  /* Table & Conf */
+  .cluster-sample { font-size:12.5px; color:var(--text); max-width:320px; }
+  .cluster-count { font-family:'IBM Plex Mono'; font-weight:600; }
+  .conf-bar-track { width:70px; height:6px; background:var(--surface-2); border-radius:3px; overflow:hidden; display:inline-block; vertical-align:middle; margin-right:6px; }
+  .conf-bar-fill { height:100%; background:var(--accent2); }
+  .category-bar-row { display:flex; align-items:center; gap:10px; padding:6px 0; }
+  .category-bar-label { width:170px; flex:none; font-size:12.5px; color:var(--text-dim); }
+  .category-bar-track { flex:1; height:8px; background:var(--surface-2); border-radius:4px; overflow:hidden; }
+  .category-bar-fill { height:100%; background:var(--accent2); }
+  .category-bar-val { width:50px; flex:none; text-align:right; font-family:'IBM Plex Mono'; font-size:12px; }
+
+  /* Ceiling Heroes */
+  .ceiling-hero { text-align:center; padding:20px; }
+  .ceiling-hero .big-num { font-family:'IBM Plex Mono'; font-size:44px; font-weight:600; }
+  .ceiling-hero .big-label { font-family:'IBM Plex Mono'; font-size:11px; color:var(--text-faint); margin-top:4px; }
+  .axis-panel { border-top:3px solid var(--accent); }
+  .axis-panel.ai { border-top-color:var(--accent2); }
+  .axis-panel.dex { border-top-color:var(--success); }
+  .axis-panel.ai .big-num { color:var(--accent2); }
+  .axis-panel.dex .big-num { color:var(--success); }
+  select.driver-override { max-width:240px; padding:5px 8px; font-size:12px; }
+
+  /* Shift-Left Operational Impact Strip */
+  .impact-strip { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:14px; }
+  @media(max-width:700px){ .impact-strip { grid-template-columns:1fr; } }
+  .impact-card { background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:16px; text-align:center; }
+  .impact-card .val { font-family:'IBM Plex Mono'; font-size:22px; font-weight:700; color:var(--accent); margin-bottom:4px; }
+  .impact-card .lbl { font-size:12px; color:var(--text-dim); font-weight:500; }
+  .impact-card .sub { font-size:11px; color:var(--text-faint); margin-top:2px; }
+
+  .step-disabled { opacity:0.45; pointer-events:none; }
+  .disclaimer-note { font-size:11.5px; color:var(--text-faint); border-left:2px solid var(--border); padding-left:10px; margin-top:14px; }
+  .actionbar { display:flex; gap:10px; justify-content:flex-end; margin-top:18px; flex-wrap:wrap; }
+
+  .toast { position:fixed; bottom:24px; right:24px; z-index:9999; background:var(--surface); color:var(--text); border:1px solid var(--accent); box-shadow:0 8px 30px rgba(0,0,0,0.45); border-radius:8px; padding:12px 18px; font-size:13px; font-weight:500; opacity:0; pointer-events:none; transform:translateY(10px); transition:opacity .2s ease, transform .2s ease; }
+  .toast.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+
+  footer { padding:40px 0 60px; text-align:center; color:var(--text-faint); font-size:12px; border-top:1px solid var(--border-soft); line-height:1.6; }
+  footer a { color:var(--text-dim); }
+
+  @media print {
+    .ecosystem-bar, .sticky-header-wrapper, .actionbar, .dropzone, .demo-strip, #btnProcess { display:none !important; }
+    body { background:#fff; color:#000; }
+    .panel { border:1px solid #ccc; break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Ecosystem Navigation Bar -->
+<div class="ecosystem-bar">
+  <div class="ecosystem-inner">
+    <div class="ecosystem-links">
+      <a href="https://iamsaravofficial.com/" class="eco-brand">← Sarav's World</a>
+      <span class="eco-divider">│</span>
+      <div class="eco-dropdown">
+        <button class="eco-dropbtn" aria-haspopup="true">E-Apps <span class="eco-caret">▾</span></button>
+        <div class="eco-menu">
+          <a href="https://iamsaravofficial.com/eapps/">🏢 Executive Suite Hub</a>
+          <a href="https://iamsaravofficial.com/apps/dwssharedworkspace/">🗄️ Universal Shared Workspace</a>
+          <a href="https://iamsaravofficial.com/apps/tokenomics/">🧠 Tokenomics (AI Economics)</a>
+          <a href="https://iamsaravofficial.com/apps/sdoptimizer/">👷 SD Optimizer</a>
+          <a href="https://iamsaravofficial.com/apps/fsoptimizer/">🗺️ Field Services Hub-Spoke</a>
+          <a href="https://iamsaravofficial.com/apps/desksidestaffing/">🖥️ Deskside Support Staffing</a>
+          <a href="https://iamsaravofficial.com/apps/dexadvisor/">🧭 DEX Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/itsmadvisor/">🎫 ITSM Platform Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/rfpscorer/">⚖️ Vendor RFP Weighted Scorer</a>
+          <a href="https://iamsaravofficial.com/apps/aiinitsm/">📈 AI-in-ITSM Business Case</a>
+          <a href="https://iamsaravofficial.com/apps/automationscore/">🎛️ Automation Potential Advisor</a>
+          <a href="https://iamsaravofficial.com/apps/dwpassessment/">🧬 DWP Maturity Assessment</a>
+          <a href="https://iamsaravofficial.com/apps/ticketanalyzer/" class="current">🎫🔎 Ticket Analyzer</a>
+        </div>
+      </div>
+    </div>
+    <div><span class="badge gold">🎫🔎 Digital Workplace Suite · Version 2026.09</span></div>
+  </div>
+</div>
+
+<!-- Sticky Topbar -->
+<div class="sticky-header-wrapper">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="mark">🎫</div>
+        <div>
+          <h1>Ticket Analyzer <span class="badge teal" id="headerEngineBadge">⚡ Checking AI Capability...</span></h1>
+          <span class="tagline">Upload → Dedupe → Categorize → Automation / AI / DEX Potential</span>
+        </div>
+      </div>
+      <div class="topbar-controls">
+        <div class="theme-toggle" id="themeToggle">
+          <button data-theme-choice="auto">Auto</button>
+          <button data-theme-choice="light">Light</button>
+          <button data-theme-choice="dark" class="active">Dark</button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <nav class="sec-nav-bar">
+    <div class="sec-nav-inner">
+      <a href="#upload" class="sec-nav-link active"><span class="sn-num">01</span> Upload &amp; Demo</a>
+      <a href="#mapping" class="sec-nav-link"><span class="sn-num">02</span> Column Mapping</a>
+      <a href="#stack" class="sec-nav-link"><span class="sn-num">03</span> Tech Stack &amp; Workspace</a>
+      <a href="#process" class="sec-nav-link"><span class="sn-num">04</span> Process &amp; AI Engine</a>
+      <a href="#clusters" class="sec-nav-link"><span class="sn-num">05</span> Unique Issues &amp; Triage</a>
+      <a href="#potential" class="sec-nav-link"><span class="sn-num">06</span> Tri-Axis Potentials</a>
+      <a href="#report" class="sec-nav-link report-link"><span class="sn-num">07</span> Report &amp; Workspace Sync</a>
+    </div>
+  </nav>
+</div>
+
+<div class="container">
+
+  <!-- 01 Upload & Demo -->
+  <section class="block" id="upload">
+    <div class="sec-head"><div class="sec-num mono">01</div><h2>Upload Ticket Export or Launch Demo</h2></div>
+    <p class="sec-desc">Excel (.xlsx/.xls) or CSV export from ServiceNow, Jira, Freshservice, or BMC. 100% private in-browser computation — parsing, embeddings, and scoring run on-device with zero telemetry.</p>
+    <div class="panel">
+      <div class="dropzone" id="dropzone">
+        <div class="dz-icon">📄</div>
+        <div class="dz-main">Click to choose a ticket export, or drag it here</div>
+        <div class="dz-sub">Supports .xlsx, .xls, or .csv — first sheet is automatically parsed</div>
+      </div>
+      <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" style="display:none;">
+      
+      <div class="demo-strip">
+        <div>
+          <button type="button" class="teal" id="btnLoadDemo">⚡ Load Enterprise Demo Dataset (500 Tickets)</button>
+          <span class="hint" style="margin-left:8px; display:inline-block;">Instantly test without preparing an export</span>
+        </div>
+        <div>
+          <a href="ticket_analyzer_test_data.xlsx" class="badge" download style="padding:6px 12px; font-size:12px;">📥 Download Sample Excel Template</a>
+        </div>
+      </div>
+
+      <div id="fileLoadedRow" style="display:none; margin-top:14px;"></div>
+    </div>
+  </section>
+
+  <!-- 02 Column Mapping -->
+  <section class="block step-disabled" id="mapping">
+    <div class="sec-head"><div class="sec-num mono">02</div><h2>Column Mapping</h2></div>
+    <p class="sec-desc">Map your file's actual headers onto the fields Ticket Analyzer needs. Only Short Description / Summary is strictly required — the rest sharpen categorization and export fidelity.</p>
+    <div class="panel">
+      <div class="grid grid-3" id="mappingGrid"></div>
+      <p class="hint" id="rowCountHint"></p>
+    </div>
+  </section>
+
+  <!-- 03 Tech Stack & Industry -->
+  <section class="block step-disabled" id="stack">
+    <div class="sec-head"><div class="sec-num mono">03</div><h2>Tech Stack &amp; Industry Reachability</h2></div>
+    <p class="sec-desc">Define what platforms you have deployed today. Feasibility for Automation, AI, and DEX potentials are derived from your active stack and calibrated to industry digital reachability.</p>
+    
+    <!-- Universal Shared Workspace Banner -->
+    <div id="wsBanner" class="ws-sync-card" style="display:none;">
+      <div class="ws-sync-info">
+        <span style="font-size:20px;">🗄️</span>
+        <div>
+          <div class="ws-sync-title">Universal Shared Workspace Profile Detected: <span id="wsOrgName" style="color:var(--accent2);">Enterprise Profile</span></div>
+          <div class="ws-sync-sub">Synchronize your enterprise tool stack, ITSM platform, and industry reachability in one click.</div>
+        </div>
+      </div>
+      <button type="button" class="small teal" id="btnApplyWs">⚡ Apply from Workspace</button>
+    </div>
+
+    <div class="panel">
+      <h3>Active Technology Platforms Deployed</h3>
+      <div class="tool-grid" id="toolGrid"></div>
+    </div>
+    <div class="panel">
+      <div class="field">
+        <label for="ind_select">Industry Sector (governs workforce Digital Reachability ceiling)</label>
+        <select id="ind_select"></select>
+      </div>
+      <p class="hint" id="reachability_readout"></p>
+    </div>
+  </section>
+
+  <!-- 04 Process & AI Engine -->
+  <section class="block step-disabled" id="process">
+    <div class="sec-head"><div class="sec-num mono">04</div><h2>Process Tickets &amp; Engine Mode</h2></div>
+    <p class="sec-desc">Clusters semantically similar tickets (e.g. "Outlook not opening" and "email client frozen" deduplicate into the same root demand) and classifies them across the 50-driver ITIL library.</p>
+    
+    <div class="panel">
+      <!-- AI Engine Detection Banner -->
+      <div class="ai-status-banner ok" id="aiStatusAlert">
+        <span>⚡ <b>On-Device AI Detected:</b> WebAssembly is fully supported. MiniLM-L6 vector embeddings run locally in your browser.</span>
+      </div>
+
+      <!-- Engine Selector -->
+      <label style="margin-bottom:8px;">Active AI Engine Mode:</label>
+      <div class="engine-mode-grid">
+        <div class="engine-mode-card active" id="cardModeAI">
+          <div class="engine-mode-header">
+            <span class="engine-mode-title">⚡ On-Device Neural AI</span>
+            <input type="radio" name="engineMode" id="modeRadioAI" value="embedding" checked>
+          </div>
+          <div class="engine-mode-desc">Uses local MiniLM-L6 vector embeddings via WebAssembly. High semantic precision, handles synonyms, paraphrases, and typos. (~25MB one-time download, cached after).</div>
+        </div>
+        <div class="engine-mode-card" id="cardModeKW">
+          <div class="engine-mode-header">
+            <span class="engine-mode-title">⚡ Regular Heuristic Mode</span>
+            <input type="radio" name="engineMode" id="modeRadioKW" value="keyword">
+          </div>
+          <div class="engine-mode-desc">Deterministic N-Gram tokenization &amp; Jaccard overlap. Zero model download, runs instantly, fully functional on restricted networks or low-bandwidth connections.</div>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-bottom:14px;">
+        <div class="field">
+          <label for="dedupeThresh">Deduplication Sensitivity (cosine threshold, higher = tighter match)</label>
+          <input id="dedupeThresh" type="range" min="70" max="97" value="86">
+          <span class="hint mono" id="dedupeThreshVal">0.86</span>
+        </div>
+        <div class="field">
+          <label for="matchThresh">Driver Categorization Sensitivity (minimum match threshold)</label>
+          <input id="matchThresh" type="range" min="20" max="80" value="50">
+          <span class="hint mono" id="matchThreshVal">0.50</span>
+        </div>
+      </div>
+
+      <button class="primary" id="btnProcess" style="padding:10px 22px; font-size:14px;">▶ Run Analysis</button>
+      
+      <div style="margin-top:16px; display:none;" id="progressWrap">
+        <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label" id="progressLabel">Initializing…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Unique Issues & Triage -->
+  <section class="block step-disabled" id="clusters">
+    <div class="sec-head"><div class="sec-num mono">05</div><h2>Unique Issues &amp; Categorization Triage</h2></div>
+    <p class="sec-desc">Root issue clusters grouped by semantic meaning. Review matched call drivers, filter by category, or manually override any classification to immediately update Section 06 potentials.</p>
+    <div class="panel">
+      <div class="cluster-controls">
+        <div class="cluster-search">
+          <input type="text" id="clusterSearchInput" placeholder="🔍 Search unique issues by sample text or category...">
+        </div>
+        <div class="cluster-filter-pills" id="clusterFilterPills">
+          <button type="button" class="filter-pill active" data-filter="all">All Issues</button>
+          <button type="button" class="filter-pill" data-filter="uncategorized">Uncategorized Only</button>
+          <button type="button" class="filter-pill" data-filter="Identity">Identity</button>
+          <button type="button" class="filter-pill" data-filter="Device">Device</button>
+          <button type="button" class="filter-pill" data-filter="Software">Software</button>
+          <button type="button" class="filter-pill" data-filter="Access">Access</button>
+          <button type="button" class="filter-pill" data-filter="Network">Network</button>
+          <button type="button" class="filter-pill" data-filter="Workflow">Workflow</button>
+        </div>
+      </div>
+
+      <p class="hint" id="clusterSummary" style="margin-bottom:12px;"></p>
+
+      <div class="overflow-x">
+        <table>
+          <thead>
+            <tr>
+              <th style="width:40%;">Sample Ticket Text</th>
+              <th style="text-align:right;">Count</th>
+              <th style="text-align:right;">% Volume</th>
+              <th>Matched ITIL Driver (Override)</th>
+              <th>Confidence</th>
+            </tr>
+          </thead>
+          <tbody id="clusterBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 Tri-Axis Potentials -->
+  <section class="block step-disabled" id="potential">
+    <div class="sec-head"><div class="sec-num mono">06</div><h2>Automation, AI &amp; DEX Potential Ceilings</h2></div>
+    <p class="sec-desc">Three independent, non-overlapping architectural resolution ceilings derived from your categorized ticket volume: Σ(volume share × tool feasibility), calibrated to your industry Digital Reachability.</p>
+    
+    <div class="grid grid-3">
+      <div class="panel axis-panel">
+        <h3>1. Automation Potential</h3>
+        <div class="ceiling-hero">
+          <div class="big-num mono" id="autoCeilingNum" style="color:var(--accent);">0%</div>
+          <div class="big-label">SCRIPTED / RULE-BASED RESOLUTION</div>
+        </div>
+        <p class="hint" style="text-align:center;">Gated by ServiceNow, Intune, SCCM, Automation Anywhere &amp; GoTo Resolve</p>
+      </div>
+      <div class="panel axis-panel ai">
+        <h3>2. AI Potential</h3>
+        <div class="ceiling-hero">
+          <div class="big-num mono" id="aiCeilingNum">0%</div>
+          <div class="big-label">GENAI / LLM-ASSISTED RESOLUTION</div>
+        </div>
+        <p class="hint" style="text-align:center;">Gated by Azure AI, Copilot &amp; Enterprise LLM platform presence</p>
+      </div>
+      <div class="panel axis-panel dex">
+        <h3>3. DEX Potential</h3>
+        <div class="ceiling-hero">
+          <div class="big-num mono" id="dexCeilingNum">0%</div>
+          <div class="big-label">PROACTIVE SHIFT-LEFT PREVENTION</div>
+        </div>
+        <p class="hint" style="text-align:center;">Gated by Nexthink / DEX telemetry &amp; self-healing automation</p>
+      </div>
+    </div>
+
+    <!-- Executive Shift-Left Impact Strip -->
+    <div class="panel">
+      <h3>Operational Shift-Left Impact Estimate</h3>
+      <div class="impact-strip">
+        <div class="impact-card">
+          <div class="val" id="impactHoursSaved">0 hrs/mo</div>
+          <div class="lbl">Estimated Monthly Hours Deflected</div>
+          <div class="sub">Across automation, GenAI speedup &amp; DEX self-healing</div>
+        </div>
+        <div class="impact-card">
+          <div class="val" id="impactFte" style="color:var(--accent2);">0.0 FTEs</div>
+          <div class="lbl">Human Agent Shift-Left Equivalency</div>
+          <div class="sub">Reallocatable capacity at 160 productive hrs/month</div>
+        </div>
+        <div class="impact-card">
+          <div class="val" id="impactMonthlyVol" style="color:var(--success);">0 tickets/mo</div>
+          <div class="lbl">Modeled Baseline Ticket Volume</div>
+          <div class="sub">Synced with Shared Workspace or analyzed batch</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <div class="panel">
+        <h3>Automation Breakdown</h3>
+        <div id="autoBreakdown"></div>
+      </div>
+      <div class="panel">
+        <h3>AI Breakdown</h3>
+        <div id="aiBreakdown"></div>
+      </div>
+      <div class="panel">
+        <h3>DEX Breakdown</h3>
+        <div id="dexBreakdown"></div>
+      </div>
+    </div>
+
+    <p class="disclaimer-note">Feasibility benchmarks are calibrated to enterprise service desk and EUC standards. Automation Potential applies deterministic per-driver tool matching; AI and DEX potentials evaluate GenAI-assist fit and proactive endpoint remediation based on platform presence in Section 03.</p>
+  </section>
+
+  <!-- 07 Report & Workspace Sync -->
+  <section class="block step-disabled" id="report">
+    <div class="sec-head"><div class="sec-num mono">07</div><h2>Executive Report &amp; Workspace Sync</h2></div>
+    <p class="sec-desc">Comprehensive triage metrics, potential ceilings, and cross-engine ecosystem synchronization.</p>
+    
+    <div class="kpi-row">
+      <div class="kpi"><div class="label">Total Ingested</div><div class="value mono" id="kpi_total">0</div></div>
+      <div class="kpi accent2"><div class="label">Unique Issues</div><div class="value mono" id="kpi_unique">0</div></div>
+      <div class="kpi"><div class="label">Dedupe Compression</div><div class="value mono" id="kpi_dedupe">0%</div></div>
+      <div class="kpi success"><div class="label">Uncategorized</div><div class="value mono" id="kpi_uncat">0%</div></div>
+    </div>
+
+    <div class="panel">
+      <h3>Architectural Summary &amp; Recommendations</h3>
+      <div id="executiveNotes" style="font-size:13.5px; color:var(--text-dim); line-height:1.6;">
+        Run the analysis in Section 04 to generate executive recommendations.
+      </div>
+    </div>
+
+    <div class="actionbar">
+      <button id="btnExportCSV" class="ghost">📊 Export Full Model (CSV)</button>
+      <button id="btnCopyBrief" class="ghost">📋 Copy Executive Briefing (Markdown)</button>
+      <button id="btnSaveWs" class="teal">🗄️ Save to Shared Workspace</button>
+      <button id="btnPrint" class="primary">🖨️ Print / Save PDF</button>
+    </div>
+  </section>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<footer>
+  <div class="container">
+    <p>Ticket Analyzer crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). Digital Workplace Technology Head &amp; Chief AI Architect.</p>
+    <p><a href="https://iamsaravofficial.com/eapps/">2026 Executive Decision Engines</a>. Zero cloud telemetry. Zero cost. All parsing, embeddings, and scoring execute 100% locally in your browser.</p>
+  </div>
+</footer>
+
+<script>
+const $ = (id) => document.getElementById(id);
+
+function showToast(msg) {
+  const t = $('toast'); if (!t) return;
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function applyTheme(choice) {
+  let effective = choice;
+  if (choice === 'auto') effective = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', effective);
+  document.querySelectorAll('#themeToggle button').forEach(b => b.classList.toggle('active', b.dataset.themeChoice === choice));
+  try { localStorage.setItem('ticket_analyzer_theme', choice); } catch(e) {}
+}
+$('themeToggle').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) applyTheme(b.dataset.themeChoice); });
+
+// Ecosystem dropdown
+document.querySelectorAll('.eco-dropdown').forEach((drop) => {
+  const btn = drop.querySelector('.eco-dropbtn'); if (!btn) return;
+  btn.addEventListener('click', (e) => { e.stopPropagation(); const open = drop.classList.contains('open'); document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')); if (!open) drop.classList.add('open'); });
+});
+document.addEventListener('click', () => document.querySelectorAll('.eco-dropdown').forEach(d => d.classList.remove('open')));
+
+// Embedded Fallback Data
+const FALLBACK_DATA = {
+  "version": "2026.09",
+  "disclaimer": "Volume shares are computed from your uploaded ticket export. Tool feasibility, AI-assist, and DEX-prevention ratings are Nalkudil Studio's independent directional benchmarks, not analyst-sourced or client-verified. Edit any number to match your own environment before using this for a real business case.",
+  "tools": [
+    {
+      "id": "servicenow",
+      "name": "ServiceNow"
+    },
+    {
+      "id": "nexthink",
+      "name": "Nexthink"
+    },
+    {
+      "id": "intune",
+      "name": "Intune"
+    },
+    {
+      "id": "sccm",
+      "name": "SCCM"
+    },
+    {
+      "id": "automationanywhere",
+      "name": "Automation Anywhere"
+    },
+    {
+      "id": "azureai",
+      "name": "Azure AI"
+    },
+    {
+      "id": "gotoresolve",
+      "name": "GoTo Resolve"
+    }
+  ],
+  "industries": [
+    {
+      "id": "cmt",
+      "name": "Communications, Media & Technology",
+      "reachability": 75
+    },
+    {
+      "id": "bfsi",
+      "name": "BFSI",
+      "reachability": 60
+    },
+    {
+      "id": "pubsec",
+      "name": "Public Sector / Government",
+      "reachability": 60
+    },
+    {
+      "id": "profserv",
+      "name": "Professional Services",
+      "reachability": 60
+    },
+    {
+      "id": "healthcare",
+      "name": "Healthcare & Life Sciences",
+      "reachability": 55
+    },
+    {
+      "id": "retail",
+      "name": "Retail & Consumer",
+      "reachability": 45
+    },
+    {
+      "id": "energy",
+      "name": "Energy & Utilities",
+      "reachability": 45
+    },
+    {
+      "id": "manufacturing",
+      "name": "Manufacturing",
+      "reachability": 40
+    }
+  ],
+  "drivers": [
+    {
+      "id": "d01",
+      "name": "Password Reset",
+      "category": "Identity",
+      "volShare": 15,
+      "tool": "intune",
+      "feasWith": 90,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 30,
+      "dexWithout": 4,
+      "symptoms": [
+        "forgot my password",
+        "can't log in password expired",
+        "need password reset"
+      ],
+      "matchText": "Password Reset. forgot my password. can't log in password expired. need password reset"
+    },
+    {
+      "id": "d02",
+      "name": "Account Lockout",
+      "category": "Identity",
+      "volShare": 6,
+      "tool": "intune",
+      "feasWith": 85,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 35,
+      "dexWithout": 5,
+      "symptoms": [
+        "account locked out",
+        "too many failed login attempts",
+        "locked out of my account"
+      ],
+      "matchText": "Account Lockout. account locked out. too many failed login attempts. locked out of my account"
+    },
+    {
+      "id": "d03",
+      "name": "MFA Enrollment / Reset",
+      "category": "Identity",
+      "volShare": 3,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 25,
+      "dexWithout": 4,
+      "symptoms": [
+        "mfa not working",
+        "lost my authenticator",
+        "need to reset multi factor authentication"
+      ],
+      "matchText": "MFA Enrollment / Reset. mfa not working. lost my authenticator. need to reset multi factor authentication"
+    },
+    {
+      "id": "d04",
+      "name": "New Access Request (app/folder)",
+      "category": "Identity",
+      "volShare": 4,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "need access to shared folder",
+        "request access to application",
+        "please grant permission to"
+      ],
+      "matchText": "New Access Request (app/folder). need access to shared folder. request access to application. please grant permission to"
+    },
+    {
+      "id": "d05",
+      "name": "Access Revocation Request",
+      "category": "Identity",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "remove access for departed user",
+        "revoke permission to system",
+        "take away access rights"
+      ],
+      "matchText": "Access Revocation Request. remove access for departed user. revoke permission to system. take away access rights"
+    },
+    {
+      "id": "d06",
+      "name": "VPN Account Setup",
+      "category": "Identity",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 15,
+      "dexWithout": 2,
+      "symptoms": [
+        "need vpn account created",
+        "set up vpn access",
+        "new vpn credentials request"
+      ],
+      "matchText": "VPN Account Setup. need vpn account created. set up vpn access. new vpn credentials request"
+    },
+    {
+      "id": "d07",
+      "name": "Laptop Slow Performance",
+      "category": "Device",
+      "volShare": 4,
+      "tool": "nexthink",
+      "feasWith": 65,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 70,
+      "dexWithout": 10,
+      "symptoms": [
+        "laptop running very slow",
+        "computer is sluggish",
+        "system takes forever to load"
+      ],
+      "matchText": "Laptop Slow Performance. laptop running very slow. computer is sluggish. system takes forever to load"
+    },
+    {
+      "id": "d08",
+      "name": "Laptop Hardware Failure",
+      "category": "Device",
+      "volShare": 2,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "laptop won't turn on",
+        "screen is cracked",
+        "hardware is dead won't boot"
+      ],
+      "matchText": "Laptop Hardware Failure. laptop won't turn on. screen is cracked. hardware is dead won't boot"
+    },
+    {
+      "id": "d09",
+      "name": "Battery Degradation Complaint",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "nexthink",
+      "feasWith": 55,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 60,
+      "dexWithout": 9,
+      "symptoms": [
+        "battery drains too fast",
+        "laptop battery not holding charge",
+        "battery life is terrible"
+      ],
+      "matchText": "Battery Degradation Complaint. battery drains too fast. laptop battery not holding charge. battery life is terrible"
+    },
+    {
+      "id": "d10",
+      "name": "Disk Space Warning",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 75,
+      "dexWithout": 11,
+      "symptoms": [
+        "low disk space warning",
+        "hard drive almost full",
+        "need more storage space on device"
+      ],
+      "matchText": "Disk Space Warning. low disk space warning. hard drive almost full. need more storage space on device"
+    },
+    {
+      "id": "d11",
+      "name": "New Device Provisioning",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "need a new laptop set up",
+        "provision new device for employee",
+        "new machine setup request"
+      ],
+      "matchText": "New Device Provisioning. need a new laptop set up. provision new device for employee. new machine setup request"
+    },
+    {
+      "id": "d12",
+      "name": "Device Compliance Policy Failure",
+      "category": "Device",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "device shows non compliant",
+        "compliance policy failed",
+        "device out of compliance"
+      ],
+      "matchText": "Device Compliance Policy Failure. device shows non compliant. compliance policy failed. device out of compliance"
+    },
+    {
+      "id": "d13",
+      "name": "Mobile Device Enrollment",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "intune",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "enroll my phone in mdm",
+        "register mobile device",
+        "mobile device not enrolling"
+      ],
+      "matchText": "Mobile Device Enrollment. enroll my phone in mdm. register mobile device. mobile device not enrolling"
+    },
+    {
+      "id": "d14",
+      "name": "Remote Wipe Request",
+      "category": "Device",
+      "volShare": 1,
+      "tool": "intune",
+      "feasWith": 85,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "wipe lost device remotely",
+        "need to remote wipe phone",
+        "erase data from stolen laptop"
+      ],
+      "matchText": "Remote Wipe Request. wipe lost device remotely. need to remote wipe phone. erase data from stolen laptop"
+    },
+    {
+      "id": "d15",
+      "name": "Docking Station Failure",
+      "category": "Device",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "dock not working",
+        "monitors not detected through docking station",
+        "docking station stopped working"
+      ],
+      "matchText": "Docking Station Failure. dock not working. monitors not detected through docking station. docking station stopped working"
+    },
+    {
+      "id": "d16",
+      "name": "Peripheral Issue (mouse/keyboard/monitor)",
+      "category": "Device",
+      "volShare": 2,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "mouse not working",
+        "keyboard not responding",
+        "monitor won't turn on"
+      ],
+      "matchText": "Peripheral Issue (mouse/keyboard/monitor). mouse not working. keyboard not responding. monitor won't turn on"
+    },
+    {
+      "id": "d17",
+      "name": "Software Install Request",
+      "category": "Software",
+      "volShare": 5,
+      "tool": "sccm",
+      "feasWith": 85,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "please install this software",
+        "need application installed",
+        "request new software install"
+      ],
+      "matchText": "Software Install Request. please install this software. need application installed. request new software install"
+    },
+    {
+      "id": "d18",
+      "name": "Software Update / Patch Failure",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "sccm",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 50,
+      "dexWithout": 8,
+      "symptoms": [
+        "update failed to install",
+        "patch keeps failing",
+        "software won't update"
+      ],
+      "matchText": "Software Update / Patch Failure. update failed to install. patch keeps failing. software won't update"
+    },
+    {
+      "id": "d19",
+      "name": "Application Crash",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 45,
+      "aiWithout": 11,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "application keeps crashing",
+        "program crashed unexpectedly",
+        "app freezes and closes"
+      ],
+      "matchText": "Application Crash. application keeps crashing. program crashed unexpectedly. app freezes and closes"
+    },
+    {
+      "id": "d20",
+      "name": "OS Reimage Request",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "sccm",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "need laptop reimaged",
+        "reinstall operating system",
+        "wipe and reimage machine"
+      ],
+      "matchText": "OS Reimage Request. need laptop reimaged. reinstall operating system. wipe and reimage machine"
+    },
+    {
+      "id": "d21",
+      "name": "License Activation Issue",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "license key not activating",
+        "software says license expired",
+        "cannot activate license"
+      ],
+      "matchText": "License Activation Issue. license key not activating. software says license expired. cannot activate license"
+    },
+    {
+      "id": "d22",
+      "name": "Application Access Request",
+      "category": "Software",
+      "volShare": 3,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "request access to crm system",
+        "need login for application",
+        "grant access to software"
+      ],
+      "matchText": "Application Access Request. request access to crm system. need login for application. grant access to software"
+    },
+    {
+      "id": "d23",
+      "name": "Browser / Plugin Issue",
+      "category": "Software",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 45,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "browser keeps crashing",
+        "extension not working",
+        "plugin causing errors in browser"
+      ],
+      "matchText": "Browser / Plugin Issue. browser keeps crashing. extension not working. plugin causing errors in browser"
+    },
+    {
+      "id": "d24",
+      "name": "Driver Update Request",
+      "category": "Software",
+      "volShare": 1,
+      "tool": "sccm",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "printer driver outdated",
+        "need updated graphics driver",
+        "driver causing issues"
+      ],
+      "matchText": "Driver Update Request. printer driver outdated. need updated graphics driver. driver causing issues"
+    },
+    {
+      "id": "d25",
+      "name": "VPN Connection Issue",
+      "category": "Network",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 55,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "vpn keeps disconnecting",
+        "cannot connect to vpn",
+        "vpn connection failed"
+      ],
+      "matchText": "VPN Connection Issue. vpn keeps disconnecting. cannot connect to vpn. vpn connection failed"
+    },
+    {
+      "id": "d26",
+      "name": "Wi-Fi Connectivity Issue",
+      "category": "Network",
+      "volShare": 3,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 60,
+      "dexWithout": 9,
+      "symptoms": [
+        "wifi keeps dropping",
+        "cannot connect to wireless network",
+        "weak wifi signal"
+      ],
+      "matchText": "Wi-Fi Connectivity Issue. wifi keeps dropping. cannot connect to wireless network. weak wifi signal"
+    },
+    {
+      "id": "d27",
+      "name": "Network Drive Access Issue",
+      "category": "Network",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 65,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "cannot access network drive",
+        "shared drive not mapping",
+        "network folder inaccessible"
+      ],
+      "matchText": "Network Drive Access Issue. cannot access network drive. shared drive not mapping. network folder inaccessible"
+    },
+    {
+      "id": "d28",
+      "name": "Slow Network Performance",
+      "category": "Network",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 45,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 35,
+      "aiWithout": 9,
+      "dexWith": 55,
+      "dexWithout": 8,
+      "symptoms": [
+        "internet is very slow",
+        "network performance degraded",
+        "slow file transfer speeds"
+      ],
+      "matchText": "Slow Network Performance. internet is very slow. network performance degraded. slow file transfer speeds"
+    },
+    {
+      "id": "d29",
+      "name": "General How-To / FAQ",
+      "category": "Collaboration",
+      "volShare": 4,
+      "tool": "azureai",
+      "feasWith": 75,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 80,
+      "aiWithout": 20,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "how do i set up email signature",
+        "how to use this feature",
+        "general question about process"
+      ],
+      "matchText": "General How-To / FAQ. how do i set up email signature. how to use this feature. general question about process"
+    },
+    {
+      "id": "d30",
+      "name": "Email / Mailbox Quota Issue",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 40,
+      "dexWithout": 6,
+      "symptoms": [
+        "mailbox is full",
+        "email storage quota exceeded",
+        "cannot send email mailbox full"
+      ],
+      "matchText": "Email / Mailbox Quota Issue. mailbox is full. email storage quota exceeded. cannot send email mailbox full"
+    },
+    {
+      "id": "d31",
+      "name": "Shared Mailbox / Distribution List Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 80,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "create shared mailbox",
+        "add me to distribution list",
+        "new group email needed"
+      ],
+      "matchText": "Shared Mailbox / Distribution List Request. create shared mailbox. add me to distribution list. new group email needed"
+    },
+    {
+      "id": "d32",
+      "name": "Calendar / Scheduling Issue",
+      "category": "Collaboration",
+      "volShare": 1,
+      "tool": "azureai",
+      "feasWith": 60,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 50,
+      "aiWithout": 13,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "calendar not syncing",
+        "meeting invite not showing",
+        "scheduling conflict issue"
+      ],
+      "matchText": "Calendar / Scheduling Issue. calendar not syncing. meeting invite not showing. scheduling conflict issue"
+    },
+    {
+      "id": "d33",
+      "name": "Teams / Collaboration Tool Issue",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "nexthink",
+      "feasWith": 50,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "teams call keeps dropping",
+        "cannot join teams meeting",
+        "collaboration tool not working"
+      ],
+      "matchText": "Teams / Collaboration Tool Issue. teams call keeps dropping. cannot join teams meeting. collaboration tool not working"
+    },
+    {
+      "id": "d34",
+      "name": "SharePoint Access Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "need access to sharepoint site",
+        "cannot open sharepoint folder",
+        "sharepoint permission denied"
+      ],
+      "matchText": "SharePoint Access Request. need access to sharepoint site. cannot open sharepoint folder. sharepoint permission denied"
+    },
+    {
+      "id": "d35",
+      "name": "Knowledge Article Request",
+      "category": "Collaboration",
+      "volShare": 2,
+      "tool": "azureai",
+      "feasWith": 80,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 85,
+      "aiWithout": 21,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "where is documentation for",
+        "need knowledge base article",
+        "looking for how to guide"
+      ],
+      "matchText": "Knowledge Article Request. where is documentation for. need knowledge base article. looking for how to guide"
+    },
+    {
+      "id": "d36",
+      "name": "New Hire Account Setup",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 85,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "new employee needs account",
+        "onboarding account creation",
+        "set up accounts for new hire"
+      ],
+      "matchText": "New Hire Account Setup. new employee needs account. onboarding account creation. set up accounts for new hire"
+    },
+    {
+      "id": "d37",
+      "name": "New Hire Equipment Provisioning",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "new hire needs laptop",
+        "equipment for new employee",
+        "provision hardware for onboarding"
+      ],
+      "matchText": "New Hire Equipment Provisioning. new hire needs laptop. equipment for new employee. provision hardware for onboarding"
+    },
+    {
+      "id": "d38",
+      "name": "Leaver Access Removal",
+      "category": "Offboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 90,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "employee left remove access",
+        "offboarding disable account",
+        "terminate access for departed employee"
+      ],
+      "matchText": "Leaver Access Removal. employee left remove access. offboarding disable account. terminate access for departed employee"
+    },
+    {
+      "id": "d39",
+      "name": "Leaver Equipment Recovery",
+      "category": "Offboarding",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "collect laptop from departed employee",
+        "retrieve equipment from leaver",
+        "recover hardware after termination"
+      ],
+      "matchText": "Leaver Equipment Recovery. collect laptop from departed employee. retrieve equipment from leaver. recover hardware after termination"
+    },
+    {
+      "id": "d40",
+      "name": "Role Change Access Update",
+      "category": "Onboarding",
+      "volShare": 2,
+      "tool": "automationanywhere",
+      "feasWith": 75,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "employee changed roles update access",
+        "transfer department access change",
+        "update permissions for new role"
+      ],
+      "matchText": "Role Change Access Update. employee changed roles update access. transfer department access change. update permissions for new role"
+    },
+    {
+      "id": "d41",
+      "name": "Remote Desktop Troubleshoot",
+      "category": "Remote Support",
+      "volShare": 3,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 30,
+      "aiWithout": 8,
+      "dexWith": 30,
+      "dexWithout": 5,
+      "symptoms": [
+        "need remote assistance",
+        "help me remotely on my screen",
+        "remote session to fix issue"
+      ],
+      "matchText": "Remote Desktop Troubleshoot. need remote assistance. help me remotely on my screen. remote session to fix issue"
+    },
+    {
+      "id": "d42",
+      "name": "Remote Software Install Assist",
+      "category": "Remote Support",
+      "volShare": 2,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 25,
+      "aiWithout": 6,
+      "dexWith": 15,
+      "dexWithout": 2,
+      "symptoms": [
+        "help me install software remotely",
+        "need remote support to install app",
+        "assist install via remote session"
+      ],
+      "matchText": "Remote Software Install Assist. help me install software remotely. need remote support to install app. assist install via remote session"
+    },
+    {
+      "id": "d43",
+      "name": "Remote Printer Setup Assist",
+      "category": "Remote Support",
+      "volShare": 1,
+      "tool": "gotoresolve",
+      "feasWith": 15,
+      "feasWithout": 0,
+      "type": "aht_reduction",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "help set up printer remotely",
+        "remote printer configuration assist",
+        "need help connecting printer"
+      ],
+      "matchText": "Remote Printer Setup Assist. help set up printer remotely. remote printer configuration assist. need help connecting printer"
+    },
+    {
+      "id": "d44",
+      "name": "Ticket Routing / Triage",
+      "category": "Workflow",
+      "volShare": 2,
+      "tool": "servicenow",
+      "feasWith": 70,
+      "feasWithout": 20,
+      "type": "automation",
+      "aiWith": 70,
+      "aiWithout": 18,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "ticket assigned wrong team",
+        "misrouted ticket needs reassignment",
+        "ticket sitting unassigned"
+      ],
+      "matchText": "Ticket Routing / Triage. ticket assigned wrong team. misrouted ticket needs reassignment. ticket sitting unassigned"
+    },
+    {
+      "id": "d45",
+      "name": "Approval Workflow Delay",
+      "category": "Workflow",
+      "volShare": 1,
+      "tool": "servicenow",
+      "feasWith": 65,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 40,
+      "aiWithout": 10,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "approval stuck pending",
+        "waiting too long for approval",
+        "workflow approval delayed"
+      ],
+      "matchText": "Approval Workflow Delay. approval stuck pending. waiting too long for approval. workflow approval delayed"
+    },
+    {
+      "id": "d46",
+      "name": "SLA Escalation Handling",
+      "category": "Workflow",
+      "volShare": 1,
+      "tool": "servicenow",
+      "feasWith": 60,
+      "feasWithout": 15,
+      "type": "automation",
+      "aiWith": 45,
+      "aiWithout": 11,
+      "dexWith": 20,
+      "dexWithout": 3,
+      "symptoms": [
+        "ticket breaching sla",
+        "need to escalate this ticket",
+        "sla at risk please expedite"
+      ],
+      "matchText": "SLA Escalation Handling. ticket breaching sla. need to escalate this ticket. sla at risk please expedite"
+    },
+    {
+      "id": "d47",
+      "name": "Conference Room AV Issue",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 15,
+      "aiWithout": 4,
+      "dexWith": 10,
+      "dexWithout": 2,
+      "symptoms": [
+        "projector not working in conference room",
+        "av equipment failure meeting room",
+        "screen sharing not working in room"
+      ],
+      "matchText": "Conference Room AV Issue. projector not working in conference room. av equipment failure meeting room. screen sharing not working in room"
+    },
+    {
+      "id": "d48",
+      "name": "Badge / Physical Access Issue",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 10,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "badge not working door access",
+        "lost my access badge",
+        "cannot enter building badge failed"
+      ],
+      "matchText": "Badge / Physical Access Issue. badge not working door access. lost my access badge. cannot enter building badge failed"
+    },
+    {
+      "id": "d49",
+      "name": "Printer Hardware Jam",
+      "category": "Physical",
+      "volShare": 1,
+      "tool": null,
+      "feasWith": 5,
+      "feasWithout": 5,
+      "type": "automation",
+      "aiWith": 10,
+      "aiWithout": 3,
+      "dexWith": 5,
+      "dexWithout": 1,
+      "symptoms": [
+        "printer paper jam",
+        "printer not printing hardware issue",
+        "printer physically broken"
+      ],
+      "matchText": "Printer Hardware Jam. printer paper jam. printer not printing hardware issue. printer physically broken"
+    },
+    {
+      "id": "d50",
+      "name": "Certificate / Encryption (BitLocker) Issue",
+      "category": "Security",
+      "volShare": 2,
+      "tool": "intune",
+      "feasWith": 70,
+      "feasWithout": 10,
+      "type": "automation",
+      "aiWith": 20,
+      "aiWithout": 5,
+      "dexWith": 45,
+      "dexWithout": 7,
+      "symptoms": [
+        "bitlocker recovery key needed",
+        "encryption certificate expired",
+        "device asking for bitlocker key"
+      ],
+      "matchText": "Certificate / Encryption (BitLocker) Issue. bitlocker recovery key needed. encryption certificate expired. device asking for bitlocker key"
+    }
+  ]
+};
+const FALLBACK_BENCH = {
+  "meta": {
+    "version": "2026.09",
+    "last_refreshed": "2026-09-17"
+  },
+  "pacing_weights": {
+    "kb_readiness": 0.3,
+    "tooling_penetration": 0.2,
+    "digital_culture": 0.2,
+    "complexity_simple": 0.15,
+    "maturity_stage": 0.15
+  },
+  "maturity_stage_scores": {
+    "none": 0,
+    "pilot": 30,
+    "scaled": 65,
+    "advanced": 90
+  },
+  "ramp_bounds": {
+    "year1_pct_of_ceiling": 25,
+    "annual_growth_pct_of_ceiling": 15
+  },
+  "match_defaults": {
+    "dedupe_threshold": 0.86,
+    "category_match_threshold": 0.5
+  },
+  "embedding_model": "Xenova/all-MiniLM-L6-v2"
+};
+const EMBEDDED_SAMPLE_DATA = [
+  {
+    "Ticket ID": "TCK-000001",
+    "Short Description": "Application keeps crashing - please advise",
+    "Description": "Hi team, application keeps crashing.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000002",
+    "Short Description": "Need to reset multi factor authentication - please advise",
+    "Description": "Requesting support: need to reset multi factor authentication ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000003",
+    "Short Description": "Encryption certificate expired",
+    "Description": "Hello, encryption certificate expired - please advise",
+    "Category": "Security",
+    "Priority": "P4",
+    "Assigned Group": "Security Operations",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000004",
+    "Short Description": "Battery life is terrible.",
+    "Description": "battery life is terrible.",
+    "Category": "Device",
+    "Priority": "P4",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000005",
+    "Short Description": "Please help - help set up printer remotely when you get a chance",
+    "Description": "help set up printer remotely when you get a chance",
+    "Category": "Remote Support",
+    "Priority": "P4",
+    "Assigned Group": "Remote Support Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000006",
+    "Short Description": "FYI - please install this software",
+    "Description": "Please install this software",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000007",
+    "Short Description": "Please help - request access to crm system - please advise",
+    "Description": "request access to crm system thanks",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000008",
+    "Short Description": "Need password reset",
+    "Description": "need password reset",
+    "Category": "Identity",
+    "Priority": "P4",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000009",
+    "Short Description": "Network performance degraded",
+    "Description": "Urgent: network performance degraded when you get a chance",
+    "Category": "Network",
+    "Priority": "P3",
+    "Assigned Group": "Network Operations",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000010",
+    "Short Description": "Can't log in password expired",
+    "Description": "can't log in password expired.",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000011",
+    "Short Description": "Need vpn account created.",
+    "Description": "Need vpn account created when you get a chance",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000012",
+    "Short Description": "FYI - reinstall operating system thanks",
+    "Description": "Hello, reinstall operating system.",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000013",
+    "Short Description": "Badge not working door access - please advise",
+    "Description": "Hi team, Badge not working door access thanks",
+    "Category": "Physical",
+    "Priority": "P4",
+    "Assigned Group": "Facilities/IT",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000014",
+    "Short Description": "Requesting support: request access to application",
+    "Description": "request access to application thanks",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000015",
+    "Short Description": "Request new software install",
+    "Description": "Hello, request new software install",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000016",
+    "Short Description": "Calendar not syncing",
+    "Description": "calendar not syncing",
+    "Category": "Collaboration",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000017",
+    "Short Description": "FYI - too many failed login attempts",
+    "Description": "Hello, too many failed login attempts ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000018",
+    "Short Description": "Request access to application",
+    "Description": "request access to application ASAP",
+    "Category": "Identity",
+    "Priority": "P3",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000019",
+    "Short Description": "Misrouted ticket needs reassignment.",
+    "Description": "Hello, misrouted ticket needs reassignment thanks",
+    "Category": "Workflow",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Walk-up"
+  },
+  {
+    "Ticket ID": "TCK-000020",
+    "Short Description": "Need laptop reimaged.",
+    "Description": "FYI - Need laptop reimaged.",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000021",
+    "Short Description": "FYI - driver causing issues - please advise",
+    "Description": "driver causing issues",
+    "Category": "Software",
+    "Priority": "P4",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000022",
+    "Short Description": "Requesting support: need knowledge base article",
+    "Description": "need knowledge base article.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000023",
+    "Short Description": "FYI - Laptop running very slow",
+    "Description": "FYI - laptop running very slow",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000024",
+    "Short Description": "FYI - Equipment for new employee",
+    "Description": "equipment for new employee - please advise",
+    "Category": "Onboarding",
+    "Priority": "P3",
+    "Assigned Group": "IT Onboarding",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000025",
+    "Short Description": "Please help - software says license expired",
+    "Description": "software says license expired",
+    "Category": "Software",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Portal"
+  },
+  {
+    "Ticket ID": "TCK-000026",
+    "Short Description": "Vpn keeps disconnecting when you get a chance",
+    "Description": "FYI - Vpn keeps disconnecting.",
+    "Category": "Network",
+    "Priority": "P4",
+    "Assigned Group": "Network Operations",
+    "Channel": "Email"
+  },
+  {
+    "Ticket ID": "TCK-000027",
+    "Short Description": "FYI - can't log in password expired",
+    "Description": "Please help - can't log in password expired",
+    "Category": "Identity",
+    "Priority": "P2",
+    "Assigned Group": "Identity & Access Mgmt",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000028",
+    "Short Description": "Add me to distribution list.",
+    "Description": "Add me to distribution list.",
+    "Category": "Collaboration",
+    "Priority": "P3",
+    "Assigned Group": "Service Desk",
+    "Channel": "Phone"
+  },
+  {
+    "Ticket ID": "TCK-000029",
+    "Short Description": "Hi team, Request access to crm system",
+    "Description": "Hello, request access to crm system.",
+    "Category": "Software",
+    "Priority": "P2",
+    "Assigned Group": "Service Desk",
+    "Channel": "Chat"
+  },
+  {
+    "Ticket ID": "TCK-000030",
+    "Short Description": "Mouse not working - please advise",
+    "Description": "FYI - mouse not working - please advise",
+    "Category": "Device",
+    "Priority": "P3",
+    "Assigned Group": "Deskside Support",
+    "Channel": "Email"
+  }
+];
+
+let DATA = null, BENCH = null;
+
+async function loadData() {
+  try {
+    const [dRes, bRes] = await Promise.all([fetch('ta-data.json', {cache:'no-store'}), fetch('ta-benchmarks.json', {cache:'no-store'})]);
+    if (!dRes.ok || !bRes.ok) throw new Error('fetch failed');
+    DATA = await dRes.json(); BENCH = await bRes.json();
+  } catch (e) {
+    DATA = JSON.parse(JSON.stringify(FALLBACK_DATA));
+    BENCH = JSON.parse(JSON.stringify(FALLBACK_BENCH));
+  }
+}
+
+// ---------------- STATE ----------------
+const state = {
+  rows: [], headers: [],
+  colMap: { shortDesc: '', description: '', ticketId: '', category: '', priority: '', assignedGroup: '', channel: '' },
+  selectedTools: [], industryId: 'cmt',
+  clusters: [], // { text, count, driverId, similarity, vec, tokens }
+  volMap: {}, // driverId -> % of total volume
+  ready: false,
+  engineMode: 'embedding', // 'embedding' (on-device AI) or 'keyword' (regular mode)
+  onDeviceAiSupported: false
+};
+
+// ---------------- STEP UNLOCK ----------------
+function unlockStep(id) { $(id).classList.remove('step-disabled'); }
+
+// ---------------- AI CAPABILITY DETECTOR ----------------
+function checkWasmSupport() {
+  try {
+    if (typeof WebAssembly === 'object' && typeof WebAssembly.instantiate === 'function') {
+      const module = new WebAssembly.Module(Uint8Array.of(0x0, 0x61, 0x73, 0x6d, 0x01, 0x00, 0x00, 0x00));
+      if (module instanceof WebAssembly.Module) {
+        return new WebAssembly.Instance(module) instanceof WebAssembly.Instance;
+      }
+    }
+  } catch(e) { return false; }
+  return false;
+}
+
+function probeAndSetAiStatus() {
+  const hasWasm = checkWasmSupport();
+  state.onDeviceAiSupported = hasWasm;
+  if (hasWasm) {
+    setEngineMode('embedding', 'WebAssembly is verified. MiniLM-L6 vector embeddings run 100% locally in-browser.');
+  } else {
+    setEngineMode('keyword', 'WebAssembly is not available in this browser. Running in Regular Heuristic Mode.');
+  }
+}
+
+function setEngineMode(mode, message) {
+  state.engineMode = mode;
+  const badge = $('headerEngineBadge');
+  const alert = $('aiStatusAlert');
+  const cardAi = $('cardModeAI');
+  const cardKw = $('cardModeKW');
+  const radAi = $('modeRadioAI');
+  const radKw = $('modeRadioKW');
+  const dedupeSlider = $('dedupeThresh');
+  const matchSlider = $('matchThresh');
+
+  if (mode === 'embedding') {
+    if (badge) { badge.className = 'badge teal'; badge.innerHTML = '⚡ On-Device AI Active'; }
+    if (alert) {
+      alert.className = 'ai-status-banner ok';
+      alert.innerHTML = '<span>⚡ <b>On-Device AI Detected:</b> ' + (message || 'WebAssembly is verified. Local MiniLM-L6 embeddings run 100% in-browser with zero telemetry.') + '</span>';
+    }
+    if (cardAi) cardAi.classList.add('active');
+    if (cardKw) cardKw.classList.remove('active');
+    if (radAi) radAi.checked = true;
+    if (dedupeSlider) dedupeSlider.disabled = false;
+    if (matchSlider) matchSlider.disabled = false;
+  } else {
+    if (badge) { badge.className = 'badge info'; badge.innerHTML = 'ℹ️ Regular Heuristic Mode'; }
+    if (alert) {
+      alert.className = 'ai-status-banner info';
+      alert.innerHTML = '<span>ℹ️ <b>Regular Heuristic Mode Active:</b> ' + (message || 'Running deterministic tokenization and keyword N-gram matching. Instant execution, zero model download, zero data leaves browser.') + '</span>';
+    }
+    if (cardKw) cardKw.classList.add('active');
+    if (cardAi) cardAi.classList.remove('active');
+    if (radKw) radKw.checked = true;
+    if (dedupeSlider) dedupeSlider.disabled = true;
+    if (matchSlider) matchSlider.disabled = true;
+  }
+}
+
+$('cardModeAI').addEventListener('click', () => {
+  if (!state.onDeviceAiSupported) {
+    showToast('WebAssembly is not supported in this browser. Keeping Regular Mode.');
+    return;
+  }
+  setEngineMode('embedding');
+  showToast('Switched to On-Device Neural AI Mode.');
+});
+
+$('cardModeKW').addEventListener('click', () => {
+  setEngineMode('keyword');
+  showToast('Switched to Regular Heuristic Mode.');
+});
+
+// ---------------- UNIVERSAL SHARED WORKSPACE ----------------
+const WORKSPACE_KEY = 'dws_workspace_v1';
+const WS_APP_ID = 'ticketanalyzer';
+const WS_APP_NAME = 'ITSM Ticket Analyzer';
+
+function wsLoad() {
+  try {
+    const raw = localStorage.getItem(WORKSPACE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function checkSharedWorkspace() {
+  const ws = wsLoad();
+  const banner = $('wsBanner');
+  if (!ws || (!ws.orgProfile && !ws.techStack)) {
+    if (banner) banner.style.display = 'none';
+    return;
+  }
+  if (banner) {
+    banner.style.display = 'flex';
+    const orgName = (ws.orgProfile && ws.orgProfile.name) || ws.activePreset || 'Universal Profile';
+    $('wsOrgName').textContent = orgName;
+  }
+}
+
+function applyFromSharedWorkspace() {
+  const ws = wsLoad();
+  if (!ws) { showToast('No shared workspace data found.'); return; }
+  
+  if (ws.orgProfile && ws.orgProfile.industry) {
+    const rawInd = ws.orgProfile.industry.toLowerCase();
+    const match = DATA.industries.find(i => rawInd.includes(i.id) || i.name.toLowerCase().includes(rawInd) || rawInd.includes(i.name.toLowerCase().split(' ')[0]));
+    if (match) {
+      state.industryId = match.id;
+      $('ind_select').value = match.id;
+      const indObj = DATA.industries.find(i => i.id === state.industryId);
+      $('reachability_readout').textContent = indObj.name + ' → ' + indObj.reachability + '% of your workforce is reachable by digital self-service tooling at all.';
+    }
+  }
+
+  if (ws.techStack) {
+    const ts = JSON.stringify(ws.techStack).toLowerCase();
+    const toolsToSelect = [];
+    if (ts.includes('servicenow')) toolsToSelect.push('servicenow');
+    if (ts.includes('nexthink')) toolsToSelect.push('nexthink');
+    if (ts.includes('intune')) toolsToSelect.push('intune');
+    if (ts.includes('sccm') || ts.includes('configmgr')) toolsToSelect.push('sccm');
+    if (ts.includes('automation anywhere') || ts.includes('rpa')) toolsToSelect.push('automationanywhere');
+    if (ts.includes('azure') || ts.includes('openai') || ts.includes('claude') || ts.includes('gemini') || ts.includes('llm') || ts.includes('copilot')) toolsToSelect.push('azureai');
+    if (ts.includes('goto') || ts.includes('remote')) toolsToSelect.push('gotoresolve');
+    
+    state.selectedTools = toolsToSelect;
+    $('toolGrid').querySelectorAll('.tool-card').forEach(card => {
+      const id = card.dataset.toolCard;
+      const cb = card.querySelector('input');
+      const isOn = toolsToSelect.includes(id);
+      cb.checked = isOn;
+      card.classList.toggle('on', isOn);
+    });
+  }
+
+  recalcPotentials();
+  showToast('Applied Industry & Tool Stack from Shared Workspace!');
+}
+$('btnApplyWs').addEventListener('click', applyFromSharedWorkspace);
+
+function saveToSharedWorkspace() {
+  if (!state._lastResult) { showToast('Run analysis first.'); return; }
+  const ws = wsLoad() || {
+    schemaVersion: '1.0',
+    activePreset: 'Custom Enterprise',
+    lastUpdatedBy: WS_APP_NAME,
+    lastUpdatedAt: new Date().toISOString(),
+    orgProfile: {}, supportOps: {}, financials: {}, techStack: {}, perApp: {}
+  };
+  if (!ws.perApp) ws.perApp = {};
+  
+  const { auto, ai, dex, industry, totalTickets, uncatPct } = state._lastResult;
+  ws.perApp[WS_APP_ID] = {
+    appName: WS_APP_NAME,
+    savedAt: new Date().toISOString(),
+    totalTickets,
+    uniqueIssues: state.clusters.length,
+    dedupeRatioPct: +(100 - state.clusters.length/totalTickets*100).toFixed(1),
+    uncategorizedPct: +uncatPct.toFixed(1),
+    automationCeilingPct: +auto.ceiling.toFixed(1),
+    aiCeilingPct: +ai.ceiling.toFixed(1),
+    dexCeilingPct: +dex.ceiling.toFixed(1),
+    industry: industry.name,
+    reachabilityPct: industry.reachability,
+    selectedTools: state.selectedTools,
+    topClusters: state.clusters.slice(0, 5).map(c => ({
+      sample: c.sample.slice(0, 80),
+      count: c.count,
+      driverName: c.driverId ? (DATA.drivers.find(d=>d.id===c.driverId)?.name || 'Unknown') : 'Uncategorized'
+    }))
+  };
+
+  try {
+    localStorage.setItem(WORKSPACE_KEY, JSON.stringify(ws));
+    showToast('Saved Ticket Analyzer results into Universal Shared Workspace!');
+  } catch(e) {
+    showToast('Could not write to local storage.');
+  }
+}
+$('btnSaveWs').addEventListener('click', saveToSharedWorkspace);
+
+// ---------------- 01 UPLOAD & DEMO ----------------
+$('dropzone').addEventListener('click', () => $('fileInput').click());
+$('dropzone').addEventListener('dragover', (e) => { e.preventDefault(); $('dropzone').classList.add('drag'); });
+$('dropzone').addEventListener('dragleave', () => $('dropzone').classList.remove('drag'));
+$('dropzone').addEventListener('drop', (e) => { e.preventDefault(); $('dropzone').classList.remove('drag'); if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+$('fileInput').addEventListener('change', (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+
+async function handleFile(file) {
+  if (!window.XLSX) { await loadScript('https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'); }
+  const buf = await file.arrayBuffer();
+  const wb = XLSX.read(buf, { type: 'array' });
+  const sheet = wb.Sheets[wb.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+  if (!rows.length) { showToast('That file has no rows on its first sheet.'); return; }
+  state.rows = rows;
+  state.headers = Object.keys(rows[0]);
+  $('fileLoadedRow').style.display = 'flex';
+  $('fileLoadedRow').innerHTML = '<div class="file-loaded-row" style="width:100%;"><span>✅ <b>' + escapeHtml(file.name) + '</b> — ' + rows.length.toLocaleString() + ' rows, ' + state.headers.length + ' columns</span><button class="small ghost" id="btnChangeFile">Change file</button></div>';
+  $('btnChangeFile').addEventListener('click', () => $('fileInput').click());
+  buildMappingUI();
+  unlockStep('mapping'); unlockStep('stack'); unlockStep('process');
+  showToast('File loaded. Map your columns in Section 02.');
+}
+
+function loadScript(src) { return new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); }); }
+
+$('btnLoadDemo').addEventListener('click', async () => {
+  let demoRows = null;
+  try {
+    const res = await fetch('sample-tickets.json', { cache: 'no-store' });
+    if (res.ok) demoRows = await res.json();
+  } catch(e) {}
+
+  if (!demoRows || !demoRows.length) {
+    demoRows = EMBEDDED_SAMPLE_DATA;
+  }
+
+  state.rows = demoRows;
+  state.headers = Object.keys(demoRows[0]);
+  $('fileLoadedRow').style.display = 'flex';
+  $('fileLoadedRow').innerHTML = '<div class="file-loaded-row" style="width:100%;"><span>✅ <b>Enterprise Demo Dataset</b> — ' + demoRows.length.toLocaleString() + ' tickets, ' + state.headers.length + ' columns</span><button class="small ghost" id="btnChangeFile">Change file</button></div>';
+  $('btnChangeFile').addEventListener('click', () => $('fileInput').click());
+
+  buildMappingUI();
+  unlockStep('mapping'); unlockStep('stack'); unlockStep('process');
+  showToast('Enterprise demo dataset loaded (' + demoRows.length + ' tickets)! Ready to process.');
+});
+
+// ---------------- 02 COLUMN MAPPING ----------------
+const MAP_FIELDS = [
+  { key: 'shortDesc', label: 'Short Description', required: true },
+  { key: 'description', label: 'Description (long text)', required: false },
+  { key: 'ticketId', label: 'Ticket ID', required: false },
+  { key: 'category', label: 'Existing Category (if tagged)', required: false },
+  { key: 'priority', label: 'Priority', required: false },
+  { key: 'assignedGroup', label: 'Assigned Group', required: false },
+  { key: 'channel', label: 'Channel', required: false }
+];
+
+function guessColumn(label, headers) {
+  const norm = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const target = norm(label);
+  const guesses = {
+    shortdescription: ['shortdescription','summary','subject','title','shortdesc','issue'],
+    description: ['description','details','longdescription','notes','body'],
+    ticketid: ['ticketid','id','number','incidentnumber','ticketnumber','tck'],
+    existingcategoryiftagged: ['category','subcategory','callcategory','type'],
+    priority: ['priority','urgency','severity'],
+    assignedgroup: ['assignedgroup','assignmentgroup','group','team','assignedto'],
+    channel: ['channel','source','contacttype','origin']
+  };
+  const candidates = guesses[target] || [];
+  for (const h of headers) { const nh = norm(h); if (candidates.includes(nh)) return h; }
+  for (const h of headers) { const nh = norm(h); if (candidates.some(c => nh.includes(c))) return h; }
+  return '';
+}
+
+function buildMappingUI() {
+  $('mappingGrid').innerHTML = MAP_FIELDS.map(f =>
+    '<div class="field">' +
+      '<label for="map_' + f.key + '">' + f.label + (f.required ? ' *' : '') + '</label>' +
+      '<select id="map_' + f.key + '"><option value="">— not in file —</option>' + state.headers.map(h => '<option value="' + escapeHtml(h) + '">' + escapeHtml(h) + '</option>').join('') + '</select>' +
+    '</div>'
+  ).join('');
+
+  MAP_FIELDS.forEach(f => {
+    const guess = guessColumn(f.label, state.headers);
+    if (guess) $('map_' + f.key).value = guess;
+    $('map_' + f.key).addEventListener('change', (e) => { state.colMap[f.key] = e.target.value; checkMappingReady(); });
+    state.colMap[f.key] = $('map_' + f.key).value;
+  });
+
+  $('rowCountHint').textContent = state.rows.length.toLocaleString() + ' rows detected. Short Description (or Description) is required to run analysis.';
+  checkMappingReady();
+}
+
+function checkMappingReady() {
+  state.ready = !!(state.colMap.shortDesc || state.colMap.description);
+  $('btnProcess').disabled = !state.ready;
+}
+
+// ---------------- 03 TECH STACK & INDUSTRY ----------------
+function buildToolGrid() {
+  $('toolGrid').innerHTML = DATA.tools.map(t =>
+    '<div class="tool-card" data-tool-card="' + t.id + '"><input type="checkbox" data-tool="' + t.id + '"><span>' + t.name + '</span></div>'
+  ).join('');
+
+  $('toolGrid').querySelectorAll('.tool-card').forEach(card => {
+    card.addEventListener('click', (e) => {
+      const id = card.dataset.toolCard; const cb = card.querySelector('input');
+      if (e.target !== cb) cb.checked = !cb.checked;
+      if (cb.checked) { if (!state.selectedTools.includes(id)) state.selectedTools.push(id); }
+      else { state.selectedTools = state.selectedTools.filter(x => x !== id); }
+      card.classList.toggle('on', cb.checked);
+      recalcPotentials();
+    });
+  });
+}
+
+function buildIndustrySelect() {
+  $('ind_select').innerHTML = DATA.industries.map(i =>
+    '<option value="' + i.id + '" ' + (i.id === state.industryId ? 'selected' : '') + '>' + i.name + ' (' + i.reachability + '% reachability)</option>'
+  ).join('');
+  $('ind_select').addEventListener('change', (e) => {
+    state.industryId = e.target.value;
+    const ind = DATA.industries.find(i => i.id === state.industryId);
+    $('reachability_readout').textContent = ind.name + ' → ' + ind.reachability + '% of your workforce is reachable by digital self-service tooling at all.';
+    recalcPotentials();
+  });
+  const ind = DATA.industries.find(i => i.id === state.industryId);
+  $('reachability_readout').textContent = ind.name + ' → ' + ind.reachability + '% of your workforce is reachable by digital self-service tooling at all.';
+}
+
+// ---------------- 04 PROCESSING: Embeddings vs Regular Keyword ----------------
+let extractor = null;
+function dot(a, b) { let s = 0; for (let i = 0; i < a.length; i++) s += a[i] * b[i]; return s; }
+async function embed(text) {
+  const out = await extractor(text, { pooling: 'mean', normalize: true });
+  return Array.from(out.data);
+}
+function rowText(row) {
+  const sd = state.colMap.shortDesc ? String(row[state.colMap.shortDesc] || '') : '';
+  const ds = state.colMap.description ? String(row[state.colMap.description] || '') : '';
+  return (sd + '. ' + ds).trim();
+}
+
+const STOPWORDS = new Set(['a','an','the','to','is','it','my','i','for','in','on','of','and','or','with','please','pls','hi','team','help','thanks','asap','re','fyi','requesting','support','resolution','reported','resolve','affected','impact','business','multiple','users','need','cannot','not','working','error','issue','problem']);
+function stem(w) {
+  if (w.length > 5 && w.endsWith('ly')) return w.slice(0,-2);
+  if (w.length > 6 && w.endsWith('ing')) return w.slice(0,-3);
+  if (w.length > 5 && w.endsWith('ied')) return w.slice(0,-3)+'y';
+  if (w.length > 5 && w.endsWith('ed')) return w.slice(0,-2);
+  if (w.length > 4 && w.endsWith('es')) return w.slice(0,-2);
+  if (w.length > 4 && w.endsWith('s') && !w.endsWith('ss')) return w.slice(0,-1);
+  return w;
+}
+function tokenize(text) {
+  return new Set(text.toLowerCase().replace(/[^a-z0-9\s]/g,' ').split(/\s+/).filter(w => w.length > 2 && !STOPWORDS.has(w)).map(stem));
+}
+function jaccard(a, b) { let inter = 0; a.forEach(x => { if (b.has(x)) inter++; }); const union = a.size + b.size - inter; return union ? inter/union : 0; }
+function overlapCoeff(a, b) { let inter = 0; a.forEach(x => { if (b.has(x)) inter++; }); const denom = Math.min(a.size, b.size); return denom ? inter/denom : 0; }
+const FALLBACK_DEDUPE_JACCARD = 0.58;
+const FALLBACK_MATCH_OVERLAP = 0.32;
+
+$('dedupeThresh').addEventListener('input', (e) => $('dedupeThreshVal').textContent = (e.target.value/100).toFixed(2));
+$('matchThresh').addEventListener('input', (e) => $('matchThreshVal').textContent = (e.target.value/100).toFixed(2));
+
+$('btnProcess').addEventListener('click', runAnalysis);
+
+async function runAnalysis() {
+  const texts = state.rows.map(rowText).filter(t => t.length > 1);
+  if (!texts.length) { showToast('No usable ticket text found in the mapped columns.'); return; }
+  
+  $('btnProcess').disabled = true;
+  $('progressWrap').style.display = 'block';
+  
+  if (state.engineMode === 'embedding') {
+    setProgress(0, 'Loading on-device model (one-time download, ~25MB)…');
+    try {
+      if (!extractor) {
+        const mod = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.6');
+        extractor = await mod.pipeline('feature-extraction', BENCH.embedding_model || 'Xenova/all-MiniLM-L6-v2');
+      }
+    } catch(e) {
+      console.warn('On-device neural model unavailable, falling back to Regular Heuristic mode.', e);
+      setEngineMode('keyword', 'On-device neural model download failed/offline. Automatically switched to Regular Heuristic Mode.');
+      showToast('Switched to Regular Heuristic Mode (instant keyword tokenization).');
+    }
+  }
+
+  const total = texts.length;
+  const clusters = [];
+
+  if (state.engineMode === 'embedding' && extractor) {
+    setProgress(5, 'Embedding driver library…');
+    const driverVecs = [];
+    for (const d of DATA.drivers) { driverVecs.push({ id: d.id, vec: await embed(d.matchText) }); }
+
+    const dedupeThresh = (+$('dedupeThresh').value) / 100;
+    const matchThresh = (+$('matchThresh').value) / 100;
+
+    for (let i = 0; i < total; i++) {
+      const vec = await embed(texts[i]);
+      let best = -1, bestSim = -1;
+      for (let c = 0; c < clusters.length; c++) {
+        const sim = dot(vec, clusters[c].vec);
+        if (sim > bestSim) { bestSim = sim; best = c; }
+      }
+      if (best >= 0 && bestSim >= dedupeThresh) {
+        const cl = clusters[best]; const n = cl.count;
+        for (let k = 0; k < vec.length; k++) cl.vec[k] = (cl.vec[k]*n + vec[k]) / (n+1);
+        cl.count++;
+      } else {
+        clusters.push({ vec, count: 1, sample: texts[i] });
+      }
+      if (i % 20 === 0 || i === total - 1) {
+        setProgress(10 + Math.round((i/total)*75), 'Analyzing tickets (On-Device AI) — ' + (i+1) + ' / ' + total);
+      }
+    }
+
+    setProgress(88, 'Matching clusters to 50 ITIL drivers…');
+    clusters.forEach(cl => {
+      let best = null, bestSim = -1;
+      driverVecs.forEach(dv => {
+        const sim = dot(cl.vec, dv.vec);
+        if (sim > bestSim) { bestSim = sim; best = dv; }
+      });
+      cl.driverId = (best && bestSim >= matchThresh) ? best.id : null;
+      cl.similarity = Math.max(0, bestSim);
+    });
+  } else {
+    // Regular Mode: Tokenization & Overlap
+    setProgress(5, 'Tokenizing 50-item ITIL call driver library…');
+    const driverTokens = DATA.drivers.map(d => ({ id: d.id, tokens: tokenize(d.matchText) }));
+
+    for (let i = 0; i < total; i++) {
+      const tokens = tokenize(texts[i]);
+      let best = -1, bestSim = -1;
+      for (let c = 0; c < clusters.length; c++) {
+        const sim = jaccard(tokens, clusters[c].tokens);
+        if (sim > bestSim) { bestSim = sim; best = c; }
+      }
+      if (best >= 0 && bestSim >= FALLBACK_DEDUPE_JACCARD) {
+        clusters[best].count++;
+      } else {
+        clusters.push({ tokens, count: 1, sample: texts[i] });
+      }
+      if (i % 50 === 0 || i === total - 1) {
+        setProgress(10 + Math.round((i/total)*75), 'Analyzing tickets (Regular Mode) — ' + (i+1) + ' / ' + total);
+      }
+    }
+
+    setProgress(88, 'Matching clusters to categories (keyword overlap)…');
+    clusters.forEach(cl => {
+      let best = null, bestSim = -1;
+      driverTokens.forEach(dt => {
+        const sim = overlapCoeff(cl.tokens, dt.tokens);
+        if (sim > bestSim) { bestSim = sim; best = dt; }
+      });
+      cl.driverId = (best && bestSim >= FALLBACK_MATCH_OVERLAP) ? best.id : null;
+      cl.similarity = Math.max(0, bestSim);
+    });
+  }
+
+  clusters.sort((a,b) => b.count - a.count);
+  state.clusters = clusters;
+  computeVolMapFromClusters();
+  renderClusters(total);
+  unlockStep('clusters'); unlockStep('potential'); unlockStep('report');
+  recalcPotentials();
+
+  const modeLabel = (state.engineMode === 'embedding') ? 'On-Device AI (Semantic Vectors)' : 'Regular Heuristic Mode';
+  setProgress(100, 'Complete (' + modeLabel + ') — ' + clusters.length + ' unique issues isolated from ' + total.toLocaleString() + ' tickets.');
+  $('btnProcess').disabled = false;
+  showToast('Analysis complete (' + modeLabel + '). Review Section 05 & 06.');
+}
+
+function setProgress(pct, label) { $('progressFill').style.width = pct + '%'; $('progressLabel').textContent = label; }
+
+function computeVolMapFromClusters() {
+  const total = state.clusters.reduce((s,c) => s+c.count, 0) || 1;
+  const byDriver = {};
+  state.clusters.forEach(c => { if (c.driverId) byDriver[c.driverId] = (byDriver[c.driverId]||0) + c.count; });
+  state.volMap = {};
+  Object.keys(byDriver).forEach(id => state.volMap[id] = +(byDriver[id]/total*100).toFixed(2));
+}
+
+// ---------------- 05 UNIQUE ISSUES & TRIAGE ----------------
+let currentFilter = 'all';
+let currentSearch = '';
+
+function renderClusters(totalTickets) {
+  const modeLabel = (state.engineMode === 'embedding') ? 'On-Device AI (Semantic Vectors)' : 'Regular Heuristic Mode (Keyword N-Grams)';
+  const uniquePct = (state.clusters.length/totalTickets*100).toFixed(0);
+  const dedupePct = (100 - state.clusters.length/totalTickets*100).toFixed(0);
+  
+  $('clusterSummary').textContent = state.clusters.length + ' unique root issues identified from ' + totalTickets.toLocaleString() + ' tickets (' + uniquePct + '% unique — ' + dedupePct + '% were duplicate/recurring complaints). Engine Mode: ' + modeLabel + '.';
+
+  $('clusterBody').innerHTML = state.clusters.map((c, idx) => {
+    const pct = (c.count/totalTickets*100).toFixed(1);
+    const driver = c.driverId ? DATA.drivers.find(d=>d.id===c.driverId) : null;
+    const catName = driver ? driver.category : 'Uncategorized';
+    const confPct = Math.round(c.similarity*100);
+    const options = ['<option value="">Uncategorized</option>'].concat(DATA.drivers.map(d => '<option value="' + d.id + '" ' + (d.id===c.driverId?'selected':'') + '>' + d.name + ' (' + d.category + ')</option>'));
+    
+    return '<tr class="cluster-row" data-index="' + idx + '" data-category="' + catName + '" data-sample="' + escapeHtml(c.sample).toLowerCase() + '" data-uncat="' + (!c.driverId) + '">' +
+      '<td class="cluster-sample"><b>' + escapeHtml(c.sample).slice(0,140) + '</b></td>' +
+      '<td class="num-cell cluster-count">' + c.count + '</td>' +
+      '<td class="num-cell mono">' + pct + '%</td>' +
+      '<td><select class="driver-override" data-cluster="' + idx + '">' + options.join('') + '</select></td>' +
+      '<td><span class="conf-bar-track"><span class="conf-bar-fill" style="width:' + confPct + '%;"></span></span><span class="mono hint">' + confPct + '%</span></td>' +
+    '</tr>';
+  }).join('');
+
+  $('clusterBody').querySelectorAll('select.driver-override').forEach(sel => {
+    sel.addEventListener('change', (e) => {
+      const idx = +e.target.dataset.cluster;
+      state.clusters[idx].driverId = e.target.value || null;
+      state.clusters[idx].similarity = 1; // Manual override = 100% confidence
+      computeVolMapFromClusters();
+      recalcPotentials();
+      showToast('Category updated. Potentials recomputed.');
+    });
+  });
+
+  applyClusterFilters();
+}
+
+function applyClusterFilters() {
+  const rows = $('clusterBody').querySelectorAll('.cluster-row');
+  const q = currentSearch.toLowerCase().trim();
+  rows.forEach(r => {
+    const text = r.dataset.sample || '';
+    const cat = r.dataset.category || '';
+    const isUncat = r.dataset.uncat === 'true';
+
+    let matchCat = true;
+    if (currentFilter === 'uncategorized') matchCat = isUncat;
+    else if (currentFilter !== 'all') matchCat = (cat.toLowerCase() === currentFilter.toLowerCase());
+
+    let matchQ = true;
+    if (q) matchQ = text.includes(q) || cat.toLowerCase().includes(q);
+
+    r.style.display = (matchCat && matchQ) ? '' : 'none';
+  });
+}
+
+$('clusterSearchInput').addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  applyClusterFilters();
+});
+
+$('clusterFilterPills').querySelectorAll('.filter-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    $('clusterFilterPills').querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    currentFilter = pill.dataset.filter;
+    applyClusterFilters();
+  });
+});
+
+function escapeHtml(s) { return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+// ---------------- 06 POTENTIALS ENGINE ----------------
+function computeAutomationCeiling(drivers, volMap, selectedTools, reachabilityPct) {
+  let rawSum = 0; const breakdown = {};
+  drivers.filter(d => volMap[d.id] !== undefined && d.type === 'automation').forEach(d => {
+    const hasTool = d.tool && selectedTools.includes(d.tool);
+    const feas = hasTool ? d.feasWith : d.feasWithout;
+    const vol = volMap[d.id];
+    const contribution = (vol/100) * (feas/100) * 100;
+    rawSum += contribution;
+    breakdown[d.category] = (breakdown[d.category]||0) + contribution;
+  });
+  return { ceiling: rawSum * (reachabilityPct/100), breakdown };
+}
+
+function computeAxisCeiling(drivers, volMap, hasPlatform, reachabilityPct, withField, withoutField) {
+  let rawSum = 0; const breakdown = {};
+  drivers.filter(d => volMap[d.id] !== undefined).forEach(d => {
+    const feas = hasPlatform ? d[withField] : d[withoutField];
+    const vol = volMap[d.id];
+    const contribution = (vol/100) * (feas/100) * 100;
+    rawSum += contribution;
+    breakdown[d.category] = (breakdown[d.category]||0) + contribution;
+  });
+  return { ceiling: rawSum * (reachabilityPct/100), breakdown };
+}
+
+function renderBreakdown(targetId, breakdown) {
+  const max = Math.max(1, ...Object.values(breakdown));
+  const html = Object.keys(breakdown).sort((a,b)=>breakdown[b]-breakdown[a]).map(cat => {
+    const v = breakdown[cat];
+    return '<div class="category-bar-row"><div class="category-bar-label">' + cat + '</div><div class="category-bar-track"><div class="category-bar-fill" style="width:' + (v/max*100).toFixed(0) + '%;"></div></div><div class="category-bar-val">' + v.toFixed(1) + '%</div></div>';
+  }).join('') || '<p class="hint">Run analysis in Section 04 to populate category breakdown.</p>';
+  $(targetId).innerHTML = html;
+}
+
+function recalcPotentials() {
+  if (!DATA || Object.keys(state.volMap).length === 0) return;
+  const industry = DATA.industries.find(i => i.id === state.industryId);
+  const hasAI = state.selectedTools.includes('azureai');
+  const hasDEX = state.selectedTools.includes('nexthink');
+
+  const auto = computeAutomationCeiling(DATA.drivers, state.volMap, state.selectedTools, industry.reachability);
+  const ai = computeAxisCeiling(DATA.drivers, state.volMap, hasAI, industry.reachability, 'aiWith', 'aiWithout');
+  const dex = computeAxisCeiling(DATA.drivers, state.volMap, hasDEX, industry.reachability, 'dexWith', 'dexWithout');
+
+  $('autoCeilingNum').textContent = auto.ceiling.toFixed(1) + '%';
+  $('aiCeilingNum').textContent = ai.ceiling.toFixed(1) + '%';
+  $('dexCeilingNum').textContent = dex.ceiling.toFixed(1) + '%';
+  renderBreakdown('autoBreakdown', auto.breakdown);
+  renderBreakdown('aiBreakdown', ai.breakdown);
+  renderBreakdown('dexBreakdown', dex.breakdown);
+
+  const totalTickets = state.clusters.reduce((s,c)=>s+c.count,0);
+  const uncatPct = totalTickets ? (state.clusters.filter(c=>!c.driverId).reduce((s,c)=>s+c.count,0)/totalTickets*100) : 0;
+  $('kpi_total').textContent = totalTickets.toLocaleString();
+  $('kpi_unique').textContent = state.clusters.length.toLocaleString();
+  $('kpi_dedupe').textContent = totalTickets ? (100 - state.clusters.length/totalTickets*100).toFixed(0)+'%' : '0%';
+  $('kpi_uncat').textContent = uncatPct.toFixed(0)+'%';
+
+  // Operational Impact Calculation
+  const ws = wsLoad();
+  const monthlyTickets = (ws && ws.supportOps && ws.supportOps.monthlyTickets) ? ws.supportOps.monthlyTickets : Math.max(totalTickets, 5000);
+  const ahtHours = 0.3; // 18 min average handling time
+  const autoHours = Math.round(monthlyTickets * (auto.ceiling / 100) * ahtHours);
+  const aiHours = Math.round(monthlyTickets * (ai.ceiling / 100) * (ahtHours * 0.45));
+  const dexHours = Math.round(monthlyTickets * (dex.ceiling / 100) * ahtHours);
+  const totalHours = autoHours + aiHours + dexHours;
+  const fteEquiv = +(totalHours / 160).toFixed(1);
+
+  $('impactHoursSaved').textContent = totalHours.toLocaleString() + ' hrs/mo';
+  $('impactFte').textContent = fteEquiv + ' FTEs';
+  $('impactMonthlyVol').textContent = monthlyTickets.toLocaleString() + ' tickets/mo';
+
+  // Executive Narrative
+  $('executiveNotes').innerHTML =
+    '<p>Based on your analyzed ticket demand and deployed platform footprint, your enterprise possesses an immediate <b>' + auto.ceiling.toFixed(1) + '% automation ceiling</b> via deterministic script/workflow execution, with an additional <b>' + ai.ceiling.toFixed(1) + '% GenAI resolution opportunity</b> and <b>' + dex.ceiling.toFixed(1) + '% proactive endpoint self-healing potential</b>.</p>' +
+    '<p>Across a modeled baseline of ' + monthlyTickets.toLocaleString() + ' monthly tickets, this equates to approximately <b>' + totalHours.toLocaleString() + ' deflected technician hours per month</b> (~' + fteEquiv + ' reallocatable human agent equivalents). Top intervention leverage points: ' + Object.keys(auto.breakdown).slice(0, 3).join(', ') + '.</p>';
+
+  state._lastResult = { auto, ai, dex, industry, hasAI, hasDEX, totalTickets, uncatPct, totalHours, fteEquiv, monthlyTickets };
+}
+
+// ---------------- 07 EXPORTS ----------------
+$('btnExportCSV').addEventListener('click', () => {
+  if (!state._lastResult) { showToast('Run analysis first.'); return; }
+  const { auto, ai, dex, industry } = state._lastResult;
+  let csv = 'TICKET ANALYZER — MODEL EXPORT\n';
+  csv += 'Industry,' + industry.name + '\nReachability,' + industry.reachability + '%\nTools Selected,' + state.selectedTools.join('; ') + '\n\n';
+  csv += 'UNIQUE ROOT ISSUES\nSample Text,Count,% of Volume,Matched Driver,Confidence\n';
+  const totalTickets = state.clusters.reduce((s,c)=>s+c.count,0) || 1;
+  state.clusters.forEach(c => {
+    const driver = c.driverId ? DATA.drivers.find(d=>d.id===c.driverId) : null;
+    csv += '"' + (c.sample||'').replace(/"/g,'""') + '",' + c.count + ',' + (c.count/totalTickets*100).toFixed(1) + '%,' + (driver?driver.name:'Uncategorized') + ',' + Math.round(c.similarity*100) + '%\n';
+  });
+  csv += '\nPOTENTIAL CEILINGS\n';
+  csv += 'Automation Potential,' + auto.ceiling.toFixed(1) + '%\n';
+  csv += 'AI Potential,' + ai.ceiling.toFixed(1) + '%\n';
+  csv += 'DEX Potential,' + dex.ceiling.toFixed(1) + '%\n';
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'Ticket_Analyzer_' + new Date().toISOString().slice(0,10) + '.csv';
+  link.click();
+});
+
+$('btnCopyBrief').addEventListener('click', async () => {
+  if (!state._lastResult) { showToast('Run analysis first.'); return; }
+  const { auto, ai, dex, industry, totalTickets, uncatPct, totalHours, fteEquiv, monthlyTickets } = state._lastResult;
+  const topClusters = state.clusters.slice(0, 5).map((c, i) => {
+    const d = c.driverId ? DATA.drivers.find(x => x.id === c.driverId) : null;
+    return (i+1) + '. **' + (d ? d.name : 'Uncategorized') + '** (' + c.count + ' tickets, ' + (c.count/totalTickets*100).toFixed(1) + '%): "' + c.sample.slice(0, 75) + '..."';
+  }).join('\n');
+
+  const text = '# 🎫 Ticket Analyzer — Executive Briefing\n' +
+    '**Generated:** ' + new Date().toLocaleDateString() + ' | **Engine Mode:** ' + ((state.engineMode === 'embedding') ? 'On-Device AI (Local Vectors)' : 'Regular Heuristic Engine') + '\n\n' +
+    '### Executive Summary\n' +
+    'Analyzing ' + totalTickets.toLocaleString() + ' historical ITSM records reveals an immediate technical **Automation Ceiling of ' + auto.ceiling.toFixed(1) + '%**, **GenAI-Assisted Resolution of ' + ai.ceiling.toFixed(1) + '%**, and **DEX Proactive Self-Healing of ' + dex.ceiling.toFixed(1) + '%** under your active platform configuration.\n\n' +
+    '### Operational Volume & Shift-Left Impact\n' +
+    '- **Total Tickets Ingested:** ' + totalTickets.toLocaleString() + '\n' +
+    '- **Unique Root Issues:** ' + state.clusters.length.toLocaleString() + ' (' + (100 - state.clusters.length/totalTickets*100).toFixed(0) + '% deduplication compression)\n' +
+    '- **Uncategorized Rate:** ' + uncatPct.toFixed(1) + '%\n' +
+    '- **Estimated Monthly Hours Deflected:** ' + totalHours.toLocaleString() + ' hrs/mo (across ' + monthlyTickets.toLocaleString() + ' monthly baseline)\n' +
+    '- **Human Agent Equivalency:** ~' + fteEquiv + ' FTEs reallocatable to high-touch advisory\n\n' +
+    '### Tri-Axis Resolution Ceilings\n' +
+    '- **1. Automation Potential (Scripted/Rule-Based):** ' + auto.ceiling.toFixed(1) + '%\n' +
+    '- **2. AI Potential (GenAI Agentic / LLM Assist):** ' + ai.ceiling.toFixed(1) + '%\n' +
+    '- **3. DEX Potential (Endpoint Self-Healing / Telemetry):** ' + dex.ceiling.toFixed(1) + '%\n\n' +
+    '### Top 5 Call Drivers by Volume Impact\n' +
+    topClusters + '\n\n' +
+    '### Active Environment\n' +
+    '- **Industry Reachability:** ' + industry.name + ' (' + industry.reachability + '% digital reachability)\n' +
+    '- **Active Platform Footprint:** ' + (state.selectedTools.join(', ') || 'Standard / Unconnected');
+
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast('Executive briefing copied to clipboard.');
+  } catch(e) {
+    showToast('Copy failed — clipboard permission blocked.');
+  }
+});
+
+$('btnPrint').addEventListener('click', () => window.print());
+
+// ---------------- SECTION NAV HIGHLIGHT ----------------
+const secObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.sec-nav-link').forEach(l => l.classList.toggle('active', l.getAttribute('href') === ('#' + id)));
+    }
+  });
+}, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
+document.querySelectorAll('section.block').forEach(s => secObserver.observe(s));
+
+// ---------------- BOOT ----------------
+(async function init() {
+  let saved = 'dark';
+  try { saved = localStorage.getItem('ticket_analyzer_theme') || 'dark'; } catch(e) {}
+  applyTheme(saved);
+  await loadData();
+  buildToolGrid();
+  buildIndustrySelect();
+  probeAndSetAiStatus();
+  checkSharedWorkspace();
+})();
+</script>
+</body>
+</html>

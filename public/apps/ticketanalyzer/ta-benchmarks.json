@@ -1,0 +1,14 @@
+{
+  "meta": { "version": "2026.09", "last_refreshed": "2026-09-17" },
+  "pacing_weights": {
+    "kb_readiness": 0.3,
+    "tooling_penetration": 0.2,
+    "digital_culture": 0.2,
+    "complexity_simple": 0.15,
+    "maturity_stage": 0.15
+  },
+  "maturity_stage_scores": { "none": 0, "pilot": 30, "scaled": 65, "advanced": 90 },
+  "ramp_bounds": { "year1_pct_of_ceiling": 25, "annual_growth_pct_of_ceiling": 15 },
+  "match_defaults": { "dedupe_threshold": 0.86, "category_match_threshold": 0.5 },
+  "embedding_model": "Xenova/all-MiniLM-L6-v2"
+}
