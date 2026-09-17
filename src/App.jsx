@@ -198,6 +198,16 @@ const enterpriseApps = [
     badgeType: "gold",
     icon: "🕸️",
   },
+  {
+    title: "Ticket Analyzer",
+    subtitle: "On-Device AI & Tri-Axis Ceilings",
+    text: "Cluster raw ITSM exports with local AI embeddings, deduplicate noise, and score Automation, AI, and DEX ceilings.",
+    image: "/apps/ticketanalyzer/og-image.png",
+    href: "https://iamsaravofficial.com/apps/ticketanalyzer/",
+    badge: "On-Device AI",
+    badgeType: "teal",
+    icon: "🎫",
+  },
 ];
 
 const journeyCards = [
@@ -707,12 +717,12 @@ function Builder() {
           </motion.div>
         </AnimatePresence>
 
-        {/* 10-Tool Horizontal Scroller Bar at the Bottom */}
+        {/* 11-Tool Horizontal Scroller Bar at the Bottom */}
         <div className="tool-scroller-wrap">
           <div className="tool-scroller-header">
             <span className="tool-scroller-label">
               <span className="tool-scroller-dot"></span>
-              All 10 Enterprise Architecture Simulators &amp; Decision Engines
+              All 11 Enterprise Architecture Simulators &amp; Decision Engines
             </span>
             <div className="tool-scroller-nav">
               <button
