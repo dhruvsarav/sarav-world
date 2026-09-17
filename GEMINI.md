@@ -76,33 +76,34 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Home Budget Planner features 3 GenZ vibe presets: `💀 No Cap YOLO (95% Burn)`, `✨ Soft Life (65% Burn)`, `🗿 Monk Mode (35% Burn)`.
 9. **Executive Digital Workplace & Enterprise AI Economics Suite Architecture (`/eapps/`)**:
    - Executive portal at `/eapps/` (`https://iamsaravofficial.com/eapps/`) crafted for CXOs, Directors of IT and DWP, Heads of EUC, Chief AI Architects, Sales Heads, Pre-Sales Heads, Solution Directors, and strategic pursuit teams.
-    - Houses 10 deterministic decision engines plus the Universal Shared Workspace in canonical sequence:
-      1. `dwssharedworkspace` (`/apps/dwssharedworkspace/`): Universal Enterprise Shared Workspace (Configure once, 5 architecture pillars, unlimited named custom presets + 4 archetypes, real-time client-side sync across all 10 engines).
-      2. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
-      3. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
-      4. `fsoptimizer` (`/apps/fsoptimizer/`): Field Services hub-and-spoke dispatch optimization using square-root travel law, AI remote deflection, and vehicle OPEX modeling.
-      5. `desksidestaffing` (`/apps/desksidestaffing/`): Deskside, Tech Bar, and smart locker staffing capacity engine with dual-tier Erlang C queueing and hybrid office attendance factors.
-      6. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (Nexthink, ControlUp, Lakeside, 1E, ServiceNow), 7-year XPI projections, and XLA playbook.
-      7. `itsmadvisor` (`/apps/itsmadvisor/`): Trigger-weighted ITSM platform fit (ServiceNow, Jira, Freshservice, BMC Helix, Ivanti), urgency scoring, directional TCO envelope, and phased migration playbook.
-      8. `rfpscorer` (`/apps/rfpscorer/`): Generic multi-attribute decision matrix with disqualifying must-have gates, custom weights, and built-in templates (DWP MSP, ITSM, DEX).
-      9. `aiinitsm` (`/apps/aiinitsm/`): AI-in-ITSM Business Case Builder (Discounted cash flows, NPV/payback/ROI rollup, live SD Optimizer scenario recomputation, 5x5 risk register).
-      10. `automationscore` (`/apps/automationscore/`): Automation Potential Advisor (Bottom-up tech stack ceiling across 50 call drivers, digital reachability bounds, 5–7 year realization curve).
-      11. `dwpassessment` (`/apps/dwpassessment/`): Digital Workplace Maturity Assessment (8 operational pillars, 48 capabilities, SVG radar spider chart, priority gap auto-routing).
-    - **Universal Shared Workspace Client Bridge (`/dws-workspace-client.js`)**:
-      * Injected across all 10 enterprise decision engines via `<script src="/dws-workspace-client.js" defer></script>`.
-      * Connects reactively to `localStorage` key `dws_workspace_v1`.
-      * Renders `.dws-ws-bridge` sub-bar allowing instant selection of Active profile, Custom named presets saved from `dwssharedworkspace`, or 4 Built-In Enterprise Archetypes (Global Enterprise, Mid-Market Growth, Regional Public Sector, AI-First Modern Org).
-      * `[⚡ Load into Engine]` automatically maps 4 pillars (`orgProfile`, `supportOps`, `financials`, `techStack`) to each app's native form fields and calls `recalcAll()` or native render function with non-blocking `#toast` feedback.
-      * Multi-tab sync via `window.addEventListener('storage', ...)`.
-    - All enterprise apps retain strict client-side zero-telemetry computation and zero blocking alerts (`showToast()` standard).
-    - **Topbar Badging Standards**:
-      * `/apps/tokenomics/`: `🧠 Enterprise AI Economics · Version 2026.09`
-      * All other 9 engines + Shared Workspace + `/eapps/` hub: `<img src="https://iamsaravofficial.com/eapps/eapps-square.png" ...>Digital Workplace Suite · Version 2026.09`
-    - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/`, Universal Shared Workspace, and all 10 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
-   - **Footer Standard for Enterprise Apps**:
-      Line 1: `[App Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). Digital Workplace Technology Head &amp; Chief AI Architect.` (only `<b>Sarav</b>` in bold; title in normal font)
-      Line 2: `<a href="https://iamsaravofficial.com/eapps/">2026 Executive Design Engines</a>. Zero telemetry. [Engine tail: All calculations run strictly client-side / All scoring runs client-side / Independent assessment, not vendor-sponsored / Universal Shared Workspace: 100% Client-Side Private Local Storage · Zero Cloud Telemetry · Designed for Global Architects & CXOs].` (copyright year range removed, strictly `2026 Executive Design Engines`)
-      Line 3 (for `dwpassessment`): `Level descriptions are Executive Design Engines' independent maturity-model design (Ad Hoc → Optimized). Not a certified or licensed framework — use as a structured self-assessment starting point.`
+     - Houses 11 deterministic decision engines plus the Universal Shared Workspace in canonical sequence:
+       1. `dwssharedworkspace` (`/apps/dwssharedworkspace/`): Universal Enterprise Shared Workspace (Configure once, 5 architecture pillars, unlimited named custom presets + 4 archetypes, real-time client-side sync across all 11 engines).
+       2. `tokenomics` (`/apps/tokenomics/`): Multi-LLM AI spend modeling, prompt caching discounts (up to 90%), contingency buffers, and human labor arbitrage ROI.
+       3. `sdoptimizer` (`/apps/sdoptimizer/`): Erlang C queue simulation, L0 AI agentic deflection, Copilot L1 AHT compression, channel cost-to-serve economics.
+       4. `fsoptimizer` (`/apps/fsoptimizer/`): Field Services hub-and-spoke dispatch optimization using square-root travel law, AI remote deflection, and vehicle OPEX modeling.
+       5. `desksidestaffing` (`/apps/desksidestaffing/`): Deskside, Tech Bar, and smart locker staffing capacity engine with dual-tier Erlang C queueing and hybrid office attendance factors.
+       6. `dexadvisor` (`/apps/dexadvisor/`): Multi-Attribute Utility Theory (MAUT) vendor capability matrix (Nexthink, ControlUp, Lakeside, 1E, ServiceNow), 7-year XPI projections, and XLA playbook.
+       7. `itsmadvisor` (`/apps/itsmadvisor/`): Trigger-weighted ITSM platform fit (ServiceNow, Jira, Freshservice, BMC Helix, Ivanti), urgency scoring, directional TCO envelope, and phased migration playbook.
+       8. `rfpscorer` (`/apps/rfpscorer/`): Generic multi-attribute decision matrix with disqualifying must-have gates, custom weights, and built-in templates (DWP MSP, ITSM, DEX).
+       9. `aiinitsm` (`/apps/aiinitsm/`): AI-in-ITSM Business Case Builder (Discounted cash flows, NPV/payback/ROI rollup, live SD Optimizer scenario recomputation, 5x5 risk register).
+       10. `automationscore` (`/apps/automationscore/`): Automation Potential Advisor (Bottom-up tech stack ceiling across 50 call drivers, digital reachability bounds, 5–7 year realization curve).
+       11. `dwpassessment` (`/apps/dwpassessment/`): Digital Workplace Maturity Assessment (8 operational pillars, 48 capabilities, SVG radar spider chart, priority gap auto-routing).
+       12. `ticketanalyzer` (`/apps/ticketanalyzer/`): ITSM Ticket Analyzer (On-device neural vector clustering via WebAssembly MiniLM-L6, semantic deduplication, 50-driver ITIL categorization, tri-axis Automation/GenAI/DEX potential ceilings, 500-ticket demo dataset, and zero telemetry).
+     - **Universal Shared Workspace Client Bridge (`/dws-workspace-client.js`)**:
+       * Injected across all 11 enterprise decision engines via `<script src="/dws-workspace-client.js" defer></script>`.
+       * Connects reactively to `localStorage` key `dws_workspace_v1`.
+       * Renders `.dws-ws-bridge` sub-bar allowing instant selection of Active profile, Custom named presets saved from `dwssharedworkspace`, or 4 Built-In Enterprise Archetypes (Global Enterprise, Mid-Market Growth, Regional Public Sector, AI-First Modern Org).
+       * `[⚡ Load into Engine]` automatically maps 4 pillars (`orgProfile`, `supportOps`, `financials`, `techStack`) to each app's native form fields and calls `recalcAll()` or native render function with non-blocking `#toast` feedback.
+       * Multi-tab sync via `window.addEventListener('storage', ...)`.
+     - All enterprise apps retain strict client-side zero-telemetry computation and zero blocking alerts (`showToast()` standard).
+     - **Topbar Badging Standards**:
+       * `/apps/tokenomics/`: `🧠 Enterprise AI Economics · Version 2026.09`
+       * All other 10 engines + Shared Workspace + `/eapps/` hub: `<img src="https://iamsaravofficial.com/eapps/eapps-square.png" ...>Digital Workplace Suite · Version 2026.09`
+     - **Ecosystem Navigation Standard for Enterprise Apps**: **Strictly ONE** dropdown: `E-Apps ▾` (linking `/eapps/`, Universal Shared Workspace, and all 11 enterprise engines in canonical sequence). Consumer `Apps ▾`, `Games ▾`, and `Projects ▾` dropdowns are completely excluded.
+    - **Footer Standard for Enterprise Apps**:
+       Line 1: `[App Name] Crafted by <b>Sarav</b> (<a href="https://iamsaravofficial.com/" target="_blank">Saravanakumar Murugan</a>). Digital Workplace Technology Head &amp; Chief AI Architect.` (only `<b>Sarav</b>` in bold; title in normal font)
+       Line 2: `<a href="https://iamsaravofficial.com/eapps/">2026 Executive Design Engines</a>. Zero telemetry. [Engine tail: All calculations run strictly client-side / All scoring runs client-side / Independent assessment, not vendor-sponsored / Universal Shared Workspace: 100% Client-Side Private Local Storage · Zero Cloud Telemetry · Designed for Global Architects & CXOs].` (copyright year range removed, strictly `2026 Executive Design Engines`)
+       Line 3 (for `dwpassessment`): `Level descriptions are Executive Design Engines' independent maturity-model design (Ad Hoc → Optimized). Not a certified or licensed framework — use as a structured self-assessment starting point.`
 10. **Official Brand Icon Systems across All 5 Portals**:
    - **Playground Gateway (`/playground/`)**:
      * Official Brand Icon: **The Celestial 4-Way Nexus Portal** (Isometric futuristic crystal nexus uniting cyber gold, digital cyan, neon magenta, and sacred gold beams converging on a quantum orb).
@@ -152,7 +153,7 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    - Permanent, decoupled master 4-quadrant gateway routing directly to `/apps/`, `/eapps/`, `/games/`, and `/projects/`.
    - Features official brand icon `playground-square.png` in hero.
    - All 4 quadrant cards feature official brand squircle icons (`apps-square.png`, `eapps-square.png`, `games-square.png`, `projects-square.png`).
-   - Reflects full live suite metrics: 15 Apps, 10 Engines, 10 Games, 3 Projects (38 Interactive Destinations across 40 Synchronized Ecosystem Pages).
+   - Reflects full live suite metrics: 20 Apps, 11 Engines, 10 Games, 3 Projects (44 Interactive Destinations across 46 Synchronized Ecosystem Pages).
    - Full 4-tier ecosystem navigation matching canonical inventories.
 
 ---
@@ -227,7 +228,7 @@ python "D:\Websites\SaravsWorld\scripts\factdrop\generate_factdrop.py"
 ### 12. Homepage `#apps` Interactive Showcase & Scroller Architecture
 - **Dual CSS Synchronization**: Both `src/index.css` and `src/App.css` are kept in sync and explicitly imported in `src/main.jsx`.
 - **Spotlight Preview Containment**: `.tool-spotlight-shot-wrap` is capped with `aspect-ratio: 16 / 9; max-height: 280px; overflow: hidden;` to ensure screenshots/brain graphics never blow up beyond their designed card boundaries regardless of viewport resolution.
-- **Scroller Mechanics**: `.tool-scroller-track` renders all 10 enterprise architecture engines with active selection state, smooth scrolling, left/right track nav arrows, and responsive mobile padding (`@media (max-width: 640px)`).
+- **Scroller Mechanics**: `.tool-scroller-track` renders all 11 enterprise architecture engines with active selection state, smooth scrolling, left/right track nav arrows, and responsive mobile padding (`@media (max-width: 640px)`).
 
 ### 13. Games 5 to 10 Canonical Footer Rules
 - **Containment Rule**: For arcade games with centered layouts (`cuptoss`, `bottleflip`, `chitcharades`, `snackroulette`, `dialoguedetective`, `gulelstrike`), `<footer>` must reside *inside* `<div class="game-container">` before its closing tag to preserve centered max-width alignment.

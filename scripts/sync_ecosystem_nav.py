@@ -36,7 +36,8 @@ for app_id, dirn in [("dwssharedworkspace","dwssharedworkspace"),
                       ("dexadvisor","dexadvisor"), ("itsmadvisor","itsmadvisor"),
                       ("rfpscorer","rfpscorer"), ("aiinitsm","aiinitsm"),
                       ("automationscore","automationscore"),
-                      ("dwpassessment","dwpassessment")]:
+                      ("dwpassessment","dwpassessment"),
+                      ("ticketanalyzer","ticketanalyzer")]:
     add(f"apps/{dirn}/index.html", ["eapps"], current_id=app_id)
 
 # 2. Apps section (14 pages) — mode=['group'], sections=[apps,games,projects]
@@ -69,7 +70,7 @@ for g in ["familywinner","sentimeter","secretbox","cuptoss","bottleflip",
 add("playground/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id=None)
 add("projects/index.html", ["eapps", "group"], GROUP_SECTIONS, current_id="projects-hub")
 
-assert len(PAGES) == 45, f"expected 45 pages, got {len(PAGES)}"
+assert len(PAGES) == 46, f"expected 46 pages, got {len(PAGES)}"
 
 # Build the set of internally-resolvable URLs
 INTERNAL_OK = set()

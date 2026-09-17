@@ -11,7 +11,8 @@
     {"id": "rfpscorer",          "name": "Vendor RFP Weighted Scorer",  "url": "https://iamsaravofficial.com/apps/rfpscorer/",           "icon": "⚖️"},
     {"id": "aiinitsm",           "name": "AI-in-ITSM Business Case",    "url": "https://iamsaravofficial.com/apps/aiinitsm/",            "icon": "📈"},
     {"id": "automationscore",    "name": "Automation Potential Advisor", "url": "https://iamsaravofficial.com/apps/automationscore/",     "icon": "🎛️"},
-    {"id": "dwpassessment",      "name": "DWP Maturity Assessment",     "url": "https://iamsaravofficial.com/apps/dwpassessment/",       "icon": "🧬"}
+    {"id": "dwpassessment",      "name": "DWP Maturity Assessment",     "url": "https://iamsaravofficial.com/apps/dwpassessment/",       "icon": "🧬"},
+    {"id": "ticketanalyzer",     "name": "Ticket Analyzer",             "url": "https://iamsaravofficial.com/apps/ticketanalyzer/",      "icon": "🎫🔎"}
   ],
   "apps": [
     {"id": "apps-hub",             "name": "Playground Hub",         "url": "https://iamsaravofficial.com/apps/",                       "icon": "🎡"},
