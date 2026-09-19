@@ -62,7 +62,9 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
      * Replicates native Sahi Android app's "Share as Image" feature in web apps and arcade games.
      * High-DPI Canvas 2D rendering (2x Retina scale) with branded headers, metric badges, pill chips, and zero external dependencies (100% private, client-side).
      * Invokes Web Share API Level 2 (`navigator.share({ files: [file] })`) on mobile devices (direct WhatsApp attachment) with seamless desktop fallbacks (`ClipboardItem` image copying and direct PNG download).
-     * **Scope Directive**: Strictly applied ONLY to curated consumer apps and family games (`lunchbox-planner`, `home-budget-planner`, `gold-loan-calculator`, `piggy-bank-ledger`, `familywinner`, `sentimeter`, `samosasnatch`). **Strictly excluded from `eapps`**.
+     * **Scope Directive**: Strictly applied ONLY to curated consumer apps and family games across 15 production targets (Zero telemetry, 100% client-side Canvas 2D engine; **Strictly excluded from `eapps`**):
+       - *Consumer Apps & Planners (9 targets)*: `lunchbox-planner`, `home-budget-planner`, `gold-loan-calculator`, `piggy-bank-ledger`, `glow-up-grid`, `home-loan-accelerometer`, `genzalphaslang`, `family-movie-night`, `gold-price-estimator`.
+       - *Family Arcade Games (6 targets)*: `familywinner`, `sentimeter`, `samosasnatch`, `bottleflip`, `chitcharades`, `secretbox`.
 6. **Zero Blocking Alert/Prompt Modals & Toast Standard (Gold Price Estimator Benchmark)**:
    - **All 15 Web Apps** must NEVER use blocking `alert()` or `prompt()` dialogs for copy or scenario saving.
    - Standardized `showToast(msg)` float element (`#toast`, 2.6s auto-dismiss) styled cleanly to match each app's palette.
