@@ -550,6 +550,7 @@
 
     <div class="recap-actions">
       <button class="recap-btn-play" id="btnPlayAgain">🔄 Play Another Round</button>
+      <button class="recap-btn-share" id="btnShareImageCard" style="background:linear-gradient(135deg, #F59E0B, #D97706); color:#000; font-weight:800;">🖼️ Share Card</button>
       <button class="recap-btn-share" id="btnShareWhatsApp">💬 Share</button>
     </div>
   </div>
@@ -557,6 +558,7 @@
 
 <canvas id="confettiCanvas"></canvas>
 
+<script src="/share-card.js"></script>
 <script>
 /* ----------------------------------------------------
    Audio Synthesizer Engine (Web Audio API)
@@ -1122,6 +1124,28 @@ btnShareWhatsApp.addEventListener('click', () => {
   
   window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
 });
+
+const btnShareImageCard = document.getElementById('btnShareImageCard');
+if (btnShareImageCard) {
+  btnShareImageCard.addEventListener('click', () => {
+    if (!window.SaravShareCard || !window.SaravShareCard.shareChitCharadesScore) {
+      alert('Image engine loading...');
+      return;
+    }
+    const correctCards = playedCards.filter(c => c.result === 'correct');
+    const correctWords = correctCards.map(c => c.word);
+    const passCount = playedCards.filter(c => c.result === 'pass').length;
+    const deckNames = { cinema: "🎬 Bollywood & Cinema", family: "🏠 Household Dramas", food: "🥟 Desi Food Treats", charades: "🎭 Dumb Charades" };
+
+    window.SaravShareCard.shareChitCharadesScore({
+      guesser: selectedPlayer || 'Family MVP',
+      deckTitle: deckNames[selectedDeckKey] || (selectedDeckKey ? selectedDeckKey.toUpperCase() : 'Chit-Charades'),
+      correctCount: correctCards.length,
+      passedCount: passCount,
+      wordsList: correctWords
+    });
+  });
+}
 
 /* ----------------------------------------------------
    Lightweight Confetti Engine

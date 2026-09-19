@@ -423,8 +423,9 @@
     <div class="instructions">
       <span>🕹️ <b>How to play:</b> Touch/drag the bottle upward with a smooth flick and let go!</span>
     </div>
-    <div style="display:flex; gap:10px;">
+    <div style="display:flex; gap:10px; flex-wrap:wrap;">
       <button class="btn btn-fs-toggle" onclick="toggleFullScreen()">⛶ Fullscreen</button>
+      <button class="btn btn-secondary" onclick="shareBottleFlipCard()">🖼️ Share Image Card</button>
       <button class="btn btn-secondary" onclick="resetGame()">🔄 Reset Streak</button>
       <button class="btn btn-primary" onclick="shareWhatsApp()">📱 Share Record</button>
     </div>
@@ -437,6 +438,7 @@
 
 </div>
 
+<script src="/share-card.js"></script>
 <script>
 // Web Audio Synthesizer
 var audioCtx = null;
@@ -502,6 +504,7 @@ var activePlayer = 'Daddy';
 var streak = 0;
 var maxStreak = 0;
 var totalLands = 0;
+var totalFlips = 0;
 var capCount = 0;
 var waterLevel = 0.35;
 var bottleType = 'water'; // water, steel, davara
@@ -625,6 +628,7 @@ function onPointerUp(e){
 
   if(dy > 30 && elapsed < 0.85){
     // Launch flip
+    totalFlips++;
     bottle.inAir = true;
     bottle.settled = false;
     var speed = Math.min(22, Math.max(9, (dy / elapsed) * 0.022));
@@ -831,6 +835,28 @@ gameLoop();
 function shareWhatsApp(){
   var text = "🍾 Master Bottle Flip Record!\n" + activePlayer + " achieved a streak of " + maxStreak + " flips (" + capCount + " Cap Lands) on Sarav's World!\nCan you beat my streak? Try here: https://iamsaravofficial.com/games/bottleflip/";
   window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(text), "_blank");
+}
+
+function shareBottleFlipCard(){
+  if(!window.SaravShareCard || !window.SaravShareCard.shareBottleFlipRecord){
+    showToast('Image engine loading...');
+    return;
+  }
+  var bottleLabel = bottleType === 'water' ? 'Bisleri' : (bottleType === 'steel' ? 'Steel Flask' : 'Filter Coffee');
+  var totalAttempts = Math.max(totalFlips, totalLands);
+  var accuracyPct = totalAttempts > 0 ? Math.round((totalLands / totalAttempts) * 100) : (totalLands > 0 ? 100 : 0);
+
+  window.SaravShareCard.shareBottleFlipRecord({
+    playerName: activePlayer || 'Player',
+    streak: streak,
+    bestStreak: maxStreak,
+    capsLanded: capCount,
+    accuracyPct: accuracyPct,
+    totalLands: totalLands,
+    totalFlips: totalAttempts,
+    bottleType: bottleLabel,
+    waterLevel: Math.round(waterLevel * 100) + '%'
+  });
 }
 
 function toggleTheme(){

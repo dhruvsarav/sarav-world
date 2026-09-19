@@ -502,6 +502,9 @@
           <button type="button" class="btn-chicken" onclick="triggerChickenOut()">
             <span>🐔 Chicken Out! (Penalty)</span>
           </button>
+          <button type="button" class="btn-share-card" onclick="shareSecretCard()" style="flex:1; min-width:140px; background:linear-gradient(90deg, #F59E0B, #D97706); border:none; border-radius:12px; padding:12px 18px; font-size:14.5px; font-weight:700; color:#000; cursor:pointer;">
+            <span>🖼️ Share Card</span>
+          </button>
         </div>
       </div>
     </div>
@@ -539,6 +542,9 @@
       <button type="button" class="spin-penalty-btn" id="spinPenaltyBtn" onclick="spinPenalty()">
         <span>🎲 Roll My Penalty!</span>
       </button>
+      <button type="button" class="btn-done" style="flex: 0 1 auto; padding: 12px 24px; background:linear-gradient(90deg, #F59E0B, #D97706); color:#000; font-weight:700;" onclick="shareSecretCard()">
+        <span>🖼️ Share Penalty Card</span>
+      </button>
       <button type="button" class="btn-done" style="flex: 0 1 auto; padding: 12px 24px;" onclick="closePenalty()">
         <span>I Will Do It!</span>
       </button>
@@ -555,6 +561,7 @@
 <!-- ======================================================== -->
 <!-- GAME JAVASCRIPT ENGINE                                   -->
 <!-- ======================================================== -->
+<script src="/share-card.js"></script>
 <script>
   // CARD DECK POOLS
   const CARDS = [
@@ -603,6 +610,8 @@
   let timerInterval = null;
   let soundEnabled = true;
   let audioCtx = null;
+  let currentDrawnCard = null;
+  let currentRolledPenalty = null;
 
   function initAudio() {
     if (!audioCtx) {
@@ -720,6 +729,8 @@
   }
 
   function renderCard(card) {
+    currentDrawnCard = card;
+    currentRolledPenalty = null;
     const cardEl = document.getElementById('cardElement');
     cardEl.className = `secret-card ${card.class}`;
 
@@ -780,6 +791,7 @@
   function spinPenalty() {
     playChickenCluck();
     const result = PENALTIES[Math.floor(Math.random() * PENALTIES.length)];
+    currentRolledPenalty = result;
     const resBox = document.getElementById('penaltyResult');
     resBox.innerHTML = `⚠️ <b>${activePlayer.toUpperCase()}'S PENALTY:</b><br>${result}`;
   }
@@ -787,6 +799,20 @@
   function closePenalty() {
     document.getElementById('penaltyOverlay').classList.remove('active');
     resetChest();
+  }
+
+  function shareSecretCard() {
+    if (!window.SaravShareCard || !window.SaravShareCard.shareSecretBoxPrompt) {
+      alert('Image engine loading...');
+      return;
+    }
+    const card = currentDrawnCard || (CARDS && CARDS[0]) || { badge: '🎁 FAMILY SECRET BOX', text: 'Tell your favorite family memory!' };
+    window.SaravShareCard.shareSecretBoxPrompt({
+      categoryTitle: card.badge || '🎁 FAMILY SECRET BOX',
+      playerTarget: activePlayer || 'Anyone in the Family',
+      promptText: card.text || '',
+      penaltyText: currentRolledPenalty || ''
+    });
   }
 
   function toggleTheme() {

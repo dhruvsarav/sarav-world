@@ -677,6 +677,7 @@
 
   <!-- Universal 4-Action Suite -->
   <div class="actions-bar">
+    <button type="button" class="action-btn" onclick="shareSlangImage()">🖼️ Share Image Card</button>
     <button type="button" class="action-btn primary" onclick="shareWhatsApp()">📱 Share on WhatsApp</button>
     <button type="button" class="action-btn" onclick="copyCurrentSlang()">📋 Copy Slang Card</button>
     <button type="button" class="action-btn" onclick="saveFavorite()">⭐ Favorite Word</button>
@@ -696,7 +697,7 @@
 
 <!-- Audio Player Tag -->
 <audio id="audioPlayer" preload="none"></audio>
-
+<script src="/share-card.js"></script>
 <script>
 // State Management
 var dictionaryData = null;
@@ -982,6 +983,26 @@ function shareWhatsApp(){
     'Decode 150+ GenZ & Alpha slang terms: https://iamsaravofficial.com/apps/genzalphaslang/'
   ].join('\n');
   window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+}
+
+// Share Card as Image
+function shareSlangImage(){
+  if(!window.SaravShareCard || !window.SaravShareCard.shareSlangCard){
+    showToast('Image engine loading...');
+    return;
+  }
+  var card = getCurrentCard();
+  if(!card){
+    showToast('No slang card selected.');
+    return;
+  }
+  window.SaravShareCard.shareSlangCard({
+    now: card.now,
+    then: card.then,
+    gen: card.gen || 'Gen Z',
+    context: card.context,
+    example: card.example
+  });
 }
 
 // Copy Card Summary

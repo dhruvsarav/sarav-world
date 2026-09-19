@@ -310,7 +310,8 @@
   }
   .print-btn:hover { filter: brightness(1.06); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(255, 179, 0, 0.4); }
 
-  .action-sub-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .action-sub-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  @media(max-width: 600px) { .action-sub-row { grid-template-columns: repeat(2, 1fr); } }
   .action-sub-btn {
     background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px;
     padding: 8px 6px; font-size: 12px; font-weight: 700; color: var(--ink); cursor: pointer;
@@ -700,6 +701,10 @@
         <span>🖨️ Print Fridge Chart (Landscape)</span>
       </button>
       <div class="action-sub-row">
+        <button class="action-sub-btn" id="shareImageBtn">
+          <span>🖼️</span>
+          <span>Share Card</span>
+        </button>
         <button class="action-sub-btn" id="shareWhatsappBtn">
           <span>💬</span>
           <span>WhatsApp</span>
@@ -792,6 +797,7 @@
   <p>&copy; 2009–2026 <a href="https://iamsaravofficial.com/apps/">Sarav's Playground</a>. Zero telemetry. All calculations run strictly client-side.</p>
 </footer>
 
+<script src="/share-card.js"></script>
 <script>
 (function () {
   'use strict';
@@ -1611,6 +1617,46 @@
   // Print Chart
   document.getElementById('printBtn').addEventListener('click', function () {
     window.print();
+  });
+
+  // Share Card as Image
+  document.getElementById('shareImageBtn').addEventListener('click', function () {
+    if (!window.SaravShareCard || !window.SaravShareCard.shareGlowUpHabit) {
+      showToast('Image engine loading...');
+      return;
+    }
+    var kid = currentKid();
+    var totalTasks = 0;
+    var completedTasks = 0;
+    var dayStats = [];
+    var allHabits = [];
+
+    DAYS.forEach(function (d) {
+      var blocks = kid.days[d.key] || [];
+      var dTotal = blocks.length;
+      var dDone = blocks.filter(function (b) { return b.done; }).length;
+      totalTasks += dTotal;
+      completedTasks += dDone;
+      dayStats.push({ day: d.label, done: dDone, total: dTotal });
+      blocks.forEach(function (b) {
+        if (b.task && allHabits.indexOf(b.task) === -1) {
+          allHabits.push(b.task);
+        }
+      });
+    });
+
+    var streakPct = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 100;
+
+    window.SaravShareCard.shareGlowUpHabit({
+      kidName: kid.name,
+      avatar: kid.avatar,
+      goal: kid.goal,
+      totalTasks: totalTasks,
+      completedTasks: completedTasks,
+      streakPct: streakPct,
+      dayStats: dayStats,
+      highlightHabits: allHabits.slice(0, 4)
+    });
   });
 
   // WhatsApp Share

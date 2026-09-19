@@ -933,6 +933,10 @@ footer a:hover {
 
   <!-- 4-ACTION SUITE -->
   <div class="action-bar">
+    <button type="button" class="btn-action" onclick="shareDebtFreeImage()">
+      <span>🖼️</span>
+      <span>Share Image Card</span>
+    </button>
     <button type="button" class="btn-action btn-whatsapp" onclick="shareWhatsApp()">
       <span>💬</span>
       <span>Share on WhatsApp</span>
@@ -1295,6 +1299,7 @@ footer a:hover {
 </div>
 
 <!-- APPLICATION JAVASCRIPT -->
+<script src="/share-card.js"></script>
 <script>
 // STATE
 let state = {
@@ -1931,6 +1936,35 @@ function renderScheduleTable() {
 }
 
 // 4-ACTION SUITE HANDLERS
+function shareDebtFreeImage() {
+  if (!window.SaravShareCard || !window.SaravShareCard.shareHomeLoanFreedom) {
+    showToast('Image engine loading...');
+    return;
+  }
+  const res = calcResults;
+  const debtFreeEl = document.getElementById('resDebtFreeDate');
+  const tenureCutEl = document.getElementById('resTenureCut');
+  const debtFreeDate = debtFreeEl ? debtFreeEl.textContent : 'Mortgage-Free Soon';
+  const tenureCut = tenureCutEl ? tenureCutEl.textContent : `${Math.floor(res.monthsCut/12)} Yrs ${res.monthsCut%12} Mos`;
+  const interestSaved = fmtCurr(res.interestSaved);
+  const interestSavedPct = res.baseTotalInterest > 0 ? ((res.interestSaved / res.baseTotalInterest) * 100).toFixed(1) + '%' : '0%';
+
+  window.SaravShareCard.shareHomeLoanFreedom({
+    loanAmount: fmtCurr(res.p),
+    interestRate: res.annualRate.toFixed(2) + '%',
+    tenureYears: state.tenureYears,
+    tenureCut: tenureCut,
+    debtFreeDate: debtFreeDate,
+    interestSaved: interestSaved,
+    interestSavedPct: interestSavedPct,
+    baseEmi: fmtCurr(res.baseEmi),
+    extraMonthly: state.extraMonthly > 0 ? `+${fmtCurr(state.extraMonthly)} / mo` : '₹0',
+    annualExtraEmis: state.annualExtraEmis > 0 ? `${state.annualExtraEmis} Extra EMI/Yr` : '0 Extra EMIs',
+    stepUpPercent: state.stepUpPercent > 0 ? `${state.stepUpPercent}% Annual Increase` : '0% (Flat)',
+    crossoverMonth: res.crossoverMonth ? `Month ${res.crossoverMonth}` : 'Early Months'
+  });
+}
+
 function shareWhatsApp() {
   const res = calcResults;
   const text = `🏠 *HOME LOAN PREPAYMENT ACCELERATOR BREAKDOWN*

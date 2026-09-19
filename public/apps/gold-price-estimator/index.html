@@ -938,6 +938,7 @@
 
           <!-- ACTION BUTTONS -->
           <div class="actionbar">
+            <button class="btn" onclick="shareGoldQuoteCard()">🖼️ Share Quote Card</button>
             <button class="btn primary" onclick="shareQuote()">📱 Share on WhatsApp</button>
             <button class="btn" onclick="window.print()">🖨️ Print / Save PDF</button>
             <button class="btn" onclick="copyEstimatorSummary()">📋 Copy Summary</button>
@@ -1090,6 +1091,7 @@
       * Estimate only, not a formal valuation.
     </div>
     <button class="btn-primary" style="margin-top:14px; background:#128C7E;" onclick="shareQuote()">📱 Share Quote (WhatsApp)</button>
+    <button class="btn-outline" style="margin-top:8px; border-color:var(--gold-primary); color:var(--gold-primary);" onclick="shareGoldQuoteCard()">🖼️ Share Quote Card (Image)</button>
     <button class="btn-outline" onclick="saveToHistory()">💾 Save to History</button>
     <button class="btn-plain" onclick="closeResultModal()">Close</button>
   </div>
@@ -1115,6 +1117,7 @@
 
 <div class="toast" id="toast"></div>
 
+<script src="/share-card.js"></script>
 <script>
   // Persistent state backed by localStorage
   const GRAMS_PER_PAVAN = 8.0;
@@ -1510,6 +1513,38 @@
       const waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(lines);
       window.open(waUrl, '_blank');
     }
+  }
+
+  function shareGoldQuoteCard(){
+    if(!window.SaravShareCard || !window.SaravShareCard.shareGoldJewelleryQuote){
+      showToast('Image engine loading...');
+      return;
+    }
+    if(!lastResult){
+      calculate(true);
+    }
+    if(!lastResult){
+      showToast('Please enter weight and calculate first');
+      return;
+    }
+    const r = lastResult;
+    const isGain = r.gainDiff >= 0;
+    const gainSign = isGain ? '+' : '-';
+    const gainVal = `${gainSign}₹${Math.round(Math.abs(r.gainDiff)).toLocaleString('en-IN')}`;
+    const gainPct = `${gainSign}${Math.abs(r.appreciationPercent).toFixed(1)}%`;
+
+    window.SaravShareCard.shareGoldJewelleryQuote({
+      metalPurity: r.metalType,
+      currentVal: `₹${Math.round(r.currentValue).toLocaleString('en-IN')}`,
+      marketRate: Math.round(r.marketRate).toLocaleString('en-IN'),
+      weight: r.weight.toFixed(3),
+      wastageGm: r.wastageWeight.toFixed(3),
+      wastagePct: r.wastagePercent.toFixed(1),
+      effectiveWeight: r.effectiveWeight.toFixed(3),
+      totalCost: `₹${Math.round(r.total).toLocaleString('en-IN')}`,
+      gainVal: gainVal,
+      gainPct: gainPct
+    });
   }
 
   // ---------- save / edit / duplicate ----------
