@@ -24,17 +24,18 @@ Every web app hosted under `public/apps/` must adhere strictly to these rules:
    8. `fd-calculator` (FD Calculator)
    9. `rd-calculator` (RD Calculator)
    10. `home-loan-accelerometer` (Home Loan Prepayment & Debt-Free Accelerometer)
+   11. `ai-certification-hub` (AI Certification Hub — Master Hyperscaler & Frontier AI Credentials)
    *Section 2: Family Planner Suite (10 Planners)*:
-   11. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
-   12. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
-   13. `study-sprint` (Study Sprint & Exam Revision Matrix)
-   14. `piggy-bank-ledger` (Kids' First Pocket Money & Piggy Bank Ledger)
-   15. `chore-quest-board` (Kids' Chore & Quest Board — Gamified RPG Chores)
-   16. `screen-time-passes` (Screen-Time Swap Tickets & Family Reward Passes)
-   17. `boredom-buster` (Kids' Screen-Free Boredom Buster Adventure Wheel)
-   18. `family-movie-night` (Family Movie & Board Game Night Decider)
-   19. `book-nook` (Kids' Book Nook & 100-Book Quest)
-   20. `birthday-gift-matrix` (Family Birthday & Milestone Gift Wishlist Matrix)
+   12. `glow-up-grid` (Glow Up Grid — Colorful Kid Routine Planner & Habit Tracker)
+   13. `lunchbox-planner` (School Tiffin & Family Lunchbox Planner)
+   14. `study-sprint` (Study Sprint & Exam Revision Matrix)
+   15. `piggy-bank-ledger` (Kids' First Pocket Money & Piggy Bank Ledger)
+   16. `chore-quest-board` (Kids' Chore & Quest Board — Gamified RPG Chores)
+   17. `screen-time-passes` (Screen-Time Swap Tickets & Family Reward Passes)
+   18. `boredom-buster` (Kids' Screen-Free Boredom Buster Adventure Wheel)
+   19. `family-movie-night` (Family Movie & Board Game Night Decider)
+   20. `book-nook` (Kids' Book Nook & 100-Book Quest)
+   21. `birthday-gift-matrix` (Family Birthday & Milestone Gift Wishlist Matrix)
    *Amazon Associates Tracking ID*: `dhrav-21` strictly applied to curated shopping links across relevant planners (`piggy-bank-ledger`, `boredom-buster`, `family-movie-night`, `book-nook`, `birthday-gift-matrix`).
 3. **Footer Distinction**:
    - **Consumer Retail Web Apps (Non-Affiliate)**:

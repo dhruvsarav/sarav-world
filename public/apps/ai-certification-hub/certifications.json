@@ -1,0 +1,1544 @@
+{
+  "metadata": {
+    "version": "2026.09",
+    "lastUpdated": "2026-09-23",
+    "totalCertifications": 26,
+    "providers": [
+      "Anthropic",
+      "Microsoft Azure",
+      "Google Cloud",
+      "AWS",
+      "NVIDIA",
+      "DeepLearning.AI",
+      "Vanderbilt / Coursera",
+      "Meta",
+      "IBM"
+    ],
+    "categories": [
+      "Generative AI & LLMs",
+      "Agentic AI & MCP",
+      "AI Strategy & Leadership",
+      "MLOps & Engineering",
+      "Data Science & Analytics"
+    ],
+    "levels": [
+      "Foundational",
+      "Business & Transformation Leader",
+      "Associate / Technical",
+      "Specialty / Professional"
+    ]
+  },
+  "certifications": [
+    {
+      "id": "claude-api",
+      "code": "ANTH-API-101",
+      "title": "Building with the Claude API",
+      "provider": "Anthropic",
+      "level": "Associate / Technical",
+      "category": "Generative AI & LLMs",
+      "costUSD": 0,
+      "durationMinutes": 240,
+      "questionCount": "Graded Sandbox Labs",
+      "format": "Interactive API Coding, Tool Calling & RAG Pipeline Labs",
+      "delivery": "Skilljar On-Demand",
+      "badgeText": "⚡ Free Skilljar Official",
+      "featured": true,
+      "targetAudience": "Python Developers, Full-Stack Engineers, AI Application Architects",
+      "prerequisites": "Basic Python and REST API proficiency. No prior LLM experience needed.",
+      "summary": "Master building enterprise AI applications with Anthropic's Claude 3.5 & 3.7. Learn prompt construction, structured JSON outputs, streaming, function calling / tool use, and multi-turn conversational memory.",
+      "skillsGained": [
+        "Claude 3.5 Sonnet & Haiku API integration",
+        "Tool Calling & Function Execution workflows",
+        "Retrieval-Augmented Generation (RAG) with Claude",
+        "Streaming responses and token usage budgeting",
+        "Vision analysis and document processing"
+      ],
+      "officialUrl": "https://anthropic.skilljar.com/building-with-the-claude-api",
+      "registrationUrl": "https://anthropic.skilljar.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Anthropic Academy Official Track",
+            "url": "https://anthropic.skilljar.com/",
+            "type": "Free Self-Paced"
+          },
+          {
+            "name": "Anthropic Cookbook (GitHub)",
+            "url": "https://github.com/anthropics/anthropic-cookbook",
+            "type": "Code Repository"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "DeepLearning.AI",
+            "title": "Building Applications with Claude",
+            "instructor": "Anthropic Team",
+            "url": "https://www.deeplearning.ai/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Anthropic Sandbox",
+            "title": "Interactive API Workbench Challenges",
+            "url": "https://console.anthropic.com/",
+            "type": "Interactive Labs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claude-mcp",
+      "code": "ANTH-MCP-101",
+      "title": "Introduction to Model Context Protocol (MCP)",
+      "provider": "Anthropic",
+      "level": "Associate / Technical",
+      "category": "Agentic AI & MCP",
+      "costUSD": 0,
+      "durationMinutes": 180,
+      "questionCount": "Lab Exercises",
+      "format": "Building MCP Servers & Tool Clients in Python/TypeScript",
+      "delivery": "Skilljar On-Demand",
+      "badgeText": "🔥 Hot 2026 Protocol",
+      "featured": true,
+      "targetAudience": "AI Architects, Backend Developers, Tool Integrators",
+      "prerequisites": "Familiarity with Node.js/TypeScript or Python, and JSON-RPC concepts.",
+      "summary": "The definitive guide to the open standard that connects AI models to enterprise databases, tools, and local contexts. Learn to architect, secure, and deploy MCP servers that integrate Claude with external data ecosystems.",
+      "skillsGained": [
+        "Model Context Protocol (MCP) Client-Server Architecture",
+        "Building custom MCP servers in TypeScript & Python",
+        "Connecting Claude Desktop and IDEs to local data",
+        "Authentication, transport layers (stdio & SSE), and security guardrails",
+        "Tool and resource exposing for agentic automation"
+      ],
+      "officialUrl": "https://anthropic.skilljar.com/",
+      "registrationUrl": "https://anthropic.skilljar.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Official Model Context Protocol Docs",
+            "url": "https://modelcontextprotocol.io/",
+            "type": "Official Specification"
+          },
+          {
+            "name": "Anthropic Academy MCP Course",
+            "url": "https://anthropic.skilljar.com/",
+            "type": "Interactive Course"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Anthropic Academy",
+            "title": "MCP Server Development Guide",
+            "instructor": "Anthropic Developer Relations",
+            "url": "https://anthropic.skilljar.com/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "GitHub Open Source",
+            "title": "MCP Reference Server Implementation Labs",
+            "url": "https://github.com/modelcontextprotocol",
+            "type": "Hands-on Code"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claude-code",
+      "code": "ANTH-CODE-101",
+      "title": "Claude Code in Action: Autonomous CLI Workflows",
+      "provider": "Anthropic",
+      "level": "Associate / Technical",
+      "category": "Agentic AI & MCP",
+      "costUSD": 0,
+      "durationMinutes": 150,
+      "questionCount": "Interactive Terminal Tasks",
+      "format": "Terminal-Driven Agentic Engineering",
+      "delivery": "Skilljar On-Demand",
+      "badgeText": "🚀 Agentic Coding",
+      "featured": true,
+      "targetAudience": "Software Engineers, DevOps Leads, AI Pair Programmers",
+      "prerequisites": "Command-line proficiency, Git basics, and codebase development experience.",
+      "summary": "Learn how to steer, orchestrate, and verify Claude Code—Anthropic's autonomous command-line agent for full codebase traversal, automated refactoring, test execution, and pull request generation.",
+      "skillsGained": [
+        "Claude Code terminal orchestration and flags",
+        "Multi-step codebase refactoring and semantic search",
+        "Autonomous bug hunting and automated test running",
+        "Permission scoping, human-in-the-loop steering, and safety checks",
+        "Continuous integration and GitHub PR workflows"
+      ],
+      "officialUrl": "https://anthropic.skilljar.com/",
+      "registrationUrl": "https://anthropic.skilljar.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Claude Code Documentation",
+            "url": "https://docs.anthropic.com/en/docs/agents-and-tools/claude-code",
+            "type": "Documentation"
+          },
+          {
+            "name": "Anthropic Academy CLI Video Series",
+            "url": "https://anthropic.skilljar.com/",
+            "type": "Video Labs"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Skilljar",
+            "title": "Autonomous Coding with Anthropic Tools",
+            "instructor": "Anthropic Academy",
+            "url": "https://anthropic.skilljar.com/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Local CLI Sandbox",
+            "title": "Real-world Open Source Repo Refactor Challenge",
+            "url": "https://docs.anthropic.com/",
+            "type": "Live Assessment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claude-prompt",
+      "code": "ANTH-PROMPT-101",
+      "title": "Anthropic AI Fluency & Prompt Engineering",
+      "provider": "Anthropic",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 0,
+      "durationMinutes": 180,
+      "questionCount": "9-Module Evaluation Workbench",
+      "format": "Interactive Prompt Testing & Pattern Mastery",
+      "delivery": "Skilljar On-Demand",
+      "badgeText": "🌟 Foundational Must-Have",
+      "featured": false,
+      "targetAudience": "Product Managers, Analysts, Knowledge Workers, AI Prompt Designers",
+      "prerequisites": "None. Suitable for non-technical leaders and developers alike.",
+      "summary": "Master the art and science of prompt engineering designed specifically for frontier LLMs. Covers XML formatting, chain of thought reasoning, role prompting, few-shot examples, and preventing hallucinations.",
+      "skillsGained": [
+        "XML tagging standards for Claude inputs and outputs",
+        "Chain of Thought (CoT) and multi-step reasoning prompting",
+        "Few-shot priming and structured schema enforcement",
+        "System prompt optimization and persona constraints",
+        "Techniques to eliminate hallucinations and ambiguity"
+      ],
+      "officialUrl": "https://anthropic.skilljar.com/",
+      "registrationUrl": "https://anthropic.skilljar.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Interactive Prompt Engineering Tutorial (GitHub)",
+            "url": "https://github.com/anthropics/prompt-eng-interactive-tutorial",
+            "type": "Jupyter Tutorial"
+          },
+          {
+            "name": "Anthropic Prompt Library",
+            "url": "https://docs.anthropic.com/en/prompt-library/library",
+            "type": "Templates"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Anthropic Academy",
+            "title": "AI Fluency for Professionals",
+            "instructor": "Anthropic Academy",
+            "url": "https://anthropic.skilljar.com/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Anthropic Console",
+            "title": "Claude Workbench Prompt Grading",
+            "url": "https://console.anthropic.com/",
+            "type": "Workbench Exercises"
+          }
+        ]
+      }
+    },
+    {
+      "id": "claude-partner",
+      "code": "ANTH-PARTNER-VUE",
+      "title": "Claude Certified Partner: Architect & Developer",
+      "provider": "Anthropic",
+      "level": "Specialty / Professional",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 150,
+      "durationMinutes": 90,
+      "questionCount": "60 Proctored Questions",
+      "format": "Multiple Choice & Architectural Scenarios",
+      "delivery": "Pearson VUE Proctored",
+      "badgeText": "🏆 Enterprise Partner",
+      "featured": false,
+      "targetAudience": "Enterprise Architects, Global System Integrator (GSI) Consultants, Solution Leads",
+      "prerequisites": "Completion of Anthropic Partner Academy tracks; experience designing multi-tenant enterprise architectures.",
+      "summary": "The formal credential validating commercial partner expertise in architecting, securing, and deploying enterprise Claude solutions, adhering to Anthropic's enterprise safety, trust, and deployment standards.",
+      "skillsGained": [
+        "Enterprise compliance, data privacy, and zero data retention architecture",
+        "High-throughput Claude deployment and prompt caching economics",
+        "Multi-agent system design and human-in-the-loop governance",
+        "Evaluating model capability deltas (Opus vs Sonnet vs Haiku)",
+        "Enterprise RFP solutioning and SLA guarantee engineering"
+      ],
+      "officialUrl": "https://www.anthropic.com/partners",
+      "registrationUrl": "https://home.pearsonvue.com/anthropic",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Anthropic Partner Academy",
+            "url": "https://anthropic.skilljar.com/",
+            "type": "Partner Portal"
+          },
+          {
+            "name": "Anthropic Trust & Security Whitepaper",
+            "url": "https://www.anthropic.com/",
+            "type": "Whitepaper"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Claude Partner Network",
+            "title": "Claude Enterprise Solutions Blueprint",
+            "instructor": "Anthropic GSI Team",
+            "url": "https://www.anthropic.com/partners",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Pearson VUE",
+            "title": "Official Claude Partner Practice Assessment",
+            "url": "https://home.pearsonvue.com/anthropic",
+            "type": "Official Practice Test"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-ab731",
+      "code": "AB-731",
+      "title": "Microsoft Certified: AI Transformation Leader",
+      "provider": "Microsoft Azure",
+      "level": "Business & Transformation Leader",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 165,
+      "durationMinutes": 90,
+      "questionCount": "50-60 Questions",
+      "format": "Case Studies & Scenario Multiple Choice (No Coding)",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "👑 Executive Flagship",
+      "featured": true,
+      "targetAudience": "CIOs, Digital Workplace Heads, IT Directors, Strategy Consultants, Transformation Program Leads",
+      "prerequisites": "Business understanding of enterprise workflows and strategic technology adoption. Zero coding required.",
+      "summary": "Microsoft's premier non-technical certification validating leadership capability to drive AI strategy, evaluate business ROI, guide ethical adoption, and champion Microsoft 365 Copilot and Azure AI transformation across the organization.",
+      "skillsGained": [
+        "Formulating enterprise AI strategy and measuring ROI",
+        "Microsoft 365 Copilot deployment, licensing, and persona rollout",
+        "Responsible AI governance, security, and compliance framework",
+        "Change management, employee upskilling, and adoption pacing",
+        "Identifying high-impact business automation use cases"
+      ],
+      "officialUrl": "https://learn.microsoft.com/certifications/exams/ab-731/",
+      "registrationUrl": "https://home.pearsonvue.com/microsoft",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Microsoft Learn AB-731 Collection",
+            "url": "https://learn.microsoft.com/certifications/exams/ab-731/",
+            "type": "Official Learning Path"
+          },
+          {
+            "name": "Microsoft AI Business School",
+            "url": "https://learn.microsoft.com/",
+            "type": "Executive Case Studies"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Pluralsight",
+            "title": "Microsoft AI Transformation Strategy",
+            "instructor": "Cloud Enterprise Authors",
+            "url": "https://www.pluralsight.com/",
+            "isFree": false
+          },
+          {
+            "platform": "Coursera",
+            "title": "Leading AI Transformation in Organizations",
+            "instructor": "Vanderbilt / Microsoft Partners",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Microsoft Learn",
+            "title": "Official Practice Assessment for Exam AB-731",
+            "url": "https://learn.microsoft.com/certifications/exams/ab-731/",
+            "type": "Free Official Assessment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-ai900",
+      "code": "AI-900 / AI-901",
+      "title": "Microsoft Certified: Azure AI Fundamentals",
+      "provider": "Microsoft Azure",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 99,
+      "durationMinutes": 65,
+      "questionCount": "40-50 Questions",
+      "format": "Multiple Choice & Drag-and-Drop",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "🔥 Most Popular Entry",
+      "featured": false,
+      "targetAudience": "IT Beginners, Business Analysts, Project Managers, Sales Consultants",
+      "prerequisites": "Basic understanding of cloud computing. No technical programming needed.",
+      "summary": "Demonstrate foundational knowledge of machine learning and generative AI concepts and related Microsoft Azure services. Covers Azure OpenAI, computer vision, natural language processing, and responsible AI.",
+      "skillsGained": [
+        "Core Artificial Intelligence workloads and terminology",
+        "Fundamental principles of Machine Learning on Azure",
+        "Features of computer vision and speech workloads",
+        "Natural Language Processing (NLP) workloads on Azure",
+        "Generative AI workloads, models, and responsible AI principles"
+      ],
+      "officialUrl": "https://learn.microsoft.com/certifications/exams/ai-900/",
+      "registrationUrl": "https://home.pearsonvue.com/microsoft",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Microsoft Learn AI-900 Learning Path (5 Modules)",
+            "url": "https://learn.microsoft.com/certifications/exams/ai-900/",
+            "type": "Free Official Course"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Microsoft Azure AI Fundamentals Specialization",
+            "instructor": "Microsoft Training",
+            "url": "https://www.coursera.org/learn/microsoft-azure-ai-fundamentals-ai-900",
+            "isFree": false
+          },
+          {
+            "platform": "Udemy",
+            "title": "AI-900: Azure AI Fundamentals Exam Prep",
+            "instructor": "Scott Duffy",
+            "url": "https://www.udemy.com/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Microsoft Learn",
+            "title": "Free AI-900 Practice Assessment",
+            "url": "https://learn.microsoft.com/certifications/exams/ai-900/",
+            "type": "Official Free Sandbox"
+          },
+          {
+            "platform": "MeasureUp",
+            "title": "Official Microsoft Practice Test AI-900",
+            "url": "https://www.measureup.com/",
+            "type": "Full Simulation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-ai102",
+      "code": "AI-102 / AI-103",
+      "title": "Microsoft Certified: Azure AI Engineer Associate",
+      "provider": "Microsoft Azure",
+      "level": "Associate / Technical",
+      "category": "MLOps & Engineering",
+      "costUSD": 165,
+      "durationMinutes": 120,
+      "questionCount": "50-60 Questions",
+      "format": "Technical Scenarios, Code Snippets & Case Studies",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "⚡ Engineering Benchmark",
+      "featured": true,
+      "targetAudience": "AI Developers, Software Engineers, Cloud Architects implementing AI services",
+      "prerequisites": "Proficiency in C# or Python and REST APIs. Experience building on Azure.",
+      "summary": "The gold-standard certification for building, managing, and deploying AI solutions leveraging Azure AI Services, Azure OpenAI, Document Intelligence, AI Search, and conversational bot architectures.",
+      "skillsGained": [
+        "Plan and manage Azure AI solutions and security",
+        "Implement content moderation, Document Intelligence, and Vision",
+        "Implement natural language processing, speech, and translation",
+        "Implement knowledge mining and Azure AI Search with RAG",
+        "Develop generative AI solutions using Azure OpenAI Service"
+      ],
+      "officialUrl": "https://learn.microsoft.com/certifications/exams/ai-102/",
+      "registrationUrl": "https://home.pearsonvue.com/microsoft",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Microsoft Learn AI-102 Modular Path",
+            "url": "https://learn.microsoft.com/certifications/exams/ai-102/",
+            "type": "Free Official Labs"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Microsoft Azure AI Engineer Professional Certificate",
+            "instructor": "Microsoft",
+            "url": "https://www.coursera.org/professional-certificates/microsoft-azure-ai-engineer",
+            "isFree": false
+          },
+          {
+            "platform": "Udemy",
+            "title": "AI-102 Azure AI Engineer Associate Complete Course",
+            "instructor": "Alan Rodrigues",
+            "url": "https://www.udemy.com/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Whizlabs",
+            "title": "AI-102 Practice Tests & Hands-On Labs",
+            "url": "https://www.whizlabs.com/",
+            "type": "Practice Exam Suite"
+          },
+          {
+            "platform": "MeasureUp",
+            "title": "Official Microsoft Practice Test AI-102",
+            "url": "https://www.measureup.com/",
+            "type": "Authorized Simulation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-applied-aoai",
+      "code": "MS-APP-AOAI",
+      "title": "Microsoft Applied Skills: Generative AI with Azure OpenAI",
+      "provider": "Microsoft Azure",
+      "level": "Associate / Technical",
+      "category": "Generative AI & LLMs",
+      "costUSD": 0,
+      "durationMinutes": 120,
+      "questionCount": "Live Azure Lab Sandbox",
+      "format": "Real-time Task Completion in Dedicated Azure Tenant",
+      "delivery": "Microsoft Learn Interactive Assessment",
+      "badgeText": "🛠️ 100% Hands-On Lab (Free)",
+      "featured": true,
+      "targetAudience": "Developers, AI Specialists seeking hands-on proof of skill without multiple choice",
+      "prerequisites": "Azure subscription navigation and basic REST/SDK coding experience.",
+      "summary": "A hands-on, lab-based credential where you perform specific real-world tasks in a live Azure cloud sandbox: deploying models, configuring prompt engineering, integrating enterprise data, and applying content safety.",
+      "skillsGained": [
+        "Deploying GPT-4o and embedding models in Azure OpenAI Studio",
+        "Configuring completions, temperature, and system messages",
+        "Connecting Azure OpenAI to enterprise data sources (On Your Data)",
+        "Configuring Azure AI Content Safety filters and blocklists",
+        "Consuming models via Python and C# SDKs"
+      ],
+      "officialUrl": "https://learn.microsoft.com/credentials/applied-skills/develop-generative-ai-solutions-azure-openai/",
+      "registrationUrl": "https://learn.microsoft.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "MS Learn: Develop Generative AI Solutions with Azure OpenAI",
+            "url": "https://learn.microsoft.com/",
+            "type": "Interactive Sandbox"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Microsoft Learn",
+            "title": "Apply Prompt Engineering with Azure OpenAI Service",
+            "instructor": "Microsoft",
+            "url": "https://learn.microsoft.com/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Azure Portal",
+            "title": "Self-Guided Azure OpenAI Studio Labs",
+            "url": "https://oai.azure.com/",
+            "type": "Cloud Sandbox"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-applied-copilot",
+      "code": "MS-APP-COPILOT",
+      "title": "Microsoft Applied Skills: Build Intelligent Agents with Copilot Studio",
+      "provider": "Microsoft Azure",
+      "level": "Associate / Technical",
+      "category": "Agentic AI & MCP",
+      "costUSD": 0,
+      "durationMinutes": 120,
+      "questionCount": "Live Copilot Studio Lab",
+      "format": "Real-time Agent Configuration & Testing",
+      "delivery": "Microsoft Learn Interactive Assessment",
+      "badgeText": "🤖 Agentic Micro-Credential",
+      "featured": false,
+      "targetAudience": "Low-Code Developers, Workplace Architects, Power Platform Consultants",
+      "prerequisites": "Basic understanding of conversational flows and business logic.",
+      "summary": "Prove your capability to build autonomous copilots and conversational agents in Microsoft Copilot Studio, configuring generative answers, knowledge sources, custom topics, and Power Platform actions.",
+      "skillsGained": [
+        "Building custom copilots from scratch in Copilot Studio",
+        "Configuring generative AI answers using enterprise SharePoint & URLs",
+        "Creating custom conversational topics and triggers",
+        "Integrating Power Automate cloud flows for external action execution",
+        "Publishing copilots to Microsoft Teams and web channels"
+      ],
+      "officialUrl": "https://learn.microsoft.com/credentials/applied-skills/",
+      "registrationUrl": "https://learn.microsoft.com/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Create and Manage Copilots in Copilot Studio Path",
+            "url": "https://learn.microsoft.com/",
+            "type": "Learning Path"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Microsoft Learn",
+            "title": "Enhance Copilots with Actions and Plugins",
+            "instructor": "Microsoft Power Platform Team",
+            "url": "https://learn.microsoft.com/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Copilot Studio Portal",
+            "title": "Free Copilot Studio Developer Environment",
+            "url": "https://copilotstudio.microsoft.com/",
+            "type": "Interactive Portal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-dp100",
+      "code": "DP-100",
+      "title": "Microsoft Certified: Azure Data Scientist Associate",
+      "provider": "Microsoft Azure",
+      "level": "Associate / Technical",
+      "category": "Data Science & Analytics",
+      "costUSD": 165,
+      "durationMinutes": 120,
+      "questionCount": "50-60 Questions",
+      "format": "Technical Scenarios & Code Evaluation",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "📊 Data Science Benchmark",
+      "featured": false,
+      "targetAudience": "Data Scientists, Machine Learning Engineers, Python Model Developers",
+      "prerequisites": "Strong Python, scikit-learn, and data science methodology experience.",
+      "summary": "Validates ability to design and prepare machine learning solutions, explore data, train models with Azure Machine Learning, deploy pipelines, and implement responsible ML practices.",
+      "skillsGained": [
+        "Design and manage Azure Machine Learning workspaces and compute",
+        "Run training scripts and generate model artifacts with MLflow",
+        "Optimize hyperparameter tuning and AutoML pipelines",
+        "Deploy models for real-time and batch inferencing",
+        "Monitor data drift and model explainability"
+      ],
+      "officialUrl": "https://learn.microsoft.com/certifications/exams/dp-100/",
+      "registrationUrl": "https://home.pearsonvue.com/microsoft",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Microsoft Learn DP-100 Collection",
+            "url": "https://learn.microsoft.com/certifications/exams/dp-100/",
+            "type": "Learning Modules"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Microsoft Azure Data Scientist Associate (DP-100)",
+            "instructor": "Microsoft",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "MeasureUp",
+            "title": "DP-100 Official Practice Exam",
+            "url": "https://www.measureup.com/",
+            "type": "Simulation"
+          },
+          {
+            "platform": "Microsoft Learn",
+            "title": "Official DP-100 Practice Assessment",
+            "url": "https://learn.microsoft.com/",
+            "type": "Free Assessment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gcp-genai-leader",
+      "code": "GCP-GENAI-LEAD",
+      "title": "Google Cloud Certified: Generative AI Leader",
+      "provider": "Google Cloud",
+      "level": "Business & Transformation Leader",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 99,
+      "durationMinutes": 90,
+      "questionCount": "50-60 Questions",
+      "format": "Multiple Choice Scenario Questions (Non-Technical)",
+      "delivery": "Webassessor / Kryterion Online Proctored",
+      "badgeText": "🌟 Executive Transformation",
+      "featured": true,
+      "targetAudience": "Business Executives, Product Managers, Digital Transformation Leaders, Enterprise Decision Makers",
+      "prerequisites": "General familiarity with business transformation and cloud concepts. Zero coding required.",
+      "summary": "Validates leadership understanding of generative AI business strategy, identifying high-value enterprise use cases, evaluating Google Cloud's AI portfolio (Gemini, Vertex AI Studio), and implementing responsible AI governance.",
+      "skillsGained": [
+        "Generative AI business value modeling and total cost of ownership",
+        "Google Cloud AI stack: Gemini Enterprise, Vertex AI, Model Garden",
+        "Techniques to guide model output: Prompt tuning, Grounding, RAG",
+        "Responsible AI principles, bias mitigation, and safety guardrails",
+        "Change management and organizational adoption readiness"
+      ],
+      "officialUrl": "https://cloud.google.com/learn/certification",
+      "registrationUrl": "https://www.webassessor.com/googlecloud",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Google Cloud Skills Boost: Generative AI for Leaders Path",
+            "url": "https://www.cloudskillsboost.google/",
+            "type": "Official Learning Path"
+          },
+          {
+            "name": "Google Cloud Next Executive Keynotes",
+            "url": "https://cloud.google.com/",
+            "type": "Executive Briefings"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Generative AI for Leaders Specialization",
+            "instructor": "Google Cloud Training",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Google Cloud Official",
+            "title": "Generative AI Leader Sample Exam Questions",
+            "url": "https://cloud.google.com/learn/certification",
+            "type": "Official Sample Test"
+          },
+          {
+            "platform": "Whizlabs",
+            "title": "Google GenAI Leader Practice Tests",
+            "url": "https://www.whizlabs.com/",
+            "type": "Practice Suite"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gcp-pmle",
+      "code": "PMLE-2026",
+      "title": "Google Cloud Professional Machine Learning Engineer",
+      "provider": "Google Cloud",
+      "level": "Specialty / Professional",
+      "category": "MLOps & Engineering",
+      "costUSD": 200,
+      "durationMinutes": 120,
+      "questionCount": "50-60 Questions",
+      "format": "Complex Technical Case Studies & Architecture Scenarios",
+      "delivery": "Webassessor / Kryterion Online Proctored",
+      "badgeText": "⚡ High-Prestige Professional",
+      "featured": true,
+      "targetAudience": "Senior ML Engineers, Cloud AI Architects, Data Science Technical Leads",
+      "prerequisites": "3+ years of industry experience, including 1+ year hands-on with Vertex AI and Google Cloud.",
+      "summary": "One of the industry's most rigorous and respected credentials. Validates deep expertise in architecting, training, operationalizing, and scaling machine learning and generative AI models on Google Cloud Vertex AI.",
+      "skillsGained": [
+        "Architecting scalable ML solutions with Vertex AI and BigQuery ML",
+        "Building RAG pipelines with Vertex AI Search and Vector Search",
+        "Automating MLOps with Vertex AI Pipelines (Kubeflow) and Model Registry",
+        "Fine-tuning Gemini foundation models with Parameter-Efficient Fine-Tuning (PEFT)",
+        "Scaling distributed training across Google Cloud TPUs and GPUs"
+      ],
+      "officialUrl": "https://cloud.google.com/learn/certification/machine-learning-engineer",
+      "registrationUrl": "https://www.webassessor.com/googlecloud",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Google Cloud Skills Boost: ML Engineer Learning Path",
+            "url": "https://www.cloudskillsboost.google/paths/17",
+            "type": "Official Lab Quest"
+          },
+          {
+            "name": "Vertex AI Architecture Documentation",
+            "url": "https://cloud.google.com/vertex-ai/docs",
+            "type": "Product Documentation"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Google Cloud Machine Learning Engineer Professional Certificate",
+            "instructor": "Google Cloud Training",
+            "url": "https://www.coursera.org/professional-certificates/google-cloud-machine-learning",
+            "isFree": false
+          },
+          {
+            "platform": "Udemy",
+            "title": "GCP Professional Machine Learning Engineer Complete Prep",
+            "instructor": "Dan Sullivan",
+            "url": "https://www.udemy.com/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Google Cloud Official",
+            "title": "Professional ML Engineer Official Practice Exam",
+            "url": "https://cloud.google.com/learn/certification/machine-learning-engineer",
+            "type": "Free Official Exam"
+          },
+          {
+            "platform": "Whizlabs",
+            "title": "GCP PMLE Practice Exam Simulator",
+            "url": "https://www.whizlabs.com/",
+            "type": "Whizlabs Test Bank"
+          }
+        ]
+      }
+    },
+    {
+      "id": "google-ai-prof-cert",
+      "code": "GOOG-AI-COURSERA",
+      "title": "Google AI Professional Certificate (Career Certificate)",
+      "provider": "Google Cloud",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 49,
+      "durationMinutes": 600,
+      "questionCount": "Graded Capstone & Portfolio Reviews",
+      "format": "Self-Paced Video, Interactive Colab Labs & Portfolio Projects",
+      "delivery": "Coursera Verified Certificate",
+      "badgeText": "🎓 Top Career Certificate",
+      "featured": false,
+      "targetAudience": "Career Transitioners, Developers, Business Analysts, Students",
+      "prerequisites": "None. Suitable for beginners with eagerness to master AI productivity.",
+      "summary": "Designed by Google experts to help anyone master practical artificial intelligence skills. Learn how to use Gemini and modern AI tools to accelerate work, build projects, and showcase an employer-ready portfolio.",
+      "skillsGained": [
+        "Practical prompt engineering with Google Gemini",
+        "Automating daily workflows, content creation, and data synthesis",
+        "Building custom AI-assisted apps and web prototypes",
+        "Evaluating AI tool capabilities and ethical considerations",
+        "Portfolio development for job market differentiation"
+      ],
+      "officialUrl": "https://grow.google/certificates/",
+      "registrationUrl": "https://www.coursera.org/professional-certificates/google-ai",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Grow with Google Official Portal",
+            "url": "https://grow.google/certificates/",
+            "type": "Career Portal"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Google AI Professional Certificate Curriculum",
+            "instructor": "Google Career Team",
+            "url": "https://www.coursera.org/professional-certificates/google-ai",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Coursera Labs",
+            "title": "Hands-on Applied Project Portfolio Review",
+            "url": "https://www.coursera.org/",
+            "type": "Capstone Projects"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gcp-genai-badge",
+      "code": "GCP-SKILL-GENAI",
+      "title": "Google Cloud Generative AI Fundamentals Skill Badge",
+      "provider": "Google Cloud",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 0,
+      "durationMinutes": 300,
+      "questionCount": "Hands-on Challenge Lab",
+      "format": "Interactive Video Modules & Qwiklabs Cloud Assessment",
+      "delivery": "Google Cloud Skills Boost",
+      "badgeText": "🌟 Free Skill Badge",
+      "featured": false,
+      "targetAudience": "All IT Professionals, Developers, Architects, Product Managers",
+      "prerequisites": "None. Fully self-paced introductory track.",
+      "summary": "Earn an official Google Cloud digital credential by completing introductory courses in Generative AI, Large Language Models, and Responsible AI, culminating in a hands-on challenge lab.",
+      "skillsGained": [
+        "Differences between predictive ML and Generative AI",
+        "Large Language Model architectures and tokenization",
+        "Attention mechanisms and transformer foundations",
+        "Google's 7 Responsible AI principles in practice",
+        "Vertex AI Studio exploration"
+      ],
+      "officialUrl": "https://www.cloudskillsboost.google/course_templates/556",
+      "registrationUrl": "https://www.cloudskillsboost.google/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Google Cloud Skills Boost: Intro to GenAI",
+            "url": "https://www.cloudskillsboost.google/course_templates/556",
+            "type": "Free Course"
+          },
+          {
+            "name": "Google Cloud Skills Boost: Intro to LLMs",
+            "url": "https://www.cloudskillsboost.google/course_templates/539",
+            "type": "Free Course"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Skills Boost",
+            "title": "Responsible AI: Applying AI Principles with Google Cloud",
+            "instructor": "Google Cloud",
+            "url": "https://www.cloudskillsboost.google/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Qwiklabs",
+            "title": "Generative AI Fundamentals Challenge Lab",
+            "url": "https://www.cloudskillsboost.google/",
+            "type": "Hands-on Lab Assessment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "gcp-cdl",
+      "code": "CDL-AI",
+      "title": "Google Cloud Certified: Cloud Digital Leader (AI Track)",
+      "provider": "Google Cloud",
+      "level": "Foundational",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 99,
+      "durationMinutes": 90,
+      "questionCount": "50-60 Questions",
+      "format": "Multiple Choice Questions",
+      "delivery": "Webassessor / Kryterion Online Proctored",
+      "badgeText": "💡 Cloud & AI Fluency",
+      "featured": false,
+      "targetAudience": "Business Leaders, Technical Sales, Account Executives, IT Managers",
+      "prerequisites": "Basic understanding of cloud concepts and business technology value.",
+      "summary": "Validates broad capability to articulate the business value of Google Cloud products, digital transformation strategies, and modern cloud AI capabilities to solve enterprise problems.",
+      "skillsGained": [
+        "Digital transformation with Google Cloud and modern AI",
+        "Innovating with data, BigQuery, and AI/ML ecosystems",
+        "Infrastructure and application modernization concepts",
+        "Google Cloud security, trust, and billing fundamentals"
+      ],
+      "officialUrl": "https://cloud.google.com/learn/certification/cloud-digital-leader",
+      "registrationUrl": "https://www.webassessor.com/googlecloud",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Cloud Digital Leader Learning Path",
+            "url": "https://www.cloudskillsboost.google/paths/9",
+            "type": "Official Learning Path"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Google Cloud Digital Leader Training Professional Certificate",
+            "instructor": "Google Cloud",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Google Cloud Official",
+            "title": "Cloud Digital Leader Sample Questions",
+            "url": "https://cloud.google.com/learn/certification/cloud-digital-leader",
+            "type": "Sample Exam"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aws-aif",
+      "code": "AIF-C01",
+      "title": "AWS Certified AI Practitioner",
+      "provider": "AWS",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 75,
+      "durationMinutes": 85,
+      "questionCount": "65 Questions",
+      "format": "Multiple Choice & Multiple Response",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "🔥 2026 Trending Star ($75)",
+      "featured": true,
+      "targetAudience": "Developers, Business Leaders, IT Support, Project Managers, Cloud Practitioners",
+      "prerequisites": "Basic familiarity with AI/ML concepts and AWS Cloud. No programming needed.",
+      "summary": "AWS's fastest-growing foundational certification. Demonstrates overall understanding of AI, ML, and generative AI concepts, along with AWS services like Amazon Bedrock, Amazon Q, and SageMaker.",
+      "skillsGained": [
+        "Fundamentals of AI, Machine Learning, and Deep Learning",
+        "Generative AI concepts, foundation models, and prompt engineering",
+        "Amazon Bedrock foundation model choice and customization",
+        "Amazon Q enterprise business generative assistant capabilities",
+        "Responsible AI, model security guardrails, and compliance"
+      ],
+      "officialUrl": "https://aws.amazon.com/certification/certified-ai-practitioner/",
+      "registrationUrl": "https://home.pearsonvue.com/aws",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "AWS Skill Builder: Standard Exam Prep Plan - AI Practitioner",
+            "url": "https://explore.skillbuilder.aws/learn/course/external/view/elearning/19904/standard-exam-prep-plan-aws-certified-ai-practitioner-aif-c01",
+            "type": "Free Official Course"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Udemy",
+            "title": "Ultimate AWS Certified AI Practitioner (AIF-C01)",
+            "instructor": "Stephane Maarek",
+            "url": "https://www.udemy.com/",
+            "isFree": false
+          },
+          {
+            "platform": "Coursera",
+            "title": "AWS Generative AI Foundations",
+            "instructor": "AWS Training & Certification",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Tutorials Dojo",
+            "title": "AWS Certified AI Practitioner Practice Exams",
+            "url": "https://tutorialsdojo.com/",
+            "type": "High-Fidelity Practice Tests"
+          },
+          {
+            "platform": "AWS Skill Builder",
+            "title": "Official Practice Question Set (AIF-C01)",
+            "url": "https://explore.skillbuilder.aws/",
+            "type": "Free Official Sample"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aws-mla",
+      "code": "MLA-C01 / MLA-C02",
+      "title": "AWS Certified Machine Learning Engineer – Associate",
+      "provider": "AWS",
+      "level": "Associate / Technical",
+      "category": "MLOps & Engineering",
+      "costUSD": 150,
+      "durationMinutes": 130,
+      "questionCount": "65 Questions",
+      "format": "Multiple Choice & Scenario Questions",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "⚡ Advanced Engineering Pick",
+      "featured": true,
+      "targetAudience": "Machine Learning Engineers, Data Engineers, Solutions Architects building ML systems",
+      "prerequisites": "At least 1 year of hands-on experience building, scaling, and operationalizing ML models on AWS.",
+      "summary": "Validates ability to scale, deploy, and operationalize machine learning workloads, LLMs, and RAG architectures using Amazon SageMaker, Bedrock, and AWS data pipelines.",
+      "skillsGained": [
+        "Data ingestion and preparation for ML and foundation model training",
+        "SageMaker feature store and data wrangling pipelines",
+        "Fine-tuning foundation models (PEFT/LoRA) and RAG embeddings",
+        "Model packaging, endpoint scaling, and serverless inference",
+        "MLOps monitoring, model drift detection, and automated CI/CD"
+      ],
+      "officialUrl": "https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/",
+      "registrationUrl": "https://home.pearsonvue.com/aws",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "AWS Skill Builder: Machine Learning Engineer Learning Plan",
+            "url": "https://explore.skillbuilder.aws/",
+            "type": "Free Official Course"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Udemy",
+            "title": "AWS Certified Machine Learning Engineer Associate (MLA-C01)",
+            "instructor": "Stephane Maarek & Frank Kane",
+            "url": "https://www.udemy.com/",
+            "isFree": false
+          },
+          {
+            "platform": "Coursera",
+            "title": "Practical Data Science on AWS",
+            "instructor": "DeepLearning.AI & AWS",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Tutorials Dojo",
+            "title": "AWS Certified Machine Learning Engineer Practice Exams",
+            "url": "https://tutorialsdojo.com/",
+            "type": "Timed Test Simulation"
+          },
+          {
+            "platform": "Whizlabs",
+            "title": "AWS MLA-C01 Practice Tests",
+            "url": "https://www.whizlabs.com/",
+            "type": "Question Bank"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aws-genai-dev",
+      "code": "GENAI-PRO",
+      "title": "AWS Certified Generative AI Developer – Professional",
+      "provider": "AWS",
+      "level": "Specialty / Professional",
+      "category": "Generative AI & LLMs",
+      "costUSD": 300,
+      "durationMinutes": 180,
+      "questionCount": "75 Advanced Scenario Questions",
+      "format": "Complex Architectural Scenarios",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "🏆 Top Enterprise Pro",
+      "featured": true,
+      "targetAudience": "Principal AI Architects, Enterprise Cloud Consultants, Lead Generative AI Engineers",
+      "prerequisites": "2+ years of production experience designing RAG systems, Bedrock agents, and distributed model architectures.",
+      "summary": "AWS's highest-tier generative AI credential. Validates deep architectural mastery in building production-ready generative AI systems: Amazon Bedrock Agents, multi-agent frameworks, OpenSearch vector search, and model guardrails.",
+      "skillsGained": [
+        "Advanced Bedrock Agent orchestration with action groups and OpenAPI schemas",
+        "Hybrid search architectures (BM25 + Dense Vectors) on Amazon OpenSearch",
+        "Guardrail design for toxic content filtering, PII masking, and prompt injection defense",
+        "Cost optimization via prompt caching, batch inference, and provisioned throughput",
+        "Enterprise compliance, audit logging with CloudTrail, and KMS encryption"
+      ],
+      "officialUrl": "https://aws.amazon.com/certification/",
+      "registrationUrl": "https://home.pearsonvue.com/aws",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "AWS Skill Builder: Developing Generative AI Applications on AWS",
+            "url": "https://explore.skillbuilder.aws/",
+            "type": "Advanced Deep Dive"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "AWS Workshop Studio",
+            "title": "Amazon Bedrock Hands-On Immersion Day",
+            "instructor": "AWS Architecture Team",
+            "url": "https://catalog.workshops.aws/",
+            "isFree": true
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "AWS Skill Builder",
+            "title": "Official Exam Readiness Sandbox for Generative AI",
+            "url": "https://explore.skillbuilder.aws/",
+            "type": "Official Lab Challenge"
+          }
+        ]
+      }
+    },
+    {
+      "id": "aws-aib",
+      "code": "AIB-C01",
+      "title": "AWS Certified AI Business Strategist",
+      "provider": "AWS",
+      "level": "Business & Transformation Leader",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 150,
+      "durationMinutes": 90,
+      "questionCount": "60 Questions",
+      "format": "Business Case Scenarios & Strategy Multiple Choice",
+      "delivery": "Pearson VUE Online / Test Center",
+      "badgeText": "📈 Business ROI Leader",
+      "featured": false,
+      "targetAudience": "Business Strategists, Product Leaders, CXOs, Innovation Directors",
+      "prerequisites": "Strategic business leadership experience. Zero coding required.",
+      "summary": "Validates ability to evaluate enterprise AI readiness, prioritize high-ROI generative AI initiatives, model total cost of ownership, and lead human-AI workforce transitions on AWS.",
+      "skillsGained": [
+        "AI transformation roadmapping and portfolio prioritization",
+        "Cost-benefit analysis of AI vs conventional automation",
+        "Evaluating build vs buy vs fine-tune strategies",
+        "Organizational data governance and AI risk mitigation",
+        "Measuring workforce productivity gains and customer experience impact"
+      ],
+      "officialUrl": "https://aws.amazon.com/certification/",
+      "registrationUrl": "https://home.pearsonvue.com/aws",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "AWS Executive Insights: Generative AI for Business Leaders",
+            "url": "https://aws.amazon.com/executive-insights/",
+            "type": "Executive Briefings"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "AWS AI Strategy and Governance for Business",
+            "instructor": "AWS Training",
+            "url": "https://www.coursera.org/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "AWS Skill Builder",
+            "title": "AI Business Readiness Assessment",
+            "url": "https://explore.skillbuilder.aws/",
+            "type": "Self-Assessment"
+          }
+        ]
+      }
+    },
+    {
+      "id": "nv-genai-llm",
+      "code": "NV-GENAI-LLM",
+      "title": "NVIDIA-Certified Associate: Generative AI and LLMs",
+      "provider": "NVIDIA",
+      "level": "Associate / Technical",
+      "category": "Generative AI & LLMs",
+      "costUSD": 135,
+      "durationMinutes": 60,
+      "questionCount": "50 Questions",
+      "format": "Multiple Choice Questions",
+      "delivery": "Certiverse Online Proctored",
+      "badgeText": "🟢 GPU & Hardware Benchmark",
+      "featured": true,
+      "targetAudience": "ML Engineers, System Architects, Performance Engineers optimizing LLM workloads",
+      "prerequisites": "Basic understanding of deep learning and GPU computing.",
+      "summary": "Validates technical understanding of generative AI architectures, foundational concepts of LLMs, and NVIDIA acceleration technologies including TensorRT-LLM, NeMo, and Triton Inference Server.",
+      "skillsGained": [
+        "Transformer architectures, attention mechanisms, and model sizing",
+        "Retrieval-Augmented Generation (RAG) system components",
+        "Inference optimization: Quantization (FP8, INT4), KV caching, and TensorRT",
+        "NVIDIA AI Enterprise and NeMo framework capabilities",
+        "Evaluating model latency, throughput, and hardware efficiency"
+      ],
+      "officialUrl": "https://www.nvidia.com/en-us/training/certification/",
+      "registrationUrl": "https://www.nvidia.com/en-us/training/",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "NVIDIA Deep Learning Institute (DLI) Generative AI Track",
+            "url": "https://www.nvidia.com/en-us/training/",
+            "type": "Official Self-Paced"
+          },
+          {
+            "name": "Building RAG Agents with LLMs (NVIDIA DLI)",
+            "url": "https://www.nvidia.com/en-us/training/",
+            "type": "Hands-on GPU Lab"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "NVIDIA DLI",
+            "title": "Accelerating LLMs with TensorRT-LLM",
+            "instructor": "NVIDIA Research",
+            "url": "https://www.nvidia.com/en-us/training/",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Certiverse",
+            "title": "Official NVIDIA Practice Assessment",
+            "url": "https://www.nvidia.com/en-us/training/certification/",
+            "type": "Official Practice Exam"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dlai-genai-everyone",
+      "code": "DLAI-GENAI-EVERYONE",
+      "title": "Generative AI for Everyone (Andrew Ng)",
+      "provider": "DeepLearning.AI",
+      "level": "Foundational",
+      "category": "AI Strategy & Leadership",
+      "costUSD": 49,
+      "durationMinutes": 360,
+      "questionCount": "Graded Conceptual Quizzes",
+      "format": "Video Lectures, Case Studies & Real-world Thought Exercises",
+      "delivery": "Coursera On-Demand",
+      "badgeText": "⭐ #1 Recommended Course",
+      "featured": true,
+      "targetAudience": "Every Knowledge Worker, Executives, Product Managers, Engineers",
+      "prerequisites": "Zero technical prerequisites. Explains AI intuitively.",
+      "summary": "Taught by AI pioneer Andrew Ng, this world-renowned masterclass demystifies generative AI: what it can and cannot do, how LLMs work, common business use cases, and how to build a generative AI strategy.",
+      "skillsGained": [
+        "Realistic mental models of what Generative AI can and cannot do",
+        "Common enterprise use cases: Writing, Reading, Chatting, Coding",
+        "Life cycle of generative AI projects from idea to deployment",
+        "Evaluating technical feasibility and business impact",
+        "Navigating ethical concerns, job impacts, and societal risks"
+      ],
+      "officialUrl": "https://www.deeplearning.ai/courses/generative-ai-for-everyone/",
+      "registrationUrl": "https://www.coursera.org/learn/generative-ai-for-everyone",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "DeepLearning.AI Official Course Portal",
+            "url": "https://www.deeplearning.ai/courses/generative-ai-for-everyone/",
+            "type": "Course Page"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Generative AI for Everyone Curriculum",
+            "instructor": "Andrew Ng",
+            "url": "https://www.coursera.org/learn/generative-ai-for-everyone",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Coursera",
+            "title": "Weekly Graded Concept Mastery Quizzes",
+            "url": "https://www.coursera.org/",
+            "type": "Graded Quizzes"
+          }
+        ]
+      }
+    },
+    {
+      "id": "dlai-aws-llm",
+      "code": "DLAI-AWS-LLM",
+      "title": "Generative AI with Large Language Models",
+      "provider": "DeepLearning.AI",
+      "level": "Associate / Technical",
+      "category": "MLOps & Engineering",
+      "costUSD": 49,
+      "durationMinutes": 960,
+      "questionCount": "Hands-On Python Jupyter Labs",
+      "format": "Hands-on Code Labs (PEFT, LoRA, RLHF, SageMaker)",
+      "delivery": "Coursera Graded Lab Track",
+      "badgeText": "🧠 Deep Technical Fine-Tuning",
+      "featured": false,
+      "targetAudience": "Data Scientists, Python Engineers, Machine Learning Practitioners",
+      "prerequisites": "Intermediate Python programming and foundational deep learning (PyTorch) concepts.",
+      "summary": "Co-developed with AWS, this technical masterclass covers the complete LLM lifecycle: pre-training, fine-tuning with PEFT/LoRA, Reinforcement Learning with Human Feedback (RLHF), and optimizing inference.",
+      "skillsGained": [
+        "Computational requirements and hardware trade-offs for LLM training",
+        "Parameter-Efficient Fine-Tuning (PEFT) and LoRA in PyTorch",
+        "Reinforcement Learning from Human Feedback (RLHF) and Proximal Policy Optimization (PPO)",
+        "Model evaluation using ROUGE, BLEU, and LLM-as-a-judge benchmarks",
+        "Deploying LLMs with quantization and memory optimization"
+      ],
+      "officialUrl": "https://www.deeplearning.ai/courses/generative-ai-with-llms/",
+      "registrationUrl": "https://www.coursera.org/learn/generative-ai-with-llms",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "DeepLearning.AI LLM Specialization Portal",
+            "url": "https://www.deeplearning.ai/courses/generative-ai-with-llms/",
+            "type": "Course Portal"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Generative AI with LLMs Full Track",
+            "instructor": "DeepLearning.AI & AWS Experts",
+            "url": "https://www.coursera.org/learn/generative-ai-with-llms",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Coursera Jupyter Labs",
+            "title": "Hands-on PyTorch LoRA Fine-Tuning Lab",
+            "url": "https://www.coursera.org/",
+            "type": "Jupyter Notebook Labs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "vand-prompt",
+      "code": "VAND-PROMPT",
+      "title": "Prompt Engineering Specialization",
+      "provider": "Vanderbilt / Coursera",
+      "level": "Foundational",
+      "category": "Generative AI & LLMs",
+      "costUSD": 49,
+      "durationMinutes": 720,
+      "questionCount": "Graded Assignments & Pattern Projects",
+      "format": "3-Course Specialization with Practical Pattern Exercises",
+      "delivery": "Coursera Verified Specialization",
+      "badgeText": "✍️ Academic Prompt Authority",
+      "featured": false,
+      "targetAudience": "Software Developers, Data Analysts, Educators, Writers",
+      "prerequisites": "None. Suitable for anyone seeking rigorous prompt engineering expertise.",
+      "summary": "Led by Dr. Jules White (Associate Dean at Vanderbilt University), this acclaimed specialization teaches formal prompt patterns (Meta-Language, Recipe, Flipped Interaction) to unlock advanced reasoning from LLMs.",
+      "skillsGained": [
+        "Formal prompt engineering pattern catalogs and templates",
+        "Advanced reasoning frameworks: Few-shot, Chain-of-Thought, Tree-of-Thought",
+        "Controlling output schemas, formats, and API data extraction",
+        "Prompt-driven software engineering and automated coding",
+        "Defensive prompting to prevent jailbreaking and injection"
+      ],
+      "officialUrl": "https://www.coursera.org/specializations/prompt-engineering",
+      "registrationUrl": "https://www.coursera.org/specializations/prompt-engineering",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Vanderbilt University GenAI Initiative",
+            "url": "https://www.vanderbilt.edu/generative-ai/",
+            "type": "Academic Portal"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Prompt Engineering Specialization (3 Courses)",
+            "instructor": "Dr. Jules White",
+            "url": "https://www.coursera.org/specializations/prompt-engineering",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Coursera Workbench",
+            "title": "Interactive Pattern Construction Assignments",
+            "url": "https://www.coursera.org/",
+            "type": "Peer-Reviewed Projects"
+          }
+        ]
+      }
+    },
+    {
+      "id": "meta-genai",
+      "code": "META-GENAI-DEV",
+      "title": "Meta Generative AI for Developers Specialization",
+      "provider": "Meta",
+      "level": "Associate / Technical",
+      "category": "Generative AI & LLMs",
+      "costUSD": 49,
+      "durationMinutes": 800,
+      "questionCount": "Hands-on Code Assignments",
+      "format": "Llama 3 Model Architecture & Local Inference Labs",
+      "delivery": "Coursera Verified Specialization",
+      "badgeText": "🦙 Open-Weights & Llama",
+      "featured": false,
+      "targetAudience": "Open-Source AI Builders, Backend Developers, Python Engineers",
+      "prerequisites": "Python programming and familiarity with PyTorch or HuggingFace.",
+      "summary": "Master open-weights foundation models with Meta's developer curriculum. Learn to build on Llama 3, run local private inference with Ollama, fine-tune models on domain data, and deploy cost-effective open-source architectures.",
+      "skillsGained": [
+        "Llama 3 architecture, tokenization, and context window handling",
+        "Running local offline models using Ollama and llama.cpp",
+        "Fine-tuning Llama on custom domain datasets with Unsloth",
+        "Building private RAG pipelines with open-source embeddings",
+        "Evaluating performance vs proprietary cloud APIs"
+      ],
+      "officialUrl": "https://www.coursera.org/specializations/meta-generative-ai",
+      "registrationUrl": "https://www.coursera.org/specializations/meta-generative-ai",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "Meta AI Llama Official Documentation",
+            "url": "https://llama.meta.com/",
+            "type": "Open Source Portal"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "Meta Generative AI for Developers Track",
+            "instructor": "Meta Staff",
+            "url": "https://www.coursera.org/specializations/meta-generative-ai",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "GitHub Labs",
+            "title": "Hands-on Llama 3 Fine-Tuning Repository",
+            "url": "https://github.com/meta-llama",
+            "type": "Code Labs"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ibm-ai-engineer",
+      "code": "IBM-AI-ENG",
+      "title": "IBM AI Engineering Professional Certificate",
+      "provider": "IBM",
+      "level": "Associate / Technical",
+      "category": "Data Science & Analytics",
+      "costUSD": 49,
+      "durationMinutes": 1200,
+      "questionCount": "6 Comprehensive Capstone Projects",
+      "format": "6-Course Comprehensive Deep Learning & Machine Learning Track",
+      "delivery": "Coursera Verified Professional Certificate",
+      "badgeText": "💼 Industry Veteran Track",
+      "featured": false,
+      "targetAudience": "Software Engineers transitioning to AI, Data Scientists, ML Engineers",
+      "prerequisites": "Intermediate Python programming, linear algebra, and basic machine learning.",
+      "summary": "One of Coursera's longest-standing, highly rated technical AI certificates. Covers machine learning algorithms, deep learning with PyTorch and Keras, neural networks, computer vision, and building end-to-end AI applications.",
+      "skillsGained": [
+        "Machine Learning algorithms: Regression, Classification, Clustering",
+        "Deep Learning architectures with PyTorch and Keras",
+        "Convolutional Neural Networks (CNNs) for Computer Vision",
+        "Recurrent Neural Networks (RNNs) and Transformers for NLP",
+        "End-to-end model deployment on cloud platforms"
+      ],
+      "officialUrl": "https://www.coursera.org/professional-certificates/ai-engineer",
+      "registrationUrl": "https://www.coursera.org/professional-certificates/ai-engineer",
+      "prepResources": {
+        "officialLearn": [
+          {
+            "name": "IBM SkillsBuild AI Learning Portal",
+            "url": "https://skillsbuild.org/",
+            "type": "Official Learning Portal"
+          }
+        ],
+        "onlineCourses": [
+          {
+            "platform": "Coursera",
+            "title": "IBM AI Engineering Professional Certificate",
+            "instructor": "IBM Skills Network",
+            "url": "https://www.coursera.org/professional-certificates/ai-engineer",
+            "isFree": false
+          }
+        ],
+        "practiceExams": [
+          {
+            "platform": "Coursera Labs",
+            "title": "Deep Learning Capstone Project with PyTorch",
+            "url": "https://www.coursera.org/",
+            "type": "Graded Capstone Project"
+          }
+        ]
+      }
+    }
+  ]
+}
