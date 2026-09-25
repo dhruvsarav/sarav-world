@@ -90,13 +90,13 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "Anthropic Developer Foundations Learning Path", "url": "https://anthropic-partners.skilljar.com/path/claude-certified-developer-foundations", "type": "Official Learning Path" },
-                { "name": "Building with the Claude API (Anthropic Skilljar)", "url": "https://anthropic.skilljar.com/building-with-the-claude-api", "type": "Hands-on Sandbox" }
+                { "name": "Building with the Claude API (Anthropic Skilljar)", "url": "https://anthropic.skilljar.com/", "type": "Hands-on Sandbox" }
             ],
             "onlineCourses": [
                 { "platform": "DeepLearning.AI", "title": "Building Applications with Claude 3.5", "instructor": "Anthropic Team", "url": "https://www.deeplearning.ai/", "isFree": True }
             ],
             "practiceExams": [
-                { "platform": "Anthropic Console", "title": "Interactive API Workbench Challenges", "url": "https://console.anthropic.com/", "type": "Hands-on Sandbox" }
+                { "platform": "Anthropic Console", "title": "Interactive API Workbench Challenges", "url": "https://platform.claude.com/", "type": "Hands-on Sandbox" }
             ]
         }
     },
@@ -135,7 +135,7 @@ CERTIFICATIONS = [
                 { "platform": "Anthropic Skilljar", "title": "Introduction to Model Context Protocol (MCP)", "instructor": "Anthropic Engineering", "url": "https://anthropic.skilljar.com/", "isFree": True }
             ],
             "practiceExams": [
-                { "platform": "Anthropic Cookbook", "title": "Enterprise Architecture Blueprints", "url": "https://github.com/anthropics/anthropic-cookbook", "type": "Architecture Patterns" }
+                { "platform": "Anthropic Cookbook", "title": "Enterprise Architecture Blueprints", "url": "https://github.com/anthropics/claude-cookbooks", "type": "Architecture Patterns" }
             ]
         }
     },
@@ -202,18 +202,18 @@ CERTIFICATIONS = [
             "Streaming responses and token usage budgeting",
             "Vision analysis and document processing"
         ],
-        "officialUrl": "https://anthropic.skilljar.com/building-with-the-claude-api",
+        "officialUrl": "https://anthropic.skilljar.com/",
         "registrationUrl": "https://anthropic.skilljar.com/",
         "prepResources": {
             "officialLearn": [
                 { "name": "Anthropic Academy Official Track", "url": "https://anthropic.skilljar.com/", "type": "Free Self-Paced" },
-                { "name": "Anthropic Cookbook (GitHub)", "url": "https://github.com/anthropics/anthropic-cookbook", "type": "Code Repository" }
+                { "name": "Anthropic Cookbook (GitHub)", "url": "https://github.com/anthropics/claude-cookbooks", "type": "Code Repository" }
             ],
             "onlineCourses": [
                 { "platform": "DeepLearning.AI", "title": "Building Applications with Claude", "instructor": "Anthropic Team", "url": "https://www.deeplearning.ai/", "isFree": True }
             ],
             "practiceExams": [
-                { "platform": "Anthropic Sandbox", "title": "Interactive API Workbench Challenges", "url": "https://console.anthropic.com/", "type": "Interactive Labs" }
+                { "platform": "Anthropic Sandbox", "title": "Interactive API Workbench Challenges", "url": "https://platform.claude.com/", "type": "Interactive Labs" }
             ]
         }
     },
@@ -284,14 +284,14 @@ CERTIFICATIONS = [
         "registrationUrl": "https://anthropic.skilljar.com/",
         "prepResources": {
             "officialLearn": [
-                { "name": "Claude Code Documentation", "url": "https://docs.anthropic.com/en/docs/claude-code", "type": "Official Documentation" },
+                { "name": "Claude Code Documentation", "url": "https://code.claude.com/docs", "type": "Official Documentation" },
                 { "name": "Anthropic CLI Tutorials", "url": "https://anthropic.skilljar.com/", "type": "Video Labs" }
             ],
             "onlineCourses": [
                 { "platform": "YouTube / Anthropic", "title": "Supercharging Developer Workflows with Claude Code", "instructor": "Anthropic Engineers", "url": "https://youtube.com", "isFree": True }
             ],
             "practiceExams": [
-                { "platform": "Local Shell", "title": "Self-Guided Repo Refactoring Challenges", "url": "https://docs.anthropic.com/", "type": "Hands-on Practice" }
+                { "platform": "Local Shell", "title": "Self-Guided Repo Refactoring Challenges", "url": "https://platform.claude.com/docs/en/home", "type": "Hands-on Practice" }
             ]
         }
     },
@@ -323,14 +323,14 @@ CERTIFICATIONS = [
         "registrationUrl": "https://anthropic.skilljar.com/",
         "prepResources": {
             "officialLearn": [
-                { "name": "Anthropic Interactive Prompt Generator", "url": "https://console.anthropic.com/dashboard", "type": "Workbench Tool" },
-                { "name": "Anthropic Prompt Engineering Interactive Guide", "url": "https://docs.anthropic.com/en/docs/prompt-engineering", "type": "Official Guide" }
+                { "name": "Anthropic Interactive Prompt Generator", "url": "https://platform.claude.com/dashboard", "type": "Workbench Tool" },
+                { "name": "Anthropic Prompt Engineering Interactive Guide", "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview", "type": "Official Guide" }
             ],
             "onlineCourses": [
                 { "platform": "Anthropic Skilljar", "title": "Claude Prompting Fundamentals", "instructor": "Anthropic AI Research Team", "url": "https://anthropic.skilljar.com/", "isFree": True }
             ],
             "practiceExams": [
-                { "platform": "Anthropic Console", "title": "Prompt Evaluation Benchmarks", "url": "https://console.anthropic.com/", "type": "Evaluation Suite" }
+                { "platform": "Anthropic Console", "title": "Prompt Evaluation Benchmarks", "url": "https://platform.claude.com/", "type": "Evaluation Suite" }
             ]
         }
     },
@@ -517,15 +517,15 @@ CERTIFICATIONS = [
             "Multi-modal audio (Whisper) and vision (GPT-4o) integration",
             "Full-stack web deployment with Streamlit and FastAPI"
         ],
-        "officialUrl": "https://www.coursera.org/learn/building-ai-applications-with-openai-apis",
-        "registrationUrl": "https://www.coursera.org/learn/building-ai-applications-with-openai-apis",
+        "officialUrl": "https://www.coursera.org/specializations/large-language-model-operations",
+        "registrationUrl": "https://www.coursera.org/specializations/large-language-model-operations",
         "prepResources": {
             "officialLearn": [
-                { "name": "Coursera Course Syllabus", "url": "https://www.coursera.org/learn/building-ai-applications-with-openai-apis", "type": "Course Syllabus" },
+                { "name": "Coursera Course Syllabus", "url": "https://www.coursera.org/specializations/large-language-model-operations", "type": "Course Syllabus" },
                 { "name": "Duke Pratt School of Engineering", "url": "https://pratt.duke.edu/", "type": "Academic Portal" }
             ],
             "onlineCourses": [
-                { "platform": "Coursera", "title": "Building AI Applications with OpenAI APIs", "instructor": "Duke Engineering Faculty", "url": "https://www.coursera.org/learn/building-ai-applications-with-openai-apis", "isFree": True }
+                { "platform": "Coursera", "title": "Building AI Applications with OpenAI APIs", "instructor": "Duke Engineering Faculty", "url": "https://www.coursera.org/specializations/large-language-model-operations", "isFree": True }
             ],
             "practiceExams": [
                 { "platform": "Coursera Graded Labs", "title": "Interactive Jupyter Notebook API Exercises", "url": "https://www.coursera.org/", "type": "Hands-on Graded Labs" }
@@ -760,7 +760,7 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "NCP Accelerated Data Science Learning Path", "url": "https://www.nvidia.com/en-us/learn/learning-path/accelerated-data-science/", "type": "Official Learning Path" },
-                { "name": "NVIDIA Spark-RAPIDS Guide", "url": "https://nvidia.github.io/spark-rapids/", "type": "Documentation" }
+                { "name": "NVIDIA Spark-RAPIDS Guide", "url": "https://github.com/NVIDIA/spark-rapids", "type": "Documentation" }
             ],
             "onlineCourses": [
                 { "platform": "NVIDIA DLI", "title": "Scaling Data Science Pipelines to Multi-GPU Clusters", "instructor": "NVIDIA DLI Faculty", "url": "https://www.nvidia.com/en-in/training/", "isFree": False }
@@ -877,7 +877,7 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "NCP AI Networking Learning Path", "url": "https://www.nvidia.com/en-us/learn/learning-paths/", "type": "Official Path" },
-                { "name": "NVIDIA Spectrum-X Ethernet Architecture Whitepaper", "url": "https://www.nvidia.com/en-us/networking/spectrum-x/", "type": "Architecture Whitepaper" }
+                { "name": "NVIDIA Spectrum-X Ethernet Architecture Whitepaper", "url": "https://www.nvidia.com/en-us/networking/ethernet-switching/", "type": "Architecture Whitepaper" }
             ],
             "onlineCourses": [
                 { "platform": "NVIDIA DLI", "title": "High-Performance Networking for AI and Supercomputing", "instructor": "NVIDIA Networking Architects", "url": "https://www.nvidia.com/en-in/training/", "isFree": False }
@@ -959,7 +959,7 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "Oracle University OCI AI Foundations Path", "url": "https://mylearn.oracle.com/", "type": "Free Official Course" },
-                { "name": "OCI AI Services Overview Docs", "url": "https://docs.oracle.com/en-us/iaas/Content/ai-services.htm", "type": "Documentation" }
+                { "name": "OCI AI Services Overview Docs", "url": "https://docs.oracle.com/en-us/iaas/Content/generative-ai/overview.htm", "type": "Documentation" }
             ],
             "onlineCourses": [
                 { "platform": "Oracle MyLearn", "title": "Become an OCI AI Certified Foundations Associate", "instructor": "Oracle University Experts", "url": "https://mylearn.oracle.com/", "isFree": True }
@@ -1114,18 +1114,18 @@ CERTIFICATIONS = [
             "Azure OpenAI capabilities and generative AI basics",
             "Microsoft Responsible AI Principles (Fairness, Reliability, Safety)"
         ],
-        "officialUrl": "https://learn.microsoft.com/certifications/exams/ai-900/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-900/",
         "registrationUrl": "https://home.pearsonvue.com/microsoft",
         "prepResources": {
             "officialLearn": [
-                { "name": "Microsoft Learn AI-900 Official Learning Path", "url": "https://learn.microsoft.com/training/paths/get-started-with-artificial-intelligence-on-azure/", "type": "Free Self-Paced" },
-                { "name": "AI-900 Exam Study Guide", "url": "https://learn.microsoft.com/certifications/resources/study-guides/ai-900", "type": "Official Guide" }
+                { "name": "Microsoft Learn AI-900 Official Learning Path", "url": "https://learn.microsoft.com/en-us/training/paths/get-started-ai-apps-agents/", "type": "Free Self-Paced" },
+                { "name": "AI-900 Exam Study Guide", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-900", "type": "Official Guide" }
             ],
             "onlineCourses": [
-                { "platform": "Coursera", "title": "Microsoft Azure AI Fundamentals Specialization", "instructor": "Microsoft", "url": "https://www.coursera.org/professional-certificates/microsoft-azure-ai-fundamentals", "isFree": False }
+                { "platform": "Coursera", "title": "Microsoft Azure AI Fundamentals Specialization", "instructor": "Microsoft", "url": "https://www.coursera.org/search?query=Microsoft%20Azure%20AI%20Fundamentals", "isFree": False }
             ],
             "practiceExams": [
-                { "platform": "Microsoft Learn", "title": "Free Official Practice Assessment for AI-900", "url": "https://learn.microsoft.com/certifications/exams/ai-900/practice/assess", "type": "Official Free Practice Test" }
+                { "platform": "Microsoft Learn", "title": "Free Official Practice Assessment for AI-900", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-900", "type": "Official Free Practice Test" }
             ]
         }
     },
@@ -1153,18 +1153,18 @@ CERTIFICATIONS = [
             "Azure Content Safety: text and image moderation filters",
             "Securing Azure AI services with Managed Identities and VNETs"
         ],
-        "officialUrl": "https://learn.microsoft.com/certifications/exams/ai-102/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ai-102/",
         "registrationUrl": "https://home.pearsonvue.com/microsoft",
         "prepResources": {
             "officialLearn": [
-                { "name": "Microsoft Learn AI-102 Developer Path", "url": "https://learn.microsoft.com/training/paths/develop-ai-solutions-azure/", "type": "Free Self-Paced Labs" },
-                { "name": "AI-102 GitHub Interactive Labs", "url": "https://microsoftlearning.github.io/mslearn-ai-services/", "type": "Hands-on Code Repo" }
+                { "name": "Microsoft Learn AI-102 Developer Path", "url": "https://learn.microsoft.com/en-us/training/paths/get-started-ai-apps-agents/", "type": "Free Self-Paced Labs" },
+                { "name": "AI-102 GitHub Interactive Labs", "url": "https://github.com/MicrosoftLearning/mslearn-ai-services", "type": "Hands-on Code Repo" }
             ],
             "onlineCourses": [
                 { "platform": "Coursera", "title": "Microsoft Azure AI Engineer Associate Specialization", "instructor": "Microsoft", "url": "https://www.coursera.org/", "isFree": False }
             ],
             "practiceExams": [
-                { "platform": "Microsoft Learn", "title": "Free Official Practice Assessment for AI-102", "url": "https://learn.microsoft.com/certifications/exams/ai-102/practice/assess", "type": "Official Free Practice Test" }
+                { "platform": "Microsoft Learn", "title": "Free Official Practice Assessment for AI-102", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ai-102", "type": "Official Free Practice Test" }
             ]
         }
     },
@@ -1270,18 +1270,18 @@ CERTIFICATIONS = [
             "Enterprise AI governance, risk assessment, and legal compliance",
             "Strategic architecture for Microsoft Copilot and Azure OpenAI"
         ],
-        "officialUrl": "https://learn.microsoft.com/certifications/exams/ab-731/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/ab-731/",
         "registrationUrl": "https://home.pearsonvue.com/microsoft",
         "prepResources": {
             "officialLearn": [
-                { "name": "Microsoft Learn AI Transformation Leader Track", "url": "https://learn.microsoft.com/training/paths/lead-ai-transformation/", "type": "Free Self-Paced" },
-                { "name": "AB-731 Official Study Guide", "url": "https://learn.microsoft.com/certifications/resources/study-guides/ab-731", "type": "Official Guide" }
+                { "name": "Microsoft Learn AI Transformation Leader Track", "url": "https://learn.microsoft.com/en-us/credentials/certifications/ai-transformation-leader/", "type": "Free Self-Paced" },
+                { "name": "AB-731 Official Study Guide", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-731", "type": "Official Guide" }
             ],
             "onlineCourses": [
                 { "platform": "Coursera", "title": "Microsoft AI Transformation for Leaders", "instructor": "Microsoft", "url": "https://www.coursera.org/", "isFree": False }
             ],
             "practiceExams": [
-                { "platform": "Microsoft Learn", "title": "AB-731 Official Practice Assessment", "url": "https://learn.microsoft.com/certifications/exams/ab-731/practice/assess", "type": "Official Free Practice Test" }
+                { "platform": "Microsoft Learn", "title": "AB-731 Official Practice Assessment", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/ab-731", "type": "Official Free Practice Test" }
             ]
         }
     },
@@ -1309,18 +1309,18 @@ CERTIFICATIONS = [
             "Deploying models to real-time managed online endpoints",
             "Model interpretability, fairness assessment, and Responsible AI dashboards"
         ],
-        "officialUrl": "https://learn.microsoft.com/certifications/exams/dp-100/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/certifications/exams/dp-100/",
         "registrationUrl": "https://home.pearsonvue.com/microsoft",
         "prepResources": {
             "officialLearn": [
-                { "name": "Microsoft Learn DP-100 Learning Path", "url": "https://learn.microsoft.com/training/paths/design-machine-learning-solutions-azure/", "type": "Free Self-Paced" },
-                { "name": "DP-100 GitHub Hands-on Labs", "url": "https://microsoftlearning.github.io/mslearn-azure-ml/", "type": "Interactive Labs" }
+                { "name": "Microsoft Learn DP-100 Learning Path", "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-data-scientist/", "type": "Free Self-Paced" },
+                { "name": "DP-100 GitHub Hands-on Labs", "url": "https://github.com/MicrosoftLearning/mslearn-aml-cli", "type": "Interactive Labs" }
             ],
             "onlineCourses": [
                 { "platform": "Coursera", "title": "Microsoft Azure Data Scientist Associate Specialization", "instructor": "Microsoft", "url": "https://www.coursera.org/", "isFree": False }
             ],
             "practiceExams": [
-                { "platform": "Microsoft Learn", "title": "DP-100 Official Free Practice Assessment", "url": "https://learn.microsoft.com/certifications/exams/dp-100/practice/assess", "type": "Official Free Practice Test" }
+                { "platform": "Microsoft Learn", "title": "DP-100 Official Free Practice Assessment", "url": "https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/dp-100", "type": "Official Free Practice Test" }
             ]
         }
     },
@@ -1348,11 +1348,11 @@ CERTIFICATIONS = [
             "Connecting Azure OpenAI to your data using Azure AI Search",
             "Configuring enterprise content moderation filters"
         ],
-        "officialUrl": "https://learn.microsoft.com/credentials/applied-skills/develop-generative-ai-solutions-azure-openai/",
-        "registrationUrl": "https://learn.microsoft.com/credentials/applied-skills/develop-generative-ai-solutions-azure-openai/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-with-azure-openai-service/",
+        "registrationUrl": "https://learn.microsoft.com/en-us/credentials/applied-skills/develop-generative-ai-solutions-with-azure-openai-service/",
         "prepResources": {
             "officialLearn": [
-                { "name": "Applied Skills Prep Path on Microsoft Learn", "url": "https://learn.microsoft.com/training/paths/develop-language-solutions-azure-openai/", "type": "Free Training" }
+                { "name": "Applied Skills Prep Path on Microsoft Learn", "url": "https://learn.microsoft.com/en-us/credentials/applied-skills/", "type": "Free Training" }
             ],
             "onlineCourses": [
                 { "platform": "Microsoft Learn", "title": "Develop AI solutions with Azure OpenAI Service", "instructor": "Microsoft", "url": "https://learn.microsoft.com/", "isFree": True }
@@ -1386,11 +1386,11 @@ CERTIFICATIONS = [
             "Triggering automated actions via Power Automate cloud flows",
             "Publishing copilot agents to Microsoft Teams and web portals"
         ],
-        "officialUrl": "https://learn.microsoft.com/credentials/applied-skills/create-agents-copilot-studio/",
-        "registrationUrl": "https://learn.microsoft.com/credentials/applied-skills/create-agents-copilot-studio/",
+        "officialUrl": "https://learn.microsoft.com/en-us/credentials/applied-skills/build-an-agent-in-microsoft-copilot-studio/",
+        "registrationUrl": "https://learn.microsoft.com/en-us/credentials/applied-skills/build-an-agent-in-microsoft-copilot-studio/",
         "prepResources": {
             "officialLearn": [
-                { "name": "Copilot Studio Learning Path on Microsoft Learn", "url": "https://learn.microsoft.com/training/paths/create-chatbots-power-virtual-agents/", "type": "Free Self-Paced" }
+                { "name": "Copilot Studio Learning Path on Microsoft Learn", "url": "https://learn.microsoft.com/en-us/credentials/applied-skills/build-an-agent-in-microsoft-copilot-studio/", "type": "Free Self-Paced" }
             ],
             "onlineCourses": [
                 { "platform": "Microsoft Learn", "title": "Transform your business with Microsoft Copilot Studio", "instructor": "Microsoft", "url": "https://learn.microsoft.com/", "isFree": True }
@@ -1472,10 +1472,10 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "Google Cloud Machine Learning Engineer Learning Path", "url": "https://www.cloudskillsboost.google/paths/17", "type": "Interactive Labs & Quizzes" },
-                { "name": "PMLE Official Exam Guide", "url": "https://cloud.google.com/learn/certification/guides/machine-learning-engineer", "type": "Official Blueprint" }
+                { "name": "PMLE Official Exam Guide", "url": "https://cloud.google.com/learn/certification/machine-learning-engineer", "type": "Official Blueprint" }
             ],
             "onlineCourses": [
-                { "platform": "Coursera", "title": "Preparing for Google Cloud ML Engineer Professional Certificate", "instructor": "Google Cloud", "url": "https://www.coursera.org/professional-certificates/google-cloud-machine-learning-engineer", "isFree": False }
+                { "platform": "Coursera", "title": "Preparing for Google Cloud ML Engineer Professional Certificate", "instructor": "Google Cloud", "url": "https://www.coursera.org/search?query=Google%20Cloud%20Machine%20Learning%20Engineer", "isFree": False }
             ],
             "practiceExams": [
                 { "platform": "Google Cloud", "title": "PMLE Official Practice Exam (Free)", "url": "https://cloud.google.com/learn/certification/machine-learning-engineer", "type": "Official Free Practice Test" }
@@ -1862,7 +1862,7 @@ CERTIFICATIONS = [
         "prepResources": {
             "officialLearn": [
                 { "name": "AWS Skill Builder: Executive AI Strategy Path", "url": "https://explore.skillbuilder.aws/", "type": "Free Official Course" },
-                { "name": "AWS Cloud Value Framework: AI & ML", "url": "https://aws.amazon.com/cloud-value/", "type": "Strategy Framework" }
+                { "name": "AWS Cloud Value Framework: AI & ML", "url": "https://aws.amazon.com/executive-insights/", "type": "Strategy Framework" }
             ],
             "onlineCourses": [
                 { "platform": "Coursera", "title": "Generative AI for Business Leaders", "instructor": "AWS Training", "url": "https://www.coursera.org/", "isFree": False }
@@ -1976,12 +1976,12 @@ CERTIFICATIONS = [
             "Deploying foundation models with Mosaic AI Model Serving",
             "Enterprise data governance with Unity Catalog for AI"
         ],
-        "officialUrl": "https://www.databricks.com/learn/certification/generative-ai-engineer-associate",
+        "officialUrl": "https://www.databricks.com/learn/certification/genai-engineer-associate",
         "registrationUrl": "https://www.webassessor.com/databricks",
         "prepResources": {
             "officialLearn": [
                 { "name": "Databricks Academy Generative AI Path", "url": "https://customer-academy.databricks.com/", "type": "Official Training" },
-                { "name": "Databricks GenAI Engineer Exam Blueprint", "url": "https://www.databricks.com/learn/certification/generative-ai-engineer-associate", "type": "Official Blueprint" }
+                { "name": "Databricks GenAI Engineer Exam Blueprint", "url": "https://www.databricks.com/learn/certification/genai-engineer-associate", "type": "Official Blueprint" }
             ],
             "onlineCourses": [
                 { "platform": "Databricks Academy", "title": "Generative AI Engineering on Databricks", "instructor": "Databricks Faculty", "url": "https://customer-academy.databricks.com/", "isFree": True }
@@ -2054,11 +2054,11 @@ CERTIFICATIONS = [
             "Snowflake Feature Store and automated ML pipelines",
             "Data governance, role-based access control, and model lineage"
         ],
-        "officialUrl": "https://learn.snowflake.com/en/certifications/data-scientist-specialty/",
+        "officialUrl": "https://learn.snowflake.com/en/certifications/snowpro-advanced-datascientistC03/",
         "registrationUrl": "https://home.pearsonvue.com/snowflake",
         "prepResources": {
             "officialLearn": [
-                { "name": "SnowPro Specialty Data Scientist Exam Guide", "url": "https://learn.snowflake.com/en/certifications/data-scientist-specialty/", "type": "Official Exam Guide" },
+                { "name": "SnowPro Specialty Data Scientist Exam Guide", "url": "https://learn.snowflake.com/en/certifications/snowpro-advanced-datascientistC03/", "type": "Official Exam Guide" },
                 { "name": "Snowflake Cortex AI Documentation", "url": "https://docs.snowflake.com/en/user-guide/snowflake-cortex/llm-functions", "type": "Documentation" }
             ],
             "onlineCourses": [
@@ -2211,14 +2211,14 @@ CERTIFICATIONS = [
             "Building RAG systems with LangChain and open-source models",
             "Responsible AI and Llama Guard safety guardrails"
         ],
-        "officialUrl": "https://www.coursera.org/specializations/meta-generative-ai",
-        "registrationUrl": "https://www.coursera.org/specializations/meta-generative-ai",
+        "officialUrl": "https://www.llama.com/",
+        "registrationUrl": "https://www.llama.com/",
         "prepResources": {
             "officialLearn": [
                 { "name": "Meta Llama Developer Portal", "url": "https://llama.meta.com/", "type": "Official Site" }
             ],
             "onlineCourses": [
-                { "platform": "Coursera", "title": "Meta Generative AI for Developers Specialization", "instructor": "Meta Engineers", "url": "https://www.coursera.org/specializations/meta-generative-ai", "isFree": False }
+                { "platform": "Coursera", "title": "Meta Generative AI for Developers Specialization", "instructor": "Meta Engineers", "url": "https://www.llama.com/", "isFree": False }
             ],
             "practiceExams": [
                 { "platform": "Coursera Labs", "title": "Llama Fine-Tuning Sandbox Notebooks", "url": "https://www.coursera.org/", "type": "Hands-on Labs" }
